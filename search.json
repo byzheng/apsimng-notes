@@ -7,6 +7,20 @@
     "text": "Tips for APSIM NG"
   },
   {
+    "objectID": "script/index.html",
+    "href": "script/index.html",
+    "title": "Tips Index",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing FloweringDAS from a Manager Script\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
     "objectID": "script/summary.html",
     "href": "script/summary.html",
     "title": "Writing Debug Info to Summary",
@@ -25,14 +39,7 @@
     "href": "script/summary.html#code-example",
     "title": "Writing Debug Info to Summary",
     "section": "Code Example",
-    "text": "Code Example\n[Link] private Summary Summary;\n\nSummary.WriteMessage(this, \"FloweringDAS \" + floweringDAS, MessageType.Diagnostic);"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
   },
   {
     "objectID": "script/floweringDAS.html",
@@ -67,6 +74,6 @@
     "href": "script/floweringDAS.html#code-example",
     "title": "Accessing FloweringDAS from a Manager Script",
     "section": "Code Example",
-    "text": "Code Example\n[Link] Zone zone;\n\n[EventSubscribe(\"DoManagement\")]\nprivate void OnDoManagement(object sender, EventArgs e)\n{\n    OnEventFunction floweringEvent = \n        (OnEventFunction)zone.Get(\"[Wheat].Phenology.FloweringDAS\");\n\n    double floweringDAS = floweringEvent.Value();\n}"
+    "text": "Code Example\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Attempt to retrieve the 'FloweringDAS' function from the Wheat model's Phenology\n            var floweringFunction = zone.Get(\"[Wheat].Phenology.FloweringDAS\") as IFunction;\n\n            if (floweringFunction != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringFunction.Value();\n\n                // Use the retrieved value as needed\n                // For example, you might store it, trigger other actions, etc.\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                // This might involve logging a warning or taking alternative actions\n            }\n        }\n    }\n}"
   }
 ]
