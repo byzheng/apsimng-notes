@@ -7,20 +7,6 @@
     "text": "Tips for APSIM NG"
   },
   {
-    "objectID": "script/index.html",
-    "href": "script/index.html",
-    "title": "Tips Index",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing FloweringDAS from a Manager Script\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
     "objectID": "script/summary.html",
     "href": "script/summary.html",
     "title": "Writing Debug Info to Summary",
@@ -42,38 +28,59 @@
     "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
   },
   {
-    "objectID": "script/floweringDAS.html",
-    "href": "script/floweringDAS.html",
-    "title": "Accessing FloweringDAS from a Manager Script",
+    "objectID": "script/summary.html#additional-resources",
+    "href": "script/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "In APSIM Next Gen, developmental stages like flowering are managed within the plant model (e.g., Wheat). This feature demonstrates how to retrieve the number of days after sowing (DAS) to flowering using a Manager script."
+    "text": "About this site"
   },
   {
-    "objectID": "script/floweringDAS.html#goal",
-    "href": "script/floweringDAS.html#goal",
-    "title": "Accessing FloweringDAS from a Manager Script",
-    "section": "Goal",
-    "text": "Goal\nTo access the value of FloweringDAS during the simulation."
+    "objectID": "script/internal_variable.html",
+    "href": "script/internal_variable.html",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "",
+    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
   },
   {
-    "objectID": "script/floweringDAS.html#prerequisites",
-    "href": "script/floweringDAS.html#prerequisites",
-    "title": "Accessing FloweringDAS from a Manager Script",
-    "section": "Prerequisites",
-    "text": "Prerequisites\nEnsure your plant model (e.g., Wheat) has the Phenology module with a function or variable named FloweringDAS."
+    "objectID": "script/internal_variable.html#objective",
+    "href": "script/internal_variable.html#objective",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Objective",
+    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
   },
   {
-    "objectID": "script/floweringDAS.html#how-it-works",
-    "href": "script/floweringDAS.html#how-it-works",
-    "title": "Accessing FloweringDAS from a Manager Script",
-    "section": "How It Works",
-    "text": "How It Works\nWe use an OnEventFunction to link to the Phenology.FloweringDAS path dynamically."
+    "objectID": "script/internal_variable.html#implementation",
+    "href": "script/internal_variable.html#implementation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
   },
   {
-    "objectID": "script/floweringDAS.html#code-example",
-    "href": "script/floweringDAS.html#code-example",
-    "title": "Accessing FloweringDAS from a Manager Script",
-    "section": "Code Example",
-    "text": "Code Example\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Attempt to retrieve the 'FloweringDAS' function from the Wheat model's Phenology\n            var floweringFunction = zone.Get(\"[Wheat].Phenology.FloweringDAS\") as IFunction;\n\n            if (floweringFunction != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringFunction.Value();\n\n                // Use the retrieved value as needed\n                // For example, you might store it, trigger other actions, etc.\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                // This might involve logging a warning or taking alternative actions\n            }\n        }\n    }\n}"
+    "objectID": "script/internal_variable.html#explanation",
+    "href": "script/internal_variable.html#explanation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Explanation",
+    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable reporting. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
+  },
+  {
+    "objectID": "script/internal_variable.html#additional-resources",
+    "href": "script/internal_variable.html#additional-resources",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "script/index.html",
+    "href": "script/index.html",
+    "title": "Tips Index",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Accessing FloweringDAS from a Manager Script – apsimng-tips</title>
+<title>Accessing Internal Model Variables in the Manager Scripts – apsimng-tips</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -153,10 +153,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#goal" id="toc-goal" class="nav-link active" data-scroll-target="#goal">Goal</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
-  <li><a href="#how-it-works" id="toc-how-it-works" class="nav-link" data-scroll-target="#how-it-works">How It Works</a></li>
-  <li><a href="#code-example" id="toc-code-example" class="nav-link" data-scroll-target="#code-example">Code Example</a></li>
+  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a></li>
+  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a>
+  <ul class="collapse">
+  <li><a href="#accessing-wheat.phenology.floweringdas" id="toc-accessing-wheat.phenology.floweringdas" class="nav-link" data-scroll-target="#accessing-wheat.phenology.floweringdas">Accessing <code>[Wheat].Phenology.FloweringDAS</code></a></li>
+  <li><a href="#accessing-wheat.stem.n" id="toc-accessing-wheat.stem.n" class="nav-link" data-scroll-target="#accessing-wheat.stem.n">Accessing <code>[Wheat].Stem.N</code></a></li>
+  </ul></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -165,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Accessing FloweringDAS from a Manager Script</h1>
+<h1 class="title">Accessing Internal Model Variables in the Manager Scripts</h1>
 </div>
 
 
@@ -188,57 +192,110 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In APSIM Next Gen, developmental stages like flowering are managed within the plant model (e.g., Wheat). This feature demonstrates how to retrieve the number of <strong>days after sowing (DAS)</strong> to flowering using a <code>Manager</code> script.</p>
-<section id="goal" class="level2">
-<h2 class="anchored" data-anchor-id="goal">Goal</h2>
-<p>To access the value of <code>FloweringDAS</code> during the simulation.</p>
+<p>In APSIM Next Gen, internal variables such as <code>[Wheat].Phenology.FloweringDAS</code> and <code>[Wheat].Stem.N</code> are accessible within the <code>Report</code> model. However, accessing these variables directly in a <code>Manager Script</code> requires a different approach.</p>
+<p>To retrieve these values within a <code>Manager Script</code>, you can use the <code>zone.Get()</code> method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., <code>IFunction</code>, <code>Plant</code>, or <code>IOrgan</code>) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name.</p>
+<section id="objective" class="level2">
+<h2 class="anchored" data-anchor-id="objective">Objective</h2>
+<p>Retrieve internal variables from models (e.g., <code>[Wheat].Phenology.FloweringDAS</code> and <code>[Wheat].Stem.N</code>) during the simulation using a Manager script.</p>
 </section>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>Ensure your plant model (e.g., <code>Wheat</code>) has the <code>Phenology</code> module with a function or variable named <code>FloweringDAS</code>.</p>
+<section id="implementation" class="level2">
+<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
+<p>Below is a complete Manager script that demonstrates how to access these variables:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode csharp code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> System<span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Core</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Functions</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">PMF</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">PMF</span><span class="op">.</span><span class="fu">Organs</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Models</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>Serializable<span class="op">]</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> Script <span class="op">:</span> Model</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Link to the simulation's Zone to access other models</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>Link<span class="op">]</span> <span class="kw">private</span> Zone zone <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Link to the Summary model to write messages to the simulation log</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>Link<span class="op">]</span> <span class="kw">private</span> Summary summary <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Subscribe to the 'DoManagement' event, which is triggered daily</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span><span class="fu">EventSubscribe</span><span class="op">(</span><span class="st">"DoManagement"</span><span class="op">)]</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnDoManagement</span><span class="op">(</span><span class="dt">object</span> sender<span class="op">,</span> EventArgs e<span class="op">)</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Access the FloweringDAS function from the Wheat model's Phenology</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>             OnEventFunction floweringEvent <span class="op">=</span> <span class="op">(</span>OnEventFunction<span class="op">)</span>zone<span class="op">.</span><span class="fu">Get</span><span class="op">(</span><span class="st">"["</span> <span class="op">+</span> <span class="st">"Wheat"</span> <span class="op">+</span><span class="st">"].Phenology.FloweringDAS"</span><span class="op">);</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>floweringEvent <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Evaluate the function to get the days after sowing to flowering</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="dt">double</span> floweringDAS <span class="op">=</span> floweringEvent<span class="op">.</span><span class="fu">Value</span><span class="op">();</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Write the retrieved value to the simulation summary for diagnostic purposes</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                summary<span class="op">.</span><span class="fu">WriteMessage</span><span class="op">(</span><span class="kw">this</span><span class="op">,</span> $<span class="st">"[Wheat].Phenology.FloweringDAS: {floweringDAS}"</span><span class="op">,</span> MessageType<span class="op">.</span><span class="fu">Diagnostic</span><span class="op">);</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Handle the case where the function is not found</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                summary<span class="op">.</span><span class="fu">WriteMessage</span><span class="op">(</span><span class="kw">this</span><span class="op">,</span> <span class="st">"[Wheat].Phenology.FloweringDAS not found."</span><span class="op">,</span> MessageType<span class="op">.</span><span class="fu">Warning</span><span class="op">);</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Access the Stem organ</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>             GenericOrgan Stemorgan <span class="op">=</span> <span class="op">(</span>GenericOrgan<span class="op">)</span>zone<span class="op">.</span><span class="fu">Get</span><span class="op">(</span><span class="st">"["</span> <span class="op">+</span> <span class="st">"Wheat"</span> <span class="op">+</span><span class="st">"].Stem"</span><span class="op">);</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>Stemorgan <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Retrieve the Nitrogen amount in the Stem</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>                <span class="dt">double</span> stemN <span class="op">=</span> Stemorgan<span class="op">.</span><span class="fu">N</span><span class="op">;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Write the retrieved value to the simulation summary for diagnostic purposes</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>                summary<span class="op">.</span><span class="fu">WriteMessage</span><span class="op">(</span><span class="kw">this</span><span class="op">,</span> $<span class="st">"[Wheat].Stem.N: {stemN}"</span><span class="op">,</span> MessageType<span class="op">.</span><span class="fu">Diagnostic</span><span class="op">);</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Handle the case where the Stem organ is not found</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>                summary<span class="op">.</span><span class="fu">WriteMessage</span><span class="op">(</span><span class="kw">this</span><span class="op">,</span> <span class="st">"[Wheat].Stem.N not found in Wheat model."</span><span class="op">,</span> MessageType<span class="op">.</span><span class="fu">Warning</span><span class="op">);</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="how-it-works" class="level2">
-<h2 class="anchored" data-anchor-id="how-it-works">How It Works</h2>
-<p>We use an <code>OnEventFunction</code> to link to the <code>Phenology.FloweringDAS</code> path dynamically.</p>
+<section id="explanation" class="level2">
+<h2 class="anchored" data-anchor-id="explanation">Explanation</h2>
+<section id="accessing-wheat.phenology.floweringdas" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-wheat.phenology.floweringdas">Accessing <code>[Wheat].Phenology.FloweringDAS</code></h3>
+<p>The <code>[Wheat].Phenology.FloweringDAS</code> variable is typically defined as a <code>OnEventFunction</code> function within the <code>Phenology</code> component of a <code>Wheat</code> model.</p>
+<p>To access this function within a Manager script:</p>
+<ol type="1">
+<li><strong>Retrieve the Function</strong>: Use the <code>zone.Get()</code> method with the path to the function, e.g., <code>"[Wheat].Phenology.FloweringDAS"</code>.</li>
+<li><strong>Cast to OnEventFunction</strong>: Cast the retrieved object to the <code>OnEventFunction</code> interface, which provides the <code>Value()</code> method to evaluate the function.</li>
+<li><strong>Evaluate the Function</strong>: Call the <code>Value()</code> method to obtain the current value of <code>FloweringDAS</code>.</li>
+</ol>
+<p>This approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.</p>
 </section>
-<section id="code-example" class="level2">
-<h2 class="anchored" data-anchor-id="code-example">Code Example</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode csharp code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> System<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Core</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Functions</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Models</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>Serializable<span class="op">]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> Script <span class="op">:</span> Model</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Link to the simulation's Zone to access other models</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>Link<span class="op">]</span> <span class="kw">private</span> Zone zone <span class="op">=</span> <span class="kw">null</span><span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Subscribe to the 'DoManagement' event, which is triggered daily</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span><span class="fu">EventSubscribe</span><span class="op">(</span><span class="st">"DoManagement"</span><span class="op">)]</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnDoManagement</span><span class="op">(</span><span class="dt">object</span> sender<span class="op">,</span> EventArgs e<span class="op">)</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="co">// Attempt to retrieve the 'FloweringDAS' function from the Wheat model's Phenology</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>            <span class="dt">var</span> floweringFunction <span class="op">=</span> zone<span class="op">.</span><span class="fu">Get</span><span class="op">(</span><span class="st">"[Wheat].Phenology.FloweringDAS"</span><span class="op">)</span> <span class="kw">as</span> IFunction<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="kw">if</span> <span class="op">(</span>floweringFunction <span class="op">!=</span> <span class="kw">null</span><span class="op">)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Evaluate the function to get the days after sowing to flowering</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>                <span class="dt">double</span> floweringDAS <span class="op">=</span> floweringFunction<span class="op">.</span><span class="fu">Value</span><span class="op">();</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Use the retrieved value as needed</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>                <span class="co">// For example, you might store it, trigger other actions, etc.</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="kw">else</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>            <span class="op">{</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="co">// Handle the case where the function is not found</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                <span class="co">// This might involve logging a warning or taking alternative actions</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="accessing-wheat.stem.n" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-wheat.stem.n">Accessing <code>[Wheat].Stem.N</code></h3>
+<p>The nitrogen content (<code>N</code>) of the <code>Stem</code> organ is reportable variable reporting. To access this variable:</p>
+<ol type="1">
+<li><strong>Retrieve the Plant Model</strong>: Use <code>zone.Get("[Wheat].Stem")</code> to obtain the <code>Stem</code> model.</li>
+<li><strong>Cast to IOrgan</strong>: Cast the <code>Stem</code> organ to the <code>GenericOrgan</code> interface, which provides access to the <code>N</code> property.</li>
+<li><strong>Retrieve Nitrogen Content</strong>: Access the <code>N</code> property to get the current nitrogen content of the <code>Stem</code> organ.</li>
+</ol>
+<p>This method enables monitoring and managing nutrient dynamics within specific plant organs during simulation.</p>
+</section>
+</section>
+<section id="additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<ul>
+<li><p><strong><a href="https://apsimdev.apsim.info/ApsimX/Releases/2022.2.7020.0/Manager.pdf">Manager Model Documentation and Examples</a></strong><br>
+Provides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.</p></li>
+<li><p><strong><a href="https://www.apsim.info/support/apsim-training-manuals/">APSIM Next Gen Training Manuals</a></strong><br>
+A collection of tutorials and manuals covering various aspects of APSIM Next Gen.</p></li>
+<li><p><strong><a href="https://github.com/APSIMInitiative/ApsimX/discussions">APSIM GitHub Discussions</a></strong><br>
+A community forum for discussing APSIM-related topics and getting help from other users and developers.</p></li>
+</ul>
 
 
 </section>
