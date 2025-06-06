@@ -1,0 +1,28 @@
+name: Publish Quarto site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # or 'master', or any branch you use to edit content
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "latest"
+
+      - name: Render Quarto Project
+        run: quarto render
+
+      - name: Publish to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site  # or ./website/_site if your project is in a subfolder
