@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://byzheng.github.io/apsimng-tips/index.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
+    <loc>https://byzheng.github.io/apsimng-tips/tips/co2.html</loc>
+    <lastmod>2025-06-06T04:06:47.489Z</lastmod>
   </url>
   <url>
-    <loc>https://byzheng.github.io/apsimng-tips/script/index.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
-  </url>
-  <url>
-    <loc>https://byzheng.github.io/apsimng-tips/script/internal_variable.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
+    <loc>https://byzheng.github.io/apsimng-tips/tips/internal_variable.html</loc>
+    <lastmod>2025-06-06T04:06:47.489Z</lastmod>
   </url>
   <url>
     <loc>https://byzheng.github.io/apsimng-tips/about.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
+    <lastmod>2025-06-06T04:06:47.489Z</lastmod>
   </url>
   <url>
-    <loc>https://byzheng.github.io/apsimng-tips/script/summary.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
+    <loc>https://byzheng.github.io/apsimng-tips/index.html</loc>
+    <lastmod>2025-06-06T04:06:47.489Z</lastmod>
   </url>
   <url>
-    <loc>https://byzheng.github.io/apsimng-tips/script/co2.html</loc>
-    <lastmod>2025-06-06T03:56:43.520Z</lastmod>
+    <loc>https://byzheng.github.io/apsimng-tips/tips/summary.html</loc>
+    <lastmod>2025-06-06T04:06:47.490Z</lastmod>
   </url>
 </urlset>
