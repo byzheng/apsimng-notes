@@ -4,7 +4,28 @@
     "href": "index.html",
     "title": "apsimng-tips",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "Tips for APSIM NG"
+  },
+  {
+    "objectID": "script/summary.html",
+    "href": "script/summary.html",
+    "title": "Writing Debug Info to Summary",
+    "section": "",
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+  },
+  {
+    "objectID": "script/summary.html#purpose",
+    "href": "script/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
+    "section": "Purpose",
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+  },
+  {
+    "objectID": "script/summary.html#code-example",
+    "href": "script/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n[Link] private Summary Summary;\n\nSummary.WriteMessage(this, \"FloweringDAS \" + floweringDAS, MessageType.Diagnostic);"
   },
   {
     "objectID": "about.html",
@@ -12,5 +33,40 @@
     "title": "About",
     "section": "",
     "text": "About this site"
+  },
+  {
+    "objectID": "script/floweringDAS.html",
+    "href": "script/floweringDAS.html",
+    "title": "Accessing FloweringDAS from a Manager Script",
+    "section": "",
+    "text": "In APSIM Next Gen, developmental stages like flowering are managed within the plant model (e.g., Wheat). This feature demonstrates how to retrieve the number of days after sowing (DAS) to flowering using a Manager script."
+  },
+  {
+    "objectID": "script/floweringDAS.html#goal",
+    "href": "script/floweringDAS.html#goal",
+    "title": "Accessing FloweringDAS from a Manager Script",
+    "section": "Goal",
+    "text": "Goal\nTo access the value of FloweringDAS during the simulation."
+  },
+  {
+    "objectID": "script/floweringDAS.html#prerequisites",
+    "href": "script/floweringDAS.html#prerequisites",
+    "title": "Accessing FloweringDAS from a Manager Script",
+    "section": "Prerequisites",
+    "text": "Prerequisites\nEnsure your plant model (e.g., Wheat) has the Phenology module with a function or variable named FloweringDAS."
+  },
+  {
+    "objectID": "script/floweringDAS.html#how-it-works",
+    "href": "script/floweringDAS.html#how-it-works",
+    "title": "Accessing FloweringDAS from a Manager Script",
+    "section": "How It Works",
+    "text": "How It Works\nWe use an OnEventFunction to link to the Phenology.FloweringDAS path dynamically."
+  },
+  {
+    "objectID": "script/floweringDAS.html#code-example",
+    "href": "script/floweringDAS.html#code-example",
+    "title": "Accessing FloweringDAS from a Manager Script",
+    "section": "Code Example",
+    "text": "Code Example\n[Link] Zone zone;\n\n[EventSubscribe(\"DoManagement\")]\nprivate void OnDoManagement(object sender, EventArgs e)\n{\n    OnEventFunction floweringEvent = \n        (OnEventFunction)zone.Get(\"[Wheat].Phenology.FloweringDAS\");\n\n    double floweringDAS = floweringEvent.Value();\n}"
   }
 ]
