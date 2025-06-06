@@ -20,15 +20,41 @@ We use an `OnEventFunction` to link to the `Phenology.FloweringDAS` path dynamic
 ## Code Example
 
 ```csharp
-[Link] Zone zone;
+using System;
+using Models.Core;
+using Models.Functions;
 
-[EventSubscribe("DoManagement")]
-private void OnDoManagement(object sender, EventArgs e)
+namespace Models
 {
-    OnEventFunction floweringEvent = 
-        (OnEventFunction)zone.Get("[Wheat].Phenology.FloweringDAS");
+    [Serializable]
+    public class Script : Model
+    {
+        // Link to the simulation's Zone to access other models
+        [Link] private Zone zone = null;
 
-    double floweringDAS = floweringEvent.Value();
+        // Subscribe to the 'DoManagement' event, which is triggered daily
+        [EventSubscribe("DoManagement")]
+        private void OnDoManagement(object sender, EventArgs e)
+        {
+            // Attempt to retrieve the 'FloweringDAS' function from the Wheat model's Phenology
+            var floweringFunction = zone.Get("[Wheat].Phenology.FloweringDAS") as IFunction;
+
+            if (floweringFunction != null)
+            {
+                // Evaluate the function to get the days after sowing to flowering
+                double floweringDAS = floweringFunction.Value();
+
+                // Use the retrieved value as needed
+                // For example, you might store it, trigger other actions, etc.
+            }
+            else
+            {
+                // Handle the case where the function is not found
+                // This might involve logging a warning or taking alternative actions
+            }
+        }
+    }
 }
+
 
 ```
