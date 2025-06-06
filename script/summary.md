@@ -40,3 +40,16 @@ namespace Models
 }
 
 ```
+
+
+
+## Additional Resources
+
+- **[Manager Model Documentation and Examples](https://apsimdev.apsim.info/ApsimX/Releases/2022.2.7020.0/Manager.pdf)**  
+  Provides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.
+
+- **[APSIM Next Gen Training Manuals](https://www.apsim.info/support/apsim-training-manuals/)**  
+  A collection of tutorials and manuals covering various aspects of APSIM Next Gen.
+
+- **[APSIM GitHub Discussions](https://github.com/APSIMInitiative/ApsimX/discussions)**  
+  A community forum for discussing APSIM-related topics and getting help from other users and developers.
