@@ -96,7 +96,7 @@ This approach allows dynamic access to model functions during simulation, enabli
 
 ### Accessing `[Wheat].Stem.N`
 
-The nitrogen content (`N`) of the `Stem` organ is reportable variable reporting. To access this variable:
+The nitrogen content (`N`) of the `Stem` organ is reportable variable. To access this variable:
 
 1. **Retrieve the Plant Model**: Use `zone.Get("[Wheat].Stem")` to obtain the `Stem` model.
 2. **Cast to IOrgan**: Cast the `Stem` organ to the `GenericOrgan` interface, which provides access to the `N` property.
