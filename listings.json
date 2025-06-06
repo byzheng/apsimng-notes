@@ -3,7 +3,8 @@
     "listing": "/script/index.html",
     "items": [
       "/script/internal_variable.html",
-      "/script/summary.html"
+      "/script/summary.html",
+      "/script/co2.html"
     ]
   }
 ]

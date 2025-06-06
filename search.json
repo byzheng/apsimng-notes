@@ -7,39 +7,11 @@
     "text": "Tips for APSIM NG"
   },
   {
-    "objectID": "script/summary.html",
-    "href": "script/summary.html",
-    "title": "Writing Debug Info to Summary",
+    "objectID": "script/index.html",
+    "href": "script/index.html",
+    "title": "Tips Index",
     "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
-  },
-  {
-    "objectID": "script/summary.html#purpose",
-    "href": "script/summary.html#purpose",
-    "title": "Writing Debug Info to Summary",
-    "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
-  },
-  {
-    "objectID": "script/summary.html#code-example",
-    "href": "script/summary.html#code-example",
-    "title": "Writing Debug Info to Summary",
-    "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
-  },
-  {
-    "objectID": "script/summary.html#additional-resources",
-    "href": "script/summary.html#additional-resources",
-    "title": "Writing Debug Info to Summary",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "script/internal_variable.html",
@@ -77,10 +49,73 @@
     "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
-    "objectID": "script/index.html",
-    "href": "script/index.html",
-    "title": "Tips Index",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "About this site"
+  },
+  {
+    "objectID": "script/summary.html",
+    "href": "script/summary.html",
+    "title": "Writing Debug Info to Summary",
+    "section": "",
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+  },
+  {
+    "objectID": "script/summary.html#purpose",
+    "href": "script/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
+    "section": "Purpose",
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+  },
+  {
+    "objectID": "script/summary.html#code-example",
+    "href": "script/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
+  },
+  {
+    "objectID": "script/summary.html#additional-resources",
+    "href": "script/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "script/co2.html",
+    "href": "script/co2.html",
+    "title": "Setting CO₂ Concentration",
+    "section": "",
+    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
+  },
+  {
+    "objectID": "script/co2.html#objective",
+    "href": "script/co2.html#objective",
+    "title": "Setting CO₂ Concentration",
+    "section": "Objective",
+    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
+  },
+  {
+    "objectID": "script/co2.html#implementation",
+    "href": "script/co2.html#implementation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}"
+  },
+  {
+    "objectID": "script/co2.html#explanation",
+    "href": "script/co2.html#explanation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Explanation",
+    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
+  },
+  {
+    "objectID": "script/co2.html#additional-resources",
+    "href": "script/co2.html#additional-resources",
+    "title": "Setting CO₂ Concentration",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   }
 ]
