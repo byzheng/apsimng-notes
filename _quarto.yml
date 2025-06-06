@@ -8,8 +8,6 @@ website:
       - href: index.qmd
         text: Home
       - about.qmd
-      - text: "Manager Script"
-        href: script/index.md
 format:
   html:
     theme:

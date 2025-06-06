@@ -1,6 +1,13 @@
 ---
-title: "apsimng-tips"
+title: ""
+listing:
+  contents: tips
+  type: table
+  sort: "date desc"
+  fields: [title, date, description]
 ---
 
 
-Tips for APSIM NG
+# Tips for APSIM NG
+
+
