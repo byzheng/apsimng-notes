@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-06-06T02:32:05.044Z</lastmod>
+    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
+    <lastmod>2025-06-09T03:03:46.477Z</lastmod>
   </url>
   <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-06-09T01:29:19.079Z</lastmod>
+    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
+    <lastmod>2025-06-09T03:03:46.478Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-06-09T01:40:12.522Z</lastmod>
+    <lastmod>2025-06-09T03:03:46.476Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/fertiliser.html</loc>
-    <lastmod>2025-06-09T01:53:27.942Z</lastmod>
+    <lastmod>2025-06-09T03:03:46.475Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-06-06T01:14:30.124Z</lastmod>
+    <lastmod>2025-06-09T03:03:46.475Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-06-09T01:53:27.948Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-06-06T03:56:15.164Z</lastmod>
+    <lastmod>2025-06-09T03:03:46.475Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-06-06T02:38:21.663Z</lastmod>
+    <lastmod>2025-06-09T03:03:46.477Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
+    <lastmod>2025-06-09T03:03:46.477Z</lastmod>
   </url>
 </urlset>
