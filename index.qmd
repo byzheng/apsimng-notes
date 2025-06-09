@@ -1,13 +1,8 @@
 ---
 title: ""
-listing:
-  contents: tips
-  type: table
-  sort: "date desc"
-  fields: [title, date, description]
 ---
 
 
-# Tips for APSIM NG
 
-
+- [Documentation](docs/index.qmd)
+- [Tips and Tricks](tips/index.qmd)

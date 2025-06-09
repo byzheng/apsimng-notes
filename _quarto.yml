@@ -2,11 +2,15 @@ project:
   type: website
 
 website:
-  title: "apsimng-tips"
+  title: "APSIM NG Notes"
   navbar:
     left:
       - href: index.qmd
         text: Home
+      - href: docs/index.qmd
+        text: Documentations
+      - href: tips/index.qmd
+        text: Tips
       - about.qmd
 format:
   html:
