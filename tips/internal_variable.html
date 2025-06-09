@@ -369,7 +369,7 @@ A community forum for discussing APSIM-related topics and getting help from othe
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/byzheng\.github\.io\/apsimng-tips\/");
+        var filterRegex = new RegExp("https:\/\/byzheng\.github\.io\/apsimng-notes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
