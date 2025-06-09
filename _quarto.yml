@@ -3,6 +3,8 @@ project:
 
 website:
   title: "APSIM NG Notes"
+  repo-url: "https://github.com/byzheng/apsimng-notes"
+  repo-actions: [edit, issue]
   navbar:
     left:
       - href: index.qmd
@@ -12,6 +14,9 @@ website:
       - href: tips/index.qmd
         text: Tips
       - about.qmd
+    right:
+      - icon: github
+        href: https://github.com/byzheng/apsimng-notes
 format:
   html:
     theme:
