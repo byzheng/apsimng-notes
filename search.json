@@ -1,5 +1,103 @@
 [
   {
+    "objectID": "tips/summary.html",
+    "href": "tips/summary.html",
+    "title": "Writing Debug Info to Summary",
+    "section": "",
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+  },
+  {
+    "objectID": "tips/summary.html#purpose",
+    "href": "tips/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
+    "section": "Purpose",
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+  },
+  {
+    "objectID": "tips/summary.html#code-example",
+    "href": "tips/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
+  },
+  {
+    "objectID": "tips/summary.html#additional-resources",
+    "href": "tips/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/index.html",
+    "href": "tips/index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Welcome to APSIM NG Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!\n\n\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me\n\n\n\nMIT License – free to use and adapt."
+  },
+  {
+    "objectID": "index.html#website",
+    "href": "index.html#website",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "You can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "MIT License – free to use and adapt."
+  },
+  {
+    "objectID": "docs/fertiliser.html",
+    "href": "docs/fertiliser.html",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
+  },
+  {
+    "objectID": "docs/fertiliser.html#introduction",
+    "href": "docs/fertiliser.html#introduction",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
+  },
+  {
+    "objectID": "docs/fertiliser.html#structure-of-fertiliser-definitions",
+    "href": "docs/fertiliser.html#structure-of-fertiliser-definitions",
+    "title": "Fertiliser Types",
+    "section": "Structure of Fertiliser Definitions",
+    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products."
+  },
+  {
+    "objectID": "docs/fertiliser.html#example-fertiliser-types-in-apsim",
+    "href": "docs/fertiliser.html#example-fertiliser-types-in-apsim",
+    "title": "Fertiliser Types",
+    "section": "Example Fertiliser Types in APSIM",
+    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "docs/index.html",
+    "href": "docs/index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "tips/co2.html",
     "href": "tips/co2.html",
     "title": "Setting CO₂ Concentration",
@@ -66,48 +164,6 @@
     "objectID": "tips/internal_variable.html#additional-resources",
     "href": "tips/internal_variable.html#additional-resources",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Tips for APSIM NG",
-    "section": "",
-    "text": "Tips for APSIM NG\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "tips/summary.html",
-    "href": "tips/summary.html",
-    "title": "Writing Debug Info to Summary",
-    "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
-  },
-  {
-    "objectID": "tips/summary.html#purpose",
-    "href": "tips/summary.html#purpose",
-    "title": "Writing Debug Info to Summary",
-    "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
-  },
-  {
-    "objectID": "tips/summary.html#code-example",
-    "href": "tips/summary.html#code-example",
-    "title": "Writing Debug Info to Summary",
-    "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
-  },
-  {
-    "objectID": "tips/summary.html#additional-resources",
-    "href": "tips/summary.html#additional-resources",
-    "title": "Writing Debug Info to Summary",
     "section": "Additional Resources",
     "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   }

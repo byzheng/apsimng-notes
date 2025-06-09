@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Setting CO₂ Concentration – APSIM NG Notes</title>
+<title>Fertiliser Types – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -157,10 +122,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#objective" id="toc-objective" class="nav-link active" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#implementation" id="toc-implementation" class="nav-link" data-scroll-target="#implementation">Implementation</a></li>
-  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a></li>
-  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources">Additional Resources</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#structure-of-fertiliser-definitions" id="toc-structure-of-fertiliser-definitions" class="nav-link" data-scroll-target="#structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</a></li>
+  <li><a href="#example-fertiliser-types-in-apsim" id="toc-example-fertiliser-types-in-apsim" class="nav-link" data-scroll-target="#example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</a></li>
   </ul>
 </nav>
     </div>
@@ -169,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Setting CO₂ Concentration</h1>
+<h1 class="title">Fertiliser Types</h1>
 </div>
 
 
@@ -192,66 +156,161 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>In APSIM Next Gen, the default CO₂ concentration is <strong>350 ppm</strong> if not explicitly set.<br>
-This value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.</p>
-<p>This guide explains how to modify the CO₂ level using a <code>Manager</code> script and the <code>PreparingNewWeatherData</code> event.</p>
-<section id="objective" class="level2">
-<h2 class="anchored" data-anchor-id="objective">Objective</h2>
-<p>Set a custom CO₂ concentration during simulation by assigning a value through a Manager script.</p>
-<ol type="1">
-<li>Right-click the <code>Field</code> node in your simulation.</li>
-<li>Select <strong>Add model</strong> from the context menu.</li>
-<li>Add a <strong>Manager</strong> model under <code>Field</code>.</li>
-<li>Rename it to something like <code>SetCO2</code>.</li>
-<li>Paste the C# script (see below) into the <strong>Script</strong> tab.</li>
-<li>Set your desired CO₂ value (e.g., <code>550</code>) in the <strong>Parameters</strong> tab.</li>
-</ol>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named <a href="https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json">Fertiliser.json</a>.</p>
+<p>Understanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.</p>
 </section>
-<section id="implementation" class="level2">
-<h2 class="anchored" data-anchor-id="implementation">Implementation</h2>
-<p>Below is a complete Manager script that demonstrates how to access these variables:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode csharp code-with-copy"><code class="sourceCode cs"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> System<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Core</span><span class="op">;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">using</span> Models<span class="op">.</span><span class="fu">Climate</span><span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="kw">namespace</span> Models</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>Serializable<span class="op">]</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">public</span> <span class="kw">class</span> Script <span class="op">:</span> Model</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Link to the Weather and Clock models</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>Link<span class="op">]</span> <span class="kw">private</span> Weather Weather<span class="op">;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span>Link<span class="op">]</span> <span class="kw">private</span> Clock Clock<span class="op">;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="co">// User-defined CO2 value</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span><span class="fu">Description</span><span class="op">(</span><span class="st">"CO2 concentration"</span><span class="op">)]</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">public</span> <span class="dt">double</span> CO2 <span class="op">{</span> <span class="kw">get</span><span class="op">;</span> <span class="kw">set</span><span class="op">;</span> <span class="op">}</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Set CO2 before weather data is applied each day</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="op">[</span><span class="fu">EventSubscribe</span><span class="op">(</span><span class="st">"PreparingNewWeatherData"</span><span class="op">)]</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="kw">private</span> <span class="dt">void</span> <span class="fu">OnPreparingNewWeatherData</span><span class="op">(</span><span class="dt">object</span> sender<span class="op">,</span> EventArgs e<span class="op">)</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="op">{</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            Weather<span class="op">.</span><span class="fu">CO2</span> <span class="op">=</span> CO2<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="explanation" class="level2">
-<h2 class="anchored" data-anchor-id="explanation">Explanation</h2>
-<p>The <code>Weather</code> model in APSIM contains a <code>CO2</code> property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.</p>
-<p>By subscribing to the <code>PreparingNewWeatherData</code> event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.</p>
-<p>This approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently.</p>
-</section>
-<section id="additional-resources" class="level2">
-<h2 class="anchored" data-anchor-id="additional-resources">Additional Resources</h2>
+<section id="structure-of-fertiliser-definitions" class="level2">
+<h2 class="anchored" data-anchor-id="structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</h2>
+<p>Each fertiliser type in APSIM has the following attributes:</p>
 <ul>
-<li><p><strong><a href="https://apsimdev.apsim.info/ApsimX/Releases/2022.2.7020.0/Manager.pdf">Manager Model Documentation and Examples</a></strong><br>
-Provides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.</p></li>
-<li><p><strong><a href="https://www.apsim.info/support/apsim-training-manuals/">APSIM Next Gen Training Manuals</a></strong><br>
-A collection of tutorials and manuals covering various aspects of APSIM Next Gen.</p></li>
-<li><p><strong><a href="https://github.com/APSIMInitiative/ApsimX/discussions">APSIM GitHub Discussions</a></strong><br>
-A community forum for discussing APSIM-related topics and getting help from other users and developers.</p></li>
+<li><strong>Name</strong>: Identifier used within the simulation to refer to this fertiliser.</li>
+<li><strong>Description</strong>: A human-readable explanation of the fertiliser’s nature or composition.</li>
+<li><strong>Solute</strong>: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.</li>
+<li><strong>Fraction</strong>: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.</li>
+<li><strong>Release Rate</strong>: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.</li>
 </ul>
+</section>
+<section id="example-fertiliser-types-in-apsim" class="level2">
+<h2 class="anchored" data-anchor-id="example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</h2>
+<p>Below is a simplified summary of several fertiliser types defined in APSIM NG:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 43%">
+<col style="width: 13%">
+<col style="width: 18%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Solute1Name</th>
+<th style="text-align: right;">Solute1Fraction</th>
+<th style="text-align: right;">Release</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CalciteCA</td>
+<td style="text-align: left;">Ca as finely ground Agricultural Lime</td>
+<td style="text-align: left;">Ca</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">CalciteFine</td>
+<td style="text-align: left;">finely ground Agricultural Lime</td>
+<td style="text-align: left;">Ca</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dolomite</td>
+<td style="text-align: left;">finely ground dolomite</td>
+<td style="text-align: left;">Ca</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NO3N</td>
+<td style="text-align: left;">N as nitrate</td>
+<td style="text-align: left;">NO3</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NH4N</td>
+<td style="text-align: left;">N as ammonium</td>
+<td style="text-align: left;">NH4</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">NH4NO3N</td>
+<td style="text-align: left;">ammonium nitrate</td>
+<td style="text-align: left;">NO3</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">DAP</td>
+<td style="text-align: left;">di-ammonium phosphate</td>
+<td style="text-align: left;">NH4</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MAP</td>
+<td style="text-align: left;">mono-ammonium phosphate</td>
+<td style="text-align: left;">NH4</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UAN_N</td>
+<td style="text-align: left;">N as Urea-AmmoniumNitrate</td>
+<td style="text-align: left;">NO3</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UreaN</td>
+<td style="text-align: left;">N as urea</td>
+<td style="text-align: left;">Urea</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">UreaNO3</td>
+<td style="text-align: left;">N as urea</td>
+<td style="text-align: left;">NO3</td>
+<td style="text-align: right;">0.50</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">UreaGranular</td>
+<td style="text-align: left;">Urea fertiliser</td>
+<td style="text-align: left;">Urea</td>
+<td style="text-align: right;">0.46</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NH4SO4N</td>
+<td style="text-align: left;">ammonium sulphate</td>
+<td style="text-align: left;">NH4</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RockP</td>
+<td style="text-align: left;">Rock phosphorus</td>
+<td style="text-align: left;">RockP</td>
+<td style="text-align: right;">0.80</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">BandedP</td>
+<td style="text-align: left;">Banded phosphorus</td>
+<td style="text-align: left;">BandedP</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">BroadcastP</td>
+<td style="text-align: left;">Broadcast phosphorus</td>
+<td style="text-align: left;">LabileP</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>

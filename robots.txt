@@ -1,1 +1,1 @@
-Sitemap: https://byzheng.github.io/apsimng-notes/sitemap.xml
+Sitemap: https://apsimng-notes.bangyou.me/sitemap.xml
