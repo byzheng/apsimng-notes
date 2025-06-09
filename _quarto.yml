@@ -1,6 +1,9 @@
 project:
   type: website
 
+execute:
+  freeze: auto
+  
 website:
   title: "APSIM NG Notes"
   navbar:
