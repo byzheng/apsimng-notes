@@ -1,1 +1,22 @@
-# Tips for APSIM NG
+# APSIM NG Notes
+
+Welcome to **APSIM NG Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
+
+This repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:
+
+- 📘 **Docs** — In-depth explanations and configuration guides
+- 🌾 **Tips** — Short how-tos and troubleshooting solutions
+- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks
+- 🔧 **Scripts** — Useful R snippets for simulations
+
+Whether you're just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.
+
+Feel free to explore, suggest improvements, or fork for your own use!
+
+## 🔗 Website
+
+You can also browse these notes as a website: [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
+
+## License
+
+MIT License – free to use and adapt.
