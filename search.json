@@ -207,7 +207,7 @@
     "href": "docs/co2-rue.html#c4",
     "title": "CO2 for RUE",
     "section": "C4",
-    "text": "C4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO,,2,, concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
+    "text": "C4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
   },
   {
     "objectID": "docs/index.html",
