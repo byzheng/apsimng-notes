@@ -1,0 +1,26 @@
+---
+listing: false
+---
+
+
+For C3 plants (like wheat), Radiation Use Efficiency is scaled by the $CO_{\text{2}}$ factor which is calculated by a function of environmental $CO_{\text{2}}$ concentration
+($C$, ppm) and daily mean temperature ($T_{mean}$) as published
+by [@reyenga_modelling_1999].
+
+$$
+f_{c}=\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}
+$$
+
+
+where $C_{i}$ is the temperature dependent $CO_{\text{2}}$ compensation
+point (ppm) and is derived from the following function. 
+
+$$
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+$$
+
+
+
+![CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.](../images/20241029152420.png){ width=95% align=center }
+
+

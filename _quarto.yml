@@ -1,5 +1,6 @@
 project:
   type: website
+bibliography: references.bib
 
 website:
   title: "APSIM NG Notes"

@@ -1,0 +1,21 @@
+---
+title: "CO2 for Wheat"
+date: "2025-06-06"
+output: html_document
+---
+
+
+## Radiation Use Efficiency
+
+
+{{< include _co2-rue-c3.qmd >}}
+
+
+## Stomatal Conductance
+
+{{< include _co2-stomatal-conductrance-c3.qmd >}}
+
+
+## Critical Nitrogen Concentration
+
+{{< include _co2-critical-n-wheat.qmd >}}

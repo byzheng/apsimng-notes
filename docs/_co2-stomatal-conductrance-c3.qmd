@@ -1,0 +1,16 @@
+---
+listing: false
+---
+
+The APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency [@reyenga_modelling_1999]. The response Stomatal Conductance of to increased CO2 concentration is calculated as follows [@elli_global_2020].
+
+$$
+SC = f_{c} / (\frac {CO2 - C_{i}} {350 - C_{i}})
+$$
+
+where $$C_{i}$$ temperature-dependent CO2 compensation point, which is calculated by:
+
+$$
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+$$
+

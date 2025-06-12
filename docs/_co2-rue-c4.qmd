@@ -1,0 +1,15 @@
+---
+listing: false
+---
+
+
+For C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO,,2,, concentration ($C$, ppm) with a factor ($f_{c}$) according personal communications with Mark Howden.
+
+$$
+f_{c}=0.000143 \times C + 0.95
+$$
+
+
+
+
+![CO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.](../images/20241029145726.png){ width=95% align=center }
