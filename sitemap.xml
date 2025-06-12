@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-06-09T03:16:21.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-06-09T03:16:21.975Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-06-09T03:16:21.973Z</lastmod>
-  </url>
-  <url>
     <loc>https://apsimng-notes.bangyou.me/docs/fertiliser.html</loc>
-    <lastmod>2025-06-09T03:16:21.972Z</lastmod>
+    <lastmod>2025-06-12T03:13:56.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/co2-wheat.html</loc>
+    <lastmod>2025-06-12T03:13:56.023Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-06-09T03:16:21.972Z</lastmod>
+    <lastmod>2025-06-12T03:13:56.022Z</lastmod>
   </url>
   <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-06-09T03:16:21.973Z</lastmod>
+    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
+    <lastmod>2025-06-12T03:13:56.025Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-06-09T03:16:21.974Z</lastmod>
+    <lastmod>2025-06-12T03:13:56.025Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-06-09T03:16:21.974Z</lastmod>
+    <lastmod>2025-06-12T03:13:56.025Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
+    <lastmod>2025-06-12T03:13:56.026Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
+    <lastmod>2025-06-12T03:13:56.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/co2-rue.html</loc>
+    <lastmod>2025-06-12T03:13:56.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
+    <lastmod>2025-06-12T03:13:56.023Z</lastmod>
   </url>
 </urlset>

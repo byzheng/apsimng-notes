@@ -10,6 +10,8 @@
   {
     "listing": "/docs/index.html",
     "items": [
+      "/docs/co2-rue.html",
+      "/docs/co2-wheat.html",
       "/docs/fertiliser.html"
     ]
   }

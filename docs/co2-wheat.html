@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-06-06">
 
-<title>APSIM NG Notes</title>
+<title>CO2 for Wheat – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +21,46 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -68,8 +89,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -79,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -90,19 +140,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./docs/index.html"> 
+    <a class="nav-link" href="../docs/index.html"> 
 <span class="menu-text">Documentations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./tips/index.html"> 
+    <a class="nav-link" href="../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -128,45 +178,85 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#apsim-ng-notes" id="toc-apsim-ng-notes" class="nav-link active" data-scroll-target="#apsim-ng-notes">APSIM NG Notes</a>
-  <ul class="collapse">
-  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">🔗 Website</a></li>
-  <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
-  </ul></li>
+  <li><a href="#radiation-use-efficiency" id="toc-radiation-use-efficiency" class="nav-link active" data-scroll-target="#radiation-use-efficiency">Radiation Use Efficiency</a></li>
+  <li><a href="#stomatal-conductance" id="toc-stomatal-conductance" class="nav-link" data-scroll-target="#stomatal-conductance">Stomatal Conductance</a></li>
+  <li><a href="#critical-nitrogen-concentration" id="toc-critical-nitrogen-concentration" class="nav-link" data-scroll-target="#critical-nitrogen-concentration">Critical Nitrogen Concentration</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CO2 for Wheat</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="apsim-ng-notes" class="level1">
-<h1>APSIM NG Notes</h1>
-<p>Welcome to <strong>APSIM NG Notes</strong> — my personal collection of notes, tips, tutorials, and code snippets for working with <a href="https://www.apsim.info/apsim-next-generation/">APSIM Next Generation (APSIM NG)</a>.</p>
-<p>This repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:</p>
-<ul>
-<li>📘 <strong><a href="./docs/index.html">Documentation</a></strong> — In-depth explanations and configuration guides</li>
-<li>🌾 <strong><a href="./tips/index.html">Tips and Tricks</a></strong> — Short how-tos and troubleshooting solutions</li>
-<li>🧪 <strong>Tutorials</strong> — Step-by-step walkthroughs for specific tasks</li>
-<li>🔧 <strong>Scripts</strong> — Useful R snippets for simulations</li>
-</ul>
-<p>Whether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.</p>
-<p>Feel free to explore, suggest improvements, or fork for your own use!</p>
-<section id="website" class="level2">
-<h2 class="anchored" data-anchor-id="website">🔗 Website</h2>
-<p>You can also browse these notes as a website: <a href="https://apsimng-notes.bangyou.me">https://apsimng-notes.bangyou.me</a></p>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 6, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="radiation-use-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="radiation-use-efficiency">Radiation Use Efficiency</h2>
+<p>For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentration (<span class="math inline">\(C\)</span>, ppm) and daily mean temperature (<span class="math inline">\(T_{mean}\)</span>) as published by <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>.</p>
+<p><span class="math display">\[
+f_{c}=\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}
+\]</span></p>
+<p>where <span class="math inline">\(C_{i}\)</span> is the temperature dependent <span class="math inline">\(CO_{\text{2}}\)</span> compensation point (ppm) and is derived from the following function.</p>
+<p><span class="math display">\[
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/20241029152420.png" class="img-fluid figure-img" style="width:95.0%" data-align="center"></p>
+<figcaption>CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.</figcaption>
+</figure>
+</div>
 </section>
-<section id="license" class="level2">
-<h2 class="anchored" data-anchor-id="license">License</h2>
-<p>MIT License – free to use and adapt.</p>
+<section id="stomatal-conductance" class="level2">
+<h2 class="anchored" data-anchor-id="stomatal-conductance">Stomatal Conductance</h2>
+<p>The APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>. The response Stomatal Conductance of to increased CO2 concentration is calculated as follows <span class="citation" data-cites="elli_global_2020">(<a href="#ref-elli_global_2020" role="doc-biblioref">Elli et al. 2020</a>)</span>.</p>
+<p><span class="math display">\[
+SC = f_{c} / (\frac {CO2 - C_{i}} {350 - C_{i}})
+\]</span></p>
+<p>where <span class="math display">\[C_{i}\]</span> temperature-dependent CO2 compensation point, which is calculated by:</p>
+<p><span class="math display">\[
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+\]</span></p>
+</section>
+<section id="critical-nitrogen-concentration" class="level2">
+<h2 class="anchored" data-anchor-id="critical-nitrogen-concentration">Critical Nitrogen Concentration</h2>
+<p>In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.</p>
+<p><img src="../images/20241029155242.png" class="img-fluid" style="width:95.0%" data-align="center"></p>
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-elli_global_2020" class="csl-entry" role="listitem">
+Elli, Elvis Felipe, Neil Huth, Paulo Cesar Sentelhas, Rafaela Lorenzato Carneiro, and Clayton Alcarde Alvares. 2020. <span>“Global Sensitivity-Based Modelling Approach to Identify Suitable Eucalyptus Traits for Adaptation to Climate Variability and Change.”</span> <em>In Silico Plants</em> 2 (1): diaa003. <a href="https://doi.org/10.1093/insilicoplants/diaa003">https://doi.org/10.1093/insilicoplants/diaa003</a>.
+</div>
+<div id="ref-reyenga_modelling_1999" class="csl-entry" role="listitem">
+Reyenga, P. J., S. M. Howden, H. Meinke, and G. M. McKeon. 1999. <span>“Modelling Global Change Impacts on Wheat Cropping in South-East Queensland, Australia.”</span> <em>Environmental Modelling &amp; Software</em> 14 (4): 297–306. <a href="https://doi.org/10.1016/S1364-8152(98)00081-4">https://doi.org/10.1016/S1364-8152(98)00081-4</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -571,4 +661,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

@@ -1,61 +1,5 @@
 [
   {
-    "objectID": "tips/index.html",
-    "href": "tips/index.html",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "tips/summary.html",
-    "href": "tips/summary.html",
-    "title": "Writing Debug Info to Summary",
-    "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
-  },
-  {
-    "objectID": "tips/summary.html#purpose",
-    "href": "tips/summary.html#purpose",
-    "title": "Writing Debug Info to Summary",
-    "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
-  },
-  {
-    "objectID": "tips/summary.html#code-example",
-    "href": "tips/summary.html#code-example",
-    "title": "Writing Debug Info to Summary",
-    "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
-  },
-  {
-    "objectID": "tips/summary.html#additional-resources",
-    "href": "tips/summary.html#additional-resources",
-    "title": "Writing Debug Info to Summary",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "Welcome to APSIM NG Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!\n\n\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me\n\n\n\nMIT License – free to use and adapt."
-  },
-  {
-    "objectID": "index.html#website",
-    "href": "index.html#website",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "You can also browse these notes as a website: https://apsimng-notes.bangyou.me"
-  },
-  {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "MIT License – free to use and adapt."
-  },
-  {
     "objectID": "docs/fertiliser.html",
     "href": "docs/fertiliser.html",
     "title": "Fertiliser Types",
@@ -84,6 +28,34 @@
     "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1"
   },
   {
+    "objectID": "docs/co2-wheat.html",
+    "href": "docs/co2-wheat.html",
+    "title": "CO2 for Wheat",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/co2-wheat.html#radiation-use-efficiency",
+    "href": "docs/co2-wheat.html#radiation-use-efficiency",
+    "title": "CO2 for Wheat",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/co2-wheat.html#stomatal-conductance",
+    "href": "docs/co2-wheat.html#stomatal-conductance",
+    "title": "CO2 for Wheat",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+  },
+  {
+    "objectID": "docs/co2-wheat.html#critical-nitrogen-concentration",
+    "href": "docs/co2-wheat.html#critical-nitrogen-concentration",
+    "title": "CO2 for Wheat",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -91,11 +63,11 @@
     "text": "About this site"
   },
   {
-    "objectID": "docs/index.html",
-    "href": "docs/index.html",
+    "objectID": "tips/index.html",
+    "href": "tips/index.html",
     "title": "APSIM NG Notes",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tips/internal_variable.html",
@@ -166,5 +138,82 @@
     "title": "Setting CO₂ Concentration",
     "section": "Additional Resources",
     "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/summary.html",
+    "href": "tips/summary.html",
+    "title": "Writing Debug Info to Summary",
+    "section": "",
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+  },
+  {
+    "objectID": "tips/summary.html#purpose",
+    "href": "tips/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
+    "section": "Purpose",
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+  },
+  {
+    "objectID": "tips/summary.html#code-example",
+    "href": "tips/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
+  },
+  {
+    "objectID": "tips/summary.html#additional-resources",
+    "href": "tips/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Welcome to APSIM NG Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!\n\n\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me\n\n\n\nMIT License – free to use and adapt."
+  },
+  {
+    "objectID": "index.html#website",
+    "href": "index.html#website",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "You can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "MIT License – free to use and adapt."
+  },
+  {
+    "objectID": "docs/co2-rue.html",
+    "href": "docs/co2-rue.html",
+    "title": "CO2 for RUE",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/co2-rue.html#c3",
+    "href": "docs/co2-rue.html#c3",
+    "title": "CO2 for RUE",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/co2-rue.html#c4",
+    "href": "docs/co2-rue.html#c4",
+    "title": "CO2 for RUE",
+    "section": "C4",
+    "text": "C4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO,,2,, concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
+  },
+  {
+    "objectID": "docs/index.html",
+    "href": "docs/index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
