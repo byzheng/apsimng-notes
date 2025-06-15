@@ -53,6 +53,60 @@ namespace Models
 }
 ```
 
+As climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.
+
+```csharp
+using System;
+using Models.Core;
+using Models.Interfaces;
+using Models.PMF;
+using Models.Climate;
+using APSIM.Shared.Utilities;
+
+namespace Models
+{
+    [Serializable]
+    public class Script : Model
+    {
+        [Link] IClock Clock;
+        [Link] ISummary Summary;
+        [Link] Weather Weather;
+
+        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)
+        //
+        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory
+        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt
+        // This dataset is released under the Creative Commons Zero v1.0 Universal 
+        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. 
+        private double[] co2Levels = new double[]
+        {
+            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,
+            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,
+            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,
+            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,
+            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,
+            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,
+            411.65, 414.21, 416.41, 418.53, 421.08, 424.61
+        };
+
+        private int startYear = 1959; // Base year for index calculation
+
+
+        [EventSubscribe("PreparingNewWeatherData")]
+        private void OnPreparingNewWeatherData(object sender, EventArgs e)
+        {
+            int year = Clock.Today.Year;
+            int index = year - startYear;
+
+            if (index >= 0 && index < co2Levels.Length)
+                Weather.CO2 = co2Levels[index];
+            else
+                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years
+        }
+   
+    }
+}
+```
 
 
 ## Explanation
