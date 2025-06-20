@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Fertiliser Types – APSIM NG Notes</title>
+<title>Nutrient Constrained Allocation Method – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,8 +69,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -80,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -91,19 +120,19 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../docs/index.html"> 
+    <a class="nav-link" href="../../docs/index.html"> 
 <span class="menu-text">Documentations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tips/index.html"> 
+    <a class="nav-link" href="../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -129,18 +158,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#structure-of-fertiliser-definitions" id="toc-structure-of-fertiliser-definitions" class="nav-link" data-scroll-target="#structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</a></li>
-  <li><a href="#example-fertiliser-types-in-apsim" id="toc-example-fertiliser-types-in-apsim" class="nav-link" data-scroll-target="#example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</a></li>
+  <li><a href="#nitrogen-limited-biomass-allocation" id="toc-nitrogen-limited-biomass-allocation" class="nav-link active" data-scroll-target="#nitrogen-limited-biomass-allocation">Nitrogen-Limited Biomass Allocation</a>
+  <ul class="collapse">
+  <li><a href="#role-in-apsim-simulation-pipeline" id="toc-role-in-apsim-simulation-pipeline" class="nav-link" data-scroll-target="#role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</a></li>
+  <li><a href="#inputs-and-assumptions" id="toc-inputs-and-assumptions" class="nav-link" data-scroll-target="#inputs-and-assumptions">Inputs and Assumptions</a></li>
+  <li><a href="#step-by-step-process" id="toc-step-by-step-process" class="nav-link" data-scroll-target="#step-by-step-process">Step-by-Step Process</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#scientific-rationale" id="toc-scientific-rationale" class="nav-link" data-scroll-target="#scientific-rationale">Scientific Rationale</a></li>
+  <li><a href="#extensibility" id="toc-extensibility" class="nav-link" data-scroll-target="#extensibility">Extensibility</a></li>
+  <li><a href="#outputs-and-implications" id="toc-outputs-and-implications" class="nav-link" data-scroll-target="#outputs-and-implications">Outputs and Implications</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#potential-bugs-and-limitations" id="toc-potential-bugs-and-limitations" class="nav-link" data-scroll-target="#potential-bugs-and-limitations">Potential bugs and Limitations</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/fertiliser.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/nutrition/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Fertiliser Types</h1>
+<h1 class="title">Nutrient Constrained Allocation Method</h1>
 </div>
 
 
@@ -163,163 +201,152 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named <a href="https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json">Fertiliser.json</a>.</p>
-<p>Understanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.</p>
-</section>
-<section id="structure-of-fertiliser-definitions" class="level2">
-<h2 class="anchored" data-anchor-id="structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</h2>
-<p>Each fertiliser type in APSIM has the following attributes:</p>
+<section id="nitrogen-limited-biomass-allocation" class="level2">
+<h2 class="anchored" data-anchor-id="nitrogen-limited-biomass-allocation">Nitrogen-Limited Biomass Allocation</h2>
+<p>In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to <strong>nutrient constraints</strong>, primarily nitrogen (N), which depends on nitrogen supply.</p>
+<p>The <code>NutrientConstrainedAllocationMethod</code> model is responsible for <strong>scaling biomass allocations to organs</strong> based on the amount of nitrogen allocated to those organs. This ensures that growth is <strong>biologically feasible</strong> given available N and minimum nitrogen concentration.</p>
+<section id="role-in-apsim-simulation-pipeline" class="level3">
+<h3 class="anchored" data-anchor-id="role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</h3>
+<p>The <code>NutrientConstrainedAllocationMethod</code> is invoked <em>after</em> biomass has been distributed to organs (e.g., by <code>RelativeAllocation</code>) but <em>before</em> final biomass commitment. Its purpose is to:</p>
 <ul>
-<li><strong>Name</strong>: Identifier used within the simulation to refer to this fertiliser.</li>
-<li><strong>Description</strong>: A human-readable explanation of the fertiliser’s nature or composition.</li>
-<li><strong>Solute</strong>: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.</li>
-<li><strong>Fraction</strong>: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.</li>
-<li><strong>Release Rate</strong>: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.</li>
+<li>Check whether each organ has received enough nitrogen to support its allocated biomass (i.e.&nbsp;satisfy the minimum concentration).</li>
+<li>Scale biomass down proportionally if nitrogen is insufficient.</li>
+<li>Track how much biomass was reduced due to nitrogen limitations (i.e.&nbsp;the difference between allocated and actual biomass). The reporting variable <code>DM.NutrientLimitation</code> captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g.&nbsp;<code>[Wheat].Arbitrator.DM.NutrientLimitation</code>).</li>
 </ul>
 </section>
-<section id="example-fertiliser-types-in-apsim" class="level2">
-<h2 class="anchored" data-anchor-id="example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</h2>
-<p>Below is a simplified summary of several fertiliser types defined in APSIM NG:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<colgroup>
-<col style="width: 14%">
-<col style="width: 43%">
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">Solute1Name</th>
-<th style="text-align: right;">Solute1Fraction</th>
-<th style="text-align: right;">Release</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">CalciteCA</td>
-<td style="text-align: left;">Ca as finely ground Agricultural Lime</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">CalciteFine</td>
-<td style="text-align: left;">finely ground Agricultural Lime</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dolomite</td>
-<td style="text-align: left;">finely ground dolomite</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NO3N</td>
-<td style="text-align: left;">N as nitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NH4N</td>
-<td style="text-align: left;">N as ammonium</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NH4NO3N</td>
-<td style="text-align: left;">ammonium nitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DAP</td>
-<td style="text-align: left;">di-ammonium phosphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAP</td>
-<td style="text-align: left;">mono-ammonium phosphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UAN_N</td>
-<td style="text-align: left;">N as Urea-AmmoniumNitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UreaN</td>
-<td style="text-align: left;">N as urea</td>
-<td style="text-align: left;">Urea</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UreaNO3</td>
-<td style="text-align: left;">N as urea</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UreaGranular</td>
-<td style="text-align: left;">Urea fertiliser</td>
-<td style="text-align: left;">Urea</td>
-<td style="text-align: right;">0.46</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NH4SO4N</td>
-<td style="text-align: left;">ammonium sulphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RockP</td>
-<td style="text-align: left;">Rock phosphorus</td>
-<td style="text-align: left;">RockP</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BandedP</td>
-<td style="text-align: left;">Banded phosphorus</td>
-<td style="text-align: left;">BandedP</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BroadcastP</td>
-<td style="text-align: left;">Broadcast phosphorus</td>
-<td style="text-align: left;">LabileP</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<section id="inputs-and-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="inputs-and-assumptions">Inputs and Assumptions</h3>
+<ul>
+<li><strong>Organs (<code>IArbitration[]</code>)</strong>: A list of organs participating in allocation (e.g., leaf, stem, root, grain).</li>
+<li><strong><code>BiomassArbitrationType</code> (DM)</strong>: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.</li>
+<li><strong><code>NutrientArbitrationType</code> (N)</strong>: Contains nitrogen demand and allocation for each organ.</li>
+</ul>
+<p><strong>Key Assumptions</strong>: - Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass. - Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</p>
+</section>
+<section id="step-by-step-process" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-process">Step-by-Step Process</h3>
+<ol type="1">
+<li>Calculate Total N Allocation per Organ</li>
+</ol>
+<p>For each organ <code>i</code>, sum all nitrogen allocations:</p>
+<p><span class="math display">\[
+N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{MetabolicAllocation},i} + N_{\text{StorageAllocation},i}
+\]</span></p>
+<p>This value represents the nitrogen available to support DM growth.</p>
+<ol start="2" type="1">
+<li>Calculate N-Constrained Growth Capacity</li>
+</ol>
+<p>Determine the maximum biomass (<code>N.ConstrainedGrowth[i]</code>) that each organ can support based on its nitrogen allocation:</p>
+<p>This logic checks: - If total nitrogen allocation meets or exceeds demand, growth is unconstrained. - If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero. - Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</p>
+<p><span class="math display">\[
+N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(N_\text{TotalAllocation}[i]\)</span> is the total nitrogen allocated to organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\text{Organs}[i]_\text{MinNConc}\)</span> is the minimum nitrogen concentration required for organ <span class="math inline">\(i\)</span></li>
+</ul>
+<p>This yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.</p>
+<ol start="3" type="1">
+<li>Scale Biomass Allocation Proportionally</li>
+</ol>
+<p>The total biomass previously allocated (structural + metabolic + storage) is compared to <code>ConstrainedGrowth[i]</code>.</p>
+<p>If total allocation exceeds the constrained limit, all organs are scaled proportionally:</p>
+<p>Let:</p>
+<p>Let <span class="math inline">\(DM_{total}[i]\)</span> be the total biomass allocated to organ <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+DM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]
+\]</span></p>
+<p>Calculate the proportion of each component:</p>
+<p><span class="math display">\[
+P_{structural}[i] = \frac{DM_{structural}[i]}{DM_{total}[i]}
+\]</span></p>
+<p><span class="math display">\[
+P_{metabolic}[i] = \frac{DM_{metabolic}[i]}{DM_{total}[i]}
+\]</span></p>
+<p><span class="math display">\[
+P_{storage}[i] = \frac{DM_{storage}[i]}{DM_{total}[i]}
+\]</span></p>
+<p>Scale each component by the N-constrained growth:</p>
+<p><span class="math display">\[
+DM_{structural}[i] = \min\left(DM_{structural}[i], N_{constrained}[i] \times P_{structural}[i]\right)
+\]</span></p>
+<p><span class="math display">\[
+DM_{metabolic}[i] = \min\left(DM_{metabolic}[i], N_{constrained}[i] \times P_{metabolic}[i]\right)
+\]</span></p>
+<p><span class="math display">\[
+DM_{storage}[i] = \min\left(DM_{storage}[i], N_{constrained}[i] \times P_{storage}[i]\right)
+\]</span></p>
+<p>This ensures:</p>
+<ul>
+<li>No component exceeds the N-limited capacity.</li>
+<li>Ratios between structural, metabolic, and storage biomass are preserved.</li>
+<li>No biomass is accidentally dropped.</li>
+</ul>
+<ol start="4" type="1">
+<li>Update Final Biomass and Stress Report</li>
+</ol>
+<p>After applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:</p>
+<p><span class="math display">\[
+DM_\text{Allocated} = \sum_{i=1}^{n} \left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \right)
+\]</span></p>
+<p><span class="math display">\[
+DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocated}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(DM_\text{Allocated}\)</span> is the total biomass realized after N constraints.</li>
+<li><span class="math inline">\(DM_\text{PreNStressAllocation}\)</span> is the total biomass allocated before applying N constraints.</li>
+<li><span class="math inline">\(DM_\text{NutrientLimitation}\)</span> is the biomass lost due to insufficient nitrogen.</li>
+</ul>
+</section>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>A leaf organ receives:</p>
+<ul>
+<li>Nitrogen allocated: 0.3 g</li>
+<li>Minimum N concentration: 0.03 g/g DM</li>
+<li>Maximum supportable biomass: 0.3 / 0.03 = 10 g</li>
+<li>If initial biomass allocated was 12 g:</li>
+<li>Final biomass is scaled to 10 g</li>
+<li>All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833</li>
+</ul>
+</section>
+<section id="scientific-rationale" class="level3">
+<h3 class="anchored" data-anchor-id="scientific-rationale">Scientific Rationale</h3>
+<ul>
+<li>Nitrogen is a key building block for proteins, nucleic acids, and enzymes.</li>
+<li>Without sufficient N, plants cannot construct tissue even if photosynthate is available.</li>
+<li>This constraint ensures simulations realistically capture nutrient stress.</li>
+</ul>
+</section>
+<section id="extensibility" class="level3">
+<h3 class="anchored" data-anchor-id="extensibility">Extensibility</h3>
+<p>While this method currently constrains biomass based only on nitrogen:</p>
+<ul>
+<li>It is designed to be extended for other nutrients (e.g., phosphorus, potassium).</li>
+<li>Additional constraints could be implemented by combining multiple nutrient-limited growth values.</li>
+</ul>
+</section>
+<section id="outputs-and-implications" class="level3">
+<h3 class="anchored" data-anchor-id="outputs-and-implications">Outputs and Implications</h3>
+<ul>
+<li>DM.Allocated: Actual biomass realized under nutrient constraints.</li>
+<li>DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.</li>
+</ul>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<ul>
+<li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
+</ul>
+</section>
+<section id="potential-bugs-and-limitations" class="level3">
+<h3 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h3>
+<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -727,4 +754,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/fertiliser.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/nutrition/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

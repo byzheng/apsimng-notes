@@ -1,18 +1,19 @@
 [
   {
+    "listing": "/docs/index.html",
+    "items": [
+      "/docs/co2-rue.html",
+      "/docs/co2-wheat.html",
+      "/docs/fertiliser.html",
+      "/docs/nutrition/NutrientConstrainedAllocationMethod.html"
+    ]
+  },
+  {
     "listing": "/tips/index.html",
     "items": [
       "/tips/co2.html",
       "/tips/internal_variable.html",
       "/tips/summary.html"
-    ]
-  },
-  {
-    "listing": "/docs/index.html",
-    "items": [
-      "/docs/co2-rue.html",
-      "/docs/co2-wheat.html",
-      "/docs/fertiliser.html"
     ]
   }
 ]
