@@ -50,6 +50,7 @@ Determine the maximum biomass (`N.ConstrainedGrowth[i]`) that each organ can sup
 
 
 This logic checks:
+
 - If total nitrogen allocation meets or exceeds demand, growth is unconstrained.
 - If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.
 - Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:
@@ -161,11 +162,14 @@ While this method currently constrains biomass based only on nitrogen:
 * DM.Allocated: Actual biomass realized under nutrient constraints.
 * DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.
 
-### References
-
-* [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
-
 
 ### Potential bugs and Limitations
 
 The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.
+
+
+
+### References
+
+* [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
+* APSIM NG Source Code: [NutrientConstrainedAllocationMethod.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs)
