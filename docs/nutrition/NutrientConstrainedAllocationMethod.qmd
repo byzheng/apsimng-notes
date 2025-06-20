@@ -28,6 +28,7 @@ The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been di
 - **`NutrientArbitrationType` (N)**: Contains nitrogen demand and allocation for each organ.
 
 **Key Assumptions**:
+
 - Each organ has a defined **minimum nitrogen concentration** (`MinNConc`), below which it cannot support biomass.
 - Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.
 
