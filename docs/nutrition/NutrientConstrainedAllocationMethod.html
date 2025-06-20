@@ -167,8 +167,8 @@ window.Quarto = {
   <li><a href="#scientific-rationale" id="toc-scientific-rationale" class="nav-link" data-scroll-target="#scientific-rationale">Scientific Rationale</a></li>
   <li><a href="#extensibility" id="toc-extensibility" class="nav-link" data-scroll-target="#extensibility">Extensibility</a></li>
   <li><a href="#outputs-and-implications" id="toc-outputs-and-implications" class="nav-link" data-scroll-target="#outputs-and-implications">Outputs and Implications</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   <li><a href="#potential-bugs-and-limitations" id="toc-potential-bugs-and-limitations" class="nav-link" data-scroll-target="#potential-bugs-and-limitations">Potential bugs and Limitations</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/nutrition/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -221,7 +221,11 @@ window.Quarto = {
 <li><strong><code>BiomassArbitrationType</code> (DM)</strong>: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.</li>
 <li><strong><code>NutrientArbitrationType</code> (N)</strong>: Contains nitrogen demand and allocation for each organ.</li>
 </ul>
-<p><strong>Key Assumptions</strong>: - Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass. - Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</p>
+<p><strong>Key Assumptions</strong>:</p>
+<ul>
+<li>Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass.</li>
+<li>Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</li>
+</ul>
 </section>
 <section id="step-by-step-process" class="level3">
 <h3 class="anchored" data-anchor-id="step-by-step-process">Step-by-Step Process</h3>
@@ -237,7 +241,12 @@ N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{Meta
 <li>Calculate N-Constrained Growth Capacity</li>
 </ol>
 <p>Determine the maximum biomass (<code>N.ConstrainedGrowth[i]</code>) that each organ can support based on its nitrogen allocation:</p>
-<p>This logic checks: - If total nitrogen allocation meets or exceeds demand, growth is unconstrained. - If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero. - Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</p>
+<p>This logic checks:</p>
+<ul>
+<li>If total nitrogen allocation meets or exceeds demand, growth is unconstrained.</li>
+<li>If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.</li>
+<li>Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</li>
+</ul>
 <p><span class="math display">\[
 N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
 \]</span></p>
@@ -281,7 +290,6 @@ DM_{storage}[i] = \min\left(DM_{storage}[i], N_{constrained}[i] \times P_{storag
 <ul>
 <li>No component exceeds the N-limited capacity.</li>
 <li>Ratios between structural, metabolic, and storage biomass are preserved.</li>
-<li>No biomass is accidentally dropped.</li>
 </ul>
 <ol start="4" type="1">
 <li>Update Final Biomass and Stress Report</li>
@@ -335,15 +343,16 @@ DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocat
 <li>DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.</li>
 </ul>
 </section>
+<section id="potential-bugs-and-limitations" class="level3">
+<h3 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h3>
+<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
+</section>
 <section id="references" class="level3">
 <h3 class="anchored" data-anchor-id="references">References</h3>
 <ul>
 <li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
+<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs">NutrientConstrainedAllocationMethod.cs</a></li>
 </ul>
-</section>
-<section id="potential-bugs-and-limitations" class="level3">
-<h3 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h3>
-<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
 
 
 </section>
