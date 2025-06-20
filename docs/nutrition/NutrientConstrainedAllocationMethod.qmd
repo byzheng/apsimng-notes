@@ -114,7 +114,7 @@ This ensures:
 
 * No component exceeds the N-limited capacity.
 * Ratios between structural, metabolic, and storage biomass are preserved.
-* No biomass is accidentally dropped.
+
 
 4. Update Final Biomass and Stress Report
 
