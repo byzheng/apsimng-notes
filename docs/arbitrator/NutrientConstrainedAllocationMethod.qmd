@@ -1,19 +1,16 @@
 ---
-title: "Nutrient Constrained Allocation Method"
+title: "Nutrient Constrained Allocation"
 date: "2025-06-06"
 output: html_document
 ---
 
-
-
-## Nitrogen-Limited Biomass Allocation
 
 In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to **nutrient constraints**, primarily nitrogen (N), which depends on nitrogen supply. 
 
 The `NutrientConstrainedAllocationMethod` model is responsible for **scaling biomass allocations to organs** based on the amount of nitrogen allocated to those organs. This ensures that growth is **biologically feasible** given available N and minimum nitrogen concentration.
 
 
-### Role in APSIM Simulation Pipeline
+## Role in APSIM Simulation Pipeline
 
 The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been distributed to organs (e.g., by `RelativeAllocation`) but *before* final biomass commitment. Its purpose is to:
 
@@ -21,7 +18,7 @@ The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been di
 - Scale biomass down proportionally if nitrogen is insufficient.
 - Track how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable `DM.NutrientLimitation` captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. `[Wheat].Arbitrator.DM.NutrientLimitation`).
 
-### Inputs and Assumptions
+## Inputs and Assumptions
 
 - **Organs (`IArbitration[]`)**: A list of organs participating in allocation (e.g., leaf, stem, root, grain).
 - **`BiomassArbitrationType` (DM)**: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.
@@ -33,7 +30,7 @@ The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been di
 - Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.
 
 
-### Step-by-Step Process
+## Step-by-Step Process
 
 1. Calculate Total N Allocation per Organ
 
@@ -134,7 +131,7 @@ Where:
 - $DM_\text{PreNStressAllocation}$ is the total biomass allocated before applying N constraints.
 - $DM_\text{NutrientLimitation}$ is the biomass lost due to insufficient nitrogen.
 
-### Example
+## Example
 
 A leaf organ receives:
 
@@ -145,32 +142,32 @@ A leaf organ receives:
 * Final biomass is scaled to 10 g
 * All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833
 
-### Scientific Rationale
+## Scientific Rationale
 
 * Nitrogen is a key building block for proteins, nucleic acids, and enzymes. 
 * Without sufficient N, plants cannot construct tissue even if photosynthate is available.
 * This constraint ensures simulations realistically capture nutrient stress.
 
-### Extensibility
+## Extensibility
 
 While this method currently constrains biomass based only on nitrogen:
 
 * It is designed to be extended for other nutrients (e.g., phosphorus, potassium).
 * Additional constraints could be implemented by combining multiple nutrient-limited growth values.
 
-### Outputs and Implications
+## Outputs and Implications
 
 * DM.Allocated: Actual biomass realized under nutrient constraints.
 * DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.
 
 
-### Potential bugs and Limitations
+## Potential bugs and Limitations
 
 The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.
 
 
 
-### References
+## References
 
-* [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
-* APSIM NG Source Code: [NutrientConstrainedAllocationMethod.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs)
+- [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
+- APSIM NG Source Code: [NutrientConstrainedAllocationMethod.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs)

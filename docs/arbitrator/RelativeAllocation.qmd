@@ -1,0 +1,151 @@
+---
+title: "Relative Allocation"
+date: "2025-06-06"
+output: html_document
+---
+
+
+The `RelativeAllocation` module implements a **proportional allocation strategy** to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles **partitioning of dry matter (DM)** and **nutrients** (e.g. nitrogen) based on each organ’s demand.
+
+This method is part of the broader plant allocation system and is invoked by arbitrator components such as `BiomassTypeArbitrator`.
+
+
+## Biological Motivation
+
+Plants must allocate available assimilates or nutrients among organs in a coordinated way. The `RelativeAllocation` method mimics this by:
+
+- Prioritizing **structural and metabolic demands** (essential growth),
+- Then allocating any **residual supply to storage pools** (non-essential, luxury uptake).
+
+This reflects physiological prioritization in plant growth.
+
+
+## Allocation Logic
+
+The allocation occurs in **two sequential passes**:
+
+* First Pass – Structural and Metabolic Allocation
+* Second Pass – Storage (Luxury) Allocation
+
+## First Pass – Structural and Metabolic Allocation
+
+### Objective
+
+Distribute available supply to fulfill structural and metabolic demands proportionally.
+
+### Definitions
+
+Let:
+
+- $S_{\text{total}}$: Total supply available (e.g. Dry biomass or nitrogen).
+- $D_s^{(i)}$: Structural demand of organ $i$
+- $D_m^{(i)}$: Metabolic demand of organ $i$
+- $D_{s,\text{total}} = \sum_i D_s^{(i)}$: Total structural demand across all organs.
+- $D_{m,\text{total}} = \sum_i D_m^{(i)}$: Total metabolic demand across all organs.
+
+We define the **structural fraction** of supply as:
+
+$$
+f_s = \frac{D_{s,\text{total}}}{D_{s,\text{total}} + D_{m,\text{total}}}
+$$
+
+Then, for each organ $i$:
+
+- Structural allocation:
+
+$$
+A_s^{(i)} = \min\left(R_s^{(i)}, S_{\text{total}} \cdot f_s \cdot \frac{D_s^{(i)}}{D_{s,\text{total}}} \right)
+$$
+
+- Metabolic allocation:
+
+$$ 
+A_m^{(i)} = \min\left(R_m^{(i)}, S_{\text{total}} \cdot (1 - f_s) \cdot \frac{D_m^{(i)}}{D_{m,\text{total}}} \right)
+$$
+
+where $R_s^{(i)}$ and $R_m^{(i)}$ are the **remaining unmet demand** for structural and metabolic pools, respectively.
+
+
+
+## Second Pass – Storage (Luxury) Allocation
+
+### Objective
+Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.
+
+### Definitions
+
+Let:
+
+- $S_{\text{rem}}$: Remaining supply after first pass
+- $D_t^{(i)}$: Storage demand of organ $i$
+- $D_{t,\text{total}} = \sum_i D_t^{(i)}$: Total storage demand across all organs
+
+Then, for each organ $i$:
+
+$$
+A_t^{(i)} = \min\left(R_t^{(i)}, S_{\text{rem}} \cdot \frac{D_t^{(i)}}{D_{t,\text{total}}} \right)
+$$
+
+where $R_t^{(i)}$ is the remaining unmet storage demand for organ $i$.
+
+
+## Final Accounting
+
+After both passes, the module tracks:
+
+- **Total allocation**: Sum of structural, metabolic, and storage allocations across all organs.
+- **Not allocated**: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).
+
+$$
+S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \right)
+$$
+
+This is useful for diagnostics, such as reporting **sink limitations**.
+
+## Key Features
+
+- Prioritizes essential growth (structural and metabolic) over luxury (storage).
+- Proportional to each organ’s share of total demand.
+- Applies generically to both **biomass and nutrients**.
+- Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet.
+
+## Practical Example
+
+Assume:
+
+- Leaf has a structural demand of 50 units and a metabolic demand of 20 units.
+- Stem has a structural demand of 60 units and a metabolic demand of 60 units.
+- Total supply is 120 units.
+
+Then:
+
+- Total structural demand = 50 (leaf) + 60 (stem) = 110 units
+- Total metabolic demand = 20 (leaf) + 60 (stem) = 80 units
+
+- Structural fraction:  
+  $f_s = \frac{110}{110 + 80} = 0.579$
+
+- First pass allocates:
+  - Structural: $120 \times 0.579 = 69.48$ units, distributed as:
+    - Leaf: $69.48 \times \frac{50}{110} = 31.58$ units
+    - Stem: $69.48 \times \frac{60}{110} = 37.90$ units
+  - Metabolic: $120 \times 0.421 = 50.52$ units, distributed as:
+    - Leaf: $50.52 \times \frac{20}{80} = 12.63$ units
+    - Stem: $50.52 \times \frac{60}{80} = 37.89$ units
+
+- Second pass allocates any leftover proportionally to storage demands.
+
+
+## Applications
+
+- Biomass partitioning after photosynthesis, reallocation, and retranslocation.
+- Nitrogen allocation after uptake, reallocation, and retranslocation.
+- Any generic resource arbitration among competing sinks.
+
+
+
+## References
+
+- APSIM Next Generation Source Code: [github.com/APSIMInitiative/ApsimX](https://github.com/APSIMInitiative/ApsimX)
+- APSIM NG Source Code: [RelativeAllocation.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs)
+
