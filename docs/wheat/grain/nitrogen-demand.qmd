@@ -19,7 +19,7 @@ $$
 \text{N demand} = \frac{N_\text{kernel}}{D_\text{filling}} \times \text{ThermalTime} \times \text{GrainNumber}
 $$
 
- Where:
+Where:
 
 | Term           | Description                                                                 |
 |----------------|-----------------------------------------------------------------------------|
@@ -39,7 +39,6 @@ A linear nitrogen filling rate is assumed, meaning that the demand increases uni
 
 Suppose:
 
-- Kernel weight = 0.05 g/kernel
 - Nitrogen per kernel ($N_\text{kernel}$) = 0.0011 g/kernel
 - Grain filling duration ($D_\text{filling}$) = 120 + 545 = 665 °Cd
 - Daily thermal time (ThermalTime) = 20 °Cd
