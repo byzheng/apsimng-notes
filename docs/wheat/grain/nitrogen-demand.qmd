@@ -5,7 +5,7 @@ output: html_document
 ---
 
 
-The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of **Anthesis** and **EndGrainFill**. This demand is crucial for understanding how nitrogen is allocated to grain development in wheat crops. 
+The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of **Anthesis** and **EndGrainFill**. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.
 
 
 ## Function Definition
