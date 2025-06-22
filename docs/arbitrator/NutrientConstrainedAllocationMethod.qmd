@@ -131,7 +131,7 @@ Where:
 - $DM_\text{PreNStressAllocation}$ is the total biomass allocated before applying N constraints.
 - $DM_\text{NutrientLimitation}$ is the biomass lost due to insufficient nitrogen.
 
-## Example
+## Practical Example
 
 A leaf organ receives:
 

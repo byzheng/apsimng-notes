@@ -1,0 +1,61 @@
+---
+title: "Nitrogen Filling Rate or Nitrogen Demand"
+date: "2025-06-06"
+output: html_document
+---
+
+
+The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of **Anthesis** and **EndGrainFill**. This demand is crucial for understanding how nitrogen is allocated to grain development in wheat crops. 
+
+
+## Function Definition
+
+The demand is defined by a `PhaseLookup` function:
+
+- **Before Anthesis (Sowing to Anthesis)** as zero for no grain nitrogen demand as no grain development occurs.
+- **During Grain Filling (Anthesis → EndGrainFill):**
+
+$$
+\text{N demand} = \frac{N_\text{kernel}}{D_\text{filling}} \times \text{ThermalTime} \times \text{GrainNumber}
+$$
+
+ Where:
+
+| Term           | Description                                                                 |
+|----------------|-----------------------------------------------------------------------------|
+| $N_\text{kernel}$ | Potential nitrogen per kernel (default = 0.0011 g/kernel)                  |
+| $D_\text{filling}$ | Grain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target |
+| ThermalTime    | Daily thermal time (°Cd), from `[Phenology].ThermalTime`                     |
+| GrainNumber    | Number of kernels, from `[Grain].NumberFunction`                             |
+
+  
+The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.
+
+A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.
+
+
+
+## Practical Example
+
+Suppose:
+
+- Kernel weight = 0.05 g/kernel
+- Nitrogen per kernel ($N_\text{kernel}$) = 0.0011 g/kernel
+- Grain filling duration ($D_\text{filling}$) = 120 + 545 = 665 °Cd
+- Daily thermal time (ThermalTime) = 20 °Cd
+- Number of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)
+
+Plug into the formula:
+
+$$
+\text{N demand} = \frac{0.0011}{665} \times 20 \times 18000 = 0.5955 \text{ g N/day}
+$$
+
+**So, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.**
+
+
+## References
+
+- [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
+- [APSIM Next Gen Wheat Model](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json)
+
