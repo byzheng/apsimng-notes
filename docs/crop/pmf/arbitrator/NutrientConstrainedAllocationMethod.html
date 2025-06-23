@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Relative Allocation – APSIM NG Notes</title>
+<title>Nutrient Constrained Allocation – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-a98ec624fb63d9b712fc3a6f62e2b305.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,7 +99,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../../../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light">
@@ -109,7 +109,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -120,19 +120,19 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../docs/index.html"> 
+    <a class="nav-link" href="../../../../docs/index.html"> 
 <span class="menu-text">Documentations</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../tips/index.html"> 
+    <a class="nav-link" href="../../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -158,32 +158,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#biological-motivation" id="toc-biological-motivation" class="nav-link active" data-scroll-target="#biological-motivation">Biological Motivation</a></li>
-  <li><a href="#allocation-logic" id="toc-allocation-logic" class="nav-link" data-scroll-target="#allocation-logic">Allocation Logic</a></li>
-  <li><a href="#first-pass-structural-and-metabolic-allocation" id="toc-first-pass-structural-and-metabolic-allocation" class="nav-link" data-scroll-target="#first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</a>
-  <ul class="collapse">
-  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
-  </ul></li>
-  <li><a href="#second-pass-storage-luxury-allocation" id="toc-second-pass-storage-luxury-allocation" class="nav-link" data-scroll-target="#second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</a>
-  <ul class="collapse">
-  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
-  <li><a href="#definitions-1" id="toc-definitions-1" class="nav-link" data-scroll-target="#definitions-1">Definitions</a></li>
-  </ul></li>
-  <li><a href="#final-accounting" id="toc-final-accounting" class="nav-link" data-scroll-target="#final-accounting">Final Accounting</a></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
+  <li><a href="#role-in-apsim-simulation-pipeline" id="toc-role-in-apsim-simulation-pipeline" class="nav-link active" data-scroll-target="#role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</a></li>
+  <li><a href="#inputs-and-assumptions" id="toc-inputs-and-assumptions" class="nav-link" data-scroll-target="#inputs-and-assumptions">Inputs and Assumptions</a></li>
+  <li><a href="#step-by-step-process" id="toc-step-by-step-process" class="nav-link" data-scroll-target="#step-by-step-process">Step-by-Step Process</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#scientific-rationale" id="toc-scientific-rationale" class="nav-link" data-scroll-target="#scientific-rationale">Scientific Rationale</a></li>
+  <li><a href="#extensibility" id="toc-extensibility" class="nav-link" data-scroll-target="#extensibility">Extensibility</a></li>
+  <li><a href="#outputs-and-implications" id="toc-outputs-and-implications" class="nav-link" data-scroll-target="#outputs-and-implications">Outputs and Implications</a></li>
+  <li><a href="#potential-bugs-and-limitations" id="toc-potential-bugs-and-limitations" class="nav-link" data-scroll-target="#potential-bugs-and-limitations">Potential bugs and Limitations</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Relative Allocation</h1>
+<h1 class="title">Nutrient Constrained Allocation</h1>
 </div>
 
 
@@ -206,146 +198,155 @@ window.Quarto = {
 </header>
 
 
-<p>The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles <strong>partitioning of dry matter (DM)</strong> and <strong>nutrients</strong> (e.g.&nbsp;nitrogen) based on each organ’s demand.</p>
-<p>This method is part of the broader plant allocation system and is invoked by arbitrator components such as <code>BiomassTypeArbitrator</code>.</p>
-<section id="biological-motivation" class="level2">
-<h2 class="anchored" data-anchor-id="biological-motivation">Biological Motivation</h2>
-<p>Plants must allocate available assimilates or nutrients among organs in a coordinated way. The <code>RelativeAllocation</code> method mimics this by:</p>
+<p>In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to <strong>nutrient constraints</strong>, primarily nitrogen (N), which depends on nitrogen supply.</p>
+<p>The <code>NutrientConstrainedAllocationMethod</code> model is responsible for <strong>scaling biomass allocations to organs</strong> based on the amount of nitrogen allocated to those organs. This ensures that growth is <strong>biologically feasible</strong> given available N and minimum nitrogen concentration.</p>
+<section id="role-in-apsim-simulation-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</h2>
+<p>The <code>NutrientConstrainedAllocationMethod</code> is invoked <em>after</em> biomass has been distributed to organs (e.g., by <code>RelativeAllocation</code>) but <em>before</em> final biomass commitment. Its purpose is to:</p>
 <ul>
-<li>Prioritizing <strong>structural and metabolic demands</strong> (essential growth),</li>
-<li>Then allocating any <strong>residual supply to storage pools</strong> (non-essential, luxury uptake).</li>
-</ul>
-<p>This reflects physiological prioritization in plant growth.</p>
-</section>
-<section id="allocation-logic" class="level2">
-<h2 class="anchored" data-anchor-id="allocation-logic">Allocation Logic</h2>
-<p>The allocation occurs in <strong>two sequential passes</strong>:</p>
-<ul>
-<li>First Pass – Structural and Metabolic Allocation</li>
-<li>Second Pass – Storage (Luxury) Allocation</li>
+<li>Check whether each organ has received enough nitrogen to support its allocated biomass (i.e.&nbsp;satisfy the minimum concentration).</li>
+<li>Scale biomass down proportionally if nitrogen is insufficient.</li>
+<li>Track how much biomass was reduced due to nitrogen limitations (i.e.&nbsp;the difference between allocated and actual biomass). The reporting variable <code>DM.NutrientLimitation</code> captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g.&nbsp;<code>[Wheat].Arbitrator.DM.NutrientLimitation</code>).</li>
 </ul>
 </section>
-<section id="first-pass-structural-and-metabolic-allocation" class="level2">
-<h2 class="anchored" data-anchor-id="first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</h2>
-<section id="objective" class="level3">
-<h3 class="anchored" data-anchor-id="objective">Objective</h3>
-<p>Distribute available supply to fulfill structural and metabolic demands proportionally.</p>
+<section id="inputs-and-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="inputs-and-assumptions">Inputs and Assumptions</h2>
+<ul>
+<li><strong>Organs (<code>IArbitration[]</code>)</strong>: A list of organs participating in allocation (e.g., leaf, stem, root, grain).</li>
+<li><strong><code>BiomassArbitrationType</code> (DM)</strong>: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.</li>
+<li><strong><code>NutrientArbitrationType</code> (N)</strong>: Contains nitrogen demand and allocation for each organ.</li>
+</ul>
+<p><strong>Key Assumptions</strong>:</p>
+<ul>
+<li>Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass.</li>
+<li>Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</li>
+</ul>
 </section>
-<section id="definitions" class="level3">
-<h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
+<section id="step-by-step-process" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-process">Step-by-Step Process</h2>
+<ol type="1">
+<li>Calculate Total N Allocation per Organ</li>
+</ol>
+<p>For each organ <code>i</code>, sum all nitrogen allocations:</p>
+<p><span class="math display">\[
+N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{MetabolicAllocation},i} + N_{\text{StorageAllocation},i}
+\]</span></p>
+<p>This value represents the nitrogen available to support DM growth.</p>
+<ol start="2" type="1">
+<li>Calculate N-Constrained Growth Capacity</li>
+</ol>
+<p>Determine the maximum biomass (<code>N.ConstrainedGrowth[i]</code>) that each organ can support based on its nitrogen allocation:</p>
+<p>This logic checks:</p>
+<ul>
+<li>If total nitrogen allocation meets or exceeds demand, growth is unconstrained.</li>
+<li>If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.</li>
+<li>Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</li>
+</ul>
+<p><span class="math display">\[
+N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(N_\text{TotalAllocation}[i]\)</span> is the total nitrogen allocated to organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\text{Organs}[i]_\text{MinNConc}\)</span> is the minimum nitrogen concentration required for organ <span class="math inline">\(i\)</span></li>
+</ul>
+<p>This yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.</p>
+<ol start="3" type="1">
+<li>Scale Biomass Allocation Proportionally</li>
+</ol>
+<p>The total biomass previously allocated (structural + metabolic + storage) is compared to <code>ConstrainedGrowth[i]</code>.</p>
+<p>If total allocation exceeds the constrained limit, all organs are scaled proportionally:</p>
 <p>Let:</p>
-<ul>
-<li><span class="math inline">\(S_{\text{total}}\)</span>: Total supply available (e.g.&nbsp;Dry biomass or nitrogen).</li>
-<li><span class="math inline">\(D_s^{(i)}\)</span>: Structural demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_m^{(i)}\)</span>: Metabolic demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_{s,\text{total}} = \sum_i D_s^{(i)}\)</span>: Total structural demand across all organs.</li>
-<li><span class="math inline">\(D_{m,\text{total}} = \sum_i D_m^{(i)}\)</span>: Total metabolic demand across all organs.</li>
-</ul>
-<p>We define the <strong>structural fraction</strong> of supply as:</p>
+<p>Let <span class="math inline">\(DM_{total}[i]\)</span> be the total biomass allocated to organ <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
-f_s = \frac{D_{s,\text{total}}}{D_{s,\text{total}} + D_{m,\text{total}}}
+DM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]
 \]</span></p>
-<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
-<ul>
-<li>Structural allocation:</li>
-</ul>
+<p>Calculate the proportion of each component:</p>
 <p><span class="math display">\[
-A_s^{(i)} = \min\left(R_s^{(i)}, S_{\text{total}} \cdot f_s \cdot \frac{D_s^{(i)}}{D_{s,\text{total}}} \right)
+P_{structural}[i] = \frac{DM_{structural}[i]}{DM_{total}[i]}
 \]</span></p>
-<ul>
-<li>Metabolic allocation:</li>
-</ul>
 <p><span class="math display">\[
-A_m^{(i)} = \min\left(R_m^{(i)}, S_{\text{total}} \cdot (1 - f_s) \cdot \frac{D_m^{(i)}}{D_{m,\text{total}}} \right)
+P_{metabolic}[i] = \frac{DM_{metabolic}[i]}{DM_{total}[i]}
 \]</span></p>
-<p>where <span class="math inline">\(R_s^{(i)}\)</span> and <span class="math inline">\(R_m^{(i)}\)</span> are the <strong>remaining unmet demand</strong> for structural and metabolic pools, respectively.</p>
-</section>
-</section>
-<section id="second-pass-storage-luxury-allocation" class="level2">
-<h2 class="anchored" data-anchor-id="second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</h2>
-<section id="objective-1" class="level3">
-<h3 class="anchored" data-anchor-id="objective-1">Objective</h3>
-<p>Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.</p>
-</section>
-<section id="definitions-1" class="level3">
-<h3 class="anchored" data-anchor-id="definitions-1">Definitions</h3>
-<p>Let:</p>
-<ul>
-<li><span class="math inline">\(S_{\text{rem}}\)</span>: Remaining supply after first pass</li>
-<li><span class="math inline">\(D_t^{(i)}\)</span>: Storage demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_{t,\text{total}} = \sum_i D_t^{(i)}\)</span>: Total storage demand across all organs</li>
-</ul>
-<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
 <p><span class="math display">\[
-A_t^{(i)} = \min\left(R_t^{(i)}, S_{\text{rem}} \cdot \frac{D_t^{(i)}}{D_{t,\text{total}}} \right)
+P_{storage}[i] = \frac{DM_{storage}[i]}{DM_{total}[i]}
 \]</span></p>
-<p>where <span class="math inline">\(R_t^{(i)}\)</span> is the remaining unmet storage demand for organ <span class="math inline">\(i\)</span>.</p>
-</section>
-</section>
-<section id="final-accounting" class="level2">
-<h2 class="anchored" data-anchor-id="final-accounting">Final Accounting</h2>
-<p>After both passes, the module tracks:</p>
-<ul>
-<li><strong>Total allocation</strong>: Sum of structural, metabolic, and storage allocations across all organs.</li>
-<li><strong>Not allocated</strong>: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).</li>
-</ul>
+<p>Scale each component by the N-constrained growth:</p>
 <p><span class="math display">\[
-S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \right)
+DM_{structural}[i] = \min\left(DM_{structural}[i], N_{constrained}[i] \times P_{structural}[i]\right)
 \]</span></p>
-<p>This is useful for diagnostics, such as reporting <strong>sink limitations</strong>.</p>
-</section>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
+<p><span class="math display">\[
+DM_{metabolic}[i] = \min\left(DM_{metabolic}[i], N_{constrained}[i] \times P_{metabolic}[i]\right)
+\]</span></p>
+<p><span class="math display">\[
+DM_{storage}[i] = \min\left(DM_{storage}[i], N_{constrained}[i] \times P_{storage}[i]\right)
+\]</span></p>
+<p>This ensures:</p>
 <ul>
-<li>Prioritizes essential growth (structural and metabolic) over luxury (storage).</li>
-<li>Proportional to each organ’s share of total demand.</li>
-<li>Applies generically to both <strong>biomass and nutrients</strong>.</li>
-<li>Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet.</li>
+<li>No component exceeds the N-limited capacity.</li>
+<li>Ratios between structural, metabolic, and storage biomass are preserved.</li>
+</ul>
+<ol start="4" type="1">
+<li>Update Final Biomass and Stress Report</li>
+</ol>
+<p>After applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:</p>
+<p><span class="math display">\[
+DM_\text{Allocated} = \sum_{i=1}^{n} \left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \right)
+\]</span></p>
+<p><span class="math display">\[
+DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocated}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(DM_\text{Allocated}\)</span> is the total biomass realized after N constraints.</li>
+<li><span class="math inline">\(DM_\text{PreNStressAllocation}\)</span> is the total biomass allocated before applying N constraints.</li>
+<li><span class="math inline">\(DM_\text{NutrientLimitation}\)</span> is the biomass lost due to insufficient nitrogen.</li>
 </ul>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<p>Assume:</p>
+<p>A leaf organ receives:</p>
 <ul>
-<li>Leaf has a structural demand of 50 units and a metabolic demand of 20 units.</li>
-<li>Stem has a structural demand of 60 units and a metabolic demand of 60 units.</li>
-<li>Total supply is 120 units.</li>
-</ul>
-<p>Then:</p>
-<ul>
-<li><p>Total structural demand = 50 (leaf) + 60 (stem) = 110 units</p></li>
-<li><p>Total metabolic demand = 20 (leaf) + 60 (stem) = 80 units</p></li>
-<li><p>Structural fraction:<br>
-<span class="math inline">\(f_s = \frac{110}{110 + 80} = 0.579\)</span></p></li>
-<li><p>First pass allocates:</p>
-<ul>
-<li>Structural: <span class="math inline">\(120 \times 0.579 = 69.48\)</span> units, distributed as:
-<ul>
-<li>Leaf: <span class="math inline">\(69.48 \times \frac{50}{110} = 31.58\)</span> units</li>
-<li>Stem: <span class="math inline">\(69.48 \times \frac{60}{110} = 37.90\)</span> units</li>
-</ul></li>
-<li>Metabolic: <span class="math inline">\(120 \times 0.421 = 50.52\)</span> units, distributed as:
-<ul>
-<li>Leaf: <span class="math inline">\(50.52 \times \frac{20}{80} = 12.63\)</span> units</li>
-<li>Stem: <span class="math inline">\(50.52 \times \frac{60}{80} = 37.89\)</span> units</li>
-</ul></li>
-</ul></li>
-<li><p>Second pass allocates any leftover proportionally to storage demands.</p></li>
+<li>Nitrogen allocated: 0.3 g</li>
+<li>Minimum N concentration: 0.03 g/g DM</li>
+<li>Maximum supportable biomass: 0.3 / 0.03 = 10 g</li>
+<li>If initial biomass allocated was 12 g:</li>
+<li>Final biomass is scaled to 10 g</li>
+<li>All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833</li>
 </ul>
 </section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<section id="scientific-rationale" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-rationale">Scientific Rationale</h2>
 <ul>
-<li>Biomass partitioning after photosynthesis, reallocation, and retranslocation.</li>
-<li>Nitrogen allocation after uptake, reallocation, and retranslocation.</li>
-<li>Any generic resource arbitration among competing sinks.</li>
+<li>Nitrogen is a key building block for proteins, nucleic acids, and enzymes.</li>
+<li>Without sufficient N, plants cannot construct tissue even if photosynthate is available.</li>
+<li>This constraint ensures simulations realistically capture nutrient stress.</li>
 </ul>
+</section>
+<section id="extensibility" class="level2">
+<h2 class="anchored" data-anchor-id="extensibility">Extensibility</h2>
+<p>While this method currently constrains biomass based only on nitrogen:</p>
+<ul>
+<li>It is designed to be extended for other nutrients (e.g., phosphorus, potassium).</li>
+<li>Additional constraints could be implemented by combining multiple nutrient-limited growth values.</li>
+</ul>
+</section>
+<section id="outputs-and-implications" class="level2">
+<h2 class="anchored" data-anchor-id="outputs-and-implications">Outputs and Implications</h2>
+<ul>
+<li>DM.Allocated: Actual biomass realized under nutrient constraints.</li>
+<li>DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.</li>
+</ul>
+</section>
+<section id="potential-bugs-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h2>
+<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
-<li>APSIM Next Generation Source Code: <a href="https://github.com/APSIMInitiative/ApsimX">github.com/APSIMInitiative/ApsimX</a></li>
-<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs">RelativeAllocation.cs</a></li>
+<li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
+<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs">NutrientConstrainedAllocationMethod.cs</a></li>
 </ul>
 
 
@@ -756,4 +757,4 @@ S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

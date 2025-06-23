@@ -10,12 +10,12 @@
   {
     "listing": "/docs/index.html",
     "items": [
-      "/docs/arbitrator/NutrientConstrainedAllocationMethod.html",
-      "/docs/arbitrator/RelativeAllocation.html",
-      "/docs/co2-rue.html",
-      "/docs/co2-wheat.html",
-      "/docs/fertiliser.html",
-      "/docs/wheat/grain/nitrogen-demand.html"
+      "/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html",
+      "/docs/crop/pmf/arbitrator/RelativeAllocation.html",
+      "/docs/crop/trait/co2/co2-rue.html",
+      "/docs/crop/wheat/grain/nitrogen-demand.html",
+      "/docs/crop/wheat/trait/co2-wheat.html",
+      "/docs/management/fertiliser.html"
     ]
   }
 ]
