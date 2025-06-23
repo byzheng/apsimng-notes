@@ -144,7 +144,7 @@
     "href": "docs/wheat/grain/nitrogen-demand.html#practical-example",
     "title": "Nitrogen Filling Rate or Nitrogen Demand",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose:\n\nKernel weight = 0.05 g/kernel\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
+    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
   },
   {
     "objectID": "docs/wheat/grain/nitrogen-demand.html#references",
