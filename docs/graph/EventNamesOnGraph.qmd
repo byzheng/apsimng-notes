@@ -1,0 +1,17 @@
+---
+title: "Show Event Names on Graph"
+date: "2025-06-06"
+output: html_document
+---
+
+
+Model `EventNamesOnGraph` is designed to add event names (e.g. growth stages) to a `Graph` `Series` in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop's growth cycle, such as sowing, flowering, and harvest.
+
+
+To display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:
+
+* Create a new model `Graph` in the simulation tree.
+* Add a new model `Series` to the `Graph` and configure it as your desired output (e.g., x axis as `Wheat.Phenology.DaysAfterSowing`; y axis as `Wheat.Grain.Wt`).
+* Add a new model `EventNamesOnGraph` to the `Series` and select the column name to plot, e.g. `Wheat.Phenology.CurrentStageName`.
+
+![Example output showing event names on a graph](EventNamesOnGraph-example.png)
