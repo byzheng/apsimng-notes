@@ -1,0 +1,12 @@
+---
+title: "Crops"
+---
+
+
+
+This section contains the documentation for `Crops` models in APSIM Next Generation. The `Crops` models are released as part of the APSIM Next Generation. The model is defined under [Resources](https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources) folder in the APSIM Next Generation repository. 
+
+For each crop, the documentation is organised as the original model structure defined in the `JSON` file.
+
+* [Wheat](Wheat)
+
