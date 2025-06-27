@@ -21,6 +21,5 @@ $$
 
 
 
-![CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.](/images/20241029152420.png){ width=95% align=center }
-
+![CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.](/docs/Models/Trait/CO2/20241029152420.png){ width=95% align=center }
 

@@ -12,4 +12,4 @@ $$
 
 
 
-![CO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.](/images/20241029145726.png){ width=95% align=center }
+![CO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.](/docs/Models/Trait/CO2/20241029145726.png){ width=95% align=center }
