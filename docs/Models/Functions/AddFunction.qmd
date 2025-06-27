@@ -8,7 +8,15 @@ The `AddFunction` is a utility function that returns the **sum of values** from 
 
 ## Purpose
 
-The `AddFunction` is used to sum up multiple values for a mathematical equation in the [Plant Model Framework](/docs/Models/PMF/). It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. A plus symbol is displayed in the APSIM NG user interface.
+The `AddFunction` is used to sum up multiple values for a mathematical equation in the [Plant Model Framework](/docs/Models/PMF/). It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. 
+
+
+## User Interface
+
+`AddFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `Addfunction` in the Filter Box. A symbol for the `AddFunction` is displayed in the user interface to represent the function.
+
+![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/AddFunction.png){ width=64px }
+
 
 ## Practical Example
 
