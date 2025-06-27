@@ -6,6 +6,12 @@
     ]
   },
   {
+    "listing": "/docs/Models/Traits/index.html",
+    "items": [
+      "/docs/Models/Traits/CO2/co2-rue.html"
+    ]
+  },
+  {
     "listing": "/tips/index.html",
     "items": [
       "/tips/co2.html",
@@ -14,13 +20,22 @@
     ]
   },
   {
-    "listing": "/docs/Models/index.html",
+    "listing": "/docs/Models/PMF/index.html",
     "items": [
-      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-      "/docs/Models/Graph/EventNamesOnGraph.html",
       "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html",
-      "/docs/Models/Trait/CO2/co2-rue.html"
+      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Graph/index.html",
+    "items": [
+      "/docs/Models/Graph/EventNamesOnGraph.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Functions/index.html",
+    "items": [
+      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
     ]
   },
   {
