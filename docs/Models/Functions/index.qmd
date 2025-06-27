@@ -1,0 +1,11 @@
+---
+title: "Functions"
+listing:
+  contents: 
+   - "*.md"
+   - "*.qmd"
+  type: table
+  sort: "date desc"
+  fields: [title, date, description]
+---
+
