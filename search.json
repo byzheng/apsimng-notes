@@ -95,7 +95,14 @@
     "href": "docs/Models/Functions/AddFunction.html#purpose",
     "title": "Add Function",
     "section": "Purpose",
-    "text": "Purpose\nThe AddFunction is used to sum up multiple values for a mathematical equation in the Plant Model Framework. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. A plus symbol is displayed in the APSIM NG user interface."
+    "text": "Purpose\nThe AddFunction is used to sum up multiple values for a mathematical equation in the Plant Model Framework. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models."
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#user-interface",
+    "href": "docs/Models/Functions/AddFunction.html#user-interface",
+    "title": "Add Function",
+    "section": "User Interface",
+    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function."
   },
   {
     "objectID": "docs/Models/Functions/AddFunction.html#practical-example",
