@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>index – APSIM NG Notes</title>
+<title>Documentation – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,65 +67,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -183,170 +123,52 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#models" id="toc-models" class="nav-link active" data-scroll-target="#models">Models</a></li>
+  <li><a href="#crops" id="toc-crops" class="nav-link" data-scroll-target="#crops">Crops</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Documentation</h1>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
 
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
 
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
 
-<th>
-Description
-</th>
+<div class="quarto-title-meta">
 
-</tr>
-</thead>
-<tbody class="list">
+    
+  
+    
+  </div>
+  
 
-<tr data-index="0" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290814" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="15" data-listing-title-sort="CO2 for Wheat" data-listing-filename-sort="co2-wheat.qmd">
-<td>
-<a href="../docs/Crops/Wheat/Trait/co2-wheat.html" class="title listing-title">CO2 for Wheat</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentrat…<span class="math inline"></span><span class="math inline"></span><span class="citation" data-cites="reyenga_modelling_1999"></span></span>
-</td>
 
-</tr>
+</header>
 
-<tr data-index="1" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290814" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="501" data-listing-title-sort="Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)" data-listing-filename-sort="nitrogen-demand.qmd">
-<td>
-<a href="../docs/Crops/Wheat/grain/nitrogen-demand.html" class="title listing-title">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of <strong>Anthesis</strong> and <strong>EndGra…</strong></span>
-</td>
 
-</tr>
+<p>Here is not the official APSIM documentation, but a collection of documentations when I am working with <a href="https://www.apsim.info/">APSIM</a> Next Generation. The official documentation is available at <a href="https://apsimnextgeneration.netlify.app/">APSIM Documentation</a>, <a href="https://docs.apsim.info/">Model Validation</a>, and <a href="https://github.com/APSIMInitiative/ApsimX">APSIM GitHub</a>.</p>
+<p>This documentation is not complete, and I will keep updating it as I am working with APSIM Next Generation. Feel free to contribute to this documentation by creating a pull request on <a href="https://github.com/byzheng/apsimng-notes">GitHub</a> or create an issue on <a href="https://github.com/byzheng/apsimng-notes/issues">GitHub</a>.</p>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models"><a href="Models">Models</a></h2>
+<p>This section contains the <code>Models</code> developed in APSIM Next Generation with C# source codes under folder <a href="https://github.com/APSIMInitiative/ApsimX/tree/master/Models">Models</a>. These models are organised as the original folder structure in the APSIM Next Generation repository.</p>
+</section>
+<section id="crops" class="level2">
+<h2 class="anchored" data-anchor-id="crops"><a href="Crops">Crops</a></h2>
+<p>This section contains the documentation for <code>Crops</code> models in APSIM Next Generation. The <code>Crops</code> models are released as part of the APSIM Next Generation. The model is defined under <a href="https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources">Resources</a> folder in the APSIM Next Generation repository.</p>
 
-<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290814" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="362" data-listing-title-sort="Daily Nitrogen Demand for Storage Organs" data-listing-filename-sort="StorageNDemandFunction.qmd">
-<td>
-<a href="../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="title listing-title">Daily Nitrogen Demand for Storage Organs</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">The <code>StorageNDemandFunction</code> calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.</span>
-</td>
 
-</tr>
+</section>
 
-<tr data-index="3" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290815" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="115" data-listing-title-sort="Show Event Names on Graph" data-listing-filename-sort="EventNamesOnGraph.qmd">
-<td>
-<a href="../docs/Models/Graph/EventNamesOnGraph.html" class="title listing-title">Show Event Names on Graph</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">Model <code>EventNamesOnGraph</code> is designed to add event names (e.g.&nbsp;growth stages) to a <code>Graph</code> <code>Series</code> in APSIM NG. This is particularly useful for visualizing the timing of key…</span>
-</td>
-
-</tr>
-
-<tr data-index="4" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290815" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="731" data-listing-title-sort="Nutrient Constrained Allocation" data-listing-filename-sort="NutrientConstrainedAllocationMethod.qmd">
-<td>
-<a href="../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="title listing-title">Nutrient Constrained Allocation</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation.…<strong></strong></span>
-</td>
-
-</tr>
-
-<tr data-index="5" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290815" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586" data-listing-title-sort="Relative Allocation" data-listing-filename-sort="RelativeAllocation.qmd">
-<td>
-<a href="../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="title listing-title">Relative Allocation</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a…<strong></strong><strong></strong></span>
-</td>
-
-</tr>
-
-<tr data-index="6" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290816" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="8" data-listing-title-sort="CO2 for RUE" data-listing-filename-sort="co2-rue.qmd">
-<td>
-<a href="../docs/Models/Trait/CO2/co2-rue.html" class="title listing-title">CO2 for RUE</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentrat…<span class="math inline"></span><span class="math inline"></span><span class="citation" data-cites="reyenga_modelling_1999"></span></span>
-</td>
-
-</tr>
-
-<tr data-index="7" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751003290816" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="322" data-listing-title-sort="Fertiliser Types" data-listing-filename-sort="fertiliser.qmd">
-<td>
-<a href="../docs/management/fertiliser.html" class="title listing-title">Fertiliser Types</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
-</td>
-<td>
-<span class="listing-description">The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a…</span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -751,4 +573,4 @@ Description
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

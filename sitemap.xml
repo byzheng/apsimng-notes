@@ -2,62 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-06-27T05:48:10.816Z</lastmod>
+    <lastmod>2025-06-27T06:31:33.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Trait/co2-wheat.html</loc>
-    <lastmod>2025-06-27T05:48:10.814Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
-    <lastmod>2025-06-27T05:48:10.815Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
-    <lastmod>2025-06-27T05:48:10.815Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/management/fertiliser.html</loc>
-    <lastmod>2025-06-27T05:48:10.816Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-06-27T05:48:10.816Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-06-27T05:48:10.819Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-06-27T05:48:10.818Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-06-27T05:48:10.819Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-06-27T05:48:10.818Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-06-27T05:48:10.814Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Trait/CO2/co2-rue.html</loc>
-    <lastmod>2025-06-27T05:48:10.816Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
-    <lastmod>2025-06-27T05:48:10.815Z</lastmod>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html</loc>
-    <lastmod>2025-06-27T05:48:10.814Z</lastmod>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
+    <lastmod>2025-06-27T06:31:33.120Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
+    <lastmod>2025-06-27T06:31:33.120Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/management/fertiliser.html</loc>
+    <lastmod>2025-06-27T06:31:33.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
+    <lastmod>2025-06-27T06:31:33.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
+    <lastmod>2025-06-27T06:31:33.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
+    <lastmod>2025-06-27T06:31:33.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.123Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/about.html</loc>
+    <lastmod>2025-06-27T06:31:33.118Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Trait/CO2/co2-rue.html</loc>
+    <lastmod>2025-06-27T06:31:33.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
+    <lastmod>2025-06-27T06:31:33.120Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Crops/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Trait/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/nitrogen-demand.html</loc>
-    <lastmod>2025-06-27T05:48:10.814Z</lastmod>
+    <lastmod>2025-06-27T06:31:33.119Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/index.html</loc>
+    <lastmod>2025-06-27T06:31:33.118Z</lastmod>
   </url>
 </urlset>

@@ -2,9 +2,51 @@
   {
     "objectID": "docs/index.html",
     "href": "docs/index.html",
-    "title": "APSIM NG Notes",
+    "title": "Documentation",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Here is not the official APSIM documentation, but a collection of documentations when I am working with APSIM Next Generation. The official documentation is available at APSIM Documentation, Model Validation, and APSIM GitHub.\nThis documentation is not complete, and I will keep updating it as I am working with APSIM Next Generation. Feel free to contribute to this documentation by creating a pull request on GitHub or create an issue on GitHub."
+  },
+  {
+    "objectID": "docs/index.html#models",
+    "href": "docs/index.html#models",
+    "title": "Documentation",
+    "section": "Models",
+    "text": "Models\nThis section contains the Models developed in APSIM Next Generation with C# source codes under folder Models. These models are organised as the original folder structure in the APSIM Next Generation repository."
+  },
+  {
+    "objectID": "docs/index.html#crops",
+    "href": "docs/index.html#crops",
+    "title": "Documentation",
+    "section": "Crops",
+    "text": "Crops\nThis section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/index.html",
+    "href": "docs/Crops/Wheat/grain/index.html",
+    "title": "Grain",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html",
+    "href": "docs/Crops/Wheat/index.html",
+    "title": "Wheat",
+    "section": "",
+    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#components",
+    "href": "docs/Crops/Wheat/index.html#components",
+    "title": "Wheat",
+    "section": "Components",
+    "text": "Components\n\nPhenology\nGrain"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#traits",
+    "href": "docs/Crops/Wheat/index.html#traits",
+    "title": "Wheat",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
   },
   {
     "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html",
@@ -33,6 +75,48 @@
     "title": "CO2 for Wheat",
     "section": "Critical Nitrogen Concentration",
     "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "",
+    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Purpose",
+    "text": "Purpose\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Inputs",
+    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Calculation",
+    "text": "Calculation\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\)."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Implementation Details",
+    "text": "Implementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Usage Notes",
+    "text": "Usage Notes\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements."
   },
   {
     "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
@@ -364,46 +448,25 @@
     "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs"
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/index.html",
+    "href": "docs/Models/index.html",
+    "title": "Models",
     "section": "",
-    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration."
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Purpose",
-    "text": "Purpose\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration."
+    "objectID": "docs/Crops/index.html",
+    "href": "docs/Crops/index.html",
+    "title": "Crops",
+    "section": "",
+    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.\n\nWheat"
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Inputs",
-    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Calculation",
-    "text": "Calculation\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\)."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Implementation Details",
-    "text": "Implementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Usage Notes",
-    "text": "Usage Notes\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements."
+    "objectID": "docs/Crops/Wheat/Trait/index.html",
+    "href": "docs/Crops/Wheat/Trait/index.html",
+    "title": "Traits",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html",
@@ -432,5 +495,12 @@
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "References",
     "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html",
+    "href": "docs/Crops/Wheat/Phenology/index.html",
+    "title": "Phenology",
+    "section": "",
+    "text": "Title\nDate\nDescription\n\n\n\n\n\nNo matching items"
   }
 ]
