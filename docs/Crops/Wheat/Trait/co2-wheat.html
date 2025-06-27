@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Nutrient Constrained Allocation – APSIM NG Notes</title>
+<title>CO2 for Wheat – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -158,24 +178,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#role-in-apsim-simulation-pipeline" id="toc-role-in-apsim-simulation-pipeline" class="nav-link active" data-scroll-target="#role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</a></li>
-  <li><a href="#inputs-and-assumptions" id="toc-inputs-and-assumptions" class="nav-link" data-scroll-target="#inputs-and-assumptions">Inputs and Assumptions</a></li>
-  <li><a href="#step-by-step-process" id="toc-step-by-step-process" class="nav-link" data-scroll-target="#step-by-step-process">Step-by-Step Process</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
-  <li><a href="#scientific-rationale" id="toc-scientific-rationale" class="nav-link" data-scroll-target="#scientific-rationale">Scientific Rationale</a></li>
-  <li><a href="#extensibility" id="toc-extensibility" class="nav-link" data-scroll-target="#extensibility">Extensibility</a></li>
-  <li><a href="#outputs-and-implications" id="toc-outputs-and-implications" class="nav-link" data-scroll-target="#outputs-and-implications">Outputs and Implications</a></li>
-  <li><a href="#potential-bugs-and-limitations" id="toc-potential-bugs-and-limitations" class="nav-link" data-scroll-target="#potential-bugs-and-limitations">Potential bugs and Limitations</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#radiation-use-efficiency" id="toc-radiation-use-efficiency" class="nav-link active" data-scroll-target="#radiation-use-efficiency">Radiation Use Efficiency</a></li>
+  <li><a href="#stomatal-conductance" id="toc-stomatal-conductance" class="nav-link" data-scroll-target="#stomatal-conductance">Stomatal Conductance</a></li>
+  <li><a href="#critical-nitrogen-concentration" id="toc-critical-nitrogen-concentration" class="nav-link" data-scroll-target="#critical-nitrogen-concentration">Critical Nitrogen Concentration</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Nutrient Constrained Allocation</h1>
+<h1 class="title">CO2 for Wheat</h1>
 </div>
 
 
@@ -198,161 +212,51 @@ window.Quarto = {
 </header>
 
 
-<p>In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to <strong>nutrient constraints</strong>, primarily nitrogen (N), which depends on nitrogen supply.</p>
-<p>The <code>NutrientConstrainedAllocationMethod</code> model is responsible for <strong>scaling biomass allocations to organs</strong> based on the amount of nitrogen allocated to those organs. This ensures that growth is <strong>biologically feasible</strong> given available N and minimum nitrogen concentration.</p>
-<section id="role-in-apsim-simulation-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</h2>
-<p>The <code>NutrientConstrainedAllocationMethod</code> is invoked <em>after</em> biomass has been distributed to organs (e.g., by <code>RelativeAllocation</code>) but <em>before</em> final biomass commitment. Its purpose is to:</p>
-<ul>
-<li>Check whether each organ has received enough nitrogen to support its allocated biomass (i.e.&nbsp;satisfy the minimum concentration).</li>
-<li>Scale biomass down proportionally if nitrogen is insufficient.</li>
-<li>Track how much biomass was reduced due to nitrogen limitations (i.e.&nbsp;the difference between allocated and actual biomass). The reporting variable <code>DM.NutrientLimitation</code> captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g.&nbsp;<code>[Wheat].Arbitrator.DM.NutrientLimitation</code>).</li>
-</ul>
+<section id="radiation-use-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="radiation-use-efficiency">Radiation Use Efficiency</h2>
+<p>For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentration (<span class="math inline">\(C\)</span>, ppm) and daily mean temperature (<span class="math inline">\(T_{mean}\)</span>) as published by <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>.</p>
+<p><span class="math display">\[
+f_{c}=\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}
+\]</span></p>
+<p>where <span class="math inline">\(C_{i}\)</span> is the temperature dependent <span class="math inline">\(CO_{\text{2}}\)</span> compensation point (ppm) and is derived from the following function.</p>
+<p><span class="math display">\[
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../../docs/Models/Trait/CO2/20241029152420.png" class="img-fluid figure-img" style="width:95.0%" data-align="center"></p>
+<figcaption>CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.</figcaption>
+</figure>
+</div>
 </section>
-<section id="inputs-and-assumptions" class="level2">
-<h2 class="anchored" data-anchor-id="inputs-and-assumptions">Inputs and Assumptions</h2>
-<ul>
-<li><strong>Organs (<code>IArbitration[]</code>)</strong>: A list of organs participating in allocation (e.g., leaf, stem, root, grain).</li>
-<li><strong><code>BiomassArbitrationType</code> (DM)</strong>: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.</li>
-<li><strong><code>NutrientArbitrationType</code> (N)</strong>: Contains nitrogen demand and allocation for each organ.</li>
-</ul>
-<p><strong>Key Assumptions</strong>:</p>
-<ul>
-<li>Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass.</li>
-<li>Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</li>
-</ul>
+<section id="stomatal-conductance" class="level2">
+<h2 class="anchored" data-anchor-id="stomatal-conductance">Stomatal Conductance</h2>
+<p>The APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>. The response Stomatal Conductance of to increased CO2 concentration is calculated as follows <span class="citation" data-cites="elli_global_2020">(<a href="#ref-elli_global_2020" role="doc-biblioref">Elli et al. 2020</a>)</span>.</p>
+<p><span class="math display">\[
+SC = f_{c} / (\frac {CO2 - C_{i}} {350 - C_{i}})
+\]</span></p>
+<p>where <span class="math display">\[C_{i}\]</span> temperature-dependent CO2 compensation point, which is calculated by:</p>
+<p><span class="math display">\[
+C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
+\]</span></p>
 </section>
-<section id="step-by-step-process" class="level2">
-<h2 class="anchored" data-anchor-id="step-by-step-process">Step-by-Step Process</h2>
-<ol type="1">
-<li>Calculate Total N Allocation per Organ</li>
-</ol>
-<p>For each organ <code>i</code>, sum all nitrogen allocations:</p>
-<p><span class="math display">\[
-N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{MetabolicAllocation},i} + N_{\text{StorageAllocation},i}
-\]</span></p>
-<p>This value represents the nitrogen available to support DM growth.</p>
-<ol start="2" type="1">
-<li>Calculate N-Constrained Growth Capacity</li>
-</ol>
-<p>Determine the maximum biomass (<code>N.ConstrainedGrowth[i]</code>) that each organ can support based on its nitrogen allocation:</p>
-<p>This logic checks:</p>
-<ul>
-<li>If total nitrogen allocation meets or exceeds demand, growth is unconstrained.</li>
-<li>If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.</li>
-<li>Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</li>
-</ul>
-<p><span class="math display">\[
-N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
-\]</span></p>
-<p>where:</p>
-<ul>
-<li><span class="math inline">\(N_\text{TotalAllocation}[i]\)</span> is the total nitrogen allocated to organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(\text{Organs}[i]_\text{MinNConc}\)</span> is the minimum nitrogen concentration required for organ <span class="math inline">\(i\)</span></li>
-</ul>
-<p>This yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.</p>
-<ol start="3" type="1">
-<li>Scale Biomass Allocation Proportionally</li>
-</ol>
-<p>The total biomass previously allocated (structural + metabolic + storage) is compared to <code>ConstrainedGrowth[i]</code>.</p>
-<p>If total allocation exceeds the constrained limit, all organs are scaled proportionally:</p>
-<p>Let:</p>
-<p>Let <span class="math inline">\(DM_{total}[i]\)</span> be the total biomass allocated to organ <span class="math inline">\(i\)</span>:</p>
-<p><span class="math display">\[
-DM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]
-\]</span></p>
-<p>Calculate the proportion of each component:</p>
-<p><span class="math display">\[
-P_{structural}[i] = \frac{DM_{structural}[i]}{DM_{total}[i]}
-\]</span></p>
-<p><span class="math display">\[
-P_{metabolic}[i] = \frac{DM_{metabolic}[i]}{DM_{total}[i]}
-\]</span></p>
-<p><span class="math display">\[
-P_{storage}[i] = \frac{DM_{storage}[i]}{DM_{total}[i]}
-\]</span></p>
-<p>Scale each component by the N-constrained growth:</p>
-<p><span class="math display">\[
-DM_{structural}[i] = \min\left(DM_{structural}[i], N_{constrained}[i] \times P_{structural}[i]\right)
-\]</span></p>
-<p><span class="math display">\[
-DM_{metabolic}[i] = \min\left(DM_{metabolic}[i], N_{constrained}[i] \times P_{metabolic}[i]\right)
-\]</span></p>
-<p><span class="math display">\[
-DM_{storage}[i] = \min\left(DM_{storage}[i], N_{constrained}[i] \times P_{storage}[i]\right)
-\]</span></p>
-<p>This ensures:</p>
-<ul>
-<li>No component exceeds the N-limited capacity.</li>
-<li>Ratios between structural, metabolic, and storage biomass are preserved.</li>
-</ul>
-<ol start="4" type="1">
-<li>Update Final Biomass and Stress Report</li>
-</ol>
-<p>After applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:</p>
-<p><span class="math display">\[
-DM_\text{Allocated} = \sum_{i=1}^{n} \left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \right)
-\]</span></p>
-<p><span class="math display">\[
-DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocated}
-\]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(DM_\text{Allocated}\)</span> is the total biomass realized after N constraints.</li>
-<li><span class="math inline">\(DM_\text{PreNStressAllocation}\)</span> is the total biomass allocated before applying N constraints.</li>
-<li><span class="math inline">\(DM_\text{NutrientLimitation}\)</span> is the biomass lost due to insufficient nitrogen.</li>
-</ul>
-</section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<p>A leaf organ receives:</p>
-<ul>
-<li>Nitrogen allocated: 0.3 g</li>
-<li>Minimum N concentration: 0.03 g/g DM</li>
-<li>Maximum supportable biomass: 0.3 / 0.03 = 10 g</li>
-<li>If initial biomass allocated was 12 g:</li>
-<li>Final biomass is scaled to 10 g</li>
-<li>All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833</li>
-</ul>
-</section>
-<section id="scientific-rationale" class="level2">
-<h2 class="anchored" data-anchor-id="scientific-rationale">Scientific Rationale</h2>
-<ul>
-<li>Nitrogen is a key building block for proteins, nucleic acids, and enzymes.</li>
-<li>Without sufficient N, plants cannot construct tissue even if photosynthate is available.</li>
-<li>This constraint ensures simulations realistically capture nutrient stress.</li>
-</ul>
-</section>
-<section id="extensibility" class="level2">
-<h2 class="anchored" data-anchor-id="extensibility">Extensibility</h2>
-<p>While this method currently constrains biomass based only on nitrogen:</p>
-<ul>
-<li>It is designed to be extended for other nutrients (e.g., phosphorus, potassium).</li>
-<li>Additional constraints could be implemented by combining multiple nutrient-limited growth values.</li>
-</ul>
-</section>
-<section id="outputs-and-implications" class="level2">
-<h2 class="anchored" data-anchor-id="outputs-and-implications">Outputs and Implications</h2>
-<ul>
-<li>DM.Allocated: Actual biomass realized under nutrient constraints.</li>
-<li>DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.</li>
-</ul>
-</section>
-<section id="potential-bugs-and-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h2>
-<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
-<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs">NutrientConstrainedAllocationMethod.cs</a></li>
-</ul>
+<section id="critical-nitrogen-concentration" class="level2">
+<h2 class="anchored" data-anchor-id="critical-nitrogen-concentration">Critical Nitrogen Concentration</h2>
+<p>In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.</p>
+<p><img src="../../../../docs/Models/Trait/CO2/20241029155242.png" class="img-fluid"></p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-elli_global_2020" class="csl-entry" role="listitem">
+Elli, Elvis Felipe, Neil Huth, Paulo Cesar Sentelhas, Rafaela Lorenzato Carneiro, and Clayton Alcarde Alvares. 2020. <span>“Global Sensitivity-Based Modelling Approach to Identify Suitable Eucalyptus Traits for Adaptation to Climate Variability and Change.”</span> <em>In Silico Plants</em> 2 (1): diaa003. <a href="https://doi.org/10.1093/insilicoplants/diaa003">https://doi.org/10.1093/insilicoplants/diaa003</a>.
+</div>
+<div id="ref-reyenga_modelling_1999" class="csl-entry" role="listitem">
+Reyenga, P. J., S. M. Howden, H. Meinke, and G. M. McKeon. 1999. <span>“Modelling Global Change Impacts on Wheat Cropping in South-East Queensland, Australia.”</span> <em>Environmental Modelling &amp; Software</em> 14 (4): 297–306. <a href="https://doi.org/10.1016/S1364-8152(98)00081-4">https://doi.org/10.1016/S1364-8152(98)00081-4</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -757,4 +661,4 @@ DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocat
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

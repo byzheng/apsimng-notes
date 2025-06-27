@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Relative Allocation – APSIM NG Notes</title>
+<title>Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat) – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,32 +158,18 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#biological-motivation" id="toc-biological-motivation" class="nav-link active" data-scroll-target="#biological-motivation">Biological Motivation</a></li>
-  <li><a href="#allocation-logic" id="toc-allocation-logic" class="nav-link" data-scroll-target="#allocation-logic">Allocation Logic</a></li>
-  <li><a href="#first-pass-structural-and-metabolic-allocation" id="toc-first-pass-structural-and-metabolic-allocation" class="nav-link" data-scroll-target="#first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</a>
-  <ul class="collapse">
-  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
-  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
-  </ul></li>
-  <li><a href="#second-pass-storage-luxury-allocation" id="toc-second-pass-storage-luxury-allocation" class="nav-link" data-scroll-target="#second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</a>
-  <ul class="collapse">
-  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
-  <li><a href="#definitions-1" id="toc-definitions-1" class="nav-link" data-scroll-target="#definitions-1">Definitions</a></li>
-  </ul></li>
-  <li><a href="#final-accounting" id="toc-final-accounting" class="nav-link" data-scroll-target="#final-accounting">Final Accounting</a></li>
-  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
+  <li><a href="#function-definition" id="toc-function-definition" class="nav-link active" data-scroll-target="#function-definition">Function Definition</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
-  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/grain/nitrogen-demand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Relative Allocation</h1>
+<h1 class="title">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</h1>
 </div>
 
 
@@ -206,146 +192,72 @@ window.Quarto = {
 </header>
 
 
-<p>The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles <strong>partitioning of dry matter (DM)</strong> and <strong>nutrients</strong> (e.g.&nbsp;nitrogen) based on each organ’s demand.</p>
-<p>This method is part of the broader plant allocation system and is invoked by arbitrator components such as <code>BiomassTypeArbitrator</code>.</p>
-<section id="biological-motivation" class="level2">
-<h2 class="anchored" data-anchor-id="biological-motivation">Biological Motivation</h2>
-<p>Plants must allocate available assimilates or nutrients among organs in a coordinated way. The <code>RelativeAllocation</code> method mimics this by:</p>
+<p>The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of <strong>Anthesis</strong> and <strong>EndGrainFill</strong>. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.</p>
+<p>Wheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).</p>
+<section id="function-definition" class="level2">
+<h2 class="anchored" data-anchor-id="function-definition">Function Definition</h2>
+<p>The demand is defined by a <code>PhaseLookup</code> function:</p>
 <ul>
-<li>Prioritizing <strong>structural and metabolic demands</strong> (essential growth),</li>
-<li>Then allocating any <strong>residual supply to storage pools</strong> (non-essential, luxury uptake).</li>
-</ul>
-<p>This reflects physiological prioritization in plant growth.</p>
-</section>
-<section id="allocation-logic" class="level2">
-<h2 class="anchored" data-anchor-id="allocation-logic">Allocation Logic</h2>
-<p>The allocation occurs in <strong>two sequential passes</strong>:</p>
-<ul>
-<li>First Pass – Structural and Metabolic Allocation</li>
-<li>Second Pass – Storage (Luxury) Allocation</li>
-</ul>
-</section>
-<section id="first-pass-structural-and-metabolic-allocation" class="level2">
-<h2 class="anchored" data-anchor-id="first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</h2>
-<section id="objective" class="level3">
-<h3 class="anchored" data-anchor-id="objective">Objective</h3>
-<p>Distribute available supply to fulfill structural and metabolic demands proportionally.</p>
-</section>
-<section id="definitions" class="level3">
-<h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
-<p>Let:</p>
-<ul>
-<li><span class="math inline">\(S_{\text{total}}\)</span>: Total supply available (e.g.&nbsp;Dry biomass or nitrogen).</li>
-<li><span class="math inline">\(D_s^{(i)}\)</span>: Structural demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_m^{(i)}\)</span>: Metabolic demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_{s,\text{total}} = \sum_i D_s^{(i)}\)</span>: Total structural demand across all organs.</li>
-<li><span class="math inline">\(D_{m,\text{total}} = \sum_i D_m^{(i)}\)</span>: Total metabolic demand across all organs.</li>
-</ul>
-<p>We define the <strong>structural fraction</strong> of supply as:</p>
-<p><span class="math display">\[
-f_s = \frac{D_{s,\text{total}}}{D_{s,\text{total}} + D_{m,\text{total}}}
-\]</span></p>
-<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
-<ul>
-<li>Structural allocation:</li>
+<li><strong>Before Anthesis (Sowing to Anthesis)</strong> as zero for no grain nitrogen demand as no grain development occurs.</li>
+<li><strong>During Grain Filling (Anthesis → EndGrainFill):</strong></li>
 </ul>
 <p><span class="math display">\[
-A_s^{(i)} = \min\left(R_s^{(i)}, S_{\text{total}} \cdot f_s \cdot \frac{D_s^{(i)}}{D_{s,\text{total}}} \right)
+\text{N demand} = \frac{N_\text{kernel}}{D_\text{filling}} \times \text{ThermalTime} \times \text{GrainNumber}
 \]</span></p>
-<ul>
-<li>Metabolic allocation:</li>
-</ul>
-<p><span class="math display">\[
-A_m^{(i)} = \min\left(R_m^{(i)}, S_{\text{total}} \cdot (1 - f_s) \cdot \frac{D_m^{(i)}}{D_{m,\text{total}}} \right)
-\]</span></p>
-<p>where <span class="math inline">\(R_s^{(i)}\)</span> and <span class="math inline">\(R_m^{(i)}\)</span> are the <strong>remaining unmet demand</strong> for structural and metabolic pools, respectively.</p>
-</section>
-</section>
-<section id="second-pass-storage-luxury-allocation" class="level2">
-<h2 class="anchored" data-anchor-id="second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</h2>
-<section id="objective-1" class="level3">
-<h3 class="anchored" data-anchor-id="objective-1">Objective</h3>
-<p>Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.</p>
-</section>
-<section id="definitions-1" class="level3">
-<h3 class="anchored" data-anchor-id="definitions-1">Definitions</h3>
-<p>Let:</p>
-<ul>
-<li><span class="math inline">\(S_{\text{rem}}\)</span>: Remaining supply after first pass</li>
-<li><span class="math inline">\(D_t^{(i)}\)</span>: Storage demand of organ <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(D_{t,\text{total}} = \sum_i D_t^{(i)}\)</span>: Total storage demand across all organs</li>
-</ul>
-<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
-<p><span class="math display">\[
-A_t^{(i)} = \min\left(R_t^{(i)}, S_{\text{rem}} \cdot \frac{D_t^{(i)}}{D_{t,\text{total}}} \right)
-\]</span></p>
-<p>where <span class="math inline">\(R_t^{(i)}\)</span> is the remaining unmet storage demand for organ <span class="math inline">\(i\)</span>.</p>
-</section>
-</section>
-<section id="final-accounting" class="level2">
-<h2 class="anchored" data-anchor-id="final-accounting">Final Accounting</h2>
-<p>After both passes, the module tracks:</p>
-<ul>
-<li><strong>Total allocation</strong>: Sum of structural, metabolic, and storage allocations across all organs.</li>
-<li><strong>Not allocated</strong>: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).</li>
-</ul>
-<p><span class="math display">\[
-S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \right)
-\]</span></p>
-<p>This is useful for diagnostics, such as reporting <strong>sink limitations</strong>.</p>
-</section>
-<section id="key-features" class="level2">
-<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
-<ul>
-<li>Prioritizes essential growth (structural and metabolic) over luxury (storage).</li>
-<li>Proportional to each organ’s share of total demand.</li>
-<li>Applies generically to both <strong>biomass and nutrients</strong>.</li>
-<li>Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet.</li>
-</ul>
+<p>Where:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(N_\text{kernel}\)</span></td>
+<td>Potential nitrogen per kernel (default = 0.0011 g/kernel)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D_\text{filling}\)</span></td>
+<td>Grain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target</td>
+</tr>
+<tr class="odd">
+<td>ThermalTime</td>
+<td>Daily thermal time (°Cd), from <code>[Phenology].ThermalTime</code></td>
+</tr>
+<tr class="even">
+<td>GrainNumber</td>
+<td>Number of kernels, from <code>[Grain].NumberFunction</code></td>
+</tr>
+</tbody>
+</table>
+<p>The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.</p>
+<p>A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.</p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<p>Assume:</p>
+<p>Suppose:</p>
 <ul>
-<li>Leaf has a structural demand of 50 units and a metabolic demand of 20 units.</li>
-<li>Stem has a structural demand of 60 units and a metabolic demand of 60 units.</li>
-<li>Total supply is 120 units.</li>
+<li>Nitrogen per kernel (<span class="math inline">\(N_\text{kernel}\)</span>) = 0.0011 g/kernel</li>
+<li>Grain filling duration (<span class="math inline">\(D_\text{filling}\)</span>) = 120 + 545 = 665 °Cd</li>
+<li>Daily thermal time (ThermalTime) = 20 °Cd</li>
+<li>Number of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)</li>
 </ul>
-<p>Then:</p>
-<ul>
-<li><p>Total structural demand = 50 (leaf) + 60 (stem) = 110 units</p></li>
-<li><p>Total metabolic demand = 20 (leaf) + 60 (stem) = 80 units</p></li>
-<li><p>Structural fraction:<br>
-<span class="math inline">\(f_s = \frac{110}{110 + 80} = 0.579\)</span></p></li>
-<li><p>First pass allocates:</p>
-<ul>
-<li>Structural: <span class="math inline">\(120 \times 0.579 = 69.48\)</span> units, distributed as:
-<ul>
-<li>Leaf: <span class="math inline">\(69.48 \times \frac{50}{110} = 31.58\)</span> units</li>
-<li>Stem: <span class="math inline">\(69.48 \times \frac{60}{110} = 37.90\)</span> units</li>
-</ul></li>
-<li>Metabolic: <span class="math inline">\(120 \times 0.421 = 50.52\)</span> units, distributed as:
-<ul>
-<li>Leaf: <span class="math inline">\(50.52 \times \frac{20}{80} = 12.63\)</span> units</li>
-<li>Stem: <span class="math inline">\(50.52 \times \frac{60}{80} = 37.89\)</span> units</li>
-</ul></li>
-</ul></li>
-<li><p>Second pass allocates any leftover proportionally to storage demands.</p></li>
-</ul>
-</section>
-<section id="applications" class="level2">
-<h2 class="anchored" data-anchor-id="applications">Applications</h2>
-<ul>
-<li>Biomass partitioning after photosynthesis, reallocation, and retranslocation.</li>
-<li>Nitrogen allocation after uptake, reallocation, and retranslocation.</li>
-<li>Any generic resource arbitration among competing sinks.</li>
-</ul>
+<p>Plug into the formula:</p>
+<p><span class="math display">\[
+\text{N demand} = \frac{0.0011}{665} \times 20 \times 18000 = 0.5955 \text{ g N/day}
+\]</span></p>
+<p><strong>So, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.</strong></p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
-<li>APSIM Next Generation Source Code: <a href="https://github.com/APSIMInitiative/ApsimX">github.com/APSIMInitiative/ApsimX</a></li>
-<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs">RelativeAllocation.cs</a></li>
+<li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
+<li><a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json">APSIM Next Gen Wheat Model</a></li>
 </ul>
 
 
@@ -756,4 +668,4 @@ S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/pmf/arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/grain/nitrogen-demand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

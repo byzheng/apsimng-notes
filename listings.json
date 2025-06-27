@@ -1,22 +1,22 @@
 [
   {
-    "listing": "/docs/index.html",
-    "items": [
-      "/docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html",
-      "/docs/crop/pmf/arbitrator/RelativeAllocation.html",
-      "/docs/crop/trait/co2/co2-rue.html",
-      "/docs/crop/wheat/grain/nitrogen-demand.html",
-      "/docs/crop/wheat/trait/co2-wheat.html",
-      "/docs/graph/EventNamesOnGraph.html",
-      "/docs/management/fertiliser.html"
-    ]
-  },
-  {
     "listing": "/tips/index.html",
     "items": [
       "/tips/co2.html",
       "/tips/internal_variable.html",
       "/tips/summary.html"
+    ]
+  },
+  {
+    "listing": "/docs/index.html",
+    "items": [
+      "/docs/Crops/Wheat/Trait/co2-wheat.html",
+      "/docs/Crops/Wheat/grain/nitrogen-demand.html",
+      "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html",
+      "/docs/Models/Trait/CO2/co2-rue.html",
+      "/docs/graph/EventNamesOnGraph.html",
+      "/docs/management/fertiliser.html"
     ]
   }
 ]

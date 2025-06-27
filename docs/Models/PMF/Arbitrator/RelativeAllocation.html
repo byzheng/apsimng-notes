@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>CO2 for Wheat – APSIM NG Notes</title>
+<title>Relative Allocation – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,27 +21,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -178,18 +158,32 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#radiation-use-efficiency" id="toc-radiation-use-efficiency" class="nav-link active" data-scroll-target="#radiation-use-efficiency">Radiation Use Efficiency</a></li>
-  <li><a href="#stomatal-conductance" id="toc-stomatal-conductance" class="nav-link" data-scroll-target="#stomatal-conductance">Stomatal Conductance</a></li>
-  <li><a href="#critical-nitrogen-concentration" id="toc-critical-nitrogen-concentration" class="nav-link" data-scroll-target="#critical-nitrogen-concentration">Critical Nitrogen Concentration</a></li>
+  <li><a href="#biological-motivation" id="toc-biological-motivation" class="nav-link active" data-scroll-target="#biological-motivation">Biological Motivation</a></li>
+  <li><a href="#allocation-logic" id="toc-allocation-logic" class="nav-link" data-scroll-target="#allocation-logic">Allocation Logic</a></li>
+  <li><a href="#first-pass-structural-and-metabolic-allocation" id="toc-first-pass-structural-and-metabolic-allocation" class="nav-link" data-scroll-target="#first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</a>
+  <ul class="collapse">
+  <li><a href="#objective" id="toc-objective" class="nav-link" data-scroll-target="#objective">Objective</a></li>
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
+  </ul></li>
+  <li><a href="#second-pass-storage-luxury-allocation" id="toc-second-pass-storage-luxury-allocation" class="nav-link" data-scroll-target="#second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</a>
+  <ul class="collapse">
+  <li><a href="#objective-1" id="toc-objective-1" class="nav-link" data-scroll-target="#objective-1">Objective</a></li>
+  <li><a href="#definitions-1" id="toc-definitions-1" class="nav-link" data-scroll-target="#definitions-1">Definitions</a></li>
+  </ul></li>
+  <li><a href="#final-accounting" id="toc-final-accounting" class="nav-link" data-scroll-target="#final-accounting">Final Accounting</a></li>
+  <li><a href="#key-features" id="toc-key-features" class="nav-link" data-scroll-target="#key-features">Key Features</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/wheat/trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CO2 for Wheat</h1>
+<h1 class="title">Relative Allocation</h1>
 </div>
 
 
@@ -212,51 +206,152 @@ window.Quarto = {
 </header>
 
 
-<section id="radiation-use-efficiency" class="level2">
-<h2 class="anchored" data-anchor-id="radiation-use-efficiency">Radiation Use Efficiency</h2>
-<p>For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentration (<span class="math inline">\(C\)</span>, ppm) and daily mean temperature (<span class="math inline">\(T_{mean}\)</span>) as published by <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>.</p>
-<p><span class="math display">\[
-f_{c}=\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}
-\]</span></p>
-<p>where <span class="math inline">\(C_{i}\)</span> is the temperature dependent <span class="math inline">\(CO_{\text{2}}\)</span> compensation point (ppm) and is derived from the following function.</p>
-<p><span class="math display">\[
-C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
-\]</span></p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../../../images/20241029152420.png" class="img-fluid figure-img" style="width:95.0%" data-align="center"></p>
-<figcaption>CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.</figcaption>
-</figure>
-</div>
+<p>The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles <strong>partitioning of dry matter (DM)</strong> and <strong>nutrients</strong> (e.g.&nbsp;nitrogen) based on each organ’s demand.</p>
+<p>This method is part of the broader plant allocation system and is invoked by arbitrator components such as <code>BiomassTypeArbitrator</code>.</p>
+<section id="biological-motivation" class="level2">
+<h2 class="anchored" data-anchor-id="biological-motivation">Biological Motivation</h2>
+<p>Plants must allocate available assimilates or nutrients among organs in a coordinated way. The <code>RelativeAllocation</code> method mimics this by:</p>
+<ul>
+<li>Prioritizing <strong>structural and metabolic demands</strong> (essential growth),</li>
+<li>Then allocating any <strong>residual supply to storage pools</strong> (non-essential, luxury uptake).</li>
+</ul>
+<p>This reflects physiological prioritization in plant growth.</p>
 </section>
-<section id="stomatal-conductance" class="level2">
-<h2 class="anchored" data-anchor-id="stomatal-conductance">Stomatal Conductance</h2>
-<p>The APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>. The response Stomatal Conductance of to increased CO2 concentration is calculated as follows <span class="citation" data-cites="elli_global_2020">(<a href="#ref-elli_global_2020" role="doc-biblioref">Elli et al. 2020</a>)</span>.</p>
-<p><span class="math display">\[
-SC = f_{c} / (\frac {CO2 - C_{i}} {350 - C_{i}})
-\]</span></p>
-<p>where <span class="math display">\[C_{i}\]</span> temperature-dependent CO2 compensation point, which is calculated by:</p>
-<p><span class="math display">\[
-C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
-\]</span></p>
+<section id="allocation-logic" class="level2">
+<h2 class="anchored" data-anchor-id="allocation-logic">Allocation Logic</h2>
+<p>The allocation occurs in <strong>two sequential passes</strong>:</p>
+<ul>
+<li>First Pass – Structural and Metabolic Allocation</li>
+<li>Second Pass – Storage (Luxury) Allocation</li>
+</ul>
 </section>
-<section id="critical-nitrogen-concentration" class="level2">
-<h2 class="anchored" data-anchor-id="critical-nitrogen-concentration">Critical Nitrogen Concentration</h2>
-<p>In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.</p>
-<p><img src="../../../../images/20241029155242.png" class="img-fluid" style="width:95.0%" data-align="center"></p>
-
+<section id="first-pass-structural-and-metabolic-allocation" class="level2">
+<h2 class="anchored" data-anchor-id="first-pass-structural-and-metabolic-allocation">First Pass – Structural and Metabolic Allocation</h2>
+<section id="objective" class="level3">
+<h3 class="anchored" data-anchor-id="objective">Objective</h3>
+<p>Distribute available supply to fulfill structural and metabolic demands proportionally.</p>
+</section>
+<section id="definitions" class="level3">
+<h3 class="anchored" data-anchor-id="definitions">Definitions</h3>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">\(S_{\text{total}}\)</span>: Total supply available (e.g.&nbsp;Dry biomass or nitrogen).</li>
+<li><span class="math inline">\(D_s^{(i)}\)</span>: Structural demand of organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(D_m^{(i)}\)</span>: Metabolic demand of organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(D_{s,\text{total}} = \sum_i D_s^{(i)}\)</span>: Total structural demand across all organs.</li>
+<li><span class="math inline">\(D_{m,\text{total}} = \sum_i D_m^{(i)}\)</span>: Total metabolic demand across all organs.</li>
+</ul>
+<p>We define the <strong>structural fraction</strong> of supply as:</p>
+<p><span class="math display">\[
+f_s = \frac{D_{s,\text{total}}}{D_{s,\text{total}} + D_{m,\text{total}}}
+\]</span></p>
+<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
+<ul>
+<li>Structural allocation:</li>
+</ul>
+<p><span class="math display">\[
+A_s^{(i)} = \min\left(R_s^{(i)}, S_{\text{total}} \cdot f_s \cdot \frac{D_s^{(i)}}{D_{s,\text{total}}} \right)
+\]</span></p>
+<ul>
+<li>Metabolic allocation:</li>
+</ul>
+<p><span class="math display">\[
+A_m^{(i)} = \min\left(R_m^{(i)}, S_{\text{total}} \cdot (1 - f_s) \cdot \frac{D_m^{(i)}}{D_{m,\text{total}}} \right)
+\]</span></p>
+<p>where <span class="math inline">\(R_s^{(i)}\)</span> and <span class="math inline">\(R_m^{(i)}\)</span> are the <strong>remaining unmet demand</strong> for structural and metabolic pools, respectively.</p>
+</section>
+</section>
+<section id="second-pass-storage-luxury-allocation" class="level2">
+<h2 class="anchored" data-anchor-id="second-pass-storage-luxury-allocation">Second Pass – Storage (Luxury) Allocation</h2>
+<section id="objective-1" class="level3">
+<h3 class="anchored" data-anchor-id="objective-1">Objective</h3>
+<p>Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.</p>
+</section>
+<section id="definitions-1" class="level3">
+<h3 class="anchored" data-anchor-id="definitions-1">Definitions</h3>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">\(S_{\text{rem}}\)</span>: Remaining supply after first pass</li>
+<li><span class="math inline">\(D_t^{(i)}\)</span>: Storage demand of organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(D_{t,\text{total}} = \sum_i D_t^{(i)}\)</span>: Total storage demand across all organs</li>
+</ul>
+<p>Then, for each organ <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+A_t^{(i)} = \min\left(R_t^{(i)}, S_{\text{rem}} \cdot \frac{D_t^{(i)}}{D_{t,\text{total}}} \right)
+\]</span></p>
+<p>where <span class="math inline">\(R_t^{(i)}\)</span> is the remaining unmet storage demand for organ <span class="math inline">\(i\)</span>.</p>
+</section>
+</section>
+<section id="final-accounting" class="level2">
+<h2 class="anchored" data-anchor-id="final-accounting">Final Accounting</h2>
+<p>After both passes, the module tracks:</p>
+<ul>
+<li><strong>Total allocation</strong>: Sum of structural, metabolic, and storage allocations across all organs.</li>
+<li><strong>Not allocated</strong>: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).</li>
+</ul>
+<p><span class="math display">\[
+S_{\text{not\_allocated}} = S_{\text{total}} - \sum_i \left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \right)
+\]</span></p>
+<p>This is useful for diagnostics, such as reporting <strong>sink limitations</strong>.</p>
+</section>
+<section id="key-features" class="level2">
+<h2 class="anchored" data-anchor-id="key-features">Key Features</h2>
+<ul>
+<li>Prioritizes essential growth (structural and metabolic) over luxury (storage).</li>
+<li>Proportional to each organ’s share of total demand.</li>
+<li>Applies generically to both <strong>biomass and nutrients</strong>.</li>
+<li>Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet.</li>
+</ul>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<p>Assume:</p>
+<ul>
+<li>Leaf has a structural demand of 50 units and a metabolic demand of 20 units.</li>
+<li>Stem has a structural demand of 60 units and a metabolic demand of 60 units.</li>
+<li>Total supply is 120 units.</li>
+</ul>
+<p>Then:</p>
+<ul>
+<li><p>Total structural demand = 50 (leaf) + 60 (stem) = 110 units</p></li>
+<li><p>Total metabolic demand = 20 (leaf) + 60 (stem) = 80 units</p></li>
+<li><p>Structural fraction:<br>
+<span class="math inline">\(f_s = \frac{110}{110 + 80} = 0.579\)</span></p></li>
+<li><p>First pass allocates:</p>
+<ul>
+<li>Structural: <span class="math inline">\(120 \times 0.579 = 69.48\)</span> units, distributed as:
+<ul>
+<li>Leaf: <span class="math inline">\(69.48 \times \frac{50}{110} = 31.58\)</span> units</li>
+<li>Stem: <span class="math inline">\(69.48 \times \frac{60}{110} = 37.90\)</span> units</li>
+</ul></li>
+<li>Metabolic: <span class="math inline">\(120 \times 0.421 = 50.52\)</span> units, distributed as:
+<ul>
+<li>Leaf: <span class="math inline">\(50.52 \times \frac{20}{80} = 12.63\)</span> units</li>
+<li>Stem: <span class="math inline">\(50.52 \times \frac{60}{80} = 37.89\)</span> units</li>
+</ul></li>
+</ul></li>
+<li><p>Second pass allocates any leftover proportionally to storage demands.</p></li>
+</ul>
+</section>
+<section id="applications" class="level2">
+<h2 class="anchored" data-anchor-id="applications">Applications</h2>
+<ul>
+<li>Biomass partitioning after photosynthesis, reallocation, and retranslocation.</li>
+<li>Nitrogen allocation after uptake, reallocation, and retranslocation.</li>
+<li>Any generic resource arbitration among competing sinks.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<ul>
+<li>APSIM Next Generation Source Code: <a href="https://github.com/APSIMInitiative/ApsimX">github.com/APSIMInitiative/ApsimX</a></li>
+<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs">RelativeAllocation.cs</a></li>
+</ul>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-elli_global_2020" class="csl-entry" role="listitem">
-Elli, Elvis Felipe, Neil Huth, Paulo Cesar Sentelhas, Rafaela Lorenzato Carneiro, and Clayton Alcarde Alvares. 2020. <span>“Global Sensitivity-Based Modelling Approach to Identify Suitable Eucalyptus Traits for Adaptation to Climate Variability and Change.”</span> <em>In Silico Plants</em> 2 (1): diaa003. <a href="https://doi.org/10.1093/insilicoplants/diaa003">https://doi.org/10.1093/insilicoplants/diaa003</a>.
-</div>
-<div id="ref-reyenga_modelling_1999" class="csl-entry" role="listitem">
-Reyenga, P. J., S. M. Howden, H. Meinke, and G. M. McKeon. 1999. <span>“Modelling Global Change Impacts on Wheat Cropping in South-East Queensland, Australia.”</span> <em>Environmental Modelling &amp; Software</em> 14 (4): 297–306. <a href="https://doi.org/10.1016/S1364-8152(98)00081-4">https://doi.org/10.1016/S1364-8152(98)00081-4</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -661,4 +756,4 @@ Reyenga, P. J., S. M. Howden, H. Meinke, and G. M. McKeon. 1999. <span>“Modell
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/wheat/trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Arbitrator/RelativeAllocation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

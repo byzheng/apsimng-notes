@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2025-06-06">
 
-<title>Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat) – APSIM NG Notes</title>
+<title>Nutrient Constrained Allocation – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -158,18 +158,24 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#function-definition" id="toc-function-definition" class="nav-link active" data-scroll-target="#function-definition">Function Definition</a></li>
+  <li><a href="#role-in-apsim-simulation-pipeline" id="toc-role-in-apsim-simulation-pipeline" class="nav-link active" data-scroll-target="#role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</a></li>
+  <li><a href="#inputs-and-assumptions" id="toc-inputs-and-assumptions" class="nav-link" data-scroll-target="#inputs-and-assumptions">Inputs and Assumptions</a></li>
+  <li><a href="#step-by-step-process" id="toc-step-by-step-process" class="nav-link" data-scroll-target="#step-by-step-process">Step-by-Step Process</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#scientific-rationale" id="toc-scientific-rationale" class="nav-link" data-scroll-target="#scientific-rationale">Scientific Rationale</a></li>
+  <li><a href="#extensibility" id="toc-extensibility" class="nav-link" data-scroll-target="#extensibility">Extensibility</a></li>
+  <li><a href="#outputs-and-implications" id="toc-outputs-and-implications" class="nav-link" data-scroll-target="#outputs-and-implications">Outputs and Implications</a></li>
+  <li><a href="#potential-bugs-and-limitations" id="toc-potential-bugs-and-limitations" class="nav-link" data-scroll-target="#potential-bugs-and-limitations">Potential bugs and Limitations</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/wheat/grain/nitrogen-demand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</h1>
+<h1 class="title">Nutrient Constrained Allocation</h1>
 </div>
 
 
@@ -192,72 +198,155 @@ window.Quarto = {
 </header>
 
 
-<p>The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of <strong>Anthesis</strong> and <strong>EndGrainFill</strong>. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.</p>
-<p>Wheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).</p>
-<section id="function-definition" class="level2">
-<h2 class="anchored" data-anchor-id="function-definition">Function Definition</h2>
-<p>The demand is defined by a <code>PhaseLookup</code> function:</p>
+<p>In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to <strong>nutrient constraints</strong>, primarily nitrogen (N), which depends on nitrogen supply.</p>
+<p>The <code>NutrientConstrainedAllocationMethod</code> model is responsible for <strong>scaling biomass allocations to organs</strong> based on the amount of nitrogen allocated to those organs. This ensures that growth is <strong>biologically feasible</strong> given available N and minimum nitrogen concentration.</p>
+<section id="role-in-apsim-simulation-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="role-in-apsim-simulation-pipeline">Role in APSIM Simulation Pipeline</h2>
+<p>The <code>NutrientConstrainedAllocationMethod</code> is invoked <em>after</em> biomass has been distributed to organs (e.g., by <code>RelativeAllocation</code>) but <em>before</em> final biomass commitment. Its purpose is to:</p>
 <ul>
-<li><strong>Before Anthesis (Sowing to Anthesis)</strong> as zero for no grain nitrogen demand as no grain development occurs.</li>
-<li><strong>During Grain Filling (Anthesis → EndGrainFill):</strong></li>
+<li>Check whether each organ has received enough nitrogen to support its allocated biomass (i.e.&nbsp;satisfy the minimum concentration).</li>
+<li>Scale biomass down proportionally if nitrogen is insufficient.</li>
+<li>Track how much biomass was reduced due to nitrogen limitations (i.e.&nbsp;the difference between allocated and actual biomass). The reporting variable <code>DM.NutrientLimitation</code> captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g.&nbsp;<code>[Wheat].Arbitrator.DM.NutrientLimitation</code>).</li>
+</ul>
+</section>
+<section id="inputs-and-assumptions" class="level2">
+<h2 class="anchored" data-anchor-id="inputs-and-assumptions">Inputs and Assumptions</h2>
+<ul>
+<li><strong>Organs (<code>IArbitration[]</code>)</strong>: A list of organs participating in allocation (e.g., leaf, stem, root, grain).</li>
+<li><strong><code>BiomassArbitrationType</code> (DM)</strong>: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.</li>
+<li><strong><code>NutrientArbitrationType</code> (N)</strong>: Contains nitrogen demand and allocation for each organ.</li>
+</ul>
+<p><strong>Key Assumptions</strong>:</p>
+<ul>
+<li>Each organ has a defined <strong>minimum nitrogen concentration</strong> (<code>MinNConc</code>), below which it cannot support biomass.</li>
+<li>Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.</li>
+</ul>
+</section>
+<section id="step-by-step-process" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-process">Step-by-Step Process</h2>
+<ol type="1">
+<li>Calculate Total N Allocation per Organ</li>
+</ol>
+<p>For each organ <code>i</code>, sum all nitrogen allocations:</p>
+<p><span class="math display">\[
+N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{MetabolicAllocation},i} + N_{\text{StorageAllocation},i}
+\]</span></p>
+<p>This value represents the nitrogen available to support DM growth.</p>
+<ol start="2" type="1">
+<li>Calculate N-Constrained Growth Capacity</li>
+</ol>
+<p>Determine the maximum biomass (<code>N.ConstrainedGrowth[i]</code>) that each organ can support based on its nitrogen allocation:</p>
+<p>This logic checks:</p>
+<ul>
+<li>If total nitrogen allocation meets or exceeds demand, growth is unconstrained.</li>
+<li>If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.</li>
+<li>Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:</li>
 </ul>
 <p><span class="math display">\[
-\text{N demand} = \frac{N_\text{kernel}}{D_\text{filling}} \times \text{ThermalTime} \times \text{GrainNumber}
+N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(N_\text{TotalAllocation}[i]\)</span> is the total nitrogen allocated to organ <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(\text{Organs}[i]_\text{MinNConc}\)</span> is the minimum nitrogen concentration required for organ <span class="math inline">\(i\)</span></li>
+</ul>
+<p>This yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.</p>
+<ol start="3" type="1">
+<li>Scale Biomass Allocation Proportionally</li>
+</ol>
+<p>The total biomass previously allocated (structural + metabolic + storage) is compared to <code>ConstrainedGrowth[i]</code>.</p>
+<p>If total allocation exceeds the constrained limit, all organs are scaled proportionally:</p>
+<p>Let:</p>
+<p>Let <span class="math inline">\(DM_{total}[i]\)</span> be the total biomass allocated to organ <span class="math inline">\(i\)</span>:</p>
+<p><span class="math display">\[
+DM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]
+\]</span></p>
+<p>Calculate the proportion of each component:</p>
+<p><span class="math display">\[
+P_{structural}[i] = \frac{DM_{structural}[i]}{DM_{total}[i]}
+\]</span></p>
+<p><span class="math display">\[
+P_{metabolic}[i] = \frac{DM_{metabolic}[i]}{DM_{total}[i]}
+\]</span></p>
+<p><span class="math display">\[
+P_{storage}[i] = \frac{DM_{storage}[i]}{DM_{total}[i]}
+\]</span></p>
+<p>Scale each component by the N-constrained growth:</p>
+<p><span class="math display">\[
+DM_{structural}[i] = \min\left(DM_{structural}[i], N_{constrained}[i] \times P_{structural}[i]\right)
+\]</span></p>
+<p><span class="math display">\[
+DM_{metabolic}[i] = \min\left(DM_{metabolic}[i], N_{constrained}[i] \times P_{metabolic}[i]\right)
+\]</span></p>
+<p><span class="math display">\[
+DM_{storage}[i] = \min\left(DM_{storage}[i], N_{constrained}[i] \times P_{storage}[i]\right)
+\]</span></p>
+<p>This ensures:</p>
+<ul>
+<li>No component exceeds the N-limited capacity.</li>
+<li>Ratios between structural, metabolic, and storage biomass are preserved.</li>
+</ul>
+<ol start="4" type="1">
+<li>Update Final Biomass and Stress Report</li>
+</ol>
+<p>After applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:</p>
+<p><span class="math display">\[
+DM_\text{Allocated} = \sum_{i=1}^{n} \left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \right)
+\]</span></p>
+<p><span class="math display">\[
+DM_\text{NutrientLimitation} = DM_\text{PreNStressAllocation} - DM_\text{Allocated}
 \]</span></p>
 <p>Where:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Term</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(N_\text{kernel}\)</span></td>
-<td>Potential nitrogen per kernel (default = 0.0011 g/kernel)</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(D_\text{filling}\)</span></td>
-<td>Grain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target</td>
-</tr>
-<tr class="odd">
-<td>ThermalTime</td>
-<td>Daily thermal time (°Cd), from <code>[Phenology].ThermalTime</code></td>
-</tr>
-<tr class="even">
-<td>GrainNumber</td>
-<td>Number of kernels, from <code>[Grain].NumberFunction</code></td>
-</tr>
-</tbody>
-</table>
-<p>The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.</p>
-<p>A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.</p>
+<ul>
+<li><span class="math inline">\(DM_\text{Allocated}\)</span> is the total biomass realized after N constraints.</li>
+<li><span class="math inline">\(DM_\text{PreNStressAllocation}\)</span> is the total biomass allocated before applying N constraints.</li>
+<li><span class="math inline">\(DM_\text{NutrientLimitation}\)</span> is the biomass lost due to insufficient nitrogen.</li>
+</ul>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<p>Suppose:</p>
+<p>A leaf organ receives:</p>
 <ul>
-<li>Nitrogen per kernel (<span class="math inline">\(N_\text{kernel}\)</span>) = 0.0011 g/kernel</li>
-<li>Grain filling duration (<span class="math inline">\(D_\text{filling}\)</span>) = 120 + 545 = 665 °Cd</li>
-<li>Daily thermal time (ThermalTime) = 20 °Cd</li>
-<li>Number of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)</li>
+<li>Nitrogen allocated: 0.3 g</li>
+<li>Minimum N concentration: 0.03 g/g DM</li>
+<li>Maximum supportable biomass: 0.3 / 0.03 = 10 g</li>
+<li>If initial biomass allocated was 12 g:</li>
+<li>Final biomass is scaled to 10 g</li>
+<li>All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833</li>
 </ul>
-<p>Plug into the formula:</p>
-<p><span class="math display">\[
-\text{N demand} = \frac{0.0011}{665} \times 20 \times 18000 = 0.5955 \text{ g N/day}
-\]</span></p>
-<p><strong>So, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.</strong></p>
+</section>
+<section id="scientific-rationale" class="level2">
+<h2 class="anchored" data-anchor-id="scientific-rationale">Scientific Rationale</h2>
+<ul>
+<li>Nitrogen is a key building block for proteins, nucleic acids, and enzymes.</li>
+<li>Without sufficient N, plants cannot construct tissue even if photosynthate is available.</li>
+<li>This constraint ensures simulations realistically capture nutrient stress.</li>
+</ul>
+</section>
+<section id="extensibility" class="level2">
+<h2 class="anchored" data-anchor-id="extensibility">Extensibility</h2>
+<p>While this method currently constrains biomass based only on nitrogen:</p>
+<ul>
+<li>It is designed to be extended for other nutrients (e.g., phosphorus, potassium).</li>
+<li>Additional constraints could be implemented by combining multiple nutrient-limited growth values.</li>
+</ul>
+</section>
+<section id="outputs-and-implications" class="level2">
+<h2 class="anchored" data-anchor-id="outputs-and-implications">Outputs and Implications</h2>
+<ul>
+<li>DM.Allocated: Actual biomass realized under nutrient constraints.</li>
+<li>DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.</li>
+</ul>
+</section>
+<section id="potential-bugs-and-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="potential-bugs-and-limitations">Potential bugs and Limitations</h2>
+<p>The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.</p>
 </section>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <ul>
 <li><a href="https://apsimnextgeneration.netlify.app/">APSIM NG Documentation</a></li>
-<li><a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json">APSIM Next Gen Wheat Model</a></li>
+<li>APSIM NG Source Code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs">NutrientConstrainedAllocationMethod.cs</a></li>
 </ul>
 
 
@@ -668,4 +757,4 @@ window.Quarto = {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/crop/wheat/grain/nitrogen-demand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

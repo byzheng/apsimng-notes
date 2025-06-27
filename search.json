@@ -1,129 +1,129 @@
 [
   {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html",
-    "title": "Relative Allocation",
+    "objectID": "docs/graph/EventNamesOnGraph.html",
+    "href": "docs/graph/EventNamesOnGraph.html",
+    "title": "Show Event Names on Graph",
     "section": "",
-    "text": "The RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator."
+    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#biological-motivation",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#biological-motivation",
-    "title": "Relative Allocation",
-    "section": "Biological Motivation",
-    "text": "Biological Motivation\nPlants must allocate available assimilates or nutrients among organs in a coordinated way. The RelativeAllocation method mimics this by:\n\nPrioritizing structural and metabolic demands (essential growth),\nThen allocating any residual supply to storage pools (non-essential, luxury uptake).\n\nThis reflects physiological prioritization in plant growth."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#allocation-logic",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#allocation-logic",
-    "title": "Relative Allocation",
-    "section": "Allocation Logic",
-    "text": "Allocation Logic\nThe allocation occurs in two sequential passes:\n\nFirst Pass – Structural and Metabolic Allocation\nSecond Pass – Storage (Luxury) Allocation"
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
-    "title": "Relative Allocation",
-    "section": "First Pass – Structural and Metabolic Allocation",
-    "text": "First Pass – Structural and Metabolic Allocation\n\nObjective\nDistribute available supply to fulfill structural and metabolic demands proportionally.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{total}}\\): Total supply available (e.g. Dry biomass or nitrogen).\n\\(D_s^{(i)}\\): Structural demand of organ \\(i\\)\n\\(D_m^{(i)}\\): Metabolic demand of organ \\(i\\)\n\\(D_{s,\\text{total}} = \\sum_i D_s^{(i)}\\): Total structural demand across all organs.\n\\(D_{m,\\text{total}} = \\sum_i D_m^{(i)}\\): Total metabolic demand across all organs.\n\nWe define the structural fraction of supply as:\n\\[\nf_s = \\frac{D_{s,\\text{total}}}{D_{s,\\text{total}} + D_{m,\\text{total}}}\n\\]\nThen, for each organ \\(i\\):\n\nStructural allocation:\n\n\\[\nA_s^{(i)} = \\min\\left(R_s^{(i)}, S_{\\text{total}} \\cdot f_s \\cdot \\frac{D_s^{(i)}}{D_{s,\\text{total}}} \\right)\n\\]\n\nMetabolic allocation:\n\n\\[\nA_m^{(i)} = \\min\\left(R_m^{(i)}, S_{\\text{total}} \\cdot (1 - f_s) \\cdot \\frac{D_m^{(i)}}{D_{m,\\text{total}}} \\right)\n\\]\nwhere \\(R_s^{(i)}\\) and \\(R_m^{(i)}\\) are the remaining unmet demand for structural and metabolic pools, respectively."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
-    "title": "Relative Allocation",
-    "section": "Second Pass – Storage (Luxury) Allocation",
-    "text": "Second Pass – Storage (Luxury) Allocation\n\nObjective\nAllocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{rem}}\\): Remaining supply after first pass\n\\(D_t^{(i)}\\): Storage demand of organ \\(i\\)\n\\(D_{t,\\text{total}} = \\sum_i D_t^{(i)}\\): Total storage demand across all organs\n\nThen, for each organ \\(i\\):\n\\[\nA_t^{(i)} = \\min\\left(R_t^{(i)}, S_{\\text{rem}} \\cdot \\frac{D_t^{(i)}}{D_{t,\\text{total}}} \\right)\n\\]\nwhere \\(R_t^{(i)}\\) is the remaining unmet storage demand for organ \\(i\\)."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#final-accounting",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#final-accounting",
-    "title": "Relative Allocation",
-    "section": "Final Accounting",
-    "text": "Final Accounting\nAfter both passes, the module tracks:\n\nTotal allocation: Sum of structural, metabolic, and storage allocations across all organs.\nNot allocated: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).\n\n\\[\nS_{\\text{not\\_allocated}} = S_{\\text{total}} - \\sum_i \\left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \\right)\n\\]\nThis is useful for diagnostics, such as reporting sink limitations."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#key-features",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#key-features",
-    "title": "Relative Allocation",
-    "section": "Key Features",
-    "text": "Key Features\n\nPrioritizes essential growth (structural and metabolic) over luxury (storage).\nProportional to each organ’s share of total demand.\nApplies generically to both biomass and nutrients.\nUses a two-pass method to avoid allocating luxury growth when essential needs are unmet."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#practical-example",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#practical-example",
-    "title": "Relative Allocation",
-    "section": "Practical Example",
-    "text": "Practical Example\nAssume:\n\nLeaf has a structural demand of 50 units and a metabolic demand of 20 units.\nStem has a structural demand of 60 units and a metabolic demand of 60 units.\nTotal supply is 120 units.\n\nThen:\n\nTotal structural demand = 50 (leaf) + 60 (stem) = 110 units\nTotal metabolic demand = 20 (leaf) + 60 (stem) = 80 units\nStructural fraction:\n\\(f_s = \\frac{110}{110 + 80} = 0.579\\)\nFirst pass allocates:\n\nStructural: \\(120 \\times 0.579 = 69.48\\) units, distributed as:\n\nLeaf: \\(69.48 \\times \\frac{50}{110} = 31.58\\) units\nStem: \\(69.48 \\times \\frac{60}{110} = 37.90\\) units\n\nMetabolic: \\(120 \\times 0.421 = 50.52\\) units, distributed as:\n\nLeaf: \\(50.52 \\times \\frac{20}{80} = 12.63\\) units\nStem: \\(50.52 \\times \\frac{60}{80} = 37.89\\) units\n\n\nSecond pass allocates any leftover proportionally to storage demands."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#applications",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#applications",
-    "title": "Relative Allocation",
-    "section": "Applications",
-    "text": "Applications\n\nBiomass partitioning after photosynthesis, reallocation, and retranslocation.\nNitrogen allocation after uptake, reallocation, and retranslocation.\nAny generic resource arbitration among competing sinks."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/RelativeAllocation.html#references",
-    "href": "docs/crop/pmf/arbitrator/RelativeAllocation.html#references",
-    "title": "Relative Allocation",
-    "section": "References",
-    "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs"
-  },
-  {
-    "objectID": "docs/crop/wheat/grain/nitrogen-demand.html",
-    "href": "docs/crop/wheat/grain/nitrogen-demand.html",
+    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html",
+    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "",
     "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots)."
   },
   {
-    "objectID": "docs/crop/wheat/grain/nitrogen-demand.html#function-definition",
-    "href": "docs/crop/wheat/grain/nitrogen-demand.html#function-definition",
+    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#function-definition",
+    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#function-definition",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Function Definition",
     "text": "Function Definition\nThe demand is defined by a PhaseLookup function:\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development."
   },
   {
-    "objectID": "docs/crop/wheat/grain/nitrogen-demand.html#practical-example",
-    "href": "docs/crop/wheat/grain/nitrogen-demand.html#practical-example",
+    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#practical-example",
+    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#practical-example",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Practical Example",
     "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
   },
   {
-    "objectID": "docs/crop/wheat/grain/nitrogen-demand.html#references",
-    "href": "docs/crop/wheat/grain/nitrogen-demand.html#references",
+    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#references",
+    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#references",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "References",
     "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model"
   },
   {
-    "objectID": "docs/crop/trait/co2/co2-rue.html",
-    "href": "docs/crop/trait/co2/co2-rue.html",
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
+    "title": "Relative Allocation",
+    "section": "",
+    "text": "The RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
+    "title": "Relative Allocation",
+    "section": "Biological Motivation",
+    "text": "Biological Motivation\nPlants must allocate available assimilates or nutrients among organs in a coordinated way. The RelativeAllocation method mimics this by:\n\nPrioritizing structural and metabolic demands (essential growth),\nThen allocating any residual supply to storage pools (non-essential, luxury uptake).\n\nThis reflects physiological prioritization in plant growth."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
+    "title": "Relative Allocation",
+    "section": "Allocation Logic",
+    "text": "Allocation Logic\nThe allocation occurs in two sequential passes:\n\nFirst Pass – Structural and Metabolic Allocation\nSecond Pass – Storage (Luxury) Allocation"
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
+    "title": "Relative Allocation",
+    "section": "First Pass – Structural and Metabolic Allocation",
+    "text": "First Pass – Structural and Metabolic Allocation\n\nObjective\nDistribute available supply to fulfill structural and metabolic demands proportionally.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{total}}\\): Total supply available (e.g. Dry biomass or nitrogen).\n\\(D_s^{(i)}\\): Structural demand of organ \\(i\\)\n\\(D_m^{(i)}\\): Metabolic demand of organ \\(i\\)\n\\(D_{s,\\text{total}} = \\sum_i D_s^{(i)}\\): Total structural demand across all organs.\n\\(D_{m,\\text{total}} = \\sum_i D_m^{(i)}\\): Total metabolic demand across all organs.\n\nWe define the structural fraction of supply as:\n\\[\nf_s = \\frac{D_{s,\\text{total}}}{D_{s,\\text{total}} + D_{m,\\text{total}}}\n\\]\nThen, for each organ \\(i\\):\n\nStructural allocation:\n\n\\[\nA_s^{(i)} = \\min\\left(R_s^{(i)}, S_{\\text{total}} \\cdot f_s \\cdot \\frac{D_s^{(i)}}{D_{s,\\text{total}}} \\right)\n\\]\n\nMetabolic allocation:\n\n\\[\nA_m^{(i)} = \\min\\left(R_m^{(i)}, S_{\\text{total}} \\cdot (1 - f_s) \\cdot \\frac{D_m^{(i)}}{D_{m,\\text{total}}} \\right)\n\\]\nwhere \\(R_s^{(i)}\\) and \\(R_m^{(i)}\\) are the remaining unmet demand for structural and metabolic pools, respectively."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
+    "title": "Relative Allocation",
+    "section": "Second Pass – Storage (Luxury) Allocation",
+    "text": "Second Pass – Storage (Luxury) Allocation\n\nObjective\nAllocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{rem}}\\): Remaining supply after first pass\n\\(D_t^{(i)}\\): Storage demand of organ \\(i\\)\n\\(D_{t,\\text{total}} = \\sum_i D_t^{(i)}\\): Total storage demand across all organs\n\nThen, for each organ \\(i\\):\n\\[\nA_t^{(i)} = \\min\\left(R_t^{(i)}, S_{\\text{rem}} \\cdot \\frac{D_t^{(i)}}{D_{t,\\text{total}}} \\right)\n\\]\nwhere \\(R_t^{(i)}\\) is the remaining unmet storage demand for organ \\(i\\)."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
+    "title": "Relative Allocation",
+    "section": "Final Accounting",
+    "text": "Final Accounting\nAfter both passes, the module tracks:\n\nTotal allocation: Sum of structural, metabolic, and storage allocations across all organs.\nNot allocated: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).\n\n\\[\nS_{\\text{not\\_allocated}} = S_{\\text{total}} - \\sum_i \\left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \\right)\n\\]\nThis is useful for diagnostics, such as reporting sink limitations."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
+    "title": "Relative Allocation",
+    "section": "Key Features",
+    "text": "Key Features\n\nPrioritizes essential growth (structural and metabolic) over luxury (storage).\nProportional to each organ’s share of total demand.\nApplies generically to both biomass and nutrients.\nUses a two-pass method to avoid allocating luxury growth when essential needs are unmet."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
+    "title": "Relative Allocation",
+    "section": "Practical Example",
+    "text": "Practical Example\nAssume:\n\nLeaf has a structural demand of 50 units and a metabolic demand of 20 units.\nStem has a structural demand of 60 units and a metabolic demand of 60 units.\nTotal supply is 120 units.\n\nThen:\n\nTotal structural demand = 50 (leaf) + 60 (stem) = 110 units\nTotal metabolic demand = 20 (leaf) + 60 (stem) = 80 units\nStructural fraction:\n\\(f_s = \\frac{110}{110 + 80} = 0.579\\)\nFirst pass allocates:\n\nStructural: \\(120 \\times 0.579 = 69.48\\) units, distributed as:\n\nLeaf: \\(69.48 \\times \\frac{50}{110} = 31.58\\) units\nStem: \\(69.48 \\times \\frac{60}{110} = 37.90\\) units\n\nMetabolic: \\(120 \\times 0.421 = 50.52\\) units, distributed as:\n\nLeaf: \\(50.52 \\times \\frac{20}{80} = 12.63\\) units\nStem: \\(50.52 \\times \\frac{60}{80} = 37.89\\) units\n\n\nSecond pass allocates any leftover proportionally to storage demands."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
+    "title": "Relative Allocation",
+    "section": "Applications",
+    "text": "Applications\n\nBiomass partitioning after photosynthesis, reallocation, and retranslocation.\nNitrogen allocation after uptake, reallocation, and retranslocation.\nAny generic resource arbitration among competing sinks."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
+    "title": "Relative Allocation",
+    "section": "References",
+    "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs"
+  },
+  {
+    "objectID": "docs/Models/Trait/CO2/co2-rue.html",
+    "href": "docs/Models/Trait/CO2/co2-rue.html",
     "title": "CO2 for RUE",
     "section": "",
     "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
   },
   {
-    "objectID": "docs/crop/trait/co2/co2-rue.html#c3",
-    "href": "docs/crop/trait/co2/co2-rue.html#c3",
+    "objectID": "docs/Models/Trait/CO2/co2-rue.html#c3",
+    "href": "docs/Models/Trait/CO2/co2-rue.html#c3",
     "title": "CO2 for RUE",
     "section": "",
     "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
   },
   {
-    "objectID": "docs/crop/trait/co2/co2-rue.html#c4",
-    "href": "docs/crop/trait/co2/co2-rue.html#c4",
+    "objectID": "docs/Models/Trait/CO2/co2-rue.html#c4",
+    "href": "docs/Models/Trait/CO2/co2-rue.html#c4",
     "title": "CO2 for RUE",
     "section": "C4",
     "text": "C4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
-  },
-  {
-    "objectID": "docs/index.html",
-    "href": "docs/index.html",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -287,108 +287,108 @@
     "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1"
   },
   {
-    "objectID": "docs/graph/EventNamesOnGraph.html",
-    "href": "docs/graph/EventNamesOnGraph.html",
-    "title": "Show Event Names on Graph",
-    "section": "",
-    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
-  },
-  {
-    "objectID": "docs/crop/wheat/trait/co2-wheat.html",
-    "href": "docs/crop/wheat/trait/co2-wheat.html",
-    "title": "CO2 for Wheat",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
-  },
-  {
-    "objectID": "docs/crop/wheat/trait/co2-wheat.html#radiation-use-efficiency",
-    "href": "docs/crop/wheat/trait/co2-wheat.html#radiation-use-efficiency",
-    "title": "CO2 for Wheat",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
-  },
-  {
-    "objectID": "docs/crop/wheat/trait/co2-wheat.html#stomatal-conductance",
-    "href": "docs/crop/wheat/trait/co2-wheat.html#stomatal-conductance",
-    "title": "CO2 for Wheat",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
-  },
-  {
-    "objectID": "docs/crop/wheat/trait/co2-wheat.html#critical-nitrogen-concentration",
-    "href": "docs/crop/wheat/trait/co2-wheat.html#critical-nitrogen-concentration",
-    "title": "CO2 for Wheat",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration."
-  },
-  {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
     "title": "Nutrient Constrained Allocation",
     "section": "",
     "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
     "title": "Nutrient Constrained Allocation",
     "section": "Role in APSIM Simulation Pipeline",
     "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation)."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
     "title": "Nutrient Constrained Allocation",
     "section": "Inputs and Assumptions",
     "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
     "title": "Nutrient Constrained Allocation",
     "section": "Step-by-Step Process",
     "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
     "title": "Nutrient Constrained Allocation",
     "section": "Practical Example",
     "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833"
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
     "title": "Nutrient Constrained Allocation",
     "section": "Scientific Rationale",
     "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
     "title": "Nutrient Constrained Allocation",
     "section": "Extensibility",
     "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
     "title": "Nutrient Constrained Allocation",
     "section": "Outputs and Implications",
     "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
     "title": "Nutrient Constrained Allocation",
     "section": "Potential bugs and Limitations",
     "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs."
   },
   {
-    "objectID": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "href": "docs/crop/pmf/arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
     "title": "Nutrient Constrained Allocation",
     "section": "References",
     "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html",
+    "href": "docs/Crops/Wheat/Trait/co2-wheat.html",
+    "title": "CO2 for Wheat",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#radiation-use-efficiency",
+    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#radiation-use-efficiency",
+    "title": "CO2 for Wheat",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#stomatal-conductance",
+    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#stomatal-conductance",
+    "title": "CO2 for Wheat",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#critical-nitrogen-concentration",
+    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#critical-nitrogen-concentration",
+    "title": "CO2 for Wheat",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration."
+  },
+  {
+    "objectID": "docs/index.html",
+    "href": "docs/index.html",
+    "title": "APSIM NG Notes",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
