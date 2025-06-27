@@ -144,7 +144,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
     "title": "Generic Phase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\n\n\n\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nUsed to initialize or reset phase progress at sowing."
+    "text": "Events\nEvents Listened For\n\n\n\n\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations"
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
