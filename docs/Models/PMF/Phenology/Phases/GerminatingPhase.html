@@ -134,6 +134,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -201,21 +202,18 @@ ul.task-list li input[type="checkbox"] {
 <p>These are signals or notifications that the <code>GerminatingPhase</code> listens for from other parts of the simulation:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 12%">
-<col style="width: 74%">
+<col style="width: 15%">
+<col style="width: 84%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Event</th>
-<th>Source</th>
 <th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td><code>PlantSowing</code></td>
-<td>Plant model</td>
 <td>Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination.</td>
 </tr>
 </tbody>
@@ -256,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
 <th>Property</th>
 <th>Type</th>
 <th>Description</th>
-<th>Optional?</th>
+<th>Required</th>
 </tr>
 </thead>
 <tbody>
@@ -264,31 +262,31 @@ ul.task-list li input[type="checkbox"] {
 <td><code>Start</code></td>
 <td>string</td>
 <td>Phenological stage at which this phase begins (e.g.&nbsp;<code>Sowing</code>).</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
 <td><code>End</code></td>
 <td>string</td>
 <td>Phenological stage that marks completion of the phase (e.g.&nbsp;<code>Germinated</code>).</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr class="odd">
 <td><code>MinSoilTemperature</code></td>
 <td>double</td>
 <td>Minimum soil temperature required for germination (default is 0°C).</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 <tr class="even">
 <td><code>GerminationDate</code></td>
 <td>string</td>
 <td>Optional fixed calendar date to override environmental conditions.</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr class="odd">
 <td><code>IsEmerged</code></td>
 <td>bool</td>
-<td>Boolean flag indicating whether emergence has occurred. This property is available but not used in the germination logic.</td>
-<td>Yes</td>
+<td>Boolean flag indicating whether emergence has occurred.</td>
+<td>No</td>
 </tr>
 </tbody>
 </table>
@@ -314,6 +312,10 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 </tbody>
 </table>
+</section>
+<section id="usage" class="level2">
+<h2 class="anchored" data-anchor-id="usage">Usage</h2>
+<p>A <code>GerminatingPhase</code> can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions.</p>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
