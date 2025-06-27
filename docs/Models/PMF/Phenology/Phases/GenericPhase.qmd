@@ -32,6 +32,7 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 ## Properties
 
 **Configurable and Reportable Properties**
+
 | Property       | Type        | Description                                                           | Required   |
 |:-------------- |:-----------|:----------------------------------------------------------------------|:----------|
 | `Start`        | string      | Phenological stage at which this phase begins.                        | Yes        |
