@@ -25,18 +25,19 @@
     ]
   },
   {
-    "listing": "/docs/Models/PMF/index.html",
-    "items": [
-      "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
-    ]
-  },
-  {
     "listing": "/tips/index.html",
     "items": [
       "/tips/co2.html",
       "/tips/internal_variable.html",
       "/tips/summary.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/PMF/index.html",
+    "items": [
+      "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+      "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
     ]
   },
   {
