@@ -48,9 +48,9 @@ If no date is defined, germination is triggered when:
 
 These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
 
-| Event          | Source        | Purpose                                                                                  |
-|----------------|---------------|------------------------------------------------------------------------------------------|
-| `PlantSowing`  | Plant model   | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| `PlantSowing`  | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
 
 
 **Events Raised to**
@@ -67,13 +67,13 @@ These are signals that the `GerminatingPhase` sends out to notify other componen
 
 **Configurable and Reportable Properties**
 
-| Property             | Type    | Description                                                                 | Optional?   |
+| Property             | Type    | Description                                                                 | Required   |
 |----------------------|---------|-----------------------------------------------------------------------------|-------------|
-| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | No          |
-| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | No          |
-| `MinSoilTemperature` | double  | Minimum soil temperature required for germination (default is 0°C).         | No          |
-| `GerminationDate`    | string  | Optional fixed calendar date to override environmental conditions.          | Yes         |
-| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. This property is available but not used in the germination logic. | Yes         |
+| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | Yes          |
+| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | Yes          |
+| `MinSoilTemperature` | double  | Minimum soil temperature required for germination (default is 0°C).         | Yes          |
+| `GerminationDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
+| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. | No         |
 
 
 **Read-Only Reportable Properties**
@@ -82,6 +82,9 @@ These are signals that the `GerminatingPhase` sends out to notify other componen
 |----------------------|---------|-----------------------------------------------------------------------------|
 | `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing. |
 
+## Usage
+
+A `GerminatingPhase` can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions.
 
 ## See Also
 

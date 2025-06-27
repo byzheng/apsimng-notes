@@ -1,0 +1,57 @@
+---
+title: "Generic Phase"
+output: html_document
+---
+
+
+The `GenericPhase` is a phenological phase used within a plant's developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.
+
+## Overview
+
+The `GenericPhase` advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.
+
+* Daily progression is configured from property `Progression` (in general it is daily thermal time, e.g. `[Phenology].ThermalTime`).
+* The target thermal time is configured via the property `Target` (in Cd).
+* The progress through this phase is tracked by the `FractionComplete` property, which returns a value between 0 and 1.
+* The phase transitions to the next stage once `FractionComplete` reaches 1.
+
+If the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day's progress is passed to this phase. 
+
+## Events
+
+**Events Listened For**
+
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| `Commencing`   | Reset progress at the start of simulations                                               |
+| `PlantSowing`  | Used to initialize or reset phase progress at sowing.                                    |
+
+
+
+## Properties
+
+**Configurable and Reportable Properties**
+| Property       | Type        | Description                                                           | Required   |
+|:-------------- |:-----------|:----------------------------------------------------------------------|:----------|
+| `Start`        | string      | Phenological stage at which this phase begins.                        | Yes        |
+| `End`          | string      | Phenological stage that marks completion of the phase.                | Yes        |
+| `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
+| `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
+| `IsEmerged`    | bool        | Boolean flag indicating whether emergence has occurred.                | No         |
+
+**Read-Only Reportable Properties**
+
+| Property                   | Type    | Description                                                                |
+|:-------------------------- |:------- |:-------------------------------------------------------------------------- |
+| `FractionComplete`         | double  | Fraction (0–1) indicating how much of the phase is complete.               |
+| `ProgressionForTimeStep`   | double  | The amount of progression made during the current time step (e.g. day).    |
+| `ProgressThroughPhase`     | double  | Accumulated units of progress through this phase between zero and target.  |
+
+## Usage
+
+A `GenericPhase` can be used to represent phases such as "Grain Filling" which are mainly impacted by temperature without interactions with vernalisation and photoperiod.
+
+## See Also
+
+* **Source code:** [GenericPhase.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/GenericPhase.cs)
