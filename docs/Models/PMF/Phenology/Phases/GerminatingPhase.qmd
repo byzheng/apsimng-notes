@@ -1,0 +1,88 @@
+---
+title: "Germinating Phase"
+output: html_document
+---
+
+The `GerminatingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.
+
+## Overview
+
+The `GerminatingPhase` models the transition from sowing to germination in the crop's phenological development. Germination is assumed to occur **on the day after sowing**, when any of the following conditions are met:
+
+- Soil water at the sowing depth exceeds the lower limit (LL15),
+- Soil temperature at the sowing depth is greater than or equal to the **minimum soil temperature** (as defined by the `MinSoilTemperature` child function),
+- A specific **germination date** is provided via the `GerminationDate` property.
+
+Once any of these conditions is satisfied, the seed is considered germinated, the `SeedImbibed` event is raised, and the simulation advances to the next phenological phase.
+
+### Germination Triggers
+
+Germination occurs in one of two ways:
+
+1. **User-defined germination date**  
+
+If `GerminationDate` is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.
+
+2. **Environmental conditions at sowing depth**  
+
+If no date is defined, germination is triggered when:
+
+- **Soil water content** exceeds the lower limit (LL15) for the sowing layer:  
+
+`SWmm[layer] > LL15mm[layer]`
+
+- **Soil temperature** at sowing depth exceeds the minimum required value:  
+
+`SoilTemperature[layer] >= MinSoilTemperature.Value()`
+
+- The current day is **not** the sowing day.  
+
+
+**Sowing Depth**: The sowing layer is determined using the value of `plant.SowingData.Depth`, which maps to the appropriate soil layer index.
+
+
+## Events 
+
+
+**Events Listened For**
+
+These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+
+| Event          | Source        | Purpose                                                                                  |
+|----------------|---------------|------------------------------------------------------------------------------------------|
+| `PlantSowing`  | Plant model   | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
+
+
+**Events Raised to**
+
+These are signals that the `GerminatingPhase` sends out to notify other components when actions occur:
+
+| Event          | Description                                                                             |
+|----------------|-----------------------------------------------------------------------------------------|
+| `SeedImbibed`  | Raised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed. |
+
+
+## Properties
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 | Optional?   |
+|----------------------|---------|-----------------------------------------------------------------------------|-------------|
+| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | No          |
+| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | No          |
+| `MinSoilTemperature` | double  | Minimum soil temperature required for germination (default is 0°C).         | No          |
+| `GerminationDate`    | string  | Optional fixed calendar date to override environmental conditions.          | Yes         |
+| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. This property is available but not used in the germination logic. | Yes         |
+
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing. |
+
+
+## See Also
+
+* **Source code:** [GerminatingPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/GerminatingPhase.cs)
