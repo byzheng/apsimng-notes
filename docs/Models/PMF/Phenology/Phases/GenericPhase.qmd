@@ -25,7 +25,6 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
 | `Commencing`   | Reset progress at the start of simulations                                               |
-| `PlantSowing`  | Used to initialize or reset phase progress at sowing.                                    |
 
 
 
