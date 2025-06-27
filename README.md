@@ -1,3 +1,7 @@
+[![Quarto Publish](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml/badge.svg)](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml)
+
+
+
 # APSIM NG Notes
 
 Welcome to **APSIM NG Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
