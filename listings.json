@@ -12,11 +12,16 @@
     ]
   },
   {
-    "listing": "/tips/index.html",
+    "listing": "/docs/Models/Functions/index.html",
     "items": [
-      "/tips/co2.html",
-      "/tips/internal_variable.html",
-      "/tips/summary.html"
+      "/docs/Models/Functions/AddFunction.html",
+      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Graph/index.html",
+    "items": [
+      "/docs/Models/Graph/EventNamesOnGraph.html"
     ]
   },
   {
@@ -27,15 +32,11 @@
     ]
   },
   {
-    "listing": "/docs/Models/Graph/index.html",
+    "listing": "/tips/index.html",
     "items": [
-      "/docs/Models/Graph/EventNamesOnGraph.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/Functions/index.html",
-    "items": [
-      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
+      "/tips/co2.html",
+      "/tips/internal_variable.html",
+      "/tips/summary.html"
     ]
   },
   {
