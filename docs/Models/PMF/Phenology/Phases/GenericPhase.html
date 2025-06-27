@@ -198,7 +198,55 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<p><strong>Configurable and Reportable Properties</strong> | Property | Type | Description | Required | |:————– |:———–|:———————————————————————-|:———-| | <code>Start</code> | string | Phenological stage at which this phase begins. | Yes | | <code>End</code> | string | Phenological stage that marks completion of the phase. | Yes | | <code>Target</code> | IFunction | The target value for phase completion (e.g., required thermal time). | Yes | | <code>Progression</code> | IFunction | The daily progression towards the target (e.g., daily thermal time). | Yes | | <code>IsEmerged</code> | bool | Boolean flag indicating whether emergence has occurred. | No |</p>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 65%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Start</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Phenological stage at which this phase begins.</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>End</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Phenological stage that marks completion of the phase.</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Target</code></td>
+<td style="text-align: left;">IFunction</td>
+<td style="text-align: left;">The target value for phase completion (e.g., required thermal time).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>Progression</code></td>
+<td style="text-align: left;">IFunction</td>
+<td style="text-align: left;">The daily progression towards the target (e.g., daily thermal time).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>IsEmerged</code></td>
+<td style="text-align: left;">bool</td>
+<td style="text-align: left;">Boolean flag indicating whether emergence has occurred.</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
