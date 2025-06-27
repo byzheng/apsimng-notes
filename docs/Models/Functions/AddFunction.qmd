@@ -1,0 +1,24 @@
+---
+title: "Add Function"
+output: html_document
+---
+
+The `AddFunction` is a utility function that returns the **sum of values** from all of its child functions.
+
+
+## Purpose
+
+The `AddFunction` is used to sum up multiple values for a mathematical equation in the [Plant Model Framework](/docs/Models/PMF/). It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. A plus symbol is displayed in the APSIM NG user interface.
+
+## Practical Example
+
+The target thermal time from germination to emergence in the wheat model is determined by ShootLag ($ShootLag$), Sowing Depth ($SowingDepth$), and Shoot Rate ($ShootRate$).
+
+$$
+TT = ShootLag + (SowingDepth \times ShootRate)
+$$
+
+The `AddFunction` is used to sum these two values to get the total target thermal time in the equation above.
+
+
+![Target thermal time from germination to emergence in the wheat model](addfunction.png){ width=35% align=center }
