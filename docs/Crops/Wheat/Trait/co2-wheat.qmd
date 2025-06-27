@@ -8,14 +8,14 @@ output: html_document
 ## Radiation Use Efficiency
 
 
-{{< include /docs/Models/Trait/CO2/_co2-rue-c3.qmd >}}
+{{< include /docs/Models/Traits/CO2/_co2-rue-c3.qmd >}}
 
 
 ## Stomatal Conductance
 
-{{< include /docs/Models/Trait/CO2/_co2-stomatal-conductance-c3.qmd >}}
+{{< include /docs/Models/Traits/CO2/_co2-stomatal-conductance-c3.qmd >}}
 
 
 ## Critical Nitrogen Concentration
 
-{{< include /docs/Models/Trait/CO2/_co2-critical-n-wheat.qmd >}}
+{{< include /docs/Models/Traits/CO2/_co2-critical-n-wheat.qmd >}}
