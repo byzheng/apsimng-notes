@@ -33,8 +33,8 @@ These are signals or notifications that the `GerminatingPhase` listens for from 
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
-| `Commencing`   | Reset progress at the start of simulations                                               |
-| `PlantSowing`  | Set the phase target as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd). It also indicates the phase target cannot be dynamically modified. |
+| [Commencing](/docs/Models/Events/Commencing.qmd)   | Reset progress at the start of simulations                                               |
+| [PlantSowing](/docs/Models/Events/PlantSowing.qmd)  | Set the phase target as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd). It also indicates the phase target cannot be dynamically modified. |
 
 
 ## Properties

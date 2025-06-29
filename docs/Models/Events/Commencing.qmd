@@ -1,0 +1,8 @@
+---
+title: "Commencing"
+output: html_document
+---
+
+
+Triggered once at the start of the simulation, giving all models a chance to initialise their state.
+

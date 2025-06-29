@@ -50,7 +50,7 @@ These are signals or notifications that the `GerminatingPhase` listens for from 
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
-| `PlantSowing`  | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
+| [PlantSowing](/docs/Models/Events/PlantSowing.qmd)  | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
 
 
 **Events Raised to**
@@ -59,7 +59,7 @@ These are signals that the `GerminatingPhase` sends out to notify other componen
 
 | Event          | Description                                                                             |
 |----------------|-----------------------------------------------------------------------------------------|
-| `SeedImbibed`  | Raised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed. |
+| [SeedImbibed](/docs/Models/Events/SeedImbibed.qmd)  | Raised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed. |
 
 
 ## Properties

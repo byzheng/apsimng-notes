@@ -24,7 +24,7 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
-| `Commencing`   | Reset progress at the start of simulations                                               |
+| [Commencing](/docs/Models/Events/Commencing.qmd)   | Reset progress at the start of simulations                                               |
 
 
 
