@@ -15,7 +15,7 @@ The Plant Modelling Framework (PMF) offers a modular library of plant organ and 
 
 The Graph module provides a framework to visualise reports in APSIM Next Generation. It allows users to create and manage graphs, which can be used to display various data types, including time series and statistical analyses.
 
-## [Traits](Trait)
+## [Traits](Traits/)
 
 
 Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
