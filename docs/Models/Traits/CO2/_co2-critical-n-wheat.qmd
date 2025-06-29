@@ -6,6 +6,6 @@ listing: false
 In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration. 
 
 
-![](/docs/Models/Trait/CO2/20241029155242.png)
+![Critical Nitrogen Concentration in Leaf](/docs/Models/Traits/CO2/20241029155242.png){ width=55% align=center }
 
 

@@ -1,0 +1,30 @@
+---
+title: "CO2"
+output: html_document
+---
+
+CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.
+
+The default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with [manager script](/tips/co2.md).
+
+## Radiation Use Efficiency (RUE)
+
+### C3
+
+
+{{< include _co2-rue-c3.qmd >}}
+
+
+### C4
+
+{{< include _co2-rue-c4.qmd >}}
+
+
+## Critical Nitrogen Concentration
+
+{{< include _co2-critical-n-wheat.qmd >}}
+
+
+## Stomatal Conductance
+
+{{< include _co2-stomatal-conductance-c3.qmd >}}
