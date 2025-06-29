@@ -17,9 +17,13 @@ Whether you're just starting with APSIM NG or looking for solutions to specific 
 
 Feel free to explore, suggest improvements, or fork for your own use!
 
-## 🔗 Website
+## Website
 
 You can also browse these notes as a website: [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
+
+## Contributing
+
+If you find any errors, have suggestions, or want to contribute improvements, please create a pull request on [GitHub](https://github.com/byzheng/apsimng-notes).
 
 ## License
 
