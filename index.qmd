@@ -1,11 +1,10 @@
 ---
-title: ""
+title: "APSIM Next Generation Notes"
 ---
 
 
-# APSIM NG Notes
 
-Welcome to **APSIM NG Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
+Welcome to **APSIM Next Generation Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
 
 This repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:
 
