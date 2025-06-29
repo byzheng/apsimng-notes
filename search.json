@@ -332,8 +332,15 @@
     "objectID": "index.html#website",
     "href": "index.html#website",
     "title": "APSIM Next Generation Notes",
-    "section": "🔗 Website",
-    "text": "🔗 Website\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+    "section": "Website",
+    "text": "Website\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "APSIM Next Generation Notes",
+    "section": "Contributing",
+    "text": "Contributing\nIf you find any errors, have suggestions, or want to contribute improvements, please create a pull request on GitHub."
   },
   {
     "objectID": "index.html#license",
