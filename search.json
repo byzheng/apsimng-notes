@@ -128,7 +128,7 @@
   {
     "objectID": "docs/Models/Events/index.html",
     "href": "docs/Models/Events/index.html",
-    "title": "Plant Modelling Framework",
+    "title": "Events",
     "section": "",
     "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCommencing\n\n\n \n\n\n\n\n\n\n\n\n\nPlantSowing\n\n\n \n\n\n\n\n\n\n\n\n\nSeedImbibed\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
   },
@@ -324,23 +324,23 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "APSIM NG Notes",
+    "title": "APSIM Next Generation Notes",
     "section": "",
-    "text": "Welcome to APSIM NG Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!\n\n\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me\n\n\n\nMIT License – free to use and adapt."
+    "text": "Welcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!"
   },
   {
     "objectID": "index.html#website",
     "href": "index.html#website",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "You can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+    "title": "APSIM Next Generation Notes",
+    "section": "🔗 Website",
+    "text": "🔗 Website\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me"
   },
   {
     "objectID": "index.html#license",
     "href": "index.html#license",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "MIT License – free to use and adapt."
+    "title": "APSIM Next Generation Notes",
+    "section": "License",
+    "text": "License\nMIT License – free to use and adapt."
   },
   {
     "objectID": "tips/summary.html",
