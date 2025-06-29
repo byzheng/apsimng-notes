@@ -19,14 +19,9 @@
     ]
   },
   {
-    "listing": "/docs/Models/Graph/index.html",
-    "items": [
-      "/docs/Models/Graph/EventNamesOnGraph.html"
-    ]
-  },
-  {
     "listing": "/docs/Models/PMF/index.html",
     "items": [
+      "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
       "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
       "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
       "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
@@ -39,6 +34,12 @@
       "/tips/co2.html",
       "/tips/internal_variable.html",
       "/tips/summary.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Graph/index.html",
+    "items": [
+      "/docs/Models/Graph/EventNamesOnGraph.html"
     ]
   },
   {

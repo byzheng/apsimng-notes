@@ -119,11 +119,18 @@
     "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAdd Function\n\n\n \n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "docs/Models/Graph/index.html",
-    "href": "docs/Models/Graph/index.html",
-    "title": "Graph",
+    "objectID": "docs/Models/Events.html",
+    "href": "docs/Models/Events.html",
+    "title": "Events",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "These events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.\nCommencing:\nTriggered once at the start of the simulation, giving all models a chance to initialise their state.\nPlantSowing:\nThis event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process.\nSeedImbibed:\nThis event is raised when germination occurs by GerminatingPhase, signaling other models or processes to begin their activities related to the germinated seed."
+  },
+  {
+    "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
+    "href": "docs/Models/Graph/EventNamesOnGraph.html",
+    "title": "Show Event Names on Graph",
+    "section": "",
+    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
@@ -172,7 +179,7 @@
     "href": "docs/Models/PMF/index.html",
     "title": "Plant Modelling Framework",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGeneric Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGerminating Phase\n\n\n \n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGeneric Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGerminating Phase\n\n\n \n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
@@ -518,11 +525,53 @@
     "text": "See Also\n\nSource code: GerminatingPhase.cs on GitHub"
   },
   {
-    "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
-    "href": "docs/Models/Graph/EventNamesOnGraph.html",
-    "title": "Show Event Names on Graph",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "title": "Emerging Phase",
     "section": "",
-    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
+    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "title": "Emerging Phase",
+    "section": "Overview",
+    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase"
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "title": "Emerging Phase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "title": "Emerging Phase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "title": "Emerging Phase",
+    "section": "Usage",
+    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "title": "Emerging Phase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub."
+  },
+  {
+    "objectID": "docs/Models/Graph/index.html",
+    "href": "docs/Models/Graph/index.html",
+    "title": "Graph",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/Models/index.html",
