@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-06">
 
-<title>CO2 for Wheat – APSIM NG Notes</title>
+<title>CO2 – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -178,18 +177,22 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#radiation-use-efficiency" id="toc-radiation-use-efficiency" class="nav-link active" data-scroll-target="#radiation-use-efficiency">Radiation Use Efficiency</a></li>
-  <li><a href="#stomatal-conductance" id="toc-stomatal-conductance" class="nav-link" data-scroll-target="#stomatal-conductance">Stomatal Conductance</a></li>
+  <li><a href="#radiation-use-efficiency-rue" id="toc-radiation-use-efficiency-rue" class="nav-link active" data-scroll-target="#radiation-use-efficiency-rue">Radiation Use Efficiency (RUE)</a>
+  <ul class="collapse">
+  <li><a href="#c3" id="toc-c3" class="nav-link" data-scroll-target="#c3">C3</a></li>
+  <li><a href="#c4" id="toc-c4" class="nav-link" data-scroll-target="#c4">C4</a></li>
+  </ul></li>
   <li><a href="#critical-nitrogen-concentration" id="toc-critical-nitrogen-concentration" class="nav-link" data-scroll-target="#critical-nitrogen-concentration">Critical Nitrogen Concentration</a></li>
+  <li><a href="#stomatal-conductance" id="toc-stomatal-conductance" class="nav-link" data-scroll-target="#stomatal-conductance">Stomatal Conductance</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Traits/CO2/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">CO2 for Wheat</h1>
+<h1 class="title">CO2</h1>
 </div>
 
 
@@ -197,12 +200,6 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -212,8 +209,12 @@ window.Quarto = {
 </header>
 
 
-<section id="radiation-use-efficiency" class="level2">
-<h2 class="anchored" data-anchor-id="radiation-use-efficiency">Radiation Use Efficiency</h2>
+<p>CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.</p>
+<p>The default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with <a href="../../../../tips/co2.html">manager script</a>.</p>
+<section id="radiation-use-efficiency-rue" class="level2">
+<h2 class="anchored" data-anchor-id="radiation-use-efficiency-rue">Radiation Use Efficiency (RUE)</h2>
+<section id="c3" class="level3">
+<h3 class="anchored" data-anchor-id="c3">C3</h3>
 <p>For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentration (<span class="math inline">\(C\)</span>, ppm) and daily mean temperature (<span class="math inline">\(T_{mean}\)</span>) as published by <span class="citation" data-cites="reyenga_modelling_1999">(<a href="#ref-reyenga_modelling_1999" role="doc-biblioref">Reyenga et al. 1999</a>)</span>.</p>
 <p><span class="math display">\[
 f_{c}=\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}
@@ -224,8 +225,32 @@ C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
 \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../../../../docs/Models/Trait/CO2/20241029152420.png" class="img-fluid figure-img" style="width:95.0%" data-align="center"></p>
+<p><img src="../../../../docs/Models/Traits/CO2/20241029152420.png" class="img-fluid figure-img" style="width:55.0%" data-align="center"></p>
 <figcaption>CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.</figcaption>
+</figure>
+</div>
+</section>
+<section id="c4" class="level3">
+<h3 class="anchored" data-anchor-id="c4">C4</h3>
+<p>For C4 crops (e.g.&nbsp;Rice), Radiation Use Efficiency is increasing with CO<sub>2</sub> concentration (<span class="math inline">\(C\)</span>, ppm) with a factor (<span class="math inline">\(f_{c}\)</span>) according personal communications with Mark Howden.</p>
+<p><span class="math display">\[
+f_{c}=0.000143 \times C + 0.95
+\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../../docs/Models/Traits/CO2/20241029145726.png" class="img-fluid figure-img" style="width:55.0%" data-align="center"></p>
+<figcaption>CO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="critical-nitrogen-concentration" class="level2">
+<h2 class="anchored" data-anchor-id="critical-nitrogen-concentration">Critical Nitrogen Concentration</h2>
+<p>In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../../../../docs/Models/Traits/CO2/20241029155242.png" class="img-fluid figure-img" style="width:55.0%" data-align="center"></p>
+<figcaption>Critical Nitrogen Concentration in Leaf</figcaption>
 </figure>
 </div>
 </section>
@@ -239,11 +264,6 @@ SC = f_{c} / (\frac {CO2 - C_{i}} {350 - C_{i}})
 <p><span class="math display">\[
 C_{i}=\frac{163-T_{mean}}{5-0.1T_{mean}}
 \]</span></p>
-</section>
-<section id="critical-nitrogen-concentration" class="level2">
-<h2 class="anchored" data-anchor-id="critical-nitrogen-concentration">Critical Nitrogen Concentration</h2>
-<p>In APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.</p>
-<p><img src="../../../../docs/Models/Trait/CO2/20241029155242.png" class="img-fluid"></p>
 
 
 
@@ -661,4 +681,4 @@ Reyenga, P. J., S. M. Howden, H. Meinke, and G. M. McKeon. 1999. <span>“Modell
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Trait/co2-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Traits/CO2/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

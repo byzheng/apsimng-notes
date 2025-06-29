@@ -28,6 +28,13 @@
     "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "docs/Crops/Wheat/Traits/index.html",
+    "href": "docs/Crops/Wheat/Traits/index.html",
+    "title": "Traits",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "docs/Crops/Wheat/index.html",
     "href": "docs/Crops/Wheat/index.html",
     "title": "Wheat",
@@ -49,39 +56,11 @@
     "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
   },
   {
-    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html",
-    "href": "docs/Crops/Wheat/Trait/co2-wheat.html",
-    "title": "CO2 for Wheat",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#radiation-use-efficiency",
-    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#radiation-use-efficiency",
-    "title": "CO2 for Wheat",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#stomatal-conductance",
-    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#stomatal-conductance",
-    "title": "CO2 for Wheat",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Trait/co2-wheat.html#critical-nitrogen-concentration",
-    "href": "docs/Crops/Wheat/Trait/co2-wheat.html#critical-nitrogen-concentration",
-    "title": "CO2 for Wheat",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration."
-  },
-  {
     "objectID": "docs/Models/Traits/index.html",
     "href": "docs/Models/Traits/index.html",
     "title": "Traits",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for RUE\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/Models/Functions/AddFunction.html",
@@ -686,25 +665,32 @@
     "text": "Usage Notes\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements."
   },
   {
-    "objectID": "docs/Models/Traits/CO2/co2-rue.html",
-    "href": "docs/Models/Traits/CO2/co2-rue.html",
-    "title": "CO2 for RUE",
+    "objectID": "docs/Models/Traits/CO2/index.html",
+    "href": "docs/Models/Traits/CO2/index.html",
+    "title": "CO2",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script."
   },
   {
-    "objectID": "docs/Models/Traits/CO2/co2-rue.html#c3",
-    "href": "docs/Models/Traits/CO2/co2-rue.html#c3",
-    "title": "CO2 for RUE",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+    "objectID": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "href": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "title": "CO2",
+    "section": "Radiation Use Efficiency (RUE)",
+    "text": "Radiation Use Efficiency (RUE)\n\nC3\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.\n\n\n\n\nC4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
   },
   {
-    "objectID": "docs/Models/Traits/CO2/co2-rue.html#c4",
-    "href": "docs/Models/Traits/CO2/co2-rue.html#c4",
-    "title": "CO2 for RUE",
-    "section": "C4",
-    "text": "C4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
+    "objectID": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "href": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "title": "CO2",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
+  },
+  {
+    "objectID": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "href": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "title": "CO2",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
   },
   {
     "objectID": "docs/Crops/index.html",
@@ -714,11 +700,32 @@
     "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.\n\nWheat"
   },
   {
-    "objectID": "docs/Crops/Wheat/Trait/index.html",
-    "href": "docs/Crops/Wheat/Trait/index.html",
-    "title": "Traits",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "title": "CO2 for Wheat",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "title": "CO2 for Wheat",
+    "section": "",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "title": "CO2 for Wheat",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "title": "CO2 for Wheat",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
   },
   {
     "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html",

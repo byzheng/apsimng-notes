@@ -6,9 +6,15 @@
     ]
   },
   {
+    "listing": "/docs/Crops/Wheat/Traits/index.html",
+    "items": [
+      "/docs/Crops/Wheat/Traits/co2-wheat.html"
+    ]
+  },
+  {
     "listing": "/docs/Models/Traits/index.html",
     "items": [
-      "/docs/Models/Traits/CO2/co2-rue.html"
+      "/docs/Models/Traits/CO2/index.html"
     ]
   },
   {
@@ -48,12 +54,6 @@
       "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
       "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
       "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
-    ]
-  },
-  {
-    "listing": "/docs/Crops/Wheat/Trait/index.html",
-    "items": [
-      "/docs/Crops/Wheat/Trait/co2-wheat.html"
     ]
   },
   {
