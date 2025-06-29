@@ -1,0 +1,70 @@
+---
+title: "Emerging Phase"
+output: html_document
+---
+
+The `EmergingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.
+
+## Overview
+
+The `EmergingPhase` models the transition from germination to emergence in the crop's phenological development. Germination is assumed to occur when any of the following conditions are met:
+
+- Target thermal time for emergence is reached,
+- A specific **emergence date** is provided via the `EmergenceDate` property.
+
+
+### Emergence Triggers
+
+Emergence occurs in one of two ways:
+
+1. **User-defined emergence date**  
+
+If `EmergenceDate` is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.
+
+2. **Phase Target** as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)  
+
+
+## Events 
+
+
+**Events Listened For**
+
+These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| `Commencing`   | Reset progress at the start of simulations                                               |
+| `PlantSowing`  | Set the phase target as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd). It also indicates the phase target cannot be dynamically modified. |
+
+
+## Properties
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 | Required   |
+|----------------------|---------|-----------------------------------------------------------------------------|-------------|
+| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | Yes          |
+| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | Yes          |
+| `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
+| `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
+| `EmergenceDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
+| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. | No         |
+
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing. |
+| `ProgressionForTimeStep`   | double  | The amount of progression made during the current time step (e.g. day).    |
+| `ProgressThroughPhase`     | double  | Accumulated units of progress through this phase between zero and target.  |
+
+## Usage
+
+An `EmergingPhase` can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.
+
+## See Also
+
+* **Source code:** [EmergingPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs).
+

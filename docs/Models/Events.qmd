@@ -1,0 +1,22 @@
+---
+title: "Events"
+output: html_document
+---
+
+These events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.
+
+
+**Commencing**:
+
+Triggered once at the start of the simulation, giving all models a chance to initialise their state.
+
+
+
+**PlantSowing**:
+
+This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process.
+
+
+**SeedImbibed**:
+
+This event is raised when germination occurs by [GerminatingPhase](PMF/Phenology/Phases/GerminatingPhase.qmd), signaling other models or processes to begin their activities related to the germinated seed.
