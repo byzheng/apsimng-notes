@@ -27,6 +27,6 @@ If you find any errors, have suggestions, or want to contribute improvements, pl
 
 ## License
 
-MIT License – free to use and adapt.
+This project is licensed under the [General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)](https://github.com/APSIMInitiative/ApsimX/blob/master/LICENSE.md).
 
 
