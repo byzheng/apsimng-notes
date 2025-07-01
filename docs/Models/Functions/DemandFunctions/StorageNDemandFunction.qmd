@@ -4,6 +4,7 @@ date: "2025-06-06"
 output: html_document
 ---
 
+
 The `StorageNDemandFunction` calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ's N content up to its maximum nitrogen concentration.
 
 ## Purpose
