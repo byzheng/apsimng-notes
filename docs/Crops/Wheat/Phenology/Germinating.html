@@ -124,8 +124,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/Germinating.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -156,8 +162,17 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html">GerminatingPhase</a> Model is used to simulate the germination of wheat seeds.</p>
+<p>The <strong>Germinating</strong> is a phenological phase in <a href="../../../../docs/Crops/Wheat">Wheat</a> used to represent the development period from <strong>Sowing</strong> to <strong>Germination</strong>. It determines whether the seed has germinated based on soil temperature and soil water.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html">GerminatingPhase</a> Model is used to simulate the germination of wheat seeds. This phase begins when Plant <a href="../../../../docs/Models/Events/PlantSowing.html">Sowing</a> occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html">GerminatingPhase</a> for more details.</p>
+<ul>
+<li>The <code>Minimum Soil Temperature</code> is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,</li>
+<li>The <code>Soil Water Content</code> should be more than <code>Lower Limit</code> for germination to occur.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -564,4 +579,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/Germinating.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/Germinating.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

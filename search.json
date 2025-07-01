@@ -25,7 +25,14 @@
     "href": "docs/Crops/Wheat/Phenology/Germinating.html",
     "title": "Germinating",
     "section": "",
-    "text": "The GerminatingPhase Model is used to simulate the germination of wheat seeds."
+    "text": "The GerminatingPhase Model is used to simulate the germination of wheat seeds.\nThe Germinating is a phenological phase in Wheat used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
+    "title": "Germinating",
+    "section": "Overview",
+    "text": "Overview\nThe GerminatingPhase Model is used to simulate the germination of wheat seeds. This phase begins when Plant Sowing occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nThe Minimum Soil Temperature is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,\nThe Soil Water Content should be more than Lower Limit for germination to occur."
   },
   {
     "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
