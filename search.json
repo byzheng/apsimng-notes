@@ -42,11 +42,18 @@
     "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding."
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html#components",
-    "href": "docs/Crops/Wheat/index.html#components",
+    "objectID": "docs/Crops/Wheat/index.html#phenology",
+    "href": "docs/Crops/Wheat/index.html#phenology",
     "title": "Wheat",
-    "section": "Components",
-    "text": "Components\n\nPhenology\nGrain"
+    "section": "Phenology",
+    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#grain",
+    "href": "docs/Crops/Wheat/index.html#grain",
+    "title": "Wheat",
+    "section": "Grain",
+    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike."
   },
   {
     "objectID": "docs/Crops/Wheat/index.html#traits",
