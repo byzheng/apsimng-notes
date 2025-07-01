@@ -1,0 +1,7 @@
+---
+title: "Germinating"
+date: "2025-06-06"
+output: html_document
+---
+
+The [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) Model is used to simulate the germination of wheat seeds. 
