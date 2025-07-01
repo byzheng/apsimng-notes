@@ -11,7 +11,7 @@ Wheat grain nitrogen demand is only for structural nitrogen, which is not the sa
 
 ## Overview
 
-The demand is defined by a `PhaseLookup` function:
+The demand is defined by a `PhaseLookup` function (`NFillingRate`):
 
 - **Before Anthesis (Sowing to Anthesis)** as zero for no grain nitrogen demand as no grain development occurs.
 - **During Grain Filling (Anthesis → EndGrainFill):**
@@ -35,6 +35,11 @@ The equation above is used because it distributes the total potential nitrogen c
 A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.
 
 
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue   | Potential nitrogen per kernel (g/kernel)           | 0.0011        |
 
 ## Practical Example
 
