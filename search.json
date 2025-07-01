@@ -819,29 +819,29 @@
     "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html",
-    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "",
     "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots)."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#function-definition",
-    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#function-definition",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Function Definition",
     "text": "Function Definition\nThe demand is defined by a PhaseLookup function:\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#practical-example",
-    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#practical-example",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Practical Example",
     "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/nitrogen-demand.html#references",
-    "href": "docs/Crops/Wheat/grain/nitrogen-demand.html#references",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "References",
     "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model"
