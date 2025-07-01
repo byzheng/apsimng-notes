@@ -9,7 +9,7 @@ The wheat nitrogen filling rate or nitrogen demand of grain is calculated during
 
 Wheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).
 
-## Function Definition
+## Overview
 
 The demand is defined by a `PhaseLookup` function:
 
