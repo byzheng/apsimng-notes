@@ -159,6 +159,7 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -196,7 +197,7 @@ window.Quarto = {
 <p>Wheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The demand is defined by a <code>PhaseLookup</code> function:</p>
+<p>The demand is defined by a <code>PhaseLookup</code> function (<code>NFillingRate</code>):</p>
 <ul>
 <li><strong>Before Anthesis (Sowing to Anthesis)</strong> as zero for no grain nitrogen demand as no grain development occurs.</li>
 <li><strong>During Grain Filling (Anthesis → EndGrainFill):</strong></li>
@@ -237,6 +238,30 @@ window.Quarto = {
 </table>
 <p>The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.</p>
 <p>A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.</p>
+</section>
+<section id="cultivar-specific-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="cultivar-specific-parameters">Cultivar-Specific Parameters</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 66%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue</td>
+<td>Potential nitrogen per kernel (g/kernel)</td>
+<td>0.0011</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
