@@ -29,7 +29,7 @@ Where:
 | ThermalTime    | Daily thermal time (°Cd), from `[Phenology].ThermalTime`                     |
 | GrainNumber    | Number of kernels, from `[Grain].NumberFunction`                             |
 
-  
+
 The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.
 
 A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.
