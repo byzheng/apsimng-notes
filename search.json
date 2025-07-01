@@ -21,445 +21,326 @@
     "text": "Crops\nThis section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/index.html",
-    "href": "docs/Crops/Wheat/grain/index.html",
-    "title": "Grain",
+    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html",
+    "href": "docs/Crops/Wheat/Phenology/Germinating.html",
+    "title": "Germinating",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "The GerminatingPhase Model is used to simulate the germination of wheat seeds."
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/index.html",
-    "href": "docs/Crops/Wheat/Traits/index.html",
-    "title": "Traits",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots)."
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html",
-    "href": "docs/Crops/Wheat/index.html",
-    "title": "Wheat",
-    "section": "",
-    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding."
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "Function Definition",
+    "text": "Function Definition\nThe demand is defined by a PhaseLookup function:\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development."
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html#phenology",
-    "href": "docs/Crops/Wheat/index.html#phenology",
-    "title": "Wheat",
-    "section": "Phenology",
-    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest."
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#grain",
-    "href": "docs/Crops/Wheat/index.html#grain",
-    "title": "Wheat",
-    "section": "Grain",
-    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike."
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#traits",
-    "href": "docs/Crops/Wheat/index.html#traits",
-    "title": "Wheat",
-    "section": "Traits",
-    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
-  },
-  {
-    "objectID": "docs/Crops/Canola/index.html",
-    "href": "docs/Crops/Canola/index.html",
-    "title": "Canola",
-    "section": "",
-    "text": "The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.\n\nPhenology\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005."
-  },
-  {
-    "objectID": "docs/Models/Traits/index.html",
-    "href": "docs/Models/Traits/index.html",
-    "title": "Traits",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "docs/Models/Functions/AddFunction.html",
-    "href": "docs/Models/Functions/AddFunction.html",
-    "title": "Add Function",
-    "section": "",
-    "text": "The AddFunction is a utility function that returns the sum of values from all of its child functions."
-  },
-  {
-    "objectID": "docs/Models/Functions/AddFunction.html#purpose",
-    "href": "docs/Models/Functions/AddFunction.html#purpose",
-    "title": "Add Function",
-    "section": "Purpose",
-    "text": "Purpose\nThe AddFunction is used to sum up multiple values for a mathematical equation in the Plant Model Framework. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models."
-  },
-  {
-    "objectID": "docs/Models/Functions/AddFunction.html#user-interface",
-    "href": "docs/Models/Functions/AddFunction.html#user-interface",
-    "title": "Add Function",
-    "section": "User Interface",
-    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function."
-  },
-  {
-    "objectID": "docs/Models/Functions/AddFunction.html#practical-example",
-    "href": "docs/Models/Functions/AddFunction.html#practical-example",
-    "title": "Add Function",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Practical Example",
-    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above.\n\n\n\nTarget thermal time from germination to emergence in the wheat model"
+    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
   },
   {
-    "objectID": "docs/Models/Functions/index.html",
-    "href": "docs/Models/Functions/index.html",
-    "title": "Functions",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAdd Function\n\n\n \n\n\n\n\n\n\n\n\n\nFrost and Heat Damage Functions\n\n\n \n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "docs/Models/index.html",
-    "href": "docs/Models/index.html",
-    "title": "Models",
-    "section": "",
-    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations."
-  },
-  {
-    "objectID": "docs/Models/index.html#functions",
-    "href": "docs/Models/index.html#functions",
-    "title": "Models",
-    "section": "",
-    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations."
-  },
-  {
-    "objectID": "docs/Models/index.html#plant-modelling-framework",
-    "href": "docs/Models/index.html#plant-modelling-framework",
-    "title": "Models",
-    "section": "Plant Modelling Framework",
-    "text": "Plant Modelling Framework\nThe Plant Modelling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014)."
-  },
-  {
-    "objectID": "docs/Models/index.html#graph",
-    "href": "docs/Models/index.html#graph",
-    "title": "Models",
-    "section": "Graph",
-    "text": "Graph\nThe Graph module provides a framework to visualise reports in APSIM Next Generation. It allows users to create and manage graphs, which can be used to display various data types, including time series and statistical analyses."
-  },
-  {
-    "objectID": "docs/Models/index.html#traits",
-    "href": "docs/Models/index.html#traits",
-    "title": "Models",
-    "section": "Traits",
-    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
-  },
-  {
-    "objectID": "docs/Models/index.html#events",
-    "href": "docs/Models/index.html#events",
-    "title": "Models",
-    "section": "Events",
-    "text": "Events\nEvents are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways."
-  },
-  {
-    "objectID": "docs/Models/Events/SeedImbibed.html",
-    "href": "docs/Models/Events/SeedImbibed.html",
-    "title": "SeedImbibed",
-    "section": "",
-    "text": "This event is raised when germination occurs by GerminatingPhase, signaling other models or processes to begin their activities related to the germinated seed."
-  },
-  {
-    "objectID": "docs/Models/Events/PlantSowing.html",
-    "href": "docs/Models/Events/PlantSowing.html",
-    "title": "PlantSowing",
-    "section": "",
-    "text": "This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process."
-  },
-  {
-    "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
-    "href": "docs/Models/Graph/EventNamesOnGraph.html",
-    "title": "Show Event Names on Graph",
-    "section": "",
-    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-    "title": "Generic Phase",
-    "section": "",
-    "text": "The GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
-    "title": "Generic Phase",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.\n\nDaily progression is configured from property Progression (in general it is daily thermal time, e.g. [Phenology].ThermalTime).\nThe target thermal time is configured via the property Target (in Cd).\nThe progress through this phase is tracked by the FractionComplete property, which returns a value between 0 and 1.\nThe phase transitions to the next stage once FractionComplete reaches 1.\n\nIf the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day’s progress is passed to this phase."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
-    "title": "Generic Phase",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations"
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
-    "title": "Generic Phase",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins.\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase.\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
-    "title": "Generic Phase",
-    "section": "Usage",
-    "text": "Usage\nA GenericPhase can be used to represent phases such as “Grain Filling” which are mainly impacted by temperature without interactions with vernalisation and photoperiod."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
-    "title": "Generic Phase",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: GenericPhase.cs on GitHub"
-  },
-  {
-    "objectID": "docs/Models/PMF/index.html",
-    "href": "docs/Models/PMF/index.html",
-    "title": "Plant Modelling Framework",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGeneric Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGerminating Phase\n\n\n \n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "title": "Nutrient Constrained Allocation",
-    "section": "",
-    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Role in APSIM Simulation Pipeline",
-    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation)."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Inputs and Assumptions",
-    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Step-by-Step Process",
-    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Practical Example",
-    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833"
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Scientific Rationale",
-    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Extensibility",
-    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Outputs and Implications",
-    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Potential bugs and Limitations",
-    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "title": "Nutrient Constrained Allocation",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs"
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "title": "CO2 for Wheat",
     "section": "",
-    "text": "About this site"
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
   },
   {
-    "objectID": "tips/index.html",
-    "href": "tips/index.html",
-    "title": "APSIM NG Notes",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "title": "CO2 for Wheat",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
   },
   {
-    "objectID": "tips/internal_variable.html",
-    "href": "tips/internal_variable.html",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "title": "CO2 for Wheat",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "title": "CO2 for Wheat",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/index.html",
+    "href": "docs/Crops/Canola/Phenology/index.html",
+    "title": "Phenology",
     "section": "",
-    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
+    "text": "Title\nDate\nDescription\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "tips/internal_variable.html#objective",
-    "href": "tips/internal_variable.html#objective",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Objective",
-    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
-  },
-  {
-    "objectID": "tips/internal_variable.html#implementation",
-    "href": "tips/internal_variable.html#implementation",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
-  },
-  {
-    "objectID": "tips/internal_variable.html#explanation",
-    "href": "tips/internal_variable.html#explanation",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Explanation",
-    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
-  },
-  {
-    "objectID": "tips/internal_variable.html#additional-resources",
-    "href": "tips/internal_variable.html#additional-resources",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "tips/co2.html",
-    "href": "tips/co2.html",
-    "title": "Setting CO₂ Concentration",
+    "objectID": "docs/Crops/index.html",
+    "href": "docs/Crops/index.html",
+    "title": "Crops",
     "section": "",
-    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
+    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file."
   },
   {
-    "objectID": "tips/co2.html#objective",
-    "href": "tips/co2.html#objective",
-    "title": "Setting CO₂ Concentration",
-    "section": "Objective",
-    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
+    "objectID": "docs/Crops/index.html#wheat",
+    "href": "docs/Crops/index.html#wheat",
+    "title": "Crops",
+    "section": "Wheat",
+    "text": "Wheat"
   },
   {
-    "objectID": "tips/co2.html#implementation",
-    "href": "tips/co2.html#implementation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
+    "objectID": "docs/Crops/index.html#canola",
+    "href": "docs/Crops/index.html#canola",
+    "title": "Crops",
+    "section": "Canola",
+    "text": "Canola"
   },
   {
-    "objectID": "tips/co2.html#explanation",
-    "href": "tips/co2.html#explanation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Explanation",
-    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
-  },
-  {
-    "objectID": "tips/co2.html#additional-resources",
-    "href": "tips/co2.html#additional-resources",
-    "title": "Setting CO₂ Concentration",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "tips/summary.html",
-    "href": "tips/summary.html",
-    "title": "Writing Debug Info to Summary",
+    "objectID": "docs/Models/Traits/CO2/index.html",
+    "href": "docs/Models/Traits/CO2/index.html",
+    "title": "CO2",
     "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script."
   },
   {
-    "objectID": "tips/summary.html#purpose",
-    "href": "tips/summary.html#purpose",
-    "title": "Writing Debug Info to Summary",
+    "objectID": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "href": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "title": "CO2",
+    "section": "Radiation Use Efficiency (RUE)",
+    "text": "Radiation Use Efficiency (RUE)\n\nC3\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.\n\n\n\n\nC4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
+  },
+  {
+    "objectID": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "href": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "title": "CO2",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
+  },
+  {
+    "objectID": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "href": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "title": "CO2",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "",
+    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+    "text": "Purpose\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration."
   },
   {
-    "objectID": "tips/summary.html#code-example",
-    "href": "tips/summary.html#code-example",
-    "title": "Writing Debug Info to Summary",
-    "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Inputs",
+    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content."
   },
   {
-    "objectID": "tips/summary.html#additional-resources",
-    "href": "tips/summary.html#additional-resources",
-    "title": "Writing Debug Info to Summary",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Calculation",
+    "text": "Calculation\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\)."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "APSIM Next Generation Notes",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Implementation Details",
+    "text": "Implementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties."
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Usage Notes",
+    "text": "Usage Notes\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements."
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html",
+    "title": "Frost and Heat Damage Functions",
     "section": "",
-    "text": "Welcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!"
+    "text": "A daily model that simulates yield reduction due to frost and heat stresses. Developed under the GRDC Frost and Heat Management Analytics (FAHMA) project for integration into APSIM Next Generation."
   },
   {
-    "objectID": "index.html#website",
-    "href": "index.html#website",
-    "title": "APSIM Next Generation Notes",
-    "section": "Website",
-    "text": "Website\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Overview",
+    "text": "Overview\nThe FrostHeatDamageFunctions model calculates daily and cumulative yield reduction based on:\n\nEnvironmental severity of frost and heat events using piecewise-linear temperature damage functions.\nCrop sensitivity at different growth stages, also represented by piecewise-linear functions.\nRainfall modification, which optionally alters frost impact.\n\n\nYieldReduction = PotentialDamage × Sensitivity\n\nThe model is triggered daily and interacts with APSIM’s Phenology, Grain, and Weather models."
   },
   {
-    "objectID": "index.html#contributing",
-    "href": "index.html#contributing",
-    "title": "APSIM Next Generation Notes",
-    "section": "Contributing",
-    "text": "Contributing\nIf you find any errors, have suggestions, or want to contribute improvements, please create a pull request on GitHub."
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-usage",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-usage",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Model Usage",
+    "text": "Model Usage\nPlace the FrostHeatDamageFunctions model under a Plant model (e.g., Wheat, Canola, Barley)."
   },
   {
-    "objectID": "index.html#license",
-    "href": "index.html#license",
-    "title": "APSIM Next Generation Notes",
-    "section": "License",
-    "text": "License\nThis project is licensed under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)."
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#configurable-properties",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#configurable-properties",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Configurable Properties",
+    "text": "Configurable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nCropType\nEnum\nCrop species: Wheat, Canola, or Barley. Required to load default parameters.\n\n\nFrostLowTT\ndouble\nLower temperature threshold for frost damage (°C).\n\n\nFrostUpTT\ndouble\nUpper temperature threshold for frost damage (°C).\n\n\nFrostMaxReductionRatio\ndouble\nMaximum reduction ratio at the coldest temperature.\n\n\nFrostMinReductionRatio\ndouble\nMinimum reduction ratio at the upper threshold.\n\n\nFrostStartSensitiveGS\ndouble\nStart of the frost-sensitive growth period.\n\n\nFrostStartMostSensitiveGS\ndouble\nStart of the most sensitive period to frost (sensitivity = 1).\n\n\nFrostEndMostSensitiveGS\ndouble\nEnd of the most sensitive period to frost.\n\n\nFrostEndSensitiveGS\ndouble\nEnd of the frost-sensitive growth period.\n\n\nHeatLowTT\ndouble\nLower temperature threshold for heat damage (°C).\n\n\nHeatUpTT\ndouble\nUpper temperature threshold for heat damage (°C).\n\n\nHeatMaxReductionRatio\ndouble\nMaximum reduction ratio at hottest temperature.\n\n\nHeatMinReductionRatio\ndouble\nMinimum reduction ratio at the lower threshold.\n\n\nHeatStartSensitiveGS\ndouble\nStart of the heat-sensitive growth period.\n\n\nHeatStartMostSensitiveGS\ndouble\nStart of the most sensitive period to heat (sensitivity = 1).\n\n\nHeatEndMostSensitiveGS\ndouble\nEnd of the most sensitive period to heat.\n\n\nHeatEndSensitiveGS\ndouble\nEnd of the heat-sensitive growth period.\n\n\nRainfallEffect\ndouble\nModifier for frost damage when rain occurs (1 = no effect, &gt;1 = increased damage, &lt;1 = reduced)."
   },
   {
-    "objectID": "docs/management/fertiliser.html",
-    "href": "docs/management/fertiliser.html",
-    "title": "Fertiliser Types",
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#outputs",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#outputs",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Outputs",
+    "text": "Outputs\nThe following variables are reportable in APSIM NG:\n\n\n\n\n\n\n\nOutput\nDescription\n\n\n\n\nFrostPotentialReductionRatio\nDaily frost potential yield loss (0–1).\n\n\nFrostSensitivity\nSensitivity to frost based on growth stage (0–1).\n\n\nFrostReductionRatio\nDaily yield loss from frost (actual).\n\n\nHeatPotentialReductionRatio\nDaily heat potential yield loss (0–1).\n\n\nHeatSensitivity\nSensitivity to heat based on growth stage (0–1).\n\n\nHeatReductionRatio\nDaily yield loss from heat (actual).\n\n\nFrostHeatReductionRatio\nCombined daily loss from frost and heat.\n\n\nCumulativeFrostReductionRatio\nCumulative yield loss from frost over the season.\n\n\nCumulativeHeatReductionRatio\nCumulative yield loss from heat over the season.\n\n\nCumulativeFrostHeatReductionRatio\nTotal cumulative yield loss from frost and heat.\n\n\nFrostEventNumber\nNumber of frost events during sensitive periods.\n\n\nHeatEventNumber\nNumber of heat events during sensitive periods.\n\n\nFrostHeatYield\nYield after accounting for frost and heat losses."
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Events",
+    "text": "Events\n\n\n\n\n\n\n\n\nEvent\nTrigger\nDescription\n\n\n\n\nCommencing\nStart\nValidates that crop type is correctly selected and matches plant model.\n\n\nSowing\nPlanting\nResets internal counters and output values.\n\n\nDoManagementCalculations\nDaily\nComputes frost/heat effects and yield reductions during plant growth."
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#notes",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#notes",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Notes",
+    "text": "Notes\n\nCrop parameters are loaded automatically based on the selected CropType.\nGrowth stage sensitivity functions are defined by 4 thresholds to describe increasing and decreasing sensitivity.\nThe model uses:\n\nWeather.MinT for frost detection\nWeather.MaxT for heat detection\nAPSIM Phenology.Stage for current crop development\n\nIf rainfall on the previous day is between 1–10 mm, an alternate frost response curve is used."
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#supported-crops",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#supported-crops",
+    "title": "Frost and Heat Damage Functions",
+    "section": "Supported Crops",
+    "text": "Supported Crops\n\nWheat and Canola have fully parameterized frost/heat damage models.\nBarley is included but parameters may still be under evaluation."
+  },
+  {
+    "objectID": "docs/Models/Events/Commencing.html",
+    "href": "docs/Models/Events/Commencing.html",
+    "title": "Commencing",
     "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
+    "text": "Triggered once at the start of the simulation, giving all models a chance to initialise their state."
   },
   {
-    "objectID": "docs/management/fertiliser.html#introduction",
-    "href": "docs/management/fertiliser.html#introduction",
-    "title": "Fertiliser Types",
+    "objectID": "docs/Models/Events/index.html",
+    "href": "docs/Models/Events/index.html",
+    "title": "Events",
     "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCommencing\n\n\n \n\n\n\n\n\n\n\n\n\nPlantSowing\n\n\n \n\n\n\n\n\n\n\n\n\nSeedImbibed\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "title": "Fertiliser Types",
-    "section": "Structure of Fertiliser Definitions",
-    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products."
+    "objectID": "docs/Models/Graph/index.html",
+    "href": "docs/Models/Graph/index.html",
+    "title": "Graph",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "title": "Fertiliser Types",
-    "section": "Example Fertiliser Types in APSIM",
-    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1"
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "title": "Emerging Phase",
+    "section": "",
+    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "title": "Emerging Phase",
+    "section": "Overview",
+    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase"
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "title": "Emerging Phase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "title": "Emerging Phase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "title": "Emerging Phase",
+    "section": "Usage",
+    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "title": "Emerging Phase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+    "title": "Germinating Phase",
+    "section": "",
+    "text": "The GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
+    "title": "Germinating Phase",
+    "section": "Overview",
+    "text": "Overview\nThe GerminatingPhase models the transition from sowing to germination in the crop’s phenological development. Germination is assumed to occur on the day after sowing, when any of the following conditions are met:\n\nSoil water at the sowing depth exceeds the lower limit (LL15),\nSoil temperature at the sowing depth is greater than or equal to the minimum soil temperature (as defined by the MinSoilTemperature child function),\nA specific germination date is provided via the GerminationDate property.\n\nOnce any of these conditions is satisfied, the seed is considered germinated, the SeedImbibed event is raised, and the simulation advances to the next phenological phase.\n\nGermination Triggers\nGermination occurs in one of two ways:\n\nUser-defined germination date\n\nIf GerminationDate is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.\n\nEnvironmental conditions at sowing depth\n\nIf no date is defined, germination is triggered when:\n\nSoil water content exceeds the lower limit (LL15) for the sowing layer:\n\nSWmm[layer] &gt; LL15mm[layer]\n\nSoil temperature at sowing depth exceeds the minimum required value:\n\nSoilTemperature[layer] &gt;= MinSoilTemperature.Value()\n\nThe current day is not the sowing day.\n\nSowing Depth: The sowing layer is determined using the value of plant.SowingData.Depth, which maps to the appropriate soil layer index."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
+    "title": "Germinating Phase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nPlantSowing\nIndicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination.\n\n\n\nEvents Raised to\nThese are signals that the GerminatingPhase sends out to notify other components when actions occur:\n\n\n\nEvent\nDescription\n\n\n\n\nSeedImbibed\nRaised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
+    "title": "Germinating Phase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nMinSoilTemperature\ndouble\nMinimum soil temperature required for germination (default is 0°C).\nYes\n\n\nGerminationDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
+    "title": "Germinating Phase",
+    "section": "Usage",
+    "text": "Usage\nA GerminatingPhase can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
+    "title": "Germinating Phase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: GerminatingPhase.cs on GitHub"
   },
   {
     "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
@@ -532,325 +413,451 @@
     "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs"
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-    "title": "Germinating Phase",
+    "objectID": "docs/management/fertiliser.html",
+    "href": "docs/management/fertiliser.html",
+    "title": "Fertiliser Types",
     "section": "",
-    "text": "The GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date."
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
-    "title": "Germinating Phase",
-    "section": "Overview",
-    "text": "Overview\nThe GerminatingPhase models the transition from sowing to germination in the crop’s phenological development. Germination is assumed to occur on the day after sowing, when any of the following conditions are met:\n\nSoil water at the sowing depth exceeds the lower limit (LL15),\nSoil temperature at the sowing depth is greater than or equal to the minimum soil temperature (as defined by the MinSoilTemperature child function),\nA specific germination date is provided via the GerminationDate property.\n\nOnce any of these conditions is satisfied, the seed is considered germinated, the SeedImbibed event is raised, and the simulation advances to the next phenological phase.\n\nGermination Triggers\nGermination occurs in one of two ways:\n\nUser-defined germination date\n\nIf GerminationDate is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.\n\nEnvironmental conditions at sowing depth\n\nIf no date is defined, germination is triggered when:\n\nSoil water content exceeds the lower limit (LL15) for the sowing layer:\n\nSWmm[layer] &gt; LL15mm[layer]\n\nSoil temperature at sowing depth exceeds the minimum required value:\n\nSoilTemperature[layer] &gt;= MinSoilTemperature.Value()\n\nThe current day is not the sowing day.\n\nSowing Depth: The sowing layer is determined using the value of plant.SowingData.Depth, which maps to the appropriate soil layer index."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
-    "title": "Germinating Phase",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nPlantSowing\nIndicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination.\n\n\n\nEvents Raised to\nThese are signals that the GerminatingPhase sends out to notify other components when actions occur:\n\n\n\nEvent\nDescription\n\n\n\n\nSeedImbibed\nRaised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
-    "title": "Germinating Phase",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nMinSoilTemperature\ndouble\nMinimum soil temperature required for germination (default is 0°C).\nYes\n\n\nGerminationDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
-    "title": "Germinating Phase",
-    "section": "Usage",
-    "text": "Usage\nA GerminatingPhase can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
-    "title": "Germinating Phase",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: GerminatingPhase.cs on GitHub"
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "title": "Emerging Phase",
+    "objectID": "docs/management/fertiliser.html#introduction",
+    "href": "docs/management/fertiliser.html#introduction",
+    "title": "Fertiliser Types",
     "section": "",
-    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date."
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends."
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "title": "Emerging Phase",
-    "section": "Overview",
-    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase"
+    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "title": "Fertiliser Types",
+    "section": "Structure of Fertiliser Definitions",
+    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products."
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "title": "Emerging Phase",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified."
+    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "title": "Fertiliser Types",
+    "section": "Example Fertiliser Types in APSIM",
+    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1"
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "title": "Emerging Phase",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "title": "Emerging Phase",
-    "section": "Usage",
-    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate."
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "title": "Emerging Phase",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub."
-  },
-  {
-    "objectID": "docs/Models/Graph/index.html",
-    "href": "docs/Models/Graph/index.html",
-    "title": "Graph",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "APSIM Next Generation Notes",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Welcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork for your own use!"
   },
   {
-    "objectID": "docs/Models/Events/index.html",
-    "href": "docs/Models/Events/index.html",
-    "title": "Events",
+    "objectID": "index.html#website",
+    "href": "index.html#website",
+    "title": "APSIM Next Generation Notes",
+    "section": "Website",
+    "text": "Website\nYou can also browse these notes as a website: https://apsimng-notes.bangyou.me"
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "APSIM Next Generation Notes",
+    "section": "Contributing",
+    "text": "Contributing\nIf you find any errors, have suggestions, or want to contribute improvements, please create a pull request on GitHub."
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "APSIM Next Generation Notes",
+    "section": "License",
+    "text": "License\nThis project is licensed under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)."
+  },
+  {
+    "objectID": "tips/summary.html",
+    "href": "tips/summary.html",
+    "title": "Writing Debug Info to Summary",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCommencing\n\n\n \n\n\n\n\n\n\n\n\n\nPlantSowing\n\n\n \n\n\n\n\n\n\n\n\n\nSeedImbibed\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
   },
   {
-    "objectID": "docs/Models/Events/Commencing.html",
-    "href": "docs/Models/Events/Commencing.html",
-    "title": "Commencing",
-    "section": "",
-    "text": "Triggered once at the start of the simulation, giving all models a chance to initialise their state."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html",
-    "title": "Frost and Heat Damage Functions",
-    "section": "",
-    "text": "A daily model that simulates yield reduction due to frost and heat stresses. Developed under the GRDC Frost and Heat Management Analytics (FAHMA) project for integration into APSIM Next Generation."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Overview",
-    "text": "Overview\nThe FrostHeatDamageFunctions model calculates daily and cumulative yield reduction based on:\n\nEnvironmental severity of frost and heat events using piecewise-linear temperature damage functions.\nCrop sensitivity at different growth stages, also represented by piecewise-linear functions.\nRainfall modification, which optionally alters frost impact.\n\n\nYieldReduction = PotentialDamage × Sensitivity\n\nThe model is triggered daily and interacts with APSIM’s Phenology, Grain, and Weather models."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-usage",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-usage",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Model Usage",
-    "text": "Model Usage\nPlace the FrostHeatDamageFunctions model under a Plant model (e.g., Wheat, Canola, Barley)."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#configurable-properties",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#configurable-properties",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Configurable Properties",
-    "text": "Configurable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nCropType\nEnum\nCrop species: Wheat, Canola, or Barley. Required to load default parameters.\n\n\nFrostLowTT\ndouble\nLower temperature threshold for frost damage (°C).\n\n\nFrostUpTT\ndouble\nUpper temperature threshold for frost damage (°C).\n\n\nFrostMaxReductionRatio\ndouble\nMaximum reduction ratio at the coldest temperature.\n\n\nFrostMinReductionRatio\ndouble\nMinimum reduction ratio at the upper threshold.\n\n\nFrostStartSensitiveGS\ndouble\nStart of the frost-sensitive growth period.\n\n\nFrostStartMostSensitiveGS\ndouble\nStart of the most sensitive period to frost (sensitivity = 1).\n\n\nFrostEndMostSensitiveGS\ndouble\nEnd of the most sensitive period to frost.\n\n\nFrostEndSensitiveGS\ndouble\nEnd of the frost-sensitive growth period.\n\n\nHeatLowTT\ndouble\nLower temperature threshold for heat damage (°C).\n\n\nHeatUpTT\ndouble\nUpper temperature threshold for heat damage (°C).\n\n\nHeatMaxReductionRatio\ndouble\nMaximum reduction ratio at hottest temperature.\n\n\nHeatMinReductionRatio\ndouble\nMinimum reduction ratio at the lower threshold.\n\n\nHeatStartSensitiveGS\ndouble\nStart of the heat-sensitive growth period.\n\n\nHeatStartMostSensitiveGS\ndouble\nStart of the most sensitive period to heat (sensitivity = 1).\n\n\nHeatEndMostSensitiveGS\ndouble\nEnd of the most sensitive period to heat.\n\n\nHeatEndSensitiveGS\ndouble\nEnd of the heat-sensitive growth period.\n\n\nRainfallEffect\ndouble\nModifier for frost damage when rain occurs (1 = no effect, &gt;1 = increased damage, &lt;1 = reduced)."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#outputs",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#outputs",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Outputs",
-    "text": "Outputs\nThe following variables are reportable in APSIM NG:\n\n\n\n\n\n\n\nOutput\nDescription\n\n\n\n\nFrostPotentialReductionRatio\nDaily frost potential yield loss (0–1).\n\n\nFrostSensitivity\nSensitivity to frost based on growth stage (0–1).\n\n\nFrostReductionRatio\nDaily yield loss from frost (actual).\n\n\nHeatPotentialReductionRatio\nDaily heat potential yield loss (0–1).\n\n\nHeatSensitivity\nSensitivity to heat based on growth stage (0–1).\n\n\nHeatReductionRatio\nDaily yield loss from heat (actual).\n\n\nFrostHeatReductionRatio\nCombined daily loss from frost and heat.\n\n\nCumulativeFrostReductionRatio\nCumulative yield loss from frost over the season.\n\n\nCumulativeHeatReductionRatio\nCumulative yield loss from heat over the season.\n\n\nCumulativeFrostHeatReductionRatio\nTotal cumulative yield loss from frost and heat.\n\n\nFrostEventNumber\nNumber of frost events during sensitive periods.\n\n\nHeatEventNumber\nNumber of heat events during sensitive periods.\n\n\nFrostHeatYield\nYield after accounting for frost and heat losses."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Events",
-    "text": "Events\n\n\n\n\n\n\n\n\nEvent\nTrigger\nDescription\n\n\n\n\nCommencing\nStart\nValidates that crop type is correctly selected and matches plant model.\n\n\nSowing\nPlanting\nResets internal counters and output values.\n\n\nDoManagementCalculations\nDaily\nComputes frost/heat effects and yield reductions during plant growth."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#notes",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#notes",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Notes",
-    "text": "Notes\n\nCrop parameters are loaded automatically based on the selected CropType.\nGrowth stage sensitivity functions are defined by 4 thresholds to describe increasing and decreasing sensitivity.\nThe model uses:\n\nWeather.MinT for frost detection\nWeather.MaxT for heat detection\nAPSIM Phenology.Stage for current crop development\n\nIf rainfall on the previous day is between 1–10 mm, an alternate frost response curve is used."
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#supported-crops",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#supported-crops",
-    "title": "Frost and Heat Damage Functions",
-    "section": "Supported Crops",
-    "text": "Supported Crops\n\nWheat and Canola have fully parameterized frost/heat damage models.\nBarley is included but parameters may still be under evaluation."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "",
-    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#purpose",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "tips/summary.html#purpose",
+    "href": "tips/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
     "section": "Purpose",
-    "text": "Purpose\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration."
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Inputs",
-    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content."
+    "objectID": "tips/summary.html#code-example",
+    "href": "tips/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#calculation",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Calculation",
-    "text": "Calculation\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\)."
+    "objectID": "tips/summary.html#additional-resources",
+    "href": "tips/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#implementation-details",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Implementation Details",
-    "text": "Implementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties."
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#usage-notes",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Usage Notes",
-    "text": "Usage Notes\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements."
-  },
-  {
-    "objectID": "docs/Models/Traits/CO2/index.html",
-    "href": "docs/Models/Traits/CO2/index.html",
-    "title": "CO2",
+    "objectID": "tips/co2.html",
+    "href": "tips/co2.html",
+    "title": "Setting CO₂ Concentration",
     "section": "",
-    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script."
+    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
   },
   {
-    "objectID": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
-    "href": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
-    "title": "CO2",
-    "section": "Radiation Use Efficiency (RUE)",
-    "text": "Radiation Use Efficiency (RUE)\n\nC3\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.\n\n\n\n\nC4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops."
+    "objectID": "tips/co2.html#objective",
+    "href": "tips/co2.html#objective",
+    "title": "Setting CO₂ Concentration",
+    "section": "Objective",
+    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
   },
   {
-    "objectID": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
-    "href": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
-    "title": "CO2",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
+    "objectID": "tips/co2.html#implementation",
+    "href": "tips/co2.html#implementation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
   },
   {
-    "objectID": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
-    "href": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
-    "title": "CO2",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+    "objectID": "tips/co2.html#explanation",
+    "href": "tips/co2.html#explanation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Explanation",
+    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
   },
   {
-    "objectID": "docs/Crops/index.html",
-    "href": "docs/Crops/index.html",
-    "title": "Crops",
+    "objectID": "tips/co2.html#additional-resources",
+    "href": "tips/co2.html#additional-resources",
+    "title": "Setting CO₂ Concentration",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/internal_variable.html",
+    "href": "tips/internal_variable.html",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "",
-    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file."
+    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
   },
   {
-    "objectID": "docs/Crops/index.html#wheat",
-    "href": "docs/Crops/index.html#wheat",
-    "title": "Crops",
-    "section": "Wheat",
-    "text": "Wheat"
+    "objectID": "tips/internal_variable.html#objective",
+    "href": "tips/internal_variable.html#objective",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Objective",
+    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
   },
   {
-    "objectID": "docs/Crops/index.html#canola",
-    "href": "docs/Crops/index.html#canola",
-    "title": "Crops",
-    "section": "Canola",
-    "text": "Canola"
+    "objectID": "tips/internal_variable.html#implementation",
+    "href": "tips/internal_variable.html#implementation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html",
-    "href": "docs/Crops/Canola/Phenology/index.html",
-    "title": "Phenology",
+    "objectID": "tips/internal_variable.html#explanation",
+    "href": "tips/internal_variable.html#explanation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Explanation",
+    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
+  },
+  {
+    "objectID": "tips/internal_variable.html#additional-resources",
+    "href": "tips/internal_variable.html#additional-resources",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/index.html",
+    "href": "tips/index.html",
+    "title": "APSIM NG Notes",
     "section": "",
-    "text": "Title\nDate\nDescription\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html",
-    "title": "CO2 for Wheat",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+    "text": "About this site"
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
-    "title": "CO2 for Wheat",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "title": "Nutrient Constrained Allocation",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures."
+    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration."
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
-    "title": "CO2 for Wheat",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]"
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Role in APSIM Simulation Pipeline",
+    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation)."
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
-    "title": "CO2 for Wheat",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf"
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Inputs and Assumptions",
+    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "",
-    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots)."
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Step-by-Step Process",
+    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen."
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#function-definition",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "Function Definition",
-    "text": "Function Definition\nThe demand is defined by a PhaseLookup function:\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development."
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "title": "Nutrient Constrained Allocation",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions."
+    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833"
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Scientific Rationale",
+    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Extensibility",
+    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Outputs and Implications",
+    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Potential bugs and Limitations",
+    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs."
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "title": "Nutrient Constrained Allocation",
     "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model"
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs"
+  },
+  {
+    "objectID": "docs/Models/PMF/index.html",
+    "href": "docs/Models/PMF/index.html",
+    "title": "Plant Modelling Framework",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGeneric Phase\n\n\n \n\n\n\n\n\n\n\n\n\nGerminating Phase\n\n\n \n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+    "title": "Generic Phase",
+    "section": "",
+    "text": "The GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
+    "title": "Generic Phase",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.\n\nDaily progression is configured from property Progression (in general it is daily thermal time, e.g. [Phenology].ThermalTime).\nThe target thermal time is configured via the property Target (in Cd).\nThe progress through this phase is tracked by the FractionComplete property, which returns a value between 0 and 1.\nThe phase transitions to the next stage once FractionComplete reaches 1.\n\nIf the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day’s progress is passed to this phase."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
+    "title": "Generic Phase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations"
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
+    "title": "Generic Phase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins.\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase.\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
+    "title": "Generic Phase",
+    "section": "Usage",
+    "text": "Usage\nA GenericPhase can be used to represent phases such as “Grain Filling” which are mainly impacted by temperature without interactions with vernalisation and photoperiod."
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
+    "title": "Generic Phase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: GenericPhase.cs on GitHub"
+  },
+  {
+    "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
+    "href": "docs/Models/Graph/EventNamesOnGraph.html",
+    "title": "Show Event Names on Graph",
+    "section": "",
+    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph"
+  },
+  {
+    "objectID": "docs/Models/Events/PlantSowing.html",
+    "href": "docs/Models/Events/PlantSowing.html",
+    "title": "PlantSowing",
+    "section": "",
+    "text": "This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process."
+  },
+  {
+    "objectID": "docs/Models/Events/SeedImbibed.html",
+    "href": "docs/Models/Events/SeedImbibed.html",
+    "title": "SeedImbibed",
+    "section": "",
+    "text": "This event is raised when germination occurs by GerminatingPhase, signaling other models or processes to begin their activities related to the germinated seed."
+  },
+  {
+    "objectID": "docs/Models/index.html",
+    "href": "docs/Models/index.html",
+    "title": "Models",
+    "section": "",
+    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations."
+  },
+  {
+    "objectID": "docs/Models/index.html#functions",
+    "href": "docs/Models/index.html#functions",
+    "title": "Models",
+    "section": "",
+    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations."
+  },
+  {
+    "objectID": "docs/Models/index.html#plant-modelling-framework",
+    "href": "docs/Models/index.html#plant-modelling-framework",
+    "title": "Models",
+    "section": "Plant Modelling Framework",
+    "text": "Plant Modelling Framework\nThe Plant Modelling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014)."
+  },
+  {
+    "objectID": "docs/Models/index.html#graph",
+    "href": "docs/Models/index.html#graph",
+    "title": "Models",
+    "section": "Graph",
+    "text": "Graph\nThe Graph module provides a framework to visualise reports in APSIM Next Generation. It allows users to create and manage graphs, which can be used to display various data types, including time series and statistical analyses."
+  },
+  {
+    "objectID": "docs/Models/index.html#traits",
+    "href": "docs/Models/index.html#traits",
+    "title": "Models",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
+  },
+  {
+    "objectID": "docs/Models/index.html#events",
+    "href": "docs/Models/index.html#events",
+    "title": "Models",
+    "section": "Events",
+    "text": "Events\nEvents are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways."
+  },
+  {
+    "objectID": "docs/Models/Functions/index.html",
+    "href": "docs/Models/Functions/index.html",
+    "title": "Functions",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAdd Function\n\n\n \n\n\n\n\n\n\n\n\n\nFrost and Heat Damage Functions\n\n\n \n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html",
+    "href": "docs/Models/Functions/AddFunction.html",
+    "title": "Add Function",
+    "section": "",
+    "text": "The AddFunction is a utility function that returns the sum of values from all of its child functions."
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#purpose",
+    "href": "docs/Models/Functions/AddFunction.html#purpose",
+    "title": "Add Function",
+    "section": "Purpose",
+    "text": "Purpose\nThe AddFunction is used to sum up multiple values for a mathematical equation in the Plant Model Framework. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models."
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#user-interface",
+    "href": "docs/Models/Functions/AddFunction.html#user-interface",
+    "title": "Add Function",
+    "section": "User Interface",
+    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function."
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#practical-example",
+    "href": "docs/Models/Functions/AddFunction.html#practical-example",
+    "title": "Add Function",
+    "section": "Practical Example",
+    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above.\n\n\n\nTarget thermal time from germination to emergence in the wheat model"
+  },
+  {
+    "objectID": "docs/Models/Traits/index.html",
+    "href": "docs/Models/Traits/index.html",
+    "title": "Traits",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n \n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html",
+    "href": "docs/Crops/Canola/index.html",
+    "title": "Canola",
+    "section": "",
+    "text": "The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.\n\nPhenology\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html",
+    "href": "docs/Crops/Wheat/index.html",
+    "title": "Wheat",
+    "section": "",
+    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#phenology",
+    "href": "docs/Crops/Wheat/index.html#phenology",
+    "title": "Wheat",
+    "section": "Phenology",
+    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#grain",
+    "href": "docs/Crops/Wheat/index.html#grain",
+    "title": "Wheat",
+    "section": "Grain",
+    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#traits",
+    "href": "docs/Crops/Wheat/index.html#traits",
+    "title": "Wheat",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/index.html",
+    "href": "docs/Crops/Wheat/Traits/index.html",
+    "title": "Traits",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/index.html",
+    "href": "docs/Crops/Wheat/grain/index.html",
+    "title": "Grain",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "docs/Crops/Wheat/Phenology/index.html",
     "href": "docs/Crops/Wheat/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "Title\nDate\nDescription\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDate\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGerminating\n\n\nJun 6, 2025\n\n\n\n\n\n\n\n\n\nNo matching items"
   }
 ]
