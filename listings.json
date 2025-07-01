@@ -1,5 +1,13 @@
 [
   {
+    "listing": "/docs/Crops/Wheat/Phenology/index.html",
+    "items": [
+      "/docs/Crops/Wheat/Phenology/Emerging.html",
+      "/docs/Crops/Wheat/Phenology/Germinating.html",
+      "/docs/Crops/Wheat/Phenology/ThermalTime.html"
+    ]
+  },
+  {
     "listing": "/docs/Crops/Canola/Phenology/index.html",
     "items": []
   },
@@ -59,12 +67,6 @@
     "listing": "/docs/Crops/Wheat/grain/index.html",
     "items": [
       "/docs/Crops/Wheat/grain/NitrogenDemand.html"
-    ]
-  },
-  {
-    "listing": "/docs/Crops/Wheat/Phenology/index.html",
-    "items": [
-      "/docs/Crops/Wheat/Phenology/Germinating.html"
     ]
   }
 ]
