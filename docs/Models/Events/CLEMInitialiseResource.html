@@ -72,7 +72,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../../../styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -94,8 +94,8 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../docs/index.html"> 
-<span class="menu-text">Documentations</span></a>
+    <a class="nav-link active" href="../../../docs/index.html" aria-current="page"> 
+<span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../tips/index.html"> 
@@ -118,10 +118,854 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Events/index.html">Events</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Events/CLEMInitialiseResource.html">CLEMInitialiseResource</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../tips/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../tips/co2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setting CO₂ Concentration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../tips/internal_variable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accessing Internal Model Variables in the Manager Scripts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../tips/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Writing Debug Info to Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Models</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PMF</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Arbitrator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nutrient Constrained Allocation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Relative Allocation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Phases</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth5 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emerging Phase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Generic Phase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Germinating Phase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Show Event Names on Graph</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/Events/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Events</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAgeResources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAgeResources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalBreeding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalBreeding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalBuy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalBuy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalDeath.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalDeath</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalManage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalManage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalMark.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalMark</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalMilking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalMilking</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalMilkProduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalMilkProduction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalSell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalSell</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalStock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalStock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMAnimalWeightGain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMAnimalWeightGain</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMCalculateEcologicalState.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMCalculateEcologicalState</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMCalculateManure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMCalculateManure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMCollectManure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMCollectManure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMDetachPasture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMDetachPasture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMDoCutAndCarry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMDoCutAndCarry</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMEndOfTimeStep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMEndOfTimeStep</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMFinalizeTimeStep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMFinalizeTimeStep</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMGetResourcesRequired.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMGetResourcesRequired</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMHerdSummary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMHerdSummary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMInitialiseActivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMInitialiseActivity</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMInitialiseResource.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">CLEMInitialiseResource</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMPastureReady.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMPastureReady</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMPotentialIntake.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMPotentialIntake</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMStartOfTimeStep.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMStartOfTimeStep</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMUpdateLabourAvailability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMUpdateLabourAvailability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMUpdatePasture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMUpdatePasture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/CLEMValidate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CLEMValidate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/Commencing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Commencing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoActualPlantGrowth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoActualPlantGrowth</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoActualPlantPartioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoActualPlantPartioning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoCatchYesterday.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoCatchYesterday</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoCommence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoCommence</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoDailyInitialisation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoDailyInitialisation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoDCAPST.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoDCAPST</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoEndPasture.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoEndPasture</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoEnergyArbitration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoEnergyArbitration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoFertiliserApplications.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoFertiliserApplications</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoInitialSummary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoInitialSummary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoLifecycle.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoLifecycle</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoManagement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoManagement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoManagementCalculations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoManagementCalculations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoNutrientArbitration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoNutrientArbitration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoPastureWater.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoPastureWater</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoPestDiseaseDamage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoPestDiseaseDamage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoPhenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoPhenology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoPotentialPlantGrowth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoPotentialPlantGrowth</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoPotentialPlantPartioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoPotentialPlantPartioning</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoReport.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoReport</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoReportCalculations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoReportCalculations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSoilErosion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSoilErosion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSoilOrganicMatter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSoilOrganicMatter</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSoilTemperature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSoilTemperature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSoilWaterMovement.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSoilWaterMovement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSolute.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSolute</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoStock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoStock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSurfaceOrganicMatterDecomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoSurfaceOrganicMatterPotentialDecomposition</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoUpdate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoUpdate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoUpdateWaterDemand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoUpdateWaterDemand</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoWaterArbitration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoWaterArbitration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/DoWeather.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DoWeather</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/EndOfDay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndOfDay</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/EndOfMonth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndOfMonth</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/EndOfSimulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndOfSimulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/EndOfWeek.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndOfWeek</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/EndOfYear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndOfYear</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/FinalInitialise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FinalInitialise</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/PartitioningComplete.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PartitioningComplete</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/PlantSowing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PlantSowing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/PrePhenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PrePhenology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/SeedImbibed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SeedImbibed</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfDay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfDay</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfFirstDay.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfFirstDay</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfMonth.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfMonth</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfSimulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfSimulation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfWeek.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfWeek</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Events/StartOfYear.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StartOfYear</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Add Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Frost and Heat Damage Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hourly Sinusoidal and Exponential Air Temperature Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Sub Daily Interpolation Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Three Hourly Air Temperature Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text">DemandFunctions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traits</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CO2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Crops</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Canola</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wheat</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traits</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CO2 for Wheat</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grain</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emerging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Germinating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thermal Time</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fertiliser Types</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -135,7 +979,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Events/index.html">Events</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Events/CLEMInitialiseResource.html">CLEMInitialiseResource</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">CLEMInitialiseResource</h1>
 </div>

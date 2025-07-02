@@ -2,474 +2,474 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.101Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/ThermalTime.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/NitrogenDemand.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/co2-wheat.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.095Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/CO2/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/ThreeHourAirTemperature.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/SubDailyInterpolation.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfDay.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/EndOfWeek.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/EndOfMonth.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfYear.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoNutrientArbitration.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoEnergyArbitration.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoManagement.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMPastureReady.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSolute.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoFertiliserApplications.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMHerdSummary.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoCatchYesterday.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMFinalizeTimeStep.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfWeek.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMCalculateEcologicalState.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/PrePhenology.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMDetachPasture.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfSimulation.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMValidate.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSoilTemperature.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoPestDiseaseDamage.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfFirstDay.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalBuy.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMEndOfTimeStep.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoLifecycle.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoReportCalculations.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSoilErosion.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/EndOfSimulation.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/EndOfYear.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoEndPasture.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMInitialiseActivity.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoWeather.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/StartOfMonth.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoDCAPST.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoDailyInitialisation.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMUpdateLabourAvailability.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalWeightGain.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Clock.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GenericPhase.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-07-02T12:17:40.095Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.102Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.337Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-07-02T12:17:40.102Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.337Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-07-02T12:17:40.102Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.337Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-07-02T12:17:40.102Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.337Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.101Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/management/fertiliser.html</loc>
-    <lastmod>2025-07-02T12:17:40.101Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/EmergingPhase.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalDeath.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/EndOfDay.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalMilkProduction.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSoilOrganicMatter.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoPhenology.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoWaterArbitration.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/PlantSowing.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoCommence.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMDoCutAndCarry.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAgeResources.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMGetResourcesRequired.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMPotentialIntake.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoUpdate.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoPotentialPlantPartioning.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMCalculateManure.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoPotentialPlantGrowth.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMStartOfTimeStep.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMCollectManure.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/PartitioningComplete.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoSoilWaterMovement.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/SeedImbibed.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoStock.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMUpdatePasture.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoUpdateWaterDemand.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalStock.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalMark.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoActualPlantPartioning.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoActualPlantGrowth.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalSell.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalMilking.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoInitialSummary.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoPastureWater.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/FinalInitialise.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMInitialiseResource.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoManagementCalculations.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/DoReport.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/Commencing.html</loc>
-    <lastmod>2025-07-02T12:17:40.097Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.332Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalBreeding.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/CLEMAnimalManage.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/FrostHeatDamageFunctions.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.334Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/HourlySinPpAdjusted.html</loc>
-    <lastmod>2025-07-02T12:17:40.099Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/AddFunction.html</loc>
-    <lastmod>2025-07-02T12:17:40.098Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.333Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.100Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.335Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.095Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/index.html</loc>
-    <lastmod>2025-07-02T12:17:40.096Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.331Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Germinating.html</loc>
-    <lastmod>2025-07-02T12:17:40.095Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Emerging.html</loc>
-    <lastmod>2025-07-02T12:17:40.095Z</lastmod>
+    <lastmod>2025-07-02T12:49:30.330Z</lastmod>
   </url>
 </urlset>
