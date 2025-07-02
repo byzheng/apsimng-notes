@@ -2290,190 +2290,112 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site",
-    "crumbs": [
-      "Home",
-      "About"
-    ]
+    "text": "About this site"
   },
   {
     "objectID": "tips/index.html",
     "href": "tips/index.html",
     "title": "Tips",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Tips"
-    ]
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "tips/internal_variable.html",
     "href": "tips/internal_variable.html",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "",
-    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Accessing Internal Model Variables in the Manager Scripts"
-    ]
+    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
   },
   {
     "objectID": "tips/internal_variable.html#objective",
     "href": "tips/internal_variable.html#objective",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "Objective",
-    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Accessing Internal Model Variables in the Manager Scripts"
-    ]
+    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
   },
   {
     "objectID": "tips/internal_variable.html#implementation",
     "href": "tips/internal_variable.html#implementation",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Accessing Internal Model Variables in the Manager Scripts"
-    ]
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
   },
   {
     "objectID": "tips/internal_variable.html#explanation",
     "href": "tips/internal_variable.html#explanation",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "Explanation",
-    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Accessing Internal Model Variables in the Manager Scripts"
-    ]
+    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
   },
   {
     "objectID": "tips/internal_variable.html#additional-resources",
     "href": "tips/internal_variable.html#additional-resources",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
     "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Accessing Internal Model Variables in the Manager Scripts"
-    ]
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
     "objectID": "tips/co2.html",
     "href": "tips/co2.html",
     "title": "Setting CO₂ Concentration",
     "section": "",
-    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Setting CO₂ Concentration"
-    ]
+    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
   },
   {
     "objectID": "tips/co2.html#objective",
     "href": "tips/co2.html#objective",
     "title": "Setting CO₂ Concentration",
     "section": "Objective",
-    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Setting CO₂ Concentration"
-    ]
+    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
   },
   {
     "objectID": "tips/co2.html#implementation",
     "href": "tips/co2.html#implementation",
     "title": "Setting CO₂ Concentration",
     "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Setting CO₂ Concentration"
-    ]
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
   },
   {
     "objectID": "tips/co2.html#explanation",
     "href": "tips/co2.html#explanation",
     "title": "Setting CO₂ Concentration",
     "section": "Explanation",
-    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Setting CO₂ Concentration"
-    ]
+    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
   },
   {
     "objectID": "tips/co2.html#additional-resources",
     "href": "tips/co2.html#additional-resources",
     "title": "Setting CO₂ Concentration",
     "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Setting CO₂ Concentration"
-    ]
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
     "objectID": "tips/summary.html",
     "href": "tips/summary.html",
     "title": "Writing Debug Info to Summary",
     "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Writing Debug Info to Summary"
-    ]
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
   },
   {
     "objectID": "tips/summary.html#purpose",
     "href": "tips/summary.html#purpose",
     "title": "Writing Debug Info to Summary",
     "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Writing Debug Info to Summary"
-    ]
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
   },
   {
     "objectID": "tips/summary.html#code-example",
     "href": "tips/summary.html#code-example",
     "title": "Writing Debug Info to Summary",
     "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Writing Debug Info to Summary"
-    ]
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
   },
   {
     "objectID": "tips/summary.html#additional-resources",
     "href": "tips/summary.html#additional-resources",
     "title": "Writing Debug Info to Summary",
     "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers.",
-    "crumbs": [
-      "Home",
-      "Tips",
-      "Writing Debug Info to Summary"
-    ]
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
     "objectID": "index.html",
