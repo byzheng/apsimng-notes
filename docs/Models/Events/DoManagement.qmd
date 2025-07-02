@@ -1,0 +1,7 @@
+---
+title: "DoManagement"
+output: html_document
+---
+
+
+Occurs each day to do management actions and changes.

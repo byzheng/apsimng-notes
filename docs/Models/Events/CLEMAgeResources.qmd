@@ -1,0 +1,7 @@
+---
+title: "CLEMAgeResources"
+output: html_document
+---
+
+
+CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals).

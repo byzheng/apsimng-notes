@@ -1,0 +1,7 @@
+---
+title: "CLEMGetResourcesRequired"
+output: html_document
+---
+
+
+Request and perform the collection of manure after resources are allocated and manure produced in time-step.

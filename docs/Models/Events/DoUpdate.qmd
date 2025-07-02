@@ -1,0 +1,7 @@
+---
+title: "DoUpdate"
+output: html_document
+---
+
+
+Occurs near end of each day to do checks and finalising.

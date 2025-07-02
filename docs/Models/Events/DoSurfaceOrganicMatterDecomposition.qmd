@@ -1,0 +1,7 @@
+---
+title: "DoSurfaceOrganicMatterDecomposition"
+output: html_document
+---
+
+
+Occurs each day to do the daily residue decomposition.

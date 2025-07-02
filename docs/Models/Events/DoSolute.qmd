@@ -1,0 +1,7 @@
+---
+title: "DoSolute"
+output: html_document
+---
+
+
+Occurs each day.

@@ -1,0 +1,7 @@
+---
+title: "StartOfYear"
+output: html_document
+---
+
+
+Occurs at start of each year.

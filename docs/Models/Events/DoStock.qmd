@@ -1,0 +1,7 @@
+---
+title: "DoStock"
+output: html_document
+---
+
+
+Occurs each day to process stock methods in GrazPlan Stock.

@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalMilking"
+output: html_document
+---
+
+
+CLEM Do Animal (Ruminant and Other) milking.

@@ -1,0 +1,7 @@
+---
+title: "CLEMCalculateEcologicalState"
+output: html_document
+---
+
+
+CLEM Calculate ecological state after all deaths and before management.

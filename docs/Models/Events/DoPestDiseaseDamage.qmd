@@ -1,0 +1,7 @@
+---
+title: "DoPestDiseaseDamage"
+output: html_document
+---
+
+
+Occurs to do Pest/Disease actions.

@@ -1,0 +1,7 @@
+---
+title: "DoPastureWater"
+output: html_document
+---
+
+
+Initiates water calculations for the Pasture model.

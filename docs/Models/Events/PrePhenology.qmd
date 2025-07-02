@@ -1,0 +1,7 @@
+---
+title: "PrePhenology"
+output: html_document
+---
+
+
+Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs.

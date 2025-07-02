@@ -1,0 +1,7 @@
+---
+title: "EndOfDay"
+output: html_document
+---
+
+
+Occurs at end of each day.

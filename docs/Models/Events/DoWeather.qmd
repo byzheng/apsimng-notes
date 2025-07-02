@@ -1,0 +1,7 @@
+---
+title: "DoWeather"
+output: html_document
+---
+
+
+Occurs each day to calculate weather.

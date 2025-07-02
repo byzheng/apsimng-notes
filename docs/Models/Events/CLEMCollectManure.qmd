@@ -1,0 +1,7 @@
+---
+title: "CLEMCollectManure"
+output: html_document
+---
+
+
+Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later.

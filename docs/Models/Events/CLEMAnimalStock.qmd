@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalStock"
+output: html_document
+---
+
+
+CLEM stock animals to pasture availability or other metrics.

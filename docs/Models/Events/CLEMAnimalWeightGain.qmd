@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalWeightGain"
+output: html_document
+---
+
+
+CLEM Calculate Animals(Ruminant and Other) weight gain.

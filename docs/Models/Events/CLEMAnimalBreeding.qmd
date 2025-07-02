@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalBreeding"
+output: html_document
+---
+
+
+CLEM Do Animal (Ruminant and Other) Breeding and milk calculations.

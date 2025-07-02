@@ -1,0 +1,7 @@
+---
+title: "CLEMPotentialIntake"
+output: html_document
+---
+
+
+Get potential intake. This includes suckling milk consumption.

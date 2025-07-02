@@ -1,0 +1,7 @@
+---
+title: "DoDCAPST"
+output: html_document
+---
+
+
+Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning.

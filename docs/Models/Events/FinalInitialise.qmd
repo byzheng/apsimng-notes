@@ -1,0 +1,7 @@
+---
+title: "FinalInitialise"
+output: html_document
+---
+
+
+Final Initialise event. Occurs once at start of simulation.

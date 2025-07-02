@@ -1,0 +1,7 @@
+---
+title: "DoSoilOrganicMatter"
+output: html_document
+---
+
+
+Occurs each day to perform daily calculations of organic soil matter.

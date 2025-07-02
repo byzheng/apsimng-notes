@@ -1,0 +1,7 @@
+---
+title: "DoManagementCalculations"
+output: html_document
+---
+
+
+Occurs each day after the simulation is done. Does management calculations.

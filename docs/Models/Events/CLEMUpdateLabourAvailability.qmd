@@ -1,0 +1,7 @@
+---
+title: "CLEMUpdateLabourAvailability"
+output: html_document
+---
+
+
+CLEM set labour availability after start of timestep and financial considerations.

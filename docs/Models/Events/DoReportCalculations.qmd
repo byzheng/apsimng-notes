@@ -1,0 +1,7 @@
+---
+title: "DoReportCalculations"
+output: html_document
+---
+
+
+Occurs when [do report calculations].

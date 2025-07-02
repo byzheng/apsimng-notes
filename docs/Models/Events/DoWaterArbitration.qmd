@@ -1,0 +1,7 @@
+---
+title: "DoWaterArbitration"
+output: html_document
+---
+
+
+Occurs each day to do water arbitration.

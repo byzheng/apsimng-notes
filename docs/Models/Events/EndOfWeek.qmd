@@ -1,0 +1,7 @@
+---
+title: "EndOfWeek"
+output: html_document
+---
+
+
+Occurs at end of each week.

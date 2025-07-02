@@ -1,0 +1,7 @@
+---
+title: "DoUpdateWaterDemand"
+output: html_document
+---
+
+
+Occurs each day to do daily growth increment of total plant biomass.

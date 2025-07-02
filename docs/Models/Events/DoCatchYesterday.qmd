@@ -1,0 +1,7 @@
+---
+title: "DoCatchYesterday"
+output: html_document
+---
+
+
+Occurs first each day to allow yesterdays values to be caught.

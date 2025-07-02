@@ -1,0 +1,7 @@
+---
+title: "DoNutrientArbitration"
+output: html_document
+---
+
+
+Occurs each day to do nutrient arbitration.

@@ -1,0 +1,7 @@
+---
+title: "StartOfFirstDay"
+output: html_document
+---
+
+
+Occurs once at the start of the first day of the simulation.

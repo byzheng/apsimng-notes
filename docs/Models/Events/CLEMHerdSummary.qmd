@@ -1,0 +1,7 @@
+---
+title: "CLEMHerdSummary"
+output: html_document
+---
+
+
+CLEM event to calculate monthly herd summary.

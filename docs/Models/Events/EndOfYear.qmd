@@ -1,0 +1,7 @@
+---
+title: "EndOfYear"
+output: html_document
+---
+
+
+Occurs at end of each year.

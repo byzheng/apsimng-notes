@@ -1,0 +1,7 @@
+---
+title: "CLEMInitialiseResource"
+output: html_document
+---
+
+
+CLEM initialise Resources occurs once at start of simulation.

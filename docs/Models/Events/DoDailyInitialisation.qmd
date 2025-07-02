@@ -1,0 +1,7 @@
+---
+title: "DoDailyInitialisation"
+output: html_document
+---
+
+
+Occurs each day to do daily updates to models.

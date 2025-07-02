@@ -1,0 +1,7 @@
+---
+title: "DoEnergyArbitration"
+output: html_document
+---
+
+
+Occurs when the canopy energy balance needs to be calculated with MicroClimate.

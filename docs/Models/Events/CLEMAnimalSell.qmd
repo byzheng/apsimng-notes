@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalSell"
+output: html_document
+---
+
+
+CLEM sell animals to market including transporting and labour.

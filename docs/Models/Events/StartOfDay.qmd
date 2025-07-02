@@ -1,0 +1,7 @@
+---
+title: "StartOfDay"
+output: html_document
+---
+
+
+Occurs at start of each day.

@@ -1,0 +1,7 @@
+---
+title: "DoSoilWaterMovement"
+output: html_document
+---
+
+
+Occurs each day to do water calculations such as irrigation, swim, water balance etc.

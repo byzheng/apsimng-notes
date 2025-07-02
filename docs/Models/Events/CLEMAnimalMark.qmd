@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalMark"
+output: html_document
+---
+
+
+CLEM Do animal marking so complete before undertaking management decisions.

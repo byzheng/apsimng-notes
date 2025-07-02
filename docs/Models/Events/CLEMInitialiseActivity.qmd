@@ -1,0 +1,7 @@
+---
+title: "CLEMInitialiseActivity"
+output: html_document
+---
+
+
+CLEM initialise Activity occurs once at start of simulation.

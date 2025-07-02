@@ -1,0 +1,7 @@
+---
+title: "CLEMAnimalBuy"
+output: html_document
+---
+
+
+CLEM buy animals including transporting and labour.

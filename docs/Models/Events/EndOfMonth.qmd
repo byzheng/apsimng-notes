@@ -1,0 +1,7 @@
+---
+title: "EndOfMonth"
+output: html_document
+---
+
+
+Occurs at end of each month.

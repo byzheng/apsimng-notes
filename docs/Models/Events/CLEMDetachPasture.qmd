@@ -1,0 +1,7 @@
+---
+title: "CLEMDetachPasture"
+output: html_document
+---
+
+
+CLEM detach pasture.
