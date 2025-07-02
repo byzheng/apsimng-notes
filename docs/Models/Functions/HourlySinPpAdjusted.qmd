@@ -114,6 +114,7 @@ $$
 
 This methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.
 
+> If $T_{minA}$ or $T_{maxB}$ are not provided, the model will use the current day's minimum or maximum temperatures, e.g. in the beginning or ending of simulation without weather data.
 
 ## Events 
 
