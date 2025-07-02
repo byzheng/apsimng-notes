@@ -6,6 +6,6 @@ listing:
    - "*.qmd"
   type: table
   sort: "date desc"
-  fields: [title, date, description]
+  fields: [title, description]
 ---
 

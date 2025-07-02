@@ -1,11 +1,10 @@
 ---
-title: "Plant Modelling Framework"
+title: "Plant Modelling Framework (PMF)"
 listing:
   contents: 
    - "*.md"
    - "*.qmd"
   type: table
   sort: "date desc"
-  fields: [title, date, description]
+  fields: [title, description]
 ---
-
