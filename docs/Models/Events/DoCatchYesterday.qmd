@@ -5,3 +5,7 @@ output: html_document
 
 
 Occurs first each day to allow yesterdays values to be caught.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

@@ -5,3 +5,7 @@ output: html_document
 
 
 Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

@@ -5,3 +5,7 @@ output: html_document
 
 
 Occurs after pasture growth and sends material to SOM.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

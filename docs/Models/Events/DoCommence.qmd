@@ -1,0 +1,9 @@
+---
+title: "DoCommence"
+output: html_document
+---
+
+
+Occurs each day when the simulation commences.
+
+

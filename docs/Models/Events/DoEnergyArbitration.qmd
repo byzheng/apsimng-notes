@@ -5,3 +5,7 @@ output: html_document
 
 
 Occurs when the canopy energy balance needs to be calculated with MicroClimate.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

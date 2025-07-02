@@ -5,3 +5,7 @@ output: html_document
 
 
 Get potential intake. This includes suckling milk consumption.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

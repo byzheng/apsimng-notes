@@ -5,3 +5,9 @@ output: html_document
 
 
 This event is raised when germination occurs by [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd), signaling other models or processes to begin their activities related to the germinated seed.
+
+
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) model.

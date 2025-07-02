@@ -5,3 +5,7 @@ output: html_document
 
 
 CLEM detach pasture.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

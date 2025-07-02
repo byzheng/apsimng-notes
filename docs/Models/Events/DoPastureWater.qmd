@@ -5,3 +5,7 @@ output: html_document
 
 
 Initiates water calculations for the Pasture model.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

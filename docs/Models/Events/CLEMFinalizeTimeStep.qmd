@@ -5,3 +5,7 @@ output: html_document
 
 
 CLEM finalize time-step before end.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.

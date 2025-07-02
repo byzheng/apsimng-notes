@@ -5,3 +5,7 @@ output: html_document
 
 
 Final Initialise event. Occurs once at start of simulation.
+
+## Triggering
+
+This event is triggered in the [Clock](/docs/Models/Clock.qmd) model.
