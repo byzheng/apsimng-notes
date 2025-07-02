@@ -161,8 +161,10 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
-  <li><a href="#implementation-details" id="toc-implementation-details" class="nav-link" data-scroll-target="#implementation-details">Implementation Details</a></li>
-  <li><a href="#usage-notes" id="toc-usage-notes" class="nav-link" data-scroll-target="#usage-notes">Usage Notes</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -228,17 +230,71 @@ D_{\text{N, Storage}} = N_{\text{Live}, i} - N_{\text{Live}, i-1} - D_{\text{N, 
 <li><span class="math inline">\(D_{\text{N, Structural}}\)</span>: Nitrogen demand for structural functions at day <span class="math inline">\(i\)</span>.</li>
 <li><span class="math inline">\(D_{\text{N, Metabolic}}\)</span>: Nitrogen demand for metabolic functions at day <span class="math inline">\(i\)</span>.</li>
 </ul>
-</section>
-<section id="implementation-details" class="level2">
-<h2 class="anchored" data-anchor-id="implementation-details">Implementation Details</h2>
+<p>Implementation Details</p>
 <ul>
 <li>The function is part of the <code>Models.Functions.DemandFunctions</code> namespace.</li>
 <li>It implements the <code>IFunction</code> interface, allowing it to be used within the APSIM model framework.</li>
 <li>During simulation commencement, it identifies its parent organ implementing the <code>IArbitration</code> interface to access necessary properties.</li>
 </ul>
 </section>
-<section id="usage-notes" class="level2">
-<h2 class="anchored" data-anchor-id="usage-notes">Usage Notes</h2>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p><strong>Events Listened For</strong></p>
+<p>These are signals or notifications that the <code>GerminatingPhase</code> listens for from other parts of the simulation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events/Commencing.html">Commencing</a></td>
+<td>Get parent organ from simulations</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<blockquote class="blockquote">
+<p>No configurable properties are available for this function.</p>
+</blockquote>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Value</code></td>
+<td>double</td>
+<td>Storage demands for nitrogen (N) in the organ</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<p><code>StorageNDemandFunction</code> can be added as a child of a <code>NutrientDemandFunctions</code> node in the model tree. Right-click the parent node, select “Add Model…”, and search for <code>StorageNDemandFunction</code> in the Filter Box.</p>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
 <ul>
 <li>Ensure that <code>maxNConc</code> and <code>nitrogenDemandSwitch</code> are properly defined within the organ’s model to avoid calculation errors.</li>
 <li>This function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements.</li>

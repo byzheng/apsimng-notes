@@ -12,12 +12,25 @@
     "items": []
   },
   {
-    "listing": "/docs/Models/Functions/index.html",
+    "listing": "/docs/Models/Events/index.html",
     "items": [
-      "/docs/Models/Functions/AddFunction.html",
-      "/docs/Models/Functions/FrostHeatDamageFunctions.html",
-      "/docs/Models/Functions/ThreeHourAirTemperature.html",
-      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
+      "/docs/Models/Events/Commencing.html",
+      "/docs/Models/Events/PlantSowing.html",
+      "/docs/Models/Events/SeedImbibed.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Graph/index.html",
+    "items": [
+      "/docs/Models/Graph/EventNamesOnGraph.html"
+    ]
+  },
+  {
+    "listing": "/tips/index.html",
+    "items": [
+      "/tips/co2.html",
+      "/tips/internal_variable.html",
+      "/tips/summary.html"
     ]
   },
   {
@@ -31,25 +44,13 @@
     ]
   },
   {
-    "listing": "/tips/index.html",
+    "listing": "/docs/Models/Functions/index.html",
     "items": [
-      "/tips/co2.html",
-      "/tips/internal_variable.html",
-      "/tips/summary.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/Graph/index.html",
-    "items": [
-      "/docs/Models/Graph/EventNamesOnGraph.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/Events/index.html",
-    "items": [
-      "/docs/Models/Events/Commencing.html",
-      "/docs/Models/Events/PlantSowing.html",
-      "/docs/Models/Events/SeedImbibed.html"
+      "/docs/Models/Functions/AddFunction.html",
+      "/docs/Models/Functions/FrostHeatDamageFunctions.html",
+      "/docs/Models/Functions/HourlySinPpAdjusted.html",
+      "/docs/Models/Functions/ThreeHourAirTemperature.html",
+      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
     ]
   },
   {

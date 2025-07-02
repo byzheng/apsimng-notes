@@ -160,6 +160,8 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   </ul>
@@ -195,7 +197,7 @@ window.Quarto = {
 <section id="inputs" class="level2">
 <h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
 <ul>
-<li><strong>MetData</strong>: A <code>IWeather</code> for maximum air minimum and maximum temperature from weather data.</li>
+<li><strong>MetData</strong>: A <code>IWeather</code> model for maximum air minimum and maximum temperature from weather data, i.e.&nbsp;a <code>Weather</code> model is required in the simulation to provide daily maximum and minimum temperatures.</li>
 </ul>
 </section>
 <section id="methodology" class="level2">
@@ -217,6 +219,58 @@ T_p = T_\text{min} + \text{TRF}_p \cdot (T_\text{max} - T_\text{min})
 </li>
 <li><span class="math inline">\(\text{TRF}_p\)</span>: Temperature range factor for period <span class="math inline">\(p\)</span></li>
 </ul>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p><strong>Events Listened For</strong></p>
+<p>These are signals or notifications that the <code>GerminatingPhase</code> listens for from other parts of the simulation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../docs/Models/Events/Commencing.html">Commencing</a></td>
+<td>Calculate <span class="math inline">\(\text{TRF}_p\)</span> at starting of simulation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<blockquote class="blockquote">
+<p>No configurable properties are available for this function.</p>
+</blockquote>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>OutputValueType</code></td>
+<td>string</td>
+<td>The type of variable for sub-daily values as <code>air temperature</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
