@@ -179,7 +179,7 @@
     "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#events",
     "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nGet parent organ from simulations\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nGet parent organ from simulations\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
   },
   {
     "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#properties",
@@ -235,7 +235,7 @@
     "href": "docs/Models/Functions/ThreeHourAirTemperature.html#events",
     "title": "Three Hourly Air Temperature Function",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nCalculate \\(\\text{TRF}_p\\) at starting of simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nCalculate \\(\\text{TRF}_p\\) at starting of simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
   },
   {
     "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#properties",
@@ -879,7 +879,7 @@
     "href": "docs/Models/Functions/HourlySinPpAdjusted.html#events",
     "title": "Hourly Sinusoidal and Exponential Air Temperature Function",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nNothing to calculate at the start of the simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nNothing to calculate at the start of the simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function."
   },
   {
     "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#properties",
@@ -900,7 +900,7 @@
     "href": "docs/Models/Functions/HourlySinPpAdjusted.html#practical-example",
     "title": "Hourly Sinusoidal and Exponential Air Temperature Function",
     "section": "Practical Example",
-    "text": "Practical Example\nWe estimate hourly air temperature (\\(T_h\\)) using a sinusoidal + exponential method, with the following inputs:\n\n\n\n\n\n\n\n\nParameter\nValue\nDescription\n\n\n\n\n\\(T_\\text{min}\\)\n\\(10^\\circ\\)C\nToday’s minimum temperature\n\n\n\\(T_\\text{max}\\)\n\\(30^\\circ\\)C\nToday’s maximum temperature\n\n\n\\(T_\\text{maxB}\\)\n\\(28^\\circ\\)C\nYesterday’s maximum temperature\n\n\n\\(T_\\text{minA}\\)\n\\(12^\\circ\\)C\nTomorrow’s minimum temperature\n\n\nDaylength \\(d\\)\n12 hours\nLength of daylight\n\n\nSunrise\n6\nHour of sunrise\n\n\nSunset\n18\nHour of sunset\n\n\n\\(P\\)\n1.5\nShape factor constant\n\n\n\\(T_c\\)\n4.0\nExponential cooling constant\n\n\n\nThe following figure shows the estimated hourly air temperature profile for a day with these parameters:"
+    "text": "Practical Example\nWe estimate hourly air temperature (\\(T_h\\)) using a sinusoidal + exponential method, with the following inputs:\n\n\n\n\n\n\n\n\nParameter\nValue\nDescription\n\n\n\n\n\\(T_\\text{min}\\)\n\\(10^\\circ\\)C\nToday’s minimum temperature\n\n\n\\(T_\\text{max}\\)\n\\(30^\\circ\\)C\nToday’s maximum temperature\n\n\n\\(T_\\text{maxB}\\)\n\\(28^\\circ\\)C\nYesterday’s maximum temperature\n\n\n\\(T_\\text{minA}\\)\n\\(12^\\circ\\)C\nTomorrow’s minimum temperature\n\n\nDaylength \\(d\\)\n12 hours\nLength of daylight\n\n\nSunrise\n6\nHour of sunrise\n\n\nSunset\n18\nHour of sunset\n\n\n\\(P\\)\n1.5\nShape factor constant\n\n\n\\(T_c\\)\n4.0\nExponential cooling constant\n\n\n\nThe following figure shows the estimated hourly air temperature profile for a day with these inputs and parameters:"
   },
   {
     "objectID": "docs/Models/Functions/AddFunction.html",
