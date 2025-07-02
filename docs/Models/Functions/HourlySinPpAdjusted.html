@@ -363,6 +363,9 @@ T_a = \frac{T_{minA} - T_{sset} \cdot e^{-\frac{n}{TC}} + (T_{sset} - T_{minA}) 
 </tbody>
 </table>
 <p>This methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.</p>
+<blockquote class="blockquote">
+<p>If <span class="math inline">\(T_{minA}\)</span> or <span class="math inline">\(T_{maxB}\)</span> are not provided, the model will use the current day’s minimum or maximum temperatures, e.g.&nbsp;in the beginning or ending of simulation without weather data.</p>
+</blockquote>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
