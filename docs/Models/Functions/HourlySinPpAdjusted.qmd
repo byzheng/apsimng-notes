@@ -219,17 +219,43 @@ for (i in seq_along(hours)) {
 
 # Plot
 df <- data.frame(Hour = hours, Temperature = temps)
+# Add vertical lines for sunrise and sunset
+vlines <- data.frame(
+    Hour = c(sunrise, sunset),
+    Label = c("Sunrise", "Sunset")
+)
+
+# Assign period for each hour
+df$Period <- factor(
+    ifelse(df$Hour < sunrise, "A: Midnight-Sunrise",
+    ifelse(df$Hour < 12 + P, "B: Sunrise-Tmax",
+    ifelse(df$Hour < sunset, "C: Tmax-Sunset", "D: Sunset-Midnight"))),
+    levels = c("A: Midnight-Sunrise", "B: Sunrise-Tmax", "C: Tmax-Sunset", "D: Sunset-Midnight")
+)
+
+# Define colors for each period
+period_colors <- c(
+    "A: Midnight-Sunrise" = "#1b9e77",   # Teal
+    "B: Sunrise-Tmax" = "#e7298a",       # Magenta
+    "C: Tmax-Sunset" = "#7570b3",        # Indigo
+    "D: Sunset-Midnight" = "black"     # Black
+)
 
 ggplot(df, aes(x = Hour, y = Temperature)) +
-    geom_line(color = "tomato", size = 1.2) +
-    geom_point(size = 2, color = "tomato") +
+    geom_line() +
+    geom_point(aes(color = Period, shape = Period), size = 3) +
+    geom_vline(data = vlines, aes(xintercept = Hour, linetype = Label), color = "steelblue", size = 1, show.legend = FALSE) +
+    scale_linetype_manual(values = c("dashed", "dotted")) +
+    scale_color_manual(values = period_colors) +
     labs(
         title = "Hourly Temperature Estimated from Daily Tmin and Tmax",
         x = "Hour of Day",
-        y = "Temperature (°C)"
+        y = "Temperature (°C)",
+        color = "Period"
     ) +
     scale_x_continuous(breaks = 0:23) +
-    theme_bw()
+    theme_bw() +
+    theme(legend.position = "bottom")
 
 
 ```
