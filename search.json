@@ -28,6 +28,34 @@
     "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging\n\n\n\n\n\n\n\n\n\nGerminating\n\n\n\n\n\n\n\n\n\nThermal Time\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html",
+    "title": "Thermal Time",
+    "section": "",
+    "text": "A function of daily thermal time for wheat based on SubDailyAirTemperature with three cardinal temperature and ThreeHourAirTemperature interpolation method."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
+    "title": "Thermal Time",
+    "section": "Overview",
+    "text": "Overview\nThe Thermal Time function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (ThreeHourAirTemperature), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.\n\nInterpolationMethod: ThreeHourAirTemperature is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.\nResponse: Three cardinal temperature using XYPairs to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.\n\n\n\n\nCardinal Point\nDescription\nValue (°C)\n\n\n\n\nBase\nMinimum for growth\n0\n\n\nOptimum\nMaximum rate of growth\n26\n\n\nMaximum\nGrowth ceases above this\n37"
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "title": "Thermal Time",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nIn general, we do not modify the thermal time function for different cultivars."
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
+    "title": "Thermal Time",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is provided for the thermal time function."
+  },
+  {
     "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
     "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
@@ -369,6 +397,13 @@
     "title": "Models",
     "section": "Events",
     "text": "Events\nEvents are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways."
+  },
+  {
+    "objectID": "docs/Models/index.html#other-models",
+    "href": "docs/Models/index.html#other-models",
+    "title": "Models",
+    "section": "Other Models",
+    "text": "Other Models\n\nClock: The Clock model is responsible for managing the simulation time and triggering events at specific times."
   },
   {
     "objectID": "docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html",
