@@ -371,18 +371,613 @@
     "text": "Events\nEvents are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways."
   },
   {
-    "objectID": "docs/Models/Events/SeedImbibed.html",
-    "href": "docs/Models/Events/SeedImbibed.html",
-    "title": "SeedImbibed",
+    "objectID": "docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html",
+    "href": "docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html",
+    "title": "DoSurfaceOrganicMatterPotentialDecomposition",
     "section": "",
-    "text": "This event is raised when germination occurs by GerminatingPhase, signaling other models or processes to begin their activities related to the germinated seed."
+    "text": "Occurs each day to perform daily calculations of organic soil matter."
   },
   {
-    "objectID": "docs/Models/Events/PlantSowing.html",
-    "href": "docs/Models/Events/PlantSowing.html",
-    "title": "PlantSowing",
+    "objectID": "docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html#triggering",
+    "href": "docs/Models/Events/DoSurfaceOrganicMatterPotentialDecomposition.html#triggering",
+    "title": "DoSurfaceOrganicMatterPotentialDecomposition",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfDay.html",
+    "href": "docs/Models/Events/StartOfDay.html",
+    "title": "StartOfDay",
     "section": "",
-    "text": "This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process."
+    "text": "Occurs at start of each day."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfDay.html#triggering",
+    "href": "docs/Models/Events/StartOfDay.html#triggering",
+    "title": "StartOfDay",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfWeek.html",
+    "href": "docs/Models/Events/EndOfWeek.html",
+    "title": "EndOfWeek",
+    "section": "",
+    "text": "Occurs at end of each week."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfWeek.html#triggering",
+    "href": "docs/Models/Events/EndOfWeek.html#triggering",
+    "title": "EndOfWeek",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfMonth.html",
+    "href": "docs/Models/Events/EndOfMonth.html",
+    "title": "EndOfMonth",
+    "section": "",
+    "text": "Occurs at end of each month."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfMonth.html#triggering",
+    "href": "docs/Models/Events/EndOfMonth.html#triggering",
+    "title": "EndOfMonth",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfYear.html",
+    "href": "docs/Models/Events/StartOfYear.html",
+    "title": "StartOfYear",
+    "section": "",
+    "text": "Occurs at start of each year."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfYear.html#triggering",
+    "href": "docs/Models/Events/StartOfYear.html#triggering",
+    "title": "StartOfYear",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoNutrientArbitration.html",
+    "href": "docs/Models/Events/DoNutrientArbitration.html",
+    "title": "DoNutrientArbitration",
+    "section": "",
+    "text": "Occurs each day to do nutrient arbitration."
+  },
+  {
+    "objectID": "docs/Models/Events/DoNutrientArbitration.html#triggering",
+    "href": "docs/Models/Events/DoNutrientArbitration.html#triggering",
+    "title": "DoNutrientArbitration",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoEnergyArbitration.html",
+    "href": "docs/Models/Events/DoEnergyArbitration.html",
+    "title": "DoEnergyArbitration",
+    "section": "",
+    "text": "Occurs when the canopy energy balance needs to be calculated with MicroClimate."
+  },
+  {
+    "objectID": "docs/Models/Events/DoEnergyArbitration.html#triggering",
+    "href": "docs/Models/Events/DoEnergyArbitration.html#triggering",
+    "title": "DoEnergyArbitration",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html",
+    "href": "docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html",
+    "title": "DoSurfaceOrganicMatterDecomposition",
+    "section": "",
+    "text": "Occurs each day to do the daily residue decomposition."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html#triggering",
+    "href": "docs/Models/Events/DoSurfaceOrganicMatterDecomposition.html#triggering",
+    "title": "DoSurfaceOrganicMatterDecomposition",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoManagement.html",
+    "href": "docs/Models/Events/DoManagement.html",
+    "title": "DoManagement",
+    "section": "",
+    "text": "Occurs each day to do management actions and changes."
+  },
+  {
+    "objectID": "docs/Models/Events/DoManagement.html#triggering",
+    "href": "docs/Models/Events/DoManagement.html#triggering",
+    "title": "DoManagement",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMPastureReady.html",
+    "href": "docs/Models/Events/CLEMPastureReady.html",
+    "title": "CLEMPastureReady",
+    "section": "",
+    "text": "CLEM pasture has been added and is ready for use."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMPastureReady.html#triggering",
+    "href": "docs/Models/Events/CLEMPastureReady.html#triggering",
+    "title": "CLEMPastureReady",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSolute.html",
+    "href": "docs/Models/Events/DoSolute.html",
+    "title": "DoSolute",
+    "section": "",
+    "text": "Occurs each day."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSolute.html#triggering",
+    "href": "docs/Models/Events/DoSolute.html#triggering",
+    "title": "DoSolute",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoFertiliserApplications.html",
+    "href": "docs/Models/Events/DoFertiliserApplications.html",
+    "title": "DoFertiliserApplications",
+    "section": "",
+    "text": "Invoked to perform all fertiliser applications."
+  },
+  {
+    "objectID": "docs/Models/Events/DoFertiliserApplications.html#triggering",
+    "href": "docs/Models/Events/DoFertiliserApplications.html#triggering",
+    "title": "DoFertiliserApplications",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMHerdSummary.html",
+    "href": "docs/Models/Events/CLEMHerdSummary.html",
+    "title": "CLEMHerdSummary",
+    "section": "",
+    "text": "CLEM event to calculate monthly herd summary."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMHerdSummary.html#triggering",
+    "href": "docs/Models/Events/CLEMHerdSummary.html#triggering",
+    "title": "CLEMHerdSummary",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoCatchYesterday.html",
+    "href": "docs/Models/Events/DoCatchYesterday.html",
+    "title": "DoCatchYesterday",
+    "section": "",
+    "text": "Occurs first each day to allow yesterdays values to be caught."
+  },
+  {
+    "objectID": "docs/Models/Events/DoCatchYesterday.html#triggering",
+    "href": "docs/Models/Events/DoCatchYesterday.html#triggering",
+    "title": "DoCatchYesterday",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMFinalizeTimeStep.html",
+    "href": "docs/Models/Events/CLEMFinalizeTimeStep.html",
+    "title": "CLEMFinalizeTimeStep",
+    "section": "",
+    "text": "CLEM finalize time-step before end."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMFinalizeTimeStep.html#triggering",
+    "href": "docs/Models/Events/CLEMFinalizeTimeStep.html#triggering",
+    "title": "CLEMFinalizeTimeStep",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfWeek.html",
+    "href": "docs/Models/Events/StartOfWeek.html",
+    "title": "StartOfWeek",
+    "section": "",
+    "text": "Occurs at start of each week."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfWeek.html#triggering",
+    "href": "docs/Models/Events/StartOfWeek.html#triggering",
+    "title": "StartOfWeek",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCalculateEcologicalState.html",
+    "href": "docs/Models/Events/CLEMCalculateEcologicalState.html",
+    "title": "CLEMCalculateEcologicalState",
+    "section": "",
+    "text": "CLEM Calculate ecological state after all deaths and before management."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCalculateEcologicalState.html#triggering",
+    "href": "docs/Models/Events/CLEMCalculateEcologicalState.html#triggering",
+    "title": "CLEMCalculateEcologicalState",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/PrePhenology.html",
+    "href": "docs/Models/Events/PrePhenology.html",
+    "title": "PrePhenology",
+    "section": "",
+    "text": "Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs."
+  },
+  {
+    "objectID": "docs/Models/Events/PrePhenology.html#triggering",
+    "href": "docs/Models/Events/PrePhenology.html#triggering",
+    "title": "PrePhenology",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMDetachPasture.html",
+    "href": "docs/Models/Events/CLEMDetachPasture.html",
+    "title": "CLEMDetachPasture",
+    "section": "",
+    "text": "CLEM detach pasture."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMDetachPasture.html#triggering",
+    "href": "docs/Models/Events/CLEMDetachPasture.html#triggering",
+    "title": "CLEMDetachPasture",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfSimulation.html",
+    "href": "docs/Models/Events/StartOfSimulation.html",
+    "title": "StartOfSimulation",
+    "section": "",
+    "text": "Occurs once at the start of the simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfSimulation.html#triggering",
+    "href": "docs/Models/Events/StartOfSimulation.html#triggering",
+    "title": "StartOfSimulation",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMValidate.html",
+    "href": "docs/Models/Events/CLEMValidate.html",
+    "title": "CLEMValidate",
+    "section": "",
+    "text": "CLEM validate all data entry."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMValidate.html#triggering",
+    "href": "docs/Models/Events/CLEMValidate.html#triggering",
+    "title": "CLEMValidate",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilTemperature.html",
+    "href": "docs/Models/Events/DoSoilTemperature.html",
+    "title": "DoSoilTemperature",
+    "section": "",
+    "text": "Occurs to perform soil temperature calculations to do solute processes."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilTemperature.html#triggering",
+    "href": "docs/Models/Events/DoSoilTemperature.html#triggering",
+    "title": "DoSoilTemperature",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPestDiseaseDamage.html",
+    "href": "docs/Models/Events/DoPestDiseaseDamage.html",
+    "title": "DoPestDiseaseDamage",
+    "section": "",
+    "text": "Occurs to do Pest/Disease actions."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPestDiseaseDamage.html#triggering",
+    "href": "docs/Models/Events/DoPestDiseaseDamage.html#triggering",
+    "title": "DoPestDiseaseDamage",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfFirstDay.html",
+    "href": "docs/Models/Events/StartOfFirstDay.html",
+    "title": "StartOfFirstDay",
+    "section": "",
+    "text": "Occurs once at the start of the first day of the simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfFirstDay.html#triggering",
+    "href": "docs/Models/Events/StartOfFirstDay.html#triggering",
+    "title": "StartOfFirstDay",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalBuy.html",
+    "href": "docs/Models/Events/CLEMAnimalBuy.html",
+    "title": "CLEMAnimalBuy",
+    "section": "",
+    "text": "CLEM buy animals including transporting and labour."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalBuy.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalBuy.html#triggering",
+    "title": "CLEMAnimalBuy",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMEndOfTimeStep.html",
+    "href": "docs/Models/Events/CLEMEndOfTimeStep.html",
+    "title": "CLEMEndOfTimeStep",
+    "section": "",
+    "text": "CLEM end of timestep event."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMEndOfTimeStep.html#triggering",
+    "href": "docs/Models/Events/CLEMEndOfTimeStep.html#triggering",
+    "title": "CLEMEndOfTimeStep",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoLifecycle.html",
+    "href": "docs/Models/Events/DoLifecycle.html",
+    "title": "DoLifecycle",
+    "section": "",
+    "text": "Occurs each day to process a Pest and Disease lifecycle object."
+  },
+  {
+    "objectID": "docs/Models/Events/DoLifecycle.html#triggering",
+    "href": "docs/Models/Events/DoLifecycle.html#triggering",
+    "title": "DoLifecycle",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoReportCalculations.html",
+    "href": "docs/Models/Events/DoReportCalculations.html",
+    "title": "DoReportCalculations",
+    "section": "",
+    "text": "Occurs when [do report calculations]."
+  },
+  {
+    "objectID": "docs/Models/Events/DoReportCalculations.html#triggering",
+    "href": "docs/Models/Events/DoReportCalculations.html#triggering",
+    "title": "DoReportCalculations",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilErosion.html",
+    "href": "docs/Models/Events/DoSoilErosion.html",
+    "title": "DoSoilErosion",
+    "section": "",
+    "text": "Occurs to tell soil erosion to perform its calculations."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilErosion.html#triggering",
+    "href": "docs/Models/Events/DoSoilErosion.html#triggering",
+    "title": "DoSoilErosion",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfSimulation.html",
+    "href": "docs/Models/Events/EndOfSimulation.html",
+    "title": "EndOfSimulation",
+    "section": "",
+    "text": "Occurs at end of simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfSimulation.html#triggering",
+    "href": "docs/Models/Events/EndOfSimulation.html#triggering",
+    "title": "EndOfSimulation",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfYear.html",
+    "href": "docs/Models/Events/EndOfYear.html",
+    "title": "EndOfYear",
+    "section": "",
+    "text": "Occurs at end of each year."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfYear.html#triggering",
+    "href": "docs/Models/Events/EndOfYear.html#triggering",
+    "title": "EndOfYear",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoEndPasture.html",
+    "href": "docs/Models/Events/DoEndPasture.html",
+    "title": "DoEndPasture",
+    "section": "",
+    "text": "Occurs after pasture growth and sends material to SOM."
+  },
+  {
+    "objectID": "docs/Models/Events/DoEndPasture.html#triggering",
+    "href": "docs/Models/Events/DoEndPasture.html#triggering",
+    "title": "DoEndPasture",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMInitialiseActivity.html",
+    "href": "docs/Models/Events/CLEMInitialiseActivity.html",
+    "title": "CLEMInitialiseActivity",
+    "section": "",
+    "text": "CLEM initialise Activity occurs once at start of simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMInitialiseActivity.html#triggering",
+    "href": "docs/Models/Events/CLEMInitialiseActivity.html#triggering",
+    "title": "CLEMInitialiseActivity",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoWeather.html",
+    "href": "docs/Models/Events/DoWeather.html",
+    "title": "DoWeather",
+    "section": "",
+    "text": "Occurs each day to calculate weather."
+  },
+  {
+    "objectID": "docs/Models/Events/DoWeather.html#triggering",
+    "href": "docs/Models/Events/DoWeather.html#triggering",
+    "title": "DoWeather",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfMonth.html",
+    "href": "docs/Models/Events/StartOfMonth.html",
+    "title": "StartOfMonth",
+    "section": "",
+    "text": "Occurs at start of each month."
+  },
+  {
+    "objectID": "docs/Models/Events/StartOfMonth.html#triggering",
+    "href": "docs/Models/Events/StartOfMonth.html#triggering",
+    "title": "StartOfMonth",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoDCAPST.html",
+    "href": "docs/Models/Events/DoDCAPST.html",
+    "title": "DoDCAPST",
+    "section": "",
+    "text": "Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning."
+  },
+  {
+    "objectID": "docs/Models/Events/DoDCAPST.html#triggering",
+    "href": "docs/Models/Events/DoDCAPST.html#triggering",
+    "title": "DoDCAPST",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoDailyInitialisation.html",
+    "href": "docs/Models/Events/DoDailyInitialisation.html",
+    "title": "DoDailyInitialisation",
+    "section": "",
+    "text": "Occurs each day to do daily updates to models."
+  },
+  {
+    "objectID": "docs/Models/Events/DoDailyInitialisation.html#triggering",
+    "href": "docs/Models/Events/DoDailyInitialisation.html#triggering",
+    "title": "DoDailyInitialisation",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMUpdateLabourAvailability.html",
+    "href": "docs/Models/Events/CLEMUpdateLabourAvailability.html",
+    "title": "CLEMUpdateLabourAvailability",
+    "section": "",
+    "text": "CLEM set labour availability after start of timestep and financial considerations."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMUpdateLabourAvailability.html#triggering",
+    "href": "docs/Models/Events/CLEMUpdateLabourAvailability.html#triggering",
+    "title": "CLEMUpdateLabourAvailability",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalWeightGain.html",
+    "href": "docs/Models/Events/CLEMAnimalWeightGain.html",
+    "title": "CLEMAnimalWeightGain",
+    "section": "",
+    "text": "CLEM Calculate Animals(Ruminant and Other) weight gain."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalWeightGain.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalWeightGain.html#triggering",
+    "title": "CLEMAnimalWeightGain",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Clock.html",
+    "href": "docs/Models/Clock.html",
+    "title": "Clock",
+    "section": "",
+    "text": "The APSIM Clock is a central component of the APSIM simulation framework, responsible for managing the simulation time and orchestrating the sequence of events that occur during a simulation. It defines the start and end dates of the simulation and raises various events at specific times to allow different models to perform their calculations."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#overview",
+    "href": "docs/Models/Clock.html#overview",
+    "title": "Clock",
+    "section": "Overview",
+    "text": "Overview\nThe Clock model defines the simulation’s start and end dates, controls the passage of time, and raises numerous events used to coordinate actions across models. It forms the central timing mechanism within the APSIM NG framework, driving the daily timestep loop."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#inputs",
+    "href": "docs/Models/Clock.html#inputs",
+    "title": "Clock",
+    "section": "Inputs",
+    "text": "Inputs\n\nStart: The start date of the simulation with format YYYY-MM-DD (optional if weather data is available).\nEnd: The end date of the simulation with format YYYY-MM-DD (optional if weather data is available).\nWeather: If no explicit start/end dates are defined, the model will attempt to derive them from the associated weather model."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#methodology",
+    "href": "docs/Models/Clock.html#methodology",
+    "title": "Clock",
+    "section": "Methodology",
+    "text": "Methodology\nIf Start or End are not defined, the model looks for a weather model in the scope and adopts its StartDate or EndDate. The simulation begins on the resolved start date and continues day by day until the end date. Each day, the Clock publishes multiple events to signal simulation actions across components. These include daily updates, management actions, soil processes, plant growth, CLEM processes, and reporting.\n\nDoInitialSummary – Initial summary at the start.\nStartOfSimulation – Marks the simulation’s beginning.\nFinalInitialise – Final initialisation before the first day.\nStartOfFirstDay – First day setup.\nFor each day (from StartDate to EndDate), the following events are raised in sequence (some only on specific days): DoCatchYesterday, DoWeather, DoDailyInitialisation, StartOfDay, StartOfMonth, StartOfYear, StartOfWeek, DoManagement, DoFertiliserApplications, DoPestDiseaseDamage, DoEnergyArbitration, DoSoilErosion, DoSoilWaterMovement, DoSoilTemperature, DoSolute, DoSurfaceOrganicMatterPotentialDecomposition, DoSoilOrganicMatter, DoSurfaceOrganicMatterDecomposition, DoUpdateWaterDemand, DoDCAPST, DoWaterArbitration, PrePhenology, DoPhenology, DoPotentialPlantGrowth, DoPotentialPlantPartioning, DoPastureWater, DoNutrientArbitration, DoActualPlantPartioning, DoActualPlantGrowth, PartitioningComplete, DoStock, DoLifecycle, DoUpdate, DoManagementCalculations, DoEndPasture, DoReportCalculations, EndOfWeek, EndOfYear, EndOfMonth, EndOfDay, DoReport.\nAfter the last day, EndOfSimulation is raised."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#events",
+    "href": "docs/Models/Clock.html#events",
+    "title": "Clock",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nSet Today as StartDate\n\n\nOnDoCommence\nThe main function to run a simulation to trigger major loop\n\n\n\nEvents Raised To\n\n\n\nEvent\nPurpose\n\n\n\n\nStartOfSimulation\nOccurs once at the start of the simulation\n\n\nStartOfFirstDay\nOccurs once at the start of the first day of the simulation\n\n\nStartOfDay\nOccurs at start of each day\n\n\nStartOfMonth\nOccurs at start of each month\n\n\nStartOfYear\nOccurs at start of each year\n\n\nStartOfWeek\nOccurs at start of each week\n\n\nEndOfDay\nOccurs at end of each day\n\n\nEndOfMonth\nOccurs at end of each month\n\n\nEndOfYear\nOccurs at end of each year\n\n\nEndOfWeek\nOccurs at end of each week\n\n\nEndOfSimulation\nOccurs at end of simulation\n\n\nFinalInitialise\nFinal Initialise event. Occurs once at start of simulation\n\n\nDoCatchYesterday\nOccurs first each day to allow yesterdays values to be caught\n\n\nDoWeather\nOccurs each day to calculate weather\n\n\nDoDailyInitialisation\nOccurs each day to do daily updates to models\n\n\nDoInitialSummary\nOccurs each day to make the initial summary\n\n\nDoManagement\nOccurs each day to do management actions and changes\n\n\nDoFertiliserApplications\nInvoked to perform all fertiliser applications\n\n\nDoPestDiseaseDamage\nOccurs to do Pest/Disease actions\n\n\nDoEnergyArbitration\nOccurs when the canopy energy balance needs to be calculated with MicroClimate\n\n\nDoSoilWaterMovement\nOccurs each day to do water calculations such as irrigation, swim, water balance etc\n\n\nDoSoilErosion\nOccurs to tell soil erosion to perform its calculations\n\n\nDoSoilTemperature\nOccurs to perform soil temperature calculations to do solute processes\n\n\nDoSolute\nOccurs each day\n\n\nDoSurfaceOrganicMatterPotentialDecomposition\nOccurs each day to perform daily calculations of organic soil matter\n\n\nDoSoilOrganicMatter\nOccurs each day to perform daily calculations of organic soil matter\n\n\nDoSurfaceOrganicMatterDecomposition\nOccurs each day to do the daily residue decomposition\n\n\nDoUpdateWaterDemand\nOccurs each day to do daily growth increment of total plant biomass\n\n\nDoWaterArbitration\nOccurs each day to do water arbitration\n\n\nDoPastureWater\nInitiates water calculations for the Pasture model\n\n\nPrePhenology\nOccurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs\n\n\nDoPhenology\nOccurs each day to perform phenology\n\n\nDoPotentialPlantGrowth\nOccurs each day to do potential growth\n\n\nDoPotentialPlantPartioning\nOccurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator\n\n\nDoNutrientArbitration\nOccurs each day to do nutrient arbitration\n\n\nDoActualPlantPartioning\nOccurs each day to do nutrient allocations\n\n\nDoActualPlantGrowth\nOccurs each day to do nutrient allocations. Pasture growth\n\n\nPartitioningComplete\nOccurs each day to finish partitioning\n\n\nDoUpdate\nOccurs near end of each day to do checks and finalising\n\n\nDoStock\nOccurs each day to process stock methods in GrazPlan Stock\n\n\nDoLifecycle\nOccurs each day to process a Pest and Disease lifecycle object\n\n\nDoManagementCalculations\nOccurs each day after the simulation is done. Does management calculations\n\n\nDoEndPasture\nOccurs after pasture growth and sends material to SOM\n\n\nDoReportCalculations\nOccurs when do report calculations\n\n\nDoReport\nOccurs at end of each day\n\n\nDoDCAPST\nOccurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning\n\n\nCLEMInitialiseResource\nCLEM initialise Resources occurs once at start of simulation\n\n\nCLEMInitialiseActivity\nCLEM initialise Activity occurs once at start of simulation\n\n\nCLEMValidate\nCLEM validate all data entry\n\n\nCLEMStartOfTimeStep\nCLEM start of timestep event\n\n\nCLEMUpdateLabourAvailability\nCLEM set labour availability after start of timestep and financial considerations\n\n\nCLEMUpdatePasture\nCLEM update pasture\n\n\nCLEMDetachPasture\nCLEM detach pasture\n\n\nCLEMPastureReady\nCLEM pasture has been added and is ready for use\n\n\nCLEMDoCutAndCarry\nCLEM cut and carry\n\n\nCLEMAnimalBreeding\nCLEM Do Animal (Ruminant and Other) Breeding and milk calculations\n\n\nCLEMPotentialIntake\nGet potential intake. This includes suckling milk consumption\n\n\nCLEMCalculateManure\nRequest and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later\n\n\nCLEMCollectManure\nRequest and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later\n\n\nCLEMGetResourcesRequired\nRequest and perform the collection of manure after resources are allocated and manure produced in time-step\n\n\nCLEMAnimalMilkProduction\nCLEM Calculate Animals (Ruminant and Other) milk production\n\n\nCLEMAnimalWeightGain\nCLEM Calculate Animals(Ruminant and Other) weight gain\n\n\nCLEMAnimalDeath\nCLEM Do Animal (Ruminant and Other) death\n\n\nCLEMAnimalMilking\nCLEM Do Animal (Ruminant and Other) milking\n\n\nCLEMCalculateEcologicalState\nCLEM Calculate ecological state after all deaths and before management\n\n\nCLEMAnimalMark\nCLEM Do animal marking so complete before undertaking management decisions\n\n\nCLEMAnimalManage\nCLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.)\n\n\nCLEMAnimalStock\nCLEM stock animals to pasture availability or other metrics\n\n\nCLEMAnimalSell\nCLEM sell animals to market including transporting and labour\n\n\nCLEMAnimalBuy\nCLEM buy animals including transporting and labour\n\n\nCLEMAgeResources\nCLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals)\n\n\nCLEMHerdSummary\nCLEM event to calculate monthly herd summary\n\n\nCLEMFinalizeTimeStep\nCLEM finalize time-step before end\n\n\nCLEMEndOfTimeStep\nCLEM end of timestep event"
+  },
+  {
+    "objectID": "docs/Models/Clock.html#properties",
+    "href": "docs/Models/Clock.html#properties",
+    "title": "Clock",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n|————–|———–|————————————————-| | Start | DateTime? | Start date of the simulation with format YYYY-MM-DD | | End | DateTime? | End date of the simulation with format YYYY-MM-DD |\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStartDate\nDateTime\nDerived start date\n\n\nEndDate\nDateTime\nDerived end date\n\n\nToday\nDateTime\nCurrent simulation date\n\n\nFractionComplete\ndouble\nFraction of the simulation completed\n\n\nIsStartMonth\nbool\nWhether today is the first of the month\n\n\nIsStartYear\nbool\nWhether today is the first day of the year\n\n\nIsEndMonth\nbool\nWhether today is the last day of the month\n\n\nIsEndYear\nbool\nWhether today is the last day of the year"
+  },
+  {
+    "objectID": "docs/Models/Clock.html#user-interface",
+    "href": "docs/Models/Clock.html#user-interface",
+    "title": "Clock",
+    "section": "User Interface",
+    "text": "User Interface\nClock can be added as a child of a Simulation node in the model tree. Right-click the simulation node, select “Add Model…”, and search for Clock in the Filter Box."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#practical-example",
+    "href": "docs/Models/Clock.html#practical-example",
+    "title": "Clock",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is provided for this function."
+  },
+  {
+    "objectID": "docs/Models/Clock.html#see-also",
+    "href": "docs/Models/Clock.html#see-also",
+    "title": "Clock",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: Clock.cs on GitHub"
   },
   {
     "objectID": "docs/Models/Graph/EventNamesOnGraph.html",
@@ -840,11 +1435,508 @@
     "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "docs/Models/Events/CLEMAnimalDeath.html",
+    "href": "docs/Models/Events/CLEMAnimalDeath.html",
+    "title": "CLEMAnimalDeath",
+    "section": "",
+    "text": "CLEM Do Animal (Ruminant and Other) death."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalDeath.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalDeath.html#triggering",
+    "title": "CLEMAnimalDeath",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfDay.html",
+    "href": "docs/Models/Events/EndOfDay.html",
+    "title": "EndOfDay",
+    "section": "",
+    "text": "Occurs at end of each day."
+  },
+  {
+    "objectID": "docs/Models/Events/EndOfDay.html#triggering",
+    "href": "docs/Models/Events/EndOfDay.html#triggering",
+    "title": "EndOfDay",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMilkProduction.html",
+    "href": "docs/Models/Events/CLEMAnimalMilkProduction.html",
+    "title": "CLEMAnimalMilkProduction",
+    "section": "",
+    "text": "CLEM Calculate Animals (Ruminant and Other) milk production."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMilkProduction.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalMilkProduction.html#triggering",
+    "title": "CLEMAnimalMilkProduction",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilOrganicMatter.html",
+    "href": "docs/Models/Events/DoSoilOrganicMatter.html",
+    "title": "DoSoilOrganicMatter",
+    "section": "",
+    "text": "Occurs each day to perform daily calculations of organic soil matter."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilOrganicMatter.html#triggering",
+    "href": "docs/Models/Events/DoSoilOrganicMatter.html#triggering",
+    "title": "DoSoilOrganicMatter",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPhenology.html",
+    "href": "docs/Models/Events/DoPhenology.html",
+    "title": "DoPhenology",
+    "section": "",
+    "text": "Occurs each day to perform phenology."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPhenology.html#triggering",
+    "href": "docs/Models/Events/DoPhenology.html#triggering",
+    "title": "DoPhenology",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoWaterArbitration.html",
+    "href": "docs/Models/Events/DoWaterArbitration.html",
+    "title": "DoWaterArbitration",
+    "section": "",
+    "text": "Occurs each day to do water arbitration."
+  },
+  {
+    "objectID": "docs/Models/Events/DoWaterArbitration.html#triggering",
+    "href": "docs/Models/Events/DoWaterArbitration.html#triggering",
+    "title": "DoWaterArbitration",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/PlantSowing.html",
+    "href": "docs/Models/Events/PlantSowing.html",
+    "title": "PlantSowing",
+    "section": "",
+    "text": "This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process."
+  },
+  {
+    "objectID": "docs/Models/Events/PlantSowing.html#triggering",
+    "href": "docs/Models/Events/PlantSowing.html#triggering",
+    "title": "PlantSowing",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoCommence.html",
+    "href": "docs/Models/Events/DoCommence.html",
+    "title": "DoCommence",
+    "section": "",
+    "text": "Occurs each day when the simulation commences."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMDoCutAndCarry.html",
+    "href": "docs/Models/Events/CLEMDoCutAndCarry.html",
+    "title": "CLEMDoCutAndCarry",
+    "section": "",
+    "text": "CLEM cut and carry."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMDoCutAndCarry.html#triggering",
+    "href": "docs/Models/Events/CLEMDoCutAndCarry.html#triggering",
+    "title": "CLEMDoCutAndCarry",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAgeResources.html",
+    "href": "docs/Models/Events/CLEMAgeResources.html",
+    "title": "CLEMAgeResources",
+    "section": "",
+    "text": "CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals)."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAgeResources.html#triggering",
+    "href": "docs/Models/Events/CLEMAgeResources.html#triggering",
+    "title": "CLEMAgeResources",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMGetResourcesRequired.html",
+    "href": "docs/Models/Events/CLEMGetResourcesRequired.html",
+    "title": "CLEMGetResourcesRequired",
+    "section": "",
+    "text": "Request and perform the collection of manure after resources are allocated and manure produced in time-step."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMGetResourcesRequired.html#triggering",
+    "href": "docs/Models/Events/CLEMGetResourcesRequired.html#triggering",
+    "title": "CLEMGetResourcesRequired",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMPotentialIntake.html",
+    "href": "docs/Models/Events/CLEMPotentialIntake.html",
+    "title": "CLEMPotentialIntake",
+    "section": "",
+    "text": "Get potential intake. This includes suckling milk consumption."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMPotentialIntake.html#triggering",
+    "href": "docs/Models/Events/CLEMPotentialIntake.html#triggering",
+    "title": "CLEMPotentialIntake",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoUpdate.html",
+    "href": "docs/Models/Events/DoUpdate.html",
+    "title": "DoUpdate",
+    "section": "",
+    "text": "Occurs near end of each day to do checks and finalising."
+  },
+  {
+    "objectID": "docs/Models/Events/DoUpdate.html#triggering",
+    "href": "docs/Models/Events/DoUpdate.html#triggering",
+    "title": "DoUpdate",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPotentialPlantPartioning.html",
+    "href": "docs/Models/Events/DoPotentialPlantPartioning.html",
+    "title": "DoPotentialPlantPartioning",
+    "section": "",
+    "text": "Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPotentialPlantPartioning.html#triggering",
+    "href": "docs/Models/Events/DoPotentialPlantPartioning.html#triggering",
+    "title": "DoPotentialPlantPartioning",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCalculateManure.html",
+    "href": "docs/Models/Events/CLEMCalculateManure.html",
+    "title": "CLEMCalculateManure",
+    "section": "",
+    "text": "Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCalculateManure.html#triggering",
+    "href": "docs/Models/Events/CLEMCalculateManure.html#triggering",
+    "title": "CLEMCalculateManure",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPotentialPlantGrowth.html",
+    "href": "docs/Models/Events/DoPotentialPlantGrowth.html",
+    "title": "DoPotentialPlantGrowth",
+    "section": "",
+    "text": "Occurs each day to do potential growth."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPotentialPlantGrowth.html#triggering",
+    "href": "docs/Models/Events/DoPotentialPlantGrowth.html#triggering",
+    "title": "DoPotentialPlantGrowth",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMStartOfTimeStep.html",
+    "href": "docs/Models/Events/CLEMStartOfTimeStep.html",
+    "title": "CLEMStartOfTimeStep",
+    "section": "",
+    "text": "CLEM start of timestep event."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMStartOfTimeStep.html#triggering",
+    "href": "docs/Models/Events/CLEMStartOfTimeStep.html#triggering",
+    "title": "CLEMStartOfTimeStep",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCollectManure.html",
+    "href": "docs/Models/Events/CLEMCollectManure.html",
+    "title": "CLEMCollectManure",
+    "section": "",
+    "text": "Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMCollectManure.html#triggering",
+    "href": "docs/Models/Events/CLEMCollectManure.html#triggering",
+    "title": "CLEMCollectManure",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/PartitioningComplete.html",
+    "href": "docs/Models/Events/PartitioningComplete.html",
+    "title": "PartitioningComplete",
+    "section": "",
+    "text": "Occurs each day to finish partitioning."
+  },
+  {
+    "objectID": "docs/Models/Events/PartitioningComplete.html#triggering",
+    "href": "docs/Models/Events/PartitioningComplete.html#triggering",
+    "title": "PartitioningComplete",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilWaterMovement.html",
+    "href": "docs/Models/Events/DoSoilWaterMovement.html",
+    "title": "DoSoilWaterMovement",
+    "section": "",
+    "text": "Occurs each day to do water calculations such as irrigation, swim, water balance etc."
+  },
+  {
+    "objectID": "docs/Models/Events/DoSoilWaterMovement.html#triggering",
+    "href": "docs/Models/Events/DoSoilWaterMovement.html#triggering",
+    "title": "DoSoilWaterMovement",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
     "objectID": "docs/Models/Events/index.html",
     "href": "docs/Models/Events/index.html",
     "title": "Events",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCommencing\n\n\n\n\n\n\n\n\n\nPlantSowing\n\n\n\n\n\n\n\n\n\nSeedImbibed\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCLEMAgeResources\n\n\n\n\n\n\n\n\n\nCLEMAnimalBreeding\n\n\n\n\n\n\n\n\n\nCLEMAnimalBuy\n\n\n\n\n\n\n\n\n\nCLEMAnimalDeath\n\n\n\n\n\n\n\n\n\nCLEMAnimalManage\n\n\n\n\n\n\n\n\n\nCLEMAnimalMark\n\n\n\n\n\n\n\n\n\nCLEMAnimalMilkProduction\n\n\n\n\n\n\n\n\n\nCLEMAnimalMilking\n\n\n\n\n\n\n\n\n\nCLEMAnimalSell\n\n\n\n\n\n\n\n\n\nCLEMAnimalStock\n\n\n\n\n\n\n\n\n\nCLEMAnimalWeightGain\n\n\n\n\n\n\n\n\n\nCLEMCalculateEcologicalState\n\n\n\n\n\n\n\n\n\nCLEMCalculateManure\n\n\n\n\n\n\n\n\n\nCLEMCollectManure\n\n\n\n\n\n\n\n\n\nCLEMDetachPasture\n\n\n\n\n\n\n\n\n\nCLEMDoCutAndCarry\n\n\n\n\n\n\n\n\n\nCLEMEndOfTimeStep\n\n\n\n\n\n\n\n\n\nCLEMFinalizeTimeStep\n\n\n\n\n\n\n\n\n\nCLEMGetResourcesRequired\n\n\n\n\n\n\n\n\n\nCLEMHerdSummary\n\n\n\n\n\n\n\n\n\nCLEMInitialiseActivity\n\n\n\n\n\n\n\n\n\nCLEMInitialiseResource\n\n\n\n\n\n\n\n\n\nCLEMPastureReady\n\n\n\n\n\n\n\n\n\nCLEMPotentialIntake\n\n\n\n\n\n\n\n\n\nCLEMStartOfTimeStep\n\n\n\n\n\n\n\n\n\nCLEMUpdateLabourAvailability\n\n\n\n\n\n\n\n\n\nCLEMUpdatePasture\n\n\n\n\n\n\n\n\n\nCLEMValidate\n\n\n\n\n\n\n\n\n\nCommencing\n\n\n\n\n\n\n\n\n\nDoActualPlantGrowth\n\n\n\n\n\n\n\n\n\nDoActualPlantPartioning\n\n\n\n\n\n\n\n\n\nDoCatchYesterday\n\n\n\n\n\n\n\n\n\nDoCommence\n\n\n\n\n\n\n\n\n\nDoDCAPST\n\n\n\n\n\n\n\n\n\nDoDailyInitialisation\n\n\n\n\n\n\n\n\n\nDoEndPasture\n\n\n\n\n\n\n\n\n\nDoEnergyArbitration\n\n\n\n\n\n\n\n\n\nDoFertiliserApplications\n\n\n\n\n\n\n\n\n\nDoInitialSummary\n\n\n\n\n\n\n\n\n\nDoLifecycle\n\n\n\n\n\n\n\n\n\nDoManagement\n\n\n\n\n\n\n\n\n\nDoManagementCalculations\n\n\n\n\n\n\n\n\n\nDoNutrientArbitration\n\n\n\n\n\n\n\n\n\nDoPastureWater\n\n\n\n\n\n\n\n\n\nDoPestDiseaseDamage\n\n\n\n\n\n\n\n\n\nDoPhenology\n\n\n\n\n\n\n\n\n\nDoPotentialPlantGrowth\n\n\n\n\n\n\n\n\n\nDoPotentialPlantPartioning\n\n\n\n\n\n\n\n\n\nDoReport\n\n\n\n\n\n\n\n\n\nDoReportCalculations\n\n\n\n\n\n\n\n\n\nDoSoilErosion\n\n\n\n\n\n\n\n\n\nDoSoilOrganicMatter\n\n\n\n\n\n\n\n\n\nDoSoilTemperature\n\n\n\n\n\n\n\n\n\nDoSoilWaterMovement\n\n\n\n\n\n\n\n\n\nDoSolute\n\n\n\n\n\n\n\n\n\nDoStock\n\n\n\n\n\n\n\n\n\nDoSurfaceOrganicMatterDecomposition\n\n\n\n\n\n\n\n\n\nDoSurfaceOrganicMatterPotentialDecomposition\n\n\n\n\n\n\n\n\n\nDoUpdate\n\n\n\n\n\n\n\n\n\nDoUpdateWaterDemand\n\n\n\n\n\n\n\n\n\nDoWaterArbitration\n\n\n\n\n\n\n\n\n\nDoWeather\n\n\n\n\n\n\n\n\n\nEndOfDay\n\n\n\n\n\n\n\n\n\nEndOfMonth\n\n\n\n\n\n\n\n\n\nEndOfSimulation\n\n\n\n\n\n\n\n\n\nEndOfWeek\n\n\n\n\n\n\n\n\n\nEndOfYear\n\n\n\n\n\n\n\n\n\nFinalInitialise\n\n\n\n\n\n\n\n\n\nPartitioningComplete\n\n\n\n\n\n\n\n\n\nPlantSowing\n\n\n\n\n\n\n\n\n\nPrePhenology\n\n\n\n\n\n\n\n\n\nSeedImbibed\n\n\n\n\n\n\n\n\n\nStartOfDay\n\n\n\n\n\n\n\n\n\nStartOfFirstDay\n\n\n\n\n\n\n\n\n\nStartOfMonth\n\n\n\n\n\n\n\n\n\nStartOfSimulation\n\n\n\n\n\n\n\n\n\nStartOfWeek\n\n\n\n\n\n\n\n\n\nStartOfYear\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "docs/Models/Events/SeedImbibed.html",
+    "href": "docs/Models/Events/SeedImbibed.html",
+    "title": "SeedImbibed",
+    "section": "",
+    "text": "This event is raised when germination occurs by GerminatingPhase, signaling other models or processes to begin their activities related to the germinated seed."
+  },
+  {
+    "objectID": "docs/Models/Events/SeedImbibed.html#triggering",
+    "href": "docs/Models/Events/SeedImbibed.html#triggering",
+    "title": "SeedImbibed",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoStock.html",
+    "href": "docs/Models/Events/DoStock.html",
+    "title": "DoStock",
+    "section": "",
+    "text": "Occurs each day to process stock methods in GrazPlan Stock."
+  },
+  {
+    "objectID": "docs/Models/Events/DoStock.html#triggering",
+    "href": "docs/Models/Events/DoStock.html#triggering",
+    "title": "DoStock",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMUpdatePasture.html",
+    "href": "docs/Models/Events/CLEMUpdatePasture.html",
+    "title": "CLEMUpdatePasture",
+    "section": "",
+    "text": "CLEM update pasture."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMUpdatePasture.html#triggering",
+    "href": "docs/Models/Events/CLEMUpdatePasture.html#triggering",
+    "title": "CLEMUpdatePasture",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoUpdateWaterDemand.html",
+    "href": "docs/Models/Events/DoUpdateWaterDemand.html",
+    "title": "DoUpdateWaterDemand",
+    "section": "",
+    "text": "Occurs each day to do daily growth increment of total plant biomass."
+  },
+  {
+    "objectID": "docs/Models/Events/DoUpdateWaterDemand.html#triggering",
+    "href": "docs/Models/Events/DoUpdateWaterDemand.html#triggering",
+    "title": "DoUpdateWaterDemand",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalStock.html",
+    "href": "docs/Models/Events/CLEMAnimalStock.html",
+    "title": "CLEMAnimalStock",
+    "section": "",
+    "text": "CLEM stock animals to pasture availability or other metrics."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalStock.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalStock.html#triggering",
+    "title": "CLEMAnimalStock",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMark.html",
+    "href": "docs/Models/Events/CLEMAnimalMark.html",
+    "title": "CLEMAnimalMark",
+    "section": "",
+    "text": "CLEM Do animal marking so complete before undertaking management decisions."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMark.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalMark.html#triggering",
+    "title": "CLEMAnimalMark",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoActualPlantPartioning.html",
+    "href": "docs/Models/Events/DoActualPlantPartioning.html",
+    "title": "DoActualPlantPartioning",
+    "section": "",
+    "text": "Occurs each day to do nutrient allocations."
+  },
+  {
+    "objectID": "docs/Models/Events/DoActualPlantPartioning.html#triggering",
+    "href": "docs/Models/Events/DoActualPlantPartioning.html#triggering",
+    "title": "DoActualPlantPartioning",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoActualPlantGrowth.html",
+    "href": "docs/Models/Events/DoActualPlantGrowth.html",
+    "title": "DoActualPlantGrowth",
+    "section": "",
+    "text": "Occurs each day to do actual plant growth."
+  },
+  {
+    "objectID": "docs/Models/Events/DoActualPlantGrowth.html#triggering",
+    "href": "docs/Models/Events/DoActualPlantGrowth.html#triggering",
+    "title": "DoActualPlantGrowth",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalSell.html",
+    "href": "docs/Models/Events/CLEMAnimalSell.html",
+    "title": "CLEMAnimalSell",
+    "section": "",
+    "text": "CLEM sell animals to market including transporting and labour."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalSell.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalSell.html#triggering",
+    "title": "CLEMAnimalSell",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMilking.html",
+    "href": "docs/Models/Events/CLEMAnimalMilking.html",
+    "title": "CLEMAnimalMilking",
+    "section": "",
+    "text": "CLEM Do Animal (Ruminant and Other) milking."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalMilking.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalMilking.html#triggering",
+    "title": "CLEMAnimalMilking",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoInitialSummary.html",
+    "href": "docs/Models/Events/DoInitialSummary.html",
+    "title": "DoInitialSummary",
+    "section": "",
+    "text": "Occurs each day to make the initial summary."
+  },
+  {
+    "objectID": "docs/Models/Events/DoInitialSummary.html#triggering",
+    "href": "docs/Models/Events/DoInitialSummary.html#triggering",
+    "title": "DoInitialSummary",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPastureWater.html",
+    "href": "docs/Models/Events/DoPastureWater.html",
+    "title": "DoPastureWater",
+    "section": "",
+    "text": "Initiates water calculations for the Pasture model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoPastureWater.html#triggering",
+    "href": "docs/Models/Events/DoPastureWater.html#triggering",
+    "title": "DoPastureWater",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/FinalInitialise.html",
+    "href": "docs/Models/Events/FinalInitialise.html",
+    "title": "FinalInitialise",
+    "section": "",
+    "text": "Final Initialise event. Occurs once at start of simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/FinalInitialise.html#triggering",
+    "href": "docs/Models/Events/FinalInitialise.html#triggering",
+    "title": "FinalInitialise",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMInitialiseResource.html",
+    "href": "docs/Models/Events/CLEMInitialiseResource.html",
+    "title": "CLEMInitialiseResource",
+    "section": "",
+    "text": "CLEM initialise Resources occurs once at start of simulation."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMInitialiseResource.html#triggering",
+    "href": "docs/Models/Events/CLEMInitialiseResource.html#triggering",
+    "title": "CLEMInitialiseResource",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoManagementCalculations.html",
+    "href": "docs/Models/Events/DoManagementCalculations.html",
+    "title": "DoManagementCalculations",
+    "section": "",
+    "text": "Occurs each day after the simulation is done. Does management calculations."
+  },
+  {
+    "objectID": "docs/Models/Events/DoManagementCalculations.html#triggering",
+    "href": "docs/Models/Events/DoManagementCalculations.html#triggering",
+    "title": "DoManagementCalculations",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/DoReport.html",
+    "href": "docs/Models/Events/DoReport.html",
+    "title": "DoReport",
+    "section": "",
+    "text": "Occurs at end of each day."
+  },
+  {
+    "objectID": "docs/Models/Events/DoReport.html#triggering",
+    "href": "docs/Models/Events/DoReport.html#triggering",
+    "title": "DoReport",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
   },
   {
     "objectID": "docs/Models/Events/Commencing.html",
@@ -852,6 +1944,41 @@
     "title": "Commencing",
     "section": "",
     "text": "Triggered once at the start of the simulation, giving all models a chance to initialise their state."
+  },
+  {
+    "objectID": "docs/Models/Events/Commencing.html#triggering",
+    "href": "docs/Models/Events/Commencing.html#triggering",
+    "title": "Commencing",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalBreeding.html",
+    "href": "docs/Models/Events/CLEMAnimalBreeding.html",
+    "title": "CLEMAnimalBreeding",
+    "section": "",
+    "text": "CLEM Do Animal (Ruminant and Other) Breeding and milk calculations."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalBreeding.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalBreeding.html#triggering",
+    "title": "CLEMAnimalBreeding",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalManage.html",
+    "href": "docs/Models/Events/CLEMAnimalManage.html",
+    "title": "CLEMAnimalManage",
+    "section": "",
+    "text": "CLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.)."
+  },
+  {
+    "objectID": "docs/Models/Events/CLEMAnimalManage.html#triggering",
+    "href": "docs/Models/Events/CLEMAnimalManage.html#triggering",
+    "title": "CLEMAnimalManage",
+    "section": "Triggering",
+    "text": "Triggering\nThis event is triggered in the Clock model."
   },
   {
     "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html",
