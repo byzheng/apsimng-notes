@@ -59,7 +59,7 @@ Implementation Details
 
 **Events Listened For**
 
-These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+These are signals or notifications that the function listens for from other parts of the simulation:
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|

@@ -120,7 +120,7 @@ This methodology ensures a realistic diurnal temperature profile by combining si
 
 **Events Listened For**
 
-These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+These are signals or notifications that the function listens for from other parts of the simulation:
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
@@ -168,7 +168,7 @@ We estimate hourly air temperature ($T_h$) using a sinusoidal + exponential meth
 | $P$                      | 1.5          | Shape factor constant       |
 | $T_c$                    | 4.0          | Exponential cooling constant|
 
-The following figure shows the estimated hourly air temperature profile for a day with these parameters:
+The following figure shows the estimated hourly air temperature profile for a day with these inputs and parameters:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
@@ -232,3 +232,4 @@ ggplot(df, aes(x = Hour, y = Temperature)) +
 
 
 ```
+
