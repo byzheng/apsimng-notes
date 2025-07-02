@@ -3,7 +3,7 @@ title: "Thermal Time"
 output: html_document
 ---
 
-A function of daily thermal time for wheat based on [SubDailyAirTemperature](/docs/Models/Functions/SubDailyAirTemperature.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+A function of daily thermal time for wheat based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
 
 ## Overview
 

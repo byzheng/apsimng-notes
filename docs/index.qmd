@@ -1,5 +1,5 @@
 ---
-title: "Documentation"
+title: "Docs"
 ---
 
 Here is not the official APSIM documentation, but a collection of documentations when I am working with [APSIM](https://www.apsim.info/) Next Generation. The official documentation is available at [APSIM Documentation](https://apsimnextgeneration.netlify.app/), [Model Validation](https://docs.apsim.info/), and [APSIM GitHub](https://github.com/APSIMInitiative/ApsimX).
