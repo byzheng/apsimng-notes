@@ -11,3 +11,5 @@ _site
 /.quarto/
 /site_libs/
 *.html
+
+_tmp.txt

@@ -150,7 +150,7 @@ These are signals or notifications that the function listens for from other part
 
 ## User Interface
 
-`HourlySinPpAdjusted` can be added as a child of a `SubDailyInterpolation` node in the model tree. Right-click the parent node, select "Add Model...", and search for `HourlySinPpAdjusted` in the Filter Box.
+`HourlySinPpAdjusted` can be added as a child of a [SubDailyInterpolation](SubDailyInterpolation) node in the model tree. Right-click the parent node, select "Add Model...", and search for `HourlySinPpAdjusted` in the Filter Box.
 
 
 ## Practical Example
@@ -260,3 +260,6 @@ ggplot(df, aes(x = Hour, y = Temperature)) +
 
 ```
 
+## See Also
+
+* **Source code:** [HourlySinPpAdjusted.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/HourlySinPpAdjusted.cs)

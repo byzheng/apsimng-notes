@@ -1,0 +1,92 @@
+---
+title: "Sub Daily Interpolation Function"
+output: html_document
+---
+
+
+`SubDailyInterpolation` is a function module that enables fine-resolution simulation of temperature-driven biological responses by computing sub-daily (e.g., hourly) air temperatures. It does so by interpolating daily minimum and maximum temperatures using a chosen method (e.g., [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)) or [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd), and applying a temperature response function to each sub-daily point, aggregating the result as a sum or average. This allows temperature-dependent processes such as growth, phenology, or respiration to respond more realistically to daily temperature cycles.
+
+## Overview
+
+The `SubDailyInterpolation` model enables simulation of plant and environmental processes that require sub-daily temperature information. It operates by:
+
+1. Interpolating sub-daily air temperatures using a child model that implements `IInterpolationMethod` (e.g., [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd) or [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)).
+2. Applying a child `IIndexedFunction` response function to each of the sub-daily temperature values.
+3. Aggregating the responses using either the average or the sum, depending on the selected `AgregationMethod` (Average or Sum).
+
+This approach is especially valuable in contexts where biological rates (e.g., enzymatic activity or stress responses) are non-linear with respect to temperature.
+
+## Inputs
+
+The following inputs are required for `SubDailyInterpolation` to operate:
+
+- `MetData`: A model implementing `IWeather`, typically the `Weather` module, which supplies daily `Tmin` and `Tmax`.
+- `InterpolationMethod`: A child model that implements `IInterpolationMethod` and provides sub-daily temperature estimates (e.g., [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd) or [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)).
+- `Response`: A child model implementing `IIndexedFunction`, which calculates a biological or physical response for each sub-daily temperature.
+- `agregationMethod`: A user-configurable enum determining whether the output is the `Average` or the `Sum` of the sub-daily responses.
+
+## Methodology
+
+The function operates in two stages each day:
+
+1. Interpolation of Sub-daily Temperatures  
+    The selected `InterpolationMethod` model returns a list of sub-daily temperatures:  
+$$
+T_1, T_2, \dots, T_n
+$$
+
+2. Application of Temperature Response Function  
+    The response function $f(T)$ is applied to each temperature:  
+$$
+R_i = f(T_i) \quad \text{for } i = 1 \dots n
+$$
+
+3. Aggregation  
+    Depending on the selected `agregationMethod`, the result is:  
+- Average:
+$$
+R = \frac{1}{n} \sum_{i=1}^n R_i
+$$
+- Sum:
+$$
+R = \sum_{i=1}^n R_i
+$$
+
+The result $R$ becomes the output of the `SubDailyInterpolation` function for that day.
+
+## Events
+
+**Events Listened For**
+
+| Event | Purpose |
+|-------|---------|
+| [DoDailyInitialisation](/docs/Models/Events/DoDailyInitialisation.qmd) | Triggers the interpolation and response function application each day. |
+
+**Events Raised To**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| agregationMethod | enum (Average, Sum) | Method used to aggregate sub-daily response values. |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+`SubDailyInterpolation` can be added as a child of a function node in the model tree (e.g., `[Phenology]`).  
+Right-click the parent node, select "Add Model...", and search for `SubDailyInterpolation` in the Filter Box.
+
+## Practical Example
+
+> No practical example is provided for this function.
+
+## See Also
+
+- Source code: [SubDailyInterpolation.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/SubDailyInterpolation.cs)

@@ -72,7 +72,7 @@ These are signals or notifications that the function listens for from other part
 
 ## User Interface
 
-`ThreeHourAirTemperature` can be added as a child of a `SubDailyInterpolation` node in the model tree. Right-click the parent node, select "Add Model...", and search for `ThreeHourAirTemperature` in the Filter Box.
+`ThreeHourAirTemperature` can be added as a child of a [SubDailyInterpolation](SubDailyInterpolation) node in the model tree. Right-click the parent node, select "Add Model...", and search for `ThreeHourAirTemperature` in the Filter Box.
 
 
 ## Practical Example
@@ -130,3 +130,8 @@ ggplot(df, aes(x = Hour, y = Temperature)) +
     theme_bw()
 
 ```
+
+
+## See Also
+
+* **Source code:** [ThreeHourAirTemperature.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/ThreeHourAirTemperature.cs)
