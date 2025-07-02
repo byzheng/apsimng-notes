@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -219,12 +219,6 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -244,10 +238,6 @@ window.Quarto = {
 </th>
 
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
 Description
 </th>
 
@@ -255,12 +245,9 @@ Description
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-file-modified-sort="1751422802011" data-listing-reading-time-sort="2" data-listing-word-count-sort="209" data-listing-title-sort="Add Function" data-listing-filename-sort="AddFunction.qmd">
+<tr data-index="0" data-listing-file-modified-sort="1751423461674" data-listing-reading-time-sort="2" data-listing-word-count-sort="209" data-listing-title-sort="Add Function" data-listing-filename-sort="AddFunction.qmd">
 <td>
 <a href="../../../docs/Models/Functions/AddFunction.html" class="title listing-title">Add Function</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>AddFunction</code> is a utility function that returns the <strong>sum of values</strong> from all of its child functions.</span>
@@ -268,12 +255,9 @@ Description
 
 </tr>
 
-<tr data-index="1" data-listing-file-modified-sort="1751422802012" data-listing-reading-time-sort="14" data-listing-word-count-sort="2627" data-listing-title-sort="Frost and Heat Damage Functions" data-listing-filename-sort="FrostHeatDamageFunctions.qmd">
+<tr data-index="1" data-listing-file-modified-sort="1751423461674" data-listing-reading-time-sort="14" data-listing-word-count-sort="2627" data-listing-title-sort="Frost and Heat Damage Functions" data-listing-filename-sort="FrostHeatDamageFunctions.qmd">
 <td>
 <a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="title listing-title">Frost and Heat Damage Functions</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">A daily model that simulates yield reduction due to <strong>frost and heat stresses</strong>. Developed under the <strong>GRDC Frost and Heat Management Analytics (FAHMA)</strong> project for integration…</span>
@@ -281,12 +265,9 @@ Description
 
 </tr>
 
-<tr data-index="2" data-listing-file-modified-sort="1751422802012" data-listing-reading-time-sort="14" data-listing-word-count-sort="2712" data-listing-title-sort="Hourly Sinusoidal and Exponential Air Temperature Function" data-listing-filename-sort="HourlySinPpAdjusted.qmd">
+<tr data-index="2" data-listing-file-modified-sort="1751423461674" data-listing-reading-time-sort="14" data-listing-word-count-sort="2712" data-listing-title-sort="Hourly Sinusoidal and Exponential Air Temperature Function" data-listing-filename-sort="HourlySinPpAdjusted.qmd">
 <td>
 <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="title listing-title">Hourly Sinusoidal and Exponential Air Temperature Function</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>HourlySinPpAdjusted</code> function provides <strong>hourly estimates of air temperature</strong> by interpolating between daily maximum and minimum temperatures using a sinusoidal method…<span class="citation" data-cites="goudriaan_climatic_1994"></span></span>
@@ -294,12 +275,9 @@ Description
 
 </tr>
 
-<tr data-index="3" data-listing-file-modified-sort="1751422802012" data-listing-reading-time-sort="4" data-listing-word-count-sort="731" data-listing-title-sort="Three Hourly Air Temperature Function" data-listing-filename-sort="ThreeHourAirTemperature.qmd">
+<tr data-index="3" data-listing-file-modified-sort="1751423461674" data-listing-reading-time-sort="4" data-listing-word-count-sort="731" data-listing-title-sort="Three Hourly Air Temperature Function" data-listing-filename-sort="ThreeHourAirTemperature.qmd">
 <td>
 <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="title listing-title">Three Hourly Air Temperature Function</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>ThreeHourAirTemperature</code> function provides <strong>3-hourly estimates of air temperature</strong> by interpolating between daily maximum and minimum temperatures using a sinusoidal method.</span>
@@ -307,12 +285,9 @@ Description
 
 </tr>
 
-<tr data-index="4" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="660" data-listing-title-sort="Daily Nitrogen Demand for Storage Organs" data-listing-filename-sort="StorageNDemandFunction.qmd">
+<tr data-index="4" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461674" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="660" data-listing-title-sort="Daily Nitrogen Demand for Storage Organs" data-listing-filename-sort="StorageNDemandFunction.qmd">
 <td>
 <a href="../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="title listing-title">Daily Nitrogen Demand for Storage Organs</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">The <code>StorageNDemandFunction</code> calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.</span>

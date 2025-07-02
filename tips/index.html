@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -203,12 +203,6 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -228,10 +222,6 @@ window.Quarto = {
 </th>
 
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
 Description
 </th>
 
@@ -239,12 +229,9 @@ Description
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="955" data-listing-title-sort="Setting CO₂ Concentration" data-listing-filename-sort="co2.md">
+<tr data-index="0" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="955" data-listing-title-sort="Setting CO₂ Concentration" data-listing-filename-sort="co2.md">
 <td>
 <a href="../tips/co2.html" class="title listing-title">Setting CO₂ Concentration</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">In APSIM Next Gen, the default CO₂ concentration is <strong>350 ppm</strong> if not explicitly set.<br>
@@ -253,12 +240,9 @@ This value may need to be changed when simulating future climate scenarios or FA
 
 </tr>
 
-<tr data-index="1" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1017" data-listing-title-sort="Accessing Internal Model Variables in the Manager Scripts" data-listing-filename-sort="internal_variable.md">
+<tr data-index="1" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1017" data-listing-title-sort="Accessing Internal Model Variables in the Manager Scripts" data-listing-filename-sort="internal_variable.md">
 <td>
 <a href="../tips/internal_variable.html" class="title listing-title">Accessing Internal Model Variables in the Manager Scripts</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">In APSIM Next Gen, internal variables such as <code>[Wheat].Phenology.FloweringDAS</code> and <code>[Wheat].Stem.N</code> are accessible within the <code>Report</code> model. However, accessing these variables…<code></code></span>
@@ -266,12 +250,9 @@ This value may need to be changed when simulating future climate scenarios or FA
 
 </tr>
 
-<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802016" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="233" data-listing-title-sort="Writing Debug Info to Summary" data-listing-filename-sort="summary.md">
+<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461678" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="233" data-listing-title-sort="Writing Debug Info to Summary" data-listing-filename-sort="summary.md">
 <td>
 <a href="../tips/summary.html" class="title listing-title">Writing Debug Info to Summary</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">When developing and debugging <code>Manager</code> scripts in APSIM Next Gen, it’s helpful to write custom messages to the <strong>Summary window</strong>.</span>

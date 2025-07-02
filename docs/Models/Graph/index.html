@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -219,12 +219,6 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -244,10 +238,6 @@ window.Quarto = {
 </th>
 
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
 Description
 </th>
 
@@ -255,12 +245,9 @@ Description
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802012" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="115" data-listing-title-sort="Show Event Names on Graph" data-listing-filename-sort="EventNamesOnGraph.qmd">
+<tr data-index="0" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461674" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="115" data-listing-title-sort="Show Event Names on Graph" data-listing-filename-sort="EventNamesOnGraph.qmd">
 <td>
 <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="title listing-title">Show Event Names on Graph</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">Model <code>EventNamesOnGraph</code> is designed to add event names (e.g.&nbsp;growth stages) to a <code>Graph</code> <code>Series</code> in APSIM NG. This is particularly useful for visualizing the timing of key…</span>

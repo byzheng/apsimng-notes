@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Plant Modelling Framework – APSIM NG Notes</title>
+<title>Plant Modelling Framework (PMF) – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -191,7 +191,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Plant Modelling Framework</h1>
+<h1 class="title">Plant Modelling Framework (PMF)</h1>
 </div>
 
 
@@ -219,12 +219,6 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -244,10 +238,6 @@ window.Quarto = {
 </th>
 
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
 Description
 </th>
 
@@ -255,12 +245,9 @@ Description
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-file-modified-sort="1751422802013" data-listing-reading-time-sort="5" data-listing-word-count-sort="846" data-listing-title-sort="Emerging Phase" data-listing-filename-sort="EmergingPhase.qmd">
+<tr data-index="0" data-listing-file-modified-sort="1751423461675" data-listing-reading-time-sort="5" data-listing-word-count-sort="846" data-listing-title-sort="Emerging Phase" data-listing-filename-sort="EmergingPhase.qmd">
 <td>
 <a href="../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="title listing-title">Emerging Phase</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It…</span>
@@ -268,12 +255,9 @@ Description
 
 </tr>
 
-<tr data-index="1" data-listing-file-modified-sort="1751422802013" data-listing-reading-time-sort="5" data-listing-word-count-sort="815" data-listing-title-sort="Generic Phase" data-listing-filename-sort="GenericPhase.qmd">
+<tr data-index="1" data-listing-file-modified-sort="1751423461675" data-listing-reading-time-sort="5" data-listing-word-count-sort="815" data-listing-title-sort="Generic Phase" data-listing-filename-sort="GenericPhase.qmd">
 <td>
 <a href="../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="title listing-title">Generic Phase</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>GenericPhase</code> is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time…</span>
@@ -281,12 +265,9 @@ Description
 
 </tr>
 
-<tr data-index="2" data-listing-file-modified-sort="1751422802013" data-listing-reading-time-sort="5" data-listing-word-count-sort="981" data-listing-title-sort="Germinating Phase" data-listing-filename-sort="GerminatingPhase.qmd">
+<tr data-index="2" data-listing-file-modified-sort="1751423461675" data-listing-reading-time-sort="5" data-listing-word-count-sort="981" data-listing-title-sort="Germinating Phase" data-listing-filename-sort="GerminatingPhase.qmd">
 <td>
 <a href="../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="title listing-title">Germinating Phase</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <code>GerminatingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It…</span>
@@ -294,12 +275,9 @@ Description
 
 </tr>
 
-<tr data-index="3" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="731" data-listing-title-sort="Nutrient Constrained Allocation" data-listing-filename-sort="NutrientConstrainedAllocationMethod.qmd">
+<tr data-index="3" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="731" data-listing-title-sort="Nutrient Constrained Allocation" data-listing-filename-sort="NutrientConstrainedAllocationMethod.qmd">
 <td>
 <a href="../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="title listing-title">Nutrient Constrained Allocation</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation.…<strong></strong></span>
@@ -307,12 +285,9 @@ Description
 
 </tr>
 
-<tr data-index="4" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802013" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586" data-listing-title-sort="Relative Allocation" data-listing-filename-sort="RelativeAllocation.qmd">
+<tr data-index="4" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461675" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="586" data-listing-title-sort="Relative Allocation" data-listing-filename-sort="RelativeAllocation.qmd">
 <td>
 <a href="../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="title listing-title">Relative Allocation</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description">The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a…<strong></strong><strong></strong></span>

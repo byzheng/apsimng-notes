@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-date','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author"],
     };
@@ -219,12 +219,6 @@ window.Quarto = {
     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
       <option value="" disabled="" selected="" hidden="">Order By</option>
       <option value="index" data-direction="asc">Default</option>
-      <option value="listing-date-sort" data-direction="asc">
-        Date - Oldest
-      </option>
-      <option value="listing-date-sort" data-direction="desc">
-        Date - Newest
-      </option>
       <option value="listing-title-sort" data-direction="asc">
         Title
       </option>
@@ -244,10 +238,6 @@ window.Quarto = {
 </th>
 
 <th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-
-<th>
 Description
 </th>
 
@@ -255,12 +245,9 @@ Description
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-listing-file-modified-sort="1751422802010" data-listing-reading-time-sort="3" data-listing-word-count-sort="475" data-listing-title-sort="Emerging" data-listing-filename-sort="Emerging.qmd">
+<tr data-index="0" data-listing-file-modified-sort="1751423461672" data-listing-reading-time-sort="3" data-listing-word-count-sort="475" data-listing-title-sort="Emerging" data-listing-filename-sort="Emerging.qmd">
 <td>
 <a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="title listing-title">Emerging</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <strong>Emerging</strong> phase in Wheat represents the developmental period from <strong>Germination</strong> to <strong>Emergence</strong>. It is influenced by sowing depth, a lag period before coleoptile elongation…</span>
@@ -268,12 +255,9 @@ Description
 
 </tr>
 
-<tr data-index="1" data-listing-file-modified-sort="1751422802010" data-listing-reading-time-sort="1" data-listing-word-count-sort="192" data-listing-title-sort="Germinating" data-listing-filename-sort="Germinating.qmd">
+<tr data-index="1" data-listing-file-modified-sort="1751423461673" data-listing-reading-time-sort="1" data-listing-word-count-sort="192" data-listing-title-sort="Germinating" data-listing-filename-sort="Germinating.qmd">
 <td>
 <a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="title listing-title">Germinating</a>
-</td>
-<td>
-<span class="listing-date">&nbsp;</span>
 </td>
 <td>
 <span class="listing-description">The <strong>Germinating</strong> is a phenological phase in Wheat used to represent the development period from <strong>Sowing</strong> to <strong>Germination</strong>. It determines whether the seed has germinated based on…</span>
@@ -281,12 +265,9 @@ Description
 
 </tr>
 
-<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751422802011" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Thermal Time" data-listing-filename-sort="ThermalTime.qmd">
+<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751423461673" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Thermal Time" data-listing-filename-sort="ThermalTime.qmd">
 <td>
 <a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="title listing-title">Thermal Time</a>
-</td>
-<td>
-<span class="listing-date">Jun 6, 2025</span>
 </td>
 <td>
 <span class="listing-description"></span>
