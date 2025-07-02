@@ -12,7 +12,7 @@ The `ThreeHourAirTemperature` function provides **3-hourly estimates of air temp
 
 ## Inputs
 
-- **MetData**: A `IWeather` for maximum air minimum and maximum temperature from weather data.
+- **MetData**: A `IWeather` model for maximum air minimum and maximum temperature from weather data, i.e. a `Weather` model is required in the simulation to provide daily maximum and minimum temperatures.
 
 ## Methodology
 
