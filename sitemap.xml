@@ -2,158 +2,162 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/ThermalTime.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/NitrogenDemand.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/co2-wheat.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/CO2/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/FrostHeatDamageFunctions.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/Commencing.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.495Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/EmergingPhase.html</loc>
-    <lastmod>2025-07-01T11:42:44.496Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html</loc>
-    <lastmod>2025-07-01T11:42:44.496Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
-    <lastmod>2025-07-01T11:42:44.495Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/management/fertiliser.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-07-01T11:42:44.499Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-07-01T11:42:44.499Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-07-01T11:42:44.499Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.499Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
-    <lastmod>2025-07-01T11:42:44.495Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.496Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GenericPhase.html</loc>
-    <lastmod>2025-07-01T11:42:44.496Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
-    <lastmod>2025-07-01T11:42:44.495Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/PlantSowing.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/SeedImbibed.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Models/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.495Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/SeedImbibed.html</loc>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/PlantSowing.html</loc>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
+    <lastmod>2025-07-02T00:23:47.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GenericPhase.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/about.html</loc>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
+    <lastmod>2025-07-02T00:23:47.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
+    <lastmod>2025-07-02T00:23:47.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
+    <lastmod>2025-07-02T00:23:47.939Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/management/fertiliser.html</loc>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/EmergingPhase.html</loc>
+    <lastmod>2025-07-02T00:23:47.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/index.html</loc>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Events/Commencing.html</loc>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/FrostHeatDamageFunctions.html</loc>
+    <lastmod>2025-07-02T00:23:47.935Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/ThreeHourAirTemperature.html</loc>
+    <lastmod>2025-07-02T00:23:47.935Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/AddFunction.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.497Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.937Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/grain/index.html</loc>
-    <lastmod>2025-07-01T11:42:44.494Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.934Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Germinating.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Emerging.html</loc>
-    <lastmod>2025-07-01T11:42:44.493Z</lastmod>
+    <lastmod>2025-07-02T00:23:47.933Z</lastmod>
   </url>
 </urlset>

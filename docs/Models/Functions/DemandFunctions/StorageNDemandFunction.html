@@ -158,9 +158,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose">Purpose</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#calculation" id="toc-calculation" class="nav-link" data-scroll-target="#calculation">Calculation</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#implementation-details" id="toc-implementation-details" class="nav-link" data-scroll-target="#implementation-details">Implementation Details</a></li>
   <li><a href="#usage-notes" id="toc-usage-notes" class="nav-link" data-scroll-target="#usage-notes">Usage Notes</a></li>
   </ul>
@@ -195,8 +195,8 @@ window.Quarto = {
 
 
 <p>The <code>StorageNDemandFunction</code> calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.</p>
-<section id="purpose" class="level2">
-<h2 class="anchored" data-anchor-id="purpose">Purpose</h2>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>This function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration.</p>
 </section>
 <section id="inputs" class="level2">
@@ -207,8 +207,8 @@ window.Quarto = {
 <li><strong>parentOrgan</strong>: The organ that implements the <code>IArbitration</code> interface, i.e.&nbsp;an organ which <code>StorageNDemandFunction</code> attached to, which provides access to the organ’s properties such as live weight and current N content.</li>
 </ul>
 </section>
-<section id="calculation" class="level2">
-<h2 class="anchored" data-anchor-id="calculation">Calculation</h2>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p>The potential biomass after potential allocation is calculated as biomass at previous day (<span class="math inline">\(DM_{\text{Live}, i-1}\)</span>) plus the potential allocation to the organ (<span class="math inline">\(A_{\text{P}, i}\)</span>): <span class="math display">\[
 DM_{\text{Live}, i} = DM_{\text{Live}, i-1} + A_{\text{P}, i}
 \]</span></p>
