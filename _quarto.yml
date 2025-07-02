@@ -7,7 +7,7 @@ execute:
   warning: false
 website:
   title: "APSIM NG Notes"
-  google-analytics: "G-NZR12M3JKS"
+  google-analytics: "G-5K7WTC1T5R"
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]
   sidebar:
