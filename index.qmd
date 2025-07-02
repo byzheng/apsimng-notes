@@ -1,5 +1,6 @@
 ---
 title: "APSIM Next Generation Notes"
+sidebar: false
 ---
 
 

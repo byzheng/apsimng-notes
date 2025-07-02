@@ -10,7 +10,8 @@ website:
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]
   sidebar:
-    contents: auto
+    style: "docked"
+    contents: docs
   navbar:
     left:
       - href: index.qmd

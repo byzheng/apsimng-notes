@@ -1,5 +1,6 @@
 ---
 title: "Tips"
+sidebar: false
 listing:
   contents: 
    - "*.md"

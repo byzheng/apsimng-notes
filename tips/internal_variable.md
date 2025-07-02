@@ -1,6 +1,7 @@
 ---
 title: "Accessing Internal Model Variables in the Manager Scripts"
 output: html_document
+sidebar: false
 date: "2025-06-06"
 ---
 

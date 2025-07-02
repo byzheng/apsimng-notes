@@ -1,6 +1,7 @@
 ---
 title: "Setting CO₂ Concentration"
 date: "2025-06-06"
+sidebar: false
 output: html_document
 ---
 
