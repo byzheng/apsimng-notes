@@ -1,0 +1,99 @@
+---
+title: "Three Hourly Air Temperature Function"
+output: html_document
+---
+
+
+The `ThreeHourAirTemperature` function provides **3-hourly estimates of air temperature** by interpolating between daily maximum and minimum temperatures using a sinusoidal method.
+
+## Overview
+
+`ThreeHourAirTemperature` is used to generate sub-daily (3-hourly) air temperature values from daily weather data. This is important for models that require finer temporal resolution of temperature, such as those simulating plant or soil processes sensitive to diurnal temperature variation.
+
+## Inputs
+
+- **MetData**: A `IWeather` for maximum air minimum and maximum temperature from weather data.
+
+## Methodology
+
+The 24-hour day is divided into 8 equal 3-hour periods. For each period $p \in \{1, 2, \dots, 8\}$, a **temperature range factor** $\text{TRF}_p$ is calculated as:
+
+$$
+\text{TRF}_p = 0.92105 + 0.1140p - 0.0703p^2 + 0.0053p^3
+$$
+
+These factors represent the proportion of the daily diurnal range $(T_\text{max} - T_\text{min})$ added to the daily minimum temperature to estimate sub-daily temperatures.
+
+For each 3-hour interval $p$, the temperature $T_p$ is computed as:
+
+$$
+T_p = T_\text{min} + \text{TRF}_p \cdot (T_\text{max} - T_\text{min})
+$$
+
+Where:
+
+- $T_\text{min}$: Minimum air temperature for the day  
+- $T_\text{max}$: Maximum air temperature for the day  
+- $\text{TRF}_p$: Temperature range factor for period $p$
+
+
+
+## User Interface
+
+`ThreeHourAirTemperature` can be added as a child of a `SubDailyInterpolation` node in the model tree. Right-click the parent node, select "Add Model...", and search for `ThreeHourAirTemperature` in the Filter Box.
+
+
+## Practical Example
+
+If the daily temperature ranges from 10 °C to 30 °C, and you want the interpolated value for whole day, the function will calculate the 3-hourly temperatures as follows:
+
+1. Compute the range: $T_\text{max} - T_\text{min} = 20$ °C.
+2. Compute $\text{TRF}_3$ at period $p = 3$:
+
+$$
+\text{TRF}_3 = 0.92105 + 0.1140 \cdot 3 - 0.0703 \cdot 3^2 + 0.0053 \cdot 3^3 = 0.77345
+$$
+
+3. Compute sub-daily temperature:
+
+$$
+T_3 = 10 + 0.77345 \cdot 20 = 25.469^\circ \text{C}
+$$
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+Tmin <- 10
+Tmax <- 30
+
+# Define 3-hour periods (1 to 8)
+periods <- 1:8
+
+# Calculate temperature range
+range <- Tmax - Tmin
+
+# Compute TRF and corresponding sub-daily temperatures
+TRF <- 0.92105 + 0.1140 * periods - 0.0703 * periods^2 + 0.0053 * periods^3
+T_subdaily <- Tmin + TRF * range
+
+# Create a data frame for plotting
+df <- data.frame(
+    Hour = seq(1.5, 24, by = 3), # center of each 3-hour period
+    Temperature = T_subdaily
+)
+
+# Plot
+ggplot(df, aes(x = Hour, y = Temperature)) +
+    geom_line(color = "steelblue", size = 1.2) +
+    geom_point(size = 3, color = "steelblue") +
+    scale_x_continuous(breaks = seq(0, 24, by = 3)) +
+    labs(
+        title = "Sub-daily Air Temperature Interpolation",
+        x = "Period",
+        y = "Temperature (°C)"
+    ) +
+    theme_bw()
+
+```

@@ -6,7 +6,7 @@ output: html_document
 The `AddFunction` is a utility function that returns the **sum of values** from all of its child functions.
 
 
-## Purpose
+## Overview
 
 The `AddFunction` is used to sum up multiple values for a mathematical equation in the [Plant Model Framework](/docs/Models/PMF/). It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. 
 

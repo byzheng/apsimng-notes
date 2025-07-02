@@ -7,7 +7,7 @@ output: html_document
 
 The `StorageNDemandFunction` calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ's N content up to its maximum nitrogen concentration.
 
-## Purpose
+## Overview
 
 This function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ's N content does not exceed its maximum nitrogen concentration.
 
@@ -17,7 +17,7 @@ This function determines the additional N required for storage after meeting the
 - **nitrogenDemandSwitch**: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from `Emergence` to `MaximumGrainLength` stages, and switched off afterwards.
 - **parentOrgan**: The organ that implements the `IArbitration` interface, i.e. an organ which `StorageNDemandFunction` attached to, which provides access to the organ's properties such as live weight and current N content.
 
-## Calculation
+## Methodology
 
 The potential biomass after potential allocation is calculated as biomass at previous day ($DM_{\text{Live}, i-1}$) plus the potential allocation to the organ ($A_{\text{P}, i}$):
 $$
