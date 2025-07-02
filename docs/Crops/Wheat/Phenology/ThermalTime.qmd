@@ -4,3 +4,61 @@ date: "2025-06-06"
 output: html_document
 ---
 
+A function of daily thermal time for wheat based on [SubDailyAirTemperature](/docs/Models/Functions/SubDailyAirTemperature.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+## Overview
+
+The **Thermal Time** function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method ([ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd)), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily  thermal time used in phenological and growth calculations.
+
+
+* `InterpolationMethod`: [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.
+* `Response`: Three cardinal temperature using [XYPairs](/docs/Models/Functions/XYPairs.qmd) to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.
+
+| Cardinal Point | Description                | Value (°C) |
+|:--------------:|:--------------------------|:----------:|
+| Base           | Minimum for growth         | 0          |
+| Optimum        | Maximum rate of growth     | 26         |
+| Maximum        | Growth ceases above this   | 37         |
+
+```{r plot-thermal-time}
+library(ggplot2)
+
+# Define temperature range
+temps <- seq(-5, 40, by = 0.1)
+
+# Three cardinal temperature response function (example: base=0, optimum=26, maximum=37)
+thermal_response <- function(temp) {
+    if (temp <= 0 || temp >= 37) return(0)
+    if (temp >= 26) return((37 - temp) / (37 - 26) * 26)
+    return(temp)
+}
+
+responses <- sapply(temps, thermal_response)
+
+df <- data.frame(
+    Temperature = temps,
+    Response = responses
+)
+
+ggplot(df, aes(x = Temperature, y = Response)) +
+    geom_line(color = "darkorange", size = 1.2) +
+    geom_vline(xintercept = c(0, 26, 37), linetype = "dashed", color = "grey50") +
+    annotate("text", x = 0, y = max(responses), label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
+    annotate("text", x = 26, y = max(responses), label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
+    annotate("text", x = 37, y = max(responses), label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
+    labs(
+        title = "Three Cardinal Temperature Response Function",
+        x = "Temperature (°C)",
+        y = "Thermal Response"
+    ) +
+    theme_minimal()
+
+```
+
+## Cultivar-Specific Parameters
+
+> In general, we do not modify the thermal time function for different cultivars. 
+
+## Practical Example
+
+> No practical example is provided for the thermal time function.

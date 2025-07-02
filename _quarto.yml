@@ -1,6 +1,10 @@
 project:
   type: website
 bibliography: references.bib
+execute:
+  echo: false
+  message: false
+  warning: false
 website:
   title: "APSIM NG Notes"
   repo-url: "https://github.com/byzheng/apsimng-notes"

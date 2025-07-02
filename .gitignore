@@ -12,4 +12,4 @@ _site
 /site_libs/
 *.html
 
-_tmp.txt
+_tmp_*
