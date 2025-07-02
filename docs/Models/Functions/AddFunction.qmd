@@ -11,6 +11,32 @@ The `AddFunction` is a utility function that returns the **sum of values** from 
 The `AddFunction` is used to sum up multiple values for a mathematical equation in the [Plant Model Framework](/docs/Models/PMF/). It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. 
 
 
+
+## Events 
+
+
+**Events Listened For**
+
+> No events are listened for by this function.
+
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Properties
+
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only reportable properties are available for this function.
+
+
 ## User Interface
 
 `AddFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `Addfunction` in the Filter Box. A symbol for the `AddFunction` is displayed in the user interface to represent the function.

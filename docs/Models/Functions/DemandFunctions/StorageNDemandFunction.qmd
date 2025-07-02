@@ -47,13 +47,52 @@ Where:
 * $D_{\text{N, Structural}}$: Nitrogen demand for structural functions at day $i$.
 * $D_{\text{N, Metabolic}}$: Nitrogen demand for metabolic functions at day $i$. 
 
-## Implementation Details
+Implementation Details
 
 - The function is part of the `Models.Functions.DemandFunctions` namespace.
 - It implements the `IFunction` interface, allowing it to be used within the APSIM model framework.
 - During simulation commencement, it identifies its parent organ implementing the `IArbitration` interface to access necessary properties.
 
-## Usage Notes
+
+## Events 
+
+
+**Events Listened For**
+
+These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events/Commencing.qmd)   | Get parent organ from simulations |
+
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Properties
+
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `Value`   | double  | Storage demands for nitrogen (N) in the organ                      |
+
+
+
+## User Interface
+
+`StorageNDemandFunction` can be added as a child of a `NutrientDemandFunctions` node in the model tree. Right-click the parent node, select "Add Model...", and search for `StorageNDemandFunction` in the Filter Box.
+
+
+
+## Practical Example
 
 - Ensure that `maxNConc` and `nitrogenDemandSwitch` are properly defined within the organ's model to avoid calculation errors.
 - This function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ's N requirements.

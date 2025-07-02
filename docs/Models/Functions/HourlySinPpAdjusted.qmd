@@ -1,0 +1,234 @@
+---
+title: "Hourly Sinusoidal and Exponential Air Temperature Function"
+output: html_document
+---
+
+
+The `HourlySinPpAdjusted` function provides **hourly estimates of air temperature** by interpolating between daily maximum and minimum temperatures using a sinusoidal method during sunlight hours and an exponential decline during nighttime hours [@goudriaan_climatic_1994].
+
+
+
+## Overview
+
+This model estimates hourly air temperature (`Ta`) from daily minimum (`Tmin`) and maximum (`Tmax`) temperatures and day length (`d`). The interpolation approach follows the method described by [@goudriaan_climatic_1994], where:
+
+- During **sunlight hours**, temperature follows a **sinusoidal curve** fitted between `Tmin` and `Tmax`,
+- During **night hours**, temperature declines **exponentially** from sunset to next day’s sunrise minimum,
+- **Sunrise (`Hsrise`)** is assumed at `12 − d/2` and **sunset (`Hsset`)** is calculated accordingly.
+
+If a **Controlled Environment (CE)** module is linked, the model will use **actual hourly air temperatures** provided by CE instead of calculating them.
+
+## Inputs
+
+- **MetData** (Required): 
+    A `IWeather` model for maximum air minimum and maximum temperature from weather data, i.e. a `Weather` model is required in the simulation to provide daily maximum and minimum temperatures.
+- **CE** (`ControlledEnvironment`, optional):  
+    If present, overrides the interpolated sub-daily values using provided hourly temperature data (`SubDailyTemperature`). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available.
+
+- **Daylength (d)**:  
+    Computed internally via `MetData.CalculateDayLength(-6)` to define the daylight duration (based on -6° sun angle, commonly used in agriculture to define twilight start and end).
+
+- **Sunrise (Hsrise) and Sunset (Hsset)**:  
+    Calculated using `MetData.CalculateSunRise()` and `MetData.CalculateSunSet()`. Used to define the time range for each temperature estimation period (A–D).
+
+- **TmaxB / TminA**:  
+    Tmax from the previous day and Tmin from the next day, used to estimate temperatures across midnight and sunset transitions.
+
+- **P**:  
+    Shape factor constant (set to 1.5) to determine the shift of maximum temperature from solar noon.
+
+- **TC**:  
+    Time constant (set to 4.0) controlling the exponential cooling rate during the night.
+
+
+## Methodology
+
+Hourly estimates of air temperature (Ta) are interpolated from daily maximum (Tmax), minimum (Tmin) temperatures and daylength (d) using the method of [@goudriaan_climatic_1994]. The calculation divides the 24-hour day into four periods based on sunrise and sunset:
+
+1. **Period A: Midnight to Sunrise (Th < Hsrise)**  
+
+Temperature is modeled as an exponential decline from the temperature at the previous day's sunset ($Tsset$) down to the minimum temperature (Tmin) at sunrise. The hour of sunrise is denoted as $H_{srise}$, and sunset as $H_{sset}$. The temperature $T_a$ at hour $Th$ in this period is given by:
+
+$$
+T_a = \frac{T_{min} - T_{sset} \cdot e^{-\frac{n}{TC}} + (T_{sset} - T_{min}) \cdot e^{-\frac{(Th + 24 - H_{sset})}{TC}}}{1 - e^{-\frac{n}{TC}}}
+$$
+
+where
+
+$$
+T_{sset} = T_{min} + (T_{maxB} - T_{min}) \cdot \sin\left(\frac{\pi d}{d + 2P}\right)
+$$
+
+and
+
+$$
+n = 24 - d
+$$
+
+Here, $T_{maxB}$ is the previous day's maximum temperature, $P$ and $TC$ are constants (1.5 and 4.0 respectively).
+
+2. **Period B: Sunrise to Tmax ( $H_{srise} \leq Th < 12 + P$ )**  
+
+During sunlight hours, the temperature follows a sinusoidal curve rising from $T_{min}$ at sunrise to $T_{max}$ at hour $12 + P$:
+
+$$
+T_a = T_{min} + (T_{max} - T_{min}) \cdot \sin\left(\frac{\pi (Th - H_{srise})}{d + 2P}\right)
+$$
+
+3. **Period C: Tmax to Sunset ( $12 + P \leq Th < H_{sset}$ )**  
+
+The temperature follows a sinusoidal decline from $T_{max}$ to the next day's minimum temperature $T_{minA}$:
+
+$$
+T_a = T_{minA} + (T_{max} - T_{minA}) \cdot \sin\left(\frac{\pi (Th - H_{srise})}{d + 2P}\right)
+$$
+
+4. **Period D: Sunset to Midnight ( $Th \geq H_{sset}$ )**  
+
+After sunset, temperature exponentially declines from the temperature at sunset $T_{sset}$ to the minimum temperature at sunrise. The temperature is computed as:
+
+$$
+T_{sset} = T_{minA} + (T_{max} - T_{minA}) \cdot \sin\left(\frac{\pi d}{d + 2P}\right)
+$$
+
+$$
+T_a = \frac{T_{minA} - T_{sset} \cdot e^{-\frac{n}{TC}} + (T_{sset} - T_{minA}) \cdot e^{-\frac{(Th - H_{sset})}{TC}}}{1 - e^{-\frac{n}{TC}}}
+$$
+
+| Symbol         | Description                          | Typical Value / Units         |
+|----------------|--------------------------------------|------------------------------|
+| **Constants**  |                                      |                              |
+| $P$            | Shape factor for Tmax shift           | 1.5                          |
+| $TC$           | Exponential cooling time constant     | 4.0                          |
+| **Variables**  |                                      |                              |
+| $T_{min}$      | Daily minimum temperature             | °C                           |
+| $T_{max}$      | Daily maximum temperature             | °C                           |
+| $T_{minA}$     | Next day minimum temperature          | °C                           |
+| $T_{maxB}$     | Previous day maximum temperature      | °C                           |
+| $d$            | Day length                            | hours                        |
+| $H_{srise}$    | Hour of sunrise                       | hours (0–24)                 |
+| $H_{sset}$     | Hour of sunset                        | hours (0–24)                 |
+| $Th$           | Current hour                          | hours (0–23)                 |
+| $n$            | Night length ($n = 24 - d$)           | hours                        |
+
+
+This methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.
+
+
+## Events 
+
+
+**Events Listened For**
+
+These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events/Commencing.qmd)   | Nothing to calculate at the start of the simulation |
+
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Properties
+
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `OutputValueType`   | string  | The type of variable for sub-daily values as `air temperature`                      |
+
+
+
+## User Interface
+
+`HourlySinPpAdjusted` can be added as a child of a `SubDailyInterpolation` node in the model tree. Right-click the parent node, select "Add Model...", and search for `HourlySinPpAdjusted` in the Filter Box.
+
+
+## Practical Example
+
+We estimate hourly air temperature ($T_h$) using a sinusoidal + exponential method, with the following inputs:
+
+| Parameter                | Value         | Description                |
+|--------------------------|--------------|----------------------------|
+| $T_\text{min}$           | $10^\circ$C  | Today's minimum temperature |
+| $T_\text{max}$           | $30^\circ$C  | Today's maximum temperature |
+| $T_\text{maxB}$          | $28^\circ$C  | Yesterday's maximum temperature |
+| $T_\text{minA}$          | $12^\circ$C  | Tomorrow's minimum temperature |
+| Daylength $d$            | 12 hours     | Length of daylight          |
+| Sunrise                  | 6            | Hour of sunrise             |
+| Sunset                   | 18           | Hour of sunset              |
+| $P$                      | 1.5          | Shape factor constant       |
+| $T_c$                    | 4.0          | Exponential cooling constant|
+
+The following figure shows the estimated hourly air temperature profile for a day with these parameters:
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# Constants and inputs
+Tmin <- 10
+Tmax <- 30
+TmaxB <- 28
+TminA <- 12
+d <- 12
+P <- 1.5
+Tc <- 4.0
+sunrise <- 6
+sunset <- 18
+
+# Compute Tsset from yesterday and tomorrow
+pi_frac <- pi * d / (d + 2 * P)
+TssetB <- Tmin + (TmaxB - Tmin) * sin(pi_frac)
+TssetA <- TminA + (Tmax - TminA) * sin(pi_frac)
+
+# Generate hourly temperatures
+hours <- 0:23
+temps <- numeric(length(hours))
+n <- 24 - d
+
+for (i in seq_along(hours)) {
+    h <- hours[i]
+
+    if (h < sunrise) {
+        # Period A
+        temps[i] <- (Tmin - TssetB * exp(-n / Tc) +
+            (TssetB - Tmin) * exp(-(h + 24 - sunset) / Tc)) /
+            (1 - exp(-n / Tc))
+    } else if (h < 12 + P) {
+        # Period B
+        temps[i] <- Tmin + (Tmax - Tmin) * sin(pi * (h - sunrise) / (d + 2 * P))
+    } else if (h < sunset) {
+        # Period C
+        temps[i] <- TminA + (Tmax - TminA) * sin(pi * (h - sunrise) / (d + 2 * P))
+    } else {
+        # Period D
+        temps[i] <- (TminA - TssetA * exp(-n / Tc) +
+            (TssetA - TminA) * exp(-(h - sunset) / Tc)) /
+            (1 - exp(-n / Tc))
+    }
+}
+
+# Plot
+df <- data.frame(Hour = hours, Temperature = temps)
+
+ggplot(df, aes(x = Hour, y = Temperature)) +
+    geom_line(color = "tomato", size = 1.2) +
+    geom_point(size = 2, color = "tomato") +
+    labs(
+        title = "Hourly Temperature Estimated from Daily Tmin and Tmax",
+        x = "Hour of Day",
+        y = "Temperature (°C)"
+    ) +
+    scale_x_continuous(breaks = 0:23) +
+    theme_bw()
+
+
+```
