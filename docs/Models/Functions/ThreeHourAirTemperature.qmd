@@ -80,7 +80,7 @@ T_subdaily <- Tmin + TRF * range
 
 # Create a data frame for plotting
 df <- data.frame(
-    Hour = seq(1.5, 24, by = 3), # center of each 3-hour period
+    Hour = periods, # center of each 3-hour period
     Temperature = T_subdaily
 )
 
@@ -94,6 +94,7 @@ ggplot(df, aes(x = Hour, y = Temperature)) +
         x = "Period",
         y = "Temperature (°C)"
     ) +
+    scale_x_continuous(breaks = 1:8) +
     theme_bw()
 
 ```
