@@ -942,7 +942,7 @@
     "href": "docs/Models/Functions/AddFunction.html#practical-example",
     "title": "Add Function",
     "section": "Practical Example",
-    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above.\n\n\n\nTarget thermal time from germination to emergence in the wheat model"
+    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above."
   },
   {
     "objectID": "docs/Models/Traits/index.html",
