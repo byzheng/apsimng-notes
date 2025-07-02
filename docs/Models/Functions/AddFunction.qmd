@@ -53,6 +53,3 @@ TT = ShootLag + (SowingDepth \times ShootRate)
 $$
 
 The `AddFunction` is used to sum these two values to get the total target thermal time in the equation above.
-
-
-![Target thermal time from germination to emergence in the wheat model](addfunction.png){ width=35% align=center }
