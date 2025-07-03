@@ -780,23 +780,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/index.html#events",
-    "href": "docs/Models/index.html#events",
-    "title": "Models",
-    "section": "Events",
-    "text": "Events\nEvents are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models"
-    ]
-  },
-  {
     "objectID": "docs/Models/index.html#other-models",
     "href": "docs/Models/index.html#other-models",
     "title": "Models",
     "section": "Other Models",
-    "text": "Other Models\n\nClock: The Clock model is responsible for managing the simulation time and triggering events at specific times.",
+    "text": "Other Models\n\nClock: The Clock model is responsible for managing the simulation time and triggering events at specific times.\nEvents: Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.",
     "crumbs": [
       "Home",
       "Docs",

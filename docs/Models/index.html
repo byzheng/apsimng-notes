@@ -50,6 +50,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -89,13 +91,31 @@ div.csl-indent {
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
-<script type="text/javascript">
+<script type="text/plain" cookie-consent="tracking">
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
 </script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -497,7 +517,6 @@ gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
   <li><a href="#plant-modelling-framework" id="toc-plant-modelling-framework" class="nav-link" data-scroll-target="#plant-modelling-framework">Plant Modelling Framework</a></li>
   <li><a href="#graph" id="toc-graph" class="nav-link" data-scroll-target="#graph">Graph</a></li>
   <li><a href="#traits" id="toc-traits" class="nav-link" data-scroll-target="#traits">Traits</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#other-models" id="toc-other-models" class="nav-link" data-scroll-target="#other-models">Other Models</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -540,14 +559,11 @@ gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
 <h2 class="anchored" data-anchor-id="traits"><a href="Traits/">Traits</a></h2>
 <p>Some <a href="Traits">Traits</a> are described in multiple components, which are summaried in the <a href="Traits">Traits</a> section.</p>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events"><a href="Events">Events</a></h2>
-<p>Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.</p>
-</section>
 <section id="other-models" class="level2">
 <h2 class="anchored" data-anchor-id="other-models">Other Models</h2>
 <ul>
 <li><a href="../../docs/Models/Clock.html">Clock</a>: The Clock model is responsible for managing the simulation time and triggering events at specific times.</li>
+<li><a href="../../docs/Models/Events.html">Events</a>: Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.</li>
 </ul>
 
 
@@ -959,8 +975,21 @@ Brown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zys
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>
