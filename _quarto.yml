@@ -5,6 +5,8 @@ execute:
   echo: false
   message: false
   warning: false
+  fig.align: center
+  out.width: 100%
 website:
   cookie-consent: true
   title: "APSIM NG Notes"

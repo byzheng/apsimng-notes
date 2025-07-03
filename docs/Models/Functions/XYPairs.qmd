@@ -1,0 +1,94 @@
+---
+title: "XYPairs Function"
+output: html_document
+---
+
+
+Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.
+
+## Overview
+
+`XYPairs` is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.
+
+
+## Inputs
+
+- `X`: An array of X values defining the input domain.
+- `Y`: An array of Y values corresponding to each X value. Must be the same length as `X`.
+
+## Methodology
+
+The `XYPairs` function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value ($dX$), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).
+
+The interpolation follows this equation between points $(x_i, y_i)$ and $(x_{i+1}, y_{i+1})$:
+
+$$
+Y = y_i + \frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)
+$$
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property | Type      | Description                       |
+|----------|-----------|-----------------------------------|
+| `X`      | double[]  | The list of X values              |
+| `Y`      | double[]  | The list of Y values              |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+`XYPairs` can be added as a child of any functional models in the model tree. Right-click the parent node, select "Add Model...", and search for `XYPairs` in the Filter Box.
+
+## Practical Example
+
+Suppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:
+
+- `X = [0, 26, 34]`
+- `Y = [0, 26, 0]`
+
+This means:
+- For thermal time (`X`) less than 0, the response (`Y`) is 0.
+- From 0 to 26, the response increases linearly from 0 to 26.
+- From 26 to 34, the response decreases linearly from 26 to 0.
+- For thermal time greater than 34, the response remains 0.
+
+```{r plot-xypairs, fig.height = 4, fig.cap="Example of XYPairs Function"}
+# Define X and Y values
+X <- c(0, 26, 34)
+Y <- c(0, 26, 0)
+
+# Generate a sequence of X values for smooth plotting
+x_seq <- seq(min(X) - 5, max(X) + 5, length.out = 200)
+
+# Linear interpolation using approx
+y_interp <- approx(X, Y, xout = x_seq, rule = 2)$y
+
+library(ggplot2)
+
+# Create a data frame for plotting
+df <- data.frame(x = x_seq, y = y_interp)
+
+# Plot using ggplot2
+ggplot(df, aes(x = x, y = y)) +
+    geom_line(color = "blue", size = 1) +
+    geom_point(data = data.frame(x = X, y = Y), aes(x = x, y = y), color = "red", size = 2) +
+    labs(x = "Temperature (°C)", y = "Thermal time (°Cd)") +
+    theme_minimal()
+```
+## See Also
+
+* **Source code:** [XYPairs.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/XYPairs.cs)
