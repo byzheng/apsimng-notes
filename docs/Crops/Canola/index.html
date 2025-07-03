@@ -1071,7 +1071,7 @@ Brown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zys
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/apsimng-notes\.bangyou\.me");
+        var filterRegex = new RegExp("https:\/\/apsimng-notes\.byzheng\.com");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
