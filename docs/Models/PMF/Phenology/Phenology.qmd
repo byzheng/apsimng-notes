@@ -1,0 +1,120 @@
+---
+title: "Phenology Function"
+output: html_document
+---
+
+
+The `Phenology` model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).
+
+## Overview
+
+In APSIM NG, the `Phenology` model manages the simulation of plant development by organizing the crop lifecycle into distinct phases. Each phase corresponds to a physiological process or stage in the crop's development (e.g., emergence, flowering, maturity). The transition between phases is typically governed by progression to completion. In general, the progression is influenced by factors such as thermal time, photoperiod, and vernalisation.
+
+This model tracks the current phase, calculates progression based on progression to completion in current phase, and allows transitions to be triggered either naturally (via progression to completion) or manually (via `SetToStage`). The phenology model plays a pivotal role in coordinating developmental processes with other sub-models like canopy, roots, and biomass.
+
+## Inputs
+
+The `Phenology` model requires:
+
+- **ThermalTime**: A child function representing accumulated heat units.
+- **Phase list**: A sequence of `IPhase` child components, each representing a growth phase.
+- **Sowing event**: Triggers initialization of phenological stages.
+
+## Methodology
+
+The phenology progression is triggered by several events, primarily the `DoPhenology` event which is called at each day.
+
+[Commencing](/docs/Models/Events.html#Commencing):
+
+* Initializes the phenology model
+* Obtains the list of phases
+* Resets state variables.
+
+[PlantSowing](/docs/Models/Events.html#PlantSowing):
+
+* Resets state variable
+* Initialise phenology development using the first phase
+
+[DoPhenology](/docs/Models/Events.html#DoPhenology):
+
+This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from [Plant](/docs/Models/PFM/Plant.qmd) model.
+
+
+At each timestep, the `Phenology` model:
+
+* Check whether `ThermalTime` is available and more than 0. Throw an error if not.
+* Increments progress in the current phase using a `DoTimeStep` method.
+* Emits events when a phase ends or begins (e.g., `PhaseChanged`, `PlantEmerged`).
+* Handles special phase transitions like `GotoPhase` that may jump between stages.
+* Updates accumulated thermal time and phenological stage number (`Stage`).
+* Manages rewinding or fast-forwarding when the stage is reset.
+
+[Harvesting](/docs/Models/Events.html#Harvesting):
+
+* Set the end stage as the final phase (maturity) when harvesting occurs.
+
+[PlantEnding](/docs/Models/Events.html#PlantEnding):
+
+* Clears internal state when the simulation ends, ensuring no residual data persists.
+
+[StartOfDay](/docs/Models/Events.html#StartOfDay):
+
+* Reset daily tracking flags for new day.
+
+## Events
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)     | Initializes phenology and clears state                                    |
+| [PlantSowing](/docs/Models/Events.html#PlantSowing)   | Resets phenology and starts at sowing stage                              |
+| [DoPhenology](/docs/Models/Events.html#DoPhenology)   | Core timestep to update phenological development                         |
+| [StartOfDay](/docs/Models/Events.html#StartOfDay)     | Clears temporary stage-tracking flags for new day                        |
+| [Harvesting](/docs/Models/Events.html#Harvesting)     | Sets phenology directly to final phase (maturity)                        |
+| [PlantEnding](/docs/Models/Events.html#PlantEnding)   | Clears internal state when simulation ends                               |
+
+**Events Raised to**
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [`PhaseChanged`](/docs/Models/Events.html#PhaseChanged) | Indicates a new phase has started                                                   |
+| [`PlantEmerged`](/docs/Models/Events.html#PlantEmerged) | Signals that the emergence phase has been completed                                 |
+| [`StageWasReset`](/docs/Models/Events.html#StageWasReset) | Signals a manual reset of stage via `SetToStage()`                                  |
+| [`PostPhenology`](/docs/Models/Events.html#PostPhenology) | Raised after daily phenological timestep completes                                  |
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property                 | Type      | Description                                                                         |
+|--------------------------|-----------|-------------------------------------------------------------------------------------|
+| `thermalTime`            | IFunction | Child function that provides daily thermal time values                             |
+| `Stage`                  | double    | Current stage index (1-based)                                                      |
+| `CurrentPhaseName`       | string    | Name of the current phenological phase                                              |
+| `CurrentStageName`       | string    | Name of the stage if at the start of a new phase                                    |
+| `FractionInCurrentPhase` | double    | Proportion completed in current phase                                               |
+| `Zadok`                  | double    | Zadok stage number if applicable (e.g., wheat)                                      |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `Emerged`           | bool    | Whether the plant has emerged                                               |
+| `AccumulatedTT`     | double  | Total thermal time accumulated since sowing                                |
+| `AccumulatedEmergedTT` | double | Thermal time accumulated since emergence                                    |
+| `StageNames`        | List    | List of all stage names from configured phases                              |
+
+## User Interface
+
+`Phenology` can be added as a child of a `Plant` node in the APSIM NG model tree. Right-click the plant node, select "Add Model...", and search for `Phenology` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [Phenology.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phenology.cs)
