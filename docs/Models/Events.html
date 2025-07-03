@@ -473,7 +473,8 @@ gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#clock" id="toc-clock" class="nav-link active" data-scroll-target="#clock">Clock</a></li>
+  <li><a href="#simulation" id="toc-simulation" class="nav-link active" data-scroll-target="#simulation">Simulation</a></li>
+  <li><a href="#clock" id="toc-clock" class="nav-link" data-scroll-target="#clock">Clock</a></li>
   <li><a href="#germinatingphase" id="toc-germinatingphase" class="nav-link" data-scroll-target="#germinatingphase">GerminatingPhase</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Events.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -501,6 +502,32 @@ gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
 
 
 <p>This page lists all the events that can be triggered in APSIM NG. Events are used to signal when certain actions should be performed within the simulation, allowing for a structured and organized approach to model execution.</p>
+<p>Events are listed according the model that triggers them.</p>
+<section id="simulation" class="level2">
+<h2 class="anchored" data-anchor-id="simulation">Simulation</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="Commencing"></a>Commencing</td>
+<td>Invoked when simulation is about to commence before <code>DoCommence</code> event, giving all models a chance to initialise their state.</td>
+</tr>
+<tr class="even">
+<td><a id="DoCommence"></a>DoCommence</td>
+<td>Invoked to signal start of simulation after <code>Commencing</code> event.</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="clock" class="level2">
 <h2 class="anchored" data-anchor-id="clock"><a href="../../docs/Models/Clock.html">Clock</a></h2>
 <table class="caption-top table">
@@ -516,24 +543,16 @@ gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
 </thead>
 <tbody>
 <tr class="odd">
-<td><a id="Commencing"></a>Commencing</td>
-<td>Triggered once at the start of the simulation, giving all models a chance to initialise their state.</td>
-</tr>
-<tr class="even">
 <td><a id="DoActualPlantGrowth"></a>DoActualPlantGrowth</td>
 <td>Occurs each day to do actual plant growth.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a id="DoActualPlantPartioning"></a>DoActualPlantPartioning</td>
 <td>Occurs each day to do nutrient allocations.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a id="DoCatchYesterday"></a>DoCatchYesterday</td>
 <td>Occurs first each day to allow yesterdays values to be caught.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoCommence"></a>DoCommence</td>
-<td>Occurs each day when the simulation commences.</td>
 </tr>
 <tr class="even">
 <td><a id="DoDailyInitialisation"></a>DoDailyInitialisation</td>
