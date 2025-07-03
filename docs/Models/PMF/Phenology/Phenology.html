@@ -660,52 +660,9 @@ cookieconsent.run({
 <section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <p><strong>Configurable and Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 21%">
-<col style="width: 9%">
-<col style="width: 69%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>thermalTime</code></td>
-<td>IFunction</td>
-<td>Child function that provides daily thermal time values</td>
-</tr>
-<tr class="even">
-<td><code>Stage</code></td>
-<td>double</td>
-<td>Current stage index (1-based)</td>
-</tr>
-<tr class="odd">
-<td><code>CurrentPhaseName</code></td>
-<td>string</td>
-<td>Name of the current phenological phase</td>
-</tr>
-<tr class="even">
-<td><code>CurrentStageName</code></td>
-<td>string</td>
-<td>Name of the stage if at the start of a new phase</td>
-</tr>
-<tr class="odd">
-<td><code>FractionInCurrentPhase</code></td>
-<td>double</td>
-<td>Proportion completed in current phase</td>
-</tr>
-<tr class="even">
-<td><code>Zadok</code></td>
-<td>double</td>
-<td>Zadok stage number if applicable (e.g., wheat)</td>
-</tr>
-</tbody>
-</table>
+<blockquote class="blockquote">
+<p>No configurable properties are available for this function.</p>
+</blockquote>
 <p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -722,24 +679,69 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
+<td><code>StageNames</code></td>
+<td>List</td>
+<td>List of stage names in phenology</td>
+</tr>
+<tr class="even">
+<td><code>StageCodes</code></td>
+<td>List</td>
+<td>List of numerical stage codes</td>
+</tr>
+<tr class="odd">
+<td><code>AccumulatedTT</code></td>
+<td>double</td>
+<td>Thermal time accumulated since sowing</td>
+</tr>
+<tr class="even">
+<td><code>AccumulatedEmergedTT</code></td>
+<td>double</td>
+<td>Thermal time accumulated since emergence</td>
+</tr>
+<tr class="odd">
 <td><code>Emerged</code></td>
 <td>bool</td>
 <td>Whether the plant has emerged</td>
 </tr>
 <tr class="even">
-<td><code>AccumulatedTT</code></td>
+<td><code>Stage</code></td>
 <td>double</td>
-<td>Total thermal time accumulated since sowing</td>
+<td>One-based stage number</td>
 </tr>
 <tr class="odd">
-<td><code>AccumulatedEmergedTT</code></td>
-<td>double</td>
-<td>Thermal time accumulated since emergence</td>
+<td><code>CurrentPhaseName</code></td>
+<td>string</td>
+<td>Name of the current phase</td>
 </tr>
 <tr class="even">
-<td><code>StageNames</code></td>
-<td>List</td>
-<td>List of all stage names from configured phases</td>
+<td><code>CurrentStageName</code></td>
+<td>string</td>
+<td>Name of the current stage</td>
+</tr>
+<tr class="odd">
+<td><code>FractionInCurrentPhase</code></td>
+<td>double</td>
+<td>Proportion completed in current phase</td>
+</tr>
+<tr class="even">
+<td><code>CurrentPhase</code></td>
+<td>object</td>
+<td>The current phase object</td>
+</tr>
+<tr class="odd">
+<td><code>Zadok</code></td>
+<td>double</td>
+<td>Current Zadok stage number</td>
+</tr>
+<tr class="even">
+<td><code>currentPhaseNumberIncrementedByPhaseTimeStep</code></td>
+<td>bool</td>
+<td>True if phase increments stage number by phase time step</td>
+</tr>
+<tr class="odd">
+<td><code>PlantIsAlive</code></td>
+<td>bool</td>
+<td>True if the parent plant is alive</td>
 </tr>
 </tbody>
 </table>
