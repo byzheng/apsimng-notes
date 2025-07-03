@@ -13,3 +13,4 @@ _site
 *.html
 
 _tmp_*
+_scripts/
