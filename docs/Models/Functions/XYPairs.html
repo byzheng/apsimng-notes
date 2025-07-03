@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Clock – APSIM NG Notes</title>
+<title>XYPairs Function – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,25 +23,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-293e81bb0733230b9e755d5a7d46e87a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-293e81bb0733230b9e755d5a7d46e87a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -97,8 +97,37 @@ cookieconsent.run({
 </script> 
   
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -108,7 +137,7 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -119,19 +148,19 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../docs/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../docs/index.html" aria-current="page"> 
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../tips/index.html"> 
+    <a class="nav-link" href="../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
 </ul>
@@ -152,7 +181,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../docs/Models/Clock.html">Clock</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/XYPairs.html">XYPairs Function</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -166,7 +195,7 @@ cookieconsent.run({
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -175,7 +204,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -184,19 +213,19 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clock</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Events</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -214,13 +243,13 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nutrient Constrained Allocation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relative Allocation</span></a>
   </div>
 </li>
@@ -237,7 +266,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology Function</span></a>
   </div>
 </li>
@@ -252,19 +281,19 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging Phase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Generic Phase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating Phase</span></a>
   </div>
 </li>
@@ -276,7 +305,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -285,7 +314,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -293,46 +322,46 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Add Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Frost and Heat Damage Functions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Hourly Sinusoidal and Exponential Air Temperature Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sub Daily Interpolation Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Three Hourly Air Temperature Function</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
@@ -347,7 +376,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
   </div>
 </li>
@@ -357,7 +386,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -366,7 +395,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2</span></a>
   </div>
 </li>
@@ -376,7 +405,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -385,7 +414,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -394,7 +423,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
   </div>
 </li>
@@ -402,7 +431,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -411,7 +440,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -420,7 +449,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2 for Wheat</span></a>
   </div>
 </li>
@@ -428,7 +457,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -437,7 +466,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -445,7 +474,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -454,19 +483,19 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
@@ -487,7 +516,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fertiliser Types</span></a>
   </div>
 </li>
@@ -514,14 +543,14 @@ cookieconsent.run({
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Clock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/XYPairs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../docs/Models/Clock.html">Clock</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/XYPairs.html">XYPairs Function</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Clock</h1>
+<h1 class="title">XYPairs Function</h1>
 </div>
 
 
@@ -538,371 +567,41 @@ cookieconsent.run({
 </header>
 
 
-<p>The APSIM Clock is a central component of the APSIM simulation framework, responsible for managing the simulation time and orchestrating the sequence of events that occur during a simulation. It defines the start and end dates of the simulation and raises various events at specific times to allow different models to perform their calculations.</p>
+<p>Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>Clock</code> model defines the simulation’s start and end dates, controls the passage of time, and raises numerous events used to coordinate actions across models. It forms the central timing mechanism within the APSIM NG framework, driving the daily timestep loop.</p>
+<p><code>XYPairs</code> is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.</p>
 </section>
 <section id="inputs" class="level2">
 <h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
 <ul>
-<li><strong>Start</strong>: The start date of the simulation with format <code>YYYY-MM-DD</code> (optional if weather data is available).</li>
-<li><strong>End</strong>: The end date of the simulation with format <code>YYYY-MM-DD</code> (optional if weather data is available).</li>
-<li><strong>Weather</strong>: If no explicit start/end dates are defined, the model will attempt to derive them from the associated weather model.</li>
+<li><code>X</code>: An array of X values defining the input domain.</li>
+<li><code>Y</code>: An array of Y values corresponding to each X value. Must be the same length as <code>X</code>.</li>
 </ul>
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>If <code>Start</code> or <code>End</code> are not defined, the model looks for a weather model in the scope and adopts its <code>StartDate</code> or <code>EndDate</code>. The simulation begins on the resolved start date and continues day by day until the end date. Each day, the <code>Clock</code> publishes multiple events to signal simulation actions across components. These include daily updates, management actions, soil processes, plant growth, CLEM processes, and reporting.</p>
-<ol type="1">
-<li><a href="../../docs/Models/Events.html#DoInitialSummary"><code>DoInitialSummary</code></a> – Initial summary at the start.</li>
-<li><a href="../../docs/Models/Events.html#StartOfSimulation"><code>StartOfSimulation</code></a> – Marks the simulation’s beginning.</li>
-<li><a href="../../docs/Models/Events.html#FinalInitialise"><code>FinalInitialise</code></a> – Final initialisation before the first day.</li>
-<li><a href="../../docs/Models/Events.html#StartOfFirstDay"><code>StartOfFirstDay</code></a> – First day setup.</li>
-<li>For each day (from <code>StartDate</code> to <code>EndDate</code>), the following events are raised in sequence (some only on specific days): <code>DoCatchYesterday</code>, <code>DoWeather</code>, <code>DoDailyInitialisation</code>, <code>StartOfDay</code>, <code>StartOfMonth</code>, <code>StartOfYear</code>, <code>StartOfWeek</code>, <code>DoManagement</code>, <code>DoFertiliserApplications</code>, <code>DoPestDiseaseDamage</code>, <code>DoEnergyArbitration</code>, <code>DoSoilErosion</code>, <code>DoSoilWaterMovement</code>, <code>DoSoilTemperature</code>, <code>DoSolute</code>, <code>DoSurfaceOrganicMatterPotentialDecomposition</code>, <code>DoSoilOrganicMatter</code>, <code>DoSurfaceOrganicMatterDecomposition</code>, <code>DoUpdateWaterDemand</code>, <code>DoDCAPST</code>, <code>DoWaterArbitration</code>, <code>PrePhenology</code>, <code>DoPhenology</code>, <code>DoPotentialPlantGrowth</code>, <code>DoPotentialPlantPartioning</code>, <code>DoPastureWater</code>, <code>DoNutrientArbitration</code>, <code>DoActualPlantPartioning</code>, <code>DoActualPlantGrowth</code>, <code>PartitioningComplete</code>, <code>DoStock</code>, <code>DoLifecycle</code>, <code>DoUpdate</code>, <code>DoManagementCalculations</code>, <code>DoEndPasture</code>, <code>DoReportCalculations</code>, <code>EndOfWeek</code>, <code>EndOfYear</code>, <code>EndOfMonth</code>, <code>EndOfDay</code>, <code>DoReport</code>.</li>
-<li>After the last day, <a href="../../docs/Models/Events.html#EndOfSimulation"><code>EndOfSimulation</code></a> is raised.</li>
-</ol>
+<p>The <code>XYPairs</code> function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value (<span class="math inline">\(dX\)</span>), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).</p>
+<p>The interpolation follows this equation between points <span class="math inline">\((x_i, y_i)\)</span> and <span class="math inline">\((x_{i+1}, y_{i+1})\)</span>:</p>
+<p><span class="math display">\[
+Y = y_i + \frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)
+\]</span></p>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
 <p><strong>Events Listened For</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#Commencing">Commencing</a></td>
-<td>Set Today as StartDate</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#OnDoCommence">OnDoCommence</a></td>
-<td>The main function to run a simulation to trigger major loop</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Events Raised To</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfSimulation">StartOfSimulation</a></td>
-<td>Occurs once at the start of the simulation</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfFirstDay">StartOfFirstDay</a></td>
-<td>Occurs once at the start of the first day of the simulation</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfDay">StartOfDay</a></td>
-<td>Occurs at start of each day</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfMonth">StartOfMonth</a></td>
-<td>Occurs at start of each month</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfYear">StartOfYear</a></td>
-<td>Occurs at start of each year</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfWeek">StartOfWeek</a></td>
-<td>Occurs at start of each week</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfDay">EndOfDay</a></td>
-<td>Occurs at end of each day</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#EndOfMonth">EndOfMonth</a></td>
-<td>Occurs at end of each month</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfYear">EndOfYear</a></td>
-<td>Occurs at end of each year</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#EndOfWeek">EndOfWeek</a></td>
-<td>Occurs at end of each week</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfSimulation">EndOfSimulation</a></td>
-<td>Occurs at end of simulation</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#FinalInitialise">FinalInitialise</a></td>
-<td>Final Initialise event. Occurs once at start of simulation</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoCatchYesterday">DoCatchYesterday</a></td>
-<td>Occurs first each day to allow yesterdays values to be caught</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoWeather">DoWeather</a></td>
-<td>Occurs each day to calculate weather</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoDailyInitialisation">DoDailyInitialisation</a></td>
-<td>Occurs each day to do daily updates to models</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoInitialSummary">DoInitialSummary</a></td>
-<td>Occurs each day to make the initial summary</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoManagement">DoManagement</a></td>
-<td>Occurs each day to do management actions and changes</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoFertiliserApplications">DoFertiliserApplications</a></td>
-<td>Invoked to perform all fertiliser applications</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoPestDiseaseDamage">DoPestDiseaseDamage</a></td>
-<td>Occurs to do Pest/Disease actions</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoEnergyArbitration">DoEnergyArbitration</a></td>
-<td>Occurs when the canopy energy balance needs to be calculated with MicroClimate</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSoilWaterMovement">DoSoilWaterMovement</a></td>
-<td>Occurs each day to do water calculations such as irrigation, swim, water balance etc</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSoilErosion">DoSoilErosion</a></td>
-<td>Occurs to tell soil erosion to perform its calculations</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSoilTemperature">DoSoilTemperature</a></td>
-<td>Occurs to perform soil temperature calculations to do solute processes</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSolute">DoSolute</a></td>
-<td>Occurs each day</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterPotentialDecomposition">DoSurfaceOrganicMatterPotentialDecomposition</a></td>
-<td>Occurs each day to perform daily calculations of organic soil matter</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSoilOrganicMatter">DoSoilOrganicMatter</a></td>
-<td>Occurs each day to perform daily calculations of organic soil matter</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterDecomposition">DoSurfaceOrganicMatterDecomposition</a></td>
-<td>Occurs each day to do the daily residue decomposition</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoUpdateWaterDemand">DoUpdateWaterDemand</a></td>
-<td>Occurs each day to do daily growth increment of total plant biomass</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoWaterArbitration">DoWaterArbitration</a></td>
-<td>Occurs each day to do water arbitration</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPastureWater">DoPastureWater</a></td>
-<td>Initiates water calculations for the Pasture model</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#PrePhenology">PrePhenology</a></td>
-<td>Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPhenology">DoPhenology</a></td>
-<td>Occurs each day to perform phenology</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoPotentialPlantGrowth">DoPotentialPlantGrowth</a></td>
-<td>Occurs each day to do potential growth</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPotentialPlantPartioning">DoPotentialPlantPartioning</a></td>
-<td>Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoNutrientArbitration">DoNutrientArbitration</a></td>
-<td>Occurs each day to do nutrient arbitration</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoActualPlantPartioning">DoActualPlantPartioning</a></td>
-<td>Occurs each day to do nutrient allocations</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoActualPlantGrowth">DoActualPlantGrowth</a></td>
-<td>Occurs each day to do nutrient allocations. Pasture growth</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#PartitioningComplete">PartitioningComplete</a></td>
-<td>Occurs each day to finish partitioning</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoUpdate">DoUpdate</a></td>
-<td>Occurs near end of each day to do checks and finalising</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoStock">DoStock</a></td>
-<td>Occurs each day to process stock methods in GrazPlan Stock</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoLifecycle">DoLifecycle</a></td>
-<td>Occurs each day to process a Pest and Disease lifecycle object</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoManagementCalculations">DoManagementCalculations</a></td>
-<td>Occurs each day after the simulation is done. Does management calculations</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoEndPasture">DoEndPasture</a></td>
-<td>Occurs after pasture growth and sends material to SOM</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoReportCalculations">DoReportCalculations</a></td>
-<td>Occurs when do report calculations</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoReport">DoReport</a></td>
-<td>Occurs at end of each day</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#DoDCAPST">DoDCAPST</a></td>
-<td>Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMInitialiseResource">CLEMInitialiseResource</a></td>
-<td>CLEM initialise Resources occurs once at start of simulation</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMInitialiseActivity">CLEMInitialiseActivity</a></td>
-<td>CLEM initialise Activity occurs once at start of simulation</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMValidate">CLEMValidate</a></td>
-<td>CLEM validate all data entry</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMStartOfTimeStep">CLEMStartOfTimeStep</a></td>
-<td>CLEM start of timestep event</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMUpdateLabourAvailability">CLEMUpdateLabourAvailability</a></td>
-<td>CLEM set labour availability after start of timestep and financial considerations</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMUpdatePasture">CLEMUpdatePasture</a></td>
-<td>CLEM update pasture</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMDetachPasture">CLEMDetachPasture</a></td>
-<td>CLEM detach pasture</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMPastureReady">CLEMPastureReady</a></td>
-<td>CLEM pasture has been added and is ready for use</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMDoCutAndCarry">CLEMDoCutAndCarry</a></td>
-<td>CLEM cut and carry</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalBreeding">CLEMAnimalBreeding</a></td>
-<td>CLEM Do Animal (Ruminant and Other) Breeding and milk calculations</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMPotentialIntake">CLEMPotentialIntake</a></td>
-<td>Get potential intake. This includes suckling milk consumption</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMCalculateManure">CLEMCalculateManure</a></td>
-<td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMCollectManure">CLEMCollectManure</a></td>
-<td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMGetResourcesRequired">CLEMGetResourcesRequired</a></td>
-<td>Request and perform the collection of manure after resources are allocated and manure produced in time-step</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMilkProduction">CLEMAnimalMilkProduction</a></td>
-<td>CLEM Calculate Animals (Ruminant and Other) milk production</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalWeightGain">CLEMAnimalWeightGain</a></td>
-<td>CLEM Calculate Animals(Ruminant and Other) weight gain</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalDeath">CLEMAnimalDeath</a></td>
-<td>CLEM Do Animal (Ruminant and Other) death</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMilking">CLEMAnimalMilking</a></td>
-<td>CLEM Do Animal (Ruminant and Other) milking</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMCalculateEcologicalState">CLEMCalculateEcologicalState</a></td>
-<td>CLEM Calculate ecological state after all deaths and before management</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMark">CLEMAnimalMark</a></td>
-<td>CLEM Do animal marking so complete before undertaking management decisions</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalManage">CLEMAnimalManage</a></td>
-<td>CLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.)</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalStock">CLEMAnimalStock</a></td>
-<td>CLEM stock animals to pasture availability or other metrics</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalSell">CLEMAnimalSell</a></td>
-<td>CLEM sell animals to market including transporting and labour</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalBuy">CLEMAnimalBuy</a></td>
-<td>CLEM buy animals including transporting and labour</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAgeResources">CLEMAgeResources</a></td>
-<td>CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals)</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMHerdSummary">CLEMHerdSummary</a></td>
-<td>CLEM event to calculate monthly herd summary</td>
-</tr>
-<tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMFinalizeTimeStep">CLEMFinalizeTimeStep</a></td>
-<td>CLEM finalize time-step before end</td>
-</tr>
-<tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMEndOfTimeStep">CLEMEndOfTimeStep</a></td>
-<td>CLEM end of timestep event</td>
-</tr>
-</tbody>
-</table>
+<blockquote class="blockquote">
+<p>No events are listened by this function.</p>
+</blockquote>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
 </section>
 <section id="properties" class="level2">
 <h2 class="anchored" data-anchor-id="properties">Properties</h2>
 <p><strong>Configurable and Reportable Properties</strong></p>
-<p>|————–|———–|————————————————-| | <code>Start</code> | DateTime? | Start date of the simulation with format <code>YYYY-MM-DD</code> | | <code>End</code> | DateTime? | End date of the simulation with format <code>YYYY-MM-DD</code> |</p>
-<p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 9%">
-<col style="width: 70%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Property</th>
@@ -912,62 +611,49 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>StartDate</code></td>
-<td>DateTime</td>
-<td>Derived start date</td>
+<td><code>X</code></td>
+<td>double[]</td>
+<td>The list of X values</td>
 </tr>
 <tr class="even">
-<td><code>EndDate</code></td>
-<td>DateTime</td>
-<td>Derived end date</td>
-</tr>
-<tr class="odd">
-<td><code>Today</code></td>
-<td>DateTime</td>
-<td>Current simulation date</td>
-</tr>
-<tr class="even">
-<td><code>FractionComplete</code></td>
-<td>double</td>
-<td>Fraction of the simulation completed</td>
-</tr>
-<tr class="odd">
-<td><code>IsStartMonth</code></td>
-<td>bool</td>
-<td>Whether today is the first of the month</td>
-</tr>
-<tr class="even">
-<td><code>IsStartYear</code></td>
-<td>bool</td>
-<td>Whether today is the first day of the year</td>
-</tr>
-<tr class="odd">
-<td><code>IsEndMonth</code></td>
-<td>bool</td>
-<td>Whether today is the last day of the month</td>
-</tr>
-<tr class="even">
-<td><code>IsEndYear</code></td>
-<td>bool</td>
-<td>Whether today is the last day of the year</td>
+<td><code>Y</code></td>
+<td>double[]</td>
+<td>The list of Y values</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<blockquote class="blockquote">
+<p>No read-only properties are available for this function.</p>
+</blockquote>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<p><code>Clock</code> can be added as a child of a <code>Simulation</code> node in the model tree. Right-click the simulation node, select “Add Model…”, and search for <code>Clock</code> in the Filter Box.</p>
+<p><code>XYPairs</code> can be added as a child of any functional models in the model tree. Right-click the parent node, select “Add Model…”, and search for <code>XYPairs</code> in the Filter Box.</p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is provided for this function.</p>
-</blockquote>
+<p>Suppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:</p>
+<ul>
+<li><code>X = [0, 26, 34]</code></li>
+<li><code>Y = [0, 26, 0]</code></li>
+</ul>
+<p>This means: - For thermal time (<code>X</code>) less than 0, the response (<code>Y</code>) is 0. - From 0 to 26, the response increases linearly from 0 to 26. - From 26 to 34, the response decreases linearly from 26 to 0. - For thermal time greater than 34, the response remains 0.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="XYPairs_files/figure-html/plot-xypairs-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Example of XYPairs Function</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li>Source code: <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Clock.cs">Clock.cs on GitHub</a></li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/XYPairs.cs">XYPairs.cs on GitHub</a></li>
 </ul>
 
 
@@ -1381,7 +1067,7 @@ cookieconsent.run({
     </div>   
     <div class="nav-footer-center">
 
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Clock.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/XYPairs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

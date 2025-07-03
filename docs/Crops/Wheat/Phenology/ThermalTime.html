@@ -235,6 +235,12 @@ cookieconsent.run({
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology Function</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
@@ -322,6 +328,12 @@ cookieconsent.run({
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Three Hourly Air Temperature Function</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -527,7 +539,7 @@ cookieconsent.run({
 <p>The <strong>Thermal Time</strong> function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (<a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a>), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.</p>
 <ul>
 <li><code>InterpolationMethod</code>: <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a> is used for sub-daily interpolation, i.e.&nbsp;3-hourly temperature estimates.</li>
-<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.qmd">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.</li>
+<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.</li>
 </ul>
 <table class="caption-top table">
 <thead>
