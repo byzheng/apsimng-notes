@@ -6,8 +6,11 @@ execute:
   message: false
   warning: false
 website:
+  cookie-consent: true
   title: "APSIM NG Notes"
-  google-analytics: "G-5K7WTC1T5R"
+  google-analytics: 
+    tracking-id: "G-5K7WTC1T5R"
+    storage: "cookies"
   site-url: https://apsimng-notes.bangyou.me
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]

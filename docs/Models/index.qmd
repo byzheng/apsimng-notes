@@ -20,11 +20,7 @@ The Graph module provides a framework to visualise reports in APSIM Next Generat
 
 Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
 
-
-## [Events](Events)
-
-Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.
-
 ## Other Models
 
 * [Clock](Clock.qmd): The Clock model is responsible for managing the simulation time and triggering events at specific times.
+* [Events](Events.qmd): Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.
