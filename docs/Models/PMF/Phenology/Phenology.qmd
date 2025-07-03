@@ -61,6 +61,7 @@ At each timestep, the `Phenology` model:
 
 * Reset daily tracking flags for new day.
 
+
 ## Events
 
 **Events Listened For**
@@ -89,23 +90,26 @@ These are signals or notifications that the function listens for from other part
 
 **Configurable and Reportable Properties**
 
-| Property                 | Type      | Description                                                                         |
-|--------------------------|-----------|-------------------------------------------------------------------------------------|
-| `thermalTime`            | IFunction | Child function that provides daily thermal time values                             |
-| `Stage`                  | double    | Current stage index (1-based)                                                      |
-| `CurrentPhaseName`       | string    | Name of the current phenological phase                                              |
-| `CurrentStageName`       | string    | Name of the stage if at the start of a new phase                                    |
-| `FractionInCurrentPhase` | double    | Proportion completed in current phase                                               |
-| `Zadok`                  | double    | Zadok stage number if applicable (e.g., wheat)                                      |
+> No configurable properties are available for this function.
 
 **Read-Only Reportable Properties**
 
 | Property             | Type    | Description                                                                 |
 |----------------------|---------|-----------------------------------------------------------------------------|
-| `Emerged`           | bool    | Whether the plant has emerged                                               |
-| `AccumulatedTT`     | double  | Total thermal time accumulated since sowing                                |
-| `AccumulatedEmergedTT` | double | Thermal time accumulated since emergence                                    |
-| `StageNames`        | List    | List of all stage names from configured phases                              |
+| `StageNames`                    | List      | List of stage names in phenology                                   |
+| `StageCodes`                    | List      | List of numerical stage codes                                      |
+| `AccumulatedTT`                 | double    | Thermal time accumulated since sowing                              |
+| `AccumulatedEmergedTT`          | double    | Thermal time accumulated since emergence                           |
+| `Emerged`                       | bool      | Whether the plant has emerged                                      |
+| `Stage`                         | double    | One-based stage number                                             |
+| `CurrentPhaseName`              | string    | Name of the current phase                                          |
+| `CurrentStageName`              | string    | Name of the current stage                                          |
+| `FractionInCurrentPhase`        | double    | Proportion completed in current phase                              |
+| `CurrentPhase`                  | object    | The current phase object                                           |
+| `Zadok`                         | double    | Current Zadok stage number                                         |
+| `currentPhaseNumberIncrementedByPhaseTimeStep` | bool | True if phase increments stage number by phase time step           |
+| `PlantIsAlive`                  | bool      | True if the parent plant is alive                                  |
+
 
 ## User Interface
 
