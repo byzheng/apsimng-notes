@@ -8,7 +8,7 @@ The **Emerging** phase in [Wheat](/docs/Crops/Wheat) represents the developmenta
 
 ## Overview
 
-The [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) model simulates the time between the [Germination](/docs/Models/Events/PlantGermination.qmd) and [Emergence](/docs/Models/Events/PlantEmergence.qmd) stages.
+The [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) model simulates the time between the [Germination](/docs/Models/Events.html#PlantGermination) and [Emergence](/docs/Models/Events.html#PlantEmergence) stages.
 
 - This phase starts at **Germination** and ends at **Emergence**, when the seedling is considered to have emerged from the soil.
 - The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.

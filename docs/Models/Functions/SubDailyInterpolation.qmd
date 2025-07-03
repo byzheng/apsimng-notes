@@ -60,7 +60,7 @@ The result $R$ becomes the output of the `SubDailyInterpolation` function for th
 
 | Event | Purpose |
 |-------|---------|
-| [DoDailyInitialisation](/docs/Models/Events/DoDailyInitialisation.qmd) | Triggers the interpolation and response function application each day. |
+| [DoDailyInitialisation](/docs/Models/Events.html#DoDailyInitialisation) | Triggers the interpolation and response function application each day. |
 
 **Events Raised To**
 

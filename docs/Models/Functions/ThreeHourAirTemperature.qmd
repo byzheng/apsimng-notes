@@ -48,7 +48,7 @@ These are signals or notifications that the function listens for from other part
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events/Commencing.qmd)   | Calculate $\text{TRF}_p$ at starting of simulation |
+| [Commencing](/docs/Models/Events.html#Commencing)   | Calculate $\text{TRF}_p$ at starting of simulation |
 
 
 **Events Raised to**

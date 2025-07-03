@@ -7,7 +7,7 @@ The **Germinating** is a phenological phase in [Wheat](/docs/Crops/Wheat) used t
 
 ## Overview
 
-The [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) Model is used to simulate the germination of wheat seeds. This phase begins when Plant [Sowing](/docs/Models/Events/PlantSowing.qmd) occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) for more details.
+The [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) Model is used to simulate the germination of wheat seeds. This phase begins when Plant [Sowing](/docs/Models/Events.html#PlantSowing) occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) for more details.
 
 * The `Minimum Soil Temperature` is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,
 * The `Soil Water Content` should be more than `Lower Limit` for germination to occur.
