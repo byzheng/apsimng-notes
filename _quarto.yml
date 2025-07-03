@@ -8,7 +8,7 @@ execute:
 website:
   title: "APSIM NG Notes"
   google-analytics: "G-5K7WTC1T5R"
-  site-url: https://apsimng-notes.byzheng.com
+  site-url: https://apsimng-notes.bangyou.me
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]
   sidebar:
