@@ -5,15 +5,23 @@ output: html_document
 
 This page lists all the events that can be triggered in APSIM NG. Events are used to signal when certain actions should be performed within the simulation, allowing for a structured and organized approach to model execution.
 
+Events are listed according the model that triggers them.
+
+## Simulation 
+
+| Event | Description |
+|-------|-------------|
+| <a id="Commencing"></a>Commencing | Invoked when simulation is about to commence before `DoCommence` event, giving all models a chance to initialise their state. |
+| <a id="DoCommence"></a>DoCommence | Invoked to signal start of simulation after `Commencing` event. |
+
+
 ## [Clock](Clock.qmd)
 
 | Event | Description |
 |-------|-------------|
-| <a id="Commencing"></a>Commencing | Triggered once at the start of the simulation, giving all models a chance to initialise their state. |
 | <a id="DoActualPlantGrowth"></a>DoActualPlantGrowth | Occurs each day to do actual plant growth. |
 | <a id="DoActualPlantPartioning"></a>DoActualPlantPartioning | Occurs each day to do nutrient allocations. |
 | <a id="DoCatchYesterday"></a>DoCatchYesterday | Occurs first each day to allow yesterdays values to be caught. |
-| <a id="DoCommence"></a>DoCommence | Occurs each day when the simulation commences. |
 | <a id="DoDailyInitialisation"></a>DoDailyInitialisation | Occurs each day to do daily updates to models. |
 | <a id="DoDCAPST"></a>DoDCAPST | Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning. |
 | <a id="DoEndPasture"></a>DoEndPasture | Occurs after pasture growth and sends material to SOM. |
