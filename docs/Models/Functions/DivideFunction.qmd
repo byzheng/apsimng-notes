@@ -1,0 +1,50 @@
+---
+title: "DivideFunction"
+output: html_document
+---
+
+The `DivideFunction` is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).
+
+## Overview
+
+The `DivideFunction` divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns `double.MaxValue` (close to 1.8 × 10^308). This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while avoiding division-by-zero errors.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened for by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only reportable properties are available for this function.
+
+## User Interface
+
+`DivideFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `DivideFunction` in the Filter Box. A symbol for the `DivideFunction` is displayed in the user interface to represent the function.
+
+![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/DivideFunction.png){ width=64px }
+
+## Practical Example
+
+Suppose you want to calculate the water use efficiency (WUE) of a crop, which is the ratio of yield to water used:
+
+$$
+WUE = \frac{Yield}{WaterUsed}
+$$
+
+The `DivideFunction` can be used to divide the `Yield` by `WaterUsed`. If `WaterUsed` is zero, the function will return `double.MaxValue` to indicate an undefined or infinite result.
+
+## See Also
+
+* **Source code:** [DivideFunction.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/DivideFunction.cs)
