@@ -5,14 +5,14 @@
 
 Welcome to **APSIM Next Generation Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
 
-> 📌 *Note: This site is a personal collection of APSIM NG documentation and learning notes. It is not affiliated with or endorsed by the APSIM Initiative. For official documentation, visit the [APSIM site](https://www.apsim.info/). See the [full disclaimer](https://apsimng-notes.bangyou.me/disclaimer.qmd) for more information.*
+> 📌 *Note: This site is a personal collection of APSIM NG documentation and learning notes. It is not affiliated with or endorsed by the APSIM Initiative. For official documentation, visit the [APSIM site](https://www.apsim.info/). See the [full disclaimer](https://apsimng-notes.bangyou.me/disclaimer.html) for more information.*
 
 
 
 This repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I've encountered while using APSIM NG. It includes:
 
-- 📘 **[Documentation](https://apsimng-notes.bangyou.me/docs/index.qmd)** — In-depth explanations and configuration guides  
-- 🌾 **[Tips and Tricks](https://apsimng-notes.bangyou.me/tips/index.qmd)** — Short how-tos and troubleshooting solutions  
+- 📘 **[Documentation](https://apsimng-notes.bangyou.me/docs/)** — In-depth explanations and configuration guides  
+- 🌾 **[Tips and Tricks](https://apsimng-notes.bangyou.me/tips/)** — Short how-tos and troubleshooting solutions  
 - 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks  
 - 🔧 **Scripts** — Useful R snippets for simulations
 
