@@ -42,3 +42,8 @@ It is provided under the [General Use Licence Agreement for Agricultural Product
 
 > This is an **independent learning resource** compiled and maintained by myself. It is **not an official publication** of the APSIM Initiative and may contain personal interpretations or errors.  
 > While I contribute to APSIM NG development, this site reflects **my personal understanding** and is intended as a resource to support learning and exploration.
+
+
+## 🙏 Acknowledgment
+
+Acknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details.
