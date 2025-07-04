@@ -28,9 +28,16 @@ website:
       - href: tips/index.qmd
         text: Tips
       - about.qmd
+      - disclaimer.qmd
     right:
       - icon: github
         href: https://github.com/byzheng/apsimng-notes
+  page-footer:
+    center: 
+      - text: "About"
+        href: about.qmd
+      - text: "Disclaimer"
+        href: disclaimer.qmd
 format:
   html:
     theme:

@@ -29,3 +29,16 @@ The official resources are available here:
 - 📘 [APSIM Documentation (legacy)](https://apsimnextgeneration.netlify.app/)
 - 🔬 [Model Validation](https://docs.apsim.info/)
 - 🧪 [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
+
+## ⚖️ License and Attribution
+
+This documentation includes content derived from:
+
+- The source code of [APSIM Next Generation](https://github.com/APSIMInitiative/ApsimX)  
+- The official [APSIM Website](https://www.apsim.info/)  
+- Official documentation and personal communications with APSIM developers  
+
+It is provided under the [General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)](LICENSE.md).
+
+> This is an **independent learning resource** compiled and maintained by myself. It is **not an official publication** of the APSIM Initiative and may contain personal interpretations or errors.  
+> While I contribute to APSIM NG development, this site reflects **my personal understanding** and is intended as a resource to support learning and exploration.

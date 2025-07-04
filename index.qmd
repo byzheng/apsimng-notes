@@ -3,35 +3,42 @@ title: "APSIM Next Generation Notes"
 sidebar: false
 ---
 
-
+[![Quarto Publish](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml/badge.svg)](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml)
 
 Welcome to **APSIM Next Generation Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
 
 > 📌 *Note: This site is a personal collection of APSIM NG documentation and learning notes. It is not affiliated with or endorsed by the APSIM Initiative. For official documentation, visit the [APSIM site](https://www.apsim.info/). See the [full disclaimer](disclaimer.qmd) for more information.*
 
 
-This repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:
+This repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I've encountered while using APSIM NG. It includes:
 
-- 📘 **[Documentation](docs/index.qmd)** — In-depth explanations and configuration guides
-- 🌾 **[Tips and Tricks](tips/index.qmd)** — Short how-tos and troubleshooting solutions
-- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks
+- 📘 **[Documentation](/docs/index.qmd)** — In-depth explanations and configuration guides  
+- 🌾 **[Tips and Tricks](/tips/index.qmd)** — Short how-tos and troubleshooting solutions  
+- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks  
 - 🔧 **Scripts** — Useful R snippets for simulations
 
-Whether you're just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.
+Whether you're just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.
 
-Feel free to explore, suggest improvements, or fork for your own use!
+Feel free to explore, suggest improvements, or fork this repository for your own use.
 
-## Website
+## 🌐 Website
 
-You can also browse these notes as a website: [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
+You can also browse these notes as a website:  
+👉 [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
 
-## Contributing
+## 🤝 Contributing
 
-If you find any errors, have suggestions, or want to contribute improvements, please create a pull request on [GitHub](https://github.com/byzheng/apsimng-notes).
+If you find any errors, have suggestions, or want to contribute improvements, you're welcome to create a pull request or open an issue on [GitHub](https://github.com/byzheng/apsimng-notes).
 
-## License
+## ⚖️ License and Attribution
 
-This project is licensed under the [General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)](https://github.com/APSIMInitiative/ApsimX/blob/master/LICENSE.md).
+This documentation includes content derived from:
 
+- The source code of [APSIM Next Generation](https://github.com/APSIMInitiative/ApsimX)  
+- The official [APSIM Website](https://www.apsim.info/)  
+- Official documentation and personal communications with APSIM developers  
 
+It is provided under the [General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM)](LICENSE.md).
 
+> This is an **independent learning resource** compiled and maintained by myself. It is **not an official publication** of the APSIM Initiative and may contain personal interpretations or errors.  
+> While I contribute to APSIM NG development, this site reflects **my personal understanding** and is intended as a resource to support learning and exploration.
