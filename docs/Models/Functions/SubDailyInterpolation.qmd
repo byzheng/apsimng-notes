@@ -1,5 +1,5 @@
 ---
-title: "Sub Daily Interpolation Function"
+title: "SubDailyInterpolation"
 output: html_document
 ---
 

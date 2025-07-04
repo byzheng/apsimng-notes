@@ -1,5 +1,5 @@
 ---
-title: "Frost and Heat Damage Functions"
+title: "FrostHeatDamageFunctions"
 output: html_document
 ---
 

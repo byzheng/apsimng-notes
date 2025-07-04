@@ -1,5 +1,5 @@
 ---
-title: "Hourly Sinusoidal and Exponential Air Temperature Function"
+title: "HourlySinPpAdjusted"
 output: html_document
 ---
 
