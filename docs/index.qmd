@@ -2,9 +2,26 @@
 title: "Docs"
 ---
 
-Here is not the official APSIM documentation, but a collection of documentations when I am working with [APSIM](https://www.apsim.info/) Next Generation. The official documentation is available at [APSIM Documentation](https://apsimnextgeneration.netlify.app/), [Model Validation](https://docs.apsim.info/), and [APSIM GitHub](https://github.com/APSIMInitiative/ApsimX).
 
-This documentation is not complete, and I will keep updating it as I am working with APSIM Next Generation. Feel free to contribute to this documentation by creating a pull request on [GitHub](https://github.com/byzheng/apsimng-notes) or create an issue on [GitHub](https://github.com/byzheng/apsimng-notes/issues).
+This section contains my personal documentation notes for [APSIM Next Generation](https://www.apsim.info/).
+
+The content is compiled from a variety of sources including:
+- Large Language Models (e.g. Copilot, ChatGPT)
+- The [APSIM NG source code](https://github.com/APSIMInitiative/ApsimX)
+- APSIM online materials and official documentation
+- Personal communication with APSIM developers
+- My own understanding through hands-on experience
+
+> ⚠️ This is *not* the official APSIM documentation.  
+> For authoritative information, refer to:  
+> - [APSIM User Documentation](https://apsimnextgeneration.netlify.app/)  
+> - [Model Validation Docs](https://docs.apsim.info/)  
+> - [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
+
+These notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](disclaimer.qmd) for more.
+
+I will continue updating this documentation as I work with APSIM Next Generation.  
+Contributions are welcome via [GitHub pull requests](https://github.com/byzheng/apsimng-notes) or [issues](https://github.com/byzheng/apsimng-notes/issues).
 
 
 ## [Models](Models)

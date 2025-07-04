@@ -3,4 +3,29 @@ title: "About"
 sidebar: false
 ---
 
-About this site
+Welcome to my personal documentation site for **[APSIM Next Generation](https://www.apsim.info/)**.
+
+This site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application.
+
+## What This Site Includes
+
+
+This repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:
+
+- 📘 **[Documentation](docs/index.qmd)** — In-depth explanations and configuration guides
+- 🌾 **[Tips and Tricks](tips/index.qmd)** — Short how-tos and troubleshooting solutions
+- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks
+- 🔧 **Scripts** — Useful R snippets for simulations
+
+Whether you're just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful.
+
+
+## Not Official Documentation
+
+> **This site is _not_ the official APSIM documentation.**
+
+The official resources are available here:
+
+- 📘 [APSIM Documentation (legacy)](https://apsimnextgeneration.netlify.app/)
+- 🔬 [Model Validation](https://docs.apsim.info/)
+- 🧪 [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
