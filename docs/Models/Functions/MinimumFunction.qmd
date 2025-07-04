@@ -1,0 +1,52 @@
+---
+title: "MinimumFunction"
+output: html_document
+---
+
+The `MinimumFunction` is a utility function that returns the **minimum value** from all of its child functions.
+
+## Overview
+
+The `MinimumFunction` is used to determine the smallest value among multiple child functions. It evaluates each child and returns the minimum result. This is useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened for by this function.
+
+**Events Raised**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only reportable properties are available for this function.
+
+## User Interface
+
+`MinimumFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `MinimumFunction` in the Filter Box. A symbol for the `MinimumFunction` is displayed in the user interface to represent the function.
+
+![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MinimumFunction.png){ width=64px }
+
+## Practical Example
+
+Suppose you want to determine the minimum soil water available from several soil layers, or the most limiting nutrient for plant growth. You can use the `MinimumFunction` to select the lowest value among all relevant child functions.
+
+For example, if you have three child functions representing different constraints:
+
+$$
+LimitingFactor = \min(Value_1, Value_2, Value_3)
+$$
+
+The `MinimumFunction` will return the smallest of these values.
+
+## See Also
+
+* **Source code:** [MinimumFunction.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/MinimumFunction.cs)

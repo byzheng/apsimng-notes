@@ -1,0 +1,52 @@
+---
+title: "MaximumFunction"
+output: html_document
+---
+
+The `MaximumFunction` is a utility function that returns the **maximum value** from all of its child functions.
+
+## Overview
+
+The `MaximumFunction` is used to determine the largest value among multiple child functions. It evaluates each child and returns the maximum result. This is useful when you need to select the most permissive factor or the highest value among several parameters in plant or soil models.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened for by this function.
+
+**Events Raised**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only reportable properties are available for this function.
+
+## User Interface
+
+`MaximumFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `MaximumFunction` in the Filter Box. A symbol for the `MaximumFunction` is displayed in the user interface to represent the function.
+
+![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MaximumFunction.png){ width=64px }
+
+## Practical Example
+
+Suppose you want to determine the maximum soil water available from several soil layers, or the most permissive nutrient for plant growth. You can use the `MaximumFunction` to select the highest value among all relevant child functions.
+
+For example, if you have three child functions representing different constraints:
+
+$$
+PermissiveFactor = \max(Value_1, Value_2, Value_3)
+$$
+
+The `MaximumFunction` will return the largest of these values.
+
+## See Also
+
+* **Source code:** [MaximumFunction.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/MaximumFunction.cs)
