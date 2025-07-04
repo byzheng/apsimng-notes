@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-06">
 
-<title>Daily Nitrogen Demand for Storage Organs – APSIM NG Notes</title>
+<title>MultiplyFunction – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,25 +23,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-e98dcb3fceb702c4831bac57f112e771.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-e98dcb3fceb702c4831bac57f112e771.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -128,7 +127,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -138,7 +137,7 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -149,23 +148,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../../index.html"> 
+    <a class="nav-link" href="../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../docs/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../docs/index.html" aria-current="page"> 
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../tips/index.html"> 
+    <a class="nav-link" href="../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../disclaimer.html"> 
+    <a class="nav-link" href="../../../disclaimer.html"> 
 <span class="menu-text">Disclaimer</span></a>
   </li>  
 </ul>
@@ -186,7 +185,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html">DemandFunctions</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html">Daily Nitrogen Demand for Storage Organs</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/MultiplyFunction.html">MultiplyFunction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,7 +199,7 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -209,7 +208,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -218,19 +217,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clock</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Events</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -248,13 +247,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nutrient Constrained Allocation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relative Allocation</span></a>
   </div>
 </li>
@@ -271,7 +270,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology Function</span></a>
   </div>
 </li>
@@ -286,19 +285,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging Phase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Generic Phase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating Phase</span></a>
   </div>
 </li>
@@ -310,7 +309,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -319,7 +318,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -327,7 +326,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -336,58 +335,58 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AddFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FrostHeatDamageFunctions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HourlySinPpAdjusted</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">MultiplyFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubDailyInterpolation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ThreeHourAirTemperature</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
  <span class="menu-text">DemandFunctions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
   </div>
 </li>
@@ -397,7 +396,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -406,7 +405,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2</span></a>
   </div>
 </li>
@@ -416,7 +415,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -425,7 +424,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -434,7 +433,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
   </div>
 </li>
@@ -442,7 +441,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -451,7 +450,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -460,7 +459,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2 for Wheat</span></a>
   </div>
 </li>
@@ -468,7 +467,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -477,7 +476,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -485,7 +484,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -494,19 +493,19 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
@@ -527,7 +526,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fertiliser Types</span></a>
   </div>
 </li>
@@ -546,21 +545,20 @@ window.Quarto = {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/MultiplyFunction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html">DemandFunctions</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html">Daily Nitrogen Demand for Storage Organs</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/MultiplyFunction.html">MultiplyFunction</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Daily Nitrogen Demand for Storage Organs</h1>
+<h1 class="title">MultiplyFunction</h1>
 </div>
 
 
@@ -568,12 +566,6 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -583,65 +575,17 @@ window.Quarto = {
 </header>
 
 
-<p>The <code>StorageNDemandFunction</code> calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.</p>
+<p>The <code>MultiplyFunction</code> is a utility function that returns the <strong>product of values</strong> from all of its child functions.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>This function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration.</p>
-</section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
-<ul>
-<li><strong>maxNConc</strong>: A <code>IFunction</code> for maximum nitrogen concentration which the organ can achieve.</li>
-<li><strong>nitrogenDemandSwitch</strong>: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from <code>Emergence</code> to <code>MaximumGrainLength</code> stages, and switched off afterwards.</li>
-<li><strong>parentOrgan</strong>: The organ that implements the <code>IArbitration</code> interface, i.e.&nbsp;an organ which <code>StorageNDemandFunction</code> attached to, which provides access to the organ’s properties such as live weight and current N content.</li>
-</ul>
-</section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The potential biomass after potential allocation is calculated as biomass at previous day (<span class="math inline">\(DM_{\text{Live}, i-1}\)</span>) plus the potential allocation to the organ (<span class="math inline">\(A_{\text{P}, i}\)</span>): <span class="math display">\[
-DM_{\text{Live}, i} = DM_{\text{Live}, i-1} + A_{\text{P}, i}
-\]</span></p>
-<p>The maximum nitrogen content (potential) at day <span class="math inline">\(i\)</span> is calculated as</p>
-<p><span class="math display">\[
-N_{\text{Live}, i} = C_{\text{N, max}} \times DM_{\text{Live}, i}
-\]</span></p>
-<p>The nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:</p>
-<p><span class="math display">\[
-D_{\text{N, Storage}} = N_{\text{Live}, i} - N_{\text{Live}, i-1} - D_{\text{N, Structural}} - D_{\text{N, Metabolic}}
-\]</span></p>
-<p>Where:</p>
-<ul>
-<li><span class="math inline">\(D_{\text{N, Storage}}\)</span>: Nitrogen demand for storage at day <span class="math inline">\(i\)</span>.</li>
-<li><span class="math inline">\(N_{\text{Live}, i}\)</span>: Nitrogen content in the live biomass at day <span class="math inline">\(i\)</span>.</li>
-<li><span class="math inline">\(N_{\text{Live}, i-1}\)</span>: Nitrogen content in the live biomass at the previous day (<span class="math inline">\(i-1\)</span>).</li>
-<li><span class="math inline">\(D_{\text{N, Structural}}\)</span>: Nitrogen demand for structural functions at day <span class="math inline">\(i\)</span>.</li>
-<li><span class="math inline">\(D_{\text{N, Metabolic}}\)</span>: Nitrogen demand for metabolic functions at day <span class="math inline">\(i\)</span>.</li>
-</ul>
-<p>Implementation Details</p>
-<ul>
-<li>The function is part of the <code>Models.Functions.DemandFunctions</code> namespace.</li>
-<li>It implements the <code>IFunction</code> interface, allowing it to be used within the APSIM model framework.</li>
-<li>During simulation commencement, it identifies its parent organ implementing the <code>IArbitration</code> interface to access necessary properties.</li>
-</ul>
+<p>The <code>MultiplyFunction</code> is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.</p>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
 <p><strong>Events Listened For</strong></p>
-<p>These are signals or notifications that the function listens for from other parts of the simulation:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#Commencing">Commencing</a></td>
-<td>Get parent organ from simulations</td>
-</tr>
-</tbody>
-</table>
+<blockquote class="blockquote">
+<p>No events are listened for by this function.</p>
+</blockquote>
 <p><strong>Events Raised to</strong></p>
 <blockquote class="blockquote">
 <p>No events are raised by this function.</p>
@@ -654,37 +598,27 @@ D_{\text{N, Storage}} = N_{\text{Live}, i} - N_{\text{Live}, i-1} - D_{\text{N, 
 <p>No configurable properties are available for this function.</p>
 </blockquote>
 <p><strong>Read-Only Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 8%">
-<col style="width: 71%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Value</code></td>
-<td>double</td>
-<td>Storage demands for nitrogen (N) in the organ</td>
-</tr>
-</tbody>
-</table>
+<blockquote class="blockquote">
+<p>No read-only reportable properties are available for this function.</p>
+</blockquote>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<p><code>StorageNDemandFunction</code> can be added as a child of a <code>NutrientDemandFunctions</code> node in the model tree. Right-click the parent node, select “Add Model…”, and search for <code>StorageNDemandFunction</code> in the Filter Box.</p>
+<p><code>MultiplyFunction</code> can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search <code>MultiplyFunction</code> in the Filter Box. A symbol for the <code>MultiplyFunction</code> is displayed in the user interface to represent the function.</p>
+<p><img src="https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MultiplyFunction.png" class="img-fluid" width="64"></p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<p>The target thermal time from germination to emergence in the wheat model is determined by ShootLag (<span class="math inline">\(ShootLag\)</span>), Sowing Depth (<span class="math inline">\(SowingDepth\)</span>), and Shoot Rate (<span class="math inline">\(ShootRate\)</span>).</p>
+<p><span class="math display">\[
+TT = ShootLag + (SowingDepth \times ShootRate)
+\]</span></p>
+<p>The <code>MultiplyFunction</code> is used to multiply these two values to get the total target thermal time in the equation above.</p>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li>Ensure that <code>maxNConc</code> and <code>nitrogenDemandSwitch</code> are properly defined within the organ’s model to avoid calculation errors.</li>
-<li>This function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements.</li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/MultiplyFunction.cs">MultiplyFunction.cs on GitHub</a></li>
 </ul>
 
 
@@ -1099,17 +1033,17 @@ D_{\text{N, Storage}} = N_{\text{Live}, i} - N_{\text{Live}, i-1} - D_{\text{N, 
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../../../about.html">
+    <a class="nav-link" href="../../../about.html">
 <p>About</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../../../disclaimer.html">
+    <a class="nav-link" href="../../../disclaimer.html">
 <p>Disclaimer</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/MultiplyFunction.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
