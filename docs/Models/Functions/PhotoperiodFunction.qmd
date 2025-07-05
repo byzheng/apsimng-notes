@@ -1,6 +1,97 @@
 ---
-title: "PhotoperiodFunction"
+title: "Photoperiod"
 output: html_document
 ---
 
+The **Photoperiod** function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.
 
+## Overview
+
+The Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes.
+
+## Inputs
+
+| Input         | Type    | Description                                                                 |
+|---------------|---------|-----------------------------------------------------------------------------|
+| `Twilight`    | double  | The sun angle (in degrees) below the horizon to define the start/end of daylight. |
+| `MetData`     | IWeather| Weather data provider, supplies latitude and other meteorological information. |
+| `Clock`       | IClock  | Provides the current day of year for the calculation.                        |
+
+## Methodology
+
+The function calculates day length using the latitude and the twilight angle. The calculation is performed according to the weather data providers.
+
+**Controlled Envronment**
+
+Use the specified day length from the controlled environment.
+
+**Specified Day Length in the Weather File**
+
+Use the actual day length from the weather file.
+
+**Calculated Day Length**
+
+The day length is calculated using the following astronomical formula, which estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle:
+
+Let:
+- $D$ = day of year
+- $\phi$ = latitude (degrees)
+- $\theta$ = twilight sun angle (degrees below the horizon; e.g., $-6$ for civil twilight)
+
+1. Convert angles to radians:
+    - $\phi_{rad} = \phi \times \frac{\pi}{180}$
+    - $\theta_{rad} = \theta \times \frac{\pi}{180}$
+
+2. Calculate solar declination:
+    - $\delta = 0.4093 \times \sin\left(0.0172 \times (D - 79.25)\right)$
+
+3. Compute intermediate values:
+    - $a = \sin(\phi_{rad}) \times \sin(\delta)$
+    - $b = \cos(\phi_{rad}) \times \cos(\delta)$
+    - $x = \frac{\sin(\theta_{rad}) - a}{b}$
+    - Clamp $x$ to the range $[-1, 1]$ to avoid domain errors.
+
+4. Calculate day length (hours):
+
+$$
+\text{DayLength} = 2 \times \arccos(x) \times \frac{24}{2\pi}
+$$
+
+This formula accounts for the Earth's tilt and the observer's latitude, providing an accurate estimate of daylight hours for any day and location.
+
+
+## Events 
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [DoWeather](/docs/Models/Events.html#DoWeather)   | Triggers calculation of day length for the current day. |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `Twilight`           | double  | The sun angle (in degrees) below the horizon for defining daylight.         |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `DayLength`          | double  | The calculated duration of daylight (hours) for the current day and location. |
+
+## User Interface
+
+`PhotoperiodFunction` can be added as a child of a parent function node (e.g., a model requiring day length) in the model tree. Right-click the parent node, select "Add Model...", and search for `PhotoperiodFunction` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.

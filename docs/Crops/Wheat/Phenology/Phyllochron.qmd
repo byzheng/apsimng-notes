@@ -60,7 +60,7 @@ ggplot(df, aes(x = leaf_cohort, y = factor)) +
 
 ### Photoperiod Effect
 
-The model also accounts for how sensitive the plant is to [day length](/docs/Models/Functions/PhotoperiodFunction.qmd) . When days are short (less than 12 hours), leaf appearance slows down. The photoperiod effect is calculated as:
+The model also accounts for how sensitive the plant is to [day length](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. When days are short (less than 12 hours), leaf appearance slows down. The photoperiod effect is calculated as:
 
 $$
 f_{\text{pp}}(d) = 1 + S \cdot f_d(d)
