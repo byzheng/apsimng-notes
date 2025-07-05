@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-07-05">
 
-<title>Tips – APSIM NG Notes</title>
+<title>Photoperiod Effects on Leaf Appearance for Wheat in Australia – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +31,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -71,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-date","listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -187,7 +157,7 @@ window.Quarto = {
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../tips/index.html" aria-current="page"> 
+    <a class="nav-link" href="../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
@@ -216,15 +186,23 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#day-length" id="toc-day-length" class="nav-link active" data-scroll-target="#day-length">Day Length</a></li>
+  <li><a href="#photoperiod-effects-on-phyllochron" id="toc-photoperiod-effects-on-phyllochron" class="nav-link" data-scroll-target="#photoperiod-effects-on-phyllochron">Photoperiod Effects on Phyllochron</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/tips/phy-ppd-oz-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tips</h1>
+<h1 class="title">Photoperiod Effects on Leaf Appearance for Wheat in Australia</h1>
 </div>
 
 
@@ -232,6 +210,12 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">July 5, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -241,88 +225,92 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<p><a href="../docs/Models/Functions/PhotoperiodFunction.html">Photoperiod</a>, or day length, is a key environmental factor influencing the rate of leaf appearance (<a href="../docs/Crops/Wheat/Phenology/Phyllochron.html">phyllochron</a>) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase.</p>
+<section id="day-length" class="level2">
+<h2 class="anchored" data-anchor-id="day-length">Day Length</h2>
+<p>Australia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).</p>
+<p>This range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.</p>
+<p>The day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.</p>
+<p>The day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-day-length" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-day-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="phy-ppd-oz-wheat_files/figure-html/fig-day-length-1.png" class="img-fluid figure-img" width="672">
 </div>
-<table class="quarto-listing-table table">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-day-length-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Day Length Variation Across Australia
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="photoperiod-effects-on-phyllochron" class="level2">
+<h2 class="anchored" data-anchor-id="photoperiod-effects-on-phyllochron">Photoperiod Effects on Phyllochron</h2>
+<p><a href="../docs/Models/Functions/PhotoperiodFunction.html">Photoperiod</a>, or day length, impacts on (<a href="../docs/Crops/Wheat/Phenology/Phyllochron.html">phyllochron</a>) when day length is shorter than 12 hours.</p>
+<table class="caption-top table">
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Description
-</th>
-
+<tr class="header">
+<th>Day Length (h)</th>
+<th>Modifier <span class="math inline">\(f_d(d)\)</span></th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-date-sort="1751673600000" data-listing-file-modified-sort="1751679081472" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="963" data-listing-title-sort="Photoperiod Effects on Leaf Appearance for Wheat in Australia" data-listing-filename-sort="phy-ppd-oz-wheat.qmd">
-<td>
-<a href="../tips/phy-ppd-oz-wheat.html" class="title listing-title">Photoperiod Effects on Leaf Appearance for Wheat in Australia</a>
-</td>
-<td>
-<span class="listing-description">Photoperiod, or day length, is a key environmental factor influencing the rate of leaf appearance (phyllochron) in wheat. In Australia, the wide range of latitudes means…</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>8</td>
+<td>1.0</td>
 </tr>
-
-<tr data-index="1" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751679081471" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="955" data-listing-title-sort="Setting CO₂ Concentration" data-listing-filename-sort="co2.md">
-<td>
-<a href="../tips/co2.html" class="title listing-title">Setting CO₂ Concentration</a>
-</td>
-<td>
-<span class="listing-description">In APSIM Next Gen, the default CO₂ concentration is <strong>350 ppm</strong> if not explicitly set.<br>
-This value may need to be changed when simulating future climate scenarios or FACE…</span>
-</td>
-
+<tr class="even">
+<td>12</td>
+<td>0.0</td>
 </tr>
-
-<tr data-index="2" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751679081472" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1017" data-listing-title-sort="Accessing Internal Model Variables in the Manager Scripts" data-listing-filename-sort="internal_variable.md">
-<td>
-<a href="../tips/internal_variable.html" class="title listing-title">Accessing Internal Model Variables in the Manager Scripts</a>
-</td>
-<td>
-<span class="listing-description">In APSIM Next Gen, internal variables such as <code>[Wheat].Phenology.FloweringDAS</code> and <code>[Wheat].Stem.N</code> are accessible within the <code>Report</code> model. However, accessing these variables…<code></code></span>
-</td>
-
+<tr class="odd">
+<td>20</td>
+<td>0.0</td>
 </tr>
-
-<tr data-index="3" data-listing-date-sort="1749168000000" data-listing-file-modified-sort="1751679081472" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="233" data-listing-title-sort="Writing Debug Info to Summary" data-listing-filename-sort="summary.md">
-<td>
-<a href="../tips/summary.html" class="title listing-title">Writing Debug Info to Summary</a>
-</td>
-<td>
-<span class="listing-description">When developing and debugging <code>Manager</code> scripts in APSIM Next Gen, it’s helpful to write custom messages to the <strong>Summary window</strong>.</span>
-</td>
-
-</tr>
-
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>The calculated photoperiod effect <span class="math inline">\(f_d(d)\)</span> is ranged from 0 to 0.5030966 mainly in winter and southern regions.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-photoperiod-effect" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-photoperiod-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="phy-ppd-oz-wheat_files/figure-html/fig-photoperiod-effect-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photoperiod-effect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Photoperiod Effect on Phyllochron
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Photoperiod impacts on wheat phyllochron in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-photoperiod-effect-city" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-photoperiod-effect-city-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="phy-ppd-oz-wheat_files/figure-html/fig-photoperiod-effect-city-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-photoperiod-effect-city-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Photoperiod Effect on Phyllochron for Capital Cities
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Photoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of leaf appearance, which is crucial for determining the timing of key growth stages such as flowering and maturity.</p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -741,7 +729,7 @@ This value may need to be changed when simulating future climate scenarios or FA
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/tips/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/tips/phy-ppd-oz-wheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

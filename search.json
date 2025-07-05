@@ -40,438 +40,410 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html",
-    "href": "docs/Crops/Wheat/Phenology/index.html",
-    "title": "Phenology",
+    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html",
+    "href": "docs/Crops/Wheat/Phenology/Emerging.html",
+    "title": "Emerging",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging\n\n\n\n\n\n\n\n\n\nGerminating\n\n\n\n\n\n\n\n\n\nThermal Time\n\n\n\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html",
-    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html",
-    "title": "Thermal Time",
-    "section": "",
-    "text": "A function of daily thermal time for wheat based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
+    "text": "The Emerging phase in Wheat represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Phenology",
-      "Thermal Time"
+      "Emerging"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
-    "title": "Thermal Time",
+    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/Emerging.html#overview",
+    "title": "Emerging",
     "section": "Overview",
-    "text": "Overview\nThe Thermal Time function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (ThreeHourAirTemperature), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.\n\nInterpolationMethod: ThreeHourAirTemperature is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.\nResponse: Three cardinal temperature using XYPairs to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.\n\n\n\n\nCardinal Point\nDescription\nValue (°C)\n\n\n\n\nBase\nMinimum for growth\n0\n\n\nOptimum\nMaximum rate of growth\n26\n\n\nMaximum\nGrowth ceases above this\n37",
+    "text": "Overview\nThe EmergingPhase model simulates the time between the Germination and Emergence stages.\n\nThis phase starts at Germination and ends at Emergence, when the seedling is considered to have emerged from the soil.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time to complete this phase is defined as:\n\n\\[\n\\text{Target} = \\text{ShootLag} + (\\text{SowingDepth} \\times \\text{ShootRate})\n\\]\nWhere:\n\nShootLag is a lag when coleoptile starting to elongate (°Cd) with default value of 40.0 °Cd,\nShootRate is the rate of shoot elongation (°Cd/mm) with default value of 1.5 °Cd/mm,\nSowingDepth is the depth at which the seed is sown (mm), taken from [Plant].SowingData.Depth.\n\nDeeper sowing results in longer emergence delays due to greater thermal time requirement.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Phenology",
-      "Thermal Time"
+      "Emerging"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
-    "title": "Thermal Time",
+    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/Emerging.html#cultivar-specific-parameters",
+    "title": "Emerging",
     "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nIn general, we do not modify the thermal time function for different cultivars.",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Emerging.ShootLag.FixedValue\nLag before coleoptile starts to elongate (°Cd)\n40.0\n\n\n[Phenology].Emerging.ShootRate.FixedValue\nRate of shoot elongation (°Cd/mm)\n1.5",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Phenology",
-      "Thermal Time"
+      "Emerging"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
-    "title": "Thermal Time",
+    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/Emerging.html#practical-example",
+    "title": "Emerging",
     "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "text": "Practical Example\nThis table illustrates deeper sowing delays emergence due to higher thermal time requirements.\n\n\n\n\n\n\n\n\n\nSowing Depth (mm)\nShootLag (°Cd)\nShootRate (°Cd/mm)\nTarget Thermal Time (°Cd)\n\n\n\n\n40\n40.0\n1.5\n100.0\n\n\n50\n40.0\n1.5\n115.0\n\n\n60\n40.0\n1.5\n130.0",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Phenology",
-      "Thermal Time"
+      "Emerging"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html",
+    "href": "docs/Crops/Wheat/Phenology/Germinating.html",
+    "title": "Germinating",
     "section": "",
-    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
+    "text": "The Germinating is a phenological phase in Wheat used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+      "Phenology",
+      "Germinating"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
+    "title": "Germinating",
     "section": "Overview",
-    "text": "Overview\nThe demand is defined by a PhaseLookup function (NFillingRate):\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.",
+    "text": "Overview\nThe GerminatingPhase Model is used to simulate the germination of wheat seeds. This phase begins when Plant Sowing occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nThe Minimum Soil Temperature is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,\nThe Soil Water Content should be more than Lower Limit for germination to occur.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+      "Phenology",
+      "Germinating"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/Germinating.html#cultivar-specific-parameters",
+    "title": "Germinating",
     "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue\nPotential nitrogen per kernel (g/kernel)\n0.0011",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Germinating.MinSoilTemperature.FixedValue\nMinimum soil temperature for germination (°C)\n0.0",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+      "Phenology",
+      "Germinating"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "Practical Example",
-    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html",
-    "title": "CO2 for Wheat",
+    "objectID": "docs/Crops/Wheat/grain/index.html",
+    "href": "docs/Crops/Wheat/grain/index.html",
+    "title": "Grain",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Traits",
-      "CO2 for Wheat"
+      "Grain"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
-    "title": "CO2 for Wheat",
+    "objectID": "docs/Crops/Wheat/Traits/index.html",
+    "href": "docs/Crops/Wheat/Traits/index.html",
+    "title": "Traits",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Traits",
-      "CO2 for Wheat"
+      "Traits"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
-    "title": "CO2 for Wheat",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]",
+    "objectID": "docs/Crops/Wheat/index.html",
+    "href": "docs/Crops/Wheat/index.html",
+    "title": "Wheat",
+    "section": "",
+    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Wheat",
-      "Traits",
-      "CO2 for Wheat"
+      "Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
-    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
-    "title": "CO2 for Wheat",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf",
+    "objectID": "docs/Crops/Wheat/index.html#phenology",
+    "href": "docs/Crops/Wheat/index.html#phenology",
+    "title": "Wheat",
+    "section": "Phenology",
+    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Wheat",
-      "Traits",
-      "CO2 for Wheat"
+      "Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html",
-    "href": "docs/Crops/Canola/Phenology/index.html",
-    "title": "Phenology",
-    "section": "",
-    "text": "Title\nDescription\n\n\n\n\n\nNo matching items",
+    "objectID": "docs/Crops/Wheat/index.html#grain",
+    "href": "docs/Crops/Wheat/index.html#grain",
+    "title": "Wheat",
+    "section": "Grain",
+    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Canola",
-      "Phenology"
+      "Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/index.html",
-    "href": "docs/Crops/index.html",
-    "title": "Crops",
+    "objectID": "docs/Crops/Wheat/index.html#traits",
+    "href": "docs/Crops/Wheat/index.html#traits",
+    "title": "Wheat",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html",
+    "href": "docs/Crops/Canola/index.html",
+    "title": "Canola",
     "section": "",
-    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.",
+    "text": "The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.\n\nPhenology\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
     "crumbs": [
       "Home",
       "Docs",
-      "Crops"
+      "Crops",
+      "Canola"
     ]
   },
   {
-    "objectID": "docs/Crops/index.html#wheat",
-    "href": "docs/Crops/index.html#wheat",
-    "title": "Crops",
-    "section": "Wheat",
-    "text": "Wheat",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/index.html#canola",
-    "href": "docs/Crops/index.html#canola",
-    "title": "Crops",
-    "section": "Canola",
-    "text": "Canola",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Traits/CO2/index.html",
-    "href": "docs/Models/Traits/CO2/index.html",
-    "title": "CO2",
+    "objectID": "docs/Models/Traits/index.html",
+    "href": "docs/Models/Traits/index.html",
+    "title": "Traits",
     "section": "",
-    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script.",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Traits",
-      "CO2"
+      "Traits"
     ]
   },
   {
-    "objectID": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
-    "href": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
-    "title": "CO2",
-    "section": "Radiation Use Efficiency (RUE)",
-    "text": "Radiation Use Efficiency (RUE)\n\nC3\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.\n\n\n\n\nC4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Traits",
-      "CO2"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
-    "href": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
-    "title": "CO2",
-    "section": "Critical Nitrogen Concentration",
-    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Traits",
-      "CO2"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
-    "href": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
-    "title": "CO2",
-    "section": "Stomatal Conductance",
-    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Traits",
-      "CO2"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html",
+    "href": "docs/Models/Functions/AddFunction.html",
+    "title": "AddFunction",
     "section": "",
-    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.",
+    "text": "The AddFunction is a utility function that returns the sum of values from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#overview",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#overview",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html#overview",
+    "href": "docs/Models/Functions/AddFunction.html#overview",
+    "title": "AddFunction",
     "section": "Overview",
-    "text": "Overview\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration.",
+    "text": "Overview\nThe AddFunction is used to sum up multiple values for a mathematical equation. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Inputs",
-    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#methodology",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#methodology",
-    "title": "Daily Nitrogen Demand for Storage Organs",
-    "section": "Methodology",
-    "text": "Methodology\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\).\n\nImplementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#events",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#events",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html#events",
+    "href": "docs/Models/Functions/AddFunction.html#events",
+    "title": "AddFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nGet parent organ from simulations\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#properties",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#properties",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html#properties",
+    "href": "docs/Models/Functions/AddFunction.html#properties",
+    "title": "AddFunction",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nStorage demands for nitrogen (N) in the organ",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#user-interface",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#user-interface",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html#user-interface",
+    "href": "docs/Models/Functions/AddFunction.html#user-interface",
+    "title": "AddFunction",
     "section": "User Interface",
-    "text": "User Interface\nStorageNDemandFunction can be added as a child of a NutrientDemandFunctions node in the model tree. Right-click the parent node, select “Add Model…”, and search for StorageNDemandFunction in the Filter Box.",
+    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#practical-example",
-    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#practical-example",
-    "title": "Daily Nitrogen Demand for Storage Organs",
+    "objectID": "docs/Models/Functions/AddFunction.html#practical-example",
+    "href": "docs/Models/Functions/AddFunction.html#practical-example",
+    "title": "AddFunction",
     "section": "Practical Example",
-    "text": "Practical Example\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements.",
+    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "DemandFunctions",
-      "Daily Nitrogen Demand for Storage Organs"
+      "AddFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#see-also",
+    "href": "docs/Models/Functions/AddFunction.html#see-also",
+    "title": "AddFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: AddFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AddFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html",
+    "href": "docs/Models/Functions/MultiplyFunction.html",
+    "title": "MultiplyFunction",
+    "section": "",
+    "text": "The MultiplyFunction is a utility function that returns the product of values from all of its child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#overview",
+    "href": "docs/Models/Functions/MultiplyFunction.html#overview",
+    "title": "MultiplyFunction",
+    "section": "Overview",
+    "text": "Overview\nThe MultiplyFunction is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#events",
+    "href": "docs/Models/Functions/MultiplyFunction.html#events",
+    "title": "MultiplyFunction",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#properties",
+    "href": "docs/Models/Functions/MultiplyFunction.html#properties",
+    "title": "MultiplyFunction",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#user-interface",
+    "href": "docs/Models/Functions/MultiplyFunction.html#user-interface",
+    "title": "MultiplyFunction",
+    "section": "User Interface",
+    "text": "User Interface\nMultiplyFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search MultiplyFunction in the Filter Box. A symbol for the MultiplyFunction is displayed in the user interface to represent the function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#practical-example",
+    "href": "docs/Models/Functions/MultiplyFunction.html#practical-example",
+    "title": "MultiplyFunction",
+    "section": "Practical Example",
+    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe MultiplyFunction is used to multiply these two values to get the total target thermal time in the equation above.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#see-also",
+    "href": "docs/Models/Functions/MultiplyFunction.html#see-also",
+    "title": "MultiplyFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: MultiplyFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
     ]
   },
   {
@@ -601,16 +573,241 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/index.html",
-    "href": "docs/Models/Functions/index.html",
-    "title": "Functions",
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html",
+    "title": "Photoperiod",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "The Photoperiod function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Functions"
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#overview",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#overview",
+    "title": "Photoperiod",
+    "section": "Overview",
+    "text": "Overview\nThe Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#inputs",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#inputs",
+    "title": "Photoperiod",
+    "section": "Inputs",
+    "text": "Inputs\n\n\n\n\n\n\n\n\nInput\nType\nDescription\n\n\n\n\nTwilight\ndouble\nThe sun angle (in degrees) below the horizon to define the start/end of daylight.\n\n\nMetData\nIWeather\nWeather data provider, supplies latitude and other meteorological information.\n\n\nClock\nIClock\nProvides the current day of year for the calculation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#methodology",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#methodology",
+    "title": "Photoperiod",
+    "section": "Methodology",
+    "text": "Methodology\nThe function calculates day length using the latitude and the twilight angle. The calculation is performed according to the weather data providers.\nControlled Envronment\nUse the specified day length from the controlled environment.\nSpecified Day Length in the Weather File\nUse the actual day length from the weather file.\nCalculated Day Length\nThe day length is calculated using the following astronomical formula, which estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle:\nLet: - \\(D\\) = day of year - \\(\\phi\\) = latitude (degrees) - \\(\\theta\\) = twilight sun angle (degrees below the horizon; e.g., \\(-6\\) for civil twilight)\n\nConvert angles to radians:\n\n\\(\\phi_{rad} = \\phi \\times \\frac{\\pi}{180}\\)\n\\(\\theta_{rad} = \\theta \\times \\frac{\\pi}{180}\\)\n\nCalculate solar declination:\n\n\\(\\delta = 0.4093 \\times \\sin\\left(0.0172 \\times (D - 79.25)\\right)\\)\n\nCompute intermediate values:\n\n\\(a = \\sin(\\phi_{rad}) \\times \\sin(\\delta)\\)\n\\(b = \\cos(\\phi_{rad}) \\times \\cos(\\delta)\\)\n\\(x = \\frac{\\sin(\\theta_{rad}) - a}{b}\\)\nClamp \\(x\\) to the range \\([-1, 1]\\) to avoid domain errors.\n\nCalculate day length (hours):\n\n\\[\n\\text{DayLength} = 2 \\times \\arccos(x) \\times \\frac{24}{2\\pi}\n\\]\nThis formula accounts for the Earth’s tilt and the observer’s latitude, providing an accurate estimate of daylight hours for any day and location.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#events",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#events",
+    "title": "Photoperiod",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nDoWeather\nTriggers calculation of day length for the current day.\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#properties",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#properties",
+    "title": "Photoperiod",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nTwilight\ndouble\nThe sun angle (in degrees) below the horizon for defining daylight.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDayLength\ndouble\nThe calculated duration of daylight (hours) for the current day and location.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#user-interface",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#user-interface",
+    "title": "Photoperiod",
+    "section": "User Interface",
+    "text": "User Interface\nPhotoperiodFunction can be added as a child of a parent function node (e.g., a model requiring day length) in the model tree. Right-click the parent node, select “Add Model…”, and search for PhotoperiodFunction in the Filter Box.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#practical-example",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#practical-example",
+    "title": "Photoperiod",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html",
+    "href": "docs/Models/Functions/XYPairs.html",
+    "title": "XYPairs Function",
+    "section": "",
+    "text": "Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#overview",
+    "href": "docs/Models/Functions/XYPairs.html#overview",
+    "title": "XYPairs Function",
+    "section": "Overview",
+    "text": "Overview\nXYPairs is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#inputs",
+    "href": "docs/Models/Functions/XYPairs.html#inputs",
+    "title": "XYPairs Function",
+    "section": "Inputs",
+    "text": "Inputs\n\nX: An array of X values defining the input domain.\nY: An array of Y values corresponding to each X value. Must be the same length as X.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#methodology",
+    "href": "docs/Models/Functions/XYPairs.html#methodology",
+    "title": "XYPairs Function",
+    "section": "Methodology",
+    "text": "Methodology\nThe XYPairs function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value (\\(dX\\)), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).\nThe interpolation follows this equation between points \\((x_i, y_i)\\) and \\((x_{i+1}, y_{i+1})\\):\n\\[\nY = y_i + \\frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)\n\\]",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#events",
+    "href": "docs/Models/Functions/XYPairs.html#events",
+    "title": "XYPairs Function",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#properties",
+    "href": "docs/Models/Functions/XYPairs.html#properties",
+    "title": "XYPairs Function",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nX\ndouble[]\nThe list of X values\n\n\nY\ndouble[]\nThe list of Y values\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#user-interface",
+    "href": "docs/Models/Functions/XYPairs.html#user-interface",
+    "title": "XYPairs Function",
+    "section": "User Interface",
+    "text": "User Interface\nXYPairs can be added as a child of any functional models in the model tree. Right-click the parent node, select “Add Model…”, and search for XYPairs in the Filter Box.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#practical-example",
+    "href": "docs/Models/Functions/XYPairs.html#practical-example",
+    "title": "XYPairs Function",
+    "section": "Practical Example",
+    "text": "Practical Example\nSuppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:\n\nX = [0, 26, 34]\nY = [0, 26, 0]\n\nThis means: - For thermal time (X) less than 0, the response (Y) is 0. - From 0 to 26, the response increases linearly from 0 to 26. - From 26 to 34, the response decreases linearly from 26 to 0. - For thermal time greater than 34, the response remains 0.\n\n\n\n\n\nExample of XYPairs Function",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/XYPairs.html#see-also",
+    "href": "docs/Models/Functions/XYPairs.html#see-also",
+    "title": "XYPairs Function",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: XYPairs.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "XYPairs Function"
     ]
   },
   {
@@ -737,6 +934,104 @@
       "Models",
       "Functions",
       "SubDailyInterpolation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html",
+    "href": "docs/Models/Functions/DivideFunction.html",
+    "title": "DivideFunction",
+    "section": "",
+    "text": "The DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#overview",
+    "href": "docs/Models/Functions/DivideFunction.html#overview",
+    "title": "DivideFunction",
+    "section": "Overview",
+    "text": "Overview\nThe DivideFunction divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns double.MaxValue (close to 1.8 × 10^308). This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while avoiding division-by-zero errors.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#events",
+    "href": "docs/Models/Functions/DivideFunction.html#events",
+    "title": "DivideFunction",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#properties",
+    "href": "docs/Models/Functions/DivideFunction.html#properties",
+    "title": "DivideFunction",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#user-interface",
+    "href": "docs/Models/Functions/DivideFunction.html#user-interface",
+    "title": "DivideFunction",
+    "section": "User Interface",
+    "text": "User Interface\nDivideFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for DivideFunction in the Filter Box. A symbol for the DivideFunction is displayed in the user interface to represent the function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#practical-example",
+    "href": "docs/Models/Functions/DivideFunction.html#practical-example",
+    "title": "DivideFunction",
+    "section": "Practical Example",
+    "text": "Practical Example\nSuppose you want to calculate the water use efficiency (WUE) of a crop, which is the ratio of yield to water used:\n\\[\nWUE = \\frac{Yield}{WaterUsed}\n\\]\nThe DivideFunction can be used to divide the Yield by WaterUsed. If WaterUsed is zero, the function will return double.MaxValue to indicate an undefined or infinite result.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#see-also",
+    "href": "docs/Models/Functions/DivideFunction.html#see-also",
+    "title": "DivideFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: DivideFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
     ]
   },
   {
@@ -1439,41 +1734,6 @@
     "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
-    "objectID": "tips/co2.html",
-    "href": "tips/co2.html",
-    "title": "Setting CO₂ Concentration",
-    "section": "",
-    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
-  },
-  {
-    "objectID": "tips/co2.html#objective",
-    "href": "tips/co2.html#objective",
-    "title": "Setting CO₂ Concentration",
-    "section": "Objective",
-    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
-  },
-  {
-    "objectID": "tips/co2.html#implementation",
-    "href": "tips/co2.html#implementation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
-  },
-  {
-    "objectID": "tips/co2.html#explanation",
-    "href": "tips/co2.html#explanation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Explanation",
-    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
-  },
-  {
-    "objectID": "tips/co2.html#additional-resources",
-    "href": "tips/co2.html#additional-resources",
-    "title": "Setting CO₂ Concentration",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
     "objectID": "tips/internal_variable.html",
     "href": "tips/internal_variable.html",
     "title": "Accessing Internal Model Variables in the Manager Scripts",
@@ -1509,11 +1769,74 @@
     "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
   },
   {
+    "objectID": "tips/co2.html",
+    "href": "tips/co2.html",
+    "title": "Setting CO₂ Concentration",
+    "section": "",
+    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
+  },
+  {
+    "objectID": "tips/co2.html#objective",
+    "href": "tips/co2.html#objective",
+    "title": "Setting CO₂ Concentration",
+    "section": "Objective",
+    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
+  },
+  {
+    "objectID": "tips/co2.html#implementation",
+    "href": "tips/co2.html#implementation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
+  },
+  {
+    "objectID": "tips/co2.html#explanation",
+    "href": "tips/co2.html#explanation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Explanation",
+    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
+  },
+  {
+    "objectID": "tips/co2.html#additional-resources",
+    "href": "tips/co2.html#additional-resources",
+    "title": "Setting CO₂ Concentration",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html",
+    "href": "tips/phy-ppd-oz-wheat.html",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "",
+    "text": "Photoperiod, or day length, is a key environmental factor influencing the rate of leaf appearance (phyllochron) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase."
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#day-length",
+    "href": "tips/phy-ppd-oz-wheat.html#day-length",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Day Length",
+    "text": "Day Length\nAustralia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).\nThis range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.\nThe day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.\nThe day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).\n\n\n\n\n\n\n\n\nFigure 1: Day Length Variation Across Australia"
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "href": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Photoperiod Effects on Phyllochron",
+    "text": "Photoperiod Effects on Phyllochron\nPhotoperiod, or day length, impacts on (phyllochron) when day length is shorter than 12 hours.\n\n\n\nDay Length (h)\nModifier \\(f_d(d)\\)\n\n\n\n\n8\n1.0\n\n\n12\n0.0\n\n\n20\n0.0\n\n\n\nThe calculated photoperiod effect \\(f_d(d)\\) is ranged from 0 to 0.5030966 mainly in winter and southern regions.\n\n\n\n\n\n\n\n\nFigure 2: Photoperiod Effect on Phyllochron\n\n\n\n\n\nPhotoperiod impacts on wheat phyllochron in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.\n\n\n\n\n\n\n\n\nFigure 3: Photoperiod Effect on Phyllochron for Capital Cities"
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#conclusion",
+    "href": "tips/phy-ppd-oz-wheat.html#conclusion",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Conclusion",
+    "text": "Conclusion\nPhotoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of leaf appearance, which is crucial for determining the timing of key growth stages such as flowering and maturity."
+  },
+  {
     "objectID": "tips/index.html",
     "href": "tips/index.html",
     "title": "Tips",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nPhotoperiod Effects on Leaf Appearance for Wheat in Australia\n\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
@@ -2083,129 +2406,212 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html",
-    "href": "docs/Models/Functions/XYPairs.html",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html",
+    "href": "docs/Models/Functions/MaximumFunction.html",
+    "title": "MaximumFunction",
     "section": "",
-    "text": "Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
+    "text": "The MaximumFunction is a utility function that returns the maximum value from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#overview",
-    "href": "docs/Models/Functions/XYPairs.html#overview",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#overview",
+    "href": "docs/Models/Functions/MaximumFunction.html#overview",
+    "title": "MaximumFunction",
     "section": "Overview",
-    "text": "Overview\nXYPairs is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.",
+    "text": "Overview\nThe MaximumFunction is used to determine the largest value among multiple child functions. It evaluates each child and returns the maximum result. This is useful when you need to select the most permissive factor or the highest value among several parameters in plant or soil models.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#inputs",
-    "href": "docs/Models/Functions/XYPairs.html#inputs",
-    "title": "XYPairs Function",
-    "section": "Inputs",
-    "text": "Inputs\n\nX: An array of X values defining the input domain.\nY: An array of Y values corresponding to each X value. Must be the same length as X.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "XYPairs Function"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/XYPairs.html#methodology",
-    "href": "docs/Models/Functions/XYPairs.html#methodology",
-    "title": "XYPairs Function",
-    "section": "Methodology",
-    "text": "Methodology\nThe XYPairs function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value (\\(dX\\)), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).\nThe interpolation follows this equation between points \\((x_i, y_i)\\) and \\((x_{i+1}, y_{i+1})\\):\n\\[\nY = y_i + \\frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)\n\\]",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "XYPairs Function"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/XYPairs.html#events",
-    "href": "docs/Models/Functions/XYPairs.html#events",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#events",
+    "href": "docs/Models/Functions/MaximumFunction.html#events",
+    "title": "MaximumFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#properties",
-    "href": "docs/Models/Functions/XYPairs.html#properties",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#properties",
+    "href": "docs/Models/Functions/MaximumFunction.html#properties",
+    "title": "MaximumFunction",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nX\ndouble[]\nThe list of X values\n\n\nY\ndouble[]\nThe list of Y values\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#user-interface",
-    "href": "docs/Models/Functions/XYPairs.html#user-interface",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#user-interface",
+    "href": "docs/Models/Functions/MaximumFunction.html#user-interface",
+    "title": "MaximumFunction",
     "section": "User Interface",
-    "text": "User Interface\nXYPairs can be added as a child of any functional models in the model tree. Right-click the parent node, select “Add Model…”, and search for XYPairs in the Filter Box.",
+    "text": "User Interface\nMaximumFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for MaximumFunction in the Filter Box. A symbol for the MaximumFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#practical-example",
-    "href": "docs/Models/Functions/XYPairs.html#practical-example",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#practical-example",
+    "href": "docs/Models/Functions/MaximumFunction.html#practical-example",
+    "title": "MaximumFunction",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:\n\nX = [0, 26, 34]\nY = [0, 26, 0]\n\nThis means: - For thermal time (X) less than 0, the response (Y) is 0. - From 0 to 26, the response increases linearly from 0 to 26. - From 26 to 34, the response decreases linearly from 26 to 0. - For thermal time greater than 34, the response remains 0.\n\n\n\n\n\nExample of XYPairs Function",
+    "text": "Practical Example\nSuppose you want to determine the maximum soil water available from several soil layers, or the most permissive nutrient for plant growth. You can use the MaximumFunction to select the highest value among all relevant child functions.\nFor example, if you have three child functions representing different constraints:\n\\[\nPermissiveFactor = \\max(Value_1, Value_2, Value_3)\n\\]\nThe MaximumFunction will return the largest of these values.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#see-also",
-    "href": "docs/Models/Functions/XYPairs.html#see-also",
-    "title": "XYPairs Function",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#see-also",
+    "href": "docs/Models/Functions/MaximumFunction.html#see-also",
+    "title": "MaximumFunction",
     "section": "See Also",
-    "text": "See Also\n\nSource code: XYPairs.cs on GitHub",
+    "text": "See Also\n\nSource code: MaximumFunction.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "MaximumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html",
+    "href": "docs/Models/Functions/MinimumFunction.html",
+    "title": "MinimumFunction",
+    "section": "",
+    "text": "The MinimumFunction is a utility function that returns the minimum value from all of its child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#overview",
+    "href": "docs/Models/Functions/MinimumFunction.html#overview",
+    "title": "MinimumFunction",
+    "section": "Overview",
+    "text": "Overview\nThe MinimumFunction is used to determine the smallest value among multiple child functions. It evaluates each child and returns the minimum result. This is useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#events",
+    "href": "docs/Models/Functions/MinimumFunction.html#events",
+    "title": "MinimumFunction",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#properties",
+    "href": "docs/Models/Functions/MinimumFunction.html#properties",
+    "title": "MinimumFunction",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#user-interface",
+    "href": "docs/Models/Functions/MinimumFunction.html#user-interface",
+    "title": "MinimumFunction",
+    "section": "User Interface",
+    "text": "User Interface\nMinimumFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for MinimumFunction in the Filter Box. A symbol for the MinimumFunction is displayed in the user interface to represent the function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#practical-example",
+    "href": "docs/Models/Functions/MinimumFunction.html#practical-example",
+    "title": "MinimumFunction",
+    "section": "Practical Example",
+    "text": "Practical Example\nSuppose you want to determine the minimum soil water available from several soil layers, or the most limiting nutrient for plant growth. You can use the MinimumFunction to select the lowest value among all relevant child functions.\nFor example, if you have three child functions representing different constraints:\n\\[\nLimitingFactor = \\min(Value_1, Value_2, Value_3)\n\\]\nThe MinimumFunction will return the smallest of these values.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#see-also",
+    "href": "docs/Models/Functions/MinimumFunction.html#see-also",
+    "title": "MinimumFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: MinimumFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/index.html",
+    "href": "docs/Models/Functions/index.html",
+    "title": "Functions",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions"
     ]
   },
   {
@@ -2335,37 +2741,37 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html",
-    "href": "docs/Models/Functions/MultiplyFunction.html",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html",
+    "href": "docs/Models/Functions/SubtractFunction.html",
+    "title": "SubtractFunction",
     "section": "",
-    "text": "The MultiplyFunction is a utility function that returns the product of values from all of its child functions.",
+    "text": "The SubtractFunction is a utility function that returns the difference of values from its child functions.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#overview",
-    "href": "docs/Models/Functions/MultiplyFunction.html#overview",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#overview",
+    "href": "docs/Models/Functions/SubtractFunction.html#overview",
+    "title": "SubtractFunction",
     "section": "Overview",
-    "text": "Overview\nThe MultiplyFunction is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "text": "Overview\nThe SubtractFunction is used to subtract the values of other child functions from the first child. It calculates the difference between the first child function and the sum of all subsequent child functions. This is useful when you need to compute a value that is derived from subtracting multiple traits or parameters in plant growth models.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#events",
-    "href": "docs/Models/Functions/MultiplyFunction.html#events",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#events",
+    "href": "docs/Models/Functions/SubtractFunction.html#events",
+    "title": "SubtractFunction",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -2373,13 +2779,13 @@
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#properties",
-    "href": "docs/Models/Functions/MultiplyFunction.html#properties",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#properties",
+    "href": "docs/Models/Functions/SubtractFunction.html#properties",
+    "title": "SubtractFunction",
     "section": "Properties",
     "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
     "crumbs": [
@@ -2387,358 +2793,559 @@
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#user-interface",
-    "href": "docs/Models/Functions/MultiplyFunction.html#user-interface",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#user-interface",
+    "href": "docs/Models/Functions/SubtractFunction.html#user-interface",
+    "title": "SubtractFunction",
     "section": "User Interface",
-    "text": "User Interface\nMultiplyFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search MultiplyFunction in the Filter Box. A symbol for the MultiplyFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nSubtractFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search SubtractFunction in the Filter Box. A symbol for the SubtractFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#practical-example",
-    "href": "docs/Models/Functions/MultiplyFunction.html#practical-example",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#practical-example",
+    "href": "docs/Models/Functions/SubtractFunction.html#practical-example",
+    "title": "SubtractFunction",
     "section": "Practical Example",
-    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe MultiplyFunction is used to multiply these two values to get the total target thermal time in the equation above.",
+    "text": "Practical Example\nThe wheat yield is reduced by frost stress as a ratio of total yield (e.g. FrostDamage). The final yield is calculated by subtracting the frost damage from the total potential yield.\n\\[\nFinalYield = TotalPotentialYield \\times (1 - FrostDamage)\n\\]\nThe SubtractFunction is used to subtract these two values to get the final yield in the equation above.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#see-also",
-    "href": "docs/Models/Functions/MultiplyFunction.html#see-also",
-    "title": "MultiplyFunction",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#see-also",
+    "href": "docs/Models/Functions/SubtractFunction.html#see-also",
+    "title": "SubtractFunction",
     "section": "See Also",
-    "text": "See Also\n\nSource code: MultiplyFunction.cs on GitHub",
+    "text": "See Also\n\nSource code: SubtractFunction.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "MultiplyFunction"
+      "SubtractFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html",
-    "href": "docs/Models/Functions/AddFunction.html",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "",
-    "text": "The AddFunction is a utility function that returns the sum of values from all of its child functions.",
+    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#overview",
-    "href": "docs/Models/Functions/AddFunction.html#overview",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#overview",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#overview",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Overview",
-    "text": "Overview\nThe AddFunction is used to sum up multiple values for a mathematical equation. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "text": "Overview\nThis function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ’s N content does not exceed its maximum nitrogen concentration.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#events",
-    "href": "docs/Models/Functions/AddFunction.html#events",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#inputs",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Inputs",
+    "text": "Inputs\n\nmaxNConc: A IFunction for maximum nitrogen concentration which the organ can achieve.\nnitrogenDemandSwitch: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from Emergence to MaximumGrainLength stages, and switched off afterwards.\nparentOrgan: The organ that implements the IArbitration interface, i.e. an organ which StorageNDemandFunction attached to, which provides access to the organ’s properties such as live weight and current N content.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#methodology",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#methodology",
+    "title": "Daily Nitrogen Demand for Storage Organs",
+    "section": "Methodology",
+    "text": "Methodology\nThe potential biomass after potential allocation is calculated as biomass at previous day (\\(DM_{\\text{Live}, i-1}\\)) plus the potential allocation to the organ (\\(A_{\\text{P}, i}\\)): \\[\nDM_{\\text{Live}, i} = DM_{\\text{Live}, i-1} + A_{\\text{P}, i}\n\\]\nThe maximum nitrogen content (potential) at day \\(i\\) is calculated as\n\\[\nN_{\\text{Live}, i} = C_{\\text{N, max}} \\times DM_{\\text{Live}, i}\n\\]\nThe nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:\n\\[\nD_{\\text{N, Storage}} = N_{\\text{Live}, i} - N_{\\text{Live}, i-1} - D_{\\text{N, Structural}} - D_{\\text{N, Metabolic}}\n\\]\nWhere:\n\n\\(D_{\\text{N, Storage}}\\): Nitrogen demand for storage at day \\(i\\).\n\\(N_{\\text{Live}, i}\\): Nitrogen content in the live biomass at day \\(i\\).\n\\(N_{\\text{Live}, i-1}\\): Nitrogen content in the live biomass at the previous day (\\(i-1\\)).\n\\(D_{\\text{N, Structural}}\\): Nitrogen demand for structural functions at day \\(i\\).\n\\(D_{\\text{N, Metabolic}}\\): Nitrogen demand for metabolic functions at day \\(i\\).\n\nImplementation Details\n\nThe function is part of the Models.Functions.DemandFunctions namespace.\nIt implements the IFunction interface, allowing it to be used within the APSIM model framework.\nDuring simulation commencement, it identifies its parent organ implementing the IArbitration interface to access necessary properties.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#events",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#events",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nGet parent organ from simulations\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#properties",
-    "href": "docs/Models/Functions/AddFunction.html#properties",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#properties",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#properties",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nStorage demands for nitrogen (N) in the organ",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#user-interface",
-    "href": "docs/Models/Functions/AddFunction.html#user-interface",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#user-interface",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#user-interface",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "User Interface",
-    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nStorageNDemandFunction can be added as a child of a NutrientDemandFunctions node in the model tree. Right-click the parent node, select “Add Model…”, and search for StorageNDemandFunction in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#practical-example",
-    "href": "docs/Models/Functions/AddFunction.html#practical-example",
-    "title": "AddFunction",
+    "objectID": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#practical-example",
+    "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html#practical-example",
+    "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "Practical Example",
-    "text": "Practical Example\nThe target thermal time from germination to emergence in the wheat model is determined by ShootLag (\\(ShootLag\\)), Sowing Depth (\\(SowingDepth\\)), and Shoot Rate (\\(ShootRate\\)).\n\\[\nTT = ShootLag + (SowingDepth \\times ShootRate)\n\\]\nThe AddFunction is used to sum these two values to get the total target thermal time in the equation above.",
+    "text": "Practical Example\n\nEnsure that maxNConc and nitrogenDemandSwitch are properly defined within the organ’s model to avoid calculation errors.\nThis function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ’s N requirements.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "AddFunction"
+      "DemandFunctions",
+      "Daily Nitrogen Demand for Storage Organs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#see-also",
-    "href": "docs/Models/Functions/AddFunction.html#see-also",
-    "title": "AddFunction",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: AddFunction.cs on GitHub",
+    "objectID": "docs/Models/Traits/CO2/index.html",
+    "href": "docs/Models/Traits/CO2/index.html",
+    "title": "CO2",
+    "section": "",
+    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Functions",
-      "AddFunction"
+      "Traits",
+      "CO2"
     ]
   },
   {
-    "objectID": "docs/Models/Traits/index.html",
-    "href": "docs/Models/Traits/index.html",
-    "title": "Traits",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "objectID": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "href": "docs/Models/Traits/CO2/index.html#radiation-use-efficiency-rue",
+    "title": "CO2",
+    "section": "Radiation Use Efficiency (RUE)",
+    "text": "Radiation Use Efficiency (RUE)\n\nC3\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.\n\n\n\n\nC4\nFor C4 crops (e.g. Rice), Radiation Use Efficiency is increasing with CO2 concentration (\\(C\\), ppm) with a factor (\\(f_{c}\\)) according personal communications with Mark Howden.\n\\[\nf_{c}=0.000143 \\times C + 0.95\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level for C4 crops.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Traits"
+      "Traits",
+      "CO2"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/index.html",
-    "href": "docs/Crops/Canola/index.html",
-    "title": "Canola",
+    "objectID": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "href": "docs/Models/Traits/CO2/index.html#critical-nitrogen-concentration",
+    "title": "CO2",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Traits",
+      "CO2"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "href": "docs/Models/Traits/CO2/index.html#stomatal-conductance",
+    "title": "CO2",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Traits",
+      "CO2"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/index.html",
+    "href": "docs/Crops/index.html",
+    "title": "Crops",
     "section": "",
-    "text": "The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.\n\nPhenology\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
+    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.",
     "crumbs": [
       "Home",
       "Docs",
-      "Crops",
-      "Canola"
+      "Crops"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html",
-    "href": "docs/Crops/Wheat/index.html",
-    "title": "Wheat",
+    "objectID": "docs/Crops/index.html#wheat",
+    "href": "docs/Crops/index.html#wheat",
+    "title": "Crops",
+    "section": "Wheat",
+    "text": "Wheat",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/index.html#canola",
+    "href": "docs/Crops/index.html#canola",
+    "title": "Crops",
+    "section": "Canola",
+    "text": "Canola",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/index.html",
+    "href": "docs/Crops/Canola/Phenology/index.html",
+    "title": "Phenology",
     "section": "",
-    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Title\nDescription\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Wheat"
+      "Canola",
+      "Phenology"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html#phenology",
-    "href": "docs/Crops/Wheat/index.html#phenology",
-    "title": "Wheat",
-    "section": "Phenology",
-    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#grain",
-    "href": "docs/Crops/Wheat/index.html#grain",
-    "title": "Wheat",
-    "section": "Grain",
-    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#traits",
-    "href": "docs/Crops/Wheat/index.html#traits",
-    "title": "Wheat",
-    "section": "Traits",
-    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Traits/index.html",
-    "href": "docs/Crops/Wheat/Traits/index.html",
-    "title": "Traits",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html",
+    "title": "CO2 for Wheat",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Traits"
+      "Traits",
+      "CO2 for Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/grain/index.html",
-    "href": "docs/Crops/Wheat/grain/index.html",
-    "title": "Grain",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
+    "title": "CO2 for Wheat",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Grain"
+      "Traits",
+      "CO2 for Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html",
-    "href": "docs/Crops/Wheat/Phenology/Germinating.html",
-    "title": "Germinating",
-    "section": "",
-    "text": "The Germinating is a phenological phase in Wheat used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#stomatal-conductance",
+    "title": "CO2 for Wheat",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Phenology",
-      "Germinating"
+      "Traits",
+      "CO2 for Wheat"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/Germinating.html#overview",
-    "title": "Germinating",
+    "objectID": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "href": "docs/Crops/Wheat/Traits/co2-wheat.html#critical-nitrogen-concentration",
+    "title": "CO2 for Wheat",
+    "section": "Critical Nitrogen Concentration",
+    "text": "Critical Nitrogen Concentration\nIn APSIM NG, the Critical Nitrogen Concentration in Leaf is modified by CO,,2,, concentration.\n\n\n\nCritical Nitrogen Concentration in Leaf",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Traits",
+      "CO2 for Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "",
+    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Overview",
-    "text": "Overview\nThe GerminatingPhase Model is used to simulate the germination of wheat seeds. This phase begins when Plant Sowing occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nThe Minimum Soil Temperature is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,\nThe Soil Water Content should be more than Lower Limit for germination to occur.",
+    "text": "Overview\nThe demand is defined by a PhaseLookup function (NFillingRate):\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Phenology",
-      "Germinating"
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/Germinating.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/Germinating.html#cultivar-specific-parameters",
-    "title": "Germinating",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Germinating.MinSoilTemperature.FixedValue\nMinimum soil temperature for germination (°C)\n0.0",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue\nPotential nitrogen per kernel (g/kernel)\n0.0011",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
-      "Phenology",
-      "Germinating"
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html",
-    "href": "docs/Crops/Wheat/Phenology/Emerging.html",
-    "title": "Emerging",
-    "section": "",
-    "text": "The Emerging phase in Wheat represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/Emerging.html#overview",
-    "title": "Emerging",
-    "section": "Overview",
-    "text": "Overview\nThe EmergingPhase model simulates the time between the Germination and Emergence stages.\n\nThis phase starts at Germination and ends at Emergence, when the seedling is considered to have emerged from the soil.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time to complete this phase is defined as:\n\n\\[\n\\text{Target} = \\text{ShootLag} + (\\text{SowingDepth} \\times \\text{ShootRate})\n\\]\nWhere:\n\nShootLag is a lag when coleoptile starting to elongate (°Cd) with default value of 40.0 °Cd,\nShootRate is the rate of shoot elongation (°Cd/mm) with default value of 1.5 °Cd/mm,\nSowingDepth is the depth at which the seed is sown (mm), taken from [Plant].SowingData.Depth.\n\nDeeper sowing results in longer emergence delays due to greater thermal time requirement.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/Emerging.html#cultivar-specific-parameters",
-    "title": "Emerging",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Emerging.ShootLag.FixedValue\nLag before coleoptile starts to elongate (°Cd)\n40.0\n\n\n[Phenology].Emerging.ShootRate.FixedValue\nRate of shoot elongation (°Cd/mm)\n1.5",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/Emerging.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/Emerging.html#practical-example",
-    "title": "Emerging",
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "Practical Example",
-    "text": "Practical Example\nThis table illustrates deeper sowing delays emergence due to higher thermal time requirements.\n\n\n\n\n\n\n\n\n\nSowing Depth (mm)\nShootLag (°Cd)\nShootRate (°Cd/mm)\nTarget Thermal Time (°Cd)\n\n\n\n\n40\n40.0\n1.5\n100.0\n\n\n50\n40.0\n1.5\n115.0\n\n\n60\n40.0\n1.5\n130.0",
+    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "References",
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html",
+    "title": "Thermal Time",
+    "section": "",
+    "text": "A function of daily thermal time for wheat based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Phenology",
-      "Emerging"
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#overview",
+    "title": "Thermal Time",
+    "section": "Overview",
+    "text": "Overview\nThe Thermal Time function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (ThreeHourAirTemperature), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.\n\nInterpolationMethod: ThreeHourAirTemperature is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.\nResponse: Three cardinal temperature using XYPairs to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.\n\n\n\n\nCardinal Point\nDescription\nValue (°C)\n\n\n\n\nBase\nMinimum for growth\n0\n\n\nOptimum\nMaximum rate of growth\n26\n\n\nMaximum\nGrowth ceases above this\n37",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "title": "Thermal Time",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nIn general, we do not modify the thermal time function for different cultivars.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#practical-example",
+    "title": "Thermal Time",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html",
+    "href": "docs/Crops/Wheat/Phenology/index.html",
+    "title": "Phenology",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmerging\n\n\n\n\n\n\n\n\n\nGerminating\n\n\n\n\n\n\n\n\n\nPhyllochron\n\n\n\n\n\n\n\n\n\nThermal Time\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html",
+    "title": "Phyllochron",
+    "section": "",
+    "text": "Phyllochron is a model that estimates how quickly new leaves appear on a wheat plant after it emerges from the soil. This timing is important because it influences later growth stages and ultimately affects crop yield and development.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html#overview",
+    "title": "Phyllochron",
+    "section": "Overview",
+    "text": "Overview\nThe Phyllochron model simulates the interval between the appearance of successive leaf tips on a wheat plant. It acts like a biological clock, helping researchers and agronomists predict how fast a plant will grow new leaves under different conditions. This model is a key part of the crop’s phenology (developmental timing), which is crucial for understanding when the plant will reach important stages like flowering and grain filling.\nLeaf appearance rate is influenced by temperature (how warm it is), the plant’s stage of development (which leaf is appearing), and the length of the day (photoperiod). By adjusting these parameters, the model can represent different wheat varieties and growing environments. This helps breeders and agronomists select varieties that are better suited to specific climates or management practices.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html#methodology",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html#methodology",
+    "title": "Phyllochron",
+    "section": "Methodology",
+    "text": "Methodology\nThe Phyllochron model is based on the idea that the time between new leaf appearances (measured in degree-days, or °C·days) is not constant. Instead, it changes depending on the leaf’s position on the plant and the day length.\nThe effective phyllochron (\\(P_{\\text{eff}}\\)) is calculated as:\n\\[\nP_{\\text{eff}} = P_{\\text{base}} \\times f_{\\text{leaf}}(n) \\times f_{\\text{pp}}(d)\n\\]\n\n\\(P_{\\text{base}}\\) is the base phyllochron (default: 120 °C·days), representing the typical interval between leaves under standard conditions for leaf rank from 3 to 7.\n\\(f_{\\text{leaf}}(n)\\) is a factor that adjusts the phyllochron depending on which leaf is appearing (\\(n\\) is the leaf cohort number).\n\\(f_{\\text{pp}}(d)\\) is a modifier that accounts for the effect of day length (\\(d\\) is the photoperiod in hours).\n\n\nLeaf Stage Factor\nThe rate at which new leaves appear changes as the plant grows. Early leaves appear faster, while later leaves take longer (Jamieson et al. 1998). This is represented by a piecewise function:\n\n\n\nLeaf Cohort Number (\\(n\\))\nFactor\n\n\n\n\n0–2\n0.75\n\n\n3–7\n1.0\n\n\n8+\n1.4\n\n\n\nThis means the first 2 leaves appear more quickly, leaves in the middle appear at a standard rate, and later leaves appear more slowly.\n\n\n\n\n\nLeaf Stage Factor as a Function of Leaf Cohort Number\n\n\n\n\n\n\nPhotoperiod Effect\nThe model also accounts for how sensitive the plant is to day length with 6 degrees twilight. When days are short (less than 12 hours), leaf appearance slows down. The photoperiod effect is calculated as:\n\\[\nf_{\\text{pp}}(d) = 1 + S \\cdot f_d(d)\n\\]\n\n\\(S\\) is the photoperiod sensitivity (a parameter that can be adjusted for different varieties). \\(S\\) is typically set to 0.6 for wheat, which means the phyllochron increases by 60% (i.e. \\(120 \\times (1 + 0.6) = 192\\) °C·days) when day length is less than 8 hours, and not at all (i.e. \\(120 \\times (1 + 0) = 120\\) °C·days) when it is above 12 hours.\n\\(f_d(d)\\) describes how the effect changes with day length:\n\n\n\n\nDay Length (h)\nModifier \\(f_d(d)\\)\n\n\n\n\n8\n1.0\n\n\n12\n0.0\n\n\n20\n0.0\n\n\n\n\n\n\n\n\nPhotoperiod Effect on Phyllochron\n\n\n\n\nSo, for day lengths below 12 hours, the phyllochron increases (leaves appear more slowly), but above 12 hours, there is no further effect.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html#cultivar-specific-parameters",
+    "title": "Phyllochron",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].PhyllochronPpSensitivity.FixedValue\nSensitivity of leaf appearance rate to photoperiod\n0.6\n\n\n[Phenology].Phyllochron.BasePhyllochron.FixedValue\nBase phyllochron\n120",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html#practical-example",
+    "title": "Phyllochron",
+    "section": "Practical Example",
+    "text": "Practical Example\nWe assume a wheat cultivar with a base phyllochron of 100 °C·days, a photoperiod sensitivity of 0.6, and sown at Inverleigh, Victoria, which has a day length of 11 hours in winter. The phyllochron for leaf 1 to 8 can be calculated as follows:\n\nBase phyllochron (\\(P_{\\text{base}}\\)): 100 °C·days\nPhotoperiod modifier (\\(f_{\\text{pp}}(11)\\)):\n\n\\(f_d(11) = \\frac{12 - 11}{12 - 8} = 0.25\\)\n\\(f_{\\text{pp}}(11) = 1 + 0.6 \\times 0.25 = 1.15\\)\n\nLeaf stage factor (\\(f_{\\text{leaf}}(n)\\)):\n\nLeaves 1–2: 0.75\nLeaves 3–7: 1.0\nLeaf 8: 1.4\n\n\nExample calculations:\nThis table shows the phyllochron for each leaf cohort under these example conditions.\n\n\n\n\n\n\n\n\nLeaf Cohort (\\(n\\))\n\\(f_{\\text{leaf}}(n)\\)\n\\(P_{\\text{eff}}\\) (°C·days)\n\n\n\n\n1\n0.75\n\\(100 \\times 0.75 \\times 1.15 = 86.25\\)\n\n\n2\n0.75\n\\(100 \\times 0.75 \\times 1.15 = 86.25\\)\n\n\n3\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n4\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n5\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n6\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n7\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n8\n1.4\n\\(100 \\times 1.4 \\times 1.15 = 161.0\\)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
     ]
   },
   {
