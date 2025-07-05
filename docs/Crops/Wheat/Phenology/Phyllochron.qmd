@@ -106,6 +106,9 @@ So, for day lengths below 12 hours, the phyllochron increases (leaves appear mor
 
 ## Practical Example
 
+
+**Leaf Rank Effects**
+
 We assume a wheat cultivar with a base phyllochron of 100 °C·days, a photoperiod sensitivity of 0.6, and sown at Inverleigh, Victoria, which has a day length of 11 hours in winter. The phyllochron for leaf 1 to 8 can be calculated as follows:
 
 1. **Base phyllochron ($P_{\text{base}}$):** 100 °C·days
@@ -133,4 +136,23 @@ This table shows the phyllochron for each leaf cohort under these example condit
 | 7                 | 1.0                 | $100 \times 1.0 \times 1.15 = 115.0$  |
 | 8                 | 1.4                 | $100 \times 1.4 \times 1.15 = 161.0$  |
 
+**Effect of Photoperiod Sensitivity**
+To illustrate how photoperiod sensitivity ($S$) affects the phyllochron, let's calculate $P_{\text{eff}}$ for a range of $S$ values from 0 to 1 (at 0.2 intervals) with a fixed day length of 10 hours. We'll use a base phyllochron of 100 °C·days and the leaf stage factor for leaf 3 ($f_{\text{leaf}}(3) = 1.0$).
 
+First, calculate $f_d(10)$:
+- $f_d(10) = \frac{12 - 10}{12 - 8} = \frac{2}{4} = 0.5$
+
+Now, for each $S$:
+
+| Photoperiod Sensitivity ($S$) | $f_{\text{pp}}(10)$ | $P_{\text{eff}}$ (°C·days) |
+|------------------------------|---------------------|----------------------------|
+| 0.0                          | $1 + 0.0 \times 0.5 = 1.00$ | $100 \times 1.0 \times 1.00 = 100.0$ |
+| 0.2                          | $1 + 0.2 \times 0.5 = 1.10$ | $100 \times 1.0 \times 1.10 = 110.0$ |
+| 0.4                          | $1 + 0.4 \times 0.5 = 1.20$ | $100 \times 1.0 \times 1.20 = 120.0$ |
+| 0.6                          | $1 + 0.6 \times 0.5 = 1.30$ | $100 \times 1.0 \times 1.30 = 130.0$ |
+| 0.8                          | $1 + 0.8 \times 0.5 = 1.40$ | $100 \times 1.0 \times 1.40 = 140.0$ |
+| 1.0                          | $1 + 1.0 \times 0.5 = 1.50$ | $100 \times 1.0 \times 1.50 = 150.0$ |
+
+## See Also
+
+[Photoperioid Effect on Phyllochron in Australian Wheat](/tips/phy-ppd-oz-wheat.qmd)
