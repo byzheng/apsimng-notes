@@ -48,7 +48,7 @@ The day length varies from `r min(grid$day_length)` to `r max(grid$day_length)` 
 
 
 
-```{r day-length, fig.height = 4, fig.cap="Day Length Variation Across Australia" }
+```{r fig-day-length, fig.height = 5, fig.cap="Day Length Variation Across Australia" }
 
 
 # Plot heatmap
