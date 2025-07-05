@@ -137,6 +137,7 @@ This table shows the phyllochron for each leaf cohort under these example condit
 | 8                 | 1.4                 | $100 \times 1.4 \times 1.15 = 161.0$  |
 
 **Effect of Photoperiod Sensitivity**
+
 To illustrate how photoperiod sensitivity ($S$) affects the phyllochron, let's calculate $P_{\text{eff}}$ for a range of $S$ values from 0 to 1 (at 0.2 intervals) with a fixed day length of 10 hours. We'll use a base phyllochron of 100 °C·days and the leaf stage factor for leaf 3 ($f_{\text{leaf}}(3) = 1.0$).
 
 First, calculate $f_d(10)$:
