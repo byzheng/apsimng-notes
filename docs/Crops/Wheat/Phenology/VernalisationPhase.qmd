@@ -1,0 +1,96 @@
+---
+title: "VernalisationPhase"
+output: html_document
+---
+
+`VernalisationPhase` models the crop developmental phase that begins at a specified stage and ends once vernalisation is satisfied using [CAMP](/docs/Models/PMF/Phenology/CAMP.qmd) model. It simulates the accumulation of vernalisation based on gene expression, delaying development in winter-type genotypes until cold exposure requirements are met.
+
+## Overview
+
+This phase is essential for crops (like winter cereals or canola) that require exposure to cold temperatures to trigger flowering. In APSIM NG, `VernalisationPhase` represents a portion of phenological development that is controlled by vernalisation genes (e.g., VRN1, VRN2, VRN3). It starts at a named stage (e.g., emergence) and ends once vernalisation is deemed complete [CAMP](/docs/Models/PMF/Phenology/CAMP.qmd) model.
+
+This is a biological switch in the plant’s calendar: it won’t progress toward reproduction until it has experienced sufficient "cold memory" through vernalisation.
+
+## Inputs
+
+- `Start`: Name of the phenological stage where this phase begins.
+- `End`: Name of the phenological stage where this phase ends.
+- `IsEmerged`: Logical flag indicating whether this phase assumes emergence has occurred (default is `true`).
+- `CAMP`: A linked component that provides gene expression values required for vernalisation progress:
+    - `BaseVrn`: Base vernalisation gene expression
+    - `Vrn1`, `Vrn2`, `Vrn3`: Vernalisation gene activators/inhibitors
+    - `MaxVrn`: Maximum possible vernalisation value
+    - `IsVernalised`: Logical output indicating completion
+
+## Methodology
+
+Vernalisation progress is computed using [CAMP](/docs/Models/PMF/Phenology/CAMP.qmd) model, summing gene expression components and scaling by a saturation threshold:
+
+Let  
+- $B$ = BaseVrn  
+- $V_1$ = Vrn1  
+- $V_2$ = Vrn2  
+- $V_3$ = Vrn3  
+- $M$ = MaxVrn  
+- $R_e$ = RelativeVernalisation at emergence
+
+Then:
+
+$$
+\text{Target} = 1 + V_2
+$$
+
+$$
+R = \min\left(\frac{B + V_1 + V_3}{\text{Target}},\ M \right)
+$$
+
+At emergence, $R_e$ is recorded. Progress through the phase is:
+
+$$
+f = \min\left(1,\ \frac{R - R_e}{1 - R_e} \right)
+$$
+
+The phase ends when `IsVernalised` is `true`, indicating the crop has fulfilled its vernalisation requirement.
+
+## Events
+
+**Events Listened For**
+
+| Event       | Purpose                                                     |
+|-------------|-------------------------------------------------------------|
+| Commencing  | Resets internal counters and state for simulation startup   |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property     | Type    | Description                                                        |
+|--------------|---------|--------------------------------------------------------------------|
+| Start        | string  | Name of the crop stage that initiates this phase                  |
+| End          | string  | Name of the crop stage that ends this phase                       |
+| IsEmerged    | bool    | Whether the phase assumes the crop is emerged (default = `true`)  |
+
+**Read-Only Reportable Properties**
+
+| Property               | Type    | Description                                                             |
+|------------------------|---------|-------------------------------------------------------------------------|
+| FractionComplete       | double  | Proportion (0–1) of progress through this phase                        |
+| ProgressThroughPhase   | double  | Alias for `FractionComplete` (used internally)                         |
+| Target                 | double  | Target vernalisation saturation = $1 + \text{Vrn2}$                    |
+
+## User Interface
+
+`VernalisationPhase` is added as a child of a `Phenology` node to simulate development that depends on cold exposure.
+
+1. Right-click the `Phenology` node.
+2. Select "Add Model...".
+3. Search for and select "VernalisationPhase".
+4. Configure `Start`, `End`, and link the CAMP component that simulates gene activity.
+
+## Practical Example
+
+> No practical example available.
