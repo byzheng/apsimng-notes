@@ -22,8 +22,8 @@ a.model-link {
 
 /* Style for broken links */
 a.broken-link {
-    color: #e57373; /* light red */
-    text-decoration: underline wavy #e57373;
+    color: #ef9a9a; /* light red */
+    text-decoration: underline wavy #ef9a9a;
 }
 /* Style for external links */
 a.external-link {
