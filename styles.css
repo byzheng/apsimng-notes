@@ -20,11 +20,18 @@ a.model-link {
     text-decoration: underline dotted;
 }
 
+/* Style for broken links */
+a.broken-link {
+    color: #e57373; /* light red */
+    text-decoration: underline wavy #e57373;
+}
 /* Style for external links */
 a.external-link {
-    color: #6c757d; /* muted gray */
+    color: #6c757d;
+    /* muted gray */
     font-style: italic;
     text-decoration: none;
-    border-bottom: 1px dotted #6c757d; /* subtle underline */
+    border-bottom: 1px dotted #6c757d;
+    /* subtle underline */
     transition: color 0.3s ease, border-color 0.3s ease;
 }
