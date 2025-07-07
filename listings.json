@@ -46,13 +46,17 @@
   {
     "listing": "/docs/Models/Functions/index.html",
     "items": [
+      "/docs/Models/Functions/AccumulateFunction.html",
       "/docs/Models/Functions/AddFunction.html",
+      "/docs/Models/Functions/Constant.html",
       "/docs/Models/Functions/DivideFunction.html",
       "/docs/Models/Functions/FrostHeatDamageFunctions.html",
       "/docs/Models/Functions/HourlySinPpAdjusted.html",
       "/docs/Models/Functions/MaximumFunction.html",
       "/docs/Models/Functions/MinimumFunction.html",
       "/docs/Models/Functions/MultiplyFunction.html",
+      "/docs/Models/Functions/PhaseLookup.html",
+      "/docs/Models/Functions/PhaseLookupValue.html",
       "/docs/Models/Functions/PhotoperiodFunction.html",
       "/docs/Models/Functions/SubDailyInterpolation.html",
       "/docs/Models/Functions/SubtractFunction.html",
@@ -64,14 +68,5 @@
   {
     "listing": "/docs/Crops/Canola/Phenology/index.html",
     "items": []
-  },
-  {
-    "listing": "/docs/Crops/Wheat/Phenology/index.html",
-    "items": [
-      "/docs/Crops/Wheat/Phenology/Emerging.html",
-      "/docs/Crops/Wheat/Phenology/Germinating.html",
-      "/docs/Crops/Wheat/Phenology/Phyllochron.html",
-      "/docs/Crops/Wheat/Phenology/ThermalTime.html"
-    ]
   }
 ]

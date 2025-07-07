@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -71,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -128,35 +97,6 @@ cookieconsent.run({
 </script> 
   
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -366,8 +306,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AccumulateFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AddFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Constant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -404,6 +356,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MultiplyFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PhaseLookup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PhaseLookupValue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -606,8 +570,17 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#thermal-time" id="toc-thermal-time" class="nav-link active" data-scroll-target="#thermal-time">Thermal Time</a></li>
+  <li><a href="#photoperiod" id="toc-photoperiod" class="nav-link" data-scroll-target="#photoperiod">Photoperiod</a></li>
+  <li><a href="#phyllochron" id="toc-phyllochron" class="nav-link" data-scroll-target="#phyllochron">Phyllochron</a></li>
+  <li><a href="#stages-and-phases" id="toc-stages-and-phases" class="nav-link" data-scroll-target="#stages-and-phases">Stages and Phases</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -631,87 +604,177 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<p>The <a href="../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology</a> model in APSIM NG simulates the development of wheat plants.</p>
+<section id="thermal-time" class="level2">
+<h2 class="anchored" data-anchor-id="thermal-time"><a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html">Thermal Time</a></h2>
+<p>Daily thermal time is based on <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html">SubDailyInterpolation</a> with three cardinal temperature and <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a> interpolation method.</p>
+</section>
+<section id="photoperiod" class="level2">
+<h2 class="anchored" data-anchor-id="photoperiod">Photoperiod</h2>
+<p>The daily photoperiod is calculated using the <a href="../../../../docs/Models/Functions/PhotoperiodFunction.html">PhotoperiodFunction</a> with 6 degrees twilight.</p>
+</section>
+<section id="phyllochron" class="level2">
+<h2 class="anchored" data-anchor-id="phyllochron"><a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html">Phyllochron</a></h2>
+<p>The phyllochron is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.</p>
+</section>
+<section id="stages-and-phases" class="level2">
+<h2 class="anchored" data-anchor-id="stages-and-phases">Stages and Phases</h2>
+<p>The numerical system is used to represent the development of wheat plants starting from 1. The stages are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 32%">
+<col style="width: 58%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Description
-</th>
-
+<tr class="header">
+<th>Stage</th>
+<th>Name</th>
+<th>Description</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1751841980439" data-listing-reading-time-sort="3" data-listing-word-count-sort="475" data-listing-title-sort="Emerging" data-listing-filename-sort="Emerging.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="title listing-title">Emerging</a>
-</td>
-<td>
-<span class="listing-description">The <strong>Emerging</strong> phase in Wheat represents the developmental period from <strong>Germination</strong> to <strong>Emergence</strong>. It is influenced by sowing depth, a lag period before coleoptile elongation…</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Sowing</td>
+<td>Seeds are planted in the soil</td>
 </tr>
-
-<tr data-index="1" data-listing-file-modified-sort="1751841980439" data-listing-reading-time-sort="1" data-listing-word-count-sort="192" data-listing-title-sort="Germinating" data-listing-filename-sort="Germinating.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="title listing-title">Germinating</a>
-</td>
-<td>
-<span class="listing-description">The <strong>Germinating</strong> is a phenological phase in Wheat used to represent the development period from <strong>Sowing</strong> to <strong>Germination</strong>. It determines whether the seed has germinated based on…</span>
-</td>
-
+<tr class="even">
+<td>2</td>
+<td>Germination</td>
+<td>Seeds absorb water and begin to sprout</td>
 </tr>
-
-<tr data-index="2" data-listing-file-modified-sort="1751841980439" data-listing-reading-time-sort="10" data-listing-word-count-sort="1863" data-listing-title-sort="Phyllochron" data-listing-filename-sort="Phyllochron.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="title listing-title">Phyllochron</a>
-</td>
-<td>
-<span class="listing-description">Phyllochron is a model that estimates how quickly new leaves appear on a wheat plant after it emerges from the soil. This timing is important because it influences later…</span>
-</td>
-
+<tr class="odd">
+<td>3</td>
+<td>Emergence</td>
+<td>Seedlings break through the soil surface</td>
 </tr>
-
-<tr data-index="3" data-listing-file-modified-sort="1751841980439" data-listing-reading-time-sort="3" data-listing-word-count-sort="480" data-listing-title-sort="Thermal Time" data-listing-filename-sort="ThermalTime.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="title listing-title">Thermal Time</a>
-</td>
-<td>
-<span class="listing-description">A function of daily thermal time for wheat based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.</span>
-</td>
-
+<tr class="even">
+<td>4</td>
+<td>DoubleRidge</td>
+<td>Formation of double ridges in the shoot apex</td>
 </tr>
-
+<tr class="odd">
+<td>5</td>
+<td>MaximumSpikeletPrimordia</td>
+<td>Maximum number of spikelets is determined</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>FlagLeafAppearance</td>
+<td>The last leaf (flag leaf) appears</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>HeadEmergence</td>
+<td>Wheat head emerges from the flag leaf sheath</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Anthesis</td>
+<td>Flowering; pollen is released</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>MaximumGrainLength</td>
+<td>Grains reach their maximum length</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>EndGrainFill</td>
+<td>Grain filling is completed</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>HarvestRipe</td>
+<td>Grains are mature and ready for harvest</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>Phases are used to represent the development between two stages. The phases are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Order</th>
+<th>Name</th>
+<th>From</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html">Germinating</a></td>
+<td>Sowing</td>
+<td>Germination</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html">Emerging</a></td>
+<td>Germination</td>
+<td>Emergence</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><a href="LeavesInitiating.qmd">LeavesInitiating</a></td>
+<td>Emergence</td>
+<td>DoubleRidge</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><a href="SpikeletsDifferentiating.qmd">SpikeletsDifferentiating</a></td>
+<td>DoubleRidge</td>
+<td>MaximumSpikeletPrimordia</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><a href="StemElongating.qmd">StemElongating</a></td>
+<td>MaximumSpikeletPrimordia</td>
+<td>FlagLeafAppearance</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><a href="Heading.qmd">Heading</a></td>
+<td>FlagLeafAppearance</td>
+<td>HeadEmergence</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><a href="Flowering.qmd">Flowering</a></td>
+<td>HeadEmergence</td>
+<td>Anthesis</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><a href="GrainExpanding.qmd">GrainExpanding</a></td>
+<td>Anthesis</td>
+<td>MaximumGrainLength</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><a href="GrainFilling.qmd">GrainFilling</a></td>
+<td>MaximumGrainLength</td>
+<td>End Grain Fill</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><a href="GrainRipening.qmd">GrainRipening</a></td>
+<td>End Grain Fill</td>
+<td>HarvestRipe</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><a href="ReadyForHarvesting.qmd">ReadyForHarvesting</a></td>
+<td>HarvestRipe</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1130,7 +1193,7 @@ Description
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
