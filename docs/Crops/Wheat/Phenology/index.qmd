@@ -6,17 +6,19 @@ title: "Phenology"
 The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of wheat plants.
 
 
-## [Thermal Time](ThermalTime.qmd)
+## Thermal Time
 
-Daily thermal time is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+Daily [Thermal Time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
 
 ## Photoperiod
 
 The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. 
 
-## [Phyllochron](Phyllochron.qmd)
+## Phyllochron
 
-The phyllochron is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.
+The [Phyllochron](Phyllochron.qmd) is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.
+
+The [Haun Stage](HaunStage.qmd) is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.
 
 ## Stages and Phases
 
