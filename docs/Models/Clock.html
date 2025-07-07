@@ -530,6 +530,12 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -625,12 +631,12 @@ cookieconsent.run({
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p>If <code>Start</code> or <code>End</code> are not defined, the model looks for a weather model in the scope and adopts its <code>StartDate</code> or <code>EndDate</code>. The simulation begins on the resolved start date and continues day by day until the end date. Each day, the <code>Clock</code> publishes multiple events to signal simulation actions across components. These include daily updates, management actions, soil processes, plant growth, CLEM processes, and reporting.</p>
 <ol type="1">
-<li><a href="../../docs/Models/Events.html#DoInitialSummary"><code>DoInitialSummary</code></a> – Initial summary at the start.</li>
-<li><a href="../../docs/Models/Events.html#StartOfSimulation"><code>StartOfSimulation</code></a> – Marks the simulation’s beginning.</li>
-<li><a href="../../docs/Models/Events.html#FinalInitialise"><code>FinalInitialise</code></a> – Final initialisation before the first day.</li>
-<li><a href="../../docs/Models/Events.html#StartOfFirstDay"><code>StartOfFirstDay</code></a> – First day setup.</li>
+<li><a href="../../docs/Models/Events.html#DoInitialSummary" class="model-link"><code>DoInitialSummary</code></a> – Initial summary at the start.</li>
+<li><a href="../../docs/Models/Events.html#StartOfSimulation" class="model-link"><code>StartOfSimulation</code></a> – Marks the simulation’s beginning.</li>
+<li><a href="../../docs/Models/Events.html#FinalInitialise" class="model-link"><code>FinalInitialise</code></a> – Final initialisation before the first day.</li>
+<li><a href="../../docs/Models/Events.html#StartOfFirstDay" class="model-link"><code>StartOfFirstDay</code></a> – First day setup.</li>
 <li>For each day (from <code>StartDate</code> to <code>EndDate</code>), the following events are raised in sequence (some only on specific days): <code>DoCatchYesterday</code>, <code>DoWeather</code>, <code>DoDailyInitialisation</code>, <code>StartOfDay</code>, <code>StartOfMonth</code>, <code>StartOfYear</code>, <code>StartOfWeek</code>, <code>DoManagement</code>, <code>DoFertiliserApplications</code>, <code>DoPestDiseaseDamage</code>, <code>DoEnergyArbitration</code>, <code>DoSoilErosion</code>, <code>DoSoilWaterMovement</code>, <code>DoSoilTemperature</code>, <code>DoSolute</code>, <code>DoSurfaceOrganicMatterPotentialDecomposition</code>, <code>DoSoilOrganicMatter</code>, <code>DoSurfaceOrganicMatterDecomposition</code>, <code>DoUpdateWaterDemand</code>, <code>DoDCAPST</code>, <code>DoWaterArbitration</code>, <code>PrePhenology</code>, <code>DoPhenology</code>, <code>DoPotentialPlantGrowth</code>, <code>DoPotentialPlantPartioning</code>, <code>DoPastureWater</code>, <code>DoNutrientArbitration</code>, <code>DoActualPlantPartioning</code>, <code>DoActualPlantGrowth</code>, <code>PartitioningComplete</code>, <code>DoStock</code>, <code>DoLifecycle</code>, <code>DoUpdate</code>, <code>DoManagementCalculations</code>, <code>DoEndPasture</code>, <code>DoReportCalculations</code>, <code>EndOfWeek</code>, <code>EndOfYear</code>, <code>EndOfMonth</code>, <code>EndOfDay</code>, <code>DoReport</code>.</li>
-<li>After the last day, <a href="../../docs/Models/Events.html#EndOfSimulation"><code>EndOfSimulation</code></a> is raised.</li>
+<li>After the last day, <a href="../../docs/Models/Events.html#EndOfSimulation" class="model-link"><code>EndOfSimulation</code></a> is raised.</li>
 </ol>
 </section>
 <section id="events" class="level2">
@@ -645,11 +651,11 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#Commencing">Commencing</a></td>
+<td><a href="../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
 <td>Set Today as StartDate</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#OnDoCommence">OnDoCommence</a></td>
+<td><a href="../../docs/Models/Events.html#OnDoCommence" class="model-link">OnDoCommence</a></td>
 <td>The main function to run a simulation to trigger major loop</td>
 </tr>
 </tbody>
@@ -664,299 +670,299 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfSimulation">StartOfSimulation</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfSimulation" class="model-link">StartOfSimulation</a></td>
 <td>Occurs once at the start of the simulation</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfFirstDay">StartOfFirstDay</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfFirstDay" class="model-link">StartOfFirstDay</a></td>
 <td>Occurs once at the start of the first day of the simulation</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfDay">StartOfDay</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a></td>
 <td>Occurs at start of each day</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfMonth">StartOfMonth</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfMonth" class="model-link">StartOfMonth</a></td>
 <td>Occurs at start of each month</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#StartOfYear">StartOfYear</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfYear" class="model-link">StartOfYear</a></td>
 <td>Occurs at start of each year</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#StartOfWeek">StartOfWeek</a></td>
+<td><a href="../../docs/Models/Events.html#StartOfWeek" class="model-link">StartOfWeek</a></td>
 <td>Occurs at start of each week</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfDay">EndOfDay</a></td>
+<td><a href="../../docs/Models/Events.html#EndOfDay" class="model-link">EndOfDay</a></td>
 <td>Occurs at end of each day</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#EndOfMonth">EndOfMonth</a></td>
+<td><a href="../../docs/Models/Events.html#EndOfMonth" class="model-link">EndOfMonth</a></td>
 <td>Occurs at end of each month</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfYear">EndOfYear</a></td>
+<td><a href="../../docs/Models/Events.html#EndOfYear" class="model-link">EndOfYear</a></td>
 <td>Occurs at end of each year</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#EndOfWeek">EndOfWeek</a></td>
+<td><a href="../../docs/Models/Events.html#EndOfWeek" class="model-link">EndOfWeek</a></td>
 <td>Occurs at end of each week</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#EndOfSimulation">EndOfSimulation</a></td>
+<td><a href="../../docs/Models/Events.html#EndOfSimulation" class="model-link">EndOfSimulation</a></td>
 <td>Occurs at end of simulation</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#FinalInitialise">FinalInitialise</a></td>
+<td><a href="../../docs/Models/Events.html#FinalInitialise" class="model-link">FinalInitialise</a></td>
 <td>Final Initialise event. Occurs once at start of simulation</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoCatchYesterday">DoCatchYesterday</a></td>
+<td><a href="../../docs/Models/Events.html#DoCatchYesterday" class="model-link">DoCatchYesterday</a></td>
 <td>Occurs first each day to allow yesterdays values to be caught</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoWeather">DoWeather</a></td>
+<td><a href="../../docs/Models/Events.html#DoWeather" class="model-link">DoWeather</a></td>
 <td>Occurs each day to calculate weather</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoDailyInitialisation">DoDailyInitialisation</a></td>
+<td><a href="../../docs/Models/Events.html#DoDailyInitialisation" class="model-link">DoDailyInitialisation</a></td>
 <td>Occurs each day to do daily updates to models</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoInitialSummary">DoInitialSummary</a></td>
+<td><a href="../../docs/Models/Events.html#DoInitialSummary" class="model-link">DoInitialSummary</a></td>
 <td>Occurs each day to make the initial summary</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoManagement">DoManagement</a></td>
+<td><a href="../../docs/Models/Events.html#DoManagement" class="model-link">DoManagement</a></td>
 <td>Occurs each day to do management actions and changes</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoFertiliserApplications">DoFertiliserApplications</a></td>
+<td><a href="../../docs/Models/Events.html#DoFertiliserApplications" class="model-link">DoFertiliserApplications</a></td>
 <td>Invoked to perform all fertiliser applications</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoPestDiseaseDamage">DoPestDiseaseDamage</a></td>
+<td><a href="../../docs/Models/Events.html#DoPestDiseaseDamage" class="model-link">DoPestDiseaseDamage</a></td>
 <td>Occurs to do Pest/Disease actions</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoEnergyArbitration">DoEnergyArbitration</a></td>
+<td><a href="../../docs/Models/Events.html#DoEnergyArbitration" class="model-link">DoEnergyArbitration</a></td>
 <td>Occurs when the canopy energy balance needs to be calculated with MicroClimate</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSoilWaterMovement">DoSoilWaterMovement</a></td>
+<td><a href="../../docs/Models/Events.html#DoSoilWaterMovement" class="model-link">DoSoilWaterMovement</a></td>
 <td>Occurs each day to do water calculations such as irrigation, swim, water balance etc</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSoilErosion">DoSoilErosion</a></td>
+<td><a href="../../docs/Models/Events.html#DoSoilErosion" class="model-link">DoSoilErosion</a></td>
 <td>Occurs to tell soil erosion to perform its calculations</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSoilTemperature">DoSoilTemperature</a></td>
+<td><a href="../../docs/Models/Events.html#DoSoilTemperature" class="model-link">DoSoilTemperature</a></td>
 <td>Occurs to perform soil temperature calculations to do solute processes</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSolute">DoSolute</a></td>
+<td><a href="../../docs/Models/Events.html#DoSolute" class="model-link">DoSolute</a></td>
 <td>Occurs each day</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterPotentialDecomposition">DoSurfaceOrganicMatterPotentialDecomposition</a></td>
+<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterPotentialDecomposition" class="model-link">DoSurfaceOrganicMatterPotentialDecomposition</a></td>
 <td>Occurs each day to perform daily calculations of organic soil matter</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoSoilOrganicMatter">DoSoilOrganicMatter</a></td>
+<td><a href="../../docs/Models/Events.html#DoSoilOrganicMatter" class="model-link">DoSoilOrganicMatter</a></td>
 <td>Occurs each day to perform daily calculations of organic soil matter</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterDecomposition">DoSurfaceOrganicMatterDecomposition</a></td>
+<td><a href="../../docs/Models/Events.html#DoSurfaceOrganicMatterDecomposition" class="model-link">DoSurfaceOrganicMatterDecomposition</a></td>
 <td>Occurs each day to do the daily residue decomposition</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoUpdateWaterDemand">DoUpdateWaterDemand</a></td>
+<td><a href="../../docs/Models/Events.html#DoUpdateWaterDemand" class="model-link">DoUpdateWaterDemand</a></td>
 <td>Occurs each day to do daily growth increment of total plant biomass</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoWaterArbitration">DoWaterArbitration</a></td>
+<td><a href="../../docs/Models/Events.html#DoWaterArbitration" class="model-link">DoWaterArbitration</a></td>
 <td>Occurs each day to do water arbitration</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPastureWater">DoPastureWater</a></td>
+<td><a href="../../docs/Models/Events.html#DoPastureWater" class="model-link">DoPastureWater</a></td>
 <td>Initiates water calculations for the Pasture model</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#PrePhenology">PrePhenology</a></td>
+<td><a href="../../docs/Models/Events.html#PrePhenology" class="model-link">PrePhenology</a></td>
 <td>Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPhenology">DoPhenology</a></td>
+<td><a href="../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a></td>
 <td>Occurs each day to perform phenology</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoPotentialPlantGrowth">DoPotentialPlantGrowth</a></td>
+<td><a href="../../docs/Models/Events.html#DoPotentialPlantGrowth" class="model-link">DoPotentialPlantGrowth</a></td>
 <td>Occurs each day to do potential growth</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoPotentialPlantPartioning">DoPotentialPlantPartioning</a></td>
+<td><a href="../../docs/Models/Events.html#DoPotentialPlantPartioning" class="model-link">DoPotentialPlantPartioning</a></td>
 <td>Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoNutrientArbitration">DoNutrientArbitration</a></td>
+<td><a href="../../docs/Models/Events.html#DoNutrientArbitration" class="model-link">DoNutrientArbitration</a></td>
 <td>Occurs each day to do nutrient arbitration</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoActualPlantPartioning">DoActualPlantPartioning</a></td>
+<td><a href="../../docs/Models/Events.html#DoActualPlantPartioning" class="model-link">DoActualPlantPartioning</a></td>
 <td>Occurs each day to do nutrient allocations</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoActualPlantGrowth">DoActualPlantGrowth</a></td>
+<td><a href="../../docs/Models/Events.html#DoActualPlantGrowth" class="model-link">DoActualPlantGrowth</a></td>
 <td>Occurs each day to do nutrient allocations. Pasture growth</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#PartitioningComplete">PartitioningComplete</a></td>
+<td><a href="../../docs/Models/Events.html#PartitioningComplete" class="model-link">PartitioningComplete</a></td>
 <td>Occurs each day to finish partitioning</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoUpdate">DoUpdate</a></td>
+<td><a href="../../docs/Models/Events.html#DoUpdate" class="model-link">DoUpdate</a></td>
 <td>Occurs near end of each day to do checks and finalising</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoStock">DoStock</a></td>
+<td><a href="../../docs/Models/Events.html#DoStock" class="model-link">DoStock</a></td>
 <td>Occurs each day to process stock methods in GrazPlan Stock</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoLifecycle">DoLifecycle</a></td>
+<td><a href="../../docs/Models/Events.html#DoLifecycle" class="model-link">DoLifecycle</a></td>
 <td>Occurs each day to process a Pest and Disease lifecycle object</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoManagementCalculations">DoManagementCalculations</a></td>
+<td><a href="../../docs/Models/Events.html#DoManagementCalculations" class="model-link">DoManagementCalculations</a></td>
 <td>Occurs each day after the simulation is done. Does management calculations</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoEndPasture">DoEndPasture</a></td>
+<td><a href="../../docs/Models/Events.html#DoEndPasture" class="model-link">DoEndPasture</a></td>
 <td>Occurs after pasture growth and sends material to SOM</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoReportCalculations">DoReportCalculations</a></td>
+<td><a href="../../docs/Models/Events.html#DoReportCalculations" class="model-link">DoReportCalculations</a></td>
 <td>Occurs when do report calculations</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#DoReport">DoReport</a></td>
+<td><a href="../../docs/Models/Events.html#DoReport" class="model-link">DoReport</a></td>
 <td>Occurs at end of each day</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#DoDCAPST">DoDCAPST</a></td>
+<td><a href="../../docs/Models/Events.html#DoDCAPST" class="model-link">DoDCAPST</a></td>
 <td>Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMInitialiseResource">CLEMInitialiseResource</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMInitialiseResource" class="model-link">CLEMInitialiseResource</a></td>
 <td>CLEM initialise Resources occurs once at start of simulation</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMInitialiseActivity">CLEMInitialiseActivity</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMInitialiseActivity" class="model-link">CLEMInitialiseActivity</a></td>
 <td>CLEM initialise Activity occurs once at start of simulation</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMValidate">CLEMValidate</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMValidate" class="model-link">CLEMValidate</a></td>
 <td>CLEM validate all data entry</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMStartOfTimeStep">CLEMStartOfTimeStep</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMStartOfTimeStep" class="model-link">CLEMStartOfTimeStep</a></td>
 <td>CLEM start of timestep event</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMUpdateLabourAvailability">CLEMUpdateLabourAvailability</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMUpdateLabourAvailability" class="model-link">CLEMUpdateLabourAvailability</a></td>
 <td>CLEM set labour availability after start of timestep and financial considerations</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMUpdatePasture">CLEMUpdatePasture</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMUpdatePasture" class="model-link">CLEMUpdatePasture</a></td>
 <td>CLEM update pasture</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMDetachPasture">CLEMDetachPasture</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMDetachPasture" class="model-link">CLEMDetachPasture</a></td>
 <td>CLEM detach pasture</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMPastureReady">CLEMPastureReady</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMPastureReady" class="model-link">CLEMPastureReady</a></td>
 <td>CLEM pasture has been added and is ready for use</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMDoCutAndCarry">CLEMDoCutAndCarry</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMDoCutAndCarry" class="model-link">CLEMDoCutAndCarry</a></td>
 <td>CLEM cut and carry</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalBreeding">CLEMAnimalBreeding</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalBreeding" class="model-link">CLEMAnimalBreeding</a></td>
 <td>CLEM Do Animal (Ruminant and Other) Breeding and milk calculations</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMPotentialIntake">CLEMPotentialIntake</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMPotentialIntake" class="model-link">CLEMPotentialIntake</a></td>
 <td>Get potential intake. This includes suckling milk consumption</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMCalculateManure">CLEMCalculateManure</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMCalculateManure" class="model-link">CLEMCalculateManure</a></td>
 <td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMCollectManure">CLEMCollectManure</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMCollectManure" class="model-link">CLEMCollectManure</a></td>
 <td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMGetResourcesRequired">CLEMGetResourcesRequired</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMGetResourcesRequired" class="model-link">CLEMGetResourcesRequired</a></td>
 <td>Request and perform the collection of manure after resources are allocated and manure produced in time-step</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMilkProduction">CLEMAnimalMilkProduction</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalMilkProduction" class="model-link">CLEMAnimalMilkProduction</a></td>
 <td>CLEM Calculate Animals (Ruminant and Other) milk production</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalWeightGain">CLEMAnimalWeightGain</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalWeightGain" class="model-link">CLEMAnimalWeightGain</a></td>
 <td>CLEM Calculate Animals(Ruminant and Other) weight gain</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalDeath">CLEMAnimalDeath</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalDeath" class="model-link">CLEMAnimalDeath</a></td>
 <td>CLEM Do Animal (Ruminant and Other) death</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMilking">CLEMAnimalMilking</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalMilking" class="model-link">CLEMAnimalMilking</a></td>
 <td>CLEM Do Animal (Ruminant and Other) milking</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMCalculateEcologicalState">CLEMCalculateEcologicalState</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMCalculateEcologicalState" class="model-link">CLEMCalculateEcologicalState</a></td>
 <td>CLEM Calculate ecological state after all deaths and before management</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalMark">CLEMAnimalMark</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalMark" class="model-link">CLEMAnimalMark</a></td>
 <td>CLEM Do animal marking so complete before undertaking management decisions</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalManage">CLEMAnimalManage</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalManage" class="model-link">CLEMAnimalManage</a></td>
 <td>CLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.)</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalStock">CLEMAnimalStock</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalStock" class="model-link">CLEMAnimalStock</a></td>
 <td>CLEM stock animals to pasture availability or other metrics</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalSell">CLEMAnimalSell</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalSell" class="model-link">CLEMAnimalSell</a></td>
 <td>CLEM sell animals to market including transporting and labour</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMAnimalBuy">CLEMAnimalBuy</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAnimalBuy" class="model-link">CLEMAnimalBuy</a></td>
 <td>CLEM buy animals including transporting and labour</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMAgeResources">CLEMAgeResources</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMAgeResources" class="model-link">CLEMAgeResources</a></td>
 <td>CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals)</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMHerdSummary">CLEMHerdSummary</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMHerdSummary" class="model-link">CLEMHerdSummary</a></td>
 <td>CLEM event to calculate monthly herd summary</td>
 </tr>
 <tr class="odd">
-<td><a href="../../docs/Models/Events.html#CLEMFinalizeTimeStep">CLEMFinalizeTimeStep</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMFinalizeTimeStep" class="model-link">CLEMFinalizeTimeStep</a></td>
 <td>CLEM finalize time-step before end</td>
 </tr>
 <tr class="even">
-<td><a href="../../docs/Models/Events.html#CLEMEndOfTimeStep">CLEMEndOfTimeStep</a></td>
+<td><a href="../../docs/Models/Events.html#CLEMEndOfTimeStep" class="model-link">CLEMEndOfTimeStep</a></td>
 <td>CLEM end of timestep event</td>
 </tr>
 </tbody>

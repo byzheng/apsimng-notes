@@ -530,6 +530,12 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -603,13 +609,13 @@ cookieconsent.run({
 </header>
 
 
-<p>Daily thermal time for wheat based on <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html">SubDailyInterpolation</a> with three cardinal temperature and <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a> interpolation method.</p>
+<p>Daily thermal time for wheat based on <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">SubDailyInterpolation</a> with three cardinal temperature and <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> interpolation method.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <strong>Thermal Time</strong> function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (<a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a>), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.</p>
+<p>The <strong>Thermal Time</strong> function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (<a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.</p>
 <ul>
-<li><code>InterpolationMethod</code>: <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a> is used for sub-daily interpolation, i.e.&nbsp;3-hourly temperature estimates.</li>
-<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.</li>
+<li><code>InterpolationMethod</code>: <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> is used for sub-daily interpolation, i.e.&nbsp;3-hourly temperature estimates.</li>
+<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html" class="model-link">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.</li>
 </ul>
 <table class="caption-top table">
 <thead>

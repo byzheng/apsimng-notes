@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Germinating – APSIM NG Notes</title>
+<title>Haun Stage – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -97,6 +117,35 @@ cookieconsent.run({
 </script> 
   
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -156,7 +205,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html">Germinating</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html">Haun Stage</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -524,13 +573,13 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Haun Stage</span></a>
   </div>
 </li>
@@ -582,16 +631,18 @@ cookieconsent.run({
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/Germinating.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/HaunStage.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html">Germinating</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html">Haun Stage</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Germinating</h1>
+<h1 class="title">Haun Stage</h1>
 </div>
 
 
@@ -608,43 +659,55 @@ cookieconsent.run({
 </header>
 
 
-<p>The <strong>Germinating</strong> is a phenological phase in <a href="../../../../docs/Crops/Wheat" class="crop-link">Wheat</a> used to represent the development period from <strong>Sowing</strong> to <strong>Germination</strong>. It determines whether the seed has germinated based on soil temperature and soil water.</p>
+<p>Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="model-link">GerminatingPhase</a> Model is used to simulate the germination of wheat seeds. This phase begins when Plant <a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">Sowing</a> occurs and ends when plant is germinated germination with conditions of soil temperature and soil water. See <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="model-link">GerminatingPhase</a> for more details.</p>
+<p>The Haun Stage model simulates the appearance of new leaf tips on cereal crops, such as wheat, from the time the plant emerges until the flag leaf appears <span class="citation" data-cites="haun_visual_1973">(<a href="#ref-haun_visual_1973" role="doc-biblioref">Haun 1973</a>)</span>. It calculates from daily <a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="crop-link">thermal time</a> and a cultivar-specific <a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="crop-link">phyllochron</a>, which is the thermal time required for each new leaf to appear.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>The Haun Stage is based on the biological principle that leaves appear at regular intervals, determined by temperature. Each day, the model calculates how much “thermal time” (accumulated heat) the plant has experienced. When enough thermal time has passed, a new leaf tip appears.</p>
+<p>The daily increase in Haun Stage is calculated as:</p>
+<p><span class="math display">\[
+\Delta \text{HaunStage} = \frac{\text{ThermalTime}}{\text{Phyllochron}}
+\]</span></p>
+<p>Where:</p>
 <ul>
-<li>The <code>Minimum Soil Temperature</code> is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,</li>
-<li>The <code>Soil Water Content</code> should be more than <code>Lower Limit</code> for germination to occur.</li>
+<li><span class="math inline">\(\text{ThermalTime}\)</span> is the amount of heat accumulated in a day (measured in degree-days).</li>
+<li><span class="math inline">\(\text{Phyllochron}\)</span> is the amount of thermal time needed for each new leaf to appear.</li>
 </ul>
+<p>The model sums these daily increments from emergence until the flag leaf appears, for example, a Haun Stage of 5.3 means five leaves are fully visible and the sixth is partly emerged (30%).</p>
+<p><strong>Key assumptions:</strong></p>
+<ul>
+<li>Leaf appearance is driven mainly by temperature.</li>
+<li>Each variety has its own characteristic phyllochron.</li>
+<li>The process is continuous, not stepwise, allowing for partial leaves.</li>
+</ul>
+<p>This approach is supported by research showing that leaf appearance in cereals follows a predictable thermal pattern <span class="citation" data-cites="haun_visual_1973">(<a href="#ref-haun_visual_1973" role="doc-biblioref">Haun 1973</a>)</span>.</p>
 </section>
 <section id="cultivar-specific-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="cultivar-specific-parameters">Cultivar-Specific Parameters</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 66%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-<th>Default Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>[Phenology].Germinating.MinSoilTemperature.FixedValue</td>
-<td>Minimum soil temperature for germination (°C)</td>
-<td>0.0</td>
-</tr>
-</tbody>
-</table>
+<blockquote class="blockquote">
+<p>no cultivar-specific parameters are used in the Haun Stage model.</p>
+</blockquote>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<p>Suppose a researcher wants to estimate when the flag leaf will appear in different wheat varieties. They set the phyllochron for each variety based on field data. For example, if a variety has a phyllochron of 120 °Cd and one day records 24 °Cd of thermal time:</p>
+<p><span class="math display">\[
+\Delta \text{HaunStage} = \frac{24}{120} = 0.2
+\]</span></p>
+<p>After five days at this rate, the Haun Stage increases by 1.0, meaning one new leaf tip has appeared. By tracking Haun Stage over time, researchers can compare development rates between varieties or under different treatments, supporting breeding and agronomic decisions. The Haun Stage model tracks the number of leaf tips that have appeared on a cereal plant since emergence. It provides a continuous measure of crop development and is critical for predicting phenological stages and leaf-related processes.</p>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-haun_visual_1973" class="csl-entry" role="listitem">
+Haun, J. R. 1973. <span>“Visual Quantification of Wheat Development.”</span> <em>Agronomy Journal</em> 65: 116. <a href="https://doi.org/10.2134/agronj1973.00021962006500010035x">https://doi.org/10.2134/agronj1973.00021962006500010035x</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1063,7 +1126,7 @@ cookieconsent.run({
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/Germinating.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/HaunStage.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

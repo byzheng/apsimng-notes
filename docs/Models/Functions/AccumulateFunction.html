@@ -559,6 +559,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -658,7 +664,7 @@ window.Quarto = {
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>Each day after phenology estimation in Event <a href="../../../docs/Models/Events.html#PostPhenology">PostPhenology</a>, if the current crop development stage is between the start and end stage, the AccumulateFunction performs the following steps:</p>
+<p>Each day after phenology estimation in Event <a href="../../../docs/Models/Events.html#PostPhenology" class="model-link">PostPhenology</a>, if the current crop development stage is between the start and end stage, the AccumulateFunction performs the following steps:</p>
 <ol type="1">
 <li>Evaluate each child function to get its current value.</li>
 <li>Sum the values of all child functions: <span class="math display">\[
@@ -668,21 +674,21 @@ window.Quarto = {
 \text{AccumulatedValue}_{t} = \text{AccumulatedValue}_{t-1} + \text{DailyIncrement}
 \]</span></li>
 </ol>
-<p>If a stage is reached that matches <code>ResetStageName</code> in event <a href="../../../docs/Models/Events.html#PhaseChanged">PhaseChanged</a>, the accumulated value is set to zero: <span class="math display">\[
+<p>If a stage is reached that matches <code>ResetStageName</code> in event <a href="../../../docs/Models/Events.html#PhaseChanged" class="model-link">PhaseChanged</a>, the accumulated value is set to zero: <span class="math display">\[
 \text{AccumulatedValue} = 0 \quad \text{when Stage = ResetStageName}
 \]</span></p>
 <p>If a following event,</p>
 <ul>
-<li><a href="../../../docs/Models/Events.html#Cutting">Cutting</a></li>
-<li><a href="../../../docs/Models/Events.html#Harvesting">PostHarvesting</a></li>
-<li><a href="../../../docs/Models/Events.html#Grazing">Grazing</a></li>
-<li><a href="../../../docs/Models/Events.html#Pruning">Pruning</a></li>
+<li><a href="../../../docs/Models/Events.html#Cutting" class="model-link">Cutting</a></li>
+<li><a href="../../../docs/Models/Events.html#Harvesting" class="model-link">PostHarvesting</a></li>
+<li><a href="../../../docs/Models/Events.html#Grazing" class="model-link">Grazing</a></li>
+<li><a href="../../../docs/Models/Events.html#Pruning" class="model-link">Pruning</a></li>
 </ul>
 <p>occurs, the function reduces the accumulated value: <span class="math display">\[
 \text{AccumulatedValue} = \text{AccumulatedValue} \times (1 - \text{FractionRemoved})
 \]</span></p>
 <p>This allows realistic simulation of loss in growth or reserves due to agronomic practices.</p>
-<p>At event <a href="../../../docs/Models/Events.html#PlantEnding">PlantEnding</a>, the accumulated value is reset to zero, indicating the end of the crop cycle:</p>
+<p>At event <a href="../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a>, the accumulated value is reset to zero, indicating the end of the crop cycle:</p>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>

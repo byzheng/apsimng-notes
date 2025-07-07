@@ -559,6 +559,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -637,12 +643,12 @@ window.Quarto = {
 </header>
 
 
-<p><code>SubDailyInterpolation</code> is a function module that enables fine-resolution simulation of temperature-driven biological responses by computing sub-daily (e.g., hourly) air temperatures. It does so by interpolating daily minimum and maximum temperatures using a chosen method (e.g., <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a>) or <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html">HourlySinPpAdjusted</a>, and applying a temperature response function to each sub-daily point, aggregating the result as a sum or average. This allows temperature-dependent processes such as growth, phenology, or respiration to respond more realistically to daily temperature cycles.</p>
+<p><code>SubDailyInterpolation</code> is a function module that enables fine-resolution simulation of temperature-driven biological responses by computing sub-daily (e.g., hourly) air temperatures. It does so by interpolating daily minimum and maximum temperatures using a chosen method (e.g., <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>) or <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="model-link">HourlySinPpAdjusted</a>, and applying a temperature response function to each sub-daily point, aggregating the result as a sum or average. This allows temperature-dependent processes such as growth, phenology, or respiration to respond more realistically to daily temperature cycles.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
 <p>The <code>SubDailyInterpolation</code> model enables simulation of plant and environmental processes that require sub-daily temperature information. It operates by:</p>
 <ol type="1">
-<li>Interpolating sub-daily air temperatures using a child model that implements <code>IInterpolationMethod</code> (e.g., <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html">HourlySinPpAdjusted</a> or <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a>).</li>
+<li>Interpolating sub-daily air temperatures using a child model that implements <code>IInterpolationMethod</code> (e.g., <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="model-link">HourlySinPpAdjusted</a> or <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>).</li>
 <li>Applying a child <code>IIndexedFunction</code> response function to each of the sub-daily temperature values.</li>
 <li>Aggregating the responses using either the average or the sum, depending on the selected <code>AgregationMethod</code> (Average or Sum).</li>
 </ol>
@@ -653,7 +659,7 @@ window.Quarto = {
 <p>The following inputs are required for <code>SubDailyInterpolation</code> to operate:</p>
 <ul>
 <li><code>MetData</code>: A model implementing <code>IWeather</code>, typically the <code>Weather</code> module, which supplies daily <code>Tmin</code> and <code>Tmax</code>.</li>
-<li><code>InterpolationMethod</code>: A child model that implements <code>IInterpolationMethod</code> and provides sub-daily temperature estimates (e.g., <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html">HourlySinPpAdjusted</a> or <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html">ThreeHourAirTemperature</a>).</li>
+<li><code>InterpolationMethod</code>: A child model that implements <code>IInterpolationMethod</code> and provides sub-daily temperature estimates (e.g., <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="model-link">HourlySinPpAdjusted</a> or <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>).</li>
 <li><code>Response</code>: A child model implementing <code>IIndexedFunction</code>, which calculates a biological or physical response for each sub-daily temperature.</li>
 <li><code>agregationMethod</code>: A user-configurable enum determining whether the output is the <code>Average</code> or the <code>Sum</code> of the sub-daily responses.</li>
 </ul>
@@ -698,7 +704,7 @@ R = \sum_{i=1}^n R_i
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../../docs/Models/Events.html#DoDailyInitialisation">DoDailyInitialisation</a></td>
+<td><a href="../../../docs/Models/Events.html#DoDailyInitialisation" class="model-link">DoDailyInitialisation</a></td>
 <td>Triggers the interpolation and response function application each day.</td>
 </tr>
 </tbody>

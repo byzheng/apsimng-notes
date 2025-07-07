@@ -530,6 +530,12 @@ cookieconsent.run({
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -626,19 +632,19 @@ cookieconsent.run({
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
 <p>The phenology progression is triggered by several events, primarily the <code>DoPhenology</code> event which is called at each day.</p>
-<p><a href="../../../../docs/Models/Events.html#Commencing">Commencing</a>:</p>
+<p><a href="../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a>:</p>
 <ul>
 <li>Initializes the phenology model</li>
 <li>Obtains the list of phases</li>
 <li>Resets state variables.</li>
 </ul>
-<p><a href="../../../../docs/Models/Events.html#PlantSowing">PlantSowing</a>:</p>
+<p><a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a>:</p>
 <ul>
 <li>Resets state variable</li>
 <li>Initialise phenology development using the first phase</li>
 </ul>
-<p><a href="../../../../docs/Models/Events.html#DoPhenology">DoPhenology</a>:</p>
-<p>This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from <a href="../../../../docs/Models/PFM/Plant.qmd">Plant</a> model.</p>
+<p><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a>:</p>
+<p>This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from <a href="../../../../docs/Models/PFM/Plant.qmd" class="model-link">Plant</a> model.</p>
 <p>At each timestep, the <code>Phenology</code> model:</p>
 <ul>
 <li>Check whether <code>ThermalTime</code> is available and more than 0. Throw an error if not.</li>
@@ -648,15 +654,15 @@ cookieconsent.run({
 <li>Updates accumulated thermal time and phenological stage number (<code>Stage</code>).</li>
 <li>Manages rewinding or fast-forwarding when the stage is reset.</li>
 </ul>
-<p><a href="../../../../docs/Models/Events.html#Harvesting">Harvesting</a>:</p>
+<p><a href="../../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a>:</p>
 <ul>
 <li>Set the end stage as the final phase (maturity) when harvesting occurs.</li>
 </ul>
-<p><a href="../../../../docs/Models/Events.html#PlantEnding">PlantEnding</a>:</p>
+<p><a href="../../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a>:</p>
 <ul>
 <li>Clears internal state when the simulation ends, ensuring no residual data persists.</li>
 </ul>
-<p><a href="../../../../docs/Models/Events.html#StartOfDay">StartOfDay</a>:</p>
+<p><a href="../../../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a>:</p>
 <ul>
 <li>Reset daily tracking flags for new day.</li>
 </ul>
@@ -674,27 +680,27 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#Commencing">Commencing</a></td>
+<td><a href="../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
 <td>Initializes phenology and clears state</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantSowing">PlantSowing</a></td>
+<td><a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a></td>
 <td>Resets phenology and starts at sowing stage</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#DoPhenology">DoPhenology</a></td>
+<td><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a></td>
 <td>Core timestep to update phenological development</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#StartOfDay">StartOfDay</a></td>
+<td><a href="../../../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a></td>
 <td>Clears temporary stage-tracking flags for new day</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#Harvesting">Harvesting</a></td>
+<td><a href="../../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a></td>
 <td>Sets phenology directly to final phase (maturity)</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantEnding">PlantEnding</a></td>
+<td><a href="../../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a></td>
 <td>Clears internal state when simulation ends</td>
 </tr>
 </tbody>
@@ -709,19 +715,19 @@ cookieconsent.run({
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#PhaseChanged"><code>PhaseChanged</code></a></td>
+<td><a href="../../../../docs/Models/Events.html#PhaseChanged" class="model-link"><code>PhaseChanged</code></a></td>
 <td>Indicates a new phase has started</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantEmerged"><code>PlantEmerged</code></a></td>
+<td><a href="../../../../docs/Models/Events.html#PlantEmerged" class="model-link"><code>PlantEmerged</code></a></td>
 <td>Signals that the emergence phase has been completed</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#StageWasReset"><code>StageWasReset</code></a></td>
+<td><a href="../../../../docs/Models/Events.html#StageWasReset" class="model-link"><code>StageWasReset</code></a></td>
 <td>Signals a manual reset of stage via <code>SetToStage()</code></td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PostPhenology"><code>PostPhenology</code></a></td>
+<td><a href="../../../../docs/Models/Events.html#PostPhenology" class="model-link"><code>PostPhenology</code></a></td>
 <td>Raised after daily phenological timestep completes</td>
 </tr>
 </tbody>
