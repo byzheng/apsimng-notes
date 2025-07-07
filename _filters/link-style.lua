@@ -15,7 +15,7 @@ function file_exists(name)
 
     -- Construct full path
     local full_path = path.join({ project_dir, name })
-
+    quarto.log.output("Checking file path: " .. full_path)
     -- Attempt to open file
     local f = io.open(full_path, "r")
     if f then
