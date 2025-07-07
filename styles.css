@@ -5,7 +5,7 @@ figcaption {
 
 
 /* Style for model links */
-a.model-link {
+a.crop-link {
     color: #1e90ff;
     /* dodger blue */
     font-weight: bold;
@@ -13,7 +13,7 @@ a.model-link {
 }
 
 /* Style for crop links */
-a.crop-link {
+a.model-link {
     color: #228b22;
     /* forest green */
     font-style: italic;
