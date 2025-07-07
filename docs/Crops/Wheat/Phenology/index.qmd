@@ -1,10 +1,54 @@
 ---
 title: "Phenology"
-listing:
-  contents: 
-   - "*.md"
-   - "*.qmd"
-  type: table
-  sort: "date desc"
-  fields: [title, description]
 ---
+
+
+The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of wheat plants.
+
+
+## [Thermal Time](ThermalTime.qmd)
+
+Daily thermal time is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. 
+
+## [Phyllochron](Phyllochron.qmd)
+
+The phyllochron is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.
+
+## Stages and Phases
+
+The numerical system is used to represent the development of wheat plants starting from 1. The stages are:
+
+| Stage | Name                       | Description                                      |
+|-------|----------------------------|--------------------------------------------------|
+| 1     | Sowing                     | Seeds are planted in the soil                    |
+| 2     | Germination                | Seeds absorb water and begin to sprout           |
+| 3     | Emergence                  | Seedlings break through the soil surface         |
+| 4     | DoubleRidge                | Formation of double ridges in the shoot apex     |
+| 5     | MaximumSpikeletPrimordia   | Maximum number of spikelets is determined        |
+| 6     | FlagLeafAppearance         | The last leaf (flag leaf) appears                |
+| 7     | HeadEmergence              | Wheat head emerges from the flag leaf sheath     |
+| 8     | Anthesis                   | Flowering; pollen is released                    |
+| 9     | MaximumGrainLength         | Grains reach their maximum length                |
+| 10    | EndGrainFill               | Grain filling is completed                       |
+| 11    | HarvestRipe                | Grains are mature and ready for harvest          |
+
+
+Phases are used to represent the development between two stages. The phases are:
+
+| Order | Name                                   | From                      | To                    |
+|-------|----------------------------------------|---------------------------|-----------------------|
+| 1     | [Germinating](Germinating.qmd)         | Sowing                    | Germination           |
+| 2     | [Emerging](Emerging.qmd)               | Germination               | Emergence             |
+| 3     | [LeavesInitiating](LeavesInitiating.qmd)| Emergence                 | DoubleRidge           |
+| 4     | [SpikeletsDifferentiating](SpikeletsDifferentiating.qmd) | DoubleRidge           | MaximumSpikeletPrimordia |
+| 5     | [StemElongating](StemElongating.qmd)   | MaximumSpikeletPrimordia  | FlagLeafAppearance    |
+| 6     | [Heading](Heading.qmd)                 | FlagLeafAppearance        | HeadEmergence         |
+| 7     | [Flowering](Flowering.qmd)             | HeadEmergence             | Anthesis              |
+| 8     | [GrainExpanding](GrainExpanding.qmd)   | Anthesis                  | MaximumGrainLength    |
+| 9     | [GrainFilling](GrainFilling.qmd)       | MaximumGrainLength        | End Grain Fill        |
+| 10    | [GrainRipening](GrainRipening.qmd)     | End Grain Fill            | HarvestRipe           |
+| 11    | [ReadyForHarvesting](ReadyForHarvesting.qmd) | HarvestRipe               |                       |

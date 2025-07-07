@@ -90,7 +90,8 @@ ggplot(df, aes(x = day_length)) +
         x = "Day Length (hours)",
         y = "Modifier Value"
     ) +
-    scale_x_continuous(breaks = x_out)
+    scale_x_continuous(breaks = x_out) +
+    theme_minimal()
 ```
 
 So, for day lengths below 12 hours, the phyllochron increases (leaves appear more slowly), but above 12 hours, there is no further effect.
