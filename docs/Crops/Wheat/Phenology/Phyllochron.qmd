@@ -157,4 +157,4 @@ Now, for each $S$:
 
 ## See Also
 
-[Photoperioid Effect on Phyllochron in Australian Wheat](/tips/phy-ppd-oz-wheat.qmd)
+* [Photoperiod Effect on Phyllochron in Australian Wheat](/tips/phy-ppd-oz-wheat.qmd)
