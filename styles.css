@@ -2,3 +2,20 @@
 figcaption {
     text-align: center;
 }
+
+
+/* Style for model links */
+a.model-link {
+    color: #1e90ff;
+    /* dodger blue */
+    font-weight: bold;
+    text-decoration: underline dashed;
+}
+
+/* Style for crop links */
+a.crop-link {
+    color: #228b22;
+    /* forest green */
+    font-style: italic;
+    text-decoration: underline dotted;
+}

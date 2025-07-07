@@ -18,7 +18,7 @@ The content is compiled from a variety of sources including:
 > - [Model Validation Docs](https://docs.apsim.info/)  
 > - [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
 
-These notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](disclaimer.qmd) for more.
+These notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](/disclaimer.qmd) for more.
 
 I will continue updating this documentation as I work with APSIM Next Generation.  
 Contributions are welcome via [GitHub pull requests](https://github.com/byzheng/apsimng-notes) or [issues](https://github.com/byzheng/apsimng-notes/issues).

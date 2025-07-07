@@ -1,5 +1,8 @@
 project:
   type: website
+filters:
+  - _filters/link-style.lua
+
 bibliography: references.bib
 execute:
   echo: false

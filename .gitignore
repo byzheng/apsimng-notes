@@ -14,3 +14,5 @@ _site
 
 _tmp_*
 _scripts/
+
+/.luarc.json
