@@ -4,6 +4,7 @@ function Link(el)
     local href = el.target or ""
     -- Skip external links
     if href:match("^https?://") then
+        el.attributes["class"] = "external-link"
         return el
     end
     local resolved_path = href
