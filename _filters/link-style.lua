@@ -19,7 +19,7 @@ function file_exists(name)
 
     -- Construct full path
     local full_path = path.join({ project_dir, name })
-    quarto.log.output("Checking file path: " .. full_path)
+    -- quarto.log.output("Checking file path: " .. full_path)
     -- Attempt to open file
     local f = io.open(full_path, "r")
     if f then
@@ -49,8 +49,8 @@ function Link(el)
             -- Resolve relative path to absolute
             resolved_path = path.normalize(path.join({ current_dir, href })):gsub("\\", "/")
             -- Then remove project_dir prefix to get relative path from project root
-            quarto.log.output("project_dir: " .. project_dir)
-            quarto.log.output("resolved_path: " .. resolved_path)
+            -- quarto.log.output("project_dir: " .. project_dir)
+            -- quarto.log.output("resolved_path: " .. resolved_path)
 
             resolved_path = resolved_path:gsub("^" .. project_dir:gsub("([%.%-%+%*%?%[%]%^%$%(%)])", "%%%1") .. "/?", "")
             -- Add leading slash to indicate project-root relative
