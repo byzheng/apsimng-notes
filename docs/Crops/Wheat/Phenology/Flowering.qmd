@@ -1,0 +1,26 @@
+---
+title: "Flowering"
+output: html_document
+---
+
+
+The **Flowering** phase in [Wheat](/docs/Crops/Wheat) represents the developmental period from **HeadEmergence** to **Anthesis**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `HeadEmergence` and `Anthesis` stages.
+
+- This phase starts at **HeadEmergence** and ends at **Anthesis**, when the flower is fully developed.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is fixed as constant for this phase, with default value of 80.0 °Cd.
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Flowering.Target.FixedValue   | Thermal time target during flowering (°Cd)      | 80.0          |
+
+## Practical Example
+
+> no practical example available

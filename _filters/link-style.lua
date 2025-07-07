@@ -55,7 +55,7 @@ function Link(el)
             resolved_path = resolved_path:gsub("^" .. project_dir:gsub("([%.%-%+%*%?%[%]%^%$%(%)])", "%%%1") .. "/?", "")
             -- Add leading slash to indicate project-root relative
             resolved_path = "/" .. resolved_path
-            quarto.log.output("resolved_path_again: " .. resolved_path)
+            -- quarto.log.output("resolved_path_again: " .. resolved_path)
         end
     end
     -- quarto.log.output("Resolved path: " .. resolved_path)

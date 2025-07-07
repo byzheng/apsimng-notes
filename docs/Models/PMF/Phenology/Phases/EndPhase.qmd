@@ -1,0 +1,80 @@
+---
+title: "EndPhase"
+output: html_document
+---
+
+`EndPhase` is the final phase in a crop's phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.
+
+## Overview
+
+In the APSIM Next Gen phenology system, crop development is divided into sequential phases. `EndPhase` defines the last phase in this sequence. When the crop reaches this stage, it no longer accumulates thermal time or progresses through development.
+
+This phase typically represents physiological maturity, senescence, or the point at which no further crop growth or development is expected. The model does not advance past this phase unless an external event (such as harvest or crop removal) occurs.
+
+## Inputs
+
+- `Start`: The name of the stage that marks the beginning of this phase.
+- `End`: The name of the stage that marks the end of this phase (usually not used since this is terminal).
+- `IsEmerged`: Logical value indicating whether this phase assumes the crop has emerged (default is `true`).
+
+## Methodology
+
+Once the crop enters the `EndPhase`, it performs no further development:
+
+- FractionComplete is always 0.
+- Target thermal time is 0.
+- `DoTimeStep()` always returns `false`, indicating no development occurs.
+- No reset logic is required.
+
+This phase ensures the crop's development is paused or concluded until harvest or removal.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property     | Type    | Description                                                    |
+|--------------|---------|----------------------------------------------------------------|
+| Start        | string  | Stage that marks the beginning of this phase                   |
+| End          | string  | Stage name marking the end of this phase (optional)            |
+| IsEmerged    | bool    | Indicates whether this phase assumes the crop has emerged      |
+
+**Read-Only Reportable Properties**
+
+| Property           | Type    | Description                                       |
+|--------------------|---------|---------------------------------------------------|
+| FractionComplete   | double  | Always returns 0.0                                |
+| Target             | double  | Always returns 0 (no thermal time required)       |
+
+## User Interface
+
+`EndPhase` is added as a child of a `Phenology` node to mark the final crop development stage. To use:
+
+1. Right-click on a `Phenology` component in the model tree.
+2. Select "Add Model...".
+3. Choose "EndPhase".
+4. Set `Start` to the name of the phase where final development begins.
+
+No child models are needed for `EndPhase`.
+
+## Practical Example
+
+Use `EndPhase` in a crop model where development halts at a defined maturity point (e.g., "HarvestRipe"):
+
+- Set `Start = "HarvestRipe"`
+- The crop will remain in this phase until harvested
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [EndPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phen/EndPhase.cs)
