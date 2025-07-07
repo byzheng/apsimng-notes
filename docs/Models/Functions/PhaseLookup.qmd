@@ -1,0 +1,86 @@
+---
+title: "PhaseLookup"
+output: html_document
+---
+
+PhaseLookup selects a value based on the current growth phase of the crop. It allows users to define different function values for different stages of development (e.g., vegetative, flowering, grain filling), and outputs the value corresponding to the current phase.
+
+## Overview
+
+This function is used to dynamically select a value during simulation depending on which growth phase the crop is currently in. It is typically used when a biological response or parameter changes depending on the stage of development.
+
+For example, you may want thermal time accumulation, stress response, or nutrient demand to behave differently in vegetative versus reproductive phases. `PhaseLookup` works like a switch that returns the appropriate value based on which phase the crop is currently in.
+
+## Inputs
+
+- Child models: One or more [PhaseLookupValue](PhaseLookupValue.qmd) models, each associated with a specific phase or phase range.
+- Crop phenology information (from the simulation environment).
+
+Each `PhaseLookupValue` defines:
+- Start phase name
+- End phase name
+- A value or function to return during that phase range
+
+## Methodology
+
+The `PhaseLookup` function evaluates all its children, which must be `PhaseLookupValue` models. For each child:
+
+1. Check if the crop is currently between the defined `Start` and `End` stages.
+2. If yes, return the value from the first matching child and stop checking further.
+3. If no phase matches any of the child `PhaseLookupValue` models, return 0 by default.
+
+The pseudocode logic is:
+
+$$
+\text{Value} = 
+\begin{cases}
+\text{PhaseLookupValue}_i & \text{if crop is in phase } i \\
+0 & \text{if no match}
+\end{cases}
+$$
+
+This allows different values or functions to be "active" only in the relevant phases of the crop's life cycle.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+
+`PhaseLookup` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `PhaseLookup` in the Filter Box. A symbol for the `PhaseLookup` is displayed in the user interface to represent the function.
+
+![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/PhaseLookup.png){ width=64px }
+
+
+## Practical Example
+
+In a crop model, you may want a function to return a higher value during vegetative growth and a lower value during reproductive stages. You would use:
+
+- `PhaseLookup` as the parent function.
+- Two children of type `PhaseLookupValue`:
+  - One active from `Emergence` to `FloralInitiation`, returning a value of 1.0
+  - Another from `FloralInitiation` to `Maturity`, returning a value of 0.5
+
+This setup allows the model to adjust behavior based on phase without writing additional logic elsewhere.
+
+
+## See Also
+
+* **Source code:** [PhaseLookup.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhaseLookup.cs)

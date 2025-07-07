@@ -1,0 +1,96 @@
+---
+title: "PhaseLookupValue"
+output: html_document
+---
+
+PhaseLookupValue defines a value or function that applies only within a specified phase range in a crop's development. It is used as a child of `PhaseLookup` to provide values that change according to phenological stages.
+
+## Overview
+
+This function enables conditional logic based on crop development stage. When the crop is between two specified stages—such as Emergence to FloralInitiation—`PhaseLookupValue` activates and returns the value of its child function. Outside this phase range, the function returns zero.
+
+In APSIM NG, `PhaseLookupValue` is typically used under [PhaseLookup](PhaseLookup.qmd) to define phase-specific values for key processes like growth rates, stress responses, or developmental signals.
+
+## Inputs
+
+- Start: The name of the crop stage where this value becomes active.
+- End: The name of the crop stage where this value becomes inactive.
+- Child function: The first child model (e.g., constant, multiplier) providing the value when active. If multiple children are present, only the first is used.
+- Phenology: The current phenological state of the crop (linked internally).
+
+## Methodology
+
+When simulation begins, `PhaseLookupValue` maps the `Start` and `End` crop stage names to internal indices.
+
+Each day during the simulation:
+
+1. It checks whether the current crop stage falls between the defined start and end stages.
+2. If yes, it evaluates the first child function and returns that value.
+3. If no, it returns 0.0.
+
+Mathematically:
+
+$$
+\text{Value} = 
+\begin{cases}
+\text{ChildFunction}(), & \text{if in phase} \\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+This allows you to define rules or responses that are only active during specific crop phases.
+
+## Events
+
+**Events Listened For**
+
+| Event       | Purpose                                                                |
+|-------------|------------------------------------------------------------------------|
+| Commencing  | Convert stage names to internal indices at the beginning of simulation |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property | Type   | Description                                  |
+|----------|--------|----------------------------------------------|
+| Start    | string | Name of the stage when activation begins     |
+| End      | string | Name of the stage when activation ends       |
+
+**Read-Only Reportable Properties**
+
+| Property  | Type    | Description                                     |
+|-----------|---------|-------------------------------------------------|
+| InPhase   | boolean | `true` if current crop stage is within range    |
+
+## User Interface
+
+`PhaseLookupValue` is used as a child of a [PhaseLookup](PhaseLookup.qmd) node. To use it:
+
+1. Right-click on the `PhaseLookup` in the model tree.
+2. Select "Add Model...".
+3. Choose "PhaseLookupValue".
+4. Set `Start` and `End` crop stages, and add a child function such as `Constant` or `MultiplyFunction`.
+
+
+## Practical Example
+
+Suppose you want to return a value of 1.0 during the vegetative phase and 0.5 during grain filling:
+
+- First `PhaseLookupValue`:  
+  - Start = "Emergence", End = "FloralInitiation"  
+  - Child = Constant (1.0)
+
+- Second `PhaseLookupValue`:  
+  - Start = "FloralInitiation", End = "Maturity"  
+  - Child = Constant (0.5)
+
+Together, under a parent `PhaseLookup`, these values define different behavior for the crop across development.
+
+## See Also
+
+* **Source code:** [PhaseLookupValue.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhaseLookupValue.cs)
