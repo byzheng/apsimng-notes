@@ -12,40 +12,6 @@
     ]
   },
   {
-    "listing": "/docs/Models/Traits/index.html",
-    "items": [
-      "/docs/Models/Traits/CO2/index.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/Graph/index.html",
-    "items": [
-      "/docs/Models/Graph/EventNamesOnGraph.html"
-    ]
-  },
-  {
-    "listing": "/tips/index.html",
-    "items": [
-      "/tips/heading-ppd-oz-wheat.html",
-      "/tips/phy-ppd-oz-wheat.html",
-      "/tips/co2.html",
-      "/tips/internal_variable.html",
-      "/tips/summary.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/PMF/index.html",
-    "items": [
-      "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/EndPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-      "/docs/Models/PMF/Phenology/Phenology.html",
-      "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
-    ]
-  },
-  {
     "listing": "/docs/Models/Functions/index.html",
     "items": [
       "/docs/Models/Functions/AccumulateFunction.html",
@@ -67,7 +33,37 @@
     ]
   },
   {
-    "listing": "/docs/Crops/Canola/Phenology/index.html",
-    "items": []
+    "listing": "/docs/Models/PMF/index.html",
+    "items": [
+      "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/EndPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+      "/docs/Models/PMF/Phenology/Phenology.html",
+      "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+      "/docs/Models/PMF/Arbitrator/RelativeAllocation.html"
+    ]
+  },
+  {
+    "listing": "/tips/index.html",
+    "items": [
+      "/tips/heading-ppd-oz-wheat.html",
+      "/tips/phy-ppd-oz-wheat.html",
+      "/tips/co2.html",
+      "/tips/internal_variable.html",
+      "/tips/summary.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Graph/index.html",
+    "items": [
+      "/docs/Models/Graph/EventNamesOnGraph.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/Traits/index.html",
+    "items": [
+      "/docs/Models/Traits/CO2/index.html"
+    ]
   }
 ]

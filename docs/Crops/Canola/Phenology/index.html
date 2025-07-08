@@ -30,8 +30,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
-<script src="../../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -71,35 +69,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] }],
-      
-      searchColumns: [],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -128,35 +97,6 @@ cookieconsent.run({
 </script> 
   
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -516,32 +456,103 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 show">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Phenology</span></a>
+  <a href="../../../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyFlowering</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyPodDevelopment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emerging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Germinating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LateGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maturing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MidGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ReadyForHarvesting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ripening</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thermal Time</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traits</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
@@ -554,11 +565,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
@@ -571,11 +582,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
@@ -656,13 +667,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
  <span class="menu-text">Management</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
@@ -678,8 +689,16 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#thermal-time" id="toc-thermal-time" class="nav-link active" data-scroll-target="#thermal-time">Thermal Time</a></li>
+  <li><a href="#photoperiod" id="toc-photoperiod" class="nav-link" data-scroll-target="#photoperiod">Photoperiod</a></li>
+  <li><a href="#stages-and-phases" id="toc-stages-and-phases" class="nav-link" data-scroll-target="#stages-and-phases">Stages and Phases</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Canola/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -703,29 +722,195 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table caption-top" data-quarto-postprocess="true">
+<p>The <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a> model in APSIM NG simulates the development of canola plants.</p>
+<section id="thermal-time" class="level2">
+<h2 class="anchored" data-anchor-id="thermal-time">Thermal Time</h2>
+<p>Daily <a href="../../../../docs/Crops/Canola/Phenology/ThermalTime.html" class="crop-link">Thermal Time</a> is based on <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">SubDailyInterpolation</a> with three cardinal temperature and <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> interpolation method.</p>
+</section>
+<section id="photoperiod" class="level2">
+<h2 class="anchored" data-anchor-id="photoperiod">Photoperiod</h2>
+<p>The daily photoperiod is calculated using the <a href="../../../../docs/Models/Functions/PhotoperiodFunction.html" class="model-link">PhotoperiodFunction</a> with 6 degrees twilight.</p>
+</section>
+<section id="stages-and-phases" class="level2">
+<h2 class="anchored" data-anchor-id="stages-and-phases">Stages and Phases</h2>
+<p>The numerical system is used to represent the development of wheat plants starting from 1. The stages are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 24%">
+<col style="width: 68%">
+</colgroup>
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">Title</th>
-<th data-quarto-table-cell-role="th">Description</th>
+<th>Stage</th>
+<th>Name</th>
+<th>Description</th>
 </tr>
 </thead>
-<tbody class="list">
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Sowing</td>
+<td>Seeds are planted in the soil</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Germination</td>
+<td>Seeds absorb water and begin to sprout</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Emergence</td>
+<td>Seedlings break through the soil surface</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>FloralInitiation</td>
+<td>Floral organs begin to form in the shoot apex</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>GreenBud</td>
+<td>Green buds become visible</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>StartFlowering</td>
+<td>First flowers open</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>StartPodDevelopment</td>
+<td>Pods begin to form after flowering</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>StartGrainFilling</td>
+<td>Seeds begin to accumulate dry matter (grain filling starts)</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>EndFlowering</td>
+<td>Flowering is complete</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>EndPodDevelopment</td>
+<td>Pod development is complete</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>EndGrainFill</td>
+<td>Grain filling is complete; seeds reach final size</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>Maturity</td>
+<td>Seeds reach physiological maturity</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>HarvestRipe</td>
+<td>Seeds are fully ripened and ready for harvest</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>Phases are used to represent the development between two stages. The phases are:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Order</th>
+<th>Name</th>
+<th>From</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/Germinating.html" class="crop-link">Germinating</a></td>
+<td>Sowing</td>
+<td>Germination</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/Emerging.html" class="crop-link">Emerging</a></td>
+<td>Germination</td>
+<td>Emergence</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><a href="Vegetative.qmd" class="broken-link">Vegetative</a></td>
+<td>Emergence</td>
+<td>FloralInitiation</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><a href="BudDevelopment.qmd" class="broken-link">BudDevelopment</a></td>
+<td>FloralInitiation</td>
+<td>GreenBud</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><a href="StemElongation.qmd" class="broken-link">StemElongation</a></td>
+<td>GreenBud</td>
+<td>StartFlowering</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="crop-link">EarlyFlowering</a></td>
+<td>StartFlowering</td>
+<td>StartPodDevelopment</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="crop-link">EarlyPodDevelopment</a></td>
+<td>StartPodDevelopment</td>
+<td>StartGrainFilling</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="crop-link">EarlyGrainFilling</a></td>
+<td>StartGrainFilling</td>
+<td>EndFlowering</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="crop-link">MidGrainFilling</a></td>
+<td>EndFlowering</td>
+<td>EndPodDevelopment</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="crop-link">LateGrainFilling</a></td>
+<td>EndPodDevelopment</td>
+<td>EndGrainFill</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/Maturing.html" class="crop-link">Maturing</a></td>
+<td>EndGrainFill</td>
+<td>Maturity</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/Ripening.html" class="crop-link">Ripening</a></td>
+<td>Maturity</td>
+<td>HarvestRipe</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td><a href="../../../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="crop-link">ReadyForHarvesting</a></td>
+<td>HarvestRipe</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1144,7 +1329,7 @@ window.Quarto = {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Canola/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Canola/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
