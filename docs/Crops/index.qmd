@@ -8,23 +8,29 @@ This section contains the documentation for `Crops` models in APSIM Next Generat
 
 For each crop, the documentation is organised as the original model structure defined in the `JSON` file.
 
+```{r list-crops, echo=FALSE, results='asis'}
+# List subdirectories under Crops/
+crop_dirs <- list.dirs(path = here::here("docs/Crops"), full.names = FALSE, recursive = FALSE)
+message(getwd())
+# Create HTML interface
+cat("::: {.grid}\n\n")
+for (crop in crop_dirs) {
+    cat(glue::glue(
+        '
+:::{{.g-col-4 .p-3 .border .rounded}}\n\n
 
-::: {.grid}
+<a href="Crops/{crop}">\n\n
+<img src="/images/{tolower(crop)}.png" alt="{crop} icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" />\n\n
+</a>\n\n
+
+[Explore {crop} →](Crops/{crop})\n\n
 
 
-::: {.g-col-3 .p-3 .border .rounded}
-<a href="Barley"><img src="/images/barley.png" alt="Barley icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
-[Explore Barley →](Barley)
-:::
+:::\n\n
 
-::: {.g-col-3 .p-3 .border .rounded}
-<a href="Canola"><img src="/images/canola.png" alt="Canola icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
-[Explore Canola →](Canola)
-:::
+'
+    ))
+}
 
-::: {.g-col-3 .p-3 .border .rounded}
-<a href="Wheat"><img src="/images/wheat.png" alt="Wheat icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
-[Explore Wheat →](Wheat)
-:::
-
-:::
+cat(":::\n")
+```
