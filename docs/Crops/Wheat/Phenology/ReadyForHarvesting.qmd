@@ -12,7 +12,6 @@ The [EndPhase](/docs/Models/PMF/Phenology/Phases/EndPhase.qmd) model simulates l
 
 - This phase starts at **EndGrainFill** and ends at **HarvestRipe**, when the grain is considered to be fully ripe.
 - The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function. But it does not use here.
-- The **Target thermal time** is fixed as constant for this phase, with default value of 335.0 °Cd. But it does not use here.
 
 
 ## Cultivar-Specific Parameters

@@ -1,0 +1,26 @@
+---
+title: "Ripening"
+output: html_document
+---
+
+
+The **Ripening** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **Maturity** to **HarvestRipe**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `Maturity` and `HarvestRipe` stages.
+
+- This phase starts at **Maturity** and ends at **HarvestRipe**, when the grain is considered to be fully ripe.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is fixed as constant for this phase, with default value of 1.0 °Cd, i.e. HarvestRipe stage is occurring in next day.
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Ripening.Target.FixedValue   | Thermal time target during grain ripening (°Cd)      |     1.0          |
+
+## Practical Example
+
+> no practical example available

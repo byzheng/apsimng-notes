@@ -12,7 +12,7 @@ The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model sim
 
 - This phase starts at **EndGrainFill** and ends at **HarvestRipe**, when the grain is considered to be fully ripe.
 - The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
-- The **Target thermal time** is fixed as constant for this phase, with default value of 335.0 °Cd.:
+- The **Target thermal time** is fixed as constant for this phase, with default value of 335.0 °Cd.
 
 
 ## Cultivar-Specific Parameters
