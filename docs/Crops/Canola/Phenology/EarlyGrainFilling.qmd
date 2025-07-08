@@ -1,0 +1,50 @@
+---
+title: "EarlyGrainFilling"
+output: html_document
+---
+
+
+The **EarlyGrainFilling** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **StartGrainFilling** to **EndFlowering**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `EndPodDevelopment` and `EndGrainFill` stages.
+
+- This phase starts at **StartGrainFilling** and ends at **EndFlowering**, when the grain is considered to be fully ripe.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is assumed as follows:
+
+
+
+The model assumes the entire grain filling period is a constant value defined as genotypic parameter `[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue` ($T_\text{total}$) and the default value is 700 °Cd, and divides this into three phases:
+
+* Early Grain Filling = 5% of the total period
+$$
+T_\text{early} = 0.05 \times T_\text{total}
+$$
+
+* Mid Grain Filling = 50% of the remaining period after early grain fill
+
+$$
+T_\text{mid} = 0.5 \times (T_\text{total} - T_\text{early})
+$$
+
+* Late Grain Filling = Residual period
+
+$$
+T_\text{late} = T_\text{total} - T_\text{early} - T_\text{mid}
+$$
+
+
+> A variable `Stress` referring to `[Phenology].Vegetative.PhotoperiodEffect` is presented in the `Canola` model, but don't actually use in the model.
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue  | Thermal time target during whole grain filling (°Cd)      | 700          |
+
+## Practical Example
+
+> no practical example available

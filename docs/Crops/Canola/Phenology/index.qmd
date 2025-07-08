@@ -51,4 +51,3 @@ Phases are used to represent the development between two stages. The phases are:
 | 11    | [Maturing](Maturing.qmd)                    | EndGrainFill   | Maturity             |
 | 12    | [Ripening](Ripening.qmd)                    | Maturity       | HarvestRipe          |
 | 13    | [ReadyForHarvesting](ReadyForHarvesting.qmd)| HarvestRipe    |                      |
-

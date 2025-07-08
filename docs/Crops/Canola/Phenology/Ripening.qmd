@@ -19,7 +19,7 @@ The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model sim
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].Ripening.Target.FixedValue   | Thermal time target during grain ripening (°Cd)      |     1.0          |
+| [Phenology].Ripening.Target.FixedValue   | Thermal time target during ripening (°Cd)      |     1.0          |
 
 ## Practical Example
 
