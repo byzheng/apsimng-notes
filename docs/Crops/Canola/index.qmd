@@ -2,8 +2,16 @@
 title: "Canola"
 ---
 
+
+The Canola (*Brassica napus*) model in APSIM Next Generation simulates the growth and development of canola crops. It is designed to capture the key physiological processes that influence canola yield, including phenology, biomass accumulation, and stress responses.
+
 The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) [@brown_plant_2014], which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.
 
 
-* [Phenology](Phenology)
 
+## [Phenology](Phenology)
+
+
+## See Also
+
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615/Models/Resources/Canola.json)

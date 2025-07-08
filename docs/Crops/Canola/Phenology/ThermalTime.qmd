@@ -7,7 +7,7 @@ Daily thermal time for wheat based on [SubDailyInterpolation](/docs/Models/Funct
 
 ## Overview
 
-The **Thermal Time** function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method ([ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd)), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily  thermal time used in phenological and growth calculations.
+The **Thermal Time** function in canola model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method ([ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd)), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily  thermal time used in phenological and growth calculations.
 
 
 * `InterpolationMethod`: [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.
@@ -15,16 +15,16 @@ The **Thermal Time** function in wheat model calculates the daily thermal time. 
 
 | Cardinal Point | Description                | Value (°C) |
 |:--------------:|:--------------------------|:----------:|
-| Base           | Minimum for growth         | 0          |
-| Optimum        | Maximum rate of growth     | 26         |
-| Maximum        | Growth ceases above this   | 37         |
+| Base           | Minimum for growth         | 2          |
+| Optimum        | Maximum rate of growth     | 30         |
+| Maximum        | Growth ceases above this   | 35         |
 
 ```{r plot-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
 library(ggplot2)
 
 
-x <- c(0, 26, 37)
-y <- c(0, 26, 0)
+x <- c(2, 30, 35)
+y <- c(0, 28, 0)
 x_out <- seq(-5, 40)
 df <- data.frame(Temperature = x_out, 
                     Response = weaana::interpolationFunction(x, y, values = x_out))
@@ -33,9 +33,9 @@ df <- data.frame(Temperature = x_out,
 ggplot(df, aes(x = Temperature, y = Response)) +
     geom_line(color = "darkorange", size = 1.2) +
     geom_vline(xintercept = x, linetype = "dashed", color = "grey50") +
-    annotate("text", x = x[1], y = max(df$Response), label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
-    annotate("text", x = x[2] - 3, y = max(df$Response), label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
-    annotate("text", x = x[3], y = max(df$Response), label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
+    annotate("text", x = x[1], y = max(df$Response) - 1, label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
+    annotate("text", x = x[2] - 3, y = max(df$Response) - 1, label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
+    annotate("text", x = x[3], y = max(df$Response) - 1, label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
     labs(
         x = "Temperature (°C)",
         y = "Thermal Response"
@@ -51,3 +51,4 @@ ggplot(df, aes(x = Temperature, y = Response)) +
 ## Practical Example
 
 > No practical example is provided for the thermal time function.
+

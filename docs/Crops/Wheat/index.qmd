@@ -19,3 +19,4 @@ The wheat grain is only for parts for economic yield without [Spike](Spike).
 
 Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
 
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615/Models/Resources/Wheat.json)
