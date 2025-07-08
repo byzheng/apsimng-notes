@@ -49,3 +49,6 @@ These notes may contain errors, be incomplete, or reflect outdated information. 
 
 I will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via [GitHub pull requests](https://github.com/byzheng/apsimng-notes) or [issues](https://github.com/byzheng/apsimng-notes/issues).
 
+:::{.callout-note}
+This documentation is updated to this commit: [b9f9abca67191765f8a2de01e7cf0ce1c3f4a615](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615) on 8 July 2025.
+:::

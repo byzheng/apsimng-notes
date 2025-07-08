@@ -8,7 +8,18 @@ This section contains the documentation for `Crops` models in APSIM Next Generat
 
 For each crop, the documentation is organised as the original model structure defined in the `JSON` file.
 
-## [Wheat](Wheat)
 
+::: {.grid}
+
+
+::: {.g-col-2 .p-2 .border .rounded}
+## [Wheat](Wheat)
+:::
+
+
+::: {.g-col-2 .p-2 .border .rounded}
 ## [Canola](Canola)
+:::
+
+:::
 
