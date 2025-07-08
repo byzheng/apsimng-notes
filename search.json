@@ -11,29 +11,18 @@
     "href": "docs/index.html",
     "title": "Docs",
     "section": "",
-    "text": "This section contains my personal documentation notes for APSIM Next Generation.\nThe content is compiled from a variety of sources including: - Large Language Models (e.g. Copilot, ChatGPT) - The APSIM NG source code - APSIM online materials and official documentation - Personal communication with APSIM developers - My own understanding through hands-on experience\nThese notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the full disclaimer for more.\nI will continue updating this documentation as I work with APSIM Next Generation.\nContributions are welcome via GitHub pull requests or issues.",
+    "text": "Technical notes on APSIM NG core models (e.g., soil, management, utilities).\nExplore Model →\n\n\n\nDocumentation for crop models, including phenology, grain filling, and stress responses.\nView Crop →",
     "crumbs": [
       "Home",
       "Docs"
     ]
   },
   {
-    "objectID": "docs/index.html#models",
-    "href": "docs/index.html#models",
+    "objectID": "docs/index.html#about-these-notes",
+    "href": "docs/index.html#about-these-notes",
     "title": "Docs",
-    "section": "Models",
-    "text": "Models\nThis section contains the Models developed in APSIM Next Generation with C# source codes under folder Models. These models are organised as the original folder structure in the APSIM Next Generation repository.",
-    "crumbs": [
-      "Home",
-      "Docs"
-    ]
-  },
-  {
-    "objectID": "docs/index.html#crops",
-    "href": "docs/index.html#crops",
-    "title": "Docs",
-    "section": "Crops",
-    "text": "Crops\nThis section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.",
+    "section": "📚 About These Notes",
+    "text": "📚 About These Notes\n\n\n\n\n\n\nNote\n\n\n\nThese are personal documentation notes for APSIM Next Generation, compiled from various sources and personal experience.\n\n\n\n⚠️ This is not the official APSIM documentation.\nFor official information, refer to:\n- APSIM User Documentation\n- Model Validation Docs\n- APSIM GitHub Repository\n\nThese notes are compiled from a variety of sources, including:\n\nLarge Language Models (e.g. GitHub Copilot, ChatGPT)\nThe APSIM NG source code\nAPSIM official documentation\nPersonal communication with APSIM developers\nHands-on experimentation\n\nThese notes may contain errors, be incomplete, or reflect outdated information. See the full disclaimer.\nI will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via GitHub pull requests or issues.\n\n\n\n\n\n\nNote\n\n\n\nThis documentation is updated to this commit: b9f9abca67191765f8a2de01e7cf0ce1c3f4a615 on 8 July 2025.",
     "crumbs": [
       "Home",
       "Docs"

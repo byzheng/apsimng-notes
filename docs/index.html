@@ -623,8 +623,7 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#models" id="toc-models" class="nav-link active" data-scroll-target="#models">Models</a></li>
-  <li><a href="#crops" id="toc-crops" class="nav-link" data-scroll-target="#crops">Crops</a></li>
+  <li><a href="#about-these-notes" id="toc-about-these-notes" class="nav-link active" data-scroll-target="#about-these-notes">📚 About These Notes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -650,25 +649,64 @@ cookieconsent.run({
 </header>
 
 
-<p>This section contains my personal documentation notes for <a href="https://www.apsim.info/" class="external-link">APSIM Next Generation</a>.</p>
-<p>The content is compiled from a variety of sources including: - Large Language Models (e.g.&nbsp;Copilot, ChatGPT) - The <a href="https://github.com/APSIMInitiative/ApsimX" class="external-link">APSIM NG source code</a> - APSIM online materials and official documentation - Personal communication with APSIM developers - My own understanding through hands-on experience</p>
+<div class="grid">
+<section id="models" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="models">🧩 Models</h3>
+<p>Technical notes on APSIM NG core models (e.g., soil, management, utilities).<br>
+<a href="Models" class="model-link">Explore Model →</a></p>
+</section>
+<section id="crops" class="level3 g-col-6">
+<h3 class="anchored" data-anchor-id="crops">🌿 Crops</h3>
+<p>Documentation for crop models, including phenology, grain filling, and stress responses.<br>
+<a href="Crops" class="crop-link">View Crop →</a></p>
+</section>
+</div>
+<hr>
+<section id="about-these-notes" class="level2">
+<h2 class="anchored" data-anchor-id="about-these-notes">📚 About These Notes</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These are <strong>personal documentation notes</strong> for <a href="https://www.apsim.info/" class="external-link">APSIM Next Generation</a>, compiled from various sources and personal experience.</p>
+</div>
+</div>
 <blockquote class="blockquote">
 <p>⚠️ This is <em>not</em> the official APSIM documentation.<br>
-For authoritative information, refer to:<br>
+For official information, refer to:<br>
 - <a href="https://apsimnextgeneration.netlify.app/" class="external-link">APSIM User Documentation</a><br>
 - <a href="https://docs.apsim.info/" class="external-link">Model Validation Docs</a><br>
 - <a href="https://github.com/APSIMInitiative/ApsimX" class="external-link">APSIM GitHub Repository</a></p>
 </blockquote>
-<p>These notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the <a href="../disclaimer.html">full disclaimer</a> for more.</p>
-<p>I will continue updating this documentation as I work with APSIM Next Generation.<br>
-Contributions are welcome via <a href="https://github.com/byzheng/apsimng-notes" class="external-link">GitHub pull requests</a> or <a href="https://github.com/byzheng/apsimng-notes/issues" class="external-link">issues</a>.</p>
-<section id="models" class="level2">
-<h2 class="anchored" data-anchor-id="models"><a href="Models" class="model-link">Models</a></h2>
-<p>This section contains the <code>Models</code> developed in APSIM Next Generation with C# source codes under folder <a href="https://github.com/APSIMInitiative/ApsimX/tree/master/Models" class="external-link">Models</a>. These models are organised as the original folder structure in the APSIM Next Generation repository.</p>
-</section>
-<section id="crops" class="level2">
-<h2 class="anchored" data-anchor-id="crops"><a href="Crops" class="crop-link">Crops</a></h2>
-<p>This section contains the documentation for <code>Crops</code> models in APSIM Next Generation. The <code>Crops</code> models are released as part of the APSIM Next Generation. The model is defined under <a href="https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources" class="external-link">Resources</a> folder in the APSIM Next Generation repository.</p>
+<p>These notes are compiled from a variety of sources, including:</p>
+<ul>
+<li>Large Language Models (e.g.&nbsp;GitHub Copilot, ChatGPT)</li>
+<li>The <a href="https://github.com/APSIMInitiative/ApsimX" class="external-link">APSIM NG source code</a></li>
+<li>APSIM official documentation</li>
+<li>Personal communication with APSIM developers</li>
+<li>Hands-on experimentation</li>
+</ul>
+<p>These notes may contain errors, be incomplete, or reflect outdated information. See the <a href="../disclaimer.html">full disclaimer</a>.</p>
+<p>I will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via <a href="https://github.com/byzheng/apsimng-notes" class="external-link">GitHub pull requests</a> or <a href="https://github.com/byzheng/apsimng-notes/issues" class="external-link">issues</a>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This documentation is updated to this commit: <a href="https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615" class="external-link">b9f9abca67191765f8a2de01e7cf0ce1c3f4a615</a> on 8 July 2025.</p>
+</div>
+</div>
 
 
 </section>
