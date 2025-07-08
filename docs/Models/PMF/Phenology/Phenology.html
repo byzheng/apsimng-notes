@@ -531,6 +531,12 @@ cookieconsent.run({
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Crops/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vegetative</span></a>
+  </div>
+</li>
       </ul>
   </li>
       </ul>
@@ -757,7 +763,7 @@ cookieconsent.run({
 <li>Initialise phenology development using the first phase</li>
 </ul>
 <p><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a>:</p>
-<p>This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from <a href="../../../../docs/Models/PFM/Plant.qmd" class="broken-link">Plant</a> model.</p>
+<p>This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from <a href="../../../../docs/Models/PMF/Plant.qmd" class="broken-link">Plant</a> model.</p>
 <p>At each timestep, the <code>Phenology</code> model:</p>
 <ul>
 <li>Check whether <code>ThermalTime</code> is available and more than 0. Throw an error if not.</li>
