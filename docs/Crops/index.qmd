@@ -12,14 +12,19 @@ For each crop, the documentation is organised as the original model structure de
 ::: {.grid}
 
 
-::: {.g-col-2 .p-2 .border .rounded}
-## [Wheat](Wheat)
+::: {.g-col-3 .p-3 .border .rounded}
+<a href="Barley"><img src="/images/barley.png" alt="Barley icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
+[Explore Barley →](Barley)
 :::
 
+::: {.g-col-3 .p-3 .border .rounded}
+<a href="Canola"><img src="/images/canola.png" alt="Canola icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
+[Explore Canola →](Canola)
+:::
 
-::: {.g-col-2 .p-2 .border .rounded}
-## [Canola](Canola)
+::: {.g-col-3 .p-3 .border .rounded}
+<a href="Wheat"><img src="/images/wheat.png" alt="Wheat icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" /></a>
+[Explore Wheat →](Wheat)
 :::
 
 :::
-
