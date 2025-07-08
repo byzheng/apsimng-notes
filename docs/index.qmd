@@ -1,34 +1,51 @@
 ---
 title: "Docs"
+format: html
 ---
 
+::: {.grid}
 
-This section contains my personal documentation notes for [APSIM Next Generation](https://www.apsim.info/).
 
-The content is compiled from a variety of sources including:
-- Large Language Models (e.g. Copilot, ChatGPT)
-- The [APSIM NG source code](https://github.com/APSIMInitiative/ApsimX)
-- APSIM online materials and official documentation
-- Personal communication with APSIM developers
-- My own understanding through hands-on experience
+::: {.g-col-6}
+### 🧩 Models
+Technical notes on APSIM NG core models (e.g., soil, management, utilities).  
+[Explore Model →](Models)
+:::
+
+
+::: {.g-col-6}
+### 🌿 Crops
+Documentation for crop models, including phenology, grain filling, and stress responses.  
+[View Crop →](Crops)
+:::
+
+:::
+
+
+
+---
+
+## 📚 About These Notes
+
+:::{.callout-note}
+These are **personal documentation notes** for [APSIM Next Generation](https://www.apsim.info/), compiled from various sources and personal experience.
+:::
 
 > ⚠️ This is *not* the official APSIM documentation.  
-> For authoritative information, refer to:  
+> For official information, refer to:  
 > - [APSIM User Documentation](https://apsimnextgeneration.netlify.app/)  
 > - [Model Validation Docs](https://docs.apsim.info/)  
 > - [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
 
-These notes are intended as a learning resource. They may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](/disclaimer.qmd) for more.
+These notes are compiled from a variety of sources, including:
 
-I will continue updating this documentation as I work with APSIM Next Generation.  
-Contributions are welcome via [GitHub pull requests](https://github.com/byzheng/apsimng-notes) or [issues](https://github.com/byzheng/apsimng-notes/issues).
+- Large Language Models (e.g. GitHub Copilot, ChatGPT)
+- The [APSIM NG source code](https://github.com/APSIMInitiative/ApsimX)
+- APSIM official documentation
+- Personal communication with APSIM developers
+- Hands-on experimentation
 
+These notes may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](/disclaimer.qmd).
 
-## [Models](Models)
+I will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via [GitHub pull requests](https://github.com/byzheng/apsimng-notes) or [issues](https://github.com/byzheng/apsimng-notes/issues).
 
-This section contains the `Models` developed in APSIM Next Generation with C# source codes under folder [Models](https://github.com/APSIMInitiative/ApsimX/tree/master/Models). These models are organised as the original folder structure in the APSIM Next Generation repository.
-
-
-## [Crops](Crops)
-
-This section contains the documentation for `Crops` models in APSIM Next Generation. The `Crops` models are released as part of the APSIM Next Generation. The model is defined under [Resources](https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources) folder in the APSIM Next Generation repository. 
