@@ -1,0 +1,49 @@
+---
+title: "Emerging"
+output: html_document
+---
+
+
+The **Emerging** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **Germination** to **Emergence**. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.
+
+## Overview
+
+The [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) model simulates the time between the [Germination](/docs/Models/Events.html#PlantGermination) and [Emergence](/docs/Models/Events.html#PlantEmergence) stages.
+
+- This phase starts at **Germination** and ends at **Emergence**, when the seedling is considered to have emerged from the soil.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** to complete this phase is defined as:
+
+
+$$
+\text{Target} = \text{ShootLag} + (\text{SowingDepth} \times \text{ShootRate})
+$$
+
+Where:
+
+- **ShootLag** is a lag when coleoptile starting to elongate (°Cd) with default value of 15.0 °Cd,
+- **ShootRate** is the rate of shoot elongation (°Cd/mm) with default value of 5 °Cd/mm,
+- **SowingDepth** is the depth at which the seed is sown (mm), taken from `[Plant].SowingData.Depth`.
+
+Deeper sowing results in longer emergence delays due to greater thermal time requirement.
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Emerging.ShootLag.FixedValue   | Lag before coleoptile starts to elongate (°Cd)      | 15.0          |
+| [Phenology].Emerging.ShootRate.FixedValue  | Rate of shoot elongation (°Cd/mm)                   | 5.0           |
+
+## Practical Example
+
+This table illustrates deeper sowing delays emergence due to higher thermal time requirements.
+
+
+| Sowing Depth (mm) | ShootLag (°Cd) | ShootRate (°Cd/mm) | Target Thermal Time (°Cd) |
+|------------|---------------|--------------------|--------------------------|
+| 20         | 15.0          | 5.0                | 95.0                     |
+| 25         | 15.0          | 5.0                | 100.0                    |
+| 30         | 15.0          | 5.0                | 105.0                    |
+
+
+

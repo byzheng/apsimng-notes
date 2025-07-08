@@ -1,10 +1,54 @@
 ---
 title: "Phenology"
-listing:
-  contents: 
-   - "*.md"
-   - "*.qmd"
-  type: table
-  sort: "date desc"
-  fields: [title, description]
 ---
+
+
+The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of canola plants.
+
+
+## Thermal Time
+
+Daily [Thermal Time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. 
+
+## Stages and Phases
+
+The numerical system is used to represent the development of wheat plants starting from 1. The stages are:
+
+| Stage | Name                   | Description                                                      |
+|-------|------------------------|------------------------------------------------------------------|
+| 1     | Sowing                 | Seeds are planted in the soil                                    |
+| 2     | Germination            | Seeds absorb water and begin to sprout                           |
+| 3     | Emergence              | Seedlings break through the soil surface                         |
+| 4     | FloralInitiation       | Floral organs begin to form in the shoot apex                    |
+| 5     | GreenBud               | Green buds become visible                                        |
+| 6     | StartFlowering         | First flowers open                                               |
+| 7     | StartPodDevelopment    | Pods begin to form after flowering                               |
+| 8     | StartGrainFilling      | Seeds begin to accumulate dry matter (grain filling starts)      |
+| 9     | EndFlowering           | Flowering is complete                                            |
+| 10    | EndPodDevelopment      | Pod development is complete                                      |
+| 11    | EndGrainFill           | Grain filling is complete; seeds reach final size                |
+| 12    | Maturity               | Seeds reach physiological maturity                               |
+| 13    | HarvestRipe            | Seeds are fully ripened and ready for harvest                    |
+
+Phases are used to represent the development between two stages. The phases are:
+
+| Order | Name                        | From           | To                   |
+|-------|-----------------------------|----------------|----------------------|
+| 1     | [Germinating](Germinating.qmd)              | Sowing         | Germination          |
+| 2     | [Emerging](Emerging.qmd)                    | Germination    | Emergence            |
+| 3     | [Vegetative](Vegetative.qmd)                | Emergence      | FloralInitiation     |
+| 4     | [BudDevelopment](BudDevelopment.qmd)        | FloralInitiation| GreenBud            |
+| 5     | [StemElongation](StemElongation.qmd)        | GreenBud       | StartFlowering       |
+| 6     | [EarlyFlowering](EarlyFlowering.qmd)        | StartFlowering | StartPodDevelopment  |
+| 7     | [EarlyPodDevelopment](EarlyPodDevelopment.qmd) | StartPodDevelopment | StartGrainFilling |
+| 8     | [EarlyGrainFilling](EarlyGrainFilling.qmd)  | StartGrainFilling | EndFlowering       |
+| 9     | [MidGrainFilling](MidGrainFilling.qmd)      | EndFlowering   | EndPodDevelopment    |
+| 10    | [LateGrainFilling](LateGrainFilling.qmd)    | EndPodDevelopment | EndGrainFill      |
+| 11    | [Maturing](Maturing.qmd)                    | EndGrainFill   | Maturity             |
+| 12    | [Ripening](Ripening.qmd)                    | Maturity       | HarvestRipe          |
+| 13    | [ReadyForHarvesting](ReadyForHarvesting.qmd)| HarvestRipe    |                      |
+
