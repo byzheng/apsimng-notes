@@ -11,7 +11,7 @@ The **Thermal Time** function in canola model calculates the daily thermal time.
 
 
 * `InterpolationMethod`: [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.
-* `Response`: Three cardinal temperature using [XYPairs](/docs/Models/Functions/XYPairs.qmd) to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.
+* `Response`: Three cardinal temperature using [XYPairs](/docs/Models/Functions/XYPairs.qmd) to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation [@whish_vernalisation_2020; @robertson_simulation_2016].
 
 | Cardinal Point | Description                | Value (°C) |
 |:--------------:|:--------------------------|:----------:|
