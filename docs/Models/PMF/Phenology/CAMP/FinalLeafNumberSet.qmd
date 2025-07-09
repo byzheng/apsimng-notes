@@ -67,8 +67,6 @@ $$ \text{VrnLN} = \text{SN} - \text{SV} $$
 $$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
 
 
-## Example Parameter Table
-
 Below is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:
 
 | Parameter / FLN | BattenWinter | BattenSpring |
@@ -83,6 +81,7 @@ Below is a summary table for two New Zealand cultivars (i.e. BattenWinter and Ba
 | **LN**          | 18.25        | 8.41         |
 
 
+This figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.
 
 ```{r fig-fln, fig.height=8, fig.cap="Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars"}
 library(ggplot2)
