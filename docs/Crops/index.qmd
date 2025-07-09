@@ -11,6 +11,7 @@ For each crop, the documentation is organised as the original model structure de
 ```{r list-crops, echo=FALSE, results='asis'}
 # List subdirectories under Crops/
 crop_dirs <- list.dirs(path = here::here("docs/Crops"), full.names = FALSE, recursive = FALSE)
+crop_dirs <- crop_dirs[grepl("^[A-Z]", crop_dirs)]
 message(getwd())
 # Create HTML interface
 cat("::: {.grid}\n\n")
@@ -19,11 +20,11 @@ for (crop in crop_dirs) {
         '
 :::{{.g-col-4 .p-3 .border .rounded}}\n\n
 
-<a href="Crops/{crop}">\n\n
+<a href="{crop}">\n\n
 <img src="/images/{tolower(crop)}.png" alt="{crop} icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" />\n\n
 </a>\n\n
 
-[Explore {crop} →](Crops/{crop})\n\n
+[Explore {crop} →]({crop})\n\n
 
 
 :::\n\n
