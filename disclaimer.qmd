@@ -8,11 +8,14 @@ This is not the official APSIM documentation. It is a personal collection of doc
 
 The content here is generated and curated from various sources, including:
 
-- Large language models (e.g., GitHub Copilot, ChatGPT)
-- The APSIM NG source code
-- Official APSIM documentation and online materials
+- [APSIM Official Website](https://www.apsim.info/)
+- [APSIM User Documentation](https://apsimnextgeneration.netlify.app/)  
+- [Model Validation Docs](https://docs.apsim.info/)  
+- [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
 - Personal communication with APSIM developers
 - My own interpretation and understanding
+- Large language models (e.g., GitHub Copilot, ChatGPT)
+
 
 ⚠️ This documentation is **not official**, **may contain errors**, and **is not guaranteed to be complete or accurate**. It is intended as a **learning resource** for myself and others interested in APSIM NG.
 

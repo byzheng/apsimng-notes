@@ -25,25 +25,22 @@ Documentation for crop models, including phenology, grain filling, and stress re
 
 ---
 
-## 📚 About These Notes
 
 :::{.callout-note}
-These are **personal documentation notes** for [APSIM Next Generation](https://www.apsim.info/), compiled from various sources and personal experience.
+
+⚠️ This is *not* the official APSIM documentation.  For official information, refer to [APSIM Official Website](https://www.apsim.info/)
+
 :::
 
-> ⚠️ This is *not* the official APSIM documentation.  
-> For official information, refer to:  
-> - [APSIM User Documentation](https://apsimnextgeneration.netlify.app/)  
-> - [Model Validation Docs](https://docs.apsim.info/)  
-> - [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
+These are **personal documentation notes** for [APSIM Next Generation](https://www.apsim.info/), compiled from various sources and personal experience, including:
 
-These notes are compiled from a variety of sources, including:
-
-- Large Language Models (e.g. GitHub Copilot, ChatGPT)
-- The [APSIM NG source code](https://github.com/APSIMInitiative/ApsimX)
-- APSIM official documentation
+- [APSIM Official Website](https://www.apsim.info/)
+- [APSIM User Documentation](https://apsimnextgeneration.netlify.app/)  
+- [Model Validation Docs](https://docs.apsim.info/)  
+- [APSIM GitHub Repository](https://github.com/APSIMInitiative/ApsimX)
 - Personal communication with APSIM developers
-- Hands-on experimentation
+- My own interpretation and understanding
+- Large language models (e.g., GitHub Copilot, ChatGPT)
 
 These notes may contain errors, be incomplete, or reflect outdated information. See the [full disclaimer](/disclaimer.qmd).
 
