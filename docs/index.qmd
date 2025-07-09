@@ -3,6 +3,14 @@ title: "Docs"
 format: html
 ---
 
+
+:::{.callout-note}
+
+⚠️ This is *not* the official APSIM documentation.  For official information, refer to [APSIM Official Website](https://www.apsim.info/)
+
+:::
+
+
 ::: {.grid}
 
 
@@ -25,12 +33,6 @@ Documentation for crop models, including phenology, grain filling, and stress re
 
 ---
 
-
-:::{.callout-note}
-
-⚠️ This is *not* the official APSIM documentation.  For official information, refer to [APSIM Official Website](https://www.apsim.info/)
-
-:::
 
 These are **personal documentation notes** for [APSIM Next Generation](https://www.apsim.info/), compiled from various sources and personal experience, including:
 
