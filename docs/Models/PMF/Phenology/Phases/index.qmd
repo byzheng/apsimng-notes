@@ -1,0 +1,13 @@
+---
+title: "Phases"
+listing:
+  contents: 
+   - "*.md"
+   - "*.qmd"
+  type: table
+  sort: "date desc"
+  fields: [title, description]
+---
+
+
+Phases are the individual growth stages that define the plant's lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.
