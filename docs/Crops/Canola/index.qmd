@@ -1,5 +1,6 @@
 ---
 title: "Canola"
+doc_progress: 5
 ---
 
 
@@ -15,3 +16,4 @@ The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) 
 ## See Also
 
 * [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615/Models/Resources/Canola.json)
+
