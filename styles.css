@@ -16,7 +16,7 @@ a.crop-link {
 a.model-link {
     color: #228b22;
     /* forest green */
-    font-style: italic;
+    font-style: bold;
     text-decoration: underline dotted;
 }
 
@@ -29,7 +29,6 @@ a.broken-link {
 a.external-link {
     color: #6c757d;
     /* muted gray */
-    font-style: italic;
     text-decoration: none;
     border-bottom: 1px dotted #6c757d;
     /* subtle underline */

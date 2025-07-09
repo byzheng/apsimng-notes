@@ -2087,11 +2087,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
+    "title": "FLNParameterEnvironment",
     "section": "",
-    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
+    "text": "A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2099,15 +2099,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
+    "title": "FLNParameterEnvironment",
     "section": "Overview",
-    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
+    "text": "Overview\nThe FLNParameterEnvironment function is part of the phenology module in APSIM NG, specifically under the CAMP parent model. It describes the specific environmental settings such as vernalisation treatment temperature, duration, and photoperiod under which Final Leaf Number (FLN) was observed. These data are used for calibrating genotype responses to temperature and photoperiod cues.\nThis function serves as a data container and is typically used in experimental or modeling contexts where genotype × environment interactions affecting phenological development are being studied or simulated.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2115,15 +2115,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
+    "title": "FLNParameterEnvironment",
     "section": "Inputs",
-    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
+    "text": "Inputs\nThe FLNParameterEnvironment function requires the following input parameters:\n\nVrnTreatTemp: Vernalisation treatment temperature (\\(^\\circ\\)C)\nVrnTreatDuration: Duration of exposure to vernalising temperature (days)\nTreatmentPp_L: Photoperiod during long-day treatment (hours)\nTtEmerge: Thermal time from sowing to emergence (degree-days)",
     "crumbs": [
       "Home",
       "Docs",
@@ -2131,15 +2131,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
+    "title": "FLNParameterEnvironment",
     "section": "Methodology",
-    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
+    "text": "Methodology\nThis function does not contain computational logic or algorithms. Instead, it stores parameter values representing environmental conditions for vernalisation and photoperiod treatments. These inputs can be used by other functions in the APSIM phenology pipeline (e.g., for modeling development rate, phase transitions, or FLN prediction) to simulate plant responses to different environmental conditions.\nBy encapsulating experimental treatment data, this function supports modular and reusable parameterization within simulation scenarios involving phenological modeling.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2147,13 +2147,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
+    "title": "FLNParameterEnvironment",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -2163,15 +2163,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
+    "title": "FLNParameterEnvironment",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nVrnTreatTemp\ndouble\nVernalisation treatment temperature (\\(^\\circ\\)C)\n\n\nVrnTreatDuration\ndouble\nDays of exposure to vernalising temperature\n\n\nTreatmentPp_L\ndouble\nPhotoperiod under long-day treatment (hours)\n\n\nTtEmerge\ndouble\nObserved thermal time from sowing to emergence (degree-days)\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2179,15 +2179,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
+    "title": "FLNParameterEnvironment",
     "section": "User Interface",
-    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
+    "text": "User Interface\nFLNParameterEnvironment can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FLNParameterEnvironment in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2195,13 +2195,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
+    "title": "FLNParameterEnvironment",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -2211,15 +2211,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
+    "title": "FLNParameterEnvironment",
     "section": "See Also",
-    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
+    "text": "See Also\n\nSource code: FLNParameterEnvironment.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2227,111 +2227,159 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "title": "FinalLeafNumberSet",
     "section": "",
-    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.",
+    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "title": "FinalLeafNumberSet",
     "section": "Overview",
-    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase",
+    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "title": "FinalLeafNumberSet",
+    "section": "Inputs",
+    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "title": "FinalLeafNumberSet",
+    "section": "Methodology",
+    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "title": "FinalLeafNumberSet",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified.",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "title": "FinalLeafNumberSet",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "title": "EmergingPhase",
-    "section": "Usage",
-    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "title": "FinalLeafNumberSet",
+    "section": "User Interface",
+    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "title": "FinalLeafNumberSet",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "title": "FinalLeafNumberSet",
     "section": "See Also",
-    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub.",
+    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phases",
-      "EmergingPhase"
+      "CAMP",
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-    "title": "GenericPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
+    "title": "EndPhase",
     "section": "",
-    "text": "The GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.",
+    "text": "EndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2339,15 +2387,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
-    "title": "GenericPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
+    "title": "EndPhase",
     "section": "Overview",
-    "text": "Overview\nThe GenericPhase advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.\n\nDaily progression is configured from property Progression (in general it is daily thermal time, e.g. [Phenology].ThermalTime).\nThe target thermal time is configured via the property Target (in Cd).\nThe progress through this phase is tracked by the FractionComplete property, which returns a value between 0 and 1.\nThe phase transitions to the next stage once FractionComplete reaches 1.\n\nIf the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day’s progress is passed to this phase.",
+    "text": "Overview\nIn the APSIM Next Gen phenology system, crop development is divided into sequential phases. EndPhase defines the last phase in this sequence. When the crop reaches this stage, it no longer accumulates thermal time or progresses through development.\nThis phase typically represents physiological maturity, senescence, or the point at which no further crop growth or development is expected. The model does not advance past this phase unless an external event (such as harvest or crop removal) occurs.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2355,15 +2403,47 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
-    "title": "GenericPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
+    "title": "EndPhase",
+    "section": "Inputs",
+    "text": "Inputs\n\nStart: The name of the stage that marks the beginning of this phase.\nEnd: The name of the stage that marks the end of this phase (usually not used since this is terminal).\nIsEmerged: Logical value indicating whether this phase assumes the crop has emerged (default is true).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
+    "title": "EndPhase",
+    "section": "Methodology",
+    "text": "Methodology\nOnce the crop enters the EndPhase, it performs no further development:\n\nFractionComplete is always 0.\nTarget thermal time is 0.\nDoTimeStep() always returns false, indicating no development occurs.\nNo reset logic is required.\n\nThis phase ensures the crop’s development is paused or concluded until harvest or removal.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
+    "title": "EndPhase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2371,15 +2451,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
-    "title": "GenericPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
+    "title": "EndPhase",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins.\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase.\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nStage that marks the beginning of this phase\n\n\nEnd\nstring\nStage name marking the end of this phase (optional)\n\n\nIsEmerged\nbool\nIndicates whether this phase assumes the crop has emerged\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nAlways returns 0.0\n\n\nTarget\ndouble\nAlways returns 0 (no thermal time required)",
     "crumbs": [
       "Home",
       "Docs",
@@ -2387,15 +2467,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
-    "title": "GenericPhase",
-    "section": "Usage",
-    "text": "Usage\nA GenericPhase can be used to represent phases such as “Grain Filling” which are mainly impacted by temperature without interactions with vernalisation and photoperiod.",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
+    "title": "EndPhase",
+    "section": "User Interface",
+    "text": "User Interface\nEndPhase is added as a child of a Phenology node to mark the final crop development stage. To use:\n\nRight-click on a Phenology component in the model tree.\nSelect “Add Model…”.\nChoose “EndPhase”.\nSet Start to the name of the phase where final development begins.\n\nNo child models are needed for EndPhase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2403,15 +2483,31 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
-    "title": "GenericPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
+    "title": "EndPhase",
+    "section": "Practical Example",
+    "text": "Practical Example\nUse EndPhase in a crop model where development halts at a defined maturity point (e.g., “HarvestRipe”):\n\nSet Start = \"HarvestRipe\"\nThe crop will remain in this phase until harvested\n\n\nNo practical example is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
+    "title": "EndPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: GenericPhase.cs on GitHub",
+    "text": "See Also\n\nSource code: EndPhase.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2419,7 +2515,103 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GenericPhase"
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+    "title": "GerminatingPhase",
+    "section": "",
+    "text": "The GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
+    "title": "GerminatingPhase",
+    "section": "Overview",
+    "text": "Overview\nThe GerminatingPhase models the transition from sowing to germination in the crop’s phenological development. Germination is assumed to occur on the day after sowing, when any of the following conditions are met:\n\nSoil water at the sowing depth exceeds the lower limit (LL15),\nSoil temperature at the sowing depth is greater than or equal to the minimum soil temperature (as defined by the MinSoilTemperature child function),\nA specific germination date is provided via the GerminationDate property.\n\nOnce any of these conditions is satisfied, the seed is considered germinated, the SeedImbibed event is raised, and the simulation advances to the next phenological phase.\n\nGermination Triggers\nGermination occurs in one of two ways:\n\nUser-defined germination date\n\nIf GerminationDate is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.\n\nEnvironmental conditions at sowing depth\n\nIf no date is defined, germination is triggered when:\n\nSoil water content exceeds the lower limit (LL15) for the sowing layer:\n\nSWmm[layer] &gt; LL15mm[layer]\n\nSoil temperature at sowing depth exceeds the minimum required value:\n\nSoilTemperature[layer] &gt;= MinSoilTemperature.Value()\n\nThe current day is not the sowing day.\n\nSowing Depth: The sowing layer is determined using the value of plant.SowingData.Depth, which maps to the appropriate soil layer index.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
+    "title": "GerminatingPhase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nPlantSowing\nIndicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination.\n\n\n\nEvents Raised to\nThese are signals that the GerminatingPhase sends out to notify other components when actions occur:\n\n\n\nEvent\nDescription\n\n\n\n\nSeedImbibed\nRaised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
+    "title": "GerminatingPhase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nMinSoilTemperature\ndouble\nMinimum soil temperature required for germination (default is 0°C).\nYes\n\n\nGerminationDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
+    "title": "GerminatingPhase",
+    "section": "Usage",
+    "text": "Usage\nA GerminatingPhase can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
+    "title": "GerminatingPhase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: GerminatingPhase.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "GerminatingPhase"
     ]
   },
   {
@@ -2555,6 +2747,453 @@
       "PMF",
       "Phenology",
       "Phenology Function"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/index.html",
+    "href": "docs/Models/PMF/Arbitrator/index.html",
+    "title": "Arbitrator",
+    "section": "",
+    "text": "The Arbitrator is a core component of the plant module, responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "title": "Nutrient Constrained Allocation",
+    "section": "",
+    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Role in APSIM Simulation Pipeline",
+    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Inputs and Assumptions",
+    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Step-by-Step Process",
+    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Practical Example",
+    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Scientific Rationale",
+    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Extensibility",
+    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Outputs and Implications",
+    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Potential bugs and Limitations",
+    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "title": "Nutrient Constrained Allocation",
+    "section": "References",
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
+  },
+  {
+    "objectID": "about.html#what-this-site-includes",
+    "href": "about.html#what-this-site-includes",
+    "title": "About",
+    "section": "What This Site Includes",
+    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
+  },
+  {
+    "objectID": "about.html#not-official-documentation",
+    "href": "about.html#not-official-documentation",
+    "title": "About",
+    "section": "Not Official Documentation",
+    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
+  },
+  {
+    "objectID": "about.html#license-and-attribution",
+    "href": "about.html#license-and-attribution",
+    "title": "About",
+    "section": "⚖️ License and Attribution",
+    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
+  },
+  {
+    "objectID": "about.html#acknowledgment",
+    "href": "about.html#acknowledgment",
+    "title": "About",
+    "section": "🙏 Acknowledgment",
+    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
+  },
+  {
+    "objectID": "tips/index.html",
+    "href": "tips/index.html",
+    "title": "Tips",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nPhotoperiod Effects on Heading Phase for Wheat in Australia\n\n\n\n\n\n\n\n\n\nPhotoperiod Effects on Leaf Appearance for Wheat in Australia\n\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "tips/summary.html",
+    "href": "tips/summary.html",
+    "title": "Writing Debug Info to Summary",
+    "section": "",
+    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
+  },
+  {
+    "objectID": "tips/summary.html#purpose",
+    "href": "tips/summary.html#purpose",
+    "title": "Writing Debug Info to Summary",
+    "section": "Purpose",
+    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
+  },
+  {
+    "objectID": "tips/summary.html#code-example",
+    "href": "tips/summary.html#code-example",
+    "title": "Writing Debug Info to Summary",
+    "section": "Code Example",
+    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
+  },
+  {
+    "objectID": "tips/summary.html#additional-resources",
+    "href": "tips/summary.html#additional-resources",
+    "title": "Writing Debug Info to Summary",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/internal_variable.html",
+    "href": "tips/internal_variable.html",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "",
+    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
+  },
+  {
+    "objectID": "tips/internal_variable.html#objective",
+    "href": "tips/internal_variable.html#objective",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Objective",
+    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
+  },
+  {
+    "objectID": "tips/internal_variable.html#implementation",
+    "href": "tips/internal_variable.html#implementation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
+  },
+  {
+    "objectID": "tips/internal_variable.html#explanation",
+    "href": "tips/internal_variable.html#explanation",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Explanation",
+    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
+  },
+  {
+    "objectID": "tips/internal_variable.html#additional-resources",
+    "href": "tips/internal_variable.html#additional-resources",
+    "title": "Accessing Internal Model Variables in the Manager Scripts",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/co2.html",
+    "href": "tips/co2.html",
+    "title": "Setting CO₂ Concentration",
+    "section": "",
+    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
+  },
+  {
+    "objectID": "tips/co2.html#objective",
+    "href": "tips/co2.html#objective",
+    "title": "Setting CO₂ Concentration",
+    "section": "Objective",
+    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
+  },
+  {
+    "objectID": "tips/co2.html#implementation",
+    "href": "tips/co2.html#implementation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Implementation",
+    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
+  },
+  {
+    "objectID": "tips/co2.html#explanation",
+    "href": "tips/co2.html#explanation",
+    "title": "Setting CO₂ Concentration",
+    "section": "Explanation",
+    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
+  },
+  {
+    "objectID": "tips/co2.html#additional-resources",
+    "href": "tips/co2.html#additional-resources",
+    "title": "Setting CO₂ Concentration",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html",
+    "href": "tips/phy-ppd-oz-wheat.html",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "",
+    "text": "Photoperiod, or day length, is a key environmental factor influencing the rate of leaf appearance (phyllochron) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase."
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#day-length",
+    "href": "tips/phy-ppd-oz-wheat.html#day-length",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Day Length",
+    "text": "Day Length\nAustralia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).\nThis range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.\nThe day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.\nThe day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).\n\n\n\n\n\n\n\n\nFigure 1: Day Length Variation Across Australia"
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "href": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Photoperiod Effects on Phyllochron",
+    "text": "Photoperiod Effects on Phyllochron\nPhotoperiod, or day length, impacts on (phyllochron) when day length is shorter than 12 hours.\n\n\n\nDay Length (h)\nModifier \\(f_d(d)\\)\n\n\n\n\n8\n1.0\n\n\n12\n0.0\n\n\n20\n0.0\n\n\n\nThe calculated photoperiod effect \\(f_d(d)\\) is ranged from 0 to 0.5030966 mainly in winter and southern regions.\n\n\n\n\n\n\n\n\nFigure 2: Photoperiod Effect on Phyllochron\n\n\n\n\n\nPhotoperiod impacts on wheat phyllochron in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.\n\n\n\n\n\n\n\n\nFigure 3: Photoperiod Effect on Phyllochron for Capital Cities"
+  },
+  {
+    "objectID": "tips/phy-ppd-oz-wheat.html#conclusion",
+    "href": "tips/phy-ppd-oz-wheat.html#conclusion",
+    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
+    "section": "Conclusion",
+    "text": "Conclusion\nPhotoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of leaf appearance, which is crucial for determining the timing of key growth stages such as flowering and maturity."
+  },
+  {
+    "objectID": "tips/heading-ppd-oz-wheat.html",
+    "href": "tips/heading-ppd-oz-wheat.html",
+    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
+    "section": "",
+    "text": "Photoperiod, or day length, is a key environmental factor influencing duration of (Heading) phase in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop."
+  },
+  {
+    "objectID": "tips/heading-ppd-oz-wheat.html#day-length",
+    "href": "tips/heading-ppd-oz-wheat.html#day-length",
+    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
+    "section": "Day Length",
+    "text": "Day Length\nAustralia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).\nThis range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.\nThe day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.\nThe day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).\n\n\n\n\n\n\n\n\nFigure 1: Day Length Variation Across Australia"
+  },
+  {
+    "objectID": "tips/heading-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "href": "tips/heading-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
+    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
+    "section": "Photoperiod Effects on Phyllochron",
+    "text": "Photoperiod Effects on Phyllochron\nPhotoperiod, or day length, impacts on Heading phase when day length is shorter than 20 hours.\n\n\n\nDay Length (h)\nModifier \\(\\text{PpResponse}\\)\n\n\n\n\n6.0\n1.0\n\n\n8.0\n1.0\n\n\n20.0\n0.0\n\n\n22.0\n0.0\n\n\n\nThe calculated photoperiod effect \\(\\text{PpResponse}\\) is ranged from 0.2749524 to 0.8343655 mainly in winter and southern regions.\n\n\n\n\n\n\n\n\nFigure 2: Photoperiod Effect on heading phase\n\n\n\n\n\nPhotoperiod impacts on wheat heading phase in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.\n\n\n\n\n\n\n\n\nFigure 3: Photoperiod Effect on Heading Phase for Capital Cities"
+  },
+  {
+    "objectID": "tips/heading-ppd-oz-wheat.html#conclusion",
+    "href": "tips/heading-ppd-oz-wheat.html#conclusion",
+    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
+    "section": "Conclusion",
+    "text": "Conclusion\nPhotoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of Heading Phase, which is crucial for determining the timing of key growth stages such as flowering and maturity."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "APSIM Next Generation Notes",
+    "section": "",
+    "text": "Quarto Publish\nWelcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I’ve encountered while using APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork this repository for your own use."
+  },
+  {
+    "objectID": "index.html#website",
+    "href": "index.html#website",
+    "title": "APSIM Next Generation Notes",
+    "section": "🌐 Website",
+    "text": "🌐 Website\nYou can also browse these notes as a website:\n👉 https://apsimng-notes.bangyou.me"
+  },
+  {
+    "objectID": "index.html#contributing",
+    "href": "index.html#contributing",
+    "title": "APSIM Next Generation Notes",
+    "section": "🤝 Contributing",
+    "text": "🤝 Contributing\nIf you find any errors, have suggestions, or want to contribute improvements, you’re welcome to create a pull request or open an issue on GitHub."
+  },
+  {
+    "objectID": "index.html#license-and-attribution",
+    "href": "index.html#license-and-attribution",
+    "title": "APSIM Next Generation Notes",
+    "section": "⚖️ License and Attribution",
+    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
+  },
+  {
+    "objectID": "index.html#acknowledgment",
+    "href": "index.html#acknowledgment",
+    "title": "APSIM Next Generation Notes",
+    "section": "🙏 Acknowledgment",
+    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
+  },
+  {
+    "objectID": "docs/management/fertiliser.html",
+    "href": "docs/management/fertiliser.html",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#introduction",
+    "href": "docs/management/fertiliser.html#introduction",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "title": "Fertiliser Types",
+    "section": "Structure of Fertiliser Definitions",
+    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "title": "Fertiliser Types",
+    "section": "Example Fertiliser Types in APSIM",
+    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
     ]
   },
   {
@@ -2708,444 +3347,11 @@
     ]
   },
   {
-    "objectID": "docs/management/fertiliser.html",
-    "href": "docs/management/fertiliser.html",
-    "title": "Fertiliser Types",
-    "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "docs/management/fertiliser.html#introduction",
-    "href": "docs/management/fertiliser.html#introduction",
-    "title": "Fertiliser Types",
-    "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "title": "Fertiliser Types",
-    "section": "Structure of Fertiliser Definitions",
-    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "title": "Fertiliser Types",
-    "section": "Example Fertiliser Types in APSIM",
-    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "APSIM Next Generation Notes",
-    "section": "",
-    "text": "Quarto Publish\nWelcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I’ve encountered while using APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork this repository for your own use."
-  },
-  {
-    "objectID": "index.html#website",
-    "href": "index.html#website",
-    "title": "APSIM Next Generation Notes",
-    "section": "🌐 Website",
-    "text": "🌐 Website\nYou can also browse these notes as a website:\n👉 https://apsimng-notes.bangyou.me"
-  },
-  {
-    "objectID": "index.html#contributing",
-    "href": "index.html#contributing",
-    "title": "APSIM Next Generation Notes",
-    "section": "🤝 Contributing",
-    "text": "🤝 Contributing\nIf you find any errors, have suggestions, or want to contribute improvements, you’re welcome to create a pull request or open an issue on GitHub."
-  },
-  {
-    "objectID": "index.html#license-and-attribution",
-    "href": "index.html#license-and-attribution",
-    "title": "APSIM Next Generation Notes",
-    "section": "⚖️ License and Attribution",
-    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
-  },
-  {
-    "objectID": "index.html#acknowledgment",
-    "href": "index.html#acknowledgment",
-    "title": "APSIM Next Generation Notes",
-    "section": "🙏 Acknowledgment",
-    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
-  },
-  {
-    "objectID": "tips/heading-ppd-oz-wheat.html",
-    "href": "tips/heading-ppd-oz-wheat.html",
-    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
-    "section": "",
-    "text": "Photoperiod, or day length, is a key environmental factor influencing duration of (Heading) phase in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop."
-  },
-  {
-    "objectID": "tips/heading-ppd-oz-wheat.html#day-length",
-    "href": "tips/heading-ppd-oz-wheat.html#day-length",
-    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
-    "section": "Day Length",
-    "text": "Day Length\nAustralia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).\nThis range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.\nThe day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.\nThe day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).\n\n\n\n\n\n\n\n\nFigure 1: Day Length Variation Across Australia"
-  },
-  {
-    "objectID": "tips/heading-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
-    "href": "tips/heading-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
-    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
-    "section": "Photoperiod Effects on Phyllochron",
-    "text": "Photoperiod Effects on Phyllochron\nPhotoperiod, or day length, impacts on Heading phase when day length is shorter than 20 hours.\n\n\n\nDay Length (h)\nModifier \\(\\text{PpResponse}\\)\n\n\n\n\n6.0\n1.0\n\n\n8.0\n1.0\n\n\n20.0\n0.0\n\n\n22.0\n0.0\n\n\n\nThe calculated photoperiod effect \\(\\text{PpResponse}\\) is ranged from 0.2749524 to 0.8343655 mainly in winter and southern regions.\n\n\n\n\n\n\n\n\nFigure 2: Photoperiod Effect on heading phase\n\n\n\n\n\nPhotoperiod impacts on wheat heading phase in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.\n\n\n\n\n\n\n\n\nFigure 3: Photoperiod Effect on Heading Phase for Capital Cities"
-  },
-  {
-    "objectID": "tips/heading-ppd-oz-wheat.html#conclusion",
-    "href": "tips/heading-ppd-oz-wheat.html#conclusion",
-    "title": "Photoperiod Effects on Heading Phase for Wheat in Australia",
-    "section": "Conclusion",
-    "text": "Conclusion\nPhotoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of Heading Phase, which is crucial for determining the timing of key growth stages such as flowering and maturity."
-  },
-  {
-    "objectID": "tips/phy-ppd-oz-wheat.html",
-    "href": "tips/phy-ppd-oz-wheat.html",
-    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
-    "section": "",
-    "text": "Photoperiod, or day length, is a key environmental factor influencing the rate of leaf appearance (phyllochron) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase."
-  },
-  {
-    "objectID": "tips/phy-ppd-oz-wheat.html#day-length",
-    "href": "tips/phy-ppd-oz-wheat.html#day-length",
-    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
-    "section": "Day Length",
-    "text": "Day Length\nAustralia spans a wide latitude range, from about 10°S (northern tip) to 44°S (southern tip, including Tasmania).\nThis range covers tropical to temperate climates, resulting in significant variation in day length and photoperiod effects across the country.\nThe day length is calculated with twilight angle of 6 degrees, which is commonly used in agricultural models to represent the start and end of daylight.\nThe day length varies from 9.9876135 to 16.7005717 hours across Australia, with the longest days occurring in summer (around December) and shortest in winter (around June).\n\n\n\n\n\n\n\n\nFigure 1: Day Length Variation Across Australia"
-  },
-  {
-    "objectID": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
-    "href": "tips/phy-ppd-oz-wheat.html#photoperiod-effects-on-phyllochron",
-    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
-    "section": "Photoperiod Effects on Phyllochron",
-    "text": "Photoperiod Effects on Phyllochron\nPhotoperiod, or day length, impacts on (phyllochron) when day length is shorter than 12 hours.\n\n\n\nDay Length (h)\nModifier \\(f_d(d)\\)\n\n\n\n\n8\n1.0\n\n\n12\n0.0\n\n\n20\n0.0\n\n\n\nThe calculated photoperiod effect \\(f_d(d)\\) is ranged from 0 to 0.5030966 mainly in winter and southern regions.\n\n\n\n\n\n\n\n\nFigure 2: Photoperiod Effect on Phyllochron\n\n\n\n\n\nPhotoperiod impacts on wheat phyllochron in all capital cities from late April to late August which is the major wheat growing season before flag leaf stage in Australia.\n\n\n\n\n\n\n\n\nFigure 3: Photoperiod Effect on Phyllochron for Capital Cities"
-  },
-  {
-    "objectID": "tips/phy-ppd-oz-wheat.html#conclusion",
-    "href": "tips/phy-ppd-oz-wheat.html#conclusion",
-    "title": "Photoperiod Effects on Leaf Appearance for Wheat in Australia",
-    "section": "Conclusion",
-    "text": "Conclusion\nPhotoperiod plays a significant role in wheat development across Australia, particularly in the southern regions where day lengths are shorter during the growing season. This impacts the rate of leaf appearance, which is crucial for determining the timing of key growth stages such as flowering and maturity."
-  },
-  {
-    "objectID": "tips/co2.html",
-    "href": "tips/co2.html",
-    "title": "Setting CO₂ Concentration",
-    "section": "",
-    "text": "In APSIM Next Gen, the default CO₂ concentration is 350 ppm if not explicitly set.\nThis value may need to be changed when simulating future climate scenarios or FACE (Free-Air CO₂ Enrichment) experiments.\nThis guide explains how to modify the CO₂ level using a Manager script and the PreparingNewWeatherData event."
-  },
-  {
-    "objectID": "tips/co2.html#objective",
-    "href": "tips/co2.html#objective",
-    "title": "Setting CO₂ Concentration",
-    "section": "Objective",
-    "text": "Objective\nSet a custom CO₂ concentration during simulation by assigning a value through a Manager script.\n\nRight-click the Field node in your simulation.\nSelect Add model from the context menu.\nAdd a Manager model under Field.\nRename it to something like SetCO2.\nPaste the C# script (see below) into the Script tab.\nSet your desired CO₂ value (e.g., 550) in the Parameters tab."
-  },
-  {
-    "objectID": "tips/co2.html#implementation",
-    "href": "tips/co2.html#implementation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\nusing System;\nusing Models.Core;\nusing Models.Climate;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Weather and Clock models\n        [Link] private Weather Weather;\n        [Link] private Clock Clock;\n\n        // User-defined CO2 value\n        [Description(\"CO2 concentration\")]\n        public double CO2 { get; set; }\n\n        // Set CO2 before weather data is applied each day\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            Weather.CO2 = CO2;\n        }\n    }\n}\nAs climate changes, CO2 is increasing in the atmosphere, and this script allows you to dynamically set the CO₂ concentration for your simulation.\nusing System;\nusing Models.Core;\nusing Models.Interfaces;\nusing Models.PMF;\nusing Models.Climate;\nusing APSIM.Shared.Utilities;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        [Link] IClock Clock;\n        [Link] ISummary Summary;\n        [Link] Weather Weather;\n\n        // CO2 levels from 1959 to 2024 (index 0 corresponds to 1959)\n        //\n        // Data Source: NOAA GML CO₂ Annual Mean Data, Mauna Loa Observatory\n        // https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt\n        // This dataset is released under the Creative Commons Zero v1.0 Universal \n        // Public Domain Dedication (CC0 1.0), allowing unrestricted use. \n        private double[] co2Levels = new double[]\n        {\n            315.98, 316.91, 317.64, 318.45, 318.99, 319.62, 320.04, 321.37, 322.18, 323.05,\n            324.62, 325.68, 326.32, 327.46, 329.68, 330.19, 331.13, 332.03, 333.84, 335.41,\n            336.84, 338.76, 340.12, 341.48, 343.15, 344.87, 346.35, 347.61, 349.31, 351.69,\n            353.20, 354.45, 355.70, 356.54, 357.21, 358.96, 360.97, 362.74, 363.88, 366.84,\n            368.54, 369.71, 371.32, 373.45, 375.98, 377.70, 379.98, 382.09, 384.02, 385.83,\n            387.64, 390.10, 391.85, 394.06, 396.74, 398.81, 401.01, 404.41, 406.76, 408.72,\n            411.65, 414.21, 416.41, 418.53, 421.08, 424.61\n        };\n\n        private int startYear = 1959; // Base year for index calculation\n\n\n        [EventSubscribe(\"PreparingNewWeatherData\")]\n        private void OnPreparingNewWeatherData(object sender, EventArgs e)\n        {\n            int year = Clock.Today.Year;\n            int index = year - startYear;\n\n            if (index &gt;= 0 && index &lt; co2Levels.Length)\n                Weather.CO2 = co2Levels[index];\n            else\n                Weather.CO2 = co2Levels[co2Levels.Length - 1]; // Use the latest CO₂ for future years\n        }\n   \n    }\n}"
-  },
-  {
-    "objectID": "tips/co2.html#explanation",
-    "href": "tips/co2.html#explanation",
-    "title": "Setting CO₂ Concentration",
-    "section": "Explanation",
-    "text": "Explanation\nThe Weather model in APSIM contains a CO2 property, which determines the atmospheric CO₂ concentration used in crop growth and development calculations. This property is normally updated with each day’s weather data.\nBy subscribing to the PreparingNewWeatherData event, the script intercepts the process before daily weather values are applied. This allows you to override the CO₂ value dynamically for the duration of the simulation.\nThis approach is particularly useful for experiments involving elevated CO₂ or simulating long-term climate change effects where static weather files are used but require changes in CO₂ independently."
-  },
-  {
-    "objectID": "tips/co2.html#additional-resources",
-    "href": "tips/co2.html#additional-resources",
-    "title": "Setting CO₂ Concentration",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "tips/internal_variable.html",
-    "href": "tips/internal_variable.html",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "",
-    "text": "In APSIM Next Gen, internal variables such as [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N are accessible within the Report model. However, accessing these variables directly in a Manager Script requires a different approach.\nTo retrieve these values within a Manager Script, you can use the zone.Get() method to access the specific model. After obtaining the model, cast it to the appropriate type (e.g., IFunction, Plant, or IOrgan) to access its properties or methods. You can determine the model type by hovering over the model name in the APSIM user interface, which will display its full type name."
-  },
-  {
-    "objectID": "tips/internal_variable.html#objective",
-    "href": "tips/internal_variable.html#objective",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Objective",
-    "text": "Objective\nRetrieve internal variables from models (e.g., [Wheat].Phenology.FloweringDAS and [Wheat].Stem.N) during the simulation using a Manager script."
-  },
-  {
-    "objectID": "tips/internal_variable.html#implementation",
-    "href": "tips/internal_variable.html#implementation",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Implementation",
-    "text": "Implementation\nBelow is a complete Manager script that demonstrates how to access these variables:\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\nusing Models.PMF;\nusing Models.PMF.Organs;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the simulation's Zone to access other models\n        [Link] private Zone zone = null;\n\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            // Access the FloweringDAS function from the Wheat model's Phenology\n             OnEventFunction floweringEvent = (OnEventFunction)zone.Get(\"[\" + \"Wheat\" +\"].Phenology.FloweringDAS\");\n\n            if (floweringEvent != null)\n            {\n                // Evaluate the function to get the days after sowing to flowering\n                double floweringDAS = floweringEvent.Value();\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Phenology.FloweringDAS: {floweringDAS}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the function is not found\n                summary.WriteMessage(this, \"[Wheat].Phenology.FloweringDAS not found.\", MessageType.Warning);\n            }\n\n       \n            // Access the Stem organ\n             GenericOrgan Stemorgan = (GenericOrgan)zone.Get(\"[\" + \"Wheat\" +\"].Stem\");\n\n            if (Stemorgan != null)\n            {\n                // Retrieve the Nitrogen amount in the Stem\n                double stemN = Stemorgan.N;\n\n                // Write the retrieved value to the simulation summary for diagnostic purposes\n                summary.WriteMessage(this, $\"[Wheat].Stem.N: {stemN}\", MessageType.Diagnostic);\n            }\n            else\n            {\n                // Handle the case where the Stem organ is not found\n                summary.WriteMessage(this, \"[Wheat].Stem.N not found in Wheat model.\", MessageType.Warning);\n            }\n        \n        }\n    }\n}"
-  },
-  {
-    "objectID": "tips/internal_variable.html#explanation",
-    "href": "tips/internal_variable.html#explanation",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Explanation",
-    "text": "Explanation\n\nAccessing [Wheat].Phenology.FloweringDAS\nThe [Wheat].Phenology.FloweringDAS variable is typically defined as a OnEventFunction function within the Phenology component of a Wheat model.\nTo access this function within a Manager script:\n\nRetrieve the Function: Use the zone.Get() method with the path to the function, e.g., \"[Wheat].Phenology.FloweringDAS\".\nCast to OnEventFunction: Cast the retrieved object to the OnEventFunction interface, which provides the Value() method to evaluate the function.\nEvaluate the Function: Call the Value() method to obtain the current value of FloweringDAS.\n\nThis approach allows dynamic access to model functions during simulation, enabling custom management decisions based on plant development stages.\n\n\nAccessing [Wheat].Stem.N\nThe nitrogen content (N) of the Stem organ is reportable variable. To access this variable:\n\nRetrieve the Plant Model: Use zone.Get(\"[Wheat].Stem\") to obtain the Stem model.\nCast to IOrgan: Cast the Stem organ to the GenericOrgan interface, which provides access to the N property.\nRetrieve Nitrogen Content: Access the N property to get the current nitrogen content of the Stem organ.\n\nThis method enables monitoring and managing nutrient dynamics within specific plant organs during simulation."
-  },
-  {
-    "objectID": "tips/internal_variable.html#additional-resources",
-    "href": "tips/internal_variable.html#additional-resources",
-    "title": "Accessing Internal Model Variables in the Manager Scripts",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "tips/summary.html",
-    "href": "tips/summary.html",
-    "title": "Writing Debug Info to Summary",
-    "section": "",
-    "text": "When developing and debugging Manager scripts in APSIM Next Gen, it’s helpful to write custom messages to the Summary window."
-  },
-  {
-    "objectID": "tips/summary.html#purpose",
-    "href": "tips/summary.html#purpose",
-    "title": "Writing Debug Info to Summary",
-    "section": "Purpose",
-    "text": "Purpose\nTo output internal script data, such as calculated variables, to the Summary window during simulation."
-  },
-  {
-    "objectID": "tips/summary.html#code-example",
-    "href": "tips/summary.html#code-example",
-    "title": "Writing Debug Info to Summary",
-    "section": "Code Example",
-    "text": "Code Example\n\n\n\nusing System;\nusing Models.Core;\nusing Models.Functions;\n\nnamespace Models\n{\n    [Serializable]\n    public class Script : Model\n    {\n        // Link to the Summary model to write messages to the simulation log\n        [Link] private Summary summary = null;\n\n        // Subscribe to the 'DoManagement' event, which is triggered daily\n        [EventSubscribe(\"DoManagement\")]\n        private void OnDoManagement(object sender, EventArgs e)\n        {\n            summary.WriteMessage(this, \"Hello from manager script\", MessageType.Diagnostic);\n        }\n    }\n}"
-  },
-  {
-    "objectID": "tips/summary.html#additional-resources",
-    "href": "tips/summary.html#additional-resources",
-    "title": "Writing Debug Info to Summary",
-    "section": "Additional Resources",
-    "text": "Additional Resources\n\nManager Model Documentation and Examples\nProvides guidance on scripting within the Manager model, including examples of accessing and manipulating model variables.\nAPSIM Next Gen Training Manuals\nA collection of tutorials and manuals covering various aspects of APSIM Next Gen.\nAPSIM GitHub Discussions\nA community forum for discussing APSIM-related topics and getting help from other users and developers."
-  },
-  {
-    "objectID": "tips/index.html",
-    "href": "tips/index.html",
-    "title": "Tips",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nPhotoperiod Effects on Heading Phase for Wheat in Australia\n\n\n\n\n\n\n\n\n\nPhotoperiod Effects on Leaf Appearance for Wheat in Australia\n\n\n\n\n\n\n\n\n\nSetting CO₂ Concentration\n\n\n\n\n\n\n\n\n\nAccessing Internal Model Variables in the Manager Scripts\n\n\n\n\n\n\n\n\n\nWriting Debug Info to Summary\n\n\n\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
-  },
-  {
-    "objectID": "about.html#what-this-site-includes",
-    "href": "about.html#what-this-site-includes",
-    "title": "About",
-    "section": "What This Site Includes",
-    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
-  },
-  {
-    "objectID": "about.html#not-official-documentation",
-    "href": "about.html#not-official-documentation",
-    "title": "About",
-    "section": "Not Official Documentation",
-    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
-  },
-  {
-    "objectID": "about.html#license-and-attribution",
-    "href": "about.html#license-and-attribution",
-    "title": "About",
-    "section": "⚖️ License and Attribution",
-    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
-  },
-  {
-    "objectID": "about.html#acknowledgment",
-    "href": "about.html#acknowledgment",
-    "title": "About",
-    "section": "🙏 Acknowledgment",
-    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "title": "Nutrient Constrained Allocation",
-    "section": "",
-    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Role in APSIM Simulation Pipeline",
-    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Inputs and Assumptions",
-    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Step-by-Step Process",
-    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Practical Example",
-    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Scientific Rationale",
-    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Extensibility",
-    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Outputs and Implications",
-    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Potential bugs and Limitations",
-    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "title": "Nutrient Constrained Allocation",
-    "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
     "objectID": "docs/Models/PMF/index.html",
     "href": "docs/Models/PMF/index.html",
     "title": "PMF",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nPhenology Function\n\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Plant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014).\n\nArbitrator\nArbitrator is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\nPhenology\nPhenology is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3154,11 +3360,25 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/index.html",
+    "href": "docs/Models/PMF/Phenology/index.html",
+    "title": "Phenology",
     "section": "",
-    "text": "The GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.",
+    "text": "Phenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nCultivarRateParams\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nPhenology Function\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+    "title": "GenericPhase",
+    "section": "",
+    "text": "The GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3166,15 +3386,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#overview",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#overview",
+    "title": "GenericPhase",
     "section": "Overview",
-    "text": "Overview\nThe GerminatingPhase models the transition from sowing to germination in the crop’s phenological development. Germination is assumed to occur on the day after sowing, when any of the following conditions are met:\n\nSoil water at the sowing depth exceeds the lower limit (LL15),\nSoil temperature at the sowing depth is greater than or equal to the minimum soil temperature (as defined by the MinSoilTemperature child function),\nA specific germination date is provided via the GerminationDate property.\n\nOnce any of these conditions is satisfied, the seed is considered germinated, the SeedImbibed event is raised, and the simulation advances to the next phenological phase.\n\nGermination Triggers\nGermination occurs in one of two ways:\n\nUser-defined germination date\n\nIf GerminationDate is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.\n\nEnvironmental conditions at sowing depth\n\nIf no date is defined, germination is triggered when:\n\nSoil water content exceeds the lower limit (LL15) for the sowing layer:\n\nSWmm[layer] &gt; LL15mm[layer]\n\nSoil temperature at sowing depth exceeds the minimum required value:\n\nSoilTemperature[layer] &gt;= MinSoilTemperature.Value()\n\nThe current day is not the sowing day.\n\nSowing Depth: The sowing layer is determined using the value of plant.SowingData.Depth, which maps to the appropriate soil layer index.",
+    "text": "Overview\nThe GenericPhase advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.\n\nDaily progression is configured from property Progression (in general it is daily thermal time, e.g. [Phenology].ThermalTime).\nThe target thermal time is configured via the property Target (in Cd).\nThe progress through this phase is tracked by the FractionComplete property, which returns a value between 0 and 1.\nThe phase transitions to the next stage once FractionComplete reaches 1.\n\nIf the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day’s progress is passed to this phase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3182,15 +3402,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#events",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#events",
+    "title": "GenericPhase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nPlantSowing\nIndicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination.\n\n\n\nEvents Raised to\nThese are signals that the GerminatingPhase sends out to notify other components when actions occur:\n\n\n\nEvent\nDescription\n\n\n\n\nSeedImbibed\nRaised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed.",
+    "text": "Events\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations",
     "crumbs": [
       "Home",
       "Docs",
@@ -3198,15 +3418,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#properties",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#properties",
+    "title": "GenericPhase",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nMinSoilTemperature\ndouble\nMinimum soil temperature required for germination (default is 0°C).\nYes\n\n\nGerminationDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins.\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase.\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3214,15 +3434,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#usage",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#usage",
+    "title": "GenericPhase",
     "section": "Usage",
-    "text": "Usage\nA GerminatingPhase can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions.",
+    "text": "Usage\nA GenericPhase can be used to represent phases such as “Grain Filling” which are mainly impacted by temperature without interactions with vernalisation and photoperiod.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3230,15 +3450,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html#see-also",
-    "title": "GerminatingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html#see-also",
+    "title": "GenericPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: GerminatingPhase.cs on GitHub",
+    "text": "See Also\n\nSource code: GenericPhase.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3246,15 +3466,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "GerminatingPhase"
+      "GenericPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "title": "EmergingPhase",
     "section": "",
-    "text": "EndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
+    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3262,15 +3482,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "title": "EmergingPhase",
     "section": "Overview",
-    "text": "Overview\nIn the APSIM Next Gen phenology system, crop development is divided into sequential phases. EndPhase defines the last phase in this sequence. When the crop reaches this stage, it no longer accumulates thermal time or progresses through development.\nThis phase typically represents physiological maturity, senescence, or the point at which no further crop growth or development is expected. The model does not advance past this phase unless an external event (such as harvest or crop removal) occurs.",
+    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase",
     "crumbs": [
       "Home",
       "Docs",
@@ -3278,47 +3498,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
-    "title": "EndPhase",
-    "section": "Inputs",
-    "text": "Inputs\n\nStart: The name of the stage that marks the beginning of this phase.\nEnd: The name of the stage that marks the end of this phase (usually not used since this is terminal).\nIsEmerged: Logical value indicating whether this phase assumes the crop has emerged (default is true).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
-    "title": "EndPhase",
-    "section": "Methodology",
-    "text": "Methodology\nOnce the crop enters the EndPhase, it performs no further development:\n\nFractionComplete is always 0.\nTarget thermal time is 0.\nDoTimeStep() always returns false, indicating no development occurs.\nNo reset logic is required.\n\nThis phase ensures the crop’s development is paused or concluded until harvest or removal.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "title": "EmergingPhase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3326,15 +3514,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "title": "EmergingPhase",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nStage that marks the beginning of this phase\n\n\nEnd\nstring\nStage name marking the end of this phase (optional)\n\n\nIsEmerged\nbool\nIndicates whether this phase assumes the crop has emerged\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nAlways returns 0.0\n\n\nTarget\ndouble\nAlways returns 0 (no thermal time required)",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3342,15 +3530,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
-    "title": "EndPhase",
-    "section": "User Interface",
-    "text": "User Interface\nEndPhase is added as a child of a Phenology node to mark the final crop development stage. To use:\n\nRight-click on a Phenology component in the model tree.\nSelect “Add Model…”.\nChoose “EndPhase”.\nSet Start to the name of the phase where final development begins.\n\nNo child models are needed for EndPhase.",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "title": "EmergingPhase",
+    "section": "Usage",
+    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3358,31 +3546,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
-    "title": "EndPhase",
-    "section": "Practical Example",
-    "text": "Practical Example\nUse EndPhase in a crop model where development halts at a defined maturity point (e.g., “HarvestRipe”):\n\nSet Start = \"HarvestRipe\"\nThe crop will remain in this phase until harvested\n\n\nNo practical example is available for this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "title": "EmergingPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: EndPhase.cs on GitHub",
+    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3390,15 +3562,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "title": "ColdVrnResponse",
     "section": "",
-    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
+    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3406,15 +3578,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "title": "ColdVrnResponse",
     "section": "Overview",
-    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
+    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3422,15 +3594,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "title": "ColdVrnResponse",
     "section": "Inputs",
-    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
+    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3438,15 +3610,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "title": "ColdVrnResponse",
     "section": "Methodology",
-    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3454,13 +3626,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "title": "ColdVrnResponse",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -3470,15 +3642,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "title": "ColdVrnResponse",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3486,15 +3658,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "title": "ColdVrnResponse",
     "section": "User Interface",
-    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
+    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3502,13 +3674,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "title": "ColdVrnResponse",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3518,15 +3690,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "title": "ColdVrnResponse",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
+    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3534,15 +3706,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
+    "title": "CultivarRateParams",
     "section": "",
-    "text": "A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
+    "text": "A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3550,15 +3722,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
+    "title": "CultivarRateParams",
     "section": "Overview",
-    "text": "Overview\nThe FLNParameterEnvironment function is part of the phenology module in APSIM NG, specifically under the CAMP parent model. It describes the specific environmental settings such as vernalisation treatment temperature, duration, and photoperiod under which Final Leaf Number (FLN) was observed. These data are used for calibrating genotype responses to temperature and photoperiod cues.\nThis function serves as a data container and is typically used in experimental or modeling contexts where genotype × environment interactions affecting phenological development are being studied or simulated.",
+    "text": "Overview\nThe CultivarRateParams class defines a set of vernalisation-related parameters tailored to a single genotype or cultivar. These values quantify the rates and thresholds for vernalisation gene expression (e.g., Vrn1, Vrn2, and Vrn3) under different photothermal conditions.\nIt is not a computational function itself but a container of parameters used by other modules like CalcCAMPVrnRates to describe how vernalisation proceeds under varying temperatures and daylengths. It supports detailed phenological simulations in APSIM NG’s CAMP framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3566,15 +3738,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
+    "title": "CultivarRateParams",
     "section": "Inputs",
-    "text": "Inputs\nThe FLNParameterEnvironment function requires the following input parameters:\n\nVrnTreatTemp: Vernalisation treatment temperature (\\(^\\circ\\)C)\nVrnTreatDuration: Duration of exposure to vernalising temperature (days)\nTreatmentPp_L: Photoperiod during long-day treatment (hours)\nTtEmerge: Thermal time from sowing to emergence (degree-days)",
+    "text": "Inputs\nThis model is not user-configurable directly through the UI and does not require inputs at runtime. Instead, it is populated by the CalcCAMPVrnRates function based on controlled environment FLN observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3582,15 +3754,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
+    "title": "CultivarRateParams",
     "section": "Methodology",
-    "text": "Methodology\nThis function does not contain computational logic or algorithms. Instead, it stores parameter values representing environmental conditions for vernalisation and photoperiod treatments. These inputs can be used by other functions in the APSIM phenology pipeline (e.g., for modeling development rate, phase transitions, or FLN prediction) to simulate plant responses to different environmental conditions.\nBy encapsulating experimental treatment data, this function supports modular and reusable parameterization within simulation scenarios involving phenological modeling.",
+    "text": "Methodology\nCultivarRateParams provides the following fields, which represent physiological and regulatory coefficients used to simulate flowering development:\n\nBaseDVrnVeg: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., &gt;20°C).\nMaxDVrnVeg: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).\nBaseDVrnER: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.\nMaxDVrnER: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.\nPpVrn3FactVeg: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.\nPpVrn3FactER: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.\nMaxVrn2: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.\nMethalationThreshold: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).\nColdVrn1Fact: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.\n\nThese parameters are essential for simulating genotype × environment interactions that influence time to floral initiation and flowering in cereal crops.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3598,13 +3770,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
+    "title": "CultivarRateParams",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -3614,15 +3786,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
+    "title": "CultivarRateParams",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nVrnTreatTemp\ndouble\nVernalisation treatment temperature (\\(^\\circ\\)C)\n\n\nVrnTreatDuration\ndouble\nDays of exposure to vernalising temperature\n\n\nTreatmentPp_L\ndouble\nPhotoperiod under long-day treatment (hours)\n\n\nTtEmerge\ndouble\nObserved thermal time from sowing to emergence (degree-days)\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nBaseDVrnVeg\ndouble\nBaseline Vrn1 expression rate in vegetative phase (&gt;20°C)\n\n\nMaxDVrnVeg\ndouble\nMax Vrn1 expression rate at 0°C during vegetative phase\n\n\nBaseDVrnER\ndouble\nBaseline Vrn1 expression rate in early reproductive phase\n\n\nMaxDVrnER\ndouble\nMax Vrn1 expression rate in early reproductive phase under long day\n\n\nPpVrn3FactVeg\ndouble\nRelative increase in Vrn1 expression by Vrn3 in vegetative phase\n\n\nPpVrn3FactER\ndouble\nRelative increase in Vrn1 expression by Vrn3 in early reproductive phase\n\n\nMaxVrn2\ndouble\nMaximum expression of Vrn2 in long days\n\n\nMethalationThreshold\ndouble\nCold requirement before persistent Vrn1 expression occurs\n\n\nColdVrn1Fact\ndouble\nRelative cold-induced increase in Vrn1 expression\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3630,15 +3802,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
+    "title": "CultivarRateParams",
     "section": "User Interface",
-    "text": "User Interface\nFLNParameterEnvironment can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FLNParameterEnvironment in the Filter Box.",
+    "text": "User Interface\n\nNot typically user-configurable through the UI. It is populated by the CalcCAMPVrnRates function based on genotype-specific FLN observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3646,13 +3818,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
+    "title": "CultivarRateParams",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3662,15 +3834,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
+    "title": "CultivarRateParams",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FLNParameterEnvironment.cs on GitHub",
+    "text": "See Also\n\nSource code: CultivarRateParams.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3678,7 +3850,7 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {

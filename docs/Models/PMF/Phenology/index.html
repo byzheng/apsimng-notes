@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-06">
 
-<title>Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat) – APSIM NG Notes</title>
+<title>Phenology – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -32,6 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
 <link href="../../../../images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -71,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -190,7 +220,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/grain/index.html">Grain</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -215,11 +245,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
@@ -236,11 +266,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
@@ -266,13 +296,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
@@ -511,11 +541,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
@@ -620,11 +650,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
@@ -646,14 +676,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -770,24 +800,15 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/grain/NitrogenDemand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/grain/index.html">Grain</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</h1>
+<h1 class="title">Phenology</h1>
 </div>
 
 
@@ -795,12 +816,6 @@ window.Quarto = {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -810,102 +825,138 @@ window.Quarto = {
 </header>
 
 
-<p>The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of <strong>Anthesis</strong> and <strong>EndGrainFill</strong>. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.</p>
-<p>Wheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).</p>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The demand is defined by a <code>PhaseLookup</code> function (<code>NFillingRate</code>):</p>
-<ul>
-<li><strong>Before Anthesis (Sowing to Anthesis)</strong> as zero for no grain nitrogen demand as no grain development occurs.</li>
-<li><strong>During Grain Filling (Anthesis → EndGrainFill):</strong></li>
-</ul>
-<p><span class="math display">\[
-\text{N demand} = \frac{N_\text{kernel}}{D_\text{filling}} \times \text{ThermalTime} \times \text{GrainNumber}
-\]</span></p>
-<p>Where:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 82%">
-</colgroup>
+<p>Phenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.</p>
+
+
+
+
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table">
 <thead>
-<tr class="header">
-<th>Term</th>
-<th>Description</th>
+<tr>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+
+<th>
+Description
+</th>
+
 </tr>
 </thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(N_\text{kernel}\)</span></td>
-<td>Potential nitrogen per kernel (default = 0.0011 g/kernel)</td>
+<tbody class="list">
+
+<tr data-index="0" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="3" data-listing-word-count-sort="576" data-listing-title-sort="ColdVrnResponse" data-listing-filename-sort="ColdVrnResponse.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="title listing-title">ColdVrnResponse</a>
+</td>
+<td>
+<span class="listing-description">The <code>ColdVrnResponse</code> function models the upregulation of the <em>Vrn1</em> gene in response to cold temperatures. This function is an extension of the base <em>Vrn1</em> expression and…<span class="citation" data-cites="brown_integration_2013"></span></span>
+</td>
+
 </tr>
-<tr class="even">
-<td><span class="math inline">\(D_\text{filling}\)</span></td>
-<td>Grain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target</td>
+
+<tr data-index="1" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="5" data-listing-word-count-sort="840" data-listing-title-sort="CultivarRateParams" data-listing-filename-sort="CultivarRateParams.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="title listing-title">CultivarRateParams</a>
+</td>
+<td>
+<span class="listing-description">A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and…</span>
+</td>
+
 </tr>
-<tr class="odd">
-<td>ThermalTime</td>
-<td>Daily thermal time (°Cd), from <code>[Phenology].ThermalTime</code></td>
+
+<tr data-index="2" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="3" data-listing-word-count-sort="567" data-listing-title-sort="FLNParameterEnvironment" data-listing-filename-sort="FLNParameterEnvironment.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="title listing-title">FLNParameterEnvironment</a>
+</td>
+<td>
+<span class="listing-description">A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses…</span>
+</td>
+
 </tr>
-<tr class="even">
-<td>GrainNumber</td>
-<td>Number of kernels, from <code>[Grain].NumberFunction</code></td>
+
+<tr data-index="3" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="15" data-listing-word-count-sort="2866" data-listing-title-sort="FinalLeafNumberSet" data-listing-filename-sort="FinalLeafNumberSet.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="title listing-title">FinalLeafNumberSet</a>
+</td>
+<td>
+<span class="listing-description">The <code>FinalLeafNumberSet</code> model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help…</span>
+</td>
+
 </tr>
+
+<tr data-index="4" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="5" data-listing-word-count-sort="846" data-listing-title-sort="EmergingPhase" data-listing-filename-sort="EmergingPhase.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="title listing-title">EmergingPhase</a>
+</td>
+<td>
+<span class="listing-description">The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It…</span>
+</td>
+
+</tr>
+
+<tr data-index="5" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="4" data-listing-word-count-sort="613" data-listing-title-sort="EndPhase" data-listing-filename-sort="EndPhase.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="title listing-title">EndPhase</a>
+</td>
+<td>
+<span class="listing-description"><code>EndPhase</code> is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.</span>
+</td>
+
+</tr>
+
+<tr data-index="6" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="5" data-listing-word-count-sort="815" data-listing-title-sort="GenericPhase" data-listing-filename-sort="GenericPhase.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="title listing-title">GenericPhase</a>
+</td>
+<td>
+<span class="listing-description">The <code>GenericPhase</code> is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time…</span>
+</td>
+
+</tr>
+
+<tr data-index="7" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="5" data-listing-word-count-sort="981" data-listing-title-sort="GerminatingPhase" data-listing-filename-sort="GerminatingPhase.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="title listing-title">GerminatingPhase</a>
+</td>
+<td>
+<span class="listing-description">The <code>GerminatingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It…</span>
+</td>
+
+</tr>
+
+<tr data-index="8" data-listing-file-modified-sort="1752101669483" data-listing-reading-time-sort="10" data-listing-word-count-sort="1951" data-listing-title-sort="Phenology Function" data-listing-filename-sort="Phenology.qmd">
+<td>
+<a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="title listing-title">Phenology Function</a>
+</td>
+<td>
+<span class="listing-description">The <code>Phenology</code> model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central…</span>
+</td>
+
+</tr>
+
 </tbody>
 </table>
-<p>The equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.</p>
-<p>A linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.</p>
-</section>
-<section id="cultivar-specific-parameters" class="level2">
-<h2 class="anchored" data-anchor-id="cultivar-specific-parameters">Cultivar-Specific Parameters</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 15%">
-<col style="width: 66%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-<th>Default Value</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue</td>
-<td>Potential nitrogen per kernel (g/kernel)</td>
-<td>0.0011</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<p>Suppose:</p>
-<ul>
-<li>Nitrogen per kernel (<span class="math inline">\(N_\text{kernel}\)</span>) = 0.0011 g/kernel</li>
-<li>Grain filling duration (<span class="math inline">\(D_\text{filling}\)</span>) = 120 + 545 = 665 °Cd</li>
-<li>Daily thermal time (ThermalTime) = 20 °Cd</li>
-<li>Number of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)</li>
-</ul>
-<p>Plug into the formula:</p>
-<p><span class="math display">\[
-\text{N demand} = \frac{0.0011}{665} \times 20 \times 18000 = 0.5955 \text{ g N/day}
-\]</span></p>
-<p><strong>So, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.</strong></p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li><a href="https://apsimnextgeneration.netlify.app/" class="external-link">APSIM NG Documentation</a></li>
-<li><a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json" class="external-link">APSIM Next Gen Wheat Model</a></li>
-</ul>
-
-
-</section>
-
-</main> <!-- /main -->
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1324,7 +1375,7 @@ window.Quarto = {
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/grain/NitrogenDemand.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
