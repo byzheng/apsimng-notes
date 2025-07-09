@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -740,7 +760,7 @@ cookieconsent.run({
 <p>The <strong>Thermal Time</strong> function in canola model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (<a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.</p>
 <ul>
 <li><code>InterpolationMethod</code>: <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> is used for sub-daily interpolation, i.e.&nbsp;3-hourly temperature estimates.</li>
-<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html" class="model-link">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.</li>
+<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html" class="model-link">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation <span class="citation" data-cites="whish_vernalisation_2020 robertson_simulation_2016">(<a href="#ref-whish_vernalisation_2020" role="doc-biblioref">Whish et al. 2020</a>; <a href="#ref-robertson_simulation_2016" role="doc-biblioref">Robertson and Lilley 2016</a>)</span>.</li>
 </ul>
 <table class="caption-top table">
 <thead>
@@ -792,9 +812,17 @@ cookieconsent.run({
 </blockquote>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-robertson_simulation_2016" class="csl-entry" role="listitem">
+Robertson, M. J., and J. M. Lilley. 2016. <span>“Simulation of Growth, Development and Yield of Canola (Brassica Napus) in APSIM.”</span> <em>Crop and Pasture Science</em>. <a href="http://dx.doi.org/10.1071/CP15267">http://dx.doi.org/10.1071/CP15267</a>.
+</div>
+<div id="ref-whish_vernalisation_2020" class="csl-entry" role="listitem">
+Whish, J. P. M., J. M. Lilley, M. J. Morrison, B. Cocks, and M. Bullock. 2020. <span>“Vernalisation in Australian Spring Canola Explains Variable Flowering Responses.”</span> <em>Field Crops Research</em> 258 (November): 107968. <a href="https://doi.org/10.1016/j.fcr.2020.107968">https://doi.org/10.1016/j.fcr.2020.107968</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
