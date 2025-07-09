@@ -2139,23 +2139,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
     "title": "FinalLeafNumberSet",
     "section": "Methodology",
-    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "CAMP",
-      "FinalLeafNumberSet"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#example-parameter-table",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#example-parameter-table",
-    "title": "FinalLeafNumberSet",
-    "section": "Example Parameter Table",
-    "text": "Example Parameter Table\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
     "crumbs": [
       "Home",
       "Docs",
