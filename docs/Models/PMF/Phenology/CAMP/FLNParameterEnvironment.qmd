@@ -1,0 +1,64 @@
+---
+title: "FLNParameterEnvironment"
+output: html_document
+---
+
+A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.
+
+## Overview
+
+The `FLNParameterEnvironment` function is part of the phenology module in APSIM NG, specifically under the [CAMP](CAMP.qmd) parent model. It describes the specific environmental settings such as vernalisation treatment temperature, duration, and photoperiod under which Final Leaf Number (FLN) was observed. These data are used for calibrating genotype responses to temperature and photoperiod cues.
+
+This function serves as a data container and is typically used in experimental or modeling contexts where genotype × environment interactions affecting phenological development are being studied or simulated.
+
+## Inputs
+
+The `FLNParameterEnvironment` function requires the following input parameters:
+
+- `VrnTreatTemp`: Vernalisation treatment temperature ($^\circ$C)
+- `VrnTreatDuration`: Duration of exposure to vernalising temperature (days)
+- `TreatmentPp_L`: Photoperiod during long-day treatment (hours)
+- `TtEmerge`: Thermal time from sowing to emergence (degree-days)
+
+## Methodology
+
+This function does not contain computational logic or algorithms. Instead, it stores parameter values representing environmental conditions for vernalisation and photoperiod treatments. These inputs can be used by other functions in the APSIM phenology pipeline (e.g., for modeling development rate, phase transitions, or FLN prediction) to simulate plant responses to different environmental conditions.
+
+By encapsulating experimental treatment data, this function supports modular and reusable parameterization within simulation scenarios involving phenological modeling.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| VrnTreatTemp         | double  | Vernalisation treatment temperature ($^\circ$C)                             |
+| VrnTreatDuration     | double  | Days of exposure to vernalising temperature                                |
+| TreatmentPp_L        | double  | Photoperiod under long-day treatment (hours)                               |
+| TtEmerge             | double  | Observed thermal time from sowing to emergence (degree-days)               |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+`FLNParameterEnvironment` can be added as a child of a `CAMP` node in the model tree. Right-click the `CAMP` node, select "Add Model...", and search for `FLNParameterEnvironment` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [FLNParameterEnvironment.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.cs)
