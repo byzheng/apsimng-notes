@@ -3315,6 +3315,19 @@
     ]
   },
   {
+    "objectID": "docs/Models/Events.html#phenology",
+    "href": "docs/Models/Events.html#phenology",
+    "title": "Events",
+    "section": "Phenology",
+    "text": "Phenology\n\n\n\n\n\n\n\nEvent\nPurpose\n\n\n\n\nPhaseChanged\nIndicates a new phase has started\n\n\nPlantEmerged\nSignals that the emergence phase has been completed\n\n\nStageWasReset\nSignals a manual reset of stage via SetToStage()\n\n\nPostPhenology\nRaised after daily phenological timestep completes",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Events"
+    ]
+  },
+  {
     "objectID": "docs/Models/Functions/PhaseLookupValue.html",
     "href": "docs/Models/Functions/PhaseLookupValue.html",
     "title": "PhaseLookupValue",

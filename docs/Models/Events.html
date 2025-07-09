@@ -709,6 +709,7 @@ cookieconsent.run({
   <li><a href="#simulation" id="toc-simulation" class="nav-link active" data-scroll-target="#simulation">Simulation</a></li>
   <li><a href="#clock" id="toc-clock" class="nav-link" data-scroll-target="#clock">Clock</a></li>
   <li><a href="#germinatingphase" id="toc-germinatingphase" class="nav-link" data-scroll-target="#germinatingphase">GerminatingPhase</a></li>
+  <li><a href="#phenology" id="toc-phenology" class="nav-link" data-scroll-target="#phenology">Phenology</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Events.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1091,6 +1092,39 @@ cookieconsent.run({
 <tr class="odd">
 <td><a id="SeedImbibed"></a>SeedImbibed</td>
 <td>This event is raised when germination occurs by <a href="../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="model-link">GerminatingPhase</a>, signaling other models or processes to begin their activities related to the germinated seed.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="phenology" class="level2">
+<h2 class="anchored" data-anchor-id="phenology"><a href="../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a></h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 84%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="PhaseChanged"></a>PhaseChanged</td>
+<td>Indicates a new phase has started</td>
+</tr>
+<tr class="even">
+<td><a id="PlantEmerged"></a>PlantEmerged</td>
+<td>Signals that the emergence phase has been completed</td>
+</tr>
+<tr class="odd">
+<td><a id="StageWasReset"></a>StageWasReset</td>
+<td>Signals a manual reset of stage via <code>SetToStage()</code></td>
+</tr>
+<tr class="even">
+<td><a id="PostPhenology"></a>PostPhenology</td>
+<td>Raised after daily phenological timestep completes</td>
 </tr>
 </tbody>
 </table>
