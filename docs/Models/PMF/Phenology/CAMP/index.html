@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>EmergingPhase – APSIM NG Notes</title>
+<title>CAMP – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,6 +51,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../../">
 <link href="../../../../../images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="../../../../../site_libs/quarto-listing/list.min.js"></script>
+<script src="../../../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -70,6 +92,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -98,6 +149,35 @@ cookieconsent.run({
 </script> 
   
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../../styles.css">
 </head>
@@ -160,7 +240,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phases/index.html">Phases</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html">EmergingPhase</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html">CAMP</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -253,14 +333,14 @@ cookieconsent.run({
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phases</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EmergingPhase</span></a>
   </div>
 </li>
@@ -286,13 +366,13 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">CAMP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth5 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth5 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
@@ -740,28 +820,15 @@ cookieconsent.run({
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
-  <ul class="collapse">
-  <li><a href="#emergence-triggers" id="toc-emergence-triggers" class="nav-link" data-scroll-target="#emergence-triggers">Emergence Triggers</a></li>
-  </ul></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phases/index.html">Phases</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html">EmergingPhase</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html">CAMP</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">EmergingPhase</h1>
+<h1 class="title">CAMP</h1>
 </div>
 
 
@@ -778,153 +845,94 @@ cookieconsent.run({
 </header>
 
 
-<p>The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g.&nbsp;temperature, or a user-specified germination date.</p>
-<section id="overview" class="level2">
-<h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>EmergingPhase</code> models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:</p>
-<ul>
-<li>Target thermal time for emergence is reached,</li>
-<li>A specific <strong>emergence date</strong> is provided via the <code>EmergenceDate</code> property.</li>
-</ul>
-<section id="emergence-triggers" class="level3">
-<h3 class="anchored" data-anchor-id="emergence-triggers">Emergence Triggers</h3>
-<p>Emergence occurs in one of two ways:</p>
-<ol type="1">
-<li><strong>User-defined emergence date</strong></li>
-</ol>
-<p>If <code>EmergenceDate</code> is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.</p>
-<ol start="2" type="1">
-<li><strong>Phase Target</strong> as <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a></li>
-</ol>
-</section>
-</section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened For</strong></p>
-<p>These are signals or notifications that the <code>GerminatingPhase</code> listens for from other parts of the simulation:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
-<td>Reset progress at the start of simulations</td>
-</tr>
-<tr class="even">
-<td><a href="../../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a></td>
-<td>Set the phase target as <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a>. It also indicates the phase target cannot be dynamically modified.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<p><strong>Configurable and Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 7%">
-<col style="width: 63%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Start</code></td>
-<td>string</td>
-<td>Phenological stage at which this phase begins (e.g.&nbsp;<code>Sowing</code>).</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td><code>End</code></td>
-<td>string</td>
-<td>Phenological stage that marks completion of the phase (e.g.&nbsp;<code>Germinated</code>).</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td><code>Target</code></td>
-<td>IFunction</td>
-<td>The target value for phase completion (e.g., required thermal time).</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td><code>Progression</code></td>
-<td>IFunction</td>
-<td>The daily progression towards the target (e.g., daily thermal time).</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td><code>EmergenceDate</code></td>
-<td>string</td>
-<td>Optional fixed calendar date to override environmental conditions.</td>
-<td>No</td>
-</tr>
-<tr class="even">
-<td><code>IsEmerged</code></td>
-<td>bool</td>
-<td>Boolean flag indicating whether emergence has occurred.</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Read-Only Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 8%">
-<col style="width: 71%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>FractionComplete</code></td>
-<td>double</td>
-<td>Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.</td>
-</tr>
-<tr class="even">
-<td><code>ProgressionForTimeStep</code></td>
-<td>double</td>
-<td>The amount of progression made during the current time step (e.g.&nbsp;day).</td>
-</tr>
-<tr class="odd">
-<td><code>ProgressThroughPhase</code></td>
-<td>double</td>
-<td>Accumulated units of progress through this phase between zero and target.</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>An <code>EmergingPhase</code> can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.</p>
-</section>
-<section id="see-also" class="level2">
-<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
-<ul>
-<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs" class="external-link">EmergingPhase.cs on GitHub</a>.</li>
-</ul>
+<p>Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by <span class="citation" data-cites="jamieson_sirius:_1998">(<a href="#ref-jamieson_sirius:_1998" role="doc-biblioref">Jamieson et al. 1998</a>)</span>.</p>
+<p><a href="CAMP.qmd" class="broken-link">CAMP</a> is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.</p>
 
 
-</section>
 
-</main> <!-- /main -->
+
+
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+   <div class="input-group input-group-sm quarto-listing-sort">
+    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
+    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+      <option value="" disabled="" selected="" hidden="">Order By</option>
+      <option value="index" data-direction="asc">Default</option>
+      <option value="listing-title-sort" data-direction="asc">
+        Title
+      </option>
+    </select>
+  </div>
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
+</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+
+<th>
+<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
+</th>
+
+<th>
+Description
+</th>
+
+</tr>
+</thead>
+<tbody class="list">
+
+<tr data-index="0" data-listing-file-modified-sort="1752103483937" data-listing-reading-time-sort="3" data-listing-word-count-sort="576" data-listing-title-sort="ColdVrnResponse" data-listing-filename-sort="ColdVrnResponse.qmd">
+<td>
+<a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="title listing-title">ColdVrnResponse</a>
+</td>
+<td>
+<span class="listing-description">The <code>ColdVrnResponse</code> function models the upregulation of the <em>Vrn1</em> gene in response to cold temperatures. This function is an extension of the base <em>Vrn1</em> expression and…<span class="citation" data-cites="brown_integration_2013"></span></span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-listing-file-modified-sort="1752103483937" data-listing-reading-time-sort="5" data-listing-word-count-sort="840" data-listing-title-sort="CultivarRateParams" data-listing-filename-sort="CultivarRateParams.qmd">
+<td>
+<a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="title listing-title">CultivarRateParams</a>
+</td>
+<td>
+<span class="listing-description">A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and…</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-listing-file-modified-sort="1752103483937" data-listing-reading-time-sort="3" data-listing-word-count-sort="567" data-listing-title-sort="FLNParameterEnvironment" data-listing-filename-sort="FLNParameterEnvironment.qmd">
+<td>
+<a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="title listing-title">FLNParameterEnvironment</a>
+</td>
+<td>
+<span class="listing-description">A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses…</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-listing-file-modified-sort="1752103483937" data-listing-reading-time-sort="15" data-listing-word-count-sort="2866" data-listing-title-sort="FinalLeafNumberSet" data-listing-filename-sort="FinalLeafNumberSet.qmd">
+<td>
+<a href="../../../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="title listing-title">FinalLeafNumberSet</a>
+</td>
+<td>
+<span class="listing-description">The <code>FinalLeafNumberSet</code> model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help…</span>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-jamieson_sirius:_1998" class="csl-entry" role="listitem">
+Jamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. <span>“Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.”</span> <em>European Journal of Agronomy</em> 8 (3–4): 161–79. <a href="https://doi.org/16/S1161-0301(98)00020-3">https://doi.org/16/S1161-0301(98)00020-3</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1343,7 +1351,7 @@ cookieconsent.run({
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/CAMP/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

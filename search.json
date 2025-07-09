@@ -2231,11 +2231,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "title": "ColdVrnResponse",
     "section": "",
-    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
+    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2243,15 +2243,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "title": "ColdVrnResponse",
     "section": "Overview",
-    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
+    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2259,15 +2259,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "title": "ColdVrnResponse",
     "section": "Inputs",
-    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
+    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2275,15 +2275,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "title": "ColdVrnResponse",
     "section": "Methodology",
-    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2291,13 +2291,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "title": "ColdVrnResponse",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -2307,15 +2307,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "title": "ColdVrnResponse",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2323,15 +2323,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "title": "ColdVrnResponse",
     "section": "User Interface",
-    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
+    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2339,13 +2339,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "title": "ColdVrnResponse",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -2355,15 +2355,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "title": "ColdVrnResponse",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
+    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2371,15 +2371,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+    "title": "EmergingPhase",
     "section": "",
-    "text": "EndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
+    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2387,15 +2387,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
+    "title": "EmergingPhase",
     "section": "Overview",
-    "text": "Overview\nIn the APSIM Next Gen phenology system, crop development is divided into sequential phases. EndPhase defines the last phase in this sequence. When the crop reaches this stage, it no longer accumulates thermal time or progresses through development.\nThis phase typically represents physiological maturity, senescence, or the point at which no further crop growth or development is expected. The model does not advance past this phase unless an external event (such as harvest or crop removal) occurs.",
+    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase",
     "crumbs": [
       "Home",
       "Docs",
@@ -2403,47 +2403,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
-    "title": "EndPhase",
-    "section": "Inputs",
-    "text": "Inputs\n\nStart: The name of the stage that marks the beginning of this phase.\nEnd: The name of the stage that marks the end of this phase (usually not used since this is terminal).\nIsEmerged: Logical value indicating whether this phase assumes the crop has emerged (default is true).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
-    "title": "EndPhase",
-    "section": "Methodology",
-    "text": "Methodology\nOnce the crop enters the EndPhase, it performs no further development:\n\nFractionComplete is always 0.\nTarget thermal time is 0.\nDoTimeStep() always returns false, indicating no development occurs.\nNo reset logic is required.\n\nThis phase ensures the crop’s development is paused or concluded until harvest or removal.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
+    "title": "EmergingPhase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2451,15 +2419,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "title": "EmergingPhase",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nStage that marks the beginning of this phase\n\n\nEnd\nstring\nStage name marking the end of this phase (optional)\n\n\nIsEmerged\nbool\nIndicates whether this phase assumes the crop has emerged\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nAlways returns 0.0\n\n\nTarget\ndouble\nAlways returns 0 (no thermal time required)",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2467,15 +2435,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
-    "title": "EndPhase",
-    "section": "User Interface",
-    "text": "User Interface\nEndPhase is added as a child of a Phenology node to mark the final crop development stage. To use:\n\nRight-click on a Phenology component in the model tree.\nSelect “Add Model…”.\nChoose “EndPhase”.\nSet Start to the name of the phase where final development begins.\n\nNo child models are needed for EndPhase.",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "title": "EmergingPhase",
+    "section": "Usage",
+    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2483,31 +2451,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
-    "title": "EndPhase",
-    "section": "Practical Example",
-    "text": "Practical Example\nUse EndPhase in a crop model where development halts at a defined maturity point (e.g., “HarvestRipe”):\n\nSet Start = \"HarvestRipe\"\nThe crop will remain in this phase until harvested\n\n\nNo practical example is available for this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EndPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
-    "title": "EndPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
+    "title": "EmergingPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: EndPhase.cs on GitHub",
+    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2515,7 +2467,22 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EndPhase"
+      "EmergingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/index.html",
+    "href": "docs/Models/PMF/Phenology/Phases/index.html",
+    "title": "Phases",
+    "section": "",
+    "text": "Phases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases"
     ]
   },
   {
@@ -3364,7 +3331,7 @@
     "href": "docs/Models/PMF/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "Phenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nCultivarRateParams\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nPhenology Function\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Phenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\nPhenology is the main model to simulate the developmental progression of a plant through a series of defined growth stages based on progression to completion.\nPhases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\nCAMP is the Cereal Anthesis Molecular Phenology (CAMP) model which is based on the Kirby Framework, and assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3470,11 +3437,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
+    "title": "EndPhase",
     "section": "",
-    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.",
+    "text": "EndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3482,15 +3449,15 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EmergingPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
-    "title": "EmergingPhase",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#overview",
+    "title": "EndPhase",
     "section": "Overview",
-    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase",
+    "text": "Overview\nIn the APSIM Next Gen phenology system, crop development is divided into sequential phases. EndPhase defines the last phase in this sequence. When the crop reaches this stage, it no longer accumulates thermal time or progresses through development.\nThis phase typically represents physiological maturity, senescence, or the point at which no further crop growth or development is expected. The model does not advance past this phase unless an external event (such as harvest or crop removal) occurs.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3498,127 +3465,127 @@
       "PMF",
       "Phenology",
       "Phases",
-      "EmergingPhase"
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
-    "title": "EmergingPhase",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EmergingPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "title": "EmergingPhase",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\nIsEmerged\nbool\nBoolean flag indicating whether emergence has occurred.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EmergingPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "title": "EmergingPhase",
-    "section": "Usage",
-    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EmergingPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
-    "title": "EmergingPhase",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "EmergingPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "title": "ColdVrnResponse",
-    "section": "",
-    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "CAMP",
-      "ColdVrnResponse"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "title": "ColdVrnResponse",
-    "section": "Overview",
-    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "CAMP",
-      "ColdVrnResponse"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#inputs",
+    "title": "EndPhase",
     "section": "Inputs",
-    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
+    "text": "Inputs\n\nStart: The name of the stage that marks the beginning of this phase.\nEnd: The name of the stage that marks the end of this phase (usually not used since this is terminal).\nIsEmerged: Logical value indicating whether this phase assumes the crop has emerged (default is true).",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "CAMP",
-      "ColdVrnResponse"
+      "Phases",
+      "EndPhase"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#methodology",
+    "title": "EndPhase",
     "section": "Methodology",
-    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
+    "text": "Methodology\nOnce the crop enters the EndPhase, it performs no further development:\n\nFractionComplete is always 0.\nTarget thermal time is 0.\nDoTimeStep() always returns false, indicating no development occurs.\nNo reset logic is required.\n\nThis phase ensures the crop’s development is paused or concluded until harvest or removal.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#events",
+    "title": "EndPhase",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#properties",
+    "title": "EndPhase",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nStage that marks the beginning of this phase\n\n\nEnd\nstring\nStage name marking the end of this phase (optional)\n\n\nIsEmerged\nbool\nIndicates whether this phase assumes the crop has emerged\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nAlways returns 0.0\n\n\nTarget\ndouble\nAlways returns 0 (no thermal time required)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#user-interface",
+    "title": "EndPhase",
+    "section": "User Interface",
+    "text": "User Interface\nEndPhase is added as a child of a Phenology node to mark the final crop development stage. To use:\n\nRight-click on a Phenology component in the model tree.\nSelect “Add Model…”.\nChoose “EndPhase”.\nSet Start to the name of the phase where final development begins.\n\nNo child models are needed for EndPhase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#practical-example",
+    "title": "EndPhase",
+    "section": "Practical Example",
+    "text": "Practical Example\nUse EndPhase in a crop model where development halts at a defined maturity point (e.g., “HarvestRipe”):\n\nSet Start = \"HarvestRipe\"\nThe crop will remain in this phase until harvested\n\n\nNo practical example is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html#see-also",
+    "title": "EndPhase",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: EndPhase.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EndPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "title": "FinalLeafNumberSet",
+    "section": "",
+    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3626,13 +3593,61 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "title": "FinalLeafNumberSet",
+    "section": "Overview",
+    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "title": "FinalLeafNumberSet",
+    "section": "Inputs",
+    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "title": "FinalLeafNumberSet",
+    "section": "Methodology",
+    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP",
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "title": "FinalLeafNumberSet",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -3642,15 +3657,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "title": "FinalLeafNumberSet",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
     "crumbs": [
       "Home",
       "Docs",
@@ -3658,15 +3673,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "title": "FinalLeafNumberSet",
     "section": "User Interface",
-    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
+    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3674,13 +3689,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "title": "FinalLeafNumberSet",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3690,15 +3705,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "title": "FinalLeafNumberSet",
     "section": "See Also",
-    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
+    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3706,7 +3721,22 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/index.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/index.html",
+    "title": "CAMP",
+    "section": "",
+    "text": "Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).\nCAMP is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nCultivarRateParams\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nNo matching items\nReferences\n\nJamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. “Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.” European Journal of Agronomy 8 (3–4): 161–79. https://doi.org/16/S1161-0301(98)00020-3.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP"
     ]
   },
   {
