@@ -1,10 +1,14 @@
 ---
 title: "PMF"
-listing:
-  contents: 
-   - "*.md"
-   - "*.qmd"
-  type: table
-  sort: "date desc"
-  fields: [title, description]
 ---
+
+Plant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding [@brown_plant_2014].
+
+
+### Arbitrator
+
+[Arbitrator](Arbitrator/index.qmd) is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.
+
+### Phenology
+
+[Phenology](Phenology/index.qmd) is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.
