@@ -102,3 +102,12 @@ Events are listed according the model that triggers them.
 |-------|-------------|
 | <a id="SeedImbibed"></a>SeedImbibed | This event is raised when germination occurs by [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd), signaling other models or processes to begin their activities related to the germinated seed. |
 
+
+## [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd)
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| <a id="PhaseChanged"></a>PhaseChanged | Indicates a new phase has started                                                   |
+| <a id="PlantEmerged"></a>PlantEmerged | Signals that the emergence phase has been completed                                 |
+| <a id="StageWasReset"></a>StageWasReset | Signals a manual reset of stage via `SetToStage()`                                  |
+| <a id="PostPhenology"></a>PostPhenology | Raised after daily phenological timestep completes                                  |
