@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-06-06">
 
-<title>Fertiliser Types – APSIM NG Notes</title>
+<title>ColdVrnResponse – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,29 +20,49 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/icons/icon_192.png" rel="icon" type="image/png">
-<script src="../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-e98dcb3fceb702c4831bac57f112e771.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<link href="../../../../../images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="../../../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-e98dcb3fceb702c4831bac57f112e771.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -99,8 +118,37 @@ cookieconsent.run({
 </script> 
   
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -110,10 +158,10 @@ cookieconsent.run({
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo">
+    <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../../../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -124,23 +172,23 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../../docs/index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../../../docs/index.html" aria-current="page"> 
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../tips/index.html"> 
+    <a class="nav-link" href="../../../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html"> 
+    <a class="nav-link" href="../../../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../disclaimer.html"> 
+    <a class="nav-link" href="../../../../../disclaimer.html"> 
 <span class="menu-text">Disclaimer</span></a>
   </li>  
 </ul>
@@ -161,7 +209,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/management/fertiliser.html">Management</a></li><li class="breadcrumb-item"><a href="../../docs/management/fertiliser.html">Fertiliser Types</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html">CAMP</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html">ColdVrnResponse</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -175,7 +223,7 @@ cookieconsent.run({
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -184,34 +232,34 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clock</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Events</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -223,13 +271,13 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nutrient Constrained Allocation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relative Allocation</span></a>
   </div>
 </li>
@@ -237,37 +285,37 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology Function</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">CAMP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth5 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ColdVrnResponse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FinalLeafNumberSet</span></a>
   </div>
 </li>
@@ -284,25 +332,25 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EmergingPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EndPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GenericPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GerminatingPhase</span></a>
   </div>
 </li>
@@ -314,7 +362,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -323,7 +371,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -331,7 +379,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -340,91 +388,91 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AccumulateFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AddFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Constant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DivideFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HourlySinPpAdjusted</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MaximumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MinimumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MultiplyFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookupValue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Photoperiod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubDailyInterpolation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubtractFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ThreeHourAirTemperature</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
@@ -439,7 +487,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
   </div>
 </li>
@@ -449,7 +497,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -458,7 +506,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2</span></a>
   </div>
 </li>
@@ -468,7 +516,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -477,13 +525,13 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Barley</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -492,7 +540,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -501,73 +549,73 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyFlowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyPodDevelopment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LateGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maturing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MidGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ripening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vegetative</span></a>
   </div>
 </li>
@@ -577,7 +625,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -586,7 +634,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -595,7 +643,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2 for Wheat</span></a>
   </div>
 </li>
@@ -603,7 +651,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -612,7 +660,7 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -620,7 +668,7 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -629,73 +677,73 @@ cookieconsent.run({
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Flowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainExpanding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainRipening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Haun Stage</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Heading</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Crops/Wheat/Phenology/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Crops/Wheat/Phenology/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VernalisationPhase</span></a>
   </div>
 </li>
@@ -707,16 +755,16 @@ cookieconsent.run({
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
  <span class="menu-text">Management</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../../docs/management/fertiliser.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fertiliser Types</span></a>
   </div>
 </li>
@@ -734,18 +782,23 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#structure-of-fertiliser-definitions" id="toc-structure-of-fertiliser-definitions" class="nav-link" data-scroll-target="#structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</a></li>
-  <li><a href="#example-fertiliser-types-in-apsim" id="toc-example-fertiliser-types-in-apsim" class="nav-link" data-scroll-target="#example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/management/fertiliser.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/management/fertiliser.html">Management</a></li><li class="breadcrumb-item"><a href="../../docs/management/fertiliser.html">Fertiliser Types</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html">CAMP</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html">ColdVrnResponse</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Fertiliser Types</h1>
+<h1 class="title">ColdVrnResponse</h1>
 </div>
 
 
@@ -753,12 +806,6 @@ cookieconsent.run({
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">June 6, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -768,166 +815,117 @@ cookieconsent.run({
 </header>
 
 
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named <a href="https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json" class="external-link">Fertiliser.json</a>.</p>
-<p>Understanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.</p>
+<p>The <code>ColdVrnResponse</code> function models the upregulation of the <em>Vrn1</em> gene in response to cold temperatures. This function is an extension of the base <em>Vrn1</em> expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in <span class="citation" data-cites="brown_integration_2013">Brown et al. (<a href="#ref-brown_integration_2013" role="doc-biblioref">2013</a>)</span>. It is part of the vernalisation module used in the phenology model within APSIM NG.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <code>ColdVrnResponse</code> function calculates an additional contribution to <em>Vrn1</em> expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.</p>
+<p>It implements the <code>IFunction</code> and <code>IIndexedFunction</code> interfaces, and is used within the context of the <a href="CAMP.qmd" class="broken-link">CAMP</a> model for phase progression in phenology.</p>
 </section>
-<section id="structure-of-fertiliser-definitions" class="level2">
-<h2 class="anchored" data-anchor-id="structure-of-fertiliser-definitions">Structure of Fertiliser Definitions</h2>
-<p>Each fertiliser type in APSIM has the following attributes:</p>
+<section id="inputs" class="level2">
+<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<p>The following inputs are required by the function, supplied as child models or linked references:</p>
 <ul>
-<li><strong>Name</strong>: Identifier used within the simulation to refer to this fertiliser.</li>
-<li><strong>Description</strong>: A human-readable explanation of the fertiliser’s nature or composition.</li>
-<li><strong>Solute</strong>: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.</li>
-<li><strong>Fraction</strong>: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.</li>
-<li><strong>Release Rate</strong>: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.</li>
+<li><code>CAMP</code>: The parent model that contains the parameters and context for the CAMP model.</li>
+<li><code>k</code>: The exponential shape factor controlling the temperature response curve.</li>
+<li><code>deVernalisationTemp</code>: The temperature threshold above which vernalisation is reduced.</li>
+<li><code>deVernalisationRate</code>: The rate of down-regulation of <em>Vrn1</em> when temperature exceeds the de-vernalisation threshold.</li>
+<li><code>camp.Params</code>: A parameter check from the CAMP model indicating whether computation is active.</li>
 </ul>
 </section>
-<section id="example-fertiliser-types-in-apsim" class="level2">
-<h2 class="anchored" data-anchor-id="example-fertiliser-types-in-apsim">Example Fertiliser Types in APSIM</h2>
-<p>Below is a simplified summary of several fertiliser types defined in APSIM NG:</p>
-<div class="cell">
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>The function computes the indexed value of <em>Vrn1</em> upregulation for a given temperature input <span class="math inline">\(dX\)</span> (likely a sub-daily temperature).</p>
+<p>The response follows the logic:</p>
+<ul>
+<li>If <code>camp.Params</code> is null, return 0 (no response).</li>
+<li>Compute upregulation:</li>
+</ul>
+<p><span class="math display">\[ U_{dVrn1} = e^{k \cdot dX} \]</span></p>
+<ul>
+<li>If <span class="math inline">\(dX &lt; \text{deVernalisationTemp}\)</span>:</li>
+</ul>
+<p><span class="math display">\[ \text{Response} = \frac{U_{dVrn1}}{24} \]</span></p>
+<ul>
+<li>Else (temperature exceeds de-vernalisation threshold):</li>
+</ul>
+<p><span class="math display">\[ \text{Response} = \frac{\text{deVernalisationRate}}{24} \]</span></p>
+<p>This response is scaled to a sub-daily (hourly) timestep by dividing by 24.</p>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p><strong>Events Listened For</strong></p>
+<blockquote class="blockquote">
+<p>No events are listened by this function.</p>
+</blockquote>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 43%">
-<col style="width: 13%">
-<col style="width: 18%">
+<col style="width: 21%">
 <col style="width: 9%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Name</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: left;">Solute1Name</th>
-<th style="text-align: right;">Solute1Fraction</th>
-<th style="text-align: right;">Release</th>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">CalciteCA</td>
-<td style="text-align: left;">Ca as finely ground Agricultural Lime</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
+<td>k</td>
+<td>IFunction</td>
+<td>The exponential shape factor for cold temperature response.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">CalciteFine</td>
-<td style="text-align: left;">finely ground Agricultural Lime</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">0.40</td>
-<td style="text-align: right;">1</td>
+<td>deVernalisationTemp</td>
+<td>IFunction</td>
+<td>Temperature above which de-vernalisation occurs.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Dolomite</td>
-<td style="text-align: left;">finely ground dolomite</td>
-<td style="text-align: left;">Ca</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NO3N</td>
-<td style="text-align: left;">N as nitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NH4N</td>
-<td style="text-align: left;">N as ammonium</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">NH4NO3N</td>
-<td style="text-align: left;">ammonium nitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">DAP</td>
-<td style="text-align: left;">di-ammonium phosphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">MAP</td>
-<td style="text-align: left;">mono-ammonium phosphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UAN_N</td>
-<td style="text-align: left;">N as Urea-AmmoniumNitrate</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UreaN</td>
-<td style="text-align: left;">N as urea</td>
-<td style="text-align: left;">Urea</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">UreaNO3</td>
-<td style="text-align: left;">N as urea</td>
-<td style="text-align: left;">NO3</td>
-<td style="text-align: right;">0.50</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">UreaGranular</td>
-<td style="text-align: left;">Urea fertiliser</td>
-<td style="text-align: left;">Urea</td>
-<td style="text-align: right;">0.46</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">NH4SO4N</td>
-<td style="text-align: left;">ammonium sulphate</td>
-<td style="text-align: left;">NH4</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">RockP</td>
-<td style="text-align: left;">Rock phosphorus</td>
-<td style="text-align: left;">RockP</td>
-<td style="text-align: right;">0.80</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BandedP</td>
-<td style="text-align: left;">Banded phosphorus</td>
-<td style="text-align: left;">BandedP</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">BroadcastP</td>
-<td style="text-align: left;">Broadcast phosphorus</td>
-<td style="text-align: left;">LabileP</td>
-<td style="text-align: right;">1.00</td>
-<td style="text-align: right;">1</td>
+<td>deVernalisationRate</td>
+<td>IFunction</td>
+<td>Rate of <em>Vrn1</em> downregulation above the temperature threshold.</td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<blockquote class="blockquote">
+<p>No read-only properties are available for this function.</p>
+</blockquote>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<p><code>ColdVrnResponse</code> can be added as a child of a <code>Function</code> node in the model tree. Right-click the parent node, select “Add Model…”, and search for <code>ColdVrnResponse</code> in the Filter Box.</p>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<blockquote class="blockquote">
+<p>No practical example is available for this function.</p>
+</blockquote>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/ColdVrnResponse.cs" class="external-link">ColdVrnResponse.cs on GitHub</a></li>
+</ul>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-brown_integration_2013" class="csl-entry" role="listitem">
+Brown, Hamish E., Peter D. Jamieson, Ian R. Brooking, Derrick J. Moot, and Neil I. Huth. 2013. <span>“Integration of Molecular and Physiological Models to Explain Time of Anthesis in Wheat.”</span> <em>Annals of Botany</em> 112 (9): 1683–703. <a href="https://doi.org/10.1093/aob/mct224">https://doi.org/10.1093/aob/mct224</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1336,17 +1334,17 @@ cookieconsent.run({
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../about.html">
+    <a class="nav-link" href="../../../../../about.html">
 <p>About</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../disclaimer.html">
+    <a class="nav-link" href="../../../../../disclaimer.html">
 <p>Disclaimer</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/management/fertiliser.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

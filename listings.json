@@ -35,6 +35,8 @@
   {
     "listing": "/docs/Models/PMF/index.html",
     "items": [
+      "/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+      "/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
       "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
       "/docs/Models/PMF/Phenology/Phases/EndPhase.html",
       "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
