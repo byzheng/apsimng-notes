@@ -13,6 +13,7 @@ execute:
 website:
   cookie-consent: true
   title: "APSIM NG Notes"
+  favicon: images/icons/icon_192.png
   google-analytics: 
     tracking-id: "G-5K7WTC1T5R"
     storage: "cookies"
@@ -23,6 +24,8 @@ website:
     style: "docked"
     contents: docs
   navbar:
+    logo: images/icons/icon.png
+    logo-alt: "APSIM Next Generation Icon"
     left:
       - href: index.qmd
         text: Home

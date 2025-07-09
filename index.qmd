@@ -5,6 +5,7 @@ sidebar: false
 
 [![Quarto Publish](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml/badge.svg)](https://github.com/byzheng/apsimng-notes/actions/workflows/publish.yml)
 
+
 Welcome to **APSIM Next Generation Notes** — my personal collection of notes, tips, tutorials, and code snippets for working with [APSIM Next Generation (APSIM NG)](https://www.apsim.info/apsim-next-generation/).
 
 > 📌 *Note: This site is a personal collection of APSIM NG documentation and learning notes. It is not affiliated with or endorsed by the APSIM Initiative. For official documentation, visit the [APSIM site](https://www.apsim.info/). See the [full disclaimer](disclaimer.qmd) for more information.*
