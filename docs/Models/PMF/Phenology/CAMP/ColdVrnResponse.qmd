@@ -1,0 +1,79 @@
+---
+title: "ColdVrnResponse"
+output: html_document
+---
+
+The `ColdVrnResponse` function models the upregulation of the *Vrn1* gene in response to cold temperatures. This function is an extension of the base *Vrn1* expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in @brown_integration_2013. It is part of the vernalisation module used in the phenology model within APSIM NG.
+
+## Overview
+
+The `ColdVrnResponse` function calculates an additional contribution to *Vrn1* expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.
+
+It implements the `IFunction` and `IIndexedFunction` interfaces, and is used within the context of the [CAMP](CAMP.qmd) model for phase progression in phenology.
+
+## Inputs
+
+The following inputs are required by the function, supplied as child models or linked references:
+
+- `CAMP`: The parent model that contains the parameters and context for the CAMP model.
+- `k`: The exponential shape factor controlling the temperature response curve.
+- `deVernalisationTemp`: The temperature threshold above which vernalisation is reduced.
+- `deVernalisationRate`: The rate of down-regulation of *Vrn1* when temperature exceeds the de-vernalisation threshold.
+- `camp.Params`: A parameter check from the CAMP model indicating whether computation is active.
+
+## Methodology
+
+The function computes the indexed value of *Vrn1* upregulation for a given temperature input $dX$ (likely a sub-daily temperature).
+
+The response follows the logic:
+
+- If `camp.Params` is null, return 0 (no response).
+- Compute upregulation:  
+
+$$ U_{dVrn1} = e^{k \cdot dX} $$
+
+- If $dX < \text{deVernalisationTemp}$:  
+
+$$ \text{Response} = \frac{U_{dVrn1}}{24} $$
+
+- Else (temperature exceeds de-vernalisation threshold):  
+
+$$ \text{Response} = \frac{\text{deVernalisationRate}}{24} $$
+
+This response is scaled to a sub-daily (hourly) timestep by dividing by 24.
+
+## Events 
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property               | Type     | Description                                                                 |
+|------------------------|----------|-----------------------------------------------------------------------------|
+| k                      | IFunction | The exponential shape factor for cold temperature response.                 |
+| deVernalisationTemp    | IFunction | Temperature above which de-vernalisation occurs.                            |
+| deVernalisationRate    | IFunction | Rate of *Vrn1* downregulation above the temperature threshold.              |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+`ColdVrnResponse` can be added as a child of a `Function` node in the model tree. Right-click the parent node, select "Add Model...", and search for `ColdVrnResponse` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [ColdVrnResponse.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/ColdVrnResponse.cs)

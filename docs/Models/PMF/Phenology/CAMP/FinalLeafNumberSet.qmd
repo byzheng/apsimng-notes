@@ -1,0 +1,311 @@
+---
+title: "FinalLeafNumberSet"
+output: html_document
+---
+
+The `FinalLeafNumberSet` model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.
+
+## Overview
+
+`FinalLeafNumberSet` defines the final leaf number (FLN) under four treatments in the controlled environments [@bloomfield_vernalisation_2023]:
+
+* **LV**: fully vernalised long photoperiod
+* **SV**: fully vernalised short photoperiod
+* **SN**: un-vernalised short photoperiod
+* **LN**: un-vernalised long photoperiod
+
+This model is typically used within the [CAMP](CAMP.qmd)  framework to parameterise genotype responses.
+
+## Inputs
+
+This model does not accept dynamic inputs during simulation, but rather defines fixed parameters:
+
+- **MinLN**: Base final leaf number under full vernalisation and long photoperiod.
+- **PpLN**: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.
+- **VrnLN**: Increase in FLN due to lack of vernalisation when grown under short photoperiod.
+- **VxPLN**: Modification to FLN due to photoperiod interaction under unvernalised conditions.
+
+These values are typically derived from controlled environment experiments.
+
+## Methodology
+
+The model exposes computed FLN values based on defined treatment combinations:
+
+- **LV** (Long photoperiod, fully vernalised):  
+
+$$ \text{LV} = \text{MinLN} $$
+
+- **SV** (Short photoperiod, fully vernalised):  
+
+$$ \text{SV} = \text{MinLN} + \text{PpLN} $$
+
+- **SN** (Short photoperiod, un-vernalised):  
+
+$$ \text{SN} = \text{MinLN} + \text{PpLN} + \text{VrnLN} $$
+
+- **LN** (Long photoperiod, un-vernalised):  
+$$ \text{LN} = \text{MinLN} + \text{VrnLN} + \text{VxPLN} $$
+
+These equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.
+
+Reversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:
+
+- **MinLN**:  
+
+$$ \text{MinLN} = \text{LV} $$ 
+
+- **PpLN**:  
+
+$$ \text{PpLN} = \text{SV} - \text{LV} $$
+
+- **VrnLN**:  
+
+$$ \text{VrnLN} = \text{SN} - \text{SV} $$
+
+- **VxPLN**:
+
+$$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
+
+
+## Example Parameter Table
+
+Below is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:
+
+| Parameter / FLN | BattenWinter | BattenSpring |
+|-----------------|--------------|--------------|
+| **MinLN**       | 8.16         | 8.25         |
+| **PpLN**        | 3.61         | 7.55         |
+| **VrnLN**       | 3.10         | 0.19         |
+| **VxPLN**       | 6.99         | -0.03        |
+| **LV**          | 8.16         | 8.25         |
+| **SV**          | 11.77        | 15.80        |
+| **SN**          | 14.87        | 15.99        |
+| **LN**          | 18.25        | 8.41         |
+
+
+
+```{r fig-fln, fig.height=8, fig.cap="Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars"}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+
+fln_data <- data.frame(
+    Parameter_FLN = c("MinLN", "PpLN", "VrnLN", "VxPLN", "LV", "SV", "SN", "LN"),
+    BattenWinter = c(8.16, 3.61, 3.10, 6.99, 8.16, 11.77, 14.87, 18.25),
+    BattenSpring = c(8.25, 7.55, 0.19, -0.03, 8.25, 15.80, 15.99, 8.41)
+)
+# Reshape to long format
+fln_long <- fln_data %>%
+    pivot_longer(cols = c("BattenWinter", "BattenSpring"), names_to = "Cultivar", values_to = "FLN")
+
+# Plot
+p <- fln_long |> 
+    filter(Parameter_FLN %in% c("LV", "SV", "SN", "LN")) |>
+    mutate(Parameter_FLN = factor(Parameter_FLN, levels = c("LV", "SV", "SN", "LN"))) |>
+    ggplot() +
+    geom_col(aes(x = Parameter_FLN, y = FLN, fill = Parameter_FLN), alpha = 0.5, width = 0.5, color = "black") +
+    facet_wrap(~Cultivar, ncol = 1) +
+    labs(
+        y = "Final Leaf Number (FLN)",
+        x = "Treatment"
+    ) +
+    theme_bw() +
+    theme() +
+    theme(legend.position = "none")
+fln_wide <- fln_long |> 
+            pivot_wider(names_from = Parameter_FLN, values_from = FLN) 
+df_text <- bind_rows(
+    fln_wide |> 
+        mutate(Y = MinLN / 2,
+            X = 1,
+            Label = "MinLN") |> 
+        select(Cultivar, Y, X, Label),
+    fln_wide |> 
+        mutate(Y = PpLN / 2  + MinLN,
+            X = 1.5,
+            Label = "PpLN") |> 
+        select(Cultivar, Y, X, Label),
+    fln_wide |> 
+        mutate(Y = VrnLN / 2  + SV,
+            X = 2.5,
+            Label = "VrnLN") |> 
+        select(Cultivar, Y, X, Label),
+    fln_wide |> 
+        mutate(Y = VrnLN / 2  + LV,
+            X = 3,
+            Label = "VrnLN") |> 
+        select(Cultivar, Y, X, Label),
+    fln_wide |> 
+        mutate(Y = VxPLN / 2  + LV + VrnLN,
+            X = 4,
+            Label = "VxPLN") |> 
+        select(Cultivar, Y, X, Label)
+    )
+
+df_vertical <- bind_rows(
+    fln_wide |> 
+        mutate(y = LV,
+            yend = SV,
+            x = 1.5,
+            xend = 1.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "PpLN"),
+    fln_wide |> 
+        mutate(y = SV,
+            yend = SN,
+            x = 2.5,
+            xend = 2.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VrnLN"),
+    fln_wide |> 
+        mutate(y = LV,
+            yend = SN - SV + LV,
+            x = 2.5,
+            xend = 2.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VrnLN"),
+    fln_wide |> 
+        mutate(y = SN - SV + LV,
+            yend = LN,
+            x = 3.5,
+            xend = 3.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VxPLN")
+    )
+
+df_horizontal <- bind_rows(
+    fln_wide |> 
+        mutate(y = LV,
+            yend = LV,
+            x = 1,
+            xend = 1.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "PpLN"),
+    fln_wide |> 
+        mutate(y = SV,
+            yend = SV,
+            x = 1.5,
+            xend = 2) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "PpLN"),
+    fln_wide |> 
+        mutate(y = SV,
+            yend = SV,
+            x = 2,
+            xend = 2.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VrnLN"),
+    fln_wide |> 
+        mutate(y = SN,
+            yend = SN,
+            x = 2.5,
+            xend = 3) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VrnLN"),
+    fln_wide |> 
+        mutate(y = LV,
+            yend = LV,
+            x = 1,
+            xend = 2.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VrnLN"),
+    fln_wide |> 
+        mutate(y = SN - SV + LV,
+            yend = SN - SV + LV,
+            x = 2.5,
+            xend = 3.5) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VxPLN"),
+    fln_wide |> 
+        mutate(y = LN,
+            yend = LN,
+            x = 3.5,
+            xend = 4) |> 
+        select(Cultivar, y, yend, x, xend) |> 
+        mutate(Label = "VxPLN")
+    )
+
+
+
+
+# Add LV label
+p <- p + geom_text(
+        data = df_text,
+        aes(x = X, y = Y, label = Label, color = Label),
+        size = 5,
+        fontface = "italic",
+        vjust = 0.5
+    )
+
+p <- p + geom_segment(
+        data = df_vertical,
+        aes(
+            x = x, xend = xend,
+            y = y, yend = yend,
+            color = Label,
+        ),
+        linetype = "dashed",
+        arrow = arrow(length = unit(0.2, "cm"), ends = "last", type = "closed")
+    )
+
+
+p <- p + geom_segment(
+        data = df_horizontal,
+        aes(
+            x = x, xend = xend,
+            y = y, yend = yend,
+            color = Label
+        ),
+        linetype = "dashed"
+    )
+
+p  + scale_color_manual(
+        values = c("MinLN" = "black", "PpLN" = "red", "VrnLN" = "blue", "VxPLN" = "black"),
+        guide = "none"
+    )
+```
+
+
+
+
+## Events 
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property    | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| MinLN       | double | Final Leaf Number under full vernalisation and long photoperiod (>16h)      |
+| PpLN        | double | Increase in FLN under short photoperiod (<8h) following full vernalisation  |
+| VrnLN       | double | Increase in FLN when un-vernalised and grown under short photoperiod        |
+| VxPLN       | double | Change in FLN from photoperiod effect under un-vernalised, long-day growth  |
+
+**Read-Only Reportable Properties**
+
+| Property    | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| LV          | double | FLN under full vernalisation and long photoperiod (>16h)                    |
+| SV          | double | FLN under full vernalisation and short photoperiod (<8h)                    |
+| SN          | double | FLN when un-vernalised under short photoperiod                              |
+| LN          | double | FLN when un-vernalised under long photoperiod                               |
+
+## User Interface
+
+`FinalLeafNumberSet` can be added as a child of a `CAMP` node in the model tree. Right-click the `CAMP` node, select "Add Model...", and search for `FinalLeafNumberSet` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [FinalLeafNumberSet.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.cs)
