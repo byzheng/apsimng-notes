@@ -1,0 +1,132 @@
+---
+title: "CalcCAMPVrnRates"
+output: html_document
+draft: true
+---
+
+A function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.
+
+## Overview
+
+`CalcCAMPVrnRates` is used to derive the coefficients that govern how vernalisation and photoperiod affect the expression rates of vernalisation genes in the CAMP model. It operates on FLN observations from controlled environment studies with defined photoperiod and temperature treatments. The outputs are rate parameters that quantify the rate and phase transitions of Vrn expression in different photothermal regimes, enabling genotype-specific simulation of phenological development.
+
+This function is critical for enabling APSIM NG to simulate genotype-by-environment interactions in crop phenology, particularly for cereal crops where vernalisation and photoperiod sensitivity genes such as Vrn1, Vrn2, and Vrn3 play a pivotal role.
+
+## Inputs
+
+This function requires the following inputs:
+
+- `FinalLeafNumberSet FLNset`: A dataset containing FLN values under different photoperiod and vernalisation treatments:
+  - `LV` – Long photoperiod with vernalisation
+  - `LN` – Long photoperiod without vernalisation
+  - `SV` – Short photoperiod with vernalisation
+  - `SN` – Short photoperiod without vernalisation
+- `FLNParameterEnvironment EnvData`: The environmental parameters under which FLN was observed:
+  - `VrnTreatTemp`: Vernalisation treatment temperature (°C)
+  - `VrnTreatDuration`: Duration of vernalisation treatment (days)
+  - `TreatmentPp_L`: Long-day photoperiod (hours)
+  - `TtEmerge`: Thermal time from sowing to emergence (°Cd)
+
+In addition, it links to:
+
+- `basePhyllochron`: A child model function that returns the phyllochron (thermal time per leaf)
+- `camp`: The ancestor [CAMP](CAMP.qmd) model, which provides helper methods and constants
+
+## Methodology
+
+The function performs the following steps to calculate [vernalisation rate parameters](CultivarRateParams.qmd) according to [final leaf number parameters](FinalLeafNumberSet.qmd) and [controlled environmental conditions to measure final leaf number](FLNParameterEnvironment.qmd):
+
+The emergence duration is converted from thermal time to phyllochrons ($P_\text{emergence}$) using the base phyllochron value. The function then calculates the following parameters:
+
+$$
+P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
+$$
+
+Where $TT_\text{emergence}$ is the thermal time from sowing to emergence in degree-days, and $P_\text{base}$ is base phyllochron.
+
+The final leaf number at terminal spikelet ($FLN_{TS}$) is derived for each [final leaf number set](FinalLeafNumberSet.qmd) parameter following the method in @brown_integration_2013:
+
+$$
+\text{FLN}_{TS} = \left( \text{FLN} - 2.85 \right) \times 1.1
+$$
+
+Where $\text{FLN}$ is the final leaf number observed in the controlled environment for one of four treatments (i.e. $\text{FLN}_{LV}, \text{FLN}_{LN}, \text{FLN}_{SV}, \text{FLN}_{SN}$).
+
+
+BaseDVrnVeg: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., >20°C).
+
+$$
+\text{BaseDVrnVeg} = \frac{1}{VS_{SN} + P_\text{emergence}}
+$$
+
+MaxDVrnVeg: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).
+BaseDVrnER: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.
+MaxDVrnER: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.
+PpVrn3FactVeg: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.
+PpVrn3FactER: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.
+MaxVrn2: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.
+MethalationThreshold: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).
+ColdVrn1Fact: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.
+
+1. **Compute Phase Durations in Phyllochrons**:
+
+- Derive Haun stage equivalents of developmental phases using FLN values and base phyllochron.
+- Estimate when vernalisation saturation (VS) occurs relative to terminal spikelet (TS).
+
+2. **Calculate Base and Maximum Vrn Expression Rates**:
+
+   - Determine how quickly Vrn can accumulate in vegetative and early reproductive phases under base vs. maximum (e.g., long Pp) conditions.
+   - Compute the effect of Vrn3 on enhancing Vrn expression under long photoperiods:
+     $$
+     \text{PpVrn3FactVeg} = \left(\frac{1/VS_{LN}}{\text{BaseDVrnVeg}} - 1\right) + 1
+     $$
+
+3. **Calculate Vrn2 Suppression and Max Vrn2**:
+   - Estimate when Vrn2 is suppressed based on effective upregulation onset.
+   - Compute the maximum Vrn2 value that must be overcome for Vrn3 to act:
+$$
+\text{MaxVrn2} = (\text{endVrn2}_{LN} + \text{EmergDurat}) \cdot \text{BaseDVrnVeg}
+$$
+
+4. **Quantify Cold-Induced Vrn1 Expression**:
+
+
+- Based on Brooking and Jamieson data, compute the cold-induced expression of Vrn1 via:
+
+$$
+\text{ColdVrn1Fact} = \frac{\text{coldDVrn1Max}}{\text{BaseDVrnVeg}}, \quad \text{where} \quad \text{coldDVrn1Max} = \frac{\text{coldDVrn1}_{LV}}{\exp(k \cdot T)}
+$$
+
+The function returns a `CultivarRateParams` object with fields populated to simulate this genotype’s developmental behavior under different Pp and vernalisation regimes.
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+> Not typically user-configurable through the UI. It is populated by the `CalcCAMPVrnRates` function based on genotype-specific FLN observations.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [CalcCAMPVrnRates.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.cs)
