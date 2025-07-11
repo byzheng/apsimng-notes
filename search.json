@@ -2087,11 +2087,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
+    "title": "CultivarRateParams",
     "section": "",
-    "text": "A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
+    "text": "A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2099,15 +2099,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
+    "title": "CultivarRateParams",
     "section": "Overview",
-    "text": "Overview\nThe FLNParameterEnvironment function is part of the phenology module in APSIM NG, specifically under the CAMP parent model. It describes the specific environmental settings such as vernalisation treatment temperature, duration, and photoperiod under which Final Leaf Number (FLN) was observed. These data are used for calibrating genotype responses to temperature and photoperiod cues.\nThis function serves as a data container and is typically used in experimental or modeling contexts where genotype × environment interactions affecting phenological development are being studied or simulated.",
+    "text": "Overview\nThe CultivarRateParams class defines a set of vernalisation-related parameters tailored to a single genotype or cultivar. These values quantify the rates and thresholds for vernalisation gene expression (e.g., Vrn1, Vrn2, and Vrn3) under different photothermal conditions.\nIt is not a computational function itself but a container of parameters used by other modules like CalcCAMPVrnRates to describe how vernalisation proceeds under varying temperatures and daylengths. It supports detailed phenological simulations in APSIM NG’s CAMP framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2115,15 +2115,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
+    "title": "CultivarRateParams",
     "section": "Inputs",
-    "text": "Inputs\nThe FLNParameterEnvironment function requires the following input parameters:\n\nVrnTreatTemp: Vernalisation treatment temperature (\\(^\\circ\\)C)\nVrnTreatDuration: Duration of exposure to vernalising temperature (days)\nTreatmentPp_L: Photoperiod during long-day treatment (hours)\nTtEmerge: Thermal time from sowing to emergence (degree-days)",
+    "text": "Inputs\nThis model is not user-configurable directly through the UI and does not require inputs at runtime. Instead, it is populated by the CalcCAMPVrnRates function based on controlled environment FLN observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2131,15 +2131,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
+    "title": "CultivarRateParams",
     "section": "Methodology",
-    "text": "Methodology\nThis function does not contain computational logic or algorithms. Instead, it stores parameter values representing environmental conditions for vernalisation and photoperiod treatments. These inputs can be used by other functions in the APSIM phenology pipeline (e.g., for modeling development rate, phase transitions, or FLN prediction) to simulate plant responses to different environmental conditions.\nBy encapsulating experimental treatment data, this function supports modular and reusable parameterization within simulation scenarios involving phenological modeling.",
+    "text": "Methodology\nCultivarRateParams provides the following fields, which represent physiological and regulatory coefficients used to simulate flowering development:\n\nBaseDVrnVeg: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., &gt;20°C).\nMaxDVrnVeg: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).\nBaseDVrnER: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.\nMaxDVrnER: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.\nPpVrn3FactVeg: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.\nPpVrn3FactER: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.\nMaxVrn2: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.\nMethalationThreshold: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).\nColdVrn1Fact: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.\n\nThese parameters are essential for simulating genotype × environment interactions that influence time to floral initiation and flowering in cereal crops.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2147,13 +2147,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
+    "title": "CultivarRateParams",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -2163,15 +2163,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
+    "title": "CultivarRateParams",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nVrnTreatTemp\ndouble\nVernalisation treatment temperature (\\(^\\circ\\)C)\n\n\nVrnTreatDuration\ndouble\nDays of exposure to vernalising temperature\n\n\nTreatmentPp_L\ndouble\nPhotoperiod under long-day treatment (hours)\n\n\nTtEmerge\ndouble\nObserved thermal time from sowing to emergence (degree-days)\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nBaseDVrnVeg\ndouble\nBaseline Vrn1 expression rate in vegetative phase (&gt;20°C)\n\n\nMaxDVrnVeg\ndouble\nMax Vrn1 expression rate at 0°C during vegetative phase\n\n\nBaseDVrnER\ndouble\nBaseline Vrn1 expression rate in early reproductive phase\n\n\nMaxDVrnER\ndouble\nMax Vrn1 expression rate in early reproductive phase under long day\n\n\nPpVrn3FactVeg\ndouble\nRelative increase in Vrn1 expression by Vrn3 in vegetative phase\n\n\nPpVrn3FactER\ndouble\nRelative increase in Vrn1 expression by Vrn3 in early reproductive phase\n\n\nMaxVrn2\ndouble\nMaximum expression of Vrn2 in long days\n\n\nMethalationThreshold\ndouble\nCold requirement before persistent Vrn1 expression occurs\n\n\nColdVrn1Fact\ndouble\nRelative cold-induced increase in Vrn1 expression\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2179,15 +2179,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
+    "title": "CultivarRateParams",
     "section": "User Interface",
-    "text": "User Interface\nFLNParameterEnvironment can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FLNParameterEnvironment in the Filter Box.",
+    "text": "User Interface\n\nNot typically user-configurable through the UI. It is populated by the CalcCAMPVrnRates function based on genotype-specific FLN observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2195,13 +2195,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
+    "title": "CultivarRateParams",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -2211,15 +2211,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
-    "title": "FLNParameterEnvironment",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
+    "title": "CultivarRateParams",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FLNParameterEnvironment.cs on GitHub",
+    "text": "See Also\n\nSource code: CultivarRateParams.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2227,15 +2227,30 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FLNParameterEnvironment"
+      "CultivarRateParams"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/index.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/index.html",
+    "title": "CAMP",
     "section": "",
-    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
+    "text": "Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).\nCAMP is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nCultivarRateParams\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nNo matching items\nReferences\n\nJamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. “Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.” European Journal of Agronomy 8 (3–4): 161–79. https://doi.org/16/S1161-0301(98)00020-3.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "CAMP"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
+    "title": "FinalLeafNumberSet",
+    "section": "",
+    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2243,15 +2258,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
+    "title": "FinalLeafNumberSet",
     "section": "Overview",
-    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
+    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2259,15 +2274,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
+    "title": "FinalLeafNumberSet",
     "section": "Inputs",
-    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
+    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2275,15 +2290,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
+    "title": "FinalLeafNumberSet",
     "section": "Methodology",
-    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
+    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
     "crumbs": [
       "Home",
       "Docs",
@@ -2291,13 +2306,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
+    "title": "FinalLeafNumberSet",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -2307,15 +2322,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
+    "title": "FinalLeafNumberSet",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
     "crumbs": [
       "Home",
       "Docs",
@@ -2323,15 +2338,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
+    "title": "FinalLeafNumberSet",
     "section": "User Interface",
-    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
+    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2339,13 +2354,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
+    "title": "FinalLeafNumberSet",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -2355,15 +2370,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
-    "title": "ColdVrnResponse",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
+    "title": "FinalLeafNumberSet",
     "section": "See Also",
-    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
+    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2371,7 +2386,7 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "ColdVrnResponse"
+      "FinalLeafNumberSet"
     ]
   },
   {
@@ -3581,11 +3596,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
+    "title": "ColdVrnResponse",
     "section": "",
-    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
+    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3593,15 +3608,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#overview",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#overview",
+    "title": "ColdVrnResponse",
     "section": "Overview",
-    "text": "Overview\nFinalLeafNumberSet defines the final leaf number (FLN) under four treatments in the controlled environments (Bloomfield et al. 2023):\n\nLV: fully vernalised long photoperiod\nSV: fully vernalised short photoperiod\nSN: un-vernalised short photoperiod\nLN: un-vernalised long photoperiod\n\nThis model is typically used within the CAMP framework to parameterise genotype responses.",
+    "text": "Overview\nThe ColdVrnResponse function calculates an additional contribution to Vrn1 expression due to exposure to low temperatures, allowing plants to progress through their vernalisation requirement. It uses a temperature-dependent response, where expression increases exponentially with decreasing temperature. When temperatures exceed a threshold, the response is either reduced or suppressed, mimicking de-vernalisation effects. This function plays a crucial role in modeling development timing for cold-requiring cultivars.\nIt implements the IFunction and IIndexedFunction interfaces, and is used within the context of the CAMP model for phase progression in phenology.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3609,15 +3624,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#inputs",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#inputs",
+    "title": "ColdVrnResponse",
     "section": "Inputs",
-    "text": "Inputs\nThis model does not accept dynamic inputs during simulation, but rather defines fixed parameters:\n\nMinLN: Base final leaf number under full vernalisation and long photoperiod.\nPpLN: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.\nVrnLN: Increase in FLN due to lack of vernalisation when grown under short photoperiod.\nVxPLN: Modification to FLN due to photoperiod interaction under unvernalised conditions.\n\nThese values are typically derived from controlled environment experiments.",
+    "text": "Inputs\nThe following inputs are required by the function, supplied as child models or linked references:\n\nCAMP: The parent model that contains the parameters and context for the CAMP model.\nk: The exponential shape factor controlling the temperature response curve.\ndeVernalisationTemp: The temperature threshold above which vernalisation is reduced.\ndeVernalisationRate: The rate of down-regulation of Vrn1 when temperature exceeds the de-vernalisation threshold.\ncamp.Params: A parameter check from the CAMP model indicating whether computation is active.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3625,15 +3640,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#methodology",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
+    "title": "ColdVrnResponse",
     "section": "Methodology",
-    "text": "Methodology\nThe model exposes computed FLN values based on defined treatment combinations:\n\nLV (Long photoperiod, fully vernalised):\n\n\\[ \\text{LV} = \\text{MinLN} \\]\n\nSV (Short photoperiod, fully vernalised):\n\n\\[ \\text{SV} = \\text{MinLN} + \\text{PpLN} \\]\n\nSN (Short photoperiod, un-vernalised):\n\n\\[ \\text{SN} = \\text{MinLN} + \\text{PpLN} + \\text{VrnLN} \\]\n\nLN (Long photoperiod, un-vernalised):\n\\[ \\text{LN} = \\text{MinLN} + \\text{VrnLN} + \\text{VxPLN} \\]\n\nThese equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.\nReversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:\n\nMinLN:\n\n\\[ \\text{MinLN} = \\text{LV} \\]\n\nPpLN:\n\n\\[ \\text{PpLN} = \\text{SV} - \\text{LV} \\]\n\nVrnLN:\n\n\\[ \\text{VrnLN} = \\text{SN} - \\text{SV} \\]\n\nVxPLN:\n\n\\[ \\text{VxPLN} = \\text{LN} - \\text{LV} - \\left(\\text{SN} - \\text{SV}\\right) \\]\nBelow is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:\n\n\n\nParameter / FLN\nBattenWinter\nBattenSpring\n\n\n\n\nMinLN\n8.16\n8.25\n\n\nPpLN\n3.61\n7.55\n\n\nVrnLN\n3.10\n0.19\n\n\nVxPLN\n6.99\n-0.03\n\n\nLV\n8.16\n8.25\n\n\nSV\n11.77\n15.80\n\n\nSN\n14.87\n15.99\n\n\nLN\n18.25\n8.41\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3641,13 +3656,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#events",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#events",
+    "title": "ColdVrnResponse",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -3657,15 +3672,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#properties",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#properties",
+    "title": "ColdVrnResponse",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nMinLN\ndouble\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n\n\nPpLN\ndouble\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n\n\nVrnLN\ndouble\nIncrease in FLN when un-vernalised and grown under short photoperiod\n\n\nVxPLN\ndouble\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nLV\ndouble\nFLN under full vernalisation and long photoperiod (&gt;16h)\n\n\nSV\ndouble\nFLN under full vernalisation and short photoperiod (&lt;8h)\n\n\nSN\ndouble\nFLN when un-vernalised under short photoperiod\n\n\nLN\ndouble\nFLN when un-vernalised under long photoperiod",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nk\nIFunction\nThe exponential shape factor for cold temperature response.\n\n\ndeVernalisationTemp\nIFunction\nTemperature above which de-vernalisation occurs.\n\n\ndeVernalisationRate\nIFunction\nRate of Vrn1 downregulation above the temperature threshold.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3673,15 +3688,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#user-interface",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#user-interface",
+    "title": "ColdVrnResponse",
     "section": "User Interface",
-    "text": "User Interface\nFinalLeafNumberSet can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FinalLeafNumberSet in the Filter Box.",
+    "text": "User Interface\nColdVrnResponse can be added as a child of a Function node in the model tree. Right-click the parent node, select “Add Model…”, and search for ColdVrnResponse in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3689,13 +3704,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
+    "title": "ColdVrnResponse",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3705,15 +3720,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#see-also",
-    "title": "FinalLeafNumberSet",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#see-also",
+    "title": "ColdVrnResponse",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FinalLeafNumberSet.cs on GitHub",
+    "text": "See Also\n\nSource code: ColdVrnResponse.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3721,30 +3736,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "FinalLeafNumberSet"
+      "ColdVrnResponse"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/index.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/index.html",
-    "title": "CAMP",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
+    "title": "FLNParameterEnvironment",
     "section": "",
-    "text": "Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).\nCAMP is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nColdVrnResponse\n\n\n\n\n\n\n\n\n\nCultivarRateParams\n\n\n\n\n\n\n\n\n\nFLNParameterEnvironment\n\n\n\n\n\n\n\n\n\nFinalLeafNumberSet\n\n\n\n\n\n\n\n\n\nNo matching items\nReferences\n\nJamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. “Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.” European Journal of Agronomy 8 (3–4): 161–79. https://doi.org/16/S1161-0301(98)00020-3.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "CAMP"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
-    "title": "CultivarRateParams",
-    "section": "",
-    "text": "A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.",
+    "text": "A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3752,15 +3752,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#overview",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#overview",
+    "title": "FLNParameterEnvironment",
     "section": "Overview",
-    "text": "Overview\nThe CultivarRateParams class defines a set of vernalisation-related parameters tailored to a single genotype or cultivar. These values quantify the rates and thresholds for vernalisation gene expression (e.g., Vrn1, Vrn2, and Vrn3) under different photothermal conditions.\nIt is not a computational function itself but a container of parameters used by other modules like CalcCAMPVrnRates to describe how vernalisation proceeds under varying temperatures and daylengths. It supports detailed phenological simulations in APSIM NG’s CAMP framework.",
+    "text": "Overview\nThe FLNParameterEnvironment function is part of the phenology module in APSIM NG, specifically under the CAMP parent model. It describes the specific environmental settings such as vernalisation treatment temperature, duration, and photoperiod under which Final Leaf Number (FLN) was observed. These data are used for calibrating genotype responses to temperature and photoperiod cues.\nThis function serves as a data container and is typically used in experimental or modeling contexts where genotype × environment interactions affecting phenological development are being studied or simulated.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3768,15 +3768,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#inputs",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#inputs",
+    "title": "FLNParameterEnvironment",
     "section": "Inputs",
-    "text": "Inputs\nThis model is not user-configurable directly through the UI and does not require inputs at runtime. Instead, it is populated by the CalcCAMPVrnRates function based on controlled environment FLN observations.",
+    "text": "Inputs\nThe FLNParameterEnvironment function requires the following input parameters:\n\nVrnTreatTemp: Vernalisation treatment temperature (\\(^\\circ\\)C)\nVrnTreatDuration: Duration of exposure to vernalising temperature (days)\nTreatmentPp_L: Photoperiod during long-day treatment (hours)\nTtEmerge: Thermal time from sowing to emergence (degree-days)",
     "crumbs": [
       "Home",
       "Docs",
@@ -3784,15 +3784,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#methodology",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#methodology",
+    "title": "FLNParameterEnvironment",
     "section": "Methodology",
-    "text": "Methodology\nCultivarRateParams provides the following fields, which represent physiological and regulatory coefficients used to simulate flowering development:\n\nBaseDVrnVeg: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., &gt;20°C).\nMaxDVrnVeg: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).\nBaseDVrnER: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.\nMaxDVrnER: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.\nPpVrn3FactVeg: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.\nPpVrn3FactER: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.\nMaxVrn2: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.\nMethalationThreshold: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).\nColdVrn1Fact: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.\n\nThese parameters are essential for simulating genotype × environment interactions that influence time to floral initiation and flowering in cereal crops.",
+    "text": "Methodology\nThis function does not contain computational logic or algorithms. Instead, it stores parameter values representing environmental conditions for vernalisation and photoperiod treatments. These inputs can be used by other functions in the APSIM phenology pipeline (e.g., for modeling development rate, phase transitions, or FLN prediction) to simulate plant responses to different environmental conditions.\nBy encapsulating experimental treatment data, this function supports modular and reusable parameterization within simulation scenarios involving phenological modeling.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3800,13 +3800,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#events",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#events",
+    "title": "FLNParameterEnvironment",
     "section": "Events",
     "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
@@ -3816,15 +3816,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#properties",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#properties",
+    "title": "FLNParameterEnvironment",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nBaseDVrnVeg\ndouble\nBaseline Vrn1 expression rate in vegetative phase (&gt;20°C)\n\n\nMaxDVrnVeg\ndouble\nMax Vrn1 expression rate at 0°C during vegetative phase\n\n\nBaseDVrnER\ndouble\nBaseline Vrn1 expression rate in early reproductive phase\n\n\nMaxDVrnER\ndouble\nMax Vrn1 expression rate in early reproductive phase under long day\n\n\nPpVrn3FactVeg\ndouble\nRelative increase in Vrn1 expression by Vrn3 in vegetative phase\n\n\nPpVrn3FactER\ndouble\nRelative increase in Vrn1 expression by Vrn3 in early reproductive phase\n\n\nMaxVrn2\ndouble\nMaximum expression of Vrn2 in long days\n\n\nMethalationThreshold\ndouble\nCold requirement before persistent Vrn1 expression occurs\n\n\nColdVrn1Fact\ndouble\nRelative cold-induced increase in Vrn1 expression\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nVrnTreatTemp\ndouble\nVernalisation treatment temperature (\\(^\\circ\\)C)\n\n\nVrnTreatDuration\ndouble\nDays of exposure to vernalising temperature\n\n\nTreatmentPp_L\ndouble\nPhotoperiod under long-day treatment (hours)\n\n\nTtEmerge\ndouble\nObserved thermal time from sowing to emergence (degree-days)\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3832,15 +3832,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#user-interface",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#user-interface",
+    "title": "FLNParameterEnvironment",
     "section": "User Interface",
-    "text": "User Interface\n\nNot typically user-configurable through the UI. It is populated by the CalcCAMPVrnRates function based on genotype-specific FLN observations.",
+    "text": "User Interface\nFLNParameterEnvironment can be added as a child of a CAMP node in the model tree. Right-click the CAMP node, select “Add Model…”, and search for FLNParameterEnvironment in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3848,13 +3848,13 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#practical-example",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#practical-example",
+    "title": "FLNParameterEnvironment",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3864,15 +3864,15 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
-    "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html#see-also",
-    "title": "CultivarRateParams",
+    "objectID": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
+    "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html#see-also",
+    "title": "FLNParameterEnvironment",
     "section": "See Also",
-    "text": "See Also\n\nSource code: CultivarRateParams.cs on GitHub",
+    "text": "See Also\n\nSource code: FLNParameterEnvironment.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3880,7 +3880,7 @@
       "PMF",
       "Phenology",
       "CAMP",
-      "CultivarRateParams"
+      "FLNParameterEnvironment"
     ]
   },
   {
