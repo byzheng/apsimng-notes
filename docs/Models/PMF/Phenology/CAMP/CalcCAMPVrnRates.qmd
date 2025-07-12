@@ -59,7 +59,7 @@ $$
 
 Where:
 
-- $TT_\text{emergence}$ is the thermal time from sowing to emergence (°C·days),
+- $TT_\text{emergence}$ is the thermal time from sowing to emergence (°C·days), `TtEmerge` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
 - $P_\text{base}$ is the base phyllochron duration.
 
 ### Base phyllochron duration of vernalisation treatment {#vern-phyllochron}
@@ -70,6 +70,7 @@ P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
 $$
 
 Where: 
+
 - $T_\text{vern}$ is the vernalisation treatment temperature (°C), `VrnTreatTemp` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
 - $D_\text{V}$ is the vernalisation treatment duration (days), `VrnTreatDuration` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
 - $P_\text{base}$ is the base phyllochron duration.
@@ -85,9 +86,7 @@ $$
 
 Where:
 
-- $\text{FLN}(i)$ is the final leaf number observed under environment $i$,
-- 2.85 is the assumed number of leaves before the terminal spikelet forms,
-- 1.1 converts final leaf number to Haun Stage.
+- $\text{FLN}(i)$ is the final leaf number observed under environment $i$.
 
 ### Calculate Minimum Vernalisation Saturation to Terminal Spikelet {#min-vs}
 
