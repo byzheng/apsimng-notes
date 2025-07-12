@@ -10,6 +10,7 @@ execute:
   warning: false
   fig.align: center
   out.width: 100%
+  freeze: false
 website:
   cookie-consent: true
   title: "APSIM NG Notes"
@@ -51,6 +52,7 @@ format:
       - brand
     css: styles.css
     toc: true
+    toc-depth: 2
 
 
 

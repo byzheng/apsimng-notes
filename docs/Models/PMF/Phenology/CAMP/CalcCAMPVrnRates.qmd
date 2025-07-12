@@ -1,7 +1,6 @@
 ---
 title: "CalcCAMPVrnRates"
 output: html_document
-draft: true
 ---
 
 A function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.
@@ -34,70 +33,413 @@ In addition, it links to:
 
 ## Methodology
 
-The function performs the following steps to calculate [vernalisation rate parameters](CultivarRateParams.qmd) according to [final leaf number parameters](FinalLeafNumberSet.qmd) and [controlled environmental conditions to measure final leaf number](FLNParameterEnvironment.qmd):
+The `CalcCAMPVrnRates` function estimates [vernalisation rate parameters](CultivarRateParams.qmd) using:
 
-The emergence duration is converted from thermal time to phyllochrons ($P_\text{emergence}$) using the base phyllochron value. The function then calculates the following parameters:
+- `FLNset`: a set of [final leaf number parameters](FinalLeafNumberSet.qmd)
+- `EnvData`: [controlled environment data](FLNParameterEnvironment.qmd) used to measure final leaf number
+
+The function performs the following steps:
+
+1. [Convert Emergence Duration from Thermal Time to Phyllochrons](#emergence-duration)  
+2. [Base phyllochron duration of vernalisation treatment](#vern-phyllochron)  
+3. [Estimate Haun Stage at Terminal Spikelet](#haun-ts)  
+4. [Calculate Minimum Vernalisation Saturation to Terminal Spikelet](#min-vs)  
+5. [Calculate the accumulated phyllochrons at vernalisation saturation for each treatment](#vs-phyllochrons)  
+6. [Calculate Vernalisation Rates and Photoperiod Sensitivities](#vrn-rates)  
+7. [Calculate Maximum Vrn2 Expression Under Long Photoperiods](#vrn2-max)  
+8. [Calculate Cold-Induced Upregulation of Vrn1 Expression](#cold-vrn1)  
+
+### Convert Emergence Duration from Thermal Time to Phyllochrons {#emergence-duration}
+
+The duration from sowing to emergence is first expressed in phyllochrons ($P_\text{emergence}$) using the base phyllochron value ($P_\text{base}$):
 
 $$
 P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
 $$
 
-Where $TT_\text{emergence}$ is the thermal time from sowing to emergence in degree-days, and $P_\text{base}$ is base phyllochron.
+Where:
 
-The final leaf number at terminal spikelet ($FLN_{TS}$) is derived for each [final leaf number set](FinalLeafNumberSet.qmd) parameter following the method in @brown_integration_2013:
+- $TT_\text{emergence}$ is the thermal time from sowing to emergence (°C·days),
+- $P_\text{base}$ is the base phyllochron duration.
 
+### Base phyllochron duration of vernalisation treatment {#vern-phyllochron}
+
+The base phyllochron duration of the vernalisation treatment ($P_\text{vern}$) is calculated as:
 $$
-\text{FLN}_{TS} = \left( \text{FLN} - 2.85 \right) \times 1.1
-$$
-
-Where $\text{FLN}$ is the final leaf number observed in the controlled environment for one of four treatments (i.e. $\text{FLN}_{LV}, \text{FLN}_{LN}, \text{FLN}_{SV}, \text{FLN}_{SN}$).
-
-
-BaseDVrnVeg: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., >20°C).
-
-$$
-\text{BaseDVrnVeg} = \frac{1}{VS_{SN} + P_\text{emergence}}
+P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
 $$
 
-MaxDVrnVeg: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).
-BaseDVrnER: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.
-MaxDVrnER: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.
-PpVrn3FactVeg: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.
-PpVrn3FactER: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.
-MaxVrn2: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.
-MethalationThreshold: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).
-ColdVrn1Fact: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.
-
-1. **Compute Phase Durations in Phyllochrons**:
-
-- Derive Haun stage equivalents of developmental phases using FLN values and base phyllochron.
-- Estimate when vernalisation saturation (VS) occurs relative to terminal spikelet (TS).
-
-2. **Calculate Base and Maximum Vrn Expression Rates**:
-
-   - Determine how quickly Vrn can accumulate in vegetative and early reproductive phases under base vs. maximum (e.g., long Pp) conditions.
-   - Compute the effect of Vrn3 on enhancing Vrn expression under long photoperiods:
-     $$
-     \text{PpVrn3FactVeg} = \left(\frac{1/VS_{LN}}{\text{BaseDVrnVeg}} - 1\right) + 1
-     $$
-
-3. **Calculate Vrn2 Suppression and Max Vrn2**:
-   - Estimate when Vrn2 is suppressed based on effective upregulation onset.
-   - Compute the maximum Vrn2 value that must be overcome for Vrn3 to act:
-$$
-\text{MaxVrn2} = (\text{endVrn2}_{LN} + \text{EmergDurat}) \cdot \text{BaseDVrnVeg}
-$$
-
-4. **Quantify Cold-Induced Vrn1 Expression**:
+Where: 
+- $T_\text{vern}$ is the vernalisation treatment temperature (°C), `VrnTreatTemp` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
+- $D_\text{V}$ is the vernalisation treatment duration (days), `VrnTreatDuration` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
+- $P_\text{base}$ is the base phyllochron duration.
 
 
-- Based on Brooking and Jamieson data, compute the cold-induced expression of Vrn1 via:
+### Estimate Haun Stage at Terminal Spikelet {#haun-ts}
+
+The Haun Stage at terminal spikelet for each environment $i$ (e.g., LV, LN, SV, SN) is calculated following the method of @brown_integration_2013:
 
 $$
-\text{ColdVrn1Fact} = \frac{\text{coldDVrn1Max}}{\text{BaseDVrnVeg}}, \quad \text{where} \quad \text{coldDVrn1Max} = \frac{\text{coldDVrn1}_{LV}}{\exp(k \cdot T)}
+\text{HS}_{TS}(i) = \left( \text{FLN}(i) - 2.85 \right) \times 1.1
 $$
 
-The function returns a `CultivarRateParams` object with fields populated to simulate this genotype’s developmental behavior under different Pp and vernalisation regimes.
+Where:
+
+- $\text{FLN}(i)$ is the final leaf number observed under environment $i$,
+- 2.85 is the assumed number of leaves before the terminal spikelet forms,
+- 1.1 converts final leaf number to Haun Stage.
+
+### Calculate Minimum Vernalisation Saturation to Terminal Spikelet {#min-vs}
+
+The minimum vernalisation saturation at terminal spikelet ($\text{VS}_{TS,\ min}$) is estimated as:
+
+$$
+\text{VS}_{TS,\ min} = \min\left( \text{HS}_{TS,\ LV} - 1.1,\ 3 \right)
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ LV}$ is the Haun Stage at terminal spikelet in the long-day vernalised (LV) treatment,
+- 1.1 is the earliest Haun Stage at which vernalisation saturation can begin,
+- 3 is the maximum stage for vernalisation saturation, based on Lincoln controlled environment data (CRWT153).
+
+
+### Calculate the accumulated phyllochrons at vernalisation saturation for each treatment {#vs-phyllochrons}
+
+The accumulated phyllochron at vernalisation saturation is estimated for each photoperiod × vernalisation treatment. These values are expressed in phyllochrons and are derived relative to the Haun Stage at terminal spikelet ($\text{HS}_{TS}$) and the previously calculated minimum duration between vernalisation saturation and terminal spikelet ($\text{VS}_{TS,\text{min}}$).
+
+**Long-day Vernalised (LV) Environment**
+
+For the LV treatment, vernalisation saturation is assumed to occur exactly $\text{VS}_{TS,\text{min}}$ before terminal spikelet:
+
+$$
+\text{VS}_{LV} = \text{HS}_{TS,\ LV} - \text{VS}_{TS,\text{min}}
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ LV}$ is the Haun Stage at terminal spikelet for the LV treatment,
+- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
+
+
+This forms the baseline timing of saturation under conditions without vernalisation and photoperiod impacts.
+
+**Long-day Non-vernalised (LN) Environment**
+
+For LN, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ LN}$) and cannot occur earlier than in the LV treatment:
+
+$$
+\text{VS}_{LN} = \max(\text{HS}_{TS,\ LN} - \text{VS}_{TS,\text{min}},\ \text{VS}_{LV})
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ LN}$ is the Haun Stage at terminal spikelet for the LN treatment,
+- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment,
+- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
+
+
+This ensures the LN environment does not reach vernalisation saturation before LV.
+
+**Short-day Vernalised (SV) Environment**
+
+For the SV treatment, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ SV}$) and cannot occur earlier than in the LV treatment:
+
+
+$$
+\text{VS}_{SV} = \max(\text{HS}_{TS,\ SV} - \text{VS}_{TS,\text{min}},\ \text{VS}_{LV})
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ SV}$ is the Haun Stage at terminal spikelet for the SV treatment,
+- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment,
+- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
+
+This ensures the SV environment does not reach vernalisation saturation before LV.
+
+
+**Short-day Non-vernalised (SN) Environment**
+
+For the SN environment, saturation is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ SN}$) and cannot occur earlier than in the LV treatment:
+
+$$
+\text{VS}_{SN} = \max(\text{HS}_{TS,\ SN} - \left( \text{HS}_{TS,\ SV} - \text{VS}_{SV} \right),\ \text{VS}_{LV})
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ SN}$ is the Haun Stage at terminal spikelet for the SN treatment,
+- $\text{HS}_{TS,\ SV}$ is the Haun Stage at terminal spikelet for the SV treatment,
+- $\text{VS}_{SV}$ is the vernalisation saturation timing for the SV treatment,
+- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment.
+
+This ensures the SV environment does not reach vernalisation saturation before LV.
+
+### Calculate Vernalisation Rates and Photoperiod Sensitivities {#vrn-rates}
+
+The base and maximum rates of vernalisation progression during the vegetative and early reproductive phases are estimated, along with the photoperiod (Pp) sensitivity factors.
+
+**Base Vernalisation Rate During Vegetative Phase**
+
+Base vernalisation rate during vegetative phase ($\Delta V_{\text{base, veg}}$, `BaseDVrnVeg` in [CultivarRateParams](CultivarRateParams.qmd)) assumes vernalisation starts at sowing and proceeds linearly until saturation in the SN treatment (which is short-day and non-vernalised treatment and lacks vernalising temperature and long photoperiod upregulation), the base rate is:
+
+$$
+\Delta V_{\text{base, veg}} = \frac{1}{\text{VS}_{SN} + P_{\text{emergence}}}
+$$
+
+Where:
+
+- $\text{VS}_{SN}$ is the phyllochron at vernalisation saturation for the SN treatment,
+- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
+
+**Maximum Vernalisation Rate During Vegetative Phase**
+
+The fastest rate of vernalisation during vegetative phase ($\Delta V_{\text{max, veg}}$, `MaxDVrnVeg` in [CultivarRateParams](CultivarRateParams.qmd)) is assumed to occur in the SV treatment (i.e. short-day with vernalisation), where the rate is maximised at the minimum vernalisation saturation to terminal spikelet:
+
+$$
+\Delta V_{\text{max, veg}} = \frac{1}{\text{VS}_{SV} + P_{\text{emergence}}}
+$$
+
+Where:
+
+- $\text{VS}_{SV}$ is the phyllochron at vernalisation saturation for the SV treatment,
+- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
+
+
+**Base Vernalisation Rate During Early Reproductive Phase**
+
+The base vernalisation rate during early reproductive phase ($\Delta V_{\text{base, ER}}$, `BaseDVrnER` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as:
+
+$$
+\Delta V_{\text{base, ER}} = \frac{1}{\text{HS}_{TS,\ SN} - \text{VS}_{SN}}
+$$
+
+Where:
+
+- $\text{HS}_{TS,\ SN}$ is the Haun Stage at terminal spikelet for the SN treatment,
+- $\text{VS}_{SN}$ is the phyllochron at vernalisation saturation for the SN treatment.
+
+
+**Maximum Vernalisation Rate During Early Reproductive Phase**
+
+The maximum vernalisation rate during early reproductive phase ($\Delta V_{\text{max, ER}}$, `MaxDVrnER` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as:
+
+$$
+\Delta V_{\text{max, ER}} = \frac{1}{\text{VS}_{TS,\ min}}
+$$
+
+Where:  
+
+- $\text{VS}_{TS,\ min}$ is the minimum vernalisation saturation to terminal spikelet, calculated earlier.
+
+**Photoperiod Sensitivity Factor During Early Reproductive Phase**
+
+The photoperiod sensitivity factor during early reproductive phase ($F_{\text{Pp, Vrn3, ER}}$, `PpVrn3FactER` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as:
+$$
+F_{\text{Pp, Vrn3, ER}} = \left( \frac{\Delta V_{\text{max, ER}}}{\Delta V_{\text{base, ER}}} - 1 \right) + 1
+$$
+
+Where:
+
+- $\Delta V_{\text{max, ER}}$ is the maximum vernalisation rate during early reproductive phase,
+- $\Delta V_{\text{base, ER}}$ is the base vernalisation rate during early reproductive phase.
+
+This factor quantifies how much faster vernalisation proceeds under long photoperiod compared to the baseline.
+  
+**Photoperiod Sensitivity Factor During Vegetative Phase**
+
+The photoperiod sensitivity factor during vegetative phase ($F_{\text{Pp, Vrn3, veg}}$, `PpVrn3FactVeg` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as:
+$$
+F_{\text{Pp, Vrn3, veg}} = \left( \frac{1 / \text{VS}_{LN}}{\Delta V_{\text{max, veg}}} - 1 \right) + 1
+$$
+
+Where:
+
+- $\text{VS}_{LN}$ is the phyllochron at vernalisation saturation for the LN treatment,
+- $\Delta V_{\text{max, veg}}$ is the maximum vernalisation rate during vegetative phase.
+
+To ensure consistency, this factor is constrained to be no less than the early reproductive sensitivity:
+
+$$
+F_{\text{Pp, Vrn3, veg}} = \max(F_{\text{Pp, Vrn3, veg}},\ F_{\text{Pp, Vrn3, ER}})
+$$
+
+Where:
+
+- $F_{\text{Pp, Vrn3, veg}}$ is the photoperiod sensitivity factor during vegetative phase,
+- $F_{\text{Pp, Vrn3, ER}}$ is the photoperiod sensitivity factor during early reproductive phase.
+
+
+
+### Calculate Maximum Vrn2 Expression Under Long Photoperiods {#vrn2-max}
+
+The maximum vernalisation repressor (Vrn2) expression under long photoperiod conditions without vernalising temperatures ($V_{\text{max, Vrn2}}$, , `MaxVrn2` in [CultivarRateParams](CultivarRateParams.qmd)) is estimated as:
+
+
+Before vernalisation saturation (VS) is reached under long photoperiod without vernalisation, Vrn1 expression is influenced by both baseline and Vrn3-induced pathways. The effective rate of Vrn1 expression is:
+
+$$
+\Delta V_{\text{Vrn1} \times \text{Vrn3}} = \max\left( \frac{1}{VS_{\text{LN}}},\ \Delta V_{\text{base, veg}} \times F_{\text{Pp, Vrn3, veg}} \right)
+$$
+
+Where:
+
+- $\frac{1}{VS_{\text{LN}}}$ is the rate assuming linear accumulation from sowing to saturation without upregulation,
+- $\Delta V_{\text{base, veg}}$ is the base Vrn1 rate,
+- $F_{\text{Pp, Vrn3, veg}}$ is the photoperiod (Vrn3) sensitivity factor in the vegetative phase.
+
+**Duration of Effective Vrn1 × Vrn3 Expression Phase**
+
+The time (in Haun stages) needed to reach saturation at the above rate is:
+
+$$
+H_{\text{Vrn1} \times \text{Vrn3}} = \frac{1}{\Delta V_{\text{Vrn1} \times \text{Vrn3}}}
+$$
+
+Where:
+
+- $\Delta V_{\text{Vrn1} \times \text{Vrn3}}$ is the effective rate of Vrn1 × Vrn3 expression,
+- $H_{\text{Vrn1} \times \text{Vrn3}}$ is the duration of effective Vrn1 × Vrn3 expression in Haun stages.
+
+
+This represents the duration over which the effective Vrn1 × Vrn3 expression occurs in the absence of vernalisation.
+
+**Haun Stage When Vrn2 Expression Ends**
+
+Vrn2 expression is assumed to end just before Vrn1 × Vrn3 takes effect. This occurs $H_{\text{Vrn1} \times \text{Vrn3}}$ stages prior to saturation:
+
+$$
+\text{EndVrn2}_{\text{LN}} = \max\left(0,\ VS_{\text{LN}} - H_{\text{Vrn1} \times \text{Vrn3}} \right)
+$$
+
+Where:
+
+- $\text{EndVrn2}_{\text{LN}}$ is the Haun stage when Vrn2 expression ends in the LN treatment,
+- $VS_{\text{LN}}$ is the phyllochron at vernalisation saturation for the LN treatment,
+- $H_{\text{Vrn1} \times \text{Vrn3}}$ is the duration of effective Vrn1 × Vrn3 expression in Haun stages.
+
+
+This value is constrained to be non-negative.
+
+**Maximum Vrn2 Expression Under Long Photoperiods**
+
+The total Vrn2 expression is assumed to accumulate linearly from emergence to the end of Vrn2 activity under baseline Vrn1 expression:
+
+$$
+V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + P_{\text{emergence}} \right) \times \Delta V_{\text{base, veg}}
+$$
+
+Where:
+
+- $\text{EndVrn2}_{\text{LN}}$ is the Haun stage when Vrn2 expression ends in the LN treatment,
+- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence,
+- $\Delta V_{\text{base, veg}}$ is the base Vrn1 expression rate during the vegetative phase.
+
+This value represents the maximum repressive effect of Vrn2 that must be overcome before Vrn3-mediated acceleration of Vrn1 expression can begin.
+
+### Calculate Cold-Induced Upregulation of Vrn1 Expression {#cold-vrn1}
+
+The effect of cold treatment on persistent (methylated) upregulation of **Vrn1** expression in the **LV** (long photoperiod + vernalisation) environment  ($$C_{\text{Vrn1}}$$, `ColdVrn1Fact` in [CultivarRateParams](CultivarRateParams.qmd)) is estimated as:
+
+**Baseline Vrn1 Expression up to VS in the LV Treatment**
+
+The total amount of Vrn1 expressed under baseline conditions in the LV treatment from sowing to vernalisation saturation is:
+
+$$
+V_{\text{base, LV}} = (P_\text{emergence} + VS_{\text{LV}}) \times \Delta V_{\text{base, veg}}
+$$
+
+Where:
+
+- $P_\text{emergence}$ is the phyllochron duration from sowing to emergence,
+- $VS_{\text{LV}}$ is the phyllochron at vernalisation saturation for the LV treatment,
+- $\Delta V_{\text{base, veg}}$ is the baseline rate of Vrn1 expression during the vegetative phase.
+
+This reflects the cumulative Vrn1 expression in the absence of cold-specific upregulation.
+
+**Amount of Cold-Induced Persistent Vrn1 Expression**
+
+Cold upregulation of Vrn1 (assumed to lead to methylation and memory) is calculated as:
+
+$$
+V_{\text{cold, LV}} = V_{\text{threshold}} + V_{\text{max, Vrn2}} - V_{\text{base, LV}}
+$$
+
+Where:
+
+- $V_{\text{threshold}}$ is the saturation threshold for Vrn1 (typically 1),
+- $V_{\text{max, Vrn2}}$ is the maximum Vrn2 repressive expression,
+- $V_{\text{base, LV}}$ is the amount of Vrn1 expressed at baseline up to VS.
+
+**Methylation Threshold**
+
+The methylation threshold ($\theta_{\text{meth}}$, `MethalationThreshold` in [CultivarRateParams](CultivarRateParams.qmd)) (i.e., amount of Vrn1 needed for full persistent response) is assumed to be equal to the cold-induced Vrn1 amount:
+
+$$
+\theta_{\text{meth}} = V_{\text{cold, LV}}
+$$
+
+This assumption is based on findings by Brooking and Jamieson that the lag before methylation equals the duration of vernalisation response.
+
+**Effective Duration of Vernalisation**
+
+The duration (in Haun stages) over which vernalisation is active is:
+
+$$
+H_{\text{vern, LV}} = \min(P_\text{vern},\ P_\text{emergence} + VS_{\text{LV}})
+$$
+
+Where:
+- $P_\text{vern}$ is the phyllochron duration of the vernalisation treatment,
+- $P_\text{emergence}$ is the phyllochron duration from sowing to emergence,
+- $VS_{\text{LV}}$ is the phyllochron at vernalisation saturation for the LV treatment.
+
+
+**Cold-Induced Vrn1 Expression Rate During Treatment**
+
+The total rate of Vrn1 expression under cold treatment is:
+
+$$
+\Delta V_{\text{cold, LV}} = \frac{V_{\text{cold, LV}} + \theta_{\text{meth}}}{H_{\text{vern, LV}}}
+$$
+
+Where:
+
+- $V_{\text{cold, LV}}$ is the amount of cold-induced Vrn1 expression,
+- $\theta_{\text{meth}}$ is the methylation threshold,
+- $H_{\text{vern, LV}}$ is the effective duration of vernalisation in Haun stages.
+
+**Maximum Cold-Induced Expression Rate at 0°C**
+
+Assuming an exponential temperature effect, the maximum rate of Vrn1 expression under cold is:
+
+$$
+\Delta V_{\text{cold, max}} = \frac{\Delta V_{\text{cold, LV}}}{\exp(k \cdot T_{\text{cold}})}
+$$
+
+Where:
+
+- $\Delta V_{\text{cold, LV}}$ is the cold-induced Vrn1 expression rate during the vernalisation treatment,
+- $k$ is the temperature coefficient for vernalisation (typically -0.17),
+- $T_{\text{cold}}$ is the vernalisation treatment temperature, `VrnTreatTemp` in [FLNParameterEnvironment](FLNParameterEnvironment.qmd).
+
+**Cold-Induced Vrn1 Upregulation Factor**
+
+The cold upregulation factor ($F_{\text{cold}}$, `ColdVrn1Fact` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:
+
+$$
+F_{\text{cold}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}}
+$$
+
+Where:
+
+- $\Delta V_{\text{cold, max}}$ is the maximum cold-induced Vrn1 expression rate at 0°C,
+- $\Delta V_{\text{base, veg}}$ is the baseline Vrn1 expression rate during the vegetative phase.
+
+
+This factor quantifies the enhancement in Vrn1 expression due to cold during vernalisation.
+
 
 ## Events
 
@@ -130,3 +472,11 @@ The function returns a `CultivarRateParams` object with fields populated to simu
 ## See Also
 
 * **Source code:** [CalcCAMPVrnRates.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.cs)
+
+
+
+```{r echo=TRUE}
+# This forces Quarto to treat file as dynamic
+print("AAA")
+print("BBB")
+```

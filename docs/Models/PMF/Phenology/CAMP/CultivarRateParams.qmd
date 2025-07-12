@@ -19,15 +19,15 @@ This model is not user-configurable directly through the UI and does not require
 
 `CultivarRateParams` provides the following fields, which represent physiological and regulatory coefficients used to simulate flowering development:
 
-- `BaseDVrnVeg`: Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., >20°C).
-- `MaxDVrnVeg`: Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).
-- `BaseDVrnER`: Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.
-- `MaxDVrnER`: Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.
-- `PpVrn3FactVeg`: Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.
-- `PpVrn3FactER`: Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.
-- `MaxVrn2`: Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.
-- `MethalationThreshold`: Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).
-- `ColdVrn1Fact`: Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.
+- `BaseDVrnVeg` ($\Delta V_{\text{base, veg}}$): Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., >20°C).
+- `MaxDVrnVeg` ($\Delta V_{\text{max, veg}}$): Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).
+- `BaseDVrnER` ($\Delta V_{\text{base, ER}}$): Baseline rate of Vrn1 expression during early reproductive phase without photoperiod upregulation.
+- `MaxDVrnER` ($\Delta V_{\text{max, ER}}$): Maximum rate of Vrn1 expression during early reproductive phase under long photoperiod.
+- `PpVrn3FactVeg` ($F_{\text{Pp, Vrn3, veg}}$): Enhancement factor for Vrn1 expression in vegetative phase due to Vrn3 upregulation under long days.
+- `PpVrn3FactER` ($F_{\text{Pp, Vrn3, ER}}$): Enhancement factor for Vrn1 expression in early reproductive phase due to Vrn3 under long days.
+- `MaxVrn2` ($V_{\text{max, Vrn2}}$): Maximum Vrn2 expression level under long photoperiods, which must be suppressed before full Vrn1 expression can proceed.
+- `MethalationThreshold` ($M_{\text{threshold}}$): Threshold level of cold-induced Vrn1 expression needed to enable persistent Vrn1 activation (methalation).
+- `ColdVrn1Fact` ($C_{\text{Vrn1}}$): Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.
 
 These parameters are essential for simulating genotype × environment interactions that influence time to floral initiation and flowering in cereal crops.
 

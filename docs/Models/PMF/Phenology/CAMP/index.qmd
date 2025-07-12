@@ -13,4 +13,7 @@ listing:
 Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by [@jamieson_sirius:_1998].
 
 
-[CAMP](CAMP.qmd) is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.
+Master model, **[CAMP](CAMP.qmd)**, is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.
+
+The table below lists the submodels that are required by CAMP:
+
