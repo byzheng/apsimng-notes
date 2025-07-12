@@ -599,6 +599,12 @@ window.Quarto = {
  <span class="menu-text">GerminatingPhase</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -932,7 +938,7 @@ P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
 \]</span></p>
 <p>Where:</p>
 <ul>
-<li><span class="math inline">\(TT_\text{emergence}\)</span> is the thermal time from sowing to emergence (°C·days),</li>
+<li><span class="math inline">\(TT_\text{emergence}\)</span> is the thermal time from sowing to emergence (°C·days), <code>TtEmerge</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
 <li><span class="math inline">\(P_\text{base}\)</span> is the base phyllochron duration.</li>
 </ul>
 </section>
@@ -941,7 +947,12 @@ P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
 <p>The base phyllochron duration of the vernalisation treatment (<span class="math inline">\(P_\text{vern}\)</span>) is calculated as: <span class="math display">\[
 P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
 \]</span></p>
-<p>Where: - <span class="math inline">\(T_\text{vern}\)</span> is the vernalisation treatment temperature (°C), <code>VrnTreatTemp</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>, - <span class="math inline">\(D_\text{V}\)</span> is the vernalisation treatment duration (days), <code>VrnTreatDuration</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>, - <span class="math inline">\(P_\text{base}\)</span> is the base phyllochron duration.</p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(T_\text{vern}\)</span> is the vernalisation treatment temperature (°C), <code>VrnTreatTemp</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
+<li><span class="math inline">\(D_\text{V}\)</span> is the vernalisation treatment duration (days), <code>VrnTreatDuration</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
+<li><span class="math inline">\(P_\text{base}\)</span> is the base phyllochron duration.</li>
+</ul>
 </section>
 <section id="haun-ts" class="level3">
 <h3 class="anchored" data-anchor-id="haun-ts">Estimate Haun Stage at Terminal Spikelet</h3>
@@ -951,9 +962,7 @@ P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
 \]</span></p>
 <p>Where:</p>
 <ul>
-<li><span class="math inline">\(\text{FLN}(i)\)</span> is the final leaf number observed under environment <span class="math inline">\(i\)</span>,</li>
-<li>2.85 is the assumed number of leaves before the terminal spikelet forms,</li>
-<li>1.1 converts final leaf number to Haun Stage.</li>
+<li><span class="math inline">\(\text{FLN}(i)\)</span> is the final leaf number observed under environment <span class="math inline">\(i\)</span>.</li>
 </ul>
 </section>
 <section id="min-vs" class="level3">
