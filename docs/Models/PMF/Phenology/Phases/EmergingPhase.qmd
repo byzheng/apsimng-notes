@@ -49,7 +49,8 @@ These are signals or notifications that the `GerminatingPhase` listens for from 
 | `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
 | `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
 | `EmergenceDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
-| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. | No         |
+
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | No         |
 
 
 **Read-Only Reportable Properties**

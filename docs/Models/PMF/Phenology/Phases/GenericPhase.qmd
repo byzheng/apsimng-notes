@@ -38,7 +38,7 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 | `End`          | string      | Phenological stage that marks completion of the phase.                | Yes        |
 | `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
 | `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
-| `IsEmerged`    | bool        | Boolean flag indicating whether emergence has occurred.                | No         |
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | Yes         |
 
 **Read-Only Reportable Properties**
 

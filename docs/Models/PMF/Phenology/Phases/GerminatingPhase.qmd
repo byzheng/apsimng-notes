@@ -73,7 +73,8 @@ These are signals that the `GerminatingPhase` sends out to notify other componen
 | `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | Yes          |
 | `MinSoilTemperature` | double  | Minimum soil temperature required for germination (default is 0°C).         | Yes          |
 | `GerminationDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
-| `IsEmerged`          | bool    | Boolean flag indicating whether emergence has occurred. | No         |
+
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | No         |
 
 
 **Read-Only Reportable Properties**

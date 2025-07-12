@@ -35,8 +35,6 @@ The CAMP model integrates molecular and physiological representations to better 
 
 ## Methodology
 
-
-
 Genotype-specific rates of gene expression in CAMP are defined by [FLNparams](FinalLeafNumberSet.qmd), which includes:
 
 - **MinLN**: Base final leaf number under full vernalisation and long photoperiod.
@@ -53,35 +51,207 @@ Controlled environment conditions under which final leaf number ([FinalLeafNumbe
 - **TtEmerge**: Measured thermal time (°Cd) from sowing to emergence.
 
 
-**On [Plant Sowing](/docs/Models/Events.qmd#PlantSowing)**
+### On [Plant Sowing](/docs/Models/Events.qmd#PlantSowing)
 
-When the plant is sown, the CAMP model resets all vernalisation gene expressions and loads cultivar-specific parameters from `FLNparams`. It also sets the initial Haun stage to 0.
+When the plant is sown, the CAMP model 
+
+* resets all vernalisation gene expressions and loads cultivar-specific parameters from `FLNparams`. It also sets the initial Haun stage to 0,
+* calculates [vernalisation rate parameters](CultivarRateParams.qmd) using a set of [final leaf number parameters](FinalLeafNumberSet.qmd) and [controlled environment data](FLNParameterEnvironment.qmd).
+
+### On [Seed Imbibed](/docs/Models/Events.qmd#SeedImbibed)
+
+When the seed is imbibed after germination, the CAMP model set `isImbibed` to true, indicating that the seed has absorbed water and is ready for germination. 
+
+### ON [Plant Emerged](/docs/Models/Events.qmd#PlantEmerged)
+
+When the plant emerges, the CAMP model set `IsEmerged` to true, indicating that the plant has successfully emerged from the soil. 
 
 
+### On [Pre Phenology](/docs/Models/Events.qmd#PrePhenology)
 
-Each day, the CAMP model updates the expression of Vrn1, Vrn2, and Vrn3 based on current Haun stage, temperature, and photoperiod. The rate of gene expression is genotype-specific and internally derived from FLN parameters.
+In each day before phenology calculations, the CAMP model updates the expression of Vrn1, Vrn2, and Vrn3 based on current Haun stage, temperature, and photoperiod. The rate of gene expression is genotype-specific and internally derived from FLN parameters.
 
 - **Vrn1** is expressed at a base rate under warm conditions, increasing under colder temperatures. The total expression includes both base and cold-driven components. Once Vrn1 expression exceeds the threshold of 1.0, the plant is considered vernalised.
 - **Vrn2** is upregulated by long photoperiods. It inhibits Vrn3 expression and must be repressed (via increased Vrn1) before reproductive development can proceed.
 - **Vrn3** is upregulated after vernalisation is complete and is necessary for terminal spikelet initiation. Its expression accelerates phenological progression.
 - **VrnX** captures the net effect of photoperiod (via Vrn2 and Vrn3) on vernalisation duration.
 
-The final expression of vernalisation state is calculated as:
+The following steps are performed on event `PrePhenology`:
+
+#### Calculate daily Haun Stage changes {#haun-stage-calculation}
+
+If the crop has not emerged (i.e. before emergence), the Haun Stage delta ($\Delta HS$) is estimated based on thermal time ($TT$) and a base phyllochron:
 
 $$
-\text{Vrn} = \min(\text{MaxVrn}, \max(0, \text{BaseVrn} + \text{Cold} + \text{Vrn1} + \text{Vrn3} - \text{Vrn2}))
+\Delta HS = \frac{TT}{\text{BasePhyllochron}} \cdot \text{EmergeDurationFactor}
 $$
 
-When:
+Where:
 
-- $Vrn ≥ 1.0$, the crop is vernalised.
-- $Vrn ≥ 2.0$, the crop transitions to reproductive development (terminal spikelet stage).
-
-The Haun stage at terminal spikelet (TSHS) is used to calculate final leaf number (FLN) via:
+- If accumulated $TT > 90$:
 
 $$
-\text{FLN} = 2.85 + 1.1 × \text{TSHS}
+\text{EmergeDurationFactor} = e^{-0.015 \cdot (TT - 90)}
 $$
+
+Otherwise, if the crop **has emerged**, $\Delta HS$ is calculated from the model variable `deltaHaunStage`.
+
+# Vernalisation Expression
+
+Gene expression is divided into:
+
+- **BaseVrn**
+- **MaxVrn**
+- **Vrn1**, **Vrn2**, and **Vrn3**
+
+## Vegetative vs Reproductive Phase
+
+- If not yet vernalised:
+
+$$
+dBaseVrn = \text{BaseDVrnVeg} \cdot \Delta HS
+$$
+
+$$
+dMaxVrn = \text{MaxDVrnVeg} \cdot \Delta HS
+$$
+
+$$
+PpVrn3Fact = \text{PpVrn3FactVeg}
+$$
+
+- If vernalised but not reproductive:
+
+$$
+dBaseVrn = \text{BaseDVrnER} \cdot \Delta HS
+$$
+
+$$
+dMaxVrn = \text{MaxDVrnER} \cdot \Delta HS
+$$
+
+$$
+PpVrn3Fact = \text{PpVrn3FactER}
+$$
+
+Base and Max vernalisation levels are incremented:
+
+$$
+\text{BaseVrn} += dBaseVrn
+$$
+
+$$
+\text{MaxVrn} += dMaxVrn
+$$
+
+# Cold Vernalisation (Vrn1)
+
+Cold response affects Vrn1 expression:
+
+$$
+dCold = \text{RelCold} \cdot dBaseVrn \cdot \text{ColdVrn1Fact}
+$$
+
+If cold exposure surpasses a methylation threshold $\theta$:
+
+$$
+dVrn1 = \max\left(0, (Cold - \theta) - (Cold_{\text{yesterday}} - \theta)\right)
+$$
+
+Then:
+
+$$
+\text{Vrn1} += dVrn1
+$$
+
+# Photoperiod Response and Vrn2/Vrn3
+
+Photoperiod gene expression is active only **after emergence**.
+
+- Relative photoperiod ($RelPp$) is derived from `PpResponse`, scaled between 0 and 1.
+- If $RelPp = 0$, then $MaxVrn2$ is reduced:
+
+$$
+MaxVrn2 = \max(0, MaxVrn2 - dBaseVrn)
+$$
+
+- If not yet vernalised:
+
+$$
+Vrn2 = MaxVrn2 \cdot RelPp
+$$
+
+- If $BaseVrn + Vrn1 > Vrn2$, expression of Vrn3 begins:
+
+$$
+dVrn3 = (PpVrn3Fact - 1) \cdot RelPp \cdot dBaseVrn
+$$
+
+And:
+
+$$
+Vrn3 += dVrn3
+$$
+
+# Final Vernalisation Level (Vrn)
+
+Daily total vernalisation ($Vrn$) is computed:
+
+- If not vernalised:
+
+$$
+Vrn = \min(MaxVrn, \max(0, BaseVrn + Vrn1 + Vrn3 - Vrn2))
+$$
+
+- If vernalised:
+
+$$
+Vrn += dBaseVrn + dVrn3
+$$
+
+Delta change is:
+
+$$
+dVrn = Vrn - Vrn_{\text{yesterday}}
+$$
+
+# Phase Transitions
+
+- **Vernalisation complete** when:
+
+$$
+\text{isVernalised} = (Vrn \geq VSThreshold)
+$$
+
+- **Reproductive phase** begins when:
+
+$$
+\text{isReproductive} = (Vrn \geq TSThreshold)
+$$
+
+# Final Leaf Number (FLN)
+
+FLN is estimated from the thermal switch Haun Stage ($TSHS$):
+
+$$
+FLN = \text{IntFLNvsTSHS} + 1.1 \cdot TSHS
+$$
+
+# Summary of Key Parameters
+
+| Symbol | Description |
+|--------|-------------|
+| $TT$ | Thermal time |
+| $\Delta HS$ | Daily Haun stage increment |
+| $BaseVrn$, $MaxVrn$ | Cumulative vernalisation levels |
+| $Vrn1$, $Vrn2$, $Vrn3$ | Vernalisation gene expressions |
+| $RelPp$ | Relative photoperiod |
+| $Vrn$ | Total vernalisation signal |
+| $FLN$ | Final leaf number |
+| $VSThreshold$, $TSThreshold$ | Thresholds for phase change |
+
+
+
 
 ## Events
 

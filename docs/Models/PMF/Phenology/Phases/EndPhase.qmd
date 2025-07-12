@@ -46,7 +46,7 @@ This phase ensures the crop's development is paused or concluded until harvest o
 |--------------|---------|----------------------------------------------------------------|
 | Start        | string  | Stage that marks the beginning of this phase                   |
 | End          | string  | Stage name marking the end of this phase (optional)            |
-| IsEmerged    | bool    | Indicates whether this phase assumes the crop has emerged      |
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | Yes         |
 
 **Read-Only Reportable Properties**
 
