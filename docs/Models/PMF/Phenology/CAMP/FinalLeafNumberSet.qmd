@@ -67,6 +67,44 @@ $$ \text{VrnLN} = \text{SN} - \text{SV} $$
 $$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
 
 
+
+## Events 
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property    | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| MinLN       | double | Final Leaf Number under full vernalisation and long photoperiod (>16h)      |
+| PpLN        | double | Increase in FLN under short photoperiod (<8h) following full vernalisation  |
+| VrnLN       | double | Increase in FLN when un-vernalised and grown under short photoperiod        |
+| VxPLN       | double | Change in FLN from photoperiod effect under un-vernalised, long-day growth  |
+
+**Read-Only Reportable Properties**
+
+| Property    | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| LV          | double | FLN under full vernalisation and long photoperiod (>16h)                    |
+| SV          | double | FLN under full vernalisation and short photoperiod (<8h)                    |
+| SN          | double | FLN when un-vernalised under short photoperiod                              |
+| LN          | double | FLN when un-vernalised under long photoperiod                               |
+
+## User Interface
+
+`FinalLeafNumberSet` can be added as a child of a `CAMP` node in the model tree. Right-click the `CAMP` node, select "Add Model...", and search for `FinalLeafNumberSet` in the Filter Box.
+
+## Practical Example
+
+
 Below is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:
 
 | Parameter / FLN | BattenWinter | BattenSpring |
@@ -265,45 +303,6 @@ p  + scale_color_manual(
 ```
 
 
-
-
-## Events 
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-| Property    | Type   | Description                                                                 |
-|-------------|--------|-----------------------------------------------------------------------------|
-| MinLN       | double | Final Leaf Number under full vernalisation and long photoperiod (>16h)      |
-| PpLN        | double | Increase in FLN under short photoperiod (<8h) following full vernalisation  |
-| VrnLN       | double | Increase in FLN when un-vernalised and grown under short photoperiod        |
-| VxPLN       | double | Change in FLN from photoperiod effect under un-vernalised, long-day growth  |
-
-**Read-Only Reportable Properties**
-
-| Property    | Type   | Description                                                                 |
-|-------------|--------|-----------------------------------------------------------------------------|
-| LV          | double | FLN under full vernalisation and long photoperiod (>16h)                    |
-| SV          | double | FLN under full vernalisation and short photoperiod (<8h)                    |
-| SN          | double | FLN when un-vernalised under short photoperiod                              |
-| LN          | double | FLN when un-vernalised under long photoperiod                               |
-
-## User Interface
-
-`FinalLeafNumberSet` can be added as a child of a `CAMP` node in the model tree. Right-click the `CAMP` node, select "Add Model...", and search for `FinalLeafNumberSet` in the Filter Box.
-
-## Practical Example
-
-> No practical example is available for this function.
 
 ## See Also
 
