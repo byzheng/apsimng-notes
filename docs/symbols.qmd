@@ -14,8 +14,6 @@ Symbols are grouped by functional categories such as **Phenology**, **Climate**,
 - Symbols use **two-letter abbreviations** to distinguish overlapping concepts (e.g. $Ph$ for phyllochron, $PP$ for photoperiod)
 - Subscripts clarify properties or context, e.g. $T_{\text{max}}$, $Ph_{\text{base}}$
 - Greek letters represent parameters or coefficients, e.g. $\alpha$, $\beta$, $\Delta$
-- Cumulative values use a `C` prefix or subscript (e.g. $C_{TT}$ or $TT_c$)
-- Time-related values use $t$, $DOY$, $DAS$, or $\Delta t$ depending on context
 - Units are expressed in SI unless otherwise noted
 
 
