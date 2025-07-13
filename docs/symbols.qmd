@@ -23,11 +23,11 @@ Symbols are grouped by functional categories such as **Phenology**, **Climate**,
 
 | Symbol         | Name                          | Units    | Description                                              |
 |----------------|-------------------------------|----------|----------------------------------------------------------|
+| $TT$           | Daily Thermal time                   | °Cd      | Daily thermal time accumulated                          |
 | $Ph$           | Phyllochron                   | °Cd      | Thermal time required for the appearance of successive leaves on the main stem |
 | $HS$           | Haun Stage                    | -        | Number of fully expanded leaves on the main stem [@haun_visual_1973]         |
 | $Ph_{\text{base}}$ | Base phyllochron           | °Cd      | Base phyllochron for most of leaves                 |
 | $F$            | Fraction complete              | -        | Fractional progress through a development phase          |
-| $TT$           | Thermal time                   | °Cd      | Daily thermal time accumulated                          |
 | $TT_c$         | Cumulative thermal time        | °Cd      | Total thermal time since phase start                     |
 | $T_b$          | Base temperature               | °C       | Minimum temperature for development                      |
 | $T_o$          | Optimum temperature            | °C       | Temperature where development rate is maximal            |

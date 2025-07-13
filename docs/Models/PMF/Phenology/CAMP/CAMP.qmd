@@ -5,6 +5,14 @@ draft: true
 ---
 
 
+
+```{r echo=TRUE}
+# This forces Quarto to treat file as dynamic
+print("Quarto Preview. Delete it later")
+```
+
+
+
 Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by [@jamieson_sirius:_1998].
 
 The CAMP models vernalisation gene expression in wheat and other temperate cereals. It simulates molecular responses to temperature and photoperiod signals that regulate flowering transitions, including upregulation of Vrn1, Vrn2, and Vrn3 [@brown_integration_2013]. 
@@ -78,25 +86,37 @@ In each day before phenology calculations, the CAMP model updates the expression
 
 The following steps are performed on event `PrePhenology`:
 
-#### Calculate daily Haun Stage changes {#haun-stage-calculation}
+**Calculate daily Haun Stage changes**
 
-If the crop has not emerged (i.e. before emergence), the Haun Stage delta ($\Delta HS$) is estimated based on thermal time ($TT$) and a base phyllochron:
+Whether the crop has `emerged` is determined by whether the current phase represents development above the soil surface — that is, the phase itself occurs above ground or comes after emergence in most plants.
+
+If the crop has not `emerged`, the Haun Stage delta ($\Delta HS$) is estimated based on daily thermal time ($TT$) and a base phyllochron:
 
 $$
-\Delta HS = \frac{TT}{\text{BasePhyllochron}} \cdot \text{EmergeDurationFactor}
+\Delta HS = \frac{TT}{Ph_\text{base}} \times F_{\text{emgDur}}
 $$
 
 Where:
 
-- If accumulated $TT > 90$:
+- $Ph_\text{base}$ is the base phyllochron (thermal time per leaf appearance) for the crop, is a factor that slows down leaf appearance
+- $F_{\text{emgDur}}$ is a factor that accounts for the duration of emergence, which is set to 1.0 if the accumulated thermal time since sowing does not exceed 90°C·d.
+
+If the accumulated thermal time since sowing exceeds 90°C·d, a correction factor is applied to account for prolonged or delayed emergence conditions:
+
 
 $$
-\text{EmergeDurationFactor} = e^{-0.015 \cdot (TT - 90)}
+F_{\text{emgDur}} = e^{-0.015 \times ( \sum_{t = t_{\text{sow}}}^{t_{\text{today}}} TT_t - 90)}
 $$
 
-Otherwise, if the crop **has emerged**, $\Delta HS$ is calculated from the model variable `deltaHaunStage`.
+Where:
 
-# Vernalisation Expression
+-  $\sum_{t = t_{\text{sow}}}^{t_{\text{today}}} TT_t$ is the cumulative thermal time from sowing to today.
+
+
+If the crop **has emerged**, $\Delta HS$ is calculated from the model input variable `deltaHaunStage`. In general, this variable is updated daily based on the daily thermal time and actual phyllochron.
+
+
+#### Vernalisation Expression
 
 Gene expression is divided into:
 

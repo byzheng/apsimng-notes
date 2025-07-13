@@ -472,10 +472,3 @@ This factor quantifies the enhancement in Vrn1 expression due to cold during ver
 
 * **Source code:** [CalcCAMPVrnRates.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.cs)
 
-
-
-```{r echo=TRUE}
-# This forces Quarto to treat file as dynamic
-print("AAA")
-print("BBB")
-```

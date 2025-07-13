@@ -13,6 +13,7 @@ It helps ensure clarity and consistency for all readers and contributors.
 
 | Abbreviation | Meaning                  | Notes                            |
 |--------------|--------------------------|----------------------------------|
+| TT           | Thermal Time             | Daily thermal time in °Cd  |
 | PP           | Photoperiod              | Day length influencing development in phenology |
 | Ph           | Phyllochron              | Thermal time required for the appearance of successive leaves on the main stem |
 
