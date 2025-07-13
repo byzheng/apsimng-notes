@@ -6230,43 +6230,7 @@
     "href": "docs/symbols.html#phenology",
     "title": "Symbol Glossary",
     "section": "🌱 Phenology",
-    "text": "🌱 Phenology\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(TT\\)\nDaily Thermal time\n°Cd\nDaily thermal time accumulated\n\n\n\\(Ph\\)\nPhyllochron\n°Cd\nThermal time required for the appearance of successive leaves on the main stem\n\n\n\\(HS\\)\nHaun Stage\n-\nNumber of fully expanded leaves on the main stem (Haun 1973)\n\n\n\\(Ph_{\\text{base}}\\)\nBase phyllochron\n°Cd\nBase phyllochron for most of leaves\n\n\n\\(F\\)\nFraction complete\n-\nFractional progress through a development phase\n\n\n\\(TT_c\\)\nCumulative thermal time\n°Cd\nTotal thermal time since phase start\n\n\n\\(T_b\\)\nBase temperature\n°C\nMinimum temperature for development\n\n\n\\(T_o\\)\nOptimum temperature\n°C\nTemperature where development rate is maximal\n\n\n\\(P\\)\nPhotoperiod\nhours\nDaylength used in photoperiod response",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Symbol Glossary"
-    ]
-  },
-  {
-    "objectID": "docs/symbols.html#climate",
-    "href": "docs/symbols.html#climate",
-    "title": "Symbol Glossary",
-    "section": "🌤 Climate",
-    "text": "🌤 Climate\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(T\\)\nTemperature\n°C\nDaily air temperature\n\n\n\\(T_{\\text{max}}\\)\nMaximum temperature\n°C\nDaily maximum air temperature\n\n\n\\(T_{\\text{min}}\\)\nMinimum temperature\n°C\nDaily minimum air temperature\n\n\n\\(R_d\\)\nSolar radiation\nMJ/m²/d\nIncoming solar radiation\n\n\n\\(VPD\\)\nVapour pressure deficit\nkPa\nAtmospheric demand for evaporation",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Symbol Glossary"
-    ]
-  },
-  {
-    "objectID": "docs/symbols.html#soil-water",
-    "href": "docs/symbols.html#soil-water",
-    "title": "Symbol Glossary",
-    "section": "💧 Soil Water",
-    "text": "💧 Soil Water\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(SW\\)\nSoil water content\nmm\nTotal plant-available water in the soil profile\n\n\n\\(PAWC\\)\nPlant available water capacity\nmm\nDifference between drained upper limit and lower limit\n\n\n\\(ESW\\)\nExtractable soil water\nmm\nSoil water available for plant extraction",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Symbol Glossary"
-    ]
-  },
-  {
-    "objectID": "docs/symbols.html#general-simulation",
-    "href": "docs/symbols.html#general-simulation",
-    "title": "Symbol Glossary",
-    "section": "⚙️ General Simulation",
-    "text": "⚙️ General Simulation\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(t\\)\nTime\ndays\nSimulation time\n\n\n\\(\\Delta t\\)\nTime step\ndays\nIncrement per simulation step\n\n\n\\(DAS\\)\nDays after sowing\ndays\nTime elapsed since sowing\n\n\n\\(DOY\\)\nDay of year\n-\nCalendar day of the year",
+    "text": "🌱 Phenology\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(TT\\)\nDaily Thermal time\n°Cd\nDaily thermal time accumulated\n\n\n\\(Ph\\)\nPhyllochron\n°Cd\nThermal time required for the appearance of successive leaves on the main stem\n\n\n\\(HS\\)\nHaun Stage\n-\nNumber of fully expanded leaves on the main stem (Haun 1973)\n\n\n\\(Ph_{\\text{base}}\\)\nBase phyllochron\n°Cd\nBase phyllochron for most of leaves",
     "crumbs": [
       "Home",
       "Docs",
