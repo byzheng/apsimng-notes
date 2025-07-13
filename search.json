@@ -105,14 +105,103 @@
     "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
   },
   {
-    "objectID": "docs/index.html",
-    "href": "docs/index.html",
-    "title": "Docs",
+    "objectID": "docs/abbreviations.html",
+    "href": "docs/abbreviations.html",
+    "title": "Glossary of Abbreviations",
     "section": "",
-    "text": "Note\n\n\n\n⚠️ This is not the official APSIM documentation. For official information, refer to APSIM Official Website\n\n\n\n\n🧩 Models\nTechnical notes on APSIM NG core models (e.g., soil, management, utilities).\nExplore Model →\n\n\n🌿 Crops\nDocumentation for crop models, including phenology, grain filling, and stress responses.\nView Crop →\n\n\n\nThese are personal documentation notes for APSIM Next Generation, compiled from various sources and personal experience, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\nThese notes may contain errors, be incomplete, or reflect outdated information. See the full disclaimer.\nI will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via GitHub pull requests or issues.\n\n\n\n\n\n\nNote\n\n\n\nThis documentation is updated to this commit: b9f9abca67191765f8a2de01e7cf0ce1c3f4a615 on 8 July 2025.",
+    "text": "This glossary provides definitions for common abbreviations used throughout the APSIM NG documentation.\nIt helps ensure clarity and consistency for all readers and contributors.",
     "crumbs": [
       "Home",
-      "Docs"
+      "Docs",
+      "Glossary of Abbreviations"
+    ]
+  },
+  {
+    "objectID": "docs/abbreviations.html#common-abbreviations",
+    "href": "docs/abbreviations.html#common-abbreviations",
+    "title": "Glossary of Abbreviations",
+    "section": "Common Abbreviations",
+    "text": "Common Abbreviations\n\n\n\n\n\n\n\n\nAbbreviation\nMeaning\nNotes\n\n\n\n\nTT\nThermal Time\nDaily thermal time in °Cd\n\n\nPP\nPhotoperiod\nDay length influencing development in phenology\n\n\nPh\nPhyllochron\nThermal time required for the appearance of successive leaves on the main stem",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Glossary of Abbreviations"
+    ]
+  },
+  {
+    "objectID": "docs/abbreviations.html#usage-notes",
+    "href": "docs/abbreviations.html#usage-notes",
+    "title": "Glossary of Abbreviations",
+    "section": "Usage Notes",
+    "text": "Usage Notes\n\nPlease refer to this glossary before introducing new abbreviations to maintain consistency.\nWhen writing documentation or code comments, spell out abbreviations on first use followed by the abbreviation in parentheses, e.g., Photoperiod (Pp).\nThis glossary will be updated as the APSIM NG project evolves.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Glossary of Abbreviations"
+    ]
+  },
+  {
+    "objectID": "docs/abbreviations.html#see-also",
+    "href": "docs/abbreviations.html#see-also",
+    "title": "Glossary of Abbreviations",
+    "section": "See Also",
+    "text": "See Also\n\nSymbols",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Glossary of Abbreviations"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html",
+    "href": "docs/management/fertiliser.html",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#introduction",
+    "href": "docs/management/fertiliser.html#introduction",
+    "title": "Fertiliser Types",
+    "section": "",
+    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
+    "title": "Fertiliser Types",
+    "section": "Structure of Fertiliser Definitions",
+    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
+    ]
+  },
+  {
+    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
+    "title": "Fertiliser Types",
+    "section": "Example Fertiliser Types in APSIM",
+    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Management",
+      "Fertiliser Types"
     ]
   },
   {
@@ -1497,7 +1586,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html#methodology",
     "title": "CalcCAMPVrnRates",
     "section": "Methodology",
-    "text": "Methodology\nThe CalcCAMPVrnRates function estimates vernalisation rate parameters using:\n\nFLNset: a set of final leaf number parameters\nEnvData: controlled environment data used to measure final leaf number\n\nThe function performs the following steps:\n\nConvert Emergence Duration from Thermal Time to Phyllochrons\n\nBase phyllochron duration of vernalisation treatment\n\nEstimate Haun Stage at Terminal Spikelet\n\nCalculate Minimum Vernalisation Saturation to Terminal Spikelet\n\nCalculate the accumulated phyllochrons at vernalisation saturation for each treatment\n\nCalculate Vernalisation Rates and Photoperiod Sensitivities\n\nCalculate Maximum Vrn2 Expression Under Long Photoperiods\n\nCalculate Cold-Induced Upregulation of Vrn1 Expression\n\n\nConvert Emergence Duration from Thermal Time to Phyllochrons\nThe duration from sowing to emergence is first expressed in phyllochrons (\\(P_\\text{emergence}\\)) using the base phyllochron value (\\(P_\\text{base}\\)):\n\\[\nP_\\text{emergence} = \\frac{TT_\\text{emergence}}{P_\\text{base}}\n\\]\nWhere:\n\n\\(TT_\\text{emergence}\\) is the thermal time from sowing to emergence (°C·days), TtEmerge in FLNParameterEnvironment.qmd,\n\\(P_\\text{base}\\) is the base phyllochron duration.\n\n\n\nBase phyllochron duration of vernalisation treatment\nThe base phyllochron duration of the vernalisation treatment (\\(P_\\text{vern}\\)) is calculated as: \\[\nP_\\text{vern} = \\frac{T_\\text{vern} \\times D_\\text{V}}{P_\\text{base}}\n\\]\nWhere:\n\n\\(T_\\text{vern}\\) is the vernalisation treatment temperature (°C), VrnTreatTemp in FLNParameterEnvironment.qmd,\n\\(D_\\text{V}\\) is the vernalisation treatment duration (days), VrnTreatDuration in FLNParameterEnvironment.qmd,\n\\(P_\\text{base}\\) is the base phyllochron duration.\n\n\n\nEstimate Haun Stage at Terminal Spikelet\nThe Haun Stage at terminal spikelet for each environment \\(i\\) (e.g., LV, LN, SV, SN) is calculated following the method of Brown et al. (2013):\n\\[\n\\text{HS}_{TS}(i) = \\left( \\text{FLN}(i) - 2.85 \\right) \\times 1.1\n\\]\nWhere:\n\n\\(\\text{FLN}(i)\\) is the final leaf number observed under environment \\(i\\).\n\n\n\nCalculate Minimum Vernalisation Saturation to Terminal Spikelet\nThe minimum vernalisation saturation at terminal spikelet (\\(\\text{VS}_{TS,\\ min}\\)) is estimated as:\n\\[\n\\text{VS}_{TS,\\ min} = \\min\\left( \\text{HS}_{TS,\\ LV} - 1.1,\\ 3 \\right)\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LV}\\) is the Haun Stage at terminal spikelet in the long-day vernalised (LV) treatment,\n1.1 is the earliest Haun Stage at which vernalisation saturation can begin,\n3 is the maximum stage for vernalisation saturation, based on Lincoln controlled environment data (CRWT153).\n\n\n\nCalculate the accumulated phyllochrons at vernalisation saturation for each treatment\nThe accumulated phyllochron at vernalisation saturation is estimated for each photoperiod × vernalisation treatment. These values are expressed in phyllochrons and are derived relative to the Haun Stage at terminal spikelet (\\(\\text{HS}_{TS}\\)) and the previously calculated minimum duration between vernalisation saturation and terminal spikelet (\\(\\text{VS}_{TS,\\text{min}}\\)).\nLong-day Vernalised (LV) Environment\nFor the LV treatment, vernalisation saturation is assumed to occur exactly \\(\\text{VS}_{TS,\\text{min}}\\) before terminal spikelet:\n\\[\n\\text{VS}_{LV} = \\text{HS}_{TS,\\ LV} - \\text{VS}_{TS,\\text{min}}\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LV}\\) is the Haun Stage at terminal spikelet for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis forms the baseline timing of saturation under conditions without vernalisation and photoperiod impacts.\nLong-day Non-vernalised (LN) Environment\nFor LN, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ LN}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{LN} = \\max(\\text{HS}_{TS,\\ LN} - \\text{VS}_{TS,\\text{min}},\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LN}\\) is the Haun Stage at terminal spikelet for the LN treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis ensures the LN environment does not reach vernalisation saturation before LV.\nShort-day Vernalised (SV) Environment\nFor the SV treatment, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ SV}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{SV} = \\max(\\text{HS}_{TS,\\ SV} - \\text{VS}_{TS,\\text{min}},\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SV}\\) is the Haun Stage at terminal spikelet for the SV treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis ensures the SV environment does not reach vernalisation saturation before LV.\nShort-day Non-vernalised (SN) Environment\nFor the SN environment, saturation is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ SN}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{SN} = \\max(\\text{HS}_{TS,\\ SN} - \\left( \\text{HS}_{TS,\\ SV} - \\text{VS}_{SV} \\right),\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SN}\\) is the Haun Stage at terminal spikelet for the SN treatment,\n\\(\\text{HS}_{TS,\\ SV}\\) is the Haun Stage at terminal spikelet for the SV treatment,\n\\(\\text{VS}_{SV}\\) is the vernalisation saturation timing for the SV treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment.\n\nThis ensures the SV environment does not reach vernalisation saturation before LV.\n\n\nCalculate Vernalisation Rates and Photoperiod Sensitivities\nThe base and maximum rates of vernalisation progression during the vegetative and early reproductive phases are estimated, along with the photoperiod (Pp) sensitivity factors.\nBase Vernalisation Rate During Vegetative Phase\nBase vernalisation rate during vegetative phase (\\(\\Delta V_{\\text{base, veg}}\\), BaseDVrnVeg in CultivarRateParams) assumes vernalisation starts at sowing and proceeds linearly until saturation in the SN treatment (which is short-day and non-vernalised treatment and lacks vernalising temperature and long photoperiod upregulation), the base rate is:\n\\[\n\\Delta V_{\\text{base, veg}} = \\frac{1}{\\text{VS}_{SN} + P_{\\text{emergence}}}\n\\]\nWhere:\n\n\\(\\text{VS}_{SN}\\) is the phyllochron at vernalisation saturation for the SN treatment,\n\\(P_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence.\n\nMaximum Vernalisation Rate During Vegetative Phase\nThe fastest rate of vernalisation during vegetative phase (\\(\\Delta V_{\\text{max, veg}}\\), MaxDVrnVeg in CultivarRateParams) is assumed to occur in the SV treatment (i.e. short-day with vernalisation), where the rate is maximised at the minimum vernalisation saturation to terminal spikelet:\n\\[\n\\Delta V_{\\text{max, veg}} = \\frac{1}{\\text{VS}_{SV} + P_{\\text{emergence}}}\n\\]\nWhere:\n\n\\(\\text{VS}_{SV}\\) is the phyllochron at vernalisation saturation for the SV treatment,\n\\(P_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence.\n\nBase Vernalisation Rate During Early Reproductive Phase\nThe base vernalisation rate during early reproductive phase (\\(\\Delta V_{\\text{base, ER}}\\), BaseDVrnER in CultivarRateParams) is calculated as:\n\\[\n\\Delta V_{\\text{base, ER}} = \\frac{1}{\\text{HS}_{TS,\\ SN} - \\text{VS}_{SN}}\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SN}\\) is the Haun Stage at terminal spikelet for the SN treatment,\n\\(\\text{VS}_{SN}\\) is the phyllochron at vernalisation saturation for the SN treatment.\n\nMaximum Vernalisation Rate During Early Reproductive Phase\nThe maximum vernalisation rate during early reproductive phase (\\(\\Delta V_{\\text{max, ER}}\\), MaxDVrnER in CultivarRateParams) is calculated as:\n\\[\n\\Delta V_{\\text{max, ER}} = \\frac{1}{\\text{VS}_{TS,\\ min}}\n\\]\nWhere:\n\n\\(\\text{VS}_{TS,\\ min}\\) is the minimum vernalisation saturation to terminal spikelet, calculated earlier.\n\nPhotoperiod Sensitivity Factor During Early Reproductive Phase\nThe photoperiod sensitivity factor during early reproductive phase (\\(F_{\\text{Pp, Vrn3, ER}}\\), PpVrn3FactER in CultivarRateParams) is calculated as: \\[\nF_{\\text{Pp, Vrn3, ER}} = \\left( \\frac{\\Delta V_{\\text{max, ER}}}{\\Delta V_{\\text{base, ER}}} - 1 \\right) + 1\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{max, ER}}\\) is the maximum vernalisation rate during early reproductive phase,\n\\(\\Delta V_{\\text{base, ER}}\\) is the base vernalisation rate during early reproductive phase.\n\nThis factor quantifies how much faster vernalisation proceeds under long photoperiod compared to the baseline.\nPhotoperiod Sensitivity Factor During Vegetative Phase\nThe photoperiod sensitivity factor during vegetative phase (\\(F_{\\text{Pp, Vrn3, veg}}\\), PpVrn3FactVeg in CultivarRateParams) is calculated as: \\[\nF_{\\text{Pp, Vrn3, veg}} = \\left( \\frac{1 / \\text{VS}_{LN}}{\\Delta V_{\\text{max, veg}}} - 1 \\right) + 1\n\\]\nWhere:\n\n\\(\\text{VS}_{LN}\\) is the phyllochron at vernalisation saturation for the LN treatment,\n\\(\\Delta V_{\\text{max, veg}}\\) is the maximum vernalisation rate during vegetative phase.\n\nTo ensure consistency, this factor is constrained to be no less than the early reproductive sensitivity:\n\\[\nF_{\\text{Pp, Vrn3, veg}} = \\max(F_{\\text{Pp, Vrn3, veg}},\\ F_{\\text{Pp, Vrn3, ER}})\n\\]\nWhere:\n\n\\(F_{\\text{Pp, Vrn3, veg}}\\) is the photoperiod sensitivity factor during vegetative phase,\n\\(F_{\\text{Pp, Vrn3, ER}}\\) is the photoperiod sensitivity factor during early reproductive phase.\n\n\n\nCalculate Maximum Vrn2 Expression Under Long Photoperiods\nThe maximum vernalisation repressor (Vrn2) expression under long photoperiod conditions without vernalising temperatures (\\(V_{\\text{max, Vrn2}}\\), , MaxVrn2 in CultivarRateParams) is estimated as:\nBefore vernalisation saturation (VS) is reached under long photoperiod without vernalisation, Vrn1 expression is influenced by both baseline and Vrn3-induced pathways. The effective rate of Vrn1 expression is:\n\\[\n\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}} = \\max\\left( \\frac{1}{VS_{\\text{LN}}},\\ \\Delta V_{\\text{base, veg}} \\times F_{\\text{Pp, Vrn3, veg}} \\right)\n\\]\nWhere:\n\n\\(\\frac{1}{VS_{\\text{LN}}}\\) is the rate assuming linear accumulation from sowing to saturation without upregulation,\n\\(\\Delta V_{\\text{base, veg}}\\) is the base Vrn1 rate,\n\\(F_{\\text{Pp, Vrn3, veg}}\\) is the photoperiod (Vrn3) sensitivity factor in the vegetative phase.\n\nDuration of Effective Vrn1 × Vrn3 Expression Phase\nThe time (in Haun stages) needed to reach saturation at the above rate is:\n\\[\nH_{\\text{Vrn1} \\times \\text{Vrn3}} = \\frac{1}{\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}}}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the effective rate of Vrn1 × Vrn3 expression,\n\\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the duration of effective Vrn1 × Vrn3 expression in Haun stages.\n\nThis represents the duration over which the effective Vrn1 × Vrn3 expression occurs in the absence of vernalisation.\nHaun Stage When Vrn2 Expression Ends\nVrn2 expression is assumed to end just before Vrn1 × Vrn3 takes effect. This occurs \\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) stages prior to saturation:\n\\[\n\\text{EndVrn2}_{\\text{LN}} = \\max\\left(0,\\ VS_{\\text{LN}} - H_{\\text{Vrn1} \\times \\text{Vrn3}} \\right)\n\\]\nWhere:\n\n\\(\\text{EndVrn2}_{\\text{LN}}\\) is the Haun stage when Vrn2 expression ends in the LN treatment,\n\\(VS_{\\text{LN}}\\) is the phyllochron at vernalisation saturation for the LN treatment,\n\\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the duration of effective Vrn1 × Vrn3 expression in Haun stages.\n\nThis value is constrained to be non-negative.\nMaximum Vrn2 Expression Under Long Photoperiods\nThe total Vrn2 expression is assumed to accumulate linearly from emergence to the end of Vrn2 activity under baseline Vrn1 expression:\n\\[\nV_{\\text{max, Vrn2}} = \\left( \\text{EndVrn2}_{\\text{LN}} + P_{\\text{emergence}} \\right) \\times \\Delta V_{\\text{base, veg}}\n\\]\nWhere:\n\n\\(\\text{EndVrn2}_{\\text{LN}}\\) is the Haun stage when Vrn2 expression ends in the LN treatment,\n\\(P_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence,\n\\(\\Delta V_{\\text{base, veg}}\\) is the base Vrn1 expression rate during the vegetative phase.\n\nThis value represents the maximum repressive effect of Vrn2 that must be overcome before Vrn3-mediated acceleration of Vrn1 expression can begin.\n\n\nCalculate Cold-Induced Upregulation of Vrn1 Expression\nThe effect of cold treatment on persistent (methylated) upregulation of Vrn1 expression in the LV (long photoperiod + vernalisation) environment (\\[C_{\\text{Vrn1}}\\], ColdVrn1Fact in CultivarRateParams) is estimated as:\nBaseline Vrn1 Expression up to VS in the LV Treatment\nThe total amount of Vrn1 expressed under baseline conditions in the LV treatment from sowing to vernalisation saturation is:\n\\[\nV_{\\text{base, LV}} = (P_\\text{emergence} + VS_{\\text{LV}}) \\times \\Delta V_{\\text{base, veg}}\n\\]\nWhere:\n\n\\(P_\\text{emergence}\\) is the phyllochron duration from sowing to emergence,\n\\(VS_{\\text{LV}}\\) is the phyllochron at vernalisation saturation for the LV treatment,\n\\(\\Delta V_{\\text{base, veg}}\\) is the baseline rate of Vrn1 expression during the vegetative phase.\n\nThis reflects the cumulative Vrn1 expression in the absence of cold-specific upregulation.\nAmount of Cold-Induced Persistent Vrn1 Expression\nCold upregulation of Vrn1 (assumed to lead to methylation and memory) is calculated as:\n\\[\nV_{\\text{cold, LV}} = V_{\\text{threshold}} + V_{\\text{max, Vrn2}} - V_{\\text{base, LV}}\n\\]\nWhere:\n\n\\(V_{\\text{threshold}}\\) is the saturation threshold for Vrn1 (typically 1),\n\\(V_{\\text{max, Vrn2}}\\) is the maximum Vrn2 repressive expression,\n\\(V_{\\text{base, LV}}\\) is the amount of Vrn1 expressed at baseline up to VS.\n\nMethylation Threshold\nThe methylation threshold (\\(\\theta_{\\text{meth}}\\), MethalationThreshold in CultivarRateParams) (i.e., amount of Vrn1 needed for full persistent response) is assumed to be equal to the cold-induced Vrn1 amount:\n\\[\n\\theta_{\\text{meth}} = V_{\\text{cold, LV}}\n\\]\nThis assumption is based on findings by Brooking and Jamieson that the lag before methylation equals the duration of vernalisation response.\nEffective Duration of Vernalisation\nThe duration (in Haun stages) over which vernalisation is active is:\n\\[\nH_{\\text{vern, LV}} = \\min(P_\\text{vern},\\ P_\\text{emergence} + VS_{\\text{LV}})\n\\]\nWhere: - \\(P_\\text{vern}\\) is the phyllochron duration of the vernalisation treatment, - \\(P_\\text{emergence}\\) is the phyllochron duration from sowing to emergence, - \\(VS_{\\text{LV}}\\) is the phyllochron at vernalisation saturation for the LV treatment.\nCold-Induced Vrn1 Expression Rate During Treatment\nThe total rate of Vrn1 expression under cold treatment is:\n\\[\n\\Delta V_{\\text{cold, LV}} = \\frac{V_{\\text{cold, LV}} + \\theta_{\\text{meth}}}{H_{\\text{vern, LV}}}\n\\]\nWhere:\n\n\\(V_{\\text{cold, LV}}\\) is the amount of cold-induced Vrn1 expression,\n\\(\\theta_{\\text{meth}}\\) is the methylation threshold,\n\\(H_{\\text{vern, LV}}\\) is the effective duration of vernalisation in Haun stages.\n\nMaximum Cold-Induced Expression Rate at 0°C\nAssuming an exponential temperature effect, the maximum rate of Vrn1 expression under cold is:\n\\[\n\\Delta V_{\\text{cold, max}} = \\frac{\\Delta V_{\\text{cold, LV}}}{\\exp(k \\cdot T_{\\text{cold}})}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{cold, LV}}\\) is the cold-induced Vrn1 expression rate during the vernalisation treatment,\n\\(k\\) is the temperature coefficient for vernalisation (typically -0.17),\n\\(T_{\\text{cold}}\\) is the vernalisation treatment temperature, VrnTreatTemp in FLNParameterEnvironment.\n\nCold-Induced Vrn1 Upregulation Factor\nThe cold upregulation factor (\\(F_{\\text{cold}}\\), ColdVrn1Fact in CultivarRateParams) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:\n\\[\nF_{\\text{cold}} = \\frac{\\Delta V_{\\text{cold, max}}}{\\Delta V_{\\text{base, veg}}}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{cold, max}}\\) is the maximum cold-induced Vrn1 expression rate at 0°C,\n\\(\\Delta V_{\\text{base, veg}}\\) is the baseline Vrn1 expression rate during the vegetative phase.\n\nThis factor quantifies the enhancement in Vrn1 expression due to cold during vernalisation.",
+    "text": "Methodology\nThe CalcCAMPVrnRates function estimates vernalisation rate parameters using:\n\nFLNset: a set of final leaf number parameters\nEnvData: controlled environment data used to measure final leaf number\n\nThe function performs the following steps:\n\nConvert Emergence Duration from Thermal Time to Phyllochrons\n\nBase phyllochron duration of vernalisation treatment\n\nEstimate Haun Stage at Terminal Spikelet\n\nCalculate Minimum Vernalisation Saturation to Terminal Spikelet\n\nCalculate the accumulated phyllochrons at vernalisation saturation for each treatment\n\nCalculate Vernalisation Rates and Photoperiod Sensitivities\n\nCalculate Maximum Vrn2 Expression Under Long Photoperiods\n\nCalculate Cold-Induced Upregulation of Vrn1 Expression\n\n\nConvert Emergence Duration from Thermal Time to Phyllochrons\nThe duration from sowing to emergence is first expressed in phyllochrons (\\(Ph_\\text{emergence}\\)) using the base phyllochron value (\\(Ph_\\text{base}\\)):\n\\[\nPh_\\text{emergence} = \\frac{TT_\\text{emergence}}{Ph_\\text{base}}\n\\]\nWhere:\n\n\\(TT_\\text{emergence}\\) is the thermal time from sowing to emergence (°C·days), TtEmerge in FLNParameterEnvironment.qmd,\n\\(Ph_\\text{base}\\) is the base phyllochron duration.\n\n\n\nBase phyllochron duration of vernalisation treatment\nThe base phyllochron duration of the vernalisation treatment (\\(Ph_\\text{vern}\\)) is calculated as: \\[\nPh_\\text{vern} = \\frac{T_\\text{vern} \\times D_\\text{V}}{Ph_\\text{base}}\n\\]\nWhere:\n\n\\(T_\\text{vern}\\) is the vernalisation treatment temperature (°C), VrnTreatTemp in FLNParameterEnvironment.qmd,\n\\(D_\\text{V}\\) is the vernalisation treatment duration (days), VrnTreatDuration in FLNParameterEnvironment.qmd,\n\\(Ph_\\text{base}\\) is the base phyllochron duration.\n\n\n\nEstimate Haun Stage at Terminal Spikelet\nThe Haun Stage at terminal spikelet for each environment \\(i\\) (e.g., LV, LN, SV, SN) is calculated following the method of Brown et al. (2013):\n\\[\n\\text{HS}_{TS}(i) = \\left( \\text{FLN}(i) - 2.85 \\right) \\times 1.1\n\\]\nWhere:\n\n\\(\\text{FLN}(i)\\) is the final leaf number observed under environment \\(i\\).\n\n\n\nCalculate Minimum Vernalisation Saturation to Terminal Spikelet\nThe minimum vernalisation saturation at terminal spikelet (\\(\\text{VS}_{TS,\\ min}\\)) is estimated as:\n\\[\n\\text{VS}_{TS,\\ min} = \\min\\left( \\text{HS}_{TS,\\ LV} - 1.1,\\ 3 \\right)\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LV}\\) is the Haun Stage at terminal spikelet in the long-day vernalised (LV) treatment,\n1.1 is the earliest Haun Stage at which vernalisation saturation can begin,\n3 is the maximum stage for vernalisation saturation, based on Lincoln controlled environment data (CRWT153).\n\n\n\nCalculate the accumulated phyllochrons at vernalisation saturation for each treatment\nThe accumulated phyllochron at vernalisation saturation is estimated for each photoperiod × vernalisation treatment. These values are expressed in phyllochrons and are derived relative to the Haun Stage at terminal spikelet (\\(\\text{HS}_{TS}\\)) and the previously calculated minimum duration between vernalisation saturation and terminal spikelet (\\(\\text{VS}_{TS,\\text{min}}\\)).\nLong-day Vernalised (LV) Environment\nFor the LV treatment, vernalisation saturation is assumed to occur exactly \\(\\text{VS}_{TS,\\text{min}}\\) before terminal spikelet:\n\\[\n\\text{VS}_{LV} = \\text{HS}_{TS,\\ LV} - \\text{VS}_{TS,\\text{min}}\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LV}\\) is the Haun Stage at terminal spikelet for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis forms the baseline timing of saturation under conditions without vernalisation and photoperiod impacts.\nLong-day Non-vernalised (LN) Environment\nFor LN, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ LN}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{LN} = \\max(\\text{HS}_{TS,\\ LN} - \\text{VS}_{TS,\\text{min}},\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ LN}\\) is the Haun Stage at terminal spikelet for the LN treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis ensures the LN environment does not reach vernalisation saturation before LV.\nShort-day Vernalised (SV) Environment\nFor the SV treatment, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ SV}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{SV} = \\max(\\text{HS}_{TS,\\ SV} - \\text{VS}_{TS,\\text{min}},\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SV}\\) is the Haun Stage at terminal spikelet for the SV treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment,\n\\(\\text{VS}_{TS,\\text{min}}\\) is the minimum vernalisation saturation to terminal spikelet.\n\nThis ensures the SV environment does not reach vernalisation saturation before LV.\nShort-day Non-vernalised (SN) Environment\nFor the SN environment, saturation is constrained by Haun Stage of LN at terminal spikelet (\\(\\text{HS}_{TS,\\ SN}\\)) and cannot occur earlier than in the LV treatment:\n\\[\n\\text{VS}_{SN} = \\max(\\text{HS}_{TS,\\ SN} - \\left( \\text{HS}_{TS,\\ SV} - \\text{VS}_{SV} \\right),\\ \\text{VS}_{LV})\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SN}\\) is the Haun Stage at terminal spikelet for the SN treatment,\n\\(\\text{HS}_{TS,\\ SV}\\) is the Haun Stage at terminal spikelet for the SV treatment,\n\\(\\text{VS}_{SV}\\) is the vernalisation saturation timing for the SV treatment,\n\\(\\text{VS}_{LV}\\) is the vernalisation saturation timing for the LV treatment.\n\nThis ensures the SV environment does not reach vernalisation saturation before LV.\n\n\nCalculate Vernalisation Rates and Photoperiod Sensitivities\nThe base and maximum rates of vernalisation progression during the vegetative and early reproductive phases are estimated, along with the photoperiod (Pp) sensitivity factors.\nBase Vernalisation Rate During Vegetative Phase\nBase vernalisation rate during vegetative phase (\\(\\Delta V_{\\text{base, veg}}\\), BaseDVrnVeg in CultivarRateParams) assumes vernalisation starts at sowing and proceeds linearly until saturation in the SN treatment (which is short-day and non-vernalised treatment and lacks vernalising temperature and long photoperiod upregulation), the base rate is:\n\\[\n\\Delta V_{\\text{base, veg}} = \\frac{1}{\\text{VS}_{SN} + Ph_{\\text{emergence}}}\n\\]\nWhere:\n\n\\(\\text{VS}_{SN}\\) is the phyllochron at vernalisation saturation for the SN treatment,\n\\(Ph_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence.\n\nMaximum Vernalisation Rate During Vegetative Phase\nThe fastest rate of vernalisation during vegetative phase (\\(\\Delta V_{\\text{max, veg}}\\), MaxDVrnVeg in CultivarRateParams) is assumed to occur in the SV treatment (i.e. short-day with vernalisation), where the rate is maximised at the minimum vernalisation saturation to terminal spikelet:\n\\[\n\\Delta V_{\\text{max, veg}} = \\frac{1}{\\text{VS}_{SV} + Ph_{\\text{emergence}}}\n\\]\nWhere:\n\n\\(\\text{VS}_{SV}\\) is the phyllochron at vernalisation saturation for the SV treatment,\n\\(Ph_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence.\n\nBase Vernalisation Rate During Early Reproductive Phase\nThe base vernalisation rate during early reproductive phase (\\(\\Delta V_{\\text{base, ER}}\\), BaseDVrnER in CultivarRateParams) is calculated as:\n\\[\n\\Delta V_{\\text{base, ER}} = \\frac{1}{\\text{HS}_{TS,\\ SN} - \\text{VS}_{SN}}\n\\]\nWhere:\n\n\\(\\text{HS}_{TS,\\ SN}\\) is the Haun Stage at terminal spikelet for the SN treatment,\n\\(\\text{VS}_{SN}\\) is the phyllochron at vernalisation saturation for the SN treatment.\n\nMaximum Vernalisation Rate During Early Reproductive Phase\nThe maximum vernalisation rate during early reproductive phase (\\(\\Delta V_{\\text{max, ER}}\\), MaxDVrnER in CultivarRateParams) is calculated as:\n\\[\n\\Delta V_{\\text{max, ER}} = \\frac{1}{\\text{VS}_{TS,\\ min}}\n\\]\nWhere:\n\n\\(\\text{VS}_{TS,\\ min}\\) is the minimum vernalisation saturation to terminal spikelet, calculated earlier.\n\nPhotoperiod Sensitivity Factor During Early Reproductive Phase\nThe photoperiod sensitivity factor during early reproductive phase (\\(F_{\\text{Pp, Vrn3, ER}}\\), PpVrn3FactER in CultivarRateParams) is calculated as: \\[\nF_{\\text{Pp, Vrn3, ER}} = \\left( \\frac{\\Delta V_{\\text{max, ER}}}{\\Delta V_{\\text{base, ER}}} - 1 \\right) + 1\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{max, ER}}\\) is the maximum vernalisation rate during early reproductive phase,\n\\(\\Delta V_{\\text{base, ER}}\\) is the base vernalisation rate during early reproductive phase.\n\nThis factor quantifies how much faster vernalisation proceeds under long photoperiod compared to the baseline.\nPhotoperiod Sensitivity Factor During Vegetative Phase\nThe photoperiod sensitivity factor during vegetative phase (\\(F_{\\text{Pp, Vrn3, veg}}\\), PpVrn3FactVeg in CultivarRateParams) is calculated as: \\[\nF_{\\text{Pp, Vrn3, veg}} = \\left( \\frac{1 / \\text{VS}_{LN}}{\\Delta V_{\\text{max, veg}}} - 1 \\right) + 1\n\\]\nWhere:\n\n\\(\\text{VS}_{LN}\\) is the phyllochron at vernalisation saturation for the LN treatment,\n\\(\\Delta V_{\\text{max, veg}}\\) is the maximum vernalisation rate during vegetative phase.\n\nTo ensure consistency, this factor is constrained to be no less than the early reproductive sensitivity:\n\\[\nF_{\\text{Pp, Vrn3, veg}} = \\max(F_{\\text{Pp, Vrn3, veg}},\\ F_{\\text{Pp, Vrn3, ER}})\n\\]\nWhere:\n\n\\(F_{\\text{Pp, Vrn3, veg}}\\) is the photoperiod sensitivity factor during vegetative phase,\n\\(F_{\\text{Pp, Vrn3, ER}}\\) is the photoperiod sensitivity factor during early reproductive phase.\n\n\n\nCalculate Maximum Vrn2 Expression Under Long Photoperiods\nThe maximum vernalisation repressor (Vrn2) expression under long photoperiod conditions without vernalising temperatures (\\(V_{\\text{max, Vrn2}}\\), , MaxVrn2 in CultivarRateParams) is estimated as:\nBefore vernalisation saturation (VS) is reached under long photoperiod without vernalisation, Vrn1 expression is influenced by both baseline and Vrn3-induced pathways. The effective rate of Vrn1 expression is:\n\\[\n\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}} = \\max\\left( \\frac{1}{VS_{\\text{LN}}},\\ \\Delta V_{\\text{base, veg}} \\times F_{\\text{Pp, Vrn3, veg}} \\right)\n\\]\nWhere:\n\n\\(\\frac{1}{VS_{\\text{LN}}}\\) is the rate assuming linear accumulation from sowing to saturation without upregulation,\n\\(\\Delta V_{\\text{base, veg}}\\) is the base Vrn1 rate,\n\\(F_{\\text{Pp, Vrn3, veg}}\\) is the photoperiod (Vrn3) sensitivity factor in the vegetative phase.\n\nDuration of Effective Vrn1 × Vrn3 Expression Phase\nThe time (in Haun stages) needed to reach saturation at the above rate is:\n\\[\nH_{\\text{Vrn1} \\times \\text{Vrn3}} = \\frac{1}{\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}}}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the effective rate of Vrn1 × Vrn3 expression,\n\\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the duration of effective Vrn1 × Vrn3 expression in Haun stages.\n\nThis represents the duration over which the effective Vrn1 × Vrn3 expression occurs in the absence of vernalisation.\nHaun Stage When Vrn2 Expression Ends\nVrn2 expression is assumed to end just before Vrn1 × Vrn3 takes effect. This occurs \\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) stages prior to saturation:\n\\[\n\\text{EndVrn2}_{\\text{LN}} = \\max\\left(0,\\ VS_{\\text{LN}} - H_{\\text{Vrn1} \\times \\text{Vrn3}} \\right)\n\\]\nWhere:\n\n\\(\\text{EndVrn2}_{\\text{LN}}\\) is the Haun stage when Vrn2 expression ends in the LN treatment,\n\\(VS_{\\text{LN}}\\) is the phyllochron at vernalisation saturation for the LN treatment,\n\\(H_{\\text{Vrn1} \\times \\text{Vrn3}}\\) is the duration of effective Vrn1 × Vrn3 expression in Haun stages.\n\nThis value is constrained to be non-negative.\nMaximum Vrn2 Expression Under Long Photoperiods\nThe total Vrn2 expression is assumed to accumulate linearly from emergence to the end of Vrn2 activity under baseline Vrn1 expression:\n\\[\nV_{\\text{max, Vrn2}} = \\left( \\text{EndVrn2}_{\\text{LN}} + Ph_{\\text{emergence}} \\right) \\times \\Delta V_{\\text{base, veg}}\n\\]\nWhere:\n\n\\(\\text{EndVrn2}_{\\text{LN}}\\) is the Haun stage when Vrn2 expression ends in the LN treatment,\n\\(Ph_{\\text{emergence}}\\) is the phyllochron duration from sowing to emergence,\n\\(\\Delta V_{\\text{base, veg}}\\) is the base Vrn1 expression rate during the vegetative phase.\n\nThis value represents the maximum repressive effect of Vrn2 that must be overcome before Vrn3-mediated acceleration of Vrn1 expression can begin.\n\n\nCalculate Cold-Induced Upregulation of Vrn1 Expression\nThe effect of cold treatment on persistent (methylated) upregulation of Vrn1 expression in the LV (long photoperiod + vernalisation) environment (\\[C_{\\text{Vrn1}}\\], ColdVrn1Fact in CultivarRateParams) is estimated as:\nBaseline Vrn1 Expression up to VS in the LV Treatment\nThe total amount of Vrn1 expressed under baseline conditions in the LV treatment from sowing to vernalisation saturation is:\n\\[\nV_{\\text{base, LV}} = (Ph_\\text{emergence} + VS_{\\text{LV}}) \\times \\Delta V_{\\text{base, veg}}\n\\]\nWhere:\n\n\\(Ph_\\text{emergence}\\) is the phyllochron duration from sowing to emergence,\n\\(VS_{\\text{LV}}\\) is the phyllochron at vernalisation saturation for the LV treatment,\n\\(\\Delta V_{\\text{base, veg}}\\) is the baseline rate of Vrn1 expression during the vegetative phase.\n\nThis reflects the cumulative Vrn1 expression in the absence of cold-specific upregulation.\nAmount of Cold-Induced Persistent Vrn1 Expression\nCold upregulation of Vrn1 (assumed to lead to methylation and memory) is calculated as:\n\\[\nV_{\\text{cold, LV}} = V_{\\text{threshold}} + V_{\\text{max, Vrn2}} - V_{\\text{base, LV}}\n\\]\nWhere:\n\n\\(V_{\\text{threshold}}\\) is the saturation threshold for Vrn1 (typically 1),\n\\(V_{\\text{max, Vrn2}}\\) is the maximum Vrn2 repressive expression,\n\\(V_{\\text{base, LV}}\\) is the amount of Vrn1 expressed at baseline up to VS.\n\nMethylation Threshold\nThe methylation threshold (\\(\\theta_{\\text{meth}}\\), MethalationThreshold in CultivarRateParams) (i.e., amount of Vrn1 needed for full persistent response) is assumed to be equal to the cold-induced Vrn1 amount:\n\\[\n\\theta_{\\text{meth}} = V_{\\text{cold, LV}}\n\\]\nThis assumption is based on findings by Brooking and Jamieson that the lag before methylation equals the duration of vernalisation response.\nEffective Duration of Vernalisation\nThe duration (in Haun stages) over which vernalisation is active is:\n\\[\nH_{\\text{vern, LV}} = \\min(Ph_\\text{vern},\\ Ph_\\text{emergence} + VS_{\\text{LV}})\n\\]\nWhere: - \\(Ph_\\text{vern}\\) is the phyllochron duration of the vernalisation treatment, - \\(Ph_\\text{emergence}\\) is the phyllochron duration from sowing to emergence, - \\(VS_{\\text{LV}}\\) is the phyllochron at vernalisation saturation for the LV treatment.\nCold-Induced Vrn1 Expression Rate During Treatment\nThe total rate of Vrn1 expression under cold treatment is:\n\\[\n\\Delta V_{\\text{cold, LV}} = \\frac{V_{\\text{cold, LV}} + \\theta_{\\text{meth}}}{H_{\\text{vern, LV}}}\n\\]\nWhere:\n\n\\(V_{\\text{cold, LV}}\\) is the amount of cold-induced Vrn1 expression,\n\\(\\theta_{\\text{meth}}\\) is the methylation threshold,\n\\(H_{\\text{vern, LV}}\\) is the effective duration of vernalisation in Haun stages.\n\nMaximum Cold-Induced Expression Rate at 0°C\nAssuming an exponential temperature effect, the maximum rate of Vrn1 expression under cold is:\n\\[\n\\Delta V_{\\text{cold, max}} = \\frac{\\Delta V_{\\text{cold, LV}}}{\\exp(k \\cdot T_{\\text{cold}})}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{cold, LV}}\\) is the cold-induced Vrn1 expression rate during the vernalisation treatment,\n\\(k\\) is the temperature coefficient for vernalisation (typically -0.17),\n\\(T_{\\text{cold}}\\) is the vernalisation treatment temperature, VrnTreatTemp in FLNParameterEnvironment.\n\nCold-Induced Vrn1 Upregulation Factor\nThe cold upregulation factor (\\(F_{\\text{cold}}\\), ColdVrn1Fact in CultivarRateParams) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:\n\\[\nF_{\\text{cold}} = \\frac{\\Delta V_{\\text{cold, max}}}{\\Delta V_{\\text{base, veg}}}\n\\]\nWhere:\n\n\\(\\Delta V_{\\text{cold, max}}\\) is the maximum cold-induced Vrn1 expression rate at 0°C,\n\\(\\Delta V_{\\text{base, veg}}\\) is the baseline Vrn1 expression rate during the vegetative phase.\n\nThis factor quantifies the enhancement in Vrn1 expression due to cold during vernalisation.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1577,7 +1666,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html#see-also",
     "title": "CalcCAMPVrnRates",
     "section": "See Also",
-    "text": "See Also\n\nSource code: CalcCAMPVrnRates.cs on GitHub\n\n\n# This forces Quarto to treat file as dynamic\nprint(\"AAA\")\n\n[1] \"AAA\"\n\nprint(\"BBB\")\n\n[1] \"BBB\"",
+    "text": "See Also\n\nSource code: CalcCAMPVrnRates.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -6113,55 +6202,110 @@
     ]
   },
   {
-    "objectID": "docs/management/fertiliser.html",
-    "href": "docs/management/fertiliser.html",
-    "title": "Fertiliser Types",
+    "objectID": "docs/symbols.html",
+    "href": "docs/symbols.html",
+    "title": "Symbol Glossary",
     "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "text": "This document provides a centralized glossary of mathematical symbols used throughout the APSIM NG documentation.\nTo ensure clarity and avoid confusion between similarly named concepts (e.g. Phyllochron and Photoperiod), we adopt a consistent convention of using two-letter symbols wherever possible.\nSymbols are grouped by functional categories such as Phenology, Climate, Soil Water, and General Simulation Variables to reflect their use across the APSIM NG framework.",
     "crumbs": [
       "Home",
       "Docs",
-      "Management",
-      "Fertiliser Types"
+      "Symbol Glossary"
     ]
   },
   {
-    "objectID": "docs/management/fertiliser.html#introduction",
-    "href": "docs/management/fertiliser.html#introduction",
-    "title": "Fertiliser Types",
+    "objectID": "docs/symbols.html#general-conventions",
+    "href": "docs/symbols.html#general-conventions",
+    "title": "Symbol Glossary",
+    "section": "General Conventions",
+    "text": "General Conventions\n\nSymbols are written in italic, e.g. \\(TT\\)\nSymbols use two-letter abbreviations to distinguish overlapping concepts (e.g. \\(Ph\\) for phyllochron, \\(PP\\) for photoperiod)\nSubscripts clarify properties or context, e.g. \\(T_{\\text{max}}\\), \\(Ph_{\\text{base}}\\)\nGreek letters represent parameters or coefficients, e.g. \\(\\alpha\\), \\(\\beta\\), \\(\\Delta\\)\nCumulative values use a C prefix or subscript (e.g. \\(C_{TT}\\) or \\(TT_c\\))\nTime-related values use \\(t\\), \\(DOY\\), \\(DAS\\), or \\(\\Delta t\\) depending on context\nUnits are expressed in SI unless otherwise noted",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#phenology",
+    "href": "docs/symbols.html#phenology",
+    "title": "Symbol Glossary",
+    "section": "🌱 Phenology",
+    "text": "🌱 Phenology\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(TT\\)\nDaily Thermal time\n°Cd\nDaily thermal time accumulated\n\n\n\\(Ph\\)\nPhyllochron\n°Cd\nThermal time required for the appearance of successive leaves on the main stem\n\n\n\\(HS\\)\nHaun Stage\n-\nNumber of fully expanded leaves on the main stem (Haun 1973)\n\n\n\\(Ph_{\\text{base}}\\)\nBase phyllochron\n°Cd\nBase phyllochron for most of leaves\n\n\n\\(F\\)\nFraction complete\n-\nFractional progress through a development phase\n\n\n\\(TT_c\\)\nCumulative thermal time\n°Cd\nTotal thermal time since phase start\n\n\n\\(T_b\\)\nBase temperature\n°C\nMinimum temperature for development\n\n\n\\(T_o\\)\nOptimum temperature\n°C\nTemperature where development rate is maximal\n\n\n\\(P\\)\nPhotoperiod\nhours\nDaylength used in photoperiod response",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#climate",
+    "href": "docs/symbols.html#climate",
+    "title": "Symbol Glossary",
+    "section": "🌤 Climate",
+    "text": "🌤 Climate\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(T\\)\nTemperature\n°C\nDaily air temperature\n\n\n\\(T_{\\text{max}}\\)\nMaximum temperature\n°C\nDaily maximum air temperature\n\n\n\\(T_{\\text{min}}\\)\nMinimum temperature\n°C\nDaily minimum air temperature\n\n\n\\(R_d\\)\nSolar radiation\nMJ/m²/d\nIncoming solar radiation\n\n\n\\(VPD\\)\nVapour pressure deficit\nkPa\nAtmospheric demand for evaporation",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#soil-water",
+    "href": "docs/symbols.html#soil-water",
+    "title": "Symbol Glossary",
+    "section": "💧 Soil Water",
+    "text": "💧 Soil Water\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(SW\\)\nSoil water content\nmm\nTotal plant-available water in the soil profile\n\n\n\\(PAWC\\)\nPlant available water capacity\nmm\nDifference between drained upper limit and lower limit\n\n\n\\(ESW\\)\nExtractable soil water\nmm\nSoil water available for plant extraction",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#general-simulation",
+    "href": "docs/symbols.html#general-simulation",
+    "title": "Symbol Glossary",
+    "section": "⚙️ General Simulation",
+    "text": "⚙️ General Simulation\n\n\n\n\n\n\n\n\n\nSymbol\nName\nUnits\nDescription\n\n\n\n\n\\(t\\)\nTime\ndays\nSimulation time\n\n\n\\(\\Delta t\\)\nTime step\ndays\nIncrement per simulation step\n\n\n\\(DAS\\)\nDays after sowing\ndays\nTime elapsed since sowing\n\n\n\\(DOY\\)\nDay of year\n-\nCalendar day of the year",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#notes",
+    "href": "docs/symbols.html#notes",
+    "title": "Symbol Glossary",
+    "section": "Notes",
+    "text": "Notes\n\nSymbols may appear in multiple modules but should retain their meaning consistently.\nThis glossary will evolve as APSIM NG continues to grow — contributions welcome.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/symbols.html#see-also",
+    "href": "docs/symbols.html#see-also",
+    "title": "Symbol Glossary",
+    "section": "See Also",
+    "text": "See Also\n\nAbbreviations",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Symbol Glossary"
+    ]
+  },
+  {
+    "objectID": "docs/index.html",
+    "href": "docs/index.html",
+    "title": "Docs",
     "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "text": "Note\n\n\n\n⚠️ This is not the official APSIM documentation. For official information, refer to APSIM Official Website\n\n\n\n\n🧩 Models\nTechnical notes on APSIM NG core models (e.g., soil, management, utilities).\nExplore Model →\n\n\n🌿 Crops\nDocumentation for crop models, including phenology, grain filling, and stress responses.\nView Crop →\n\n\n\n\n🧠 Symbols\nMathematical symbols used across APSIM NG documentation, grouped by function.\nView Symbols →\n\n\n🔤 Abbreviations\nCommon abbreviations and acronyms used in APSIM NG.\nView Abbreviations →\n\n\n\nThese are personal documentation notes for APSIM Next Generation, compiled from various sources and personal experience, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\nThese notes may contain errors, be incomplete, or reflect outdated information. See the full disclaimer.\nI will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via GitHub pull requests or issues.\n\n\n\n\n\n\nNote\n\n\n\nThis documentation is updated to this commit: b9f9abca67191765f8a2de01e7cf0ce1c3f4a615 on 8 July 2025.",
     "crumbs": [
       "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "href": "docs/management/fertiliser.html#structure-of-fertiliser-definitions",
-    "title": "Fertiliser Types",
-    "section": "Structure of Fertiliser Definitions",
-    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
-    ]
-  },
-  {
-    "objectID": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "href": "docs/management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "title": "Fertiliser Types",
-    "section": "Example Fertiliser Types in APSIM",
-    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Management",
-      "Fertiliser Types"
+      "Docs"
     ]
   },
   {

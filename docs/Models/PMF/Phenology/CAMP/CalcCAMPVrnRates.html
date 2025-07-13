@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -265,6 +230,18 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/abbreviations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary of Abbreviations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/symbols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbol Glossary</span></a>
+  </div>
+</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
@@ -932,26 +909,26 @@ window.Quarto = {
 </ol>
 <section id="emergence-duration" class="level3">
 <h3 class="anchored" data-anchor-id="emergence-duration">Convert Emergence Duration from Thermal Time to Phyllochrons</h3>
-<p>The duration from sowing to emergence is first expressed in phyllochrons (<span class="math inline">\(P_\text{emergence}\)</span>) using the base phyllochron value (<span class="math inline">\(P_\text{base}\)</span>):</p>
+<p>The duration from sowing to emergence is first expressed in phyllochrons (<span class="math inline">\(Ph_\text{emergence}\)</span>) using the base phyllochron value (<span class="math inline">\(Ph_\text{base}\)</span>):</p>
 <p><span class="math display">\[
-P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
+Ph_\text{emergence} = \frac{TT_\text{emergence}}{Ph_\text{base}}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(TT_\text{emergence}\)</span> is the thermal time from sowing to emergence (°C·days), <code>TtEmerge</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
-<li><span class="math inline">\(P_\text{base}\)</span> is the base phyllochron duration.</li>
+<li><span class="math inline">\(Ph_\text{base}\)</span> is the base phyllochron duration.</li>
 </ul>
 </section>
 <section id="vern-phyllochron" class="level3">
 <h3 class="anchored" data-anchor-id="vern-phyllochron">Base phyllochron duration of vernalisation treatment</h3>
-<p>The base phyllochron duration of the vernalisation treatment (<span class="math inline">\(P_\text{vern}\)</span>) is calculated as: <span class="math display">\[
-P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
+<p>The base phyllochron duration of the vernalisation treatment (<span class="math inline">\(Ph_\text{vern}\)</span>) is calculated as: <span class="math display">\[
+Ph_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{Ph_\text{base}}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(T_\text{vern}\)</span> is the vernalisation treatment temperature (°C), <code>VrnTreatTemp</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
 <li><span class="math inline">\(D_\text{V}\)</span> is the vernalisation treatment duration (days), <code>VrnTreatDuration</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment.qmd</a>,</li>
-<li><span class="math inline">\(P_\text{base}\)</span> is the base phyllochron duration.</li>
+<li><span class="math inline">\(Ph_\text{base}\)</span> is the base phyllochron duration.</li>
 </ul>
 </section>
 <section id="haun-ts" class="level3">
@@ -1036,22 +1013,22 @@ P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
 <p><strong>Base Vernalisation Rate During Vegetative Phase</strong></p>
 <p>Base vernalisation rate during vegetative phase (<span class="math inline">\(\Delta V_{\text{base, veg}}\)</span>, <code>BaseDVrnVeg</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="model-link">CultivarRateParams</a>) assumes vernalisation starts at sowing and proceeds linearly until saturation in the SN treatment (which is short-day and non-vernalised treatment and lacks vernalising temperature and long photoperiod upregulation), the base rate is:</p>
 <p><span class="math display">\[
-\Delta V_{\text{base, veg}} = \frac{1}{\text{VS}_{SN} + P_{\text{emergence}}}
+\Delta V_{\text{base, veg}} = \frac{1}{\text{VS}_{SN} + Ph_{\text{emergence}}}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\text{VS}_{SN}\)</span> is the phyllochron at vernalisation saturation for the SN treatment,</li>
-<li><span class="math inline">\(P_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence.</li>
+<li><span class="math inline">\(Ph_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence.</li>
 </ul>
 <p><strong>Maximum Vernalisation Rate During Vegetative Phase</strong></p>
 <p>The fastest rate of vernalisation during vegetative phase (<span class="math inline">\(\Delta V_{\text{max, veg}}\)</span>, <code>MaxDVrnVeg</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="model-link">CultivarRateParams</a>) is assumed to occur in the SV treatment (i.e.&nbsp;short-day with vernalisation), where the rate is maximised at the minimum vernalisation saturation to terminal spikelet:</p>
 <p><span class="math display">\[
-\Delta V_{\text{max, veg}} = \frac{1}{\text{VS}_{SV} + P_{\text{emergence}}}
+\Delta V_{\text{max, veg}} = \frac{1}{\text{VS}_{SV} + Ph_{\text{emergence}}}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\text{VS}_{SV}\)</span> is the phyllochron at vernalisation saturation for the SV treatment,</li>
-<li><span class="math inline">\(P_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence.</li>
+<li><span class="math inline">\(Ph_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence.</li>
 </ul>
 <p><strong>Base Vernalisation Rate During Early Reproductive Phase</strong></p>
 <p>The base vernalisation rate during early reproductive phase (<span class="math inline">\(\Delta V_{\text{base, ER}}\)</span>, <code>BaseDVrnER</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="model-link">CultivarRateParams</a>) is calculated as:</p>
@@ -1140,12 +1117,12 @@ H_{\text{Vrn1} \times \text{Vrn3}} = \frac{1}{\Delta V_{\text{Vrn1} \times \text
 <p><strong>Maximum Vrn2 Expression Under Long Photoperiods</strong></p>
 <p>The total Vrn2 expression is assumed to accumulate linearly from emergence to the end of Vrn2 activity under baseline Vrn1 expression:</p>
 <p><span class="math display">\[
-V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + P_{\text{emergence}} \right) \times \Delta V_{\text{base, veg}}
+V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + Ph_{\text{emergence}} \right) \times \Delta V_{\text{base, veg}}
 \]</span></p>
 <p>Where:</p>
 <ul>
 <li><span class="math inline">\(\text{EndVrn2}_{\text{LN}}\)</span> is the Haun stage when Vrn2 expression ends in the LN treatment,</li>
-<li><span class="math inline">\(P_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence,</li>
+<li><span class="math inline">\(Ph_{\text{emergence}}\)</span> is the phyllochron duration from sowing to emergence,</li>
 <li><span class="math inline">\(\Delta V_{\text{base, veg}}\)</span> is the base Vrn1 expression rate during the vegetative phase.</li>
 </ul>
 <p>This value represents the maximum repressive effect of Vrn2 that must be overcome before Vrn3-mediated acceleration of Vrn1 expression can begin.</p>
@@ -1156,11 +1133,11 @@ V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + P_{\text{emergence}} 
 <p><strong>Baseline Vrn1 Expression up to VS in the LV Treatment</strong></p>
 <p>The total amount of Vrn1 expressed under baseline conditions in the LV treatment from sowing to vernalisation saturation is:</p>
 <p><span class="math display">\[
-V_{\text{base, LV}} = (P_\text{emergence} + VS_{\text{LV}}) \times \Delta V_{\text{base, veg}}
+V_{\text{base, LV}} = (Ph_\text{emergence} + VS_{\text{LV}}) \times \Delta V_{\text{base, veg}}
 \]</span></p>
 <p>Where:</p>
 <ul>
-<li><span class="math inline">\(P_\text{emergence}\)</span> is the phyllochron duration from sowing to emergence,</li>
+<li><span class="math inline">\(Ph_\text{emergence}\)</span> is the phyllochron duration from sowing to emergence,</li>
 <li><span class="math inline">\(VS_{\text{LV}}\)</span> is the phyllochron at vernalisation saturation for the LV treatment,</li>
 <li><span class="math inline">\(\Delta V_{\text{base, veg}}\)</span> is the baseline rate of Vrn1 expression during the vegetative phase.</li>
 </ul>
@@ -1185,9 +1162,9 @@ V_{\text{cold, LV}} = V_{\text{threshold}} + V_{\text{max, Vrn2}} - V_{\text{bas
 <p><strong>Effective Duration of Vernalisation</strong></p>
 <p>The duration (in Haun stages) over which vernalisation is active is:</p>
 <p><span class="math display">\[
-H_{\text{vern, LV}} = \min(P_\text{vern},\ P_\text{emergence} + VS_{\text{LV}})
+H_{\text{vern, LV}} = \min(Ph_\text{vern},\ Ph_\text{emergence} + VS_{\text{LV}})
 \]</span></p>
-<p>Where: - <span class="math inline">\(P_\text{vern}\)</span> is the phyllochron duration of the vernalisation treatment, - <span class="math inline">\(P_\text{emergence}\)</span> is the phyllochron duration from sowing to emergence, - <span class="math inline">\(VS_{\text{LV}}\)</span> is the phyllochron at vernalisation saturation for the LV treatment.</p>
+<p>Where: - <span class="math inline">\(Ph_\text{vern}\)</span> is the phyllochron duration of the vernalisation treatment, - <span class="math inline">\(Ph_\text{emergence}\)</span> is the phyllochron duration from sowing to emergence, - <span class="math inline">\(VS_{\text{LV}}\)</span> is the phyllochron at vernalisation saturation for the LV treatment.</p>
 <p><strong>Cold-Induced Vrn1 Expression Rate During Treatment</strong></p>
 <p>The total rate of Vrn1 expression under cold treatment is:</p>
 <p><span class="math display">\[
@@ -1262,17 +1239,6 @@ F_{\text{cold}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}
 <ul>
 <li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.cs" class="external-link">CalcCAMPVrnRates.cs on GitHub</a></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This forces Quarto to treat file as dynamic</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"AAA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "AAA"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"BBB"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "BBB"</code></pre>
-</div>
-</div>
 
 
 
