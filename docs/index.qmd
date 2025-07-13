@@ -31,6 +31,25 @@ Documentation for crop models, including phenology, grain filling, and stress re
 
 
 
+::: {.grid}
+
+::: {.g-col-6}
+### 🧠 Symbols
+Mathematical symbols used across APSIM NG documentation, grouped by function.  
+[View Symbols →](symbols.qmd)
+:::
+
+::: {.g-col-6}
+### 🔤 Abbreviations
+Common abbreviations and acronyms used in APSIM NG.  
+[View Abbreviations →](abbreviations.qmd)
+:::
+
+:::
+
+
+
+
 ---
 
 

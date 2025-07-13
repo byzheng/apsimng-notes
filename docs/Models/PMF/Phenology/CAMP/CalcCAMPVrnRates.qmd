@@ -51,29 +51,29 @@ The function performs the following steps:
 
 ### Convert Emergence Duration from Thermal Time to Phyllochrons {#emergence-duration}
 
-The duration from sowing to emergence is first expressed in phyllochrons ($P_\text{emergence}$) using the base phyllochron value ($P_\text{base}$):
+The duration from sowing to emergence is first expressed in phyllochrons ($Ph_\text{emergence}$) using the base phyllochron value ($Ph_\text{base}$):
 
 $$
-P_\text{emergence} = \frac{TT_\text{emergence}}{P_\text{base}}
+Ph_\text{emergence} = \frac{TT_\text{emergence}}{Ph_\text{base}}
 $$
 
 Where:
 
 - $TT_\text{emergence}$ is the thermal time from sowing to emergence (°C·days), `TtEmerge` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
-- $P_\text{base}$ is the base phyllochron duration.
+- $Ph_\text{base}$ is the base phyllochron duration.
 
 ### Base phyllochron duration of vernalisation treatment {#vern-phyllochron}
 
-The base phyllochron duration of the vernalisation treatment ($P_\text{vern}$) is calculated as:
+The base phyllochron duration of the vernalisation treatment ($Ph_\text{vern}$) is calculated as:
 $$
-P_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{P_\text{base}}
+Ph_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{Ph_\text{base}}
 $$
 
 Where: 
 
 - $T_\text{vern}$ is the vernalisation treatment temperature (°C), `VrnTreatTemp` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
 - $D_\text{V}$ is the vernalisation treatment duration (days), `VrnTreatDuration` in [FLNParameterEnvironment.qmd](FLNParameterEnvironment.qmd),
-- $P_\text{base}$ is the base phyllochron duration.
+- $Ph_\text{base}$ is the base phyllochron duration.
 
 
 ### Estimate Haun Stage at Terminal Spikelet {#haun-ts}
@@ -184,26 +184,26 @@ The base and maximum rates of vernalisation progression during the vegetative an
 Base vernalisation rate during vegetative phase ($\Delta V_{\text{base, veg}}$, `BaseDVrnVeg` in [CultivarRateParams](CultivarRateParams.qmd)) assumes vernalisation starts at sowing and proceeds linearly until saturation in the SN treatment (which is short-day and non-vernalised treatment and lacks vernalising temperature and long photoperiod upregulation), the base rate is:
 
 $$
-\Delta V_{\text{base, veg}} = \frac{1}{\text{VS}_{SN} + P_{\text{emergence}}}
+\Delta V_{\text{base, veg}} = \frac{1}{\text{VS}_{SN} + Ph_{\text{emergence}}}
 $$
 
 Where:
 
 - $\text{VS}_{SN}$ is the phyllochron at vernalisation saturation for the SN treatment,
-- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
+- $Ph_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
 
 **Maximum Vernalisation Rate During Vegetative Phase**
 
 The fastest rate of vernalisation during vegetative phase ($\Delta V_{\text{max, veg}}$, `MaxDVrnVeg` in [CultivarRateParams](CultivarRateParams.qmd)) is assumed to occur in the SV treatment (i.e. short-day with vernalisation), where the rate is maximised at the minimum vernalisation saturation to terminal spikelet:
 
 $$
-\Delta V_{\text{max, veg}} = \frac{1}{\text{VS}_{SV} + P_{\text{emergence}}}
+\Delta V_{\text{max, veg}} = \frac{1}{\text{VS}_{SV} + Ph_{\text{emergence}}}
 $$
 
 Where:
 
 - $\text{VS}_{SV}$ is the phyllochron at vernalisation saturation for the SV treatment,
-- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
+- $Ph_{\text{emergence}}$ is the phyllochron duration from sowing to emergence.
 
 
 **Base Vernalisation Rate During Early Reproductive Phase**
@@ -326,13 +326,13 @@ This value is constrained to be non-negative.
 The total Vrn2 expression is assumed to accumulate linearly from emergence to the end of Vrn2 activity under baseline Vrn1 expression:
 
 $$
-V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + P_{\text{emergence}} \right) \times \Delta V_{\text{base, veg}}
+V_{\text{max, Vrn2}} = \left( \text{EndVrn2}_{\text{LN}} + Ph_{\text{emergence}} \right) \times \Delta V_{\text{base, veg}}
 $$
 
 Where:
 
 - $\text{EndVrn2}_{\text{LN}}$ is the Haun stage when Vrn2 expression ends in the LN treatment,
-- $P_{\text{emergence}}$ is the phyllochron duration from sowing to emergence,
+- $Ph_{\text{emergence}}$ is the phyllochron duration from sowing to emergence,
 - $\Delta V_{\text{base, veg}}$ is the base Vrn1 expression rate during the vegetative phase.
 
 This value represents the maximum repressive effect of Vrn2 that must be overcome before Vrn3-mediated acceleration of Vrn1 expression can begin.
@@ -346,12 +346,12 @@ The effect of cold treatment on persistent (methylated) upregulation of **Vrn1**
 The total amount of Vrn1 expressed under baseline conditions in the LV treatment from sowing to vernalisation saturation is:
 
 $$
-V_{\text{base, LV}} = (P_\text{emergence} + VS_{\text{LV}}) \times \Delta V_{\text{base, veg}}
+V_{\text{base, LV}} = (Ph_\text{emergence} + VS_{\text{LV}}) \times \Delta V_{\text{base, veg}}
 $$
 
 Where:
 
-- $P_\text{emergence}$ is the phyllochron duration from sowing to emergence,
+- $Ph_\text{emergence}$ is the phyllochron duration from sowing to emergence,
 - $VS_{\text{LV}}$ is the phyllochron at vernalisation saturation for the LV treatment,
 - $\Delta V_{\text{base, veg}}$ is the baseline rate of Vrn1 expression during the vegetative phase.
 
@@ -386,12 +386,12 @@ This assumption is based on findings by Brooking and Jamieson that the lag befor
 The duration (in Haun stages) over which vernalisation is active is:
 
 $$
-H_{\text{vern, LV}} = \min(P_\text{vern},\ P_\text{emergence} + VS_{\text{LV}})
+H_{\text{vern, LV}} = \min(Ph_\text{vern},\ Ph_\text{emergence} + VS_{\text{LV}})
 $$
 
 Where:
-- $P_\text{vern}$ is the phyllochron duration of the vernalisation treatment,
-- $P_\text{emergence}$ is the phyllochron duration from sowing to emergence,
+- $Ph_\text{vern}$ is the phyllochron duration of the vernalisation treatment,
+- $Ph_\text{emergence}$ is the phyllochron duration from sowing to emergence,
 - $VS_{\text{LV}}$ is the phyllochron at vernalisation saturation for the LV treatment.
 
 

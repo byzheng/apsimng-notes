@@ -1,0 +1,31 @@
+---
+title: "Glossary of Abbreviations"
+format: html
+---
+
+
+This glossary provides definitions for common abbreviations used throughout the APSIM NG documentation.  
+
+It helps ensure clarity and consistency for all readers and contributors.
+
+
+## Common Abbreviations
+
+| Abbreviation | Meaning                  | Notes                            |
+|--------------|--------------------------|----------------------------------|
+| PP           | Photoperiod              | Day length influencing development in phenology |
+| Ph           | Phyllochron              | Thermal time required for the appearance of successive leaves on the main stem |
+
+---
+
+## Usage Notes
+
+- Please refer to this glossary before introducing new abbreviations to maintain consistency.
+- When writing documentation or code comments, spell out abbreviations on first use followed by the abbreviation in parentheses, e.g., _Photoperiod (Pp)_.
+- This glossary will be updated as the APSIM NG project evolves.
+
+---
+
+## See Also
+
+- [Symbols](./symbols.qmd)
