@@ -27,42 +27,6 @@ Symbols are grouped by functional categories such as **Phenology**, **Climate**,
 | $Ph$           | Phyllochron                   | °Cd      | Thermal time required for the appearance of successive leaves on the main stem |
 | $HS$           | Haun Stage                    | -        | Number of fully expanded leaves on the main stem [@haun_visual_1973]         |
 | $Ph_{\text{base}}$ | Base phyllochron           | °Cd      | Base phyllochron for most of leaves                 |
-| $F$            | Fraction complete              | -        | Fractional progress through a development phase          |
-| $TT_c$         | Cumulative thermal time        | °Cd      | Total thermal time since phase start                     |
-| $T_b$          | Base temperature               | °C       | Minimum temperature for development                      |
-| $T_o$          | Optimum temperature            | °C       | Temperature where development rate is maximal            |
-| $P$            | Photoperiod                    | hours    | Daylength used in photoperiod response                   |
-
-
-## 🌤 Climate
-
-| Symbol         | Name                          | Units    | Description                                              |
-|----------------|-------------------------------|----------|----------------------------------------------------------|
-| $T$            | Temperature                    | °C       | Daily air temperature                                    |
-| $T_{\text{max}}$ | Maximum temperature           | °C       | Daily maximum air temperature                            |
-| $T_{\text{min}}$ | Minimum temperature           | °C       | Daily minimum air temperature                            |
-| $R_d$          | Solar radiation                | MJ/m²/d  | Incoming solar radiation                                 |
-| $VPD$          | Vapour pressure deficit        | kPa      | Atmospheric demand for evaporation                       |
-
-
-## 💧 Soil Water
-
-| Symbol         | Name                          | Units    | Description                                              |
-|----------------|-------------------------------|----------|----------------------------------------------------------|
-| $SW$           | Soil water content             | mm       | Total plant-available water in the soil profile          |
-| $PAWC$         | Plant available water capacity | mm       | Difference between drained upper limit and lower limit   |
-| $ESW$          | Extractable soil water         | mm       | Soil water available for plant extraction                |
-
-
-
-## ⚙️ General Simulation
-
-| Symbol         | Name                          | Units    | Description                                              |
-|----------------|-------------------------------|----------|----------------------------------------------------------|
-| $t$            | Time                           | days     | Simulation time                                          |
-| $\Delta t$     | Time step                      | days     | Increment per simulation step                           |
-| $DAS$          | Days after sowing              | days     | Time elapsed since sowing                               |
-| $DOY$          | Day of year                    | -        | Calendar day of the year                                |
 
 
 
