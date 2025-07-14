@@ -5043,22 +5043,22 @@
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html",
     "href": "docs/Models/PMF/Phenology/Phenology.html",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "",
-    "text": "The Phenology model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).",
+    "text": "# This forces Quarto to treat file as dynamic\nprint(\"Quarto Preview. Delete it later\")\n\n[1] \"Quarto Preview. Delete it later\"\nThe Phenology model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#overview",
     "href": "docs/Models/PMF/Phenology/Phenology.html#overview",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Overview",
     "text": "Overview\nIn APSIM NG, the Phenology model manages the simulation of plant development by organizing the crop lifecycle into distinct phases. Each phase corresponds to a physiological process or stage in the crop’s development (e.g., emergence, flowering, maturity). The transition between phases is typically governed by progression to completion. In general, the progression is influenced by factors such as thermal time, photoperiod, and vernalisation.\nThis model tracks the current phase, calculates progression based on progression to completion in current phase, and allows transitions to be triggered either naturally (via progression to completion) or manually (via SetToStage). The phenology model plays a pivotal role in coordinating developmental processes with other sub-models like canopy, roots, and biomass.",
     "crumbs": [
@@ -5067,28 +5067,28 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#inputs",
     "href": "docs/Models/PMF/Phenology/Phenology.html#inputs",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Inputs",
-    "text": "Inputs\nThe Phenology model requires:\n\nThermalTime: A child function representing accumulated heat units.\nPhase list: A sequence of IPhase child components, each representing a growth phase.\nSowing event: Triggers initialization of phenological stages.",
+    "text": "Inputs\nThe Phenology model requires:\n\nThermalTime: A child function representing accumulated heat units.\nPhase list: A sequence of IPhase child components, each representing a growth phase. The phase order in the model tree determines the progression sequence.\nSowing Event: Triggers initialization of phenological stages in the event of PlantSowing.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#methodology",
     "href": "docs/Models/PMF/Phenology/Phenology.html#methodology",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Methodology",
     "text": "Methodology\nThe phenology progression is triggered by several events, primarily the DoPhenology event which is called at each day.\nCommencing:\n\nInitializes the phenology model\nObtains the list of phases\nResets state variables.\n\nPlantSowing:\n\nResets state variable\nInitialise phenology development using the first phase\n\nDoPhenology:\nThis is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from Plant model.\nAt each timestep, the Phenology model:\n\nCheck whether ThermalTime is available and more than 0. Throw an error if not.\nIncrements progress in the current phase using a DoTimeStep method.\nEmits events when a phase ends or begins (e.g., PhaseChanged, PlantEmerged).\nHandles special phase transitions like GotoPhase that may jump between stages.\nUpdates accumulated thermal time and phenological stage number (Stage).\nManages rewinding or fast-forwarding when the stage is reset.\n\nHarvesting:\n\nSet the end stage as the final phase (maturity) when harvesting occurs.\n\nPlantEnding:\n\nClears internal state when the simulation ends, ensuring no residual data persists.\n\nStartOfDay:\n\nReset daily tracking flags for new day.",
     "crumbs": [
@@ -5097,13 +5097,28 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phenology.html#public-methods",
+    "href": "docs/Models/PMF/Phenology/Phenology.html#public-methods",
+    "title": "Phenology",
+    "section": "Public Methods",
+    "text": "Public Methods\n\n\n\nMethod\nDescription\n\n\n\n\nSetToStage(newStage)\nMoves the crop to a specific development stage (e.g. flowering).\n\n\n\n\nSetToStage(newStage)\nSets the crop’s development (phenological) stage to a specified point, either moving forward or backward through its growth cycle. This method is used internally and in management scripts to simulate events like harvest, defoliation, or skipping to flowering.\n\nSummary\nThis function is used to manually set the crop to a particular stage of development — for example, jumping directly to flowering, or rewinding after a grazing event. It ensures that internal growth stages, thermal time, and event signals stay biologically and numerically consistent.\n\n\nKey Use Cases\n\nAfter grazing or cutting (e.g., regrowth after defoliation)\nDuring management overrides (e.g., skipping to flowering)\nAt harvest (to force crop to final stage)\nIn GotoPhase logic to jump stages dynamically\n\n\n\nBehavior\n\nRewind (go backward)\nIf the target stage is earlier than the current stage:\n\nResets earlier phases\nSubtracts relevant thermal time\nOnly specific phase types can be rewound (others will cause an error)\n\nFast-forward (go forward)\nIf the target stage is later than the current stage:\n\nSkips forward through phases\nAdds appropriate thermal time\nRaises relevant events like PlantEmerged and PhaseChanged",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#events",
     "href": "docs/Models/PMF/Phenology/Phenology.html#events",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Events",
     "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nInitializes phenology and clears state\n\n\nPlantSowing\nResets phenology and starts at sowing stage\n\n\nDoPhenology\nCore timestep to update phenological development\n\n\nStartOfDay\nClears temporary stage-tracking flags for new day\n\n\nHarvesting\nSets phenology directly to final phase (maturity)\n\n\nPlantEnding\nClears internal state when simulation ends\n\n\n\nEvents Raised to\n\n\n\nEvent\nPurpose\n\n\n\n\nPhaseChanged\nIndicates a new phase has started\n\n\nPlantEmerged\nSignals that the emergence phase has been completed\n\n\nStageWasReset\nSignals a manual reset of stage via SetToStage()\n\n\nPostPhenology\nRaised after daily phenological timestep completes",
     "crumbs": [
@@ -5112,28 +5127,28 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#properties",
     "href": "docs/Models/PMF/Phenology/Phenology.html#properties",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStageNames\nList\nList of stage names in phenology\n\n\nStageCodes\nList\nList of numerical stage codes\n\n\nAccumulatedTT\ndouble\nThermal time accumulated since sowing\n\n\nAccumulatedEmergedTT\ndouble\nThermal time accumulated since emergence\n\n\nEmerged\nbool\nWhether the plant has emerged\n\n\nStage\ndouble\nOne-based stage number\n\n\nCurrentPhaseName\nstring\nName of the current phase\n\n\nCurrentStageName\nstring\nName of the current stage\n\n\nFractionInCurrentPhase\ndouble\nProportion completed in current phase\n\n\nCurrentPhase\nobject\nThe current phase object\n\n\nZadok\ndouble\nCurrent Zadok stage number\n\n\ncurrentPhaseNumberIncrementedByPhaseTimeStep\nbool\nTrue if phase increments stage number by phase time step\n\n\nPlantIsAlive\nbool\nTrue if the parent plant is alive",
+    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStageNames\nList\nList of stage names in phenology\n\n\nStageCodes\nList\nList of numerical stage codes\n\n\nAccumulatedTT\ndouble\nThermal time accumulated since sowing\n\n\nAccumulatedEmergedTT\ndouble\nThermal time accumulated since emergence\n\n\nEmerged\nbool\nWhether the plant has emerged from soil surface\n\n\nStage\ndouble\nOne-based stage number\n\n\nCurrentPhaseName\nstring\nName of the current phase\n\n\nCurrentStageName\nstring\nName of the current stage\n\n\nFractionInCurrentPhase\ndouble\nProportion completed in current phase\n\n\nCurrentPhase\nobject\nThe current phase object\n\n\nZadok\ndouble\nCurrent Zadok stage number. Return 0 if child function zadok is missing\n\n\ncurrentPhaseNumberIncrementedByPhaseTimeStep\nbool\nTrue if phase increments stage number by phase time step\n\n\nPlantIsAlive\nbool\nTrue if the parent plant is alive",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#user-interface",
     "href": "docs/Models/PMF/Phenology/Phenology.html#user-interface",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "User Interface",
     "text": "User Interface\nPhenology can be added as a child of a Plant node in the APSIM NG model tree. Right-click the plant node, select “Add Model…”, and search for Phenology in the Filter Box.",
     "crumbs": [
@@ -5142,13 +5157,13 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#practical-example",
     "href": "docs/Models/PMF/Phenology/Phenology.html#practical-example",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -5157,13 +5172,13 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {
     "objectID": "docs/Models/PMF/Phenology/Phenology.html#see-also",
     "href": "docs/Models/PMF/Phenology/Phenology.html#see-also",
-    "title": "Phenology Function",
+    "title": "Phenology",
     "section": "See Also",
     "text": "See Also\n\nSource code: Phenology.cs on GitHub",
     "crumbs": [
@@ -5172,7 +5187,7 @@
       "Models",
       "PMF",
       "Phenology",
-      "Phenology Function"
+      "Phenology"
     ]
   },
   {

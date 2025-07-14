@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Phenology Function – APSIM NG Notes</title>
+<title>Phenology – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -160,7 +195,7 @@ cookieconsent.run({
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology Function</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -491,7 +526,7 @@ cookieconsent.run({
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Phenology Function</span></a>
+ <span class="menu-text">Phenology</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -772,6 +807,7 @@ cookieconsent.run({
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#public-methods" id="toc-public-methods" class="nav-link" data-scroll-target="#public-methods">Public Methods</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
@@ -783,9 +819,9 @@ cookieconsent.run({
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology Function</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Models/PMF/Phenology/Phenology.html">Phenology</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Phenology Function</h1>
+<h1 class="title">Phenology</h1>
 </div>
 
 
@@ -802,6 +838,13 @@ cookieconsent.run({
 </header>
 
 
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This forces Quarto to treat file as dynamic</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Quarto Preview. Delete it later"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Quarto Preview. Delete it later"</code></pre>
+</div>
+</div>
 <p>The <code>Phenology</code> model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -813,8 +856,8 @@ cookieconsent.run({
 <p>The <code>Phenology</code> model requires:</p>
 <ul>
 <li><strong>ThermalTime</strong>: A child function representing accumulated heat units.</li>
-<li><strong>Phase list</strong>: A sequence of <code>IPhase</code> child components, each representing a growth phase.</li>
-<li><strong>Sowing event</strong>: Triggers initialization of phenological stages.</li>
+<li><strong>Phase list</strong>: A sequence of <code>IPhase</code> child components, each representing a growth phase. The phase order in the model tree determines the progression sequence.</li>
+<li><strong>Sowing Event</strong>: Triggers initialization of phenological stages in the event of <a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a>.</li>
 </ul>
 </section>
 <section id="methodology" class="level2">
@@ -854,6 +897,59 @@ cookieconsent.run({
 <ul>
 <li>Reset daily tracking flags for new day.</li>
 </ul>
+</section>
+<section id="public-methods" class="level2">
+<h2 class="anchored" data-anchor-id="public-methods">Public Methods</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="#settostage" class="model-link"><code>SetToStage(newStage)</code></a></td>
+<td>Moves the crop to a specific development stage (e.g.&nbsp;flowering).</td>
+</tr>
+</tbody>
+</table>
+<section id="settostage" class="level3">
+<h3 class="anchored" data-anchor-id="settostage"><code>SetToStage(newStage)</code></h3>
+<p>Sets the crop’s development (phenological) stage to a specified point, either moving forward or backward through its growth cycle. This method is used internally and in management scripts to simulate events like harvest, defoliation, or skipping to flowering.</p>
+<section id="summary" class="level4">
+<h4 class="anchored" data-anchor-id="summary">Summary</h4>
+<p>This function is used to <strong>manually set the crop to a particular stage of development</strong> — for example, jumping directly to flowering, or rewinding after a grazing event. It ensures that internal growth stages, thermal time, and event signals stay biologically and numerically consistent.</p>
+</section>
+<section id="key-use-cases" class="level4">
+<h4 class="anchored" data-anchor-id="key-use-cases">Key Use Cases</h4>
+<ul>
+<li>After <strong>grazing or cutting</strong> (e.g., regrowth after defoliation)</li>
+<li>During <strong>management overrides</strong> (e.g., skipping to flowering)</li>
+<li>At <strong>harvest</strong> (to force crop to final stage)</li>
+<li>In <strong>GotoPhase</strong> logic to jump stages dynamically</li>
+</ul>
+</section>
+<section id="behavior" class="level4">
+<h4 class="anchored" data-anchor-id="behavior">Behavior</h4>
+<ul>
+<li><p><strong>Rewind (go backward)</strong></p>
+<p>If the target stage is <em>earlier</em> than the current stage:</p>
+<ul>
+<li>Resets earlier phases</li>
+<li>Subtracts relevant thermal time</li>
+<li>Only specific phase types can be rewound (others will cause an error)</li>
+</ul></li>
+<li><p><strong>Fast-forward (go forward)</strong></p>
+<p>If the target stage is <em>later</em> than the current stage:</p>
+<ul>
+<li>Skips forward through phases</li>
+<li>Adds appropriate thermal time</li>
+<li>Raises relevant events like <code>PlantEmerged</code> and <code>PhaseChanged</code></li>
+</ul></li>
+</ul>
+</section>
+</section>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
@@ -965,7 +1061,7 @@ cookieconsent.run({
 <tr class="odd">
 <td><code>Emerged</code></td>
 <td>bool</td>
-<td>Whether the plant has emerged</td>
+<td>Whether the plant has emerged from soil surface</td>
 </tr>
 <tr class="even">
 <td><code>Stage</code></td>
@@ -995,7 +1091,7 @@ cookieconsent.run({
 <tr class="odd">
 <td><code>Zadok</code></td>
 <td>double</td>
-<td>Current Zadok stage number</td>
+<td>Current Zadok stage number. Return 0 if child function <code>zadok</code> is missing</td>
 </tr>
 <tr class="even">
 <td><code>currentPhaseNumberIncrementedByPhaseTimeStep</code></td>
