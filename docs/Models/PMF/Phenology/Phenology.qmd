@@ -1,7 +1,13 @@
 ---
-title: "Phenology Function"
+title: "Phenology"
 output: html_document
 ---
+
+
+```{r echo=TRUE}
+# This forces Quarto to treat file as dynamic
+print("Quarto Preview. Delete it later")
+```
 
 
 The `Phenology` model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).
@@ -17,8 +23,8 @@ This model tracks the current phase, calculates progression based on progression
 The `Phenology` model requires:
 
 - **ThermalTime**: A child function representing accumulated heat units.
-- **Phase list**: A sequence of `IPhase` child components, each representing a growth phase.
-- **Sowing event**: Triggers initialization of phenological stages.
+- **Phase list**: A sequence of `IPhase` child components, each representing a growth phase. The phase order in the model tree determines the progression sequence.
+- **Sowing Event**: Triggers initialization of phenological stages in the event of [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
 
 ## Methodology
 
@@ -62,6 +68,49 @@ At each timestep, the `Phenology` model:
 * Reset daily tracking flags for new day.
 
 
+## Public Methods
+
+| Method                         | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| [`SetToStage(newStage)`](#settostage)        | Moves the crop to a specific development stage (e.g. flowering).         |
+
+
+### `SetToStage(newStage)` {#settostage}
+
+
+Sets the crop’s development (phenological) stage to a specified point, either moving forward or backward through its growth cycle. This method is used internally and in management scripts to simulate events like harvest, defoliation, or skipping to flowering.
+
+#### Summary
+
+This function is used to **manually set the crop to a particular stage of development** — for example, jumping directly to flowering, or rewinding after a grazing event. It ensures that internal growth stages, thermal time, and event signals stay biologically and numerically consistent.
+
+
+#### Key Use Cases
+
+- After **grazing or cutting** (e.g., regrowth after defoliation)
+- During **management overrides** (e.g., skipping to flowering)
+- At **harvest** (to force crop to final stage)
+- In **GotoPhase** logic to jump stages dynamically
+
+
+#### Behavior
+
+- **Rewind (go backward)**  
+
+    If the target stage is *earlier* than the current stage:
+    - Resets earlier phases
+    - Subtracts relevant thermal time
+    - Only specific phase types can be rewound (others will cause an error)
+
+- **Fast-forward (go forward)**  
+
+    If the target stage is *later* than the current stage:
+    - Skips forward through phases
+    - Adds appropriate thermal time
+    - Raises relevant events like `PlantEmerged` and `PhaseChanged`
+
+
+
 ## Events
 
 **Events Listened For**
@@ -100,13 +149,13 @@ These are signals or notifications that the function listens for from other part
 | `StageCodes`                    | List      | List of numerical stage codes                                      |
 | `AccumulatedTT`                 | double    | Thermal time accumulated since sowing                              |
 | `AccumulatedEmergedTT`          | double    | Thermal time accumulated since emergence                           |
-| `Emerged`                       | bool      | Whether the plant has emerged                                      |
+| `Emerged`                       | bool      | Whether the plant has emerged from soil surface                    |
 | `Stage`                         | double    | One-based stage number                                             |
 | `CurrentPhaseName`              | string    | Name of the current phase                                          |
 | `CurrentStageName`              | string    | Name of the current stage                                          |
 | `FractionInCurrentPhase`        | double    | Proportion completed in current phase                              |
 | `CurrentPhase`                  | object    | The current phase object                                           |
-| `Zadok`                         | double    | Current Zadok stage number                                         |
+| `Zadok`                         | double    | Current Zadok stage number. Return 0 if child function `zadok` is missing |
 | `currentPhaseNumberIncrementedByPhaseTimeStep` | bool | True if phase increments stage number by phase time step           |
 | `PlantIsAlive`                  | bool      | True if the parent plant is alive                                  |
 
