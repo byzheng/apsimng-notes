@@ -16,7 +16,7 @@ a.crop-link {
 a.model-link {
     color: #228b22;
     /* forest green */
-    font-style: bold;
+    font-weight: bold;
     text-decoration: underline dotted;
 }
 
@@ -53,5 +53,4 @@ h4 {
     margin-top: 1.5em;
     display: inline-block;
     border-bottom: 1px dotted #ccc;
-    font-weight: 600;
 }
