@@ -63,7 +63,7 @@ Controlled environment conditions under which final leaf number ([FinalLeafNumbe
 
 When the plant is sown, the CAMP model 
 
-* resets all vernalisation gene expressions and loads cultivar-specific parameters from `FLNparams`. It also sets the initial Haun stage to 0,
+* resets all vernalisation gene expressions,
 * calculates [vernalisation rate parameters](CultivarRateParams.qmd) using a set of [final leaf number parameters](FinalLeafNumberSet.qmd) and [controlled environment data](FLNParameterEnvironment.qmd).
 
 ### On [Seed Imbibed](/docs/Models/Events.qmd#SeedImbibed)
@@ -86,7 +86,7 @@ In each day before phenology calculations, the CAMP model updates the expression
 
 The following steps are performed on event `PrePhenology`:
 
-**Calculate daily Haun Stage changes**
+#### Calculate daily Haun Stage changes
 
 Whether the crop has `emerged` is determined by whether the current phase represents development above the soil surface — that is, the phase itself occurs above ground or comes after emergence in most plants.
 
@@ -110,61 +110,90 @@ $$
 
 Where:
 
--  $\sum_{t = t_{\text{sow}}}^{t_{\text{today}}} TT_t$ is the cumulative thermal time from sowing to today.
+-  $\sum_{t = \text{sow}}^{\text{today}} TT_t$ is the cumulative thermal time from sowing to today.
 
 
 If the crop **has emerged**, $\Delta HS$ is calculated from the model input variable `deltaHaunStage`. In general, this variable is updated daily based on the daily thermal time and actual phyllochron.
 
 
-#### Vernalisation Expression
+#### Base and Maximum Vernalisation Expression
 
 Gene expression is divided into:
 
-- **BaseVrn**
-- **MaxVrn**
-- **Vrn1**, **Vrn2**, and **Vrn3**
+- $V_{\text{base}}$: Baseline vernalisation expression, which is the cumulative amount of Vrn1 expressed under baseline conditions,
+- $V_{\text{max}}$: Maximum vernalisation expression, which is the cumulative amount of Vrn1 expressed under maximum conditions (e.g. cold temperatures),
+- $F_{\text{Pp, Vrn3}}$: Photoperiod factor for Vrn3 expression, which is the factor that modifies Vrn3 expression based on photoperiod
 
-## Vegetative vs Reproductive Phase
 
-- If not yet vernalised:
-
-$$
-dBaseVrn = \text{BaseDVrnVeg} \cdot \Delta HS
-$$
+- If not yet vernalised, e.g. from sowing to vernalisation saturation:
 
 $$
-dMaxVrn = \text{MaxDVrnVeg} \cdot \Delta HS
+\Delta V_{\text{base}} = \Delta V_{\text{base, veg}} \times \Delta HS
+$$
+
+Where:
+
+- $\Delta V_{\text{base, veg}}$ is the baseline rate of Vrn1 expression during the vegetative phase, which is derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing),
+- $\Delta HS$ is the daily Haun stage increment.
+
+$$
+\Delta V_{\text{max}} = \Delta V_{\text{max, veg}} \times \Delta HS
+$$
+
+Where:
+
+- $\Delta V_{\text{max, veg}}$ is the maximum rate of Vrn1 expression during the vegetative phase, also derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing),
+- $\Delta HS$ is the daily Haun stage increment.
+
+$$
+F_{\text{Pp, Vrn3}} = F_{\text{Pp, Vrn3, veg}}
+$$
+
+Where:
+
+- $F_{\text{Pp, Vrn3, veg}}$ is the photoperiod factor for Vrn3 expression during the vegetative phase, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
+
+
+- If vernalised but not reproductive, e.g. from vernalisation saturation to floral initiation:
+
+$$
+\Delta V_{\text{base}} = \Delta V_{\text{base, ER}} \times \Delta HS
+$$
+
+Where:
+
+- $\Delta V_{\text{base, ER}}$ is the baseline rate of Vrn1 expression during the early reproductive phase, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing),
+- $\Delta HS$ is the daily Haun stage increment.
+
+$$
+\Delta V_{\text{max}} = \Delta V_{\text{max, ER}} \times \Delta HS
+$$
+
+Where:
+
+- $\Delta V_{\text{max, ER}}$ is the maximum rate of Vrn1 expression during the early reproductive phase, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing),
+- $\Delta HS$ is the daily Haun stage increment.
+
+$$
+F_{\text{Pp, Vrn3}} = F_{\text{Pp, Vrn3, ER}}
+$$
+
+Where:
+
+- $F_{\text{Pp, Vrn3, ER}}$ is the photoperiod factor for Vrn3 expression during the early reproductive phase, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
+
+
+$V_{\text{base}}$ and $V_{\text{max}}$ are accumulated since `isImbibed` is true, in general starting from germination.
+
+$$
+V_{\text{base}} = \sum_{t = \text{imbibed}}^{\text{today}} \Delta V_{\text{base}}
 $$
 
 $$
-PpVrn3Fact = \text{PpVrn3FactVeg}
+V_{\text{max}} = \sum_{t = \text{imbibed}}^{\text{today}} \Delta V_{\text{max}}
 $$
 
-- If vernalised but not reproductive:
-
-$$
-dBaseVrn = \text{BaseDVrnER} \cdot \Delta HS
-$$
-
-$$
-dMaxVrn = \text{MaxDVrnER} \cdot \Delta HS
-$$
-
-$$
-PpVrn3Fact = \text{PpVrn3FactER}
-$$
-
-Base and Max vernalisation levels are incremented:
-
-$$
-\text{BaseVrn} += dBaseVrn
-$$
-
-$$
-\text{MaxVrn} += dMaxVrn
-$$
-
-# Cold Vernalisation (Vrn1)
+#### Cold Vernalisation (Vrn1)
 
 Cold response affects Vrn1 expression:
 
