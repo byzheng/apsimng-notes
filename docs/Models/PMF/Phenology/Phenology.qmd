@@ -4,11 +4,6 @@ output: html_document
 ---
 
 
-```{r echo=TRUE}
-# This forces Quarto to treat file as dynamic
-print("Quarto Preview. Delete it later")
-```
-
 
 The `Phenology` model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).
 
