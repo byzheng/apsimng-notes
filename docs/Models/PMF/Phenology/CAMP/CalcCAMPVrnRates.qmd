@@ -425,10 +425,10 @@ Where:
 
 **Cold-Induced Vrn1 Upregulation Factor**
 
-The cold upregulation factor ($F_{\text{cold}}$, `ColdVrn1Fact` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:
+The cold upregulation factor ($F_{\text{cold, vrn1}}$, `ColdVrn1Fact` in [CultivarRateParams](CultivarRateParams.qmd)) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:
 
 $$
-F_{\text{cold}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}}
+F_{\text{cold, vrn1}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}}
 $$
 
 Where:

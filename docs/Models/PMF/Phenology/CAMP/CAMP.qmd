@@ -193,29 +193,41 @@ $$
 V_{\text{max}} = \sum_{t = \text{imbibed}}^{\text{today}} \Delta V_{\text{max}}
 $$
 
+
 #### Cold Vernalisation (Vrn1)
 
 Cold response affects Vrn1 expression:
 
 $$
-dCold = \text{RelCold} \cdot dBaseVrn \cdot \text{ColdVrn1Fact}
+\Delta Cold = R_{\text{cold,\ vrn}} \times \Delta V_{\text{base}} \times F_{\text{cold, vrn1}}
 $$
 
-If cold exposure surpasses a methylation threshold $\theta$:
+Where:
+
+- $R_{\text{cold,\ vrn}}$ is the cold upregulation response for Vrn1 expression, specified by the input child function `ColdVrnResponse`,
+- $F_{\text{cold, vrn1}}$ is the cold upregulation factor for Vrn1 expression, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
+
+
+Then the total `Cold` exposure is accumulated since imbibition (i.g. germination):
 
 $$
-dVrn1 = \max\left(0, (Cold - \theta) - (Cold_{\text{yesterday}} - \theta)\right)
+Cold = \sum_{t = \text{imbibed}}^{\text{today}} \Delta Cold
 $$
 
-Then:
+If cold exposure surpasses a methylation threshold $\theta_{\text{meth}}$, which is derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing). Changes of Vrn1 expression is equal to changes of cold exposure:
 
 $$
-\text{Vrn1} += dVrn1
+\Delta Vrn1 = \Delta Cold \qquad \text{if}\ Cold\ \geq \theta_{\text{meth}}
 $$
 
-# Photoperiod Response and Vrn2/Vrn3
+Then the total Vrn1 expression is accumulated since imbibition (i.g. germination):
+$$
+Vrn1 = \sum_{t = \text{imbibed}}^{\text{today}} \Delta Vrn1
+$$
 
-Photoperiod gene expression is active only **after emergence**.
+#### Photoperiod Response and Vrn2/Vrn3
+
+Photoperiod gene expression is active only if `isEmerged` is true, i.e. **after emergence** in general.
 
 - Relative photoperiod ($RelPp$) is derived from `PpResponse`, scaled between 0 and 1.
 - If $RelPp = 0$, then $MaxVrn2$ is reduced:
