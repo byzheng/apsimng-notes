@@ -7,16 +7,12 @@ figcaption {
 /* Style for model links */
 a.crop-link {
     color: #1e90ff;
-    /* dodger blue */
-    font-weight: bold;
     text-decoration: underline dashed;
 }
 
 /* Style for crop links */
 a.model-link {
     color: #228b22;
-    /* forest green */
-    font-weight: bold;
     text-decoration: underline dotted;
 }
 
