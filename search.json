@@ -6218,7 +6218,7 @@
     "href": "docs/symbols.html#general-conventions",
     "title": "Symbol Glossary",
     "section": "General Conventions",
-    "text": "General Conventions\n\nSymbols are written in italic, e.g. \\(TT\\)\nSymbols use two-letter abbreviations to distinguish overlapping concepts (e.g. \\(Ph\\) for phyllochron, \\(PP\\) for photoperiod)\nSubscripts clarify properties or context, e.g. \\(T_{\\text{max}}\\), \\(Ph_{\\text{base}}\\)\nGreek letters represent parameters or coefficients, e.g. \\(\\alpha\\), \\(\\beta\\), \\(\\Delta\\)\nCumulative values use a C prefix or subscript (e.g. \\(C_{TT}\\) or \\(TT_c\\))\nTime-related values use \\(t\\), \\(DOY\\), \\(DAS\\), or \\(\\Delta t\\) depending on context\nUnits are expressed in SI unless otherwise noted",
+    "text": "General Conventions\n\nSymbols are written in italic, e.g. \\(TT\\)\nSymbols use two-letter abbreviations to distinguish overlapping concepts (e.g. \\(Ph\\) for phyllochron, \\(PP\\) for photoperiod)\nSubscripts clarify properties or context, e.g. \\(T_{\\text{max}}\\), \\(Ph_{\\text{base}}\\)\nGreek letters represent parameters or coefficients, e.g. \\(\\alpha\\), \\(\\beta\\), \\(\\Delta\\)\nUnits are expressed in SI unless otherwise noted",
     "crumbs": [
       "Home",
       "Docs",
