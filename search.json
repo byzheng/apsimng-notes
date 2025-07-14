@@ -5045,7 +5045,7 @@
     "href": "docs/Models/PMF/Phenology/Phenology.html",
     "title": "Phenology",
     "section": "",
-    "text": "# This forces Quarto to treat file as dynamic\nprint(\"Quarto Preview. Delete it later\")\n\n[1] \"Quarto Preview. Delete it later\"\nThe Phenology model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).",
+    "text": "The Phenology model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).",
     "crumbs": [
       "Home",
       "Docs",
