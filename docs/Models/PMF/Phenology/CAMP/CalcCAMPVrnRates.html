@@ -601,6 +601,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAMP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ColdVrnResponse</span></a>
   </div>
@@ -879,7 +885,7 @@ window.Quarto = {
 <p>In addition, it links to:</p>
 <ul>
 <li><code>basePhyllochron</code>: A child model function that returns the phyllochron (thermal time per leaf)</li>
-<li><code>camp</code>: The ancestor CAMP model, which provides helper methods and constants</li>
+<li><code>camp</code>: The ancestor <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="model-link">CAMP</a> model, which provides helper methods and constants</li>
 </ul>
 </section>
 <section id="methodology" class="level2">
@@ -1188,9 +1194,9 @@ H_{\text{vern, LV}} = \min(Ph_\text{vern},\ Ph_\text{emergence} + VS_{\text{LV}}
 <li><span class="math inline">\(T_{\text{cold}}\)</span> is the vernalisation treatment temperature, <code>VrnTreatTemp</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="model-link">FLNParameterEnvironment</a>.</li>
 </ul>
 <p><strong>Cold-Induced Vrn1 Upregulation Factor</strong></p>
-<p>The cold upregulation factor (<span class="math inline">\(F_{\text{cold}}\)</span>, <code>ColdVrn1Fact</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="model-link">CultivarRateParams</a>) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:</p>
+<p>The cold upregulation factor (<span class="math inline">\(F_{\text{cold, vrn1}}\)</span>, <code>ColdVrn1Fact</code> in <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="model-link">CultivarRateParams</a>) is calculated as the ratio of cold-enhanced Vrn1 expression to baseline expression:</p>
 <p><span class="math display">\[
-F_{\text{cold}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}}
+F_{\text{cold, vrn1}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base, veg}}}
 \]</span></p>
 <p>Where:</p>
 <ul>

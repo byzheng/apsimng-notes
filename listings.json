@@ -8,6 +8,7 @@
   {
     "listing": "/docs/Models/PMF/Phenology/CAMP/index.html",
     "items": [
+      "/docs/Models/PMF/Phenology/CAMP/CAMP.html",
       "/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html",
       "/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
       "/docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
