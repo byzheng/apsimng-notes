@@ -53,6 +53,15 @@ format:
     css: styles.css
     toc: true
     toc-depth: 2
+    filters:
+      - custom-callout
 
 
+custom-callout:
+  needs-improvement:
+    title: "🚧 Needs Improvement"
+    icon-symbol: "⚠️"
+    color: "#FFCC00"
+    appearance: "default"
+    collapse: false
 
