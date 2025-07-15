@@ -4,13 +4,12 @@ output: html_document
 ---
 
 
-Cereal Anthesis Molecular Phenology (CAMP) model is based on the Kirby Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by [@jamieson_sirius:_1998].
-
-The CAMP models vernalisation gene expression in wheat and other temperate cereals. It simulates molecular responses to temperature and photoperiod signals that regulate flowering transitions, including upregulation of Vrn1, Vrn2, and Vrn3 [@brown_integration_2013]. 
+Cereal Anthesis Molecular Phenology (CAMP) model [@brown_integration_2013] is based on the @kirby_analysis_1988's Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by [@jamieson_sirius:_1998].
 
 ## Overview
 
-The `CAMP` (Cold and Photoperiod-activated Molecular Pathways) model simulates the expression of vernalisation genes in cereals, with a focus on Vrn1, Vrn2, and Vrn3. These genes regulate the timing of key developmental transitions, particularly the completion of vernalisation and initiation of the reproductive phase.
+
+The CAMP models vernalisation gene expression in wheat and other temperate cereals. It simulates molecular responses to temperature and photoperiod signals that regulate flowering transitions, including upregulation of Vrn1, Vrn2, and Vrn3 [@brown_integration_2013]. These genes regulate the timing of key developmental transitions, particularly the completion of vernalisation and initiation of the reproductive phase.
 
 Progress through the vernalising phase is determined by the apparent expression of Vrn1 and Vrn2 genes. Vrn1 is the gene that orchestrates cold temperature responses in development. To complete the vernalising stage, Vrn1 expression must first reach a threshold of at least 1.0. In warm temperatures (above 18 °C), Vrn1 is expressed at a genotype-dependent base rate. This base rate is lower for vernalisation-sensitive genotypes, which develop slower under warm conditions. However, exposure to cold temperatures accelerates Vrn1 expression, causing vernalisation-sensitive varieties to reach this stage at a lower Haun stage.
 
