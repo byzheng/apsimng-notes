@@ -117,6 +117,19 @@ cookieconsent.run({
 });
 </script> 
   
+<style>
+div.callout-needs-improvement.callout {
+  border-left-color: #FFCC00;
+}
+div.callout-needs-improvement.callout-style-default > .callout-header {
+  background-color: rgba(255, 204, 0, 0.13);
+}
+div.callout-needs-improvement .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-needs-improvement.callout-style-default .callout-icon::before, div.callout-needs-improvement.callout-titled .callout-icon::before {
+  content: '⚠️';
+  background-image: none;
+}
+</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -857,6 +870,19 @@ window.Quarto = {
 </header>
 
 
+<div class="callout callout-style-default callout-needs-improvement callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🚧 Needs Improvement
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This documentation is a work in progress and requires further improvements.</p>
+</div>
+</div>
 <p>Cereal Anthesis Molecular Phenology (CAMP) model <span class="citation" data-cites="brown_integration_2013">(<a href="#ref-brown_integration_2013" role="doc-biblioref">Brown et al. 2013</a>)</span> is based on the <span class="citation" data-cites="kirby_analysis_1988">Kirby (<a href="#ref-kirby_analysis_1988" role="doc-biblioref">1988</a>)</span>’s Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by <span class="citation" data-cites="jamieson_sirius:_1998">(<a href="#ref-jamieson_sirius:_1998" role="doc-biblioref">Jamieson et al. 1998</a>)</span>.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
