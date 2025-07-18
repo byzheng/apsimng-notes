@@ -44,3 +44,5 @@ It is provided under the [General Use Licence Agreement for Agricultural Product
 ## 🙏 Acknowledgment
 
 Acknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details.
+
+Weather data used in this project are sourced from the [SILO Patched Point Dataset](https://www.longpaddock.qld.gov.au/silo/) provided by the Queensland Government. SILO climate data are freely available under the Creative Commons Attribution 4.0 International (CC BY 4.0) licence.

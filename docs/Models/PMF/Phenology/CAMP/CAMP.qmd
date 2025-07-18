@@ -230,7 +230,7 @@ $$
 
 Where:
 
-- $R_{\text{PP}}$ is the photoperiod response for Vrn1 expression, specified by the input child function `PpResponse`,
+- $R_{\text{PP}}$ is the photoperiod response for Vrn2 expression, specified by the input child function `PpResponse`,
 - $V_{\text{max}}$ is the maximum vernalisation expression, derived from the [calcCAMPVrnRates](CalcCAMPVrnRates.qmd) submodule at event [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
 
 Photoperiod gene expression is active only if `isEmerged` is true, i.e. **after emergence** in general.
