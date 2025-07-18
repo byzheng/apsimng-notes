@@ -18,19 +18,25 @@ The [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qm
 
 ## Methodology
 
-See [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) and [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model for details on how the vernalisation progress is calculated. Here is focusing on the parameters used in this phase, i.e. [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd).
+See [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) and [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model for details on how the vernalisation progress is calculated. Here is focusing on the parameters used in this phase, i.e. [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) with the following parameters:
 
-### Thermal Time
+* `TT`: Daily thermal time
+* `HaunStage`: Haun stage is the number of leaves on the main stem
+* `DeltaHaunStage`: Change in Haun stage from the previous day
+* `BasePhyllochron`: Base phyllochron, the thermal time required for each new leaf to appear under standard conditions
 
-`TT`: The daily [thermal time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+**Thermal Time (`TT`)**
 
-### Haun Stage
+The daily [thermal time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
 
-`HaunStage` and `DeltaHaunStage`: Haun Stage ($HS$) and $\Delta HS$ is calculated from daily [thermal time](ThermalTime.qmd) and a cultivar-specific [phyllochron](Phyllochron.qmd), which is the rate of leaf appearance.
+**Haun Stage (`HaunStage`) and Delta Haun Stage (`DeltaHaunStage`)**
 
-## Base Phyllochron
+Haun Stage ($HS$) and $\Delta HS$ is calculated from daily [thermal time](ThermalTime.qmd) and a cultivar-specific [phyllochron](Phyllochron.qmd), which is the rate of leaf appearance.
 
-`BasePhyllochron`: The base [phyllochron](Phyllochron.qmd) is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.
+**Base Phyllochron (`BasePhyllochron`)**
+
+The base [phyllochron](Phyllochron.qmd) is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.
+
 
 ## Cultivar-Specific Parameters
 
