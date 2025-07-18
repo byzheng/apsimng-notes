@@ -876,12 +876,12 @@ window.Quarto = {
 <p>The Haun Stage is based on the biological principle that leaves appear at regular intervals, determined by temperature. Each day, the model calculates how much “thermal time” (accumulated heat) the plant has experienced. When enough thermal time has passed, a new leaf tip appears.</p>
 <p>The daily increase in Haun Stage is calculated as:</p>
 <p><span class="math display">\[
-\Delta \text{HaunStage} = \frac{\text{ThermalTime}}{\text{Phyllochron}}
+\Delta \text{HS} = \frac{\text{TT}}{\text{Ph}}
 \]</span></p>
 <p>Where:</p>
 <ul>
-<li><span class="math inline">\(\text{ThermalTime}\)</span> is the amount of heat accumulated in a day (measured in degree-days).</li>
-<li><span class="math inline">\(\text{Phyllochron}\)</span> is the amount of thermal time needed for each new leaf to appear.</li>
+<li><span class="math inline">\(\text{TT}\)</span> is the amount of heat accumulated in a day (measured in degree-days).</li>
+<li><span class="math inline">\(\text{Ph}\)</span> is the amount of thermal time needed for each new leaf to appear.</li>
 </ul>
 <p>The model sums these daily increments from emergence until the flag leaf appears, for example, a Haun Stage of 5.3 means five leaves are fully visible and the sixth is partly emerged (30%).</p>
 <p><strong>Key assumptions:</strong></p>

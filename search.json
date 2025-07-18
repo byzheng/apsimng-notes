@@ -2923,6 +2923,497 @@
     ]
   },
   {
+    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
+    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
+    "title": "ReadyForHarvesting",
+    "section": "",
+    "text": "The ReadyForHarvesting phase in Wheat represents the last phase after HarvestRipe.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#overview",
+    "title": "ReadyForHarvesting",
+    "section": "Overview",
+    "text": "Overview\nThe EndPhase model simulates last phase after HarvestRipe.\n\nThis phase starts at EndGrainFill and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function. But it does not use here.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
+    "title": "ReadyForHarvesting",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nNo cultivar-specific parameters are defined for this phase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#practical-example",
+    "title": "ReadyForHarvesting",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html",
+    "href": "docs/Crops/Wheat/Phenology/index.html",
+    "title": "Phenology",
+    "section": "",
+    "text": "The Phenology model in APSIM NG simulates the development of wheat plants.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html#thermal-time",
+    "href": "docs/Crops/Wheat/Phenology/index.html#thermal-time",
+    "title": "Phenology",
+    "section": "Thermal Time",
+    "text": "Thermal Time\nDaily Thermal Time is based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html#photoperiod",
+    "href": "docs/Crops/Wheat/Phenology/index.html#photoperiod",
+    "title": "Phenology",
+    "section": "Photoperiod",
+    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html#phyllochron",
+    "href": "docs/Crops/Wheat/Phenology/index.html#phyllochron",
+    "title": "Phenology",
+    "section": "Phyllochron",
+    "text": "Phyllochron\nThe Phyllochron is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.\nThe Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/index.html#stages-and-phases",
+    "href": "docs/Crops/Wheat/Phenology/index.html#stages-and-phases",
+    "title": "Phenology",
+    "section": "Stages and Phases",
+    "text": "Stages and Phases\nThe numerical system is used to represent the development of wheat plants starting from 1. The stages are:\n\n\n\n\n\n\n\n\nStage\nName\nDescription\n\n\n\n\n1\nSowing\nSeeds are planted in the soil\n\n\n2\nGermination\nSeeds absorb water and begin to sprout\n\n\n3\nEmergence\nSeedlings break through the soil surface\n\n\n4\nDoubleRidge\nFormation of double ridges in the shoot apex\n\n\n5\nMaximumSpikeletPrimordia\nMaximum number of spikelets is determined\n\n\n6\nFlagLeafAppearance\nThe last leaf (flag leaf) appears\n\n\n7\nHeadEmergence\nWheat head emerges from the flag leaf sheath\n\n\n8\nAnthesis\nFlowering; pollen is released\n\n\n9\nMaximumGrainLength\nGrains reach their maximum length\n\n\n10\nEndGrainFill\nGrain filling is completed\n\n\n11\nHarvestRipe\nGrains are mature and ready for harvest\n\n\n\nPhases are used to represent the development between two stages. The phases are:\n\n\n\nOrder\nName\nFrom\nTo\n\n\n\n\n1\nGerminating\nSowing\nGermination\n\n\n2\nEmerging\nGermination\nEmergence\n\n\n3\nLeavesInitiating\nEmergence\nDoubleRidge\n\n\n4\nSpikeletsDifferentiating\nDoubleRidge\nMaximumSpikeletPrimordia\n\n\n5\nStemElongating\nMaximumSpikeletPrimordia\nFlagLeafAppearance\n\n\n6\nHeading\nFlagLeafAppearance\nHeadEmergence\n\n\n7\nFlowering\nHeadEmergence\nAnthesis\n\n\n8\nGrainExpanding\nAnthesis\nMaximumGrainLength\n\n\n9\nGrainFilling\nMaximumGrainLength\nEnd Grain Fill\n\n\n10\nGrainRipening\nEnd Grain Fill\nHarvestRipe\n\n\n11\nReadyForHarvesting\nHarvestRipe",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html",
+    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html",
+    "title": "GrainFilling",
+    "section": "",
+    "text": "The GrainFilling phase in Wheat represents the developmental period from MaximumGrainLength to EndGrainFill. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#overview",
+    "title": "GrainFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the MaximumGrainLength and EndGrainFill stages.\n\nThis phase starts at MaximumGrainLength and ends at EndGrainFill, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 545.0 °Cd.:",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#cultivar-specific-parameters",
+    "title": "GrainFilling",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].GrainFilling.Target.FixedValue\nThermal time target during grain filling (°Cd)\n545.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#practical-example",
+    "title": "GrainFilling",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html",
+    "href": "docs/Crops/Wheat/index.html",
+    "title": "Wheat",
+    "section": "",
+    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#phenology",
+    "href": "docs/Crops/Wheat/index.html#phenology",
+    "title": "Wheat",
+    "section": "Phenology",
+    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#grain",
+    "href": "docs/Crops/Wheat/index.html#grain",
+    "title": "Wheat",
+    "section": "Grain",
+    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#traits",
+    "href": "docs/Crops/Wheat/index.html#traits",
+    "title": "Wheat",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/index.html#see-also",
+    "href": "docs/Crops/Wheat/index.html#see-also",
+    "title": "Wheat",
+    "section": "See Also",
+    "text": "See Also\n\nOnline Resource File",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "",
+    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "Overview",
+    "text": "Overview\nThe demand is defined by a PhaseLookup function (NFillingRate):\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue\nPotential nitrogen per kernel (g/kernel)\n0.0011",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "Practical Example",
+    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
+    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
+    "section": "References",
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain",
+      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/index.html",
+    "href": "docs/Crops/index.html",
+    "title": "Crops",
+    "section": "",
+    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/index.html",
+    "href": "docs/Crops/Wheat/grain/index.html",
+    "title": "Grain",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html",
+    "href": "docs/Crops/Wheat/Phenology/HaunStage.html",
+    "title": "Haun Stage",
+    "section": "",
+    "text": "Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Haun Stage"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#overview",
+    "title": "Haun Stage",
+    "section": "Overview",
+    "text": "Overview\nThe Haun Stage model simulates the appearance of new leaf tips on cereal crops, such as wheat, from the time the plant emerges until the flag leaf appears (Haun 1973). It calculates from daily thermal time and a cultivar-specific phyllochron, which is the thermal time required for each new leaf to appear.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Haun Stage"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#methodology",
+    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#methodology",
+    "title": "Haun Stage",
+    "section": "Methodology",
+    "text": "Methodology\nThe Haun Stage is based on the biological principle that leaves appear at regular intervals, determined by temperature. Each day, the model calculates how much “thermal time” (accumulated heat) the plant has experienced. When enough thermal time has passed, a new leaf tip appears.\nThe daily increase in Haun Stage is calculated as:\n\\[\n\\Delta \\text{HS} = \\frac{\\text{TT}}{\\text{Ph}}\n\\]\nWhere:\n\n\\(\\text{TT}\\) is the amount of heat accumulated in a day (measured in degree-days).\n\\(\\text{Ph}\\) is the amount of thermal time needed for each new leaf to appear.\n\nThe model sums these daily increments from emergence until the flag leaf appears, for example, a Haun Stage of 5.3 means five leaves are fully visible and the sixth is partly emerged (30%).\nKey assumptions:\n\nLeaf appearance is driven mainly by temperature.\nEach variety has its own characteristic phyllochron.\nThe process is continuous, not stepwise, allowing for partial leaves.\n\nThis approach is supported by research showing that leaf appearance in cereals follows a predictable thermal pattern (Haun 1973).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Haun Stage"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#cultivar-specific-parameters",
+    "title": "Haun Stage",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters are used in the Haun Stage model.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Haun Stage"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#practical-example",
+    "title": "Haun Stage",
+    "section": "Practical Example",
+    "text": "Practical Example\nSuppose a researcher wants to estimate when the flag leaf will appear in different wheat varieties. They set the phyllochron for each variety based on field data. For example, if a variety has a phyllochron of 120 °Cd and one day records 24 °Cd of thermal time:\n\\[\n\\Delta \\text{HaunStage} = \\frac{24}{120} = 0.2\n\\]\nAfter five days at this rate, the Haun Stage increases by 1.0, meaning one new leaf tip has appeared. By tracking Haun Stage over time, researchers can compare development rates between varieties or under different treatments, supporting breeding and agronomic decisions. The Haun Stage model tracks the number of leaf tips that have appeared on a cereal plant since emergence. It provides a continuous measure of crop development and is critical for predicting phenological stages and leaf-related processes.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Haun Stage"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html",
+    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html",
+    "title": "GrainExpanding",
+    "section": "",
+    "text": "The GrainExpanding phase in Wheat represents the developmental period from Anthesis to MaximumGrainLength. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainExpanding"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#overview",
+    "title": "GrainExpanding",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the Anthesis and MaximumGrainLength stages.\n\nThis phase starts at Anthesis and ends at MaximumGrainLength, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 120.0 °Cd.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainExpanding"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#cultivar-specific-parameters",
+    "title": "GrainExpanding",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].GrainExpanding.Target.FixedValue\nThermal time target during grain expanding (°Cd)\n120.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainExpanding"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#practical-example",
+    "title": "GrainExpanding",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "GrainExpanding"
+    ]
+  },
+  {
     "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html",
     "href": "docs/Crops/Wheat/Phenology/Phyllochron.html",
     "title": "Phyllochron",
@@ -3010,497 +3501,6 @@
       "Wheat",
       "Phenology",
       "Phyllochron"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html",
-    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html",
-    "title": "GrainExpanding",
-    "section": "",
-    "text": "The GrainExpanding phase in Wheat represents the developmental period from Anthesis to MaximumGrainLength. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainExpanding"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#overview",
-    "title": "GrainExpanding",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the Anthesis and MaximumGrainLength stages.\n\nThis phase starts at Anthesis and ends at MaximumGrainLength, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 120.0 °Cd.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainExpanding"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#cultivar-specific-parameters",
-    "title": "GrainExpanding",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].GrainExpanding.Target.FixedValue\nThermal time target during grain expanding (°Cd)\n120.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainExpanding"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainExpanding.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/GrainExpanding.html#practical-example",
-    "title": "GrainExpanding",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainExpanding"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html",
-    "href": "docs/Crops/Wheat/Phenology/HaunStage.html",
-    "title": "Haun Stage",
-    "section": "",
-    "text": "Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Haun Stage"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#overview",
-    "title": "Haun Stage",
-    "section": "Overview",
-    "text": "Overview\nThe Haun Stage model simulates the appearance of new leaf tips on cereal crops, such as wheat, from the time the plant emerges until the flag leaf appears (Haun 1973). It calculates from daily thermal time and a cultivar-specific phyllochron, which is the thermal time required for each new leaf to appear.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Haun Stage"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#methodology",
-    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#methodology",
-    "title": "Haun Stage",
-    "section": "Methodology",
-    "text": "Methodology\nThe Haun Stage is based on the biological principle that leaves appear at regular intervals, determined by temperature. Each day, the model calculates how much “thermal time” (accumulated heat) the plant has experienced. When enough thermal time has passed, a new leaf tip appears.\nThe daily increase in Haun Stage is calculated as:\n\\[\n\\Delta \\text{HaunStage} = \\frac{\\text{ThermalTime}}{\\text{Phyllochron}}\n\\]\nWhere:\n\n\\(\\text{ThermalTime}\\) is the amount of heat accumulated in a day (measured in degree-days).\n\\(\\text{Phyllochron}\\) is the amount of thermal time needed for each new leaf to appear.\n\nThe model sums these daily increments from emergence until the flag leaf appears, for example, a Haun Stage of 5.3 means five leaves are fully visible and the sixth is partly emerged (30%).\nKey assumptions:\n\nLeaf appearance is driven mainly by temperature.\nEach variety has its own characteristic phyllochron.\nThe process is continuous, not stepwise, allowing for partial leaves.\n\nThis approach is supported by research showing that leaf appearance in cereals follows a predictable thermal pattern (Haun 1973).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Haun Stage"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#cultivar-specific-parameters",
-    "title": "Haun Stage",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters are used in the Haun Stage model.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Haun Stage"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/HaunStage.html#practical-example",
-    "title": "Haun Stage",
-    "section": "Practical Example",
-    "text": "Practical Example\nSuppose a researcher wants to estimate when the flag leaf will appear in different wheat varieties. They set the phyllochron for each variety based on field data. For example, if a variety has a phyllochron of 120 °Cd and one day records 24 °Cd of thermal time:\n\\[\n\\Delta \\text{HaunStage} = \\frac{24}{120} = 0.2\n\\]\nAfter five days at this rate, the Haun Stage increases by 1.0, meaning one new leaf tip has appeared. By tracking Haun Stage over time, researchers can compare development rates between varieties or under different treatments, supporting breeding and agronomic decisions. The Haun Stage model tracks the number of leaf tips that have appeared on a cereal plant since emergence. It provides a continuous measure of crop development and is critical for predicting phenological stages and leaf-related processes.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "Haun Stage"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/index.html",
-    "href": "docs/Crops/Wheat/grain/index.html",
-    "title": "Grain",
-    "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\n\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/index.html",
-    "href": "docs/Crops/index.html",
-    "title": "Crops",
-    "section": "",
-    "text": "This section contains the documentation for Crops models in APSIM Next Generation. The Crops models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each crop, the documentation is organised as the original model structure defined in the JSON file.\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "",
-    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#overview",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "Overview",
-    "text": "Overview\nThe demand is defined by a PhaseLookup function (NFillingRate):\n\nBefore Anthesis (Sowing to Anthesis) as zero for no grain nitrogen demand as no grain development occurs.\nDuring Grain Filling (Anthesis → EndGrainFill):\n\n\\[\n\\text{N demand} = \\frac{N_\\text{kernel}}{D_\\text{filling}} \\times \\text{ThermalTime} \\times \\text{GrainNumber}\n\\]\nWhere:\n\n\n\n\n\n\n\nTerm\nDescription\n\n\n\n\n\\(N_\\text{kernel}\\)\nPotential nitrogen per kernel (default = 0.0011 g/kernel)\n\n\n\\(D_\\text{filling}\\)\nGrain filling duration from anthesis to end of filling (°Cd) = GrainExpanding.Target + GrainFilling.Target\n\n\nThermalTime\nDaily thermal time (°Cd), from [Phenology].ThermalTime\n\n\nGrainNumber\nNumber of kernels, from [Grain].NumberFunction\n\n\n\nThe equation above is used because it distributes the total potential nitrogen content per kernel evenly across the grain filling period, scaled by the daily thermal time and the number of grains. This approach ensures that nitrogen demand reflects both the developmental stage (timed by thermal accumulation) and the actual sink size (number of kernels), providing a biologically realistic and process-driven estimate of daily grain nitrogen requirements.\nA linear nitrogen filling rate is assumed, meaning that the demand increases uniformly from anthesis to the end of grain filling. This is a simplification but is commonly used in crop models to represent nitrogen uptake during grain development.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#cultivar-specific-parameters",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Grain].NFillingRate.GrainGrowthPhase.Demand.Rate.PotentialKernalN.FixedValue\nPotential nitrogen per kernel (g/kernel)\n0.0011",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#practical-example",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "Practical Example",
-    "text": "Practical Example\nSuppose:\n\nNitrogen per kernel (\\(N_\\text{kernel}\\)) = 0.0011 g/kernel\nGrain filling duration (\\(D_\\text{filling}\\)) = 120 + 545 = 665 °Cd\nDaily thermal time (ThermalTime) = 20 °Cd\nNumber of kernels (GrainNumber) = 18,000 per m² (typical range: 15,000–22,000 per m²)\n\nPlug into the formula:\n\\[\n\\text{N demand} = \\frac{0.0011}{665} \\times 20 \\times 18000 = 0.5955 \\text{ g N/day}\n\\]\nSo, the daily nitrogen demand for grain is 0.5955 g N/day under these conditions.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "href": "docs/Crops/Wheat/grain/NitrogenDemand.html#references",
-    "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
-    "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM Next Gen Wheat Model",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Grain",
-      "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html",
-    "href": "docs/Crops/Wheat/index.html",
-    "title": "Wheat",
-    "section": "",
-    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#phenology",
-    "href": "docs/Crops/Wheat/index.html#phenology",
-    "title": "Wheat",
-    "section": "Phenology",
-    "text": "Phenology\nThe wheat phenology is simulated from sowing to harvest.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#grain",
-    "href": "docs/Crops/Wheat/index.html#grain",
-    "title": "Wheat",
-    "section": "Grain",
-    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#traits",
-    "href": "docs/Crops/Wheat/index.html#traits",
-    "title": "Wheat",
-    "section": "Traits",
-    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/index.html#see-also",
-    "href": "docs/Crops/Wheat/index.html#see-also",
-    "title": "Wheat",
-    "section": "See Also",
-    "text": "See Also\n\nOnline Resource File",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html",
-    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html",
-    "title": "GrainFilling",
-    "section": "",
-    "text": "The GrainFilling phase in Wheat represents the developmental period from MaximumGrainLength to EndGrainFill. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#overview",
-    "title": "GrainFilling",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the MaximumGrainLength and EndGrainFill stages.\n\nThis phase starts at MaximumGrainLength and ends at EndGrainFill, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 545.0 °Cd.:",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#cultivar-specific-parameters",
-    "title": "GrainFilling",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].GrainFilling.Target.FixedValue\nThermal time target during grain filling (°Cd)\n545.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/GrainFilling.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/GrainFilling.html#practical-example",
-    "title": "GrainFilling",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "GrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html",
-    "href": "docs/Crops/Wheat/Phenology/index.html",
-    "title": "Phenology",
-    "section": "",
-    "text": "The Phenology model in APSIM NG simulates the development of wheat plants.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html#thermal-time",
-    "href": "docs/Crops/Wheat/Phenology/index.html#thermal-time",
-    "title": "Phenology",
-    "section": "Thermal Time",
-    "text": "Thermal Time\nDaily Thermal Time is based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html#photoperiod",
-    "href": "docs/Crops/Wheat/Phenology/index.html#photoperiod",
-    "title": "Phenology",
-    "section": "Photoperiod",
-    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html#phyllochron",
-    "href": "docs/Crops/Wheat/Phenology/index.html#phyllochron",
-    "title": "Phenology",
-    "section": "Phyllochron",
-    "text": "Phyllochron\nThe Phyllochron is the interval between the appearance of successive leaves on the main stem of wheat. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.\nThe Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/index.html#stages-and-phases",
-    "href": "docs/Crops/Wheat/Phenology/index.html#stages-and-phases",
-    "title": "Phenology",
-    "section": "Stages and Phases",
-    "text": "Stages and Phases\nThe numerical system is used to represent the development of wheat plants starting from 1. The stages are:\n\n\n\n\n\n\n\n\nStage\nName\nDescription\n\n\n\n\n1\nSowing\nSeeds are planted in the soil\n\n\n2\nGermination\nSeeds absorb water and begin to sprout\n\n\n3\nEmergence\nSeedlings break through the soil surface\n\n\n4\nDoubleRidge\nFormation of double ridges in the shoot apex\n\n\n5\nMaximumSpikeletPrimordia\nMaximum number of spikelets is determined\n\n\n6\nFlagLeafAppearance\nThe last leaf (flag leaf) appears\n\n\n7\nHeadEmergence\nWheat head emerges from the flag leaf sheath\n\n\n8\nAnthesis\nFlowering; pollen is released\n\n\n9\nMaximumGrainLength\nGrains reach their maximum length\n\n\n10\nEndGrainFill\nGrain filling is completed\n\n\n11\nHarvestRipe\nGrains are mature and ready for harvest\n\n\n\nPhases are used to represent the development between two stages. The phases are:\n\n\n\nOrder\nName\nFrom\nTo\n\n\n\n\n1\nGerminating\nSowing\nGermination\n\n\n2\nEmerging\nGermination\nEmergence\n\n\n3\nLeavesInitiating\nEmergence\nDoubleRidge\n\n\n4\nSpikeletsDifferentiating\nDoubleRidge\nMaximumSpikeletPrimordia\n\n\n5\nStemElongating\nMaximumSpikeletPrimordia\nFlagLeafAppearance\n\n\n6\nHeading\nFlagLeafAppearance\nHeadEmergence\n\n\n7\nFlowering\nHeadEmergence\nAnthesis\n\n\n8\nGrainExpanding\nAnthesis\nMaximumGrainLength\n\n\n9\nGrainFilling\nMaximumGrainLength\nEnd Grain Fill\n\n\n10\nGrainRipening\nEnd Grain Fill\nHarvestRipe\n\n\n11\nReadyForHarvesting\nHarvestRipe",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
-    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
-    "title": "ReadyForHarvesting",
-    "section": "",
-    "text": "The ReadyForHarvesting phase in Wheat represents the last phase after HarvestRipe.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#overview",
-    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#overview",
-    "title": "ReadyForHarvesting",
-    "section": "Overview",
-    "text": "Overview\nThe EndPhase model simulates last phase after HarvestRipe.\n\nThis phase starts at EndGrainFill and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function. But it does not use here.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
-    "title": "ReadyForHarvesting",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nNo cultivar-specific parameters are defined for this phase.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#practical-example",
-    "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html#practical-example",
-    "title": "ReadyForHarvesting",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Wheat",
-      "Phenology",
-      "ReadyForHarvesting"
     ]
   },
   {
@@ -6549,14 +6549,7 @@
     "href": "index.html",
     "title": "APSIM Next Generation Notes",
     "section": "",
-    "text": "Quarto Publish\nWelcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I’ve encountered while using APSIM NG. It includes:\nWhether you’re just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.\nFeel free to explore, suggest improvements, or fork this repository for your own use."
-  },
-  {
-    "objectID": "index.html#website",
-    "href": "index.html#website",
-    "title": "APSIM Next Generation Notes",
-    "section": "🌐 Website",
-    "text": "🌐 Website\nYou can also browse these notes as a website:\n👉 https://apsimng-notes.bangyou.me"
+    "text": "Quarto Publish\nWelcome to APSIM Next Generation Notes — my personal collection of notes, tips, tutorials, and code snippets for working with APSIM Next Generation (APSIM NG).\nThis repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I’ve encountered while using APSIM NG. It includes:"
   },
   {
     "objectID": "index.html#contributing",

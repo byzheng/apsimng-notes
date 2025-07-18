@@ -35,8 +35,8 @@ a.external-link {
 
 h3 {
     position: relative;
-    padding-bottom: 0.6em;
-    margin-top: 2em;
+    padding-bottom: 0.4em;
+    margin-top: 1em;
     display: inline-block;
     border-bottom: 1px solid #ccc;
 }
@@ -46,7 +46,7 @@ h4 {
     font-weight: bold;
     position: relative;
     padding-bottom: 0.4em;
-    margin-top: 1.5em;
+    margin-top: 1em;
     display: inline-block;
     border-bottom: 1px dotted #ccc;
 }
