@@ -13,8 +13,6 @@ This repository serves as a knowledge base documenting my learning journey, expe
 
 - 📘 **[Documentation](https://apsimng-notes.bangyou.me/docs/)** — In-depth explanations and configuration guides  
 - 🌾 **[Tips and Tricks](https://apsimng-notes.bangyou.me/tips/)** — Short how-tos and troubleshooting solutions  
-- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks  
-- 🔧 **Scripts** — Useful R snippets for simulations
 
 Whether you're just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.
 

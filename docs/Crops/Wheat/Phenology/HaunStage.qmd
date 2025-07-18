@@ -17,13 +17,13 @@ The Haun Stage is based on the biological principle that leaves appear at regula
 The daily increase in Haun Stage is calculated as:
 
 $$
-\Delta \text{HaunStage} = \frac{\text{ThermalTime}}{\text{Phyllochron}}
+\Delta \text{HS} = \frac{\text{TT}}{\text{Ph}}
 $$
 
 Where:
 
-- $\text{ThermalTime}$ is the amount of heat accumulated in a day (measured in degree-days).
-- $\text{Phyllochron}$ is the amount of thermal time needed for each new leaf to appear. 
+- $\text{TT}$ is the amount of heat accumulated in a day (measured in degree-days).
+- $\text{Ph}$ is the amount of thermal time needed for each new leaf to appear.
 
 The model sums these daily increments from emergence until the flag leaf appears, for example, a Haun Stage of 5.3 means five leaves are fully visible and the sixth is partly emerged (30%).
 

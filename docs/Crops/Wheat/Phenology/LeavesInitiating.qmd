@@ -1,0 +1,44 @@
+---
+title: "LeavesInitiating"
+output: html_document
+draft: true
+---
+
+```{r}
+a <- 1
+
+```
+
+The **LeavesInitiating** phase in the [Wheat](/docs/Crops/Wheat) model represents the developmental period from **Emergence** to **DoubleRidge**, driven by the expression of the Vrn1, Vrn2, and Vrn3 genes. This phase concludes when vernalisation is saturated, as predicted by the [Cereal Anthesis Molecular Phenology](/docs/Models/PMF/Phenology/CAMP/index.qmd) (CAMP) model.
+
+
+## Overview
+
+The [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) Model is used to simulate the progress of vernalisation requirements. This phase begins when Plant `Emergence` to `DoubleRidge`.
+
+## Methodology
+
+See [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) and [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model for details on how the vernalisation progress is calculated. Here is focusing on the parameters used in this phase, i.e. [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd).
+
+### Thermal Time
+
+`TT`: The daily [thermal time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+### Haun Stage
+
+`HaunStage` and `DeltaHaunStage`: Haun Stage ($HS$) and $\Delta HS$ is calculated from daily [thermal time](ThermalTime.qmd) and a cultivar-specific [phyllochron](Phyllochron.qmd), which is the rate of leaf appearance.
+
+## Base Phyllochron
+
+`BasePhyllochron`: The base [phyllochron](Phyllochron.qmd) is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Germinating.MinSoilTemperature.FixedValue   | Minimum soil temperature for germination (°C)      | 0.0           |
+
+## Practical Example
+
+> No practical example is provided for the thermal time function.
+

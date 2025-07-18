@@ -13,19 +13,25 @@ Welcome to **APSIM Next Generation Notes** — my personal collection of notes, 
 
 This repository serves as a knowledge base documenting my learning journey, experiments, and solutions to problems I've encountered while using APSIM NG. It includes:
 
-- 📘 **[Documentation](/docs/index.qmd)** — In-depth explanations and configuration guides  
-- 🌾 **[Tips and Tricks](/tips/index.qmd)** — Short how-tos and troubleshooting solutions  
-- 🧪 **Tutorials** — Step-by-step walkthroughs for specific tasks  
-- 🔧 **Scripts** — Useful R snippets for simulations
 
-Whether you're just starting with APSIM NG or tackling specific modelling challenges, I hope these notes are helpful.
+::: {.grid}
 
-Feel free to explore, suggest improvements, or fork this repository for your own use.
 
-## 🌐 Website
+::: {.g-col-6}
+### 📘  Documentation
+In-depth explanations and configuration guides  
+[Explore Documentation →](/docs/index.qmd)
+:::
 
-You can also browse these notes as a website:  
-👉 [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
+
+::: {.g-col-6}
+### 🌾 Tips and Tricks
+Short how-tos and troubleshooting solutions  
+[View Tips →](/tips/index.qmd)
+:::
+
+:::
+
 
 ## 🤝 Contributing
 
