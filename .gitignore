@@ -11,7 +11,10 @@ _site
 /.quarto/
 /site_libs/
 *.html
-
+*.db
+*.db-shm
+*.db-wal
+*.bak
 _tmp_*
 _scripts/
 
