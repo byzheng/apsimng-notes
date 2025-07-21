@@ -15,7 +15,7 @@ read_example <- function(file, report = "DailyReport") {
     df <- rapsimng::read_report(file_path, report)
 
     if (has_name(df, "Site")) {
-        df$Site <- gsub("\\.met$", "", df$Site)
+        df$Site <- gsub("\\.met$", "", basename(df$Site))
     }
 
     df <- df |> 

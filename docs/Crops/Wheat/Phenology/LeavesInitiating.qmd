@@ -24,6 +24,7 @@ See [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qm
 * `HaunStage`: Haun stage is the number of leaves on the main stem
 * `DeltaHaunStage`: Change in Haun stage from the previous day
 * `BasePhyllochron`: Base phyllochron, the thermal time required for each new leaf to appear under standard conditions
+* `PpResponse`: Photoperiod response for vernalisation
 
 **Thermal Time (`TT`)**
 
@@ -36,6 +37,28 @@ Haun Stage ($HS$) and $\Delta HS$ is calculated from daily [thermal time](Therma
 **Base Phyllochron (`BasePhyllochron`)**
 
 The base [phyllochron](Phyllochron.qmd) is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.
+
+**Photoperiod Response (`PpResponse`)**
+
+
+```{r camp-pp-response, fig.height = 3, fig.cap="Leaf Stage Factor as a Function of Leaf Cohort Number"}
+# Plot the leaf stage factor as a function of leaf cohort number
+library(ggplot2)
+
+x <- c(0, 8, 16, 24)
+y <- c(0, 0, 1, 1)
+x_out <- seq(0, 24)
+df <- data.frame(day_length = x_out, f_d = weaana::interpolationFunction(x, y, values = x_out))
+
+ggplot(df, aes(x = day_length)) +
+    geom_line(aes(y = f_d)) +
+    labs(
+        x = "Day Length (hours)",
+        y = "Modifier Value"
+    ) +
+    scale_x_continuous(breaks = x_out) +
+    theme_minimal()
+```
 
 
 ## Cultivar-Specific Parameters
