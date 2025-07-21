@@ -31,7 +31,7 @@
               "Children": [
                 {
                   "$type": "Models.Factorial.Factor, Models",
-                  "Specification": "[Sowing].Script.CultivarName=Mace,Strzelecki",
+                  "Specification": "[Sowing].Script.CultivarName=Emu_Rock,Sunlamb",
                   "Name": "Cultivar",
                   "ResourceName": null,
                   "Children": [],
@@ -50,7 +50,7 @@
                 {
                   "$type": "Models.Factorial.Factor, Models",
                   "Specification": "[Weather].FileName=Hamilton.met,Roma.met",
-                  "Name": "WeatherFile",
+                  "Name": "Site",
                   "ResourceName": null,
                   "Children": [],
                   "Enabled": true,
@@ -834,7 +834,9 @@
                   "$type": "Models.Report, Models",
                   "VariableNames": [
                     "[Clock].Today",
+                    "[Wheat].DaysAfterSowing",
                     "[Wheat].Phenology.Stage",
+                    "[Wheat].Phenology.CurrentStageName",
                     "[Wheat].Phenology.CAMP.Vrn",
                     "[Wheat].Phenology.CAMP.Vrn1",
                     "[Wheat].Phenology.CAMP.Vrn2",
