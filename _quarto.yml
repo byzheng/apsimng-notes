@@ -1,5 +1,6 @@
 project:
   type: website
+  pre-render: _scripts/run_apsimx.R
 filters:
   - _filters/link-style.lua
 
