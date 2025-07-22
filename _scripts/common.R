@@ -1,10 +1,3 @@
-suppressPackageStartupMessages({
-    library(dplyr)
-    library(ggplot2)
-    library(tidyr)
-    library(rapsimng)
-})
-
 read_example <- function(file, report = "DailyReport") {
     file_path <- file |> 
         here::here()
