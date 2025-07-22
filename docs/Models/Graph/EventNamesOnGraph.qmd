@@ -1,6 +1,5 @@
 ---
 title: "Show Event Names on Graph"
-date: "2025-06-06"
 output: html_document
 ---
 

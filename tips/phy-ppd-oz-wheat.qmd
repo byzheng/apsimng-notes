@@ -2,7 +2,6 @@
 title: "Photoperiod Effects on Leaf Appearance for Wheat in Australia"
 output: html_document
 sidebar: false
-date: "2025-07-05"
 ---
 
 

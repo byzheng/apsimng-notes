@@ -1,6 +1,5 @@
 ---
 title: "Nutrient Constrained Allocation"
-date: "2025-06-06"
 output: html_document
 ---
 
