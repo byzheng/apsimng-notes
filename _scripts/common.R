@@ -30,7 +30,7 @@ read_example <- function(file, report = "DailyReport") {
 
     df <- rapsimng::read_report(file_path, report)
 
-    if (has_name(df, "Site")) {
+    if (rlang::has_name(df, "Site")) {
         df$Site <- gsub("\\.met$", "", basename(df$Site))
     }
 
@@ -50,10 +50,10 @@ plot_output <- function(file,
         stop("No data found for the specified report.")
     }
     df |> 
-        ggplot(aes(x = .data[[x]], y = .data[[y]], color = Cultivar)) +
-        geom_line() +
-        geom_point(aes(shape = Cultivar)) +
-        facet_grid(Site ~ SowingDate) +
-        theme_bw() +
-        theme(legend.position = "bottom")
+        ggplot2::ggplot(ggplot2::aes(x = .data[[x]], y = .data[[y]], color = Cultivar)) +
+        ggplot2::geom_line() +
+        ggplot2::geom_point(ggplot2::aes(shape = Cultivar)) +
+        ggplot2::facet_grid(Site ~ SowingDate) +
+        ggplot2::theme_bw() +
+        ggplot2::theme(legend.position = "bottom")
 }

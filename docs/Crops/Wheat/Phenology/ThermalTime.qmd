@@ -60,9 +60,10 @@ ggplot(df, aes(x = Temperature, y = Response)) +
 
 ## Simulation Example
 
-We demonstrate the concept using an APSIM simulation for [example simulation](/docs/Crops/Wheat/Examples/wheat_example1.qmd).
 
+We demonstrate the concept using an [example simulation](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat.
 
+The output variable `Wheat.Phenology.ThermalTime` is used to report the daily thermal time values. 
 
 ```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1"}
 plot_output("docs/Crops/Wheat/Examples/wheat_example1.apsimx", 
