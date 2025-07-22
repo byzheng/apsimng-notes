@@ -1,11 +1,6 @@
 source("renv/activate.R")
 source("_scripts/common.R")
 
-suppressPackageStartupMessages({
-    library(dplyr)
-    library(ggplot2)
-    library(tidyr)
-})
 if (requireNamespace("knitr", quietly = TRUE)) {
     knitr::opts_chunk$set(
         echo = FALSE,

@@ -1,6 +1,7 @@
 suppressPackageStartupMessages({
-    library(tidyverse)
-    library(knitr)
+    library(dplyr)
+    library(ggplot2)
+    library(tidyr)
     library(rapsimng)
 })
 

@@ -8,7 +8,6 @@ output: html_document
 
 suppressPackageStartupMessages({
   library(rapsimng)
-  library(tidyverse)
   library(knitr)
 })
 knitr::opts_chunk$set(warning = FALSE, 
