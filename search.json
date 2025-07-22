@@ -5278,7 +5278,7 @@
     "href": "docs/Models/Functions/index.html",
     "title": "Functions",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",

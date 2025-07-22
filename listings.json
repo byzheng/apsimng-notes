@@ -35,6 +35,7 @@
       "/docs/Models/Functions/AccumulateFunction.html",
       "/docs/Models/Functions/AddFunction.html",
       "/docs/Models/Functions/Constant.html",
+      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
       "/docs/Models/Functions/DivideFunction.html",
       "/docs/Models/Functions/HourlySinPpAdjusted.html",
       "/docs/Models/Functions/MaximumFunction.html",
@@ -46,8 +47,7 @@
       "/docs/Models/Functions/SubDailyInterpolation.html",
       "/docs/Models/Functions/SubtractFunction.html",
       "/docs/Models/Functions/ThreeHourAirTemperature.html",
-      "/docs/Models/Functions/XYPairs.html",
-      "/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html"
+      "/docs/Models/Functions/XYPairs.html"
     ]
   },
   {
