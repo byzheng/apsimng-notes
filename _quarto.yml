@@ -3,8 +3,7 @@ project:
   pre-render: _scripts/run_apsimx.R
   render:
     - "*.qmd"
-    - "*.md" 
-    - "!apsimx/"
+    - "*.md"
 filters:
   - _filters/link-style.lua
 
