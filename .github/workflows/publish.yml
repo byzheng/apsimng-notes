@@ -27,7 +27,7 @@ jobs:
         with:
           cache-version: 1
       
-      - name: Run local APSIMX compile action
+      - name: Compile APSIMX
         uses: byzheng/apsimx-actions/.github/actions/compile-apsimx@main
 
       - name: Render and Publish
