@@ -6,6 +6,11 @@ date: "2025-07-05"
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 
 [Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, is a key environmental factor influencing duration of ([Heading](/docs/Crops/Wheat/Phenology/Heading.qmd)) phase in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop.
 

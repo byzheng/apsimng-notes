@@ -4,6 +4,11 @@ output: html_document
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 The `HourlySinPpAdjusted` function provides **hourly estimates of air temperature** by interpolating between daily maximum and minimum temperatures using a sinusoidal method during sunlight hours and an exponential decline during nighttime hours [@goudriaan_climatic_1994].
 
 

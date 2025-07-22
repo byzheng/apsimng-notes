@@ -4,6 +4,11 @@ output: html_document
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.
 
 ## Overview

@@ -3,6 +3,11 @@ title: "Phyllochron"
 format: html
 ---
 
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
 Phyllochron is a model that estimates how quickly new leaves appear on a wheat plant after it emerges from the soil. This timing is important because it influences later growth stages and ultimately affects crop yield and development.
 
 ## Overview

@@ -4,6 +4,11 @@ output: html_document
 draft: true
 ---
 
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
 ```{r}
 a <- 1
 

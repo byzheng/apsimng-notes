@@ -4,6 +4,11 @@ output: html_document
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 The **Vegetative** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **Emergence** to **FloralInitiation**. It is influenced by thermal time only.
 
 ## Overview

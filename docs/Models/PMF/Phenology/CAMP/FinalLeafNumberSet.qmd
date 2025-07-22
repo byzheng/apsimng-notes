@@ -3,6 +3,11 @@ title: "FinalLeafNumberSet"
 output: html_document
 ---
 
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
 The `FinalLeafNumberSet` model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.
 
 ## Overview

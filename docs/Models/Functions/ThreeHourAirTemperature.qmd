@@ -4,6 +4,11 @@ output: html_document
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 The `ThreeHourAirTemperature` function provides **3-hourly estimates of air temperature** by interpolating between daily maximum and minimum temperatures using a sinusoidal method.
 
 ## Overview

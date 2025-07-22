@@ -3,6 +3,11 @@ title: "Heading"
 output: html_document
 ---
 
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
 The **Heading** phase represents the developmental stage between `FlagLeafAppearance` and `HeadEmergence` in wheat crops. It models the progression of time and environmental responses that lead to the visible emergence of the crop's head.
 
 ## Overview
