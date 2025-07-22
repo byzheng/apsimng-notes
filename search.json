@@ -3527,21 +3527,6 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/ThermalTime.html#simulation-example",
-    "href": "docs/Crops/Canola/Phenology/ThermalTime.html#simulation-example",
-    "title": "Thermal Time",
-    "section": "Simulation Example",
-    "text": "Simulation Example\nWe demonstrate the concept using an APSIM simulation for example simulation.\n\n\n\n\n\n\n\n\nFigure 1: Thermal Time Simulation for Wheat Example 1",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Thermal Time"
-    ]
-  },
-  {
     "objectID": "docs/Crops/Canola/Phenology/index.html",
     "href": "docs/Crops/Canola/Phenology/index.html",
     "title": "Phenology",
@@ -4023,6 +4008,21 @@
     "title": "Thermal Time",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/ThermalTime.html#simulation-example",
+    "href": "docs/Crops/Wheat/Phenology/ThermalTime.html#simulation-example",
+    "title": "Thermal Time",
+    "section": "Simulation Example",
+    "text": "Simulation Example\nWe demonstrate the concept using an example simulation for wheat.\nThe output variable Wheat.Phenology.ThermalTime is used to report the daily thermal time values.\n\n\n\n\n\n\n\n\nFigure 1: Thermal Time Simulation for Wheat Example 1",
     "crumbs": [
       "Home",
       "Docs",
