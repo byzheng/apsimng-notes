@@ -4,6 +4,11 @@ output: html_document
 ---
 
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 This example demonstrates a [wheat](../Wheat) simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on wheat growth and development.
 
 ## Simulation Configuration

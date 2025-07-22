@@ -1,3 +1,25 @@
+setup_qmd <- function() {
+    suppressPackageStartupMessages({
+        library(tidyverse)
+        library(rapsimng)
+        library(purrr)
+        library(knitr)
+    })
+
+    if (requireNamespace("knitr", quietly = TRUE)) {
+        knitr::opts_chunk$set(
+            echo = FALSE,
+            message = FALSE,
+            warning = FALSE,
+            fig.align = "center",
+            fig.width = 8,
+            fig.height = 7,
+            out.width = "100%"
+        )
+    }
+}
+
+
 read_example <- function(file, report = "DailyReport") {
     file_path <- file |> 
         here::here()
