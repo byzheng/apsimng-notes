@@ -1,6 +1,10 @@
 project:
   type: website
   pre-render: _scripts/run_apsimx.R
+  render:
+    - "*.qmd"
+    - "*.md" 
+    - "!apsimx/"
 filters:
   - _filters/link-style.lua
 
