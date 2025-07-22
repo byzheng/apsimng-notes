@@ -5,7 +5,7 @@ suppressPackageStartupMessages({
 })
 
 read_example <- function(file, report = "DailyReport") {
-    file_path <- file.path("_examples", file) |> 
+    file_path <- file |> 
         here::here()
 
     if (!file.exists(file_path)) {
@@ -19,7 +19,8 @@ read_example <- function(file, report = "DailyReport") {
     }
 
     df <- df |> 
-        dplyr::filter(Wheat.Phenology.Stage > 0)
+        dplyr::filter(Wheat.Phenology.Stage > 0,
+                    Wheat.DaysAfterSowing > 0)
     return(df)
 }
 
@@ -35,6 +36,7 @@ plot_output <- function(file,
     df |> 
         ggplot(aes(x = .data[[x]], y = .data[[y]], color = Cultivar)) +
         geom_line() +
+        geom_point(aes(shape = Cultivar)) +
         facet_grid(Site ~ SowingDate) +
         theme_bw() +
         theme(legend.position = "bottom")

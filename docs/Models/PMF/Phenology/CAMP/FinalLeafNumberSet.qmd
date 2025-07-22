@@ -137,7 +137,7 @@ fln_long <- fln_data %>%
 
 # Plot
 p <- fln_long |> 
-    filter(Parameter_FLN %in% c("LV", "SV", "SN", "LN")) |>
+    dplyr::filter(Parameter_FLN %in% c("LV", "SV", "SN", "LN")) |>
     mutate(Parameter_FLN = factor(Parameter_FLN, levels = c("LV", "SV", "SN", "LN"))) |>
     ggplot() +
     geom_col(aes(x = Parameter_FLN, y = FLN, fill = Parameter_FLN), alpha = 0.5, width = 0.5, color = "black") +

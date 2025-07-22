@@ -837,6 +837,7 @@
                     "[Wheat].DaysAfterSowing",
                     "[Wheat].Phenology.Stage",
                     "[Wheat].Phenology.CurrentStageName",
+                    "[Wheat].Phenology.ThermalTime",
                     "[Wheat].Phenology.CAMP.Vrn",
                     "[Wheat].Phenology.CAMP.Vrn1",
                     "[Wheat].Phenology.CAMP.Vrn2",

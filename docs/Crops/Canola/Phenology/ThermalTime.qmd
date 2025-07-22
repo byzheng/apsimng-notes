@@ -52,3 +52,14 @@ ggplot(df, aes(x = Temperature, y = Response)) +
 
 > No practical example is provided for the thermal time function.
 
+## Simulation Example
+
+We demonstrate the concept using an APSIM simulation for [example simulation](/docs/Crops/Wheat/Examples/wheat_example1.qmd).
+
+
+
+```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1"}
+plot_output("docs/Crops/Wheat/Examples/wheat_example1.apsimx", 
+            x = "Wheat.DaysAfterSowing",
+            y = "Wheat.Phenology.ThermalTime")    
+```
