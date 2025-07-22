@@ -26,8 +26,9 @@ jobs:
         uses: r-lib/actions/setup-renv@v2
         with:
           cache-version: 1
+      
       - name: Run local APSIMX compile action
-        uses: byzheng/apsimx-actions/.github/actions/compile-apsimx
+        uses: byzheng/apsimx-actions/.github/actions/compile-apsimx@main
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
