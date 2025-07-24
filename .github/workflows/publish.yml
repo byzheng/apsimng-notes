@@ -28,7 +28,7 @@ jobs:
           cache-version: 1
       
       - name: Compile APSIMX
-        uses: byzheng/apsimx-actions/.github/actions/compile-apsimx@main
+        uses: byzheng/apsimx-actions@main
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
