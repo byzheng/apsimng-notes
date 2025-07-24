@@ -893,8 +893,9 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </section>
 <section id="simulation-example" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-example">Simulation Example</h2>
-<p>We demonstrate the concept using an <a href="../../../../docs/Crops/Wheat/Examples/wheat_example1.html" class="crop-link">example simulation</a> for wheat.</p>
-<p>The output variable <code>Wheat.Phenology.ThermalTime</code> is used to report the daily thermal time values.</p>
+<p>We demonstrate daily thermal time using <a href="docs/Crops/Wheat/Examples/wheat_example1.qmd" class="broken-link">example simulations</a> for wheat. The simulations are designed to illustrate how daily thermal times are calculated according to daily minimum and maximum temperatures.</p>
+<p>The output variable <code>Wheat.Phenology.ThermalTime</code> is used to report the daily thermal time values, which represent the crop responses to daily temperature for development and growth.</p>
+<p>In the example below, we plot thermal time against days after sowing (Wheat.DaysAfterSowing) to visualize how thermal time accumulates throughout the season. The shape of the curve reflects temperature patterns during the growing period, with higher daily thermal time values typically corresponding to warmer days.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-thermal-time" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -903,12 +904,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <img src="ThermalTime_files/figure-html/fig-thermal-time-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermal-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Thermal Time Simulation for Wheat Example 1
+Figure&nbsp;1: Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar ‘Sunlamb’ on the sowing date ‘1-May’.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>This plot provides insight into how daily thermal time relates to daily minimum and maximum temperatures after sowing.</p>
 
 
 </section>
