@@ -19,6 +19,16 @@ setup_qmd <- function() {
     }
 }
 
+date2doy <- function(date) {
+    as.numeric(as.Date(paste(date, '-2011', sep = ''), format = '%d-%b-%Y')) -
+        as.numeric(as.Date('2010-12-31'))
+}
+
+factor_date <- function(dates) {
+    dates_unique <- unique(dates)
+    dates_unique <- dates_unique[order(date2doy(dates_unique))]
+    factor(dates, levels = dates_unique)
+}
 
 read_example <- function(file, report = "DailyReport") {
     file_path <- file |> 
@@ -36,7 +46,8 @@ read_example <- function(file, report = "DailyReport") {
 
     df <- df |> 
         dplyr::filter(Wheat.Phenology.Stage > 0,
-                    Wheat.DaysAfterSowing > 0)
+                    Wheat.DaysAfterSowing > 0) |> 
+        dplyr::mutate(SowingDate = factor_date(SowingDate))
     return(df)
 }
 

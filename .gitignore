@@ -8,6 +8,7 @@ _site
 .httr-oauth
 .DS_Store
 
+_freeze
 /.quarto/
 /site_libs/
 *.html

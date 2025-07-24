@@ -138,6 +138,35 @@
                   "$type": "Models.Report, Models",
                   "VariableNames": [
                     "[Clock].Today",
+                    "",
+                    "[Weather].MinT",
+                    "[Weather].MaxT",
+                    "[Weather].Radn",
+                    "[Weather].Rain",
+                    "",
+                    "[Wheat].DaysAfterSowing",
+                    "[Wheat].Phenology.Stage",
+                    "[Wheat].Phenology.CurrentStageName",
+                    "[Wheat].Phenology.ThermalTime",
+                    "[Wheat].Phenology.CAMP.Vrn",
+                    "[Wheat].Phenology.CAMP.Vrn1",
+                    "[Wheat].Phenology.CAMP.Vrn2",
+                    "[Wheat].Phenology.CAMP.Vrn3"
+                  ],
+                  "EventNames": [
+                    "[Clock].DoReport"
+                  ],
+                  "GroupByVariableName": null,
+                  "Name": "DailyReport",
+                  "ResourceName": null,
+                  "Children": [],
+                  "Enabled": true,
+                  "ReadOnly": false
+                },
+                {
+                  "$type": "Models.Report, Models",
+                  "VariableNames": [
+                    "[Clock].Today",
                     "[Wheat].LAI",
                     "[Wheat].Phenology.Zadok.Stage",
                     "[Wheat].Phenology.CurrentStageName",
@@ -825,29 +854,6 @@
                     }
                   ],
                   "Name": "Sowing",
-                  "ResourceName": null,
-                  "Children": [],
-                  "Enabled": true,
-                  "ReadOnly": false
-                },
-                {
-                  "$type": "Models.Report, Models",
-                  "VariableNames": [
-                    "[Clock].Today",
-                    "[Wheat].DaysAfterSowing",
-                    "[Wheat].Phenology.Stage",
-                    "[Wheat].Phenology.CurrentStageName",
-                    "[Wheat].Phenology.ThermalTime",
-                    "[Wheat].Phenology.CAMP.Vrn",
-                    "[Wheat].Phenology.CAMP.Vrn1",
-                    "[Wheat].Phenology.CAMP.Vrn2",
-                    "[Wheat].Phenology.CAMP.Vrn3"
-                  ],
-                  "EventNames": [
-                    "[Clock].DoReport"
-                  ],
-                  "GroupByVariableName": null,
-                  "Name": "DailyReport",
                   "ResourceName": null,
                   "Children": [],
                   "Enabled": true,

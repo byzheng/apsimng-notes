@@ -60,13 +60,27 @@ ggplot(df, aes(x = Temperature, y = Response)) +
 
 ## Simulation Example
 
+We demonstrate daily thermal time using [example simulations](docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. The simulations are designed to illustrate how daily thermal times are calculated according to daily minimum and maximum temperatures.
 
-We demonstrate the concept using an [example simulation](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat.
+The output variable `Wheat.Phenology.ThermalTime` is used to report the daily thermal time values, which represent the crop responses to daily temperature for development and growth. 
 
-The output variable `Wheat.Phenology.ThermalTime` is used to report the daily thermal time values. 
+In the example below, we plot thermal time against days after sowing (Wheat.DaysAfterSowing) to visualize how thermal time accumulates throughout the season. The shape of the curve reflects temperature patterns during the growing period, with higher daily thermal time values typically corresponding to warmer days.
 
-```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1"}
-plot_output("docs/Crops/Wheat/Examples/wheat_example1.apsimx", 
-            x = "Wheat.DaysAfterSowing",
-            y = "Wheat.Phenology.ThermalTime")    
+```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar 'Sunlamb' on the sowing date '1-May'."}
+file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
+pd <- read_example(file)
+
+pd |> 
+    dplyr::filter(Cultivar == "Sunlamb") |> 
+    dplyr::filter(SowingDate == "1-May") |> 
+    ggplot2::ggplot(ggplot2::aes(x = Wheat.DaysAfterSowing, y = Wheat.Phenology.ThermalTime)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_line(ggplot2::aes(y = Weather.MinT), color = "blue") +
+    ggplot2::geom_line(ggplot2::aes(y = Weather.MaxT), color = "red") +
+    ggplot2::geom_point(ggplot2::aes(shape = Cultivar)) +
+    ggplot2::facet_grid(Site ~ SowingDate) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = "bottom") 
 ```
+
+This plot provides insight into how daily thermal time relates to daily minimum and maximum temperatures after sowing.
