@@ -60,11 +60,13 @@ ggplot(df, aes(x = Temperature, y = Response)) +
 
 ## Simulation Example
 
-We demonstrate daily thermal time using [example simulations](docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. The simulations are designed to illustrate how daily thermal times are calculated according to daily minimum and maximum temperatures.
+We demonstrate daily thermal time using [example simulations](docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. These simulations illustrate how daily thermal time is calculated based on daily minimum and maximum temperatures, which are key drivers of crop development.
 
-The output variable `Wheat.Phenology.ThermalTime` is used to report the daily thermal time values, which represent the crop responses to daily temperature for development and growth. 
+The output variable `Wheat.Phenology.ThermalTime` reports the daily thermal time values. These values represent the crop’s physiological response to temperature, and are used to model development processes such as leaf appearance, stem elongation, and flowering.
 
-In the example below, we plot thermal time against days after sowing (Wheat.DaysAfterSowing) to visualize how thermal time accumulates throughout the season. The shape of the curve reflects temperature patterns during the growing period, with higher daily thermal time values typically corresponding to warmer days.
+In the example below, we plot thermal time against days after sowing (`Wheat.DaysAfterSowing`) to visualize how thermal time accumulates across the season. The used cultivar is `Sunlamb`, and the sowing date is 1 May. The figure overlays thermal time accumulation with daily temperature conditions to provide context for interpreting crop development.
+
+
 
 ```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar 'Sunlamb' on the sowing date '1-May'."}
 file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
@@ -83,4 +85,4 @@ pd |>
     ggplot2::theme(legend.position = "bottom") 
 ```
 
-This plot provides insight into how daily thermal time relates to daily minimum and maximum temperatures after sowing.
+This plot provides insight into how daily thermal time values fluctuate in response to daily temperatures and how these values accumulate to drive crop development. 
