@@ -149,6 +149,8 @@
                     "[Wheat].Phenology.CurrentStageName",
                     "[Wheat].Phenology.ThermalTime",
                     "[Wheat].Phenology.CAMP.Vrn",
+                    "[Wheat].Phenology.CAMP.MaxVrn",
+                    "[Wheat].Phenology.CAMP.BaseVrn",
                     "[Wheat].Phenology.CAMP.Vrn1",
                     "[Wheat].Phenology.CAMP.Vrn2",
                     "[Wheat].Phenology.CAMP.Vrn3"

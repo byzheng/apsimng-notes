@@ -265,7 +265,7 @@ The total vernalisation expression ($Vrn$) is accumulated from imbibition (i.e. 
 - If not vernalised:
 
 $$
-Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2)
+Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2
 $$
 
 Where:

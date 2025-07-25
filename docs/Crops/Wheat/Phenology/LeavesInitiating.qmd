@@ -157,7 +157,7 @@ The internal function `calcCAMPVrnRates` is used to calculate the Vrn1, Vrn2, an
 
 ## Practical Example
 
-> No practical example is provided for the thermal time function.
+> No practical example is provided here.
 
 
 ## Simulation Example
@@ -165,14 +165,110 @@ The internal function `calcCAMPVrnRates` is used to calculate the Vrn1, Vrn2, an
 We demonstrate progress of leaf initiation phase using [example simulations](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.
 
 
+Two cultivars, `Emu_Rock` and `Sunlamb`, are used in the example simulations to represent the very quick and very late maturity types, respectively [@celestina_cultivar_2023]. The following table shows the FLN parameters for these two cultivars:
 
-This plot shows the progress of the Vrn1 expression for the cultivar `Sunlamb` and `Emu_Rock` on the sowing date `1-May` and `1-Jun`. The `LeavesInitiating` phase is finished when `Wheat.Phenology.CAMP.Vrn1` equal to `1` at vernalisation saturation.
+| Parameter                        | Emu_Rock | Sunlamb |
+|-----------------------------------|----------|---------|
+| [Phenology].CAMP.FLNparams.MinLN  | 6        | 7       |
+| [Phenology].CAMP.FLNparams.PpLN   | 1        | 5       |
+| [Phenology].CAMP.FLNparams.VrnLN  | 1        | 10      |
+| [Phenology].CAMP.FLNparams.VxPLN  | -1       | -5      |
 
-```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar 'Sunlamb' on the sowing date '1-May'."}
-file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
-plot_output(file, y = "Wheat.Phenology.CAMP.Vrn",
-    max_stage = 5.2) +
-    ggplot2::geom_hline(yintercept = c(1, 2), linetype = "dashed", color = "grey50")
+```{r fig-cultivar-parameters, fig.height = 6, fig.cap="FLN parameters for Emu_Rock and Sunlamb Cultivars"}
+
+fln_params <- data.frame(
+    Parameter_FLN = c("MinLN", "PpLN", "VrnLN", "VxPLN"),
+    Emu_Rock = c(6, 1, 1, -1),
+    Sunlamb = c(7, 5, 10, -5)
+) |> 
+    pivot_longer(cols = c("Emu_Rock", "Sunlamb"), names_to = "Cultivar", values_to = "FLN")
+
+plot_fln(fln_params)
 
 ```
 
+
+This plot shows the progress of the Vrn1 expression for the cultivar `Sunlamb` and `Emu_Rock` on the sowing date `1-May` and `1-Jun`. The `LeavesInitiating` phase is finished when `Wheat.Phenology.CAMP.Vrn1` equal to `1` at vernalisation saturation.
+
+```{r fig-vrn, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1."}
+file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
+plot_output(file, y = "Wheat.Phenology.CAMP.Vrn",
+    max_stage = 5) +
+    ggplot2::geom_hline(yintercept = c(0, 1, 2), linetype = "dashed", color = "grey50")
+```
+
+The total $Vrn$ expression is the sum of the three Vrn genes, i.e. $Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2$, and capped below $Vrn_{\text{max}}$. The following figure shows the Vrn expressions for three Vrn genes for very late cultivar `Sunlamb`on the sowing date `1-May` and `1-Jun`.
+
+```{r fig-vrn-all, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. $Vrn_{base}$, $Vrn1$, and $Vrn3$ are stacked at the y positive axis. $Vrn2$ is shown as a negative value at the y negative axis. The black lines represent the total $Vrn$ expression. The red lines represent the maximum $Vrn$ expression."}
+
+df <- read_example(file, max_stage = 5) |> 
+    dplyr::filter(Cultivar == "Sunlamb")
+pd <- df |>
+    dplyr::mutate(Wheat.Phenology.CAMP.Vrn2 = -Wheat.Phenology.CAMP.Vrn2) |> 
+    dplyr::select(Site, SowingDate, Cultivar, 
+        Wheat.DaysAfterSowing,
+        Wheat.Phenology.CAMP.MaxVrn,
+        Wheat.Phenology.CAMP.Vrn,
+        Wheat.Phenology.CAMP.BaseVrn,
+        Wheat.Phenology.CAMP.Vrn1,
+        Wheat.Phenology.CAMP.Vrn2,
+        Wheat.Phenology.CAMP.Vrn3) |> 
+    tidyr::pivot_longer(
+        cols = c(
+            Wheat.Phenology.CAMP.BaseVrn,
+            Wheat.Phenology.CAMP.Vrn1,
+            Wheat.Phenology.CAMP.Vrn2,
+            Wheat.Phenology.CAMP.Vrn3),
+        names_to = "Vrn",
+        values_to = "value"
+    ) |>
+    dplyr::mutate(Vrn = gsub("Wheat\\.Phenology\\.CAMP\\.", "", Vrn))
+p <- pd |> 
+    ggplot2::ggplot() +
+    ggplot2::geom_line(ggplot2::aes(x = Wheat.DaysAfterSowing, y = Wheat.Phenology.CAMP.Vrn), linewidth = 1) +
+    ggplot2::geom_area(
+        ggplot2::aes(x = Wheat.DaysAfterSowing, y = value, fill = Vrn),
+        stat = "identity",
+        alpha = 0.4,
+        position = "stack"
+    ) +
+    ggplot2::geom_line(ggplot2::aes(x = Wheat.DaysAfterSowing, y = Wheat.Phenology.CAMP.MaxVrn), 
+        linetype = "solid", color = "red") +
+    ggplot2::geom_hline(yintercept = c(1, 0, 2), linetype = "dashed", color = "grey50") +
+    ggplot2::facet_grid(Site ~ SowingDate) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = "bottom")
+
+pd_label <- df |>
+    dplyr::mutate(y = 0) |>
+    dplyr::select(all_of(c("Site", "SowingDate", "Cultivar", "Wheat.DaysAfterSowing", "Wheat.Phenology.CurrentStageName", "y"))) |>
+    dplyr::filter(nchar(Wheat.Phenology.CurrentStageName) > 0)
+p <- p +
+    ggplot2::geom_text(
+        data = pd_label,
+        ggplot2::aes(x = Wheat.DaysAfterSowing, y = y, label = Wheat.Phenology.CurrentStageName),
+        vjust = 0.5,
+        angle = 90,
+        hjust = 0,
+        size = 3.5
+    )
+
+pd_maxvrn <- pd |> 
+    dplyr::group_by(Site, SowingDate, Cultivar) |>
+    dplyr::filter(Wheat.Phenology.CAMP.MaxVrn == max(Wheat.Phenology.CAMP.MaxVrn)) |> 
+    dplyr::filter(Wheat.DaysAfterSowing == max(Wheat.DaysAfterSowing)) |> 
+    dplyr::slice(1) |> 
+    dplyr::ungroup() |>
+    dplyr::distinct()
+
+p + 
+    ggplot2::geom_text(aes(
+        x = Wheat.DaysAfterSowing, 
+        y = Wheat.Phenology.CAMP.MaxVrn + 0.1, 
+        label = "Max Vrn"),
+        data = pd_maxvrn,
+        vjust = 0,
+        hjust = 1,
+        size = 3.5
+    )
+```
