@@ -449,6 +449,12 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Crops/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LeavesInitiating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
@@ -906,22 +912,17 @@ window.Quarto = {
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The function computes the indexed value of <em>Vrn1</em> upregulation for a given temperature input <span class="math inline">\(dX\)</span> (likely a sub-daily temperature).</p>
-<p>The response follows the logic:</p>
+<p>The function computes the <em>Vrn1</em> upregulation for a given temperature <span class="math inline">\(T\)</span> (likely a sub-daily temperature). <em>Vrn1</em> expression is calculated after sowing as follows:</p>
+<p>If temperature <span class="math inline">\(T\)</span> is less than devernalisation temperature <span class="math inline">\(T_{\text{devernalisation}}\)</span>, Vrn expression is an exponential function of temperature and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model.</p>
+<p><span class="math display">\[ \Delta Vrn1_{T} = \frac{e^{k \cdot T} }{24} \]</span></p>
+<p>Where:</p>
 <ul>
-<li>If <code>camp.Params</code> is null, return 0 (no response).</li>
-<li>Compute upregulation:</li>
+<li><span class="math inline">\(\Delta Vrn1_{T}\)</span> is the upregulation of <em>Vrn1</em> from cold at temperature <span class="math inline">\(T\)</span>,</li>
+<li><span class="math inline">\(k\)</span> is the exponential shape factor for cold temperature response,</li>
+<li><span class="math inline">\(T\)</span> is the temperature in degrees Celsius.</li>
 </ul>
-<p><span class="math display">\[ U_{dVrn1} = e^{k \cdot dX} \]</span></p>
-<ul>
-<li>If <span class="math inline">\(dX &lt; \text{deVernalisationTemp}\)</span>:</li>
-</ul>
-<p><span class="math display">\[ \text{Response} = \frac{U_{dVrn1}}{24} \]</span></p>
-<ul>
-<li>Else (temperature exceeds de-vernalisation threshold):</li>
-</ul>
-<p><span class="math display">\[ \text{Response} = \frac{\text{deVernalisationRate}}{24} \]</span></p>
-<p>This response is scaled to a sub-daily (hourly) timestep by dividing by 24.</p>
+<p>If temperature <span class="math inline">\(T\)</span> exceeds the de-vernalisation threshold <span class="math inline">\(T_{\text{devernalisation}}\)</span>, the response is determined by down-regulation devernalisation rate through the parameter <code>deVernalisationRate</code> and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model:</p>
+<p><span class="math display">\[ \Delta Vrn1_{T} = \frac{R_{\text{devernalisationRate}}}{24} \]</span></p>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
@@ -979,9 +980,50 @@ window.Quarto = {
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is available for this function.</p>
-</blockquote>
+<p>In the wheat <a href="../../../../../docs/Crops/Wheat/Phenology/LeavesInitiating.html" class="crop-link">CAMP model or LeavesInitiating phase</a>, the following parameters are used for the <code>ColdVrnResponse</code> function:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 55%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>k</td>
+<td>Exponential shape factor for cold temperature response.</td>
+<td>-0.17</td>
+</tr>
+<tr class="even">
+<td>deVernalisationTemp</td>
+<td>Temperature above which de-vernalisation occurs.</td>
+<td>20</td>
+</tr>
+<tr class="odd">
+<td>deVernalisationRate</td>
+<td>Rate of <em>Vrn1</em> downregulation above the temperature threshold.</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p><code>deVernalisationRate</code> is set to 0, indicating that there is no down-regulation of <em>Vrn1</em> expression at temperatures above the de-vernalisation threshold (i.e.&nbsp;20°C).</p>
+<p>The upregulation of <em>Vrn1</em> from cold at temperature <span class="math inline">\(T\)</span> (<span class="math inline">\(\Delta Vrn1_{T}\)</span>) is shown in the following plot.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ColdVrnResponse_files/figure-html/cold-vrn-response-example-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Cold Vrn Response as a Function of Temperature</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>

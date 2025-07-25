@@ -2432,6 +2432,96 @@
     ]
   },
   {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html",
+    "title": "LeavesInitiating",
+    "section": "",
+    "text": "The LeavesInitiating phase in the Wheat model represents the developmental period from Emergence to DoubleRidge, driven by the expression of the Vrn1, Vrn2, and Vrn3 genes. This phase concludes when vernalisation is saturated, as predicted by the Cereal Anthesis Molecular Phenology (CAMP) model.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#overview",
+    "title": "LeavesInitiating",
+    "section": "Overview",
+    "text": "Overview\nThe VernalisationPhase Model is used to simulate the progress of vernalisation requirements. This phase begins when Plant Emergence to DoubleRidge.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#methodology",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#methodology",
+    "title": "LeavesInitiating",
+    "section": "Methodology",
+    "text": "Methodology\nSee VernalisationPhase and CAMP model for details on how the vernalisation progress is calculated. Here is focusing on the parameters used in this phase, i.e. CAMP with the following parameters:\n\nTT: Daily thermal time\nHaunStage: Haun stage is the number of leaves on the main stem\nDeltaHaunStage: Change in Haun stage from the previous day\nBasePhyllochron: Base Phyllochron, the thermal time required for each new leaf to appear under standard conditions\nPpResponse: Photoperiod response for vernalisation\nColdVrnResponse: Function for cold temperature response driving Vrn1 expression\nEnvData: The controlled environmental conditions under which Final Leaf Number (FLN) observations were made\nFLNparams: Final leaf number (FLN) for a genotype under controlled environmental conditions\ncalcCAMPVrnRates: Function to calculate the Vrn1, Vrn2, and Vrn3 rates based on the above parameters\n\nThermal Time (TT)\nThe daily thermal time is based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.\nHaun Stage (HaunStage) and Delta Haun Stage (DeltaHaunStage)\nHaun Stage (\\(HS\\)) and \\(\\Delta HS\\) is calculated from daily thermal time and a cultivar-specific phyllochron, which is the rate of leaf appearance.\nBase Phyllochron (BasePhyllochron)\nThe Base Phyllochron is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.\nPhotoperiod Response (PpResponse)\nIn the CAMP model, the photoperiod response is used to calculate the Vrn2 expression.\n\n\n\n\n\nLeaf Stage Factor as a Function of Leaf Cohort Number\n\n\n\n\nCold Vernalisation Response (ColdVrnResponse)\nThe daily upregulation of Vrn1 from cold temperature counts for sub-daily temperature variations.\nThe hourly temperature is interpolated from the daily minimum and maximum temperatures using a sinusoidal method during sunlight hours and an exponential decline during nighttime hours (Goudriaan and Van Laar 1994).\nThe hourly upregulation of Vrn1 from cold temperature is calculated using a cold response function, with the following parameters:\n\n\n\n\n\n\n\n\nName\nDescription\nValue\n\n\n\n\nk\nExponential shape factor for cold temperature response.\n-0.17\n\n\ndeVernalisationTemp\nTemperature above which de-vernalisation occurs.\n20\n\n\ndeVernalisationRate\nRate of Vrn1 downregulation above the temperature threshold.\n0\n\n\n\ndeVernalisationRate is set to 0, indicating that there is no down-regulation of Vrn1 expression at temperatures above the de-vernalisation threshold (i.e. 20°C).\nThe upregulation of Vrn1 from cold at hourly temperature \\(T\\) is shown in the following plot.\n\n\n\n\n\nCold Vrn Response as a Function of Temperature\n\n\n\n\nFinally, the daily upregulation of Vrn1 from cold temperature is calculated by summing the hourly upregulation over the day using method in SubDailyInterpolation.\n\nNote: The hourly interpolation of temperature is different with three hourly interpolation method which is used in the Thermal Time.\n\nControlled Environment Conditions (EnvData)\nThe controlled environment conditions under which Final Leaf Number (FLN) observations were made include:\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\nVrnTreatTemp\nVernalisation treatment temperature (°C)\n6\n\n\nVrnTreatDuration\nDays of exposure to vernalising temperature\n60\n\n\nTreatmentPp_L\nPhotoperiod under long-day treatment (hours)\n16\n\n\nTtEmerge\nObserved thermal time from sowing to emergence (°C·days)\n90\n\n\n\nThese parameters are used in the FLNParameterEnvironment of CAMP.\nFinal leaf number (FLNparams)\nThe final leaf number (FLN) for a genotype are observed or estimated under four controlled environmental conditions, which are the key driver of progress to the DoubleRidge stage.\nThe four FLN parameters include:\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\nMinLN\nFinal Leaf Number under full vernalisation and long photoperiod (&gt;16h)\n8.3\n\n\nPpLN\nIncrease in FLN under short photoperiod (&lt;8h) following full vernalisation\n3.8\n\n\nVrnLN\nIncrease in FLN when un-vernalised and grown under short photoperiod\n5.0\n\n\nVxPLN\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n-2.0\n\n\n\nThese parameters are used in the FinalLeafNumberSet of CAMP. See FinalLeafNumberSet for details on how these parameters are used to calculate the final leaf number (FLN) for a genotype under controlled environmental conditions.\nCalculation of Vrn expression (calcCAMPVrnRates)\nThe internal function calcCAMPVrnRates is used to calculate the Vrn1, Vrn2, and Vrn3 rates based on the above parameters. It only requires an external parameter Base Phyllochron which is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#cultivar-specific-parameters",
+    "title": "LeavesInitiating",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].CAMP.FLNparams.MinLN\nFinal Leaf Number under full vernalisation and long photoperiod\n8.3\n\n\n[Phenology].CAMP.FLNparams.PpLN\nIncrease in FLN under short photoperiod following full vernalisation\n3.8\n\n\n[Phenology].CAMP.FLNparams.VrnLN\nIncrease in FLN when un-vernalised and grown under short photoperiod\n5.0\n\n\n[Phenology].CAMP.FLNparams.VxPLN\nChange in FLN from photoperiod effect under un-vernalised, long-day growth\n-2.0\n\n\n[Phenology].CAMP.EnvData.VrnTreatTemp\nVernalisation treatment temperature (°C)\n6\n\n\n[Phenology].CAMP.EnvData.VrnTreatDuration\nDays of exposure to vernalising temperature\n60\n\n\n[Phenology].CAMP.EnvData.TreatmentPp_L\nPhotoperiod under long-day treatment (hours)\n16\n\n\n[Phenology].CAMP.EnvData.TtEmerge\nObserved thermal time from sowing to emergence (°C·days)\n90",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#practical-example",
+    "title": "LeavesInitiating",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#simulation-example",
+    "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#simulation-example",
+    "title": "LeavesInitiating",
+    "section": "Simulation Example",
+    "text": "Simulation Example\nWe demonstrate progress of leaf initiation phase using example simulations for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.\nThis plot shows the progress of the Vrn1 expression for the cultivar Sunlamb and Emu_Rock on the sowing date 1-May and 1-Jun. The LeavesInitiating phase is finished when Wheat.Phenology.CAMP.Vrn1 equal to 1 at vernalisation saturation.\n\n\n\n\n\n\n\n\nFigure 1: Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar ‘Sunlamb’ on the sowing date ‘1-May’.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "LeavesInitiating"
+    ]
+  },
+  {
     "objectID": "docs/Crops/Wheat/Phenology/HaunStage.html",
     "href": "docs/Crops/Wheat/Phenology/HaunStage.html",
     "title": "Haun Stage",
@@ -5646,7 +5736,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#methodology",
     "title": "ColdVrnResponse",
     "section": "Methodology",
-    "text": "Methodology\nThe function computes the indexed value of Vrn1 upregulation for a given temperature input \\(dX\\) (likely a sub-daily temperature).\nThe response follows the logic:\n\nIf camp.Params is null, return 0 (no response).\nCompute upregulation:\n\n\\[ U_{dVrn1} = e^{k \\cdot dX} \\]\n\nIf \\(dX &lt; \\text{deVernalisationTemp}\\):\n\n\\[ \\text{Response} = \\frac{U_{dVrn1}}{24} \\]\n\nElse (temperature exceeds de-vernalisation threshold):\n\n\\[ \\text{Response} = \\frac{\\text{deVernalisationRate}}{24} \\]\nThis response is scaled to a sub-daily (hourly) timestep by dividing by 24.",
+    "text": "Methodology\nThe function computes the Vrn1 upregulation for a given temperature \\(T\\) (likely a sub-daily temperature). Vrn1 expression is calculated after sowing as follows:\nIf temperature \\(T\\) is less than devernalisation temperature \\(T_{\\text{devernalisation}}\\), Vrn expression is an exponential function of temperature and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model.\n\\[ \\Delta Vrn1_{T} = \\frac{e^{k \\cdot T} }{24} \\]\nWhere:\n\n\\(\\Delta Vrn1_{T}\\) is the upregulation of Vrn1 from cold at temperature \\(T\\),\n\\(k\\) is the exponential shape factor for cold temperature response,\n\\(T\\) is the temperature in degrees Celsius.\n\nIf temperature \\(T\\) exceeds the de-vernalisation threshold \\(T_{\\text{devernalisation}}\\), the response is determined by down-regulation devernalisation rate through the parameter deVernalisationRate and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model:\n\\[ \\Delta Vrn1_{T} = \\frac{R_{\\text{devernalisationRate}}}{24} \\]",
     "crumbs": [
       "Home",
       "Docs",
@@ -5710,7 +5800,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html#practical-example",
     "title": "ColdVrnResponse",
     "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "text": "Practical Example\nIn the wheat CAMP model or LeavesInitiating phase, the following parameters are used for the ColdVrnResponse function:\n\n\n\n\n\n\n\n\nName\nDescription\nValue\n\n\n\n\nk\nExponential shape factor for cold temperature response.\n-0.17\n\n\ndeVernalisationTemp\nTemperature above which de-vernalisation occurs.\n20\n\n\ndeVernalisationRate\nRate of Vrn1 downregulation above the temperature threshold.\n0\n\n\n\ndeVernalisationRate is set to 0, indicating that there is no down-regulation of Vrn1 expression at temperatures above the de-vernalisation threshold (i.e. 20°C).\nThe upregulation of Vrn1 from cold at temperature \\(T\\) (\\(\\Delta Vrn1_{T}\\)) is shown in the following plot.\n\n\n\n\n\nCold Vrn Response as a Function of Temperature",
     "crumbs": [
       "Home",
       "Docs",
