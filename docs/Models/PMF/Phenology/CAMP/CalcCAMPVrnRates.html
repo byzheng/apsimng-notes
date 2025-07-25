@@ -1272,9 +1272,311 @@ F_{\text{cold, vrn1}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base,
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is available for this function.</p>
-</blockquote>
+<p>This example walks through each calculation step using the provided parameter values for very quick maturity <code>Emu_Rock</code> and very late maturity <code>Sunlamb</code> <span class="citation" data-cites="celestina_cultivar_2023">(<a href="#ref-celestina_cultivar_2023" role="doc-biblioref">Celestina et al. 2023</a>)</span>, resulting in all the key parameters for <code>CultivarRateParams</code>.</p>
+<p>The following table summarises the parameters used APSIM Wheat Model for the two cultivars:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 72%">
+<col style="width: 14%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter (Model Name)</th>
+<th>Emu_Rock</th>
+<th>Sunlamb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[Phenology].CAMP.FLNparams.MinLN</td>
+<td>7.0</td>
+<td>8.0</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.FLNparams.PpLN</td>
+<td>9.0</td>
+<td>12.0</td>
+</tr>
+<tr class="odd">
+<td>[Phenology].CAMP.FLNparams.VrnLN</td>
+<td>8.0</td>
+<td>10.0</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.FLNparams.VxPLN</td>
+<td>10.0</td>
+<td>14.0</td>
+</tr>
+<tr class="odd">
+<td>[Phenology].Phyllochron.BasePhyllochron.FixedValue</td>
+<td>94.78</td>
+<td>100.38</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.EnvData.VrnTreatTemp</td>
+<td>5.8</td>
+<td>5.8</td>
+</tr>
+<tr class="odd">
+<td>[Phenology].CAMP.EnvData.VrnTreatDuration</td>
+<td>60</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.EnvData.TreatmentPp_L</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr class="odd">
+<td>[Phenology].CAMP.EnvData.TtEmerge</td>
+<td>90</td>
+<td>90</td>
+</tr>
+</tbody>
+</table>
+<section id="convert-emergence-duration-from-thermal-time-to-phyllochrons" class="level4">
+<h4 class="anchored" data-anchor-id="convert-emergence-duration-from-thermal-time-to-phyllochrons">1. Convert Emergence Duration from Thermal Time to Phyllochrons</h4>
+<p><span class="math display">\[
+Ph_\text{emergence} = \frac{TT_\text{emergence}}{Ph_\text{base}}
+\]</span></p>
+<ul>
+<li>Emu_Rock: 90 / 94.78 ≈ 0.95</li>
+<li>Sunlamb: 90 / 100.38 ≈ 0.90</li>
+</ul>
+</section>
+<section id="base-phyllochron-duration-of-vernalisation-treatment" class="level4">
+<h4 class="anchored" data-anchor-id="base-phyllochron-duration-of-vernalisation-treatment">2. Base phyllochron duration of vernalisation treatment</h4>
+<p><span class="math display">\[
+Ph_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{Ph_\text{base}}
+\]</span></p>
+<ul>
+<li>Emu_Rock: (5.8 × 60) / 94.78 ≈ 3.67</li>
+<li>Sunlamb: (5.8 × 60) / 100.38 ≈ 3.47</li>
+</ul>
+</section>
+<section id="estimate-haun-stage-at-terminal-spikelet" class="level4">
+<h4 class="anchored" data-anchor-id="estimate-haun-stage-at-terminal-spikelet">3. Estimate Haun Stage at Terminal Spikelet</h4>
+<p><span class="math display">\[
+\text{HS}_{TS}(i) = (\text{FLN}(i) - 2.85) \times 1.1
+\]</span></p>
+<ul>
+<li>Emu_Rock:
+<ul>
+<li>LV: (7.0 - 2.85) × 1.1 = 4.15 × 1.1 ≈ 4.57</li>
+<li>LN: (9.0 - 2.85) × 1.1 = 6.15 × 1.1 ≈ 6.77</li>
+<li>SV: (8.0 - 2.85) × 1.1 = 5.15 × 1.1 ≈ 5.67</li>
+<li>SN: (10.0 - 2.85) × 1.1 = 7.15 × 1.1 ≈ 7.87</li>
+</ul></li>
+<li>Sunlamb:
+<ul>
+<li>LV: (8.0 - 2.85) × 1.1 = 5.15 × 1.1 ≈ 5.67</li>
+<li>LN: (12.0 - 2.85) × 1.1 = 9.15 × 1.1 ≈ 10.07</li>
+<li>SV: (10.0 - 2.85) × 1.1 = 7.15 × 1.1 ≈ 7.87</li>
+<li>SN: (14.0 - 2.85) × 1.1 = 11.15 × 1.1 ≈ 12.27</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculate-minimum-vernalisation-saturation-to-terminal-spikelet" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-minimum-vernalisation-saturation-to-terminal-spikelet">4. Calculate Minimum Vernalisation Saturation to Terminal Spikelet</h4>
+<p><span class="math display">\[
+\text{VS}_{TS,\ min} = \min(\text{HS}_{TS,\ LV} - 1.1,\ 3)
+\]</span></p>
+<ul>
+<li>Emu_Rock: min(4.57 - 1.1, 3) = min(3.47, 3) = 3.0</li>
+<li>Sunlamb: min(5.67 - 1.1, 3) = min(4.57, 3) = 3.0</li>
+</ul>
+</section>
+<section id="calculate-the-accumulated-phyllochrons-at-vernalisation-saturation-for-each-treatment" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-the-accumulated-phyllochrons-at-vernalisation-saturation-for-each-treatment">5. Calculate the accumulated phyllochrons at vernalisation saturation for each treatment</h4>
+<ul>
+<li><strong>LV:</strong> <span class="math inline">\(\text{VS}_{LV} = \text{HS}_{TS,\ LV} - \text{VS}_{TS,\ min}\)</span>
+<ul>
+<li>Emu_Rock: 4.57 - 3.0 = 1.57</li>
+<li>Sunlamb: 5.67 - 3.0 = 2.67</li>
+</ul></li>
+<li><strong>LN:</strong> <span class="math inline">\(\text{VS}_{LN} = \max(\text{HS}_{TS,\ LN} - \text{VS}_{TS,\ min},\ \text{VS}_{LV})\)</span>
+<ul>
+<li>Emu_Rock: max(6.77 - 3.0, 1.57) = max(3.77, 1.57) = 3.77</li>
+<li>Sunlamb: max(10.07 - 3.0, 2.67) = max(7.07, 2.67) = 7.07</li>
+</ul></li>
+<li><strong>SV:</strong> <span class="math inline">\(\text{VS}_{SV} = \max(\text{HS}_{TS,\ SV} - \text{VS}_{TS,\ min},\ \text{VS}_{LV})\)</span>
+<ul>
+<li>Emu_Rock: max(5.67 - 3.0, 1.57) = max(2.67, 1.57) = 2.67</li>
+<li>Sunlamb: max(7.87 - 3.0, 2.67) = max(4.87, 2.67) = 4.87</li>
+</ul></li>
+<li><strong>SN:</strong> <span class="math inline">\(\text{VS}_{SN} = \max(\text{HS}_{TS,\ SN} - (\text{HS}_{TS,\ SV} - \text{VS}_{SV}),\ \text{VS}_{LV})\)</span>
+<ul>
+<li>Emu_Rock: max(7.87 - (5.67 - 2.67), 1.57) = max(7.87 - 3.0, 1.57) = max(4.87, 1.57) = 4.87</li>
+<li>Sunlamb: max(12.27 - (7.87 - 4.87), 2.67) = max(12.27 - 3.0, 2.67) = max(9.27, 2.67) = 9.27</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculate-vernalisation-rates-and-photoperiod-sensitivities" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-vernalisation-rates-and-photoperiod-sensitivities">6. Calculate Vernalisation Rates and Photoperiod Sensitivities</h4>
+<ul>
+<li><strong>Base Vernalisation Rate (Veg):</strong> <span class="math inline">\(\Delta V_{\text{base, veg}} = 1 / (\text{VS}_{SN} + Ph_\text{emergence})\)</span>
+<ul>
+<li>Emu_Rock: 1 / (4.87 + 0.95) = 1 / 5.82 ≈ 0.172</li>
+<li>Sunlamb: 1 / (9.27 + 0.90) = 1 / 10.17 ≈ 0.098</li>
+</ul></li>
+<li><strong>Max Vernalisation Rate (Veg):</strong> <span class="math inline">\(\Delta V_{\text{max, veg}} = 1 / (\text{VS}_{SV} + Ph_\text{emergence})\)</span>
+<ul>
+<li>Emu_Rock: 1 / (2.67 + 0.95) = 1 / 3.62 ≈ 0.276</li>
+<li>Sunlamb: 1 / (4.87 + 0.90) = 1 / 5.77 ≈ 0.173</li>
+</ul></li>
+<li><strong>Base Vernalisation Rate (ER):</strong> <span class="math inline">\(\Delta V_{\text{base, ER}} = 1 / (\text{HS}_{TS,\ SN} - \text{VS}_{SN})\)</span>
+<ul>
+<li>Emu_Rock: 1 / (7.87 - 4.87) = 1 / 3.0 ≈ 0.333</li>
+<li>Sunlamb: 1 / (12.27 - 9.27) = 1 / 3.0 ≈ 0.333</li>
+</ul></li>
+<li><strong>Max Vernalisation Rate (ER):</strong> <span class="math inline">\(\Delta V_{\text{max, ER}} = 1 / \text{VS}_{TS,\ min}\)</span>
+<ul>
+<li>Both: 1 / 3.0 ≈ 0.333</li>
+</ul></li>
+<li><strong>Photoperiod Sensitivity (ER):</strong> <span class="math inline">\(F_{\text{Pp, Vrn3, ER}} = (\Delta V_{\text{max, ER}} / \Delta V_{\text{base, ER}} - 1) + 1\)</span>
+<ul>
+<li>Both: (0.333 / 0.333 - 1) + 1 = (1 - 1) + 1 = 1</li>
+</ul></li>
+<li><strong>Photoperiod Sensitivity (Veg):</strong> <span class="math inline">\(F_{\text{Pp, Vrn3, veg}} = (1 / \text{VS}_{LN} / \Delta V_{\text{max, veg}} - 1) + 1\)</span>
+<ul>
+<li>Emu_Rock: (1 / 3.77 / 0.276 - 1) + 1 = (0.265 / 0.276 - 1) + 1 ≈ (0.960 - 1) + 1 ≈ 0.960</li>
+<li>Sunlamb: (1 / 7.07 / 0.173 - 1) + 1 = (0.141 / 0.173 - 1) + 1 ≈ (0.815 - 1) + 1 ≈ 0.815</li>
+</ul>
+Constrain to at least <span class="math inline">\(F_{\text{Pp, Vrn3, ER}}\)</span> (which is 1):
+<ul>
+<li>Emu_Rock: max(0.960, 1) = 1</li>
+<li>Sunlamb: max(0.815, 1) = 1</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculate-maximum-vrn2-expression-under-long-photoperiods" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-maximum-vrn2-expression-under-long-photoperiods">7. Calculate Maximum Vrn2 Expression Under Long Photoperiods</h4>
+<ul>
+<li><strong>Effective Vrn1 × Vrn3 Rate:</strong> <span class="math inline">\(\Delta V_{\text{Vrn1} \times \text{Vrn3}} = \max(1 / VS_{LN}, \Delta V_{\text{base, veg}} \times F_{\text{Pp, Vrn3, veg}})\)</span>
+<ul>
+<li>Emu_Rock: max(1 / 3.77, 0.172 × 1) = max(0.265, 0.172) = 0.265</li>
+<li>Sunlamb: max(1 / 7.07, 0.098 × 1) = max(0.141, 0.098) = 0.141</li>
+</ul></li>
+<li><strong>Duration of Vrn1 × Vrn3 Expression:</strong> <span class="math inline">\(H_{\text{Vrn1} \times \text{Vrn3}} = 1 / \Delta V_{\text{Vrn1} \times \text{Vrn3}}\)</span>
+<ul>
+<li>Emu_Rock: 1 / 0.265 ≈ 3.77</li>
+<li>Sunlamb: 1 / 0.141 ≈ 7.07</li>
+</ul></li>
+<li><strong>EndVrn2 (LN):</strong> <span class="math inline">\(\text{EndVrn2}_{\text{LN}} = \max(0, VS_{LN} - H_{\text{Vrn1} \times \text{Vrn3}})\)</span>
+<ul>
+<li>Emu_Rock: max(0, 3.77 - 3.77) = 0</li>
+<li>Sunlamb: max(0, 7.07 - 7.07) = 0</li>
+</ul></li>
+<li><strong>MaxVrn2:</strong> <span class="math inline">\(V_{\text{max, Vrn2}} = (\text{EndVrn2}_{\text{LN}} + Ph_\text{emergence}) \times \Delta V_{\text{base, veg}}\)</span>
+<ul>
+<li>Emu_Rock: (0 + 0.95) × 0.172 ≈ 0.164</li>
+<li>Sunlamb: (0 + 0.90) × 0.098 ≈ 0.088</li>
+</ul></li>
+</ul>
+</section>
+<section id="calculate-cold-induced-upregulation-of-vrn1-expression" class="level4">
+<h4 class="anchored" data-anchor-id="calculate-cold-induced-upregulation-of-vrn1-expression">8. Calculate Cold-Induced Upregulation of Vrn1 Expression</h4>
+<ul>
+<li><strong>Baseline Vrn1 Expression up to VS in LV:</strong> <span class="math inline">\(V_{\text{base, LV}} = (Ph_\text{emergence} + VS_{LV}) \times \Delta V_{\text{base, veg}}\)</span>
+<ul>
+<li>Emu_Rock: (0.95 + 1.57) × 0.172 = 2.52 × 0.172 ≈ 0.433</li>
+<li>Sunlamb: (0.90 + 2.67) × 0.098 = 3.57 × 0.098 ≈ 0.350</li>
+</ul></li>
+<li><strong>Cold-induced Vrn1:</strong> <span class="math inline">\(V_{\text{cold, LV}} = 1 + V_{\text{max, Vrn2}} - V_{\text{base, LV}}\)</span>
+<ul>
+<li>Emu_Rock: 1 + 0.164 - 0.433 = 0.731</li>
+<li>Sunlamb: 1 + 0.088 - 0.350 = 0.738</li>
+</ul></li>
+<li><strong>Methylation Threshold:</strong> <span class="math inline">\(\theta_{\text{meth}} = V_{\text{cold, LV}}\)</span>
+<ul>
+<li>Emu_Rock: 0.731</li>
+<li>Sunlamb: 0.738</li>
+</ul></li>
+<li><strong>Effective Duration of Vernalisation:</strong> <span class="math inline">\(H_{\text{vern, LV}} = \min(Ph_\text{vern}, Ph_\text{emergence} + VS_{LV})\)</span>
+<ul>
+<li>Emu_Rock: min(3.67, 2.52) = 2.52</li>
+<li>Sunlamb: min(3.47, 3.57) = 3.47</li>
+</ul></li>
+<li><strong>Cold-Induced Vrn1 Expression Rate:</strong> <span class="math inline">\(\Delta V_{\text{cold, LV}} = (V_{\text{cold, LV}} + \theta_{\text{meth}}) / H_{\text{vern, LV}}\)</span>
+<ul>
+<li>Emu_Rock: (0.731 + 0.731) / 2.52 ≈ 1.462 / 2.52 ≈ 0.580</li>
+<li>Sunlamb: (0.738 + 0.738) / 3.47 ≈ 1.476 / 3.47 ≈ 0.426</li>
+</ul></li>
+<li><strong>Max Cold-Induced Expression Rate at 0°C:</strong> <span class="math inline">\(\Delta V_{\text{cold, max}} = \Delta V_{\text{cold, LV}} / \exp(-0.17 \times 5.8)\)</span>
+<ul>
+<li>exp(-0.17 × 5.8) ≈ exp(-0.986) ≈ 0.373</li>
+<li>Emu_Rock: 0.580 / 0.373 ≈ 1.555</li>
+<li>Sunlamb: 0.426 / 0.373 ≈ 1.142</li>
+</ul></li>
+<li><strong>Cold-Induced Vrn1 Upregulation Factor:</strong> <span class="math inline">\(F_{\text{cold, vrn1}} = \Delta V_{\text{cold, max}} / \Delta V_{\text{base, veg}}\)</span>
+<ul>
+<li>Emu_Rock: 1.555 / 0.172 ≈ 9.04</li>
+<li>Sunlamb: 1.142 / 0.098 ≈ 11.65</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="summary-table-of-estimated-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="summary-table-of-estimated-parameters"><strong>Summary Table of Estimated Parameters</strong></h4>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Emu_Rock</th>
+<th>Sunlamb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BaseDVrnVeg</td>
+<td>0.172</td>
+<td>0.098</td>
+</tr>
+<tr class="even">
+<td>MaxDVrnVeg</td>
+<td>0.276</td>
+<td>0.173</td>
+</tr>
+<tr class="odd">
+<td>BaseDVrnER</td>
+<td>0.333</td>
+<td>0.333</td>
+</tr>
+<tr class="even">
+<td>MaxDVrnER</td>
+<td>0.333</td>
+<td>0.333</td>
+</tr>
+<tr class="odd">
+<td>PpVrn3FactVeg</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="even">
+<td>PpVrn3FactER</td>
+<td>1.000</td>
+<td>1.000</td>
+</tr>
+<tr class="odd">
+<td>MaxVrn2</td>
+<td>0.164</td>
+<td>0.088</td>
+</tr>
+<tr class="even">
+<td>MethalationThreshold</td>
+<td>0.731</td>
+<td>0.738</td>
+</tr>
+<tr class="odd">
+<td>ColdVrn1Fact</td>
+<td>9.04</td>
+<td>11.65</td>
+</tr>
+</tbody>
+</table>
+<p><em>All values rounded to 3 decimal places.</em></p>
+</section>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
@@ -1289,6 +1591,9 @@ F_{\text{cold, vrn1}} = \frac{\Delta V_{\text{cold, max}}}{\Delta V_{\text{base,
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-brown_integration_2013" class="csl-entry" role="listitem">
 Brown, Hamish E., Peter D. Jamieson, Ian R. Brooking, Derrick J. Moot, and Neil I. Huth. 2013. <span>“Integration of Molecular and Physiological Models to Explain Time of Anthesis in Wheat.”</span> <em>Annals of Botany</em> 112 (9): 1683–703. <a href="https://doi.org/10.1093/aob/mct224">https://doi.org/10.1093/aob/mct224</a>.
+</div>
+<div id="ref-celestina_cultivar_2023" class="csl-entry" role="listitem">
+Celestina, Corinne, James Hunt, Haydn Kuchel, Felicity Harris, Kenton Porker, Ben Biddulph, Maxwell Bloomfield, et al. 2023. <span>“A Cultivar Phenology Classification Scheme for Wheat and Barley.”</span> <em>European Journal of Agronomy</em> 143 (February): 126732. <a href="https://doi.org/10.1016/j.eja.2022.126732">https://doi.org/10.1016/j.eja.2022.126732</a>.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
