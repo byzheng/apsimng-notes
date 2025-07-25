@@ -466,9 +466,183 @@ This factor quantifies the enhancement in Vrn1 expression due to cold during ver
 
 ## Practical Example
 
-> No practical example is available for this function.
+This example walks through each calculation step using the provided parameter values for very quick maturity `Emu_Rock` and very late maturity `Sunlamb` [@celestina_cultivar_2023], resulting in all the key parameters for `CultivarRateParams`.
+
+The following table summarises the parameters used APSIM Wheat Model for the two cultivars:
+
+| Parameter (Model Name)                            | Emu_Rock | Sunlamb |
+|---------------------------------------------------|----------|---------|
+| [Phenology].CAMP.FLNparams.MinLN                  | 7.0      | 8.0     |
+| [Phenology].CAMP.FLNparams.PpLN                   | 9.0      | 12.0    |
+| [Phenology].CAMP.FLNparams.VrnLN                  | 8.0      | 10.0    |
+| [Phenology].CAMP.FLNparams.VxPLN                  | 10.0     | 14.0    |
+| [Phenology].Phyllochron.BasePhyllochron.FixedValue| 94.78    | 100.38  |
+| [Phenology].CAMP.EnvData.VrnTreatTemp             | 5.8      | 5.8     |
+| [Phenology].CAMP.EnvData.VrnTreatDuration         | 60       | 60      |
+| [Phenology].CAMP.EnvData.TreatmentPp_L            | 16       | 16      |
+| [Phenology].CAMP.EnvData.TtEmerge                 | 90      | 90     |
+
+#### 1. Convert Emergence Duration from Thermal Time to Phyllochrons
+
+$$
+Ph_\text{emergence} = \frac{TT_\text{emergence}}{Ph_\text{base}}
+$$
+
+- Emu_Rock: 90 / 94.78 ≈ 0.95
+- Sunlamb: 90 / 100.38 ≈ 0.90
+
+#### 2. Base phyllochron duration of vernalisation treatment
+
+$$
+Ph_\text{vern} = \frac{T_\text{vern} \times D_\text{V}}{Ph_\text{base}}
+$$
+
+- Emu_Rock: (5.8 × 60) / 94.78 ≈ 3.67
+- Sunlamb: (5.8 × 60) / 100.38 ≈ 3.47
+
+#### 3. Estimate Haun Stage at Terminal Spikelet
+
+$$
+\text{HS}_{TS}(i) = (\text{FLN}(i) - 2.85) \times 1.1
+$$
+
+- Emu_Rock:
+  - LV: (7.0 - 2.85) × 1.1 = 4.15 × 1.1 ≈ 4.57
+  - LN: (9.0 - 2.85) × 1.1 = 6.15 × 1.1 ≈ 6.77
+  - SV: (8.0 - 2.85) × 1.1 = 5.15 × 1.1 ≈ 5.67
+  - SN: (10.0 - 2.85) × 1.1 = 7.15 × 1.1 ≈ 7.87
+
+- Sunlamb:
+  - LV: (8.0 - 2.85) × 1.1 = 5.15 × 1.1 ≈ 5.67
+  - LN: (12.0 - 2.85) × 1.1 = 9.15 × 1.1 ≈ 10.07
+  - SV: (10.0 - 2.85) × 1.1 = 7.15 × 1.1 ≈ 7.87
+  - SN: (14.0 - 2.85) × 1.1 = 11.15 × 1.1 ≈ 12.27
+
+#### 4. Calculate Minimum Vernalisation Saturation to Terminal Spikelet
+
+$$
+\text{VS}_{TS,\ min} = \min(\text{HS}_{TS,\ LV} - 1.1,\ 3)
+$$
+
+- Emu_Rock: min(4.57 - 1.1, 3) = min(3.47, 3) = 3.0
+- Sunlamb: min(5.67 - 1.1, 3) = min(4.57, 3) = 3.0
+
+#### 5. Calculate the accumulated phyllochrons at vernalisation saturation for each treatment
+
+- **LV:** $\text{VS}_{LV} = \text{HS}_{TS,\ LV} - \text{VS}_{TS,\ min}$
+  - Emu_Rock: 4.57 - 3.0 = 1.57
+  - Sunlamb: 5.67 - 3.0 = 2.67
+
+- **LN:** $\text{VS}_{LN} = \max(\text{HS}_{TS,\ LN} - \text{VS}_{TS,\ min},\ \text{VS}_{LV})$
+  - Emu_Rock: max(6.77 - 3.0, 1.57) = max(3.77, 1.57) = 3.77
+  - Sunlamb: max(10.07 - 3.0, 2.67) = max(7.07, 2.67) = 7.07
+
+- **SV:** $\text{VS}_{SV} = \max(\text{HS}_{TS,\ SV} - \text{VS}_{TS,\ min},\ \text{VS}_{LV})$
+  - Emu_Rock: max(5.67 - 3.0, 1.57) = max(2.67, 1.57) = 2.67
+  - Sunlamb: max(7.87 - 3.0, 2.67) = max(4.87, 2.67) = 4.87
+
+- **SN:** $\text{VS}_{SN} = \max(\text{HS}_{TS,\ SN} - (\text{HS}_{TS,\ SV} - \text{VS}_{SV}),\ \text{VS}_{LV})$
+  - Emu_Rock: max(7.87 - (5.67 - 2.67), 1.57) = max(7.87 - 3.0, 1.57) = max(4.87, 1.57) = 4.87
+  - Sunlamb: max(12.27 - (7.87 - 4.87), 2.67) = max(12.27 - 3.0, 2.67) = max(9.27, 2.67) = 9.27
+
+#### 6. Calculate Vernalisation Rates and Photoperiod Sensitivities
+
+- **Base Vernalisation Rate (Veg):** $\Delta V_{\text{base, veg}} = 1 / (\text{VS}_{SN} + Ph_\text{emergence})$
+  - Emu_Rock: 1 / (4.87 + 0.95) = 1 / 5.82 ≈ 0.172
+  - Sunlamb: 1 / (9.27 + 0.90) = 1 / 10.17 ≈ 0.098
+
+- **Max Vernalisation Rate (Veg):** $\Delta V_{\text{max, veg}} = 1 / (\text{VS}_{SV} + Ph_\text{emergence})$
+  - Emu_Rock: 1 / (2.67 + 0.95) = 1 / 3.62 ≈ 0.276
+  - Sunlamb: 1 / (4.87 + 0.90) = 1 / 5.77 ≈ 0.173
+
+- **Base Vernalisation Rate (ER):** $\Delta V_{\text{base, ER}} = 1 / (\text{HS}_{TS,\ SN} - \text{VS}_{SN})$
+  - Emu_Rock: 1 / (7.87 - 4.87) = 1 / 3.0 ≈ 0.333
+  - Sunlamb: 1 / (12.27 - 9.27) = 1 / 3.0 ≈ 0.333
+
+- **Max Vernalisation Rate (ER):** $\Delta V_{\text{max, ER}} = 1 / \text{VS}_{TS,\ min}$
+  - Both: 1 / 3.0 ≈ 0.333
+
+- **Photoperiod Sensitivity (ER):** $F_{\text{Pp, Vrn3, ER}} = (\Delta V_{\text{max, ER}} / \Delta V_{\text{base, ER}} - 1) + 1$
+  - Both: (0.333 / 0.333 - 1) + 1 = (1 - 1) + 1 = 1
+
+- **Photoperiod Sensitivity (Veg):** $F_{\text{Pp, Vrn3, veg}} = (1 / \text{VS}_{LN} / \Delta V_{\text{max, veg}} - 1) + 1$
+  - Emu_Rock: (1 / 3.77 / 0.276 - 1) + 1 = (0.265 / 0.276 - 1) + 1 ≈ (0.960 - 1) + 1 ≈ 0.960
+  - Sunlamb: (1 / 7.07 / 0.173 - 1) + 1 = (0.141 / 0.173 - 1) + 1 ≈ (0.815 - 1) + 1 ≈ 0.815
+
+  Constrain to at least $F_{\text{Pp, Vrn3, ER}}$ (which is 1):
+  - Emu_Rock: max(0.960, 1) = 1
+  - Sunlamb: max(0.815, 1) = 1
+
+#### 7. Calculate Maximum Vrn2 Expression Under Long Photoperiods
+
+- **Effective Vrn1 × Vrn3 Rate:** $\Delta V_{\text{Vrn1} \times \text{Vrn3}} = \max(1 / VS_{LN}, \Delta V_{\text{base, veg}} \times F_{\text{Pp, Vrn3, veg}})$
+  - Emu_Rock: max(1 / 3.77, 0.172 × 1) = max(0.265, 0.172) = 0.265
+  - Sunlamb: max(1 / 7.07, 0.098 × 1) = max(0.141, 0.098) = 0.141
+
+- **Duration of Vrn1 × Vrn3 Expression:** $H_{\text{Vrn1} \times \text{Vrn3}} = 1 / \Delta V_{\text{Vrn1} \times \text{Vrn3}}$
+  - Emu_Rock: 1 / 0.265 ≈ 3.77
+  - Sunlamb: 1 / 0.141 ≈ 7.07
+
+- **EndVrn2 (LN):** $\text{EndVrn2}_{\text{LN}} = \max(0, VS_{LN} - H_{\text{Vrn1} \times \text{Vrn3}})$
+  - Emu_Rock: max(0, 3.77 - 3.77) = 0
+  - Sunlamb: max(0, 7.07 - 7.07) = 0
+
+- **MaxVrn2:** $V_{\text{max, Vrn2}} = (\text{EndVrn2}_{\text{LN}} + Ph_\text{emergence}) \times \Delta V_{\text{base, veg}}$
+  - Emu_Rock: (0 + 0.95) × 0.172 ≈ 0.164
+  - Sunlamb: (0 + 0.90) × 0.098 ≈ 0.088
+
+#### 8. Calculate Cold-Induced Upregulation of Vrn1 Expression
+
+- **Baseline Vrn1 Expression up to VS in LV:** $V_{\text{base, LV}} = (Ph_\text{emergence} + VS_{LV}) \times \Delta V_{\text{base, veg}}$
+  - Emu_Rock: (0.95 + 1.57) × 0.172 = 2.52 × 0.172 ≈ 0.433
+  - Sunlamb: (0.90 + 2.67) × 0.098 = 3.57 × 0.098 ≈ 0.350
+
+- **Cold-induced Vrn1:** $V_{\text{cold, LV}} = 1 + V_{\text{max, Vrn2}} - V_{\text{base, LV}}$
+  - Emu_Rock: 1 + 0.164 - 0.433 = 0.731
+  - Sunlamb: 1 + 0.088 - 0.350 = 0.738
+
+- **Methylation Threshold:** $\theta_{\text{meth}} = V_{\text{cold, LV}}$
+  - Emu_Rock: 0.731
+  - Sunlamb: 0.738
+
+- **Effective Duration of Vernalisation:** $H_{\text{vern, LV}} = \min(Ph_\text{vern}, Ph_\text{emergence} + VS_{LV})$
+  - Emu_Rock: min(3.67, 2.52) = 2.52
+  - Sunlamb: min(3.47, 3.57) = 3.47
+
+- **Cold-Induced Vrn1 Expression Rate:** $\Delta V_{\text{cold, LV}} = (V_{\text{cold, LV}} + \theta_{\text{meth}}) / H_{\text{vern, LV}}$
+  - Emu_Rock: (0.731 + 0.731) / 2.52 ≈ 1.462 / 2.52 ≈ 0.580
+  - Sunlamb: (0.738 + 0.738) / 3.47 ≈ 1.476 / 3.47 ≈ 0.426
+
+- **Max Cold-Induced Expression Rate at 0°C:** $\Delta V_{\text{cold, max}} = \Delta V_{\text{cold, LV}} / \exp(-0.17 \times 5.8)$
+  - exp(-0.17 × 5.8) ≈ exp(-0.986) ≈ 0.373
+  - Emu_Rock: 0.580 / 0.373 ≈ 1.555
+  - Sunlamb: 0.426 / 0.373 ≈ 1.142
+
+- **Cold-Induced Vrn1 Upregulation Factor:** $F_{\text{cold, vrn1}} = \Delta V_{\text{cold, max}} / \Delta V_{\text{base, veg}}$
+  - Emu_Rock: 1.555 / 0.172 ≈ 9.04
+  - Sunlamb: 1.142 / 0.098 ≈ 11.65
+
+---
+
+#### **Summary Table of Estimated Parameters**
+
+| Parameter             | Emu_Rock | Sunlamb |
+|-----------------------|----------|---------|
+| BaseDVrnVeg           | 0.172    | 0.098   |
+| MaxDVrnVeg            | 0.276    | 0.173   |
+| BaseDVrnER            | 0.333    | 0.333   |
+| MaxDVrnER             | 0.333    | 0.333   |
+| PpVrn3FactVeg         | 1.000    | 1.000   |
+| PpVrn3FactER          | 1.000    | 1.000   |
+| MaxVrn2               | 0.164    | 0.088   |
+| MethalationThreshold  | 0.731    | 0.738   |
+| ColdVrn1Fact          | 9.04     | 11.65   |
+
+*All values rounded to 3 decimal places.*
 
 ## See Also
 
 * **Source code:** [CalcCAMPVrnRates.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.cs)
+
+
 

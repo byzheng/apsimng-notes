@@ -121,7 +121,7 @@ fln_data <- data.frame(
 fln_long <- calculate_fln(fln_data)
 ```
 
-Below is a summary table for two cultivars including very quick maturity `Emu_Rock` and very late maturity Sunlamb, showing their parameter values and calculated FLN for each treatment:
+Below is a summary table for two cultivars including very quick maturity `Emu_Rock` and very late maturity `Sunlamb` [@celestina_cultivar_2023], showing their parameter values and calculated FLN for each treatment:
 
 ```{r tbl-cultivar-parameters, results = "asis"}
 fln_long |>
