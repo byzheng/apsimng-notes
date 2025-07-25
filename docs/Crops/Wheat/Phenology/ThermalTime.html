@@ -893,9 +893,9 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </section>
 <section id="simulation-example" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-example">Simulation Example</h2>
-<p>We demonstrate daily thermal time using <a href="docs/Crops/Wheat/Examples/wheat_example1.qmd" class="broken-link">example simulations</a> for wheat. The simulations are designed to illustrate how daily thermal times are calculated according to daily minimum and maximum temperatures.</p>
-<p>The output variable <code>Wheat.Phenology.ThermalTime</code> is used to report the daily thermal time values, which represent the crop responses to daily temperature for development and growth.</p>
-<p>In the example below, we plot thermal time against days after sowing (Wheat.DaysAfterSowing) to visualize how thermal time accumulates throughout the season. The shape of the curve reflects temperature patterns during the growing period, with higher daily thermal time values typically corresponding to warmer days.</p>
+<p>We demonstrate daily thermal time using <a href="docs/Crops/Wheat/Examples/wheat_example1.qmd" class="broken-link">example simulations</a> for wheat. These simulations illustrate how daily thermal time is calculated based on daily minimum and maximum temperatures, which are key drivers of crop development.</p>
+<p>The output variable <code>Wheat.Phenology.ThermalTime</code> reports the daily thermal time values. These values represent the crop’s physiological response to temperature, and are used to model development processes such as leaf appearance, stem elongation, and flowering.</p>
+<p>In the example below, we plot thermal time against days after sowing (<code>Wheat.DaysAfterSowing</code>) to visualize how thermal time accumulates across the season. The used cultivar is <code>Sunlamb</code>, and the sowing date is 1 May. The figure overlays thermal time accumulation with daily temperature conditions to provide context for interpreting crop development.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-thermal-time" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -910,7 +910,7 @@ Figure&nbsp;1: Thermal Time Simulation for Wheat Example 1. The blue and red lin
 </div>
 </div>
 </div>
-<p>This plot provides insight into how daily thermal time relates to daily minimum and maximum temperatures after sowing.</p>
+<p>This plot provides insight into how daily thermal time values fluctuate in response to daily temperatures and how these values accumulate to drive crop development.</p>
 
 
 </section>
