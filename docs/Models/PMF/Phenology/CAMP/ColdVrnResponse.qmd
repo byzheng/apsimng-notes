@@ -23,24 +23,23 @@ The following inputs are required by the function, supplied as child models or l
 
 ## Methodology
 
-The function computes the indexed value of *Vrn1* upregulation for a given temperature input $dX$ (likely a sub-daily temperature).
+The function computes the *Vrn1* upregulation for a given temperature $T$ (likely a sub-daily temperature). *Vrn1* expression is calculated after sowing as follows:
 
-The response follows the logic:
 
-- If `camp.Params` is null, return 0 (no response).
-- Compute upregulation:  
+If temperature $T$ is less than devernalisation temperature $T_{\text{devernalisation}}$, Vrn expression is an exponential function of temperature and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model.
 
-$$ U_{dVrn1} = e^{k \cdot dX} $$
+$$ \Delta Vrn1_{T} = \frac{e^{k \cdot T} }{24} $$
 
-- If $dX < \text{deVernalisationTemp}$:  
+Where:
 
-$$ \text{Response} = \frac{U_{dVrn1}}{24} $$
+- $\Delta Vrn1_{T}$ is the upregulation of *Vrn1* from cold at temperature $T$,
+- $k$ is the exponential shape factor for cold temperature response,
+- $T$ is the temperature in degrees Celsius.
 
-- Else (temperature exceeds de-vernalisation threshold):  
+If temperature $T$ exceeds the de-vernalisation threshold $T_{\text{devernalisation}}$, the response is determined by down-regulation devernalisation rate through the parameter `deVernalisationRate` and divided by 24 to convert from daily to hourly as the hourly interpolation is used in the model:
 
-$$ \text{Response} = \frac{\text{deVernalisationRate}}{24} $$
 
-This response is scaled to a sub-daily (hourly) timestep by dividing by 24.
+$$ \Delta Vrn1_{T} = \frac{R_{\text{devernalisationRate}}}{24} $$
 
 ## Events 
 
@@ -72,7 +71,35 @@ This response is scaled to a sub-daily (hourly) timestep by dividing by 24.
 
 ## Practical Example
 
-> No practical example is available for this function.
+In the wheat [CAMP model or LeavesInitiating phase](/docs/Crops/Wheat/Phenology/LeavesInitiating.qmd), the following parameters are used for the `ColdVrnResponse` function:
+
+| Name                       | Description                                         | Value         |
+|----------------------------|-----------------------------------------------------|---------------|
+| k                          | Exponential shape factor for cold temperature response. | -0.17           |
+| deVernalisationTemp        | Temperature above which de-vernalisation occurs.    | 20          |
+| deVernalisationRate        | Rate of *Vrn1* downregulation above the temperature threshold. | 0          |
+
+
+`deVernalisationRate` is set to 0, indicating that there is no down-regulation of *Vrn1* expression at temperatures above the de-vernalisation threshold (i.e. 20°C).
+
+The upregulation of *Vrn1* from cold at temperature $T$ ($\Delta Vrn1_{T}$) is shown in the following plot.
+
+```{r cold-vrn-response-example, fig.height = 3, fig.cap="Cold Vrn Response as a Function of Temperature"}
+# Plot the cold Vrn response as a function of temperature
+library(ggplot2)
+x <- seq(-10, 40, by = 0.1)
+y <- ifelse(x < 20, exp(-0.17 * x) / 24, 0)
+df <- data.frame(temperature = x, cold_vrn_response = y)
+ggplot(df, aes(x = temperature)) +
+    geom_line(aes(y = cold_vrn_response)) +
+    labs(
+        x = "Temperature (°C)",
+        y = "Cold Vrn Response (Vrn1 Upregulation)"
+    ) +
+    scale_x_continuous(breaks = seq(-10, 40, by = 5)) +
+    theme_minimal()
+
+```
 
 ## See Also
 
