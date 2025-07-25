@@ -143,17 +143,26 @@
                     "[Weather].MaxT",
                     "[Weather].Radn",
                     "[Weather].Rain",
-                    "",
                     "[Wheat].DaysAfterSowing",
                     "[Wheat].Phenology.Stage",
                     "[Wheat].Phenology.CurrentStageName",
                     "[Wheat].Phenology.ThermalTime",
+                    "[Wheat].Phenology.CAMP.FLN",
                     "[Wheat].Phenology.CAMP.Vrn",
                     "[Wheat].Phenology.CAMP.MaxVrn",
                     "[Wheat].Phenology.CAMP.BaseVrn",
                     "[Wheat].Phenology.CAMP.Vrn1",
                     "[Wheat].Phenology.CAMP.Vrn2",
-                    "[Wheat].Phenology.CAMP.Vrn3"
+                    "[Wheat].Phenology.CAMP.Vrn3",
+                    "[Wheat].Phenology.CAMP.Params.BaseDVrnER",
+                    "[Wheat].Phenology.CAMP.Params.BaseDVrnVeg",
+                    "[Wheat].Phenology.CAMP.Params.MaxDVrnER",
+                    "[Wheat].Phenology.CAMP.Params.MaxDVrnVeg",
+                    "[Wheat].Phenology.CAMP.Params.PpVrn3FactER",
+                    "[Wheat].Phenology.CAMP.Params.PpVrn3FactVeg",
+                    "[Wheat].Phenology.CAMP.Params.MaxVrn2",
+                    "[Wheat].Phenology.CAMP.Params.MethalationThreshold",
+                    "[Wheat].Phenology.CAMP.Params.ColdVrn1Fact"
                   ],
                   "EventNames": [
                     "[Clock].DoReport"

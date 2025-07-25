@@ -186,24 +186,61 @@ fln_params <- data.frame(
 plot_fln(fln_params)
 
 ```
+```{r read-data}
+file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
+    
+df <- read_example(file, max_stage = 5)
+```
 
+The [vernalisation rate parameters](/docs/Models/PMF/Phenology/CAMP/CultivarRateParams.qmd) are calculated for each cultivar using the [calcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) function at [Sowing](/docs/Models/Events.qmd#PlantSowing), and should be genotype-specific values. The following table shows the calculated parameters for Emu_Rock and Sunlamb cultivars:
+
+```{r cultivar-rate-parameters, results = "asis"}
+
+df |>
+    dplyr::group_by(Cultivar) |>
+    dplyr::slice(1) |> 
+    dplyr::select(
+        Wheat.Phenology.CAMP.Params.BaseDVrnER,
+        Wheat.Phenology.CAMP.Params.BaseDVrnVeg,
+        Wheat.Phenology.CAMP.Params.MaxDVrnER,
+        Wheat.Phenology.CAMP.Params.MaxDVrnVeg,
+        Wheat.Phenology.CAMP.Params.PpVrn3FactER,
+        Wheat.Phenology.CAMP.Params.PpVrn3FactVeg,
+        Wheat.Phenology.CAMP.Params.MaxVrn2,
+        Wheat.Phenology.CAMP.Params.MethalationThreshold,
+        Wheat.Phenology.CAMP.Params.ColdVrn1Fact
+    ) |>
+    tidyr::pivot_longer(cols = starts_with("Wheat.Phenology.CAMP.Params."), 
+        names_to = "Parameter", 
+        values_to = "Value") |>
+    dplyr::mutate(Parameter = gsub("Wheat\\.Phenology\\.CAMP\\.Params\\.", "", Parameter)) |>
+    dplyr::ungroup() |>
+    dplyr::mutate(Value = as.numeric(Value)) |> 
+    tidyr::pivot_wider(names_from = Cultivar, values_from = Value) |> 
+    knitr::kable(digits = 2)
+
+```
+
+
+### Total Vrn Expression
 
 This plot shows the progress of the Vrn1 expression for the cultivar `Sunlamb` and `Emu_Rock` on the sowing date `1-May` and `1-Jun`. The `LeavesInitiating` phase is finished when `Wheat.Phenology.CAMP.Vrn1` equal to `1` at vernalisation saturation.
 
 ```{r fig-vrn, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1."}
-file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
 plot_output(file, y = "Wheat.Phenology.CAMP.Vrn",
     max_stage = 5) +
     ggplot2::geom_hline(yintercept = c(0, 1, 2), linetype = "dashed", color = "grey50")
 ```
 
+
 The total $Vrn$ expression is the sum of the three Vrn genes, i.e. $Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2$, and capped below $Vrn_{\text{max}}$. The following figure shows the Vrn expressions for three Vrn genes for very late cultivar `Sunlamb`on the sowing date `1-May` and `1-Jun`.
 
 ```{r fig-vrn-all, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. $Vrn_{base}$, $Vrn1$, and $Vrn3$ are stacked at the y positive axis. $Vrn2$ is shown as a negative value at the y negative axis. The black lines represent the total $Vrn$ expression. The red lines represent the maximum $Vrn$ expression."}
 
-df <- read_example(file, max_stage = 5) |> 
+df_sunlamb  <- df |> 
     dplyr::filter(Cultivar == "Sunlamb")
-pd <- df |>
+
+pd <- df_sunlamb |>
     dplyr::mutate(Wheat.Phenology.CAMP.Vrn2 = -Wheat.Phenology.CAMP.Vrn2) |> 
     dplyr::select(Site, SowingDate, Cultivar, 
         Wheat.DaysAfterSowing,
@@ -239,7 +276,7 @@ p <- pd |>
     ggplot2::theme_bw() +
     ggplot2::theme(legend.position = "bottom")
 
-pd_label <- df |>
+pd_label <- df_sunlamb |>
     dplyr::mutate(y = 0) |>
     dplyr::select(all_of(c("Site", "SowingDate", "Cultivar", "Wheat.DaysAfterSowing", "Wheat.Phenology.CurrentStageName", "y"))) |>
     dplyr::filter(nchar(Wheat.Phenology.CurrentStageName) > 0)
@@ -271,4 +308,17 @@ p +
         hjust = 1,
         size = 3.5
     )
+```
+
+### Base Vrn Expression $Vrn_{\text{base}}$
+
+
+
+
+### Final Leaf Number
+
+```{r fig-fln}
+plot_output(file, y = "Wheat.Phenology.CAMP.FLN",
+    max_stage = 5.2) +
+    ggplot2::scale_y_continuous(breaks = seq(3, 20, by = 2))
 ```

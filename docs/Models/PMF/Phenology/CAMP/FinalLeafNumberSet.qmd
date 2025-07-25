@@ -110,18 +110,25 @@ $$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
 ## Practical Example
 
 
-Below is a summary table for two New Zealand cultivars (i.e. BattenWinter and BattenSpring), showing their parameter values and calculated FLN for each treatment:
+```{r define-parameters}
+fln_data <- data.frame(
+    Parameter_FLN = c("MinLN", "PpLN", "VrnLN", "VxPLN"),
+    Emu_Rock = c(6, 1, 1, -1),
+    Sunlamb = c(7, 5, 10, -5)
+) |> 
+    pivot_longer(cols = c("Emu_Rock", "Sunlamb"), names_to = "Cultivar", values_to = "FLN")
 
-| Parameter / FLN | BattenWinter | BattenSpring |
-|-----------------|--------------|--------------|
-| **MinLN**       | 8.16         | 8.25         |
-| **PpLN**        | 3.61         | 7.55         |
-| **VrnLN**       | 3.10         | 0.19         |
-| **VxPLN**       | 6.99         | -0.03        |
-| **LV**          | 8.16         | 8.25         |
-| **SV**          | 11.77        | 15.80        |
-| **SN**          | 14.87        | 15.99        |
-| **LN**          | 18.25        | 8.41         |
+fln_long <- calculate_fln(fln_data)
+```
+
+Below is a summary table for two cultivars including very quick maturity `Emu_Rock` and very late maturity Sunlamb, showing their parameter values and calculated FLN for each treatment:
+
+```{r tbl-cultivar-parameters, results = "asis"}
+fln_long |>
+    dplyr::select(Parameter = Parameter_FLN, Cultivar, FLN) |>
+    pivot_wider(names_from = Cultivar, values_from = FLN) |>
+    knitr::kable(digits = 2, caption = "Final Leaf Number Parameters for Emu_Rock and Sunlamb Cultivars")
+```
 
 
 This figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.
@@ -129,16 +136,7 @@ This figure illustrates the final leaf number (FLN) for the BattenWinter and Bat
 ```{r fig-fln, fig.height=8, fig.cap="Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars"}
 library(ggplot2)
 library(tidyr)
-library(dplyr)
-
-
-fln_data <- data.frame(
-    Parameter_FLN = c("MinLN", "PpLN", "VrnLN", "VxPLN"),
-    BattenWinter = c(8.16, 3.61, 3.10, 6.99),
-    BattenSpring = c(8.25, 7.55, 0.19, -0.03)
-) |> 
-    pivot_longer(cols = c("BattenWinter", "BattenSpring"), names_to = "Cultivar", values_to = "FLN")
-        
+library(dplyr)        
 plot_fln(fln_data)
 ```
 

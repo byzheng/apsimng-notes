@@ -112,23 +112,26 @@ plot_output <- function(file,
     return(p)
 }
 
+calculate_fln <- function(fln_data) {
+    fln_long <- fln_data |>
+            pivot_wider(names_from = Parameter_FLN, values_from = FLN) |>
+            mutate(
+                LV = MinLN,
+                SV = MinLN + PpLN,
+                SN = MinLN + PpLN + VrnLN,
+                LN = MinLN + VrnLN + VxPLN
+            ) |>
+            pivot_longer(
+                cols = c("MinLN", "PpLN", "VrnLN", "VxPLN", "LV", "SV", "SN", "LN"),
+                names_to = "Parameter_FLN",
+                values_to = "FLN"
+            )
 
+    return(fln_long)
+}
 
 plot_fln <- function(fln_data) {
-    fln_long <- fln_data |>
-        pivot_wider(names_from = Parameter_FLN, values_from = FLN) |>
-        mutate(
-            LV = MinLN,
-            SV = MinLN + PpLN,
-            SN = MinLN + PpLN + VrnLN,
-            LN = MinLN + VrnLN + VxPLN
-        ) |>
-        pivot_longer(
-            cols = c("MinLN", "PpLN", "VrnLN", "VxPLN", "LV", "SV", "SN", "LN"),
-            names_to = "Parameter_FLN",
-            values_to = "FLN"
-        )
-
+    fln_long <- calculate_fln(fln_data)
 
     # Plot
     p <- fln_long |>
