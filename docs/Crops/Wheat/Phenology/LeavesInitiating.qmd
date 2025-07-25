@@ -159,3 +159,20 @@ The internal function `calcCAMPVrnRates` is used to calculate the Vrn1, Vrn2, an
 
 > No practical example is provided for the thermal time function.
 
+
+## Simulation Example
+
+We demonstrate progress of leaf initiation phase using [example simulations](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.
+
+
+
+This plot shows the progress of the Vrn1 expression for the cultivar `Sunlamb` and `Emu_Rock` on the sowing date `1-May` and `1-Jun`. The `LeavesInitiating` phase is finished when `Wheat.Phenology.CAMP.Vrn1` equal to `1` at vernalisation saturation.
+
+```{r fig-thermal-time, fig.cap="Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar 'Sunlamb' on the sowing date '1-May'."}
+file <- "docs/Crops/Wheat/Examples/wheat_example1.apsimx"
+plot_output(file, y = "Wheat.Phenology.CAMP.Vrn",
+    max_stage = 5.2) +
+    ggplot2::geom_hline(yintercept = c(1, 2), linetype = "dashed", color = "grey50")
+
+```
+
