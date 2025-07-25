@@ -1122,22 +1122,83 @@ window.Quarto = {
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
 <blockquote class="blockquote">
-<p>No practical example is provided for the thermal time function.</p>
+<p>No practical example is provided here.</p>
 </blockquote>
 </section>
 <section id="simulation-example" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-example">Simulation Example</h2>
 <p>We demonstrate progress of leaf initiation phase using <a href="../../../../docs/Crops/Wheat/Examples/wheat_example1.html" class="crop-link">example simulations</a> for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.</p>
+<p>Two cultivars, <code>Emu_Rock</code> and <code>Sunlamb</code>, are used in the example simulations to represent the very quick and very late maturity types, respectively <span class="citation" data-cites="celestina_cultivar_2023">(<a href="#ref-celestina_cultivar_2023" role="doc-biblioref">Celestina et al. 2023</a>)</span>. The following table shows the FLN parameters for these two cultivars:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Emu_Rock</th>
+<th>Sunlamb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>[Phenology].CAMP.FLNparams.MinLN</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.FLNparams.PpLN</td>
+<td>1</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>[Phenology].CAMP.FLNparams.VrnLN</td>
+<td>1</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>[Phenology].CAMP.FLNparams.VxPLN</td>
+<td>-1</td>
+<td>-5</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cultivar-parameters" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cultivar-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="LeavesInitiating_files/figure-html/fig-cultivar-parameters-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cultivar-parameters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: FLN parameters for Emu_Rock and Sunlamb Cultivars
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>This plot shows the progress of the Vrn1 expression for the cultivar <code>Sunlamb</code> and <code>Emu_Rock</code> on the sowing date <code>1-May</code> and <code>1-Jun</code>. The <code>LeavesInitiating</code> phase is finished when <code>Wheat.Phenology.CAMP.Vrn1</code> equal to <code>1</code> at vernalisation saturation.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-thermal-time" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-vrn" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-thermal-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="LeavesInitiating_files/figure-html/fig-thermal-time-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+<div aria-describedby="fig-vrn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="LeavesInitiating_files/figure-html/fig-vrn-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermal-time-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar ‘Sunlamb’ on the sowing date ‘1-May’.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vrn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The total <span class="math inline">\(Vrn\)</span> expression is the sum of the three Vrn genes, i.e.&nbsp;<span class="math inline">\(Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2\)</span>, and capped below <span class="math inline">\(Vrn_{\text{max}}\)</span>. The following figure shows the Vrn expressions for three Vrn genes for very late cultivar <code>Sunlamb</code>on the sowing date <code>1-May</code> and <code>1-Jun</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-vrn-all" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vrn-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="LeavesInitiating_files/figure-html/fig-vrn-all-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vrn-all-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. <span class="math inline">\(Vrn_{base}\)</span>, <span class="math inline">\(Vrn1\)</span>, and <span class="math inline">\(Vrn3\)</span> are stacked at the y positive axis. <span class="math inline">\(Vrn2\)</span> is shown as a negative value at the y negative axis. The black lines represent the total <span class="math inline">\(Vrn\)</span> expression. The red lines represent the maximum <span class="math inline">\(Vrn\)</span> expression.
 </figcaption>
 </figure>
 </div>
@@ -1149,6 +1210,9 @@ Figure&nbsp;1: Thermal Time Simulation for Wheat Example 1. The blue and red lin
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-celestina_cultivar_2023" class="csl-entry" role="listitem">
+Celestina, Corinne, James Hunt, Haydn Kuchel, Felicity Harris, Kenton Porker, Ben Biddulph, Maxwell Bloomfield, et al. 2023. <span>“A Cultivar Phenology Classification Scheme for Wheat and Barley.”</span> <em>European Journal of Agronomy</em> 143 (February): 126732. <a href="https://doi.org/10.1016/j.eja.2022.126732">https://doi.org/10.1016/j.eja.2022.126732</a>.
+</div>
 <div id="ref-goudriaan_climatic_1994" class="csl-entry" role="listitem">
 Goudriaan, J., and H. H. Van Laar. 1994. <span>“Climatic Factors.”</span> In <em>Modelling Potential Crop Growth Processes</em>, edited by J. Goudriaan and H. H. Van Laar, 29–49. Dordrecht: Springer Netherlands. <a href="https://doi.org/10.1007/978-94-011-0750-1_3">https://doi.org/10.1007/978-94-011-0750-1_3</a>.
 </div>
