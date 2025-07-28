@@ -2391,7 +2391,7 @@
     "href": "docs/Crops/Wheat/Phenology/StemElongating.html#overview",
     "title": "StemElongating",
     "section": "Overview",
-    "text": "Overview\nThe LeafAppearancePhase model simulates the time between the MaximumSpikeletPrimordia and FlagLeafAppearance stages.\n\nThis phase starts at MaximumSpikeletPrimordia and ends at FlagLeafAppearance.\nThe Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
+    "text": "Overview\nThe LeafAppearancePhase model simulates the time between the MaximumSpikeletPrimordia and FlagLeafAppearance stages.\n\nThis phase starts at MaximumSpikeletPrimordia and ends at FlagLeafAppearance.\nThe Final leaf number is fixed at Terminal Spikelet (i.e. stage MaximumSpikeletPrimordia) and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
     "crumbs": [
       "Home",
       "Docs",
