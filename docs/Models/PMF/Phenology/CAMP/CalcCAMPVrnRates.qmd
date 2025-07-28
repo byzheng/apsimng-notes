@@ -3,13 +3,20 @@ title: "CalcCAMPVrnRates"
 output: html_document
 ---
 
-A function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+A helper function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.
 
 ## Overview
 
 `CalcCAMPVrnRates` is used to derive the coefficients that govern how vernalisation and photoperiod affect the expression rates of vernalisation genes in the CAMP model. It operates on FLN observations from controlled environment studies with defined photoperiod and temperature treatments. The outputs are rate parameters that quantify the rate and phase transitions of Vrn expression in different photothermal regimes, enabling genotype-specific simulation of phenological development.
 
 This function is critical for enabling APSIM NG to simulate genotype-by-environment interactions in crop phenology, particularly for cereal crops where vernalisation and photoperiod sensitivity genes such as Vrn1, Vrn2, and Vrn3 play a pivotal role.
+
+
 
 ## Inputs
 
@@ -43,7 +50,7 @@ The function performs the following steps:
 1. [Convert Emergence Duration from Thermal Time to Phyllochrons](#emergence-duration)  
 2. [Base phyllochron duration of vernalisation treatment](#vern-phyllochron)  
 3. [Estimate Haun Stage at Terminal Spikelet](#haun-ts)  
-4. [Calculate Minimum Vernalisation Saturation to Terminal Spikelet](#min-vs)  
+4. [Calculate Minimum Duration from Vernalisation Saturation to Terminal Spikelet](#min-vs)  
 5. [Calculate the accumulated phyllochrons at vernalisation saturation for each treatment](#vs-phyllochrons)  
 6. [Calculate Vernalisation Rates and Photoperiod Sensitivities](#vrn-rates)  
 7. [Calculate Maximum Vrn2 Expression Under Long Photoperiods](#vrn2-max)  
@@ -78,102 +85,94 @@ Where:
 
 ### Estimate Haun Stage at Terminal Spikelet {#haun-ts}
 
-The Haun Stage at terminal spikelet for each environment $i$ (e.g., LV, LN, SV, SN) is calculated following the method of @brown_integration_2013:
+The Haun Stage at terminal spikelet for each environment $e$ (e.g., LV, LN, SV, SN) is calculated following the method of @brown_integration_2013:
 
 $$
-\text{HS}_{TS}(i) = \left( \text{FLN}(i) - 2.85 \right) \times 1.1
-$$
-
-Where:
-
-- $\text{FLN}(i)$ is the final leaf number observed under environment $i$.
-
-### Calculate Minimum Vernalisation Saturation to Terminal Spikelet {#min-vs}
-
-The minimum vernalisation saturation at terminal spikelet ($\text{VS}_{TS,\ min}$) is estimated as:
-
-$$
-\text{VS}_{TS,\ min} = \min\left( \text{HS}_{TS,\ LV} - 1.1,\ 3 \right)
+\text{HS}_{TS}(e) = \left( \text{FLN}(e) - 2.85 \right) \times 1.1
 $$
 
 Where:
 
-- $\text{HS}_{TS,\ LV}$ is the Haun Stage at terminal spikelet in the long-day vernalised (LV) treatment,
+- $\text{FLN}(e)$ is the final leaf number observed under environment $e$.
+
+### Calculate Minimum Duration from Vernalisation Saturation to Terminal Spikelet {#min-vs}
+
+The minimum duration from vernalisation saturation to terminal spikelet ($\Delta Ph_{\text{VS→TS},\min}$) is determined by **earliness *per se* (EPS)** genes, which define the baseline thermal time requirement in the absence of both photoperiod sensitivity and vernalisation response. This duration is expressed in phyllochrons and is estimated as:
+$$
+\Delta Ph_{\text{VS→TS},\ \min} = \min\left( \text{HS}_{\text{TS, LV}} - 1.1,\ 3 \right)
+$$
+
+Where:
+
+- $\text{HS}_{\text{TS, LV}}$ is the Haun Stage at terminal spikelet in the long-day vernalised (LV) treatment which does not have photoperiod sensitivity or vernalisation requirement,
 - 1.1 is the earliest Haun Stage at which vernalisation saturation can begin,
-- 3 is the maximum stage for vernalisation saturation, based on Lincoln controlled environment data (CRWT153).
+- 3 is the maximum stage for vernalisation saturation, based on Lincoln controlled-environment data (CRWT153).
 
 
 ### Calculate the accumulated phyllochrons at vernalisation saturation for each treatment {#vs-phyllochrons}
 
-The accumulated phyllochron at vernalisation saturation is estimated for each photoperiod × vernalisation treatment. These values are expressed in phyllochrons and are derived relative to the Haun Stage at terminal spikelet ($\text{HS}_{TS}$) and the previously calculated minimum duration between vernalisation saturation and terminal spikelet ($\text{VS}_{TS,\text{min}}$).
+The accumulated phyllochron at vernalisation saturation is estimated for each photoperiod × vernalisation treatment. These values are expressed in phyllochrons and are derived relative to the Haun Stage at terminal spikelet ($\text{HS}_{TS}$) and the previously calculated minimum duration between vernalisation saturation and terminal spikelet ($\Delta Ph_{\text{VS→TS},\ \min}$).
 
 **Long-day Vernalised (LV) Environment**
 
-For the LV treatment, vernalisation saturation is assumed to occur exactly $\text{VS}_{TS,\text{min}}$ before terminal spikelet:
+For the LV treatment, vernalisation saturation is assumed to occur exactly before terminal spikelet for the LV treatment:
 
 $$
-\text{VS}_{LV} = \text{HS}_{TS,\ LV} - \text{VS}_{TS,\text{min}}
+\Delta Py_{\text{VS, LV}} = \text{HS}_{TS,\ LV} - \Delta Ph_{\text{VS→TS},\ \min}
 $$
 
 Where:
 
 - $\text{HS}_{TS,\ LV}$ is the Haun Stage at terminal spikelet for the LV treatment,
-- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
+- $\Delta Ph_{\text{VS→TS},\ \min}$ is the minimum duration from vernalisation saturation to terminal spikelet.
 
-
-This forms the baseline timing of saturation under conditions without vernalisation and photoperiod impacts.
 
 **Long-day Non-vernalised (LN) Environment**
 
 For LN, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ LN}$) and cannot occur earlier than in the LV treatment:
 
 $$
-\text{VS}_{LN} = \max(\text{HS}_{TS,\ LN} - \text{VS}_{TS,\text{min}},\ \text{VS}_{LV})
+\Delta Py_{\text{VS, LN}} = \max(\text{HS}_{TS,\ LN} - \Delta Ph_{\text{VS→TS},\text{min}},\ \Delta Py_{\text{VS, LV}})
 $$
 
 Where:
 
 - $\text{HS}_{TS,\ LN}$ is the Haun Stage at terminal spikelet for the LN treatment,
-- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment,
-- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
+- $\Delta Py_{\text{VS, LV}}$ is the vernalisation saturation timing for the LV treatment,
+- $\Delta Ph_{\text{VS→TS},\text{min}}$ is the minimum duration from vernalisation saturation to terminal spikelet.
 
 
 This ensures the LN environment does not reach vernalisation saturation before LV.
 
 **Short-day Vernalised (SV) Environment**
 
-For the SV treatment, the vernalisation saturation timing is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ SV}$) and cannot occur earlier than in the LV treatment:
-
-
+For the SV treatment, vernalisation saturation is assumed to occur at the same developmental stage as $\Delta Ph_{\text{VS, LV}}$, but not earlier than the stage at which vernalisation saturation is physiologically possible under SV conditions:
 $$
-\text{VS}_{SV} = \max(\text{HS}_{TS,\ SV} - \text{VS}_{TS,\text{min}},\ \text{VS}_{LV})
+\Delta Py_{\text{VS, SV}} = \min(\text{HS}_{TS,\ SV} - \Delta Ph_{\text{VS→TS},\text{min}},\ \Delta Py_{\text{VS, LV}})
 $$
 
 Where:
 
 - $\text{HS}_{TS,\ SV}$ is the Haun Stage at terminal spikelet for the SV treatment,
-- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment,
-- $\text{VS}_{TS,\text{min}}$ is the minimum vernalisation saturation to terminal spikelet.
-
-This ensures the SV environment does not reach vernalisation saturation before LV.
+- $\Delta Py_{\text{VS, LV}}$ is the vernalisation saturation duration for the LV treatment,
+- $\Delta Ph_{\text{VS→TS},\text{min}}$ is the minimum duration from vernalisation saturation to terminal spikelet.
 
 
 **Short-day Non-vernalised (SN) Environment**
 
-For the SN environment, saturation is constrained by Haun Stage of LN at terminal spikelet ($\text{HS}_{TS,\ SN}$) and cannot occur earlier than in the LV treatment:
+For the SN environment, saturation is constrained by Haun Stage of SN at terminal spikelet ($\text{HS}_{TS,\ SN}$) and cannot occur earlier than in the LV treatment:
+
 
 $$
-\text{VS}_{SN} = \max(\text{HS}_{TS,\ SN} - \left( \text{HS}_{TS,\ SV} - \text{VS}_{SV} \right),\ \text{VS}_{LV})
+\Delta Py_{\text{VS, SN}} = \max(\text{HS}_{TS,\ SN} - \left( \text{HS}_{TS,\ SV} - \Delta Py_{\text{VS, SV}} \right),\ \Delta Py_{\text{VS, LV}})
 $$
 
 Where:
 
 - $\text{HS}_{TS,\ SN}$ is the Haun Stage at terminal spikelet for the SN treatment,
 - $\text{HS}_{TS,\ SV}$ is the Haun Stage at terminal spikelet for the SV treatment,
-- $\text{VS}_{SV}$ is the vernalisation saturation timing for the SV treatment,
-- $\text{VS}_{LV}$ is the vernalisation saturation timing for the LV treatment.
-
-This ensures the SV environment does not reach vernalisation saturation before LV.
+- $\Delta Py_{\text{VS, SV}}$ is the vernalisation saturation duration for the SV treatment,
+- $\Delta Py_{\text{VS, LV}}$ is the vernalisation saturation duration for the LV treatment.
 
 ### Calculate Vernalisation Rates and Photoperiod Sensitivities {#vrn-rates}
 

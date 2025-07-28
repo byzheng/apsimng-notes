@@ -17,6 +17,26 @@ Vrn2 is upregulated by longer photoperiods and acts as a repressor of Vrn3, whic
 
 The CAMP model integrates molecular and physiological representations to better capture genotype × environment × management (G×E×M) interactions and to provide a mechanistic bridge between genetic parameters and field-level crop behavior. All gene expressions are derived daily based on haun stage increment, temperature, and photoperiod.
 
+
+Three groups of genes are involved in cereal phenology:
+
+1. **Vernalisation genes (VRN)**: These genes promote flowering in response to prolonged exposure to cold temperatures.
+2. **Photoperiod sensitivity genes (PPD)**: These genes regulate flowering time based on day length.
+3. **Earliness per se genes (EPS)**: These genes control the rate of development independently of environmental cues.
+
+Four treatments are used to represent the major gene effects on phenology [@bloomfield_vernalisation_2023; @zheng_quantification_2013] including
+
+| Treatment | Description | VRN | PPD | EPS |
+|-----------|-------------|-----|-----|-----|
+| `LV`      | Long photoperiod with vernalisation| ✓   | ✓   | ✓   |
+| `LN`      | Long photoperiod without vernalisation| ✗   | ✓   | ✓   |
+| `SV`      | Short photoperiod with vernalisation| ✓   | ✗   | ✓   |
+| `SN`      | Short photoperiod without vernalisation| ✗   | ✗   | ✓   |
+
+Vernalisation genes are activated by exposure to low temperatures following seed germination.
+
+
+
 ## Inputs
 
 | Input                    | Type          | Description                                                               |
