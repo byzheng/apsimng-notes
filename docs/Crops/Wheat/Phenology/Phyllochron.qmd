@@ -160,6 +160,33 @@ Now, for each $S$:
 | 0.8                          | $1 + 0.8 \times 0.5 = 1.40$ | $100 \times 1.0 \times 1.40 = 140.0$ |
 | 1.0                          | $1 + 1.0 \times 0.5 = 1.50$ | $100 \times 1.0 \times 1.50 = 150.0$ |
 
+
+
+## Simulation Example
+
+We demonstrate Phyllochron using [example simulations](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. 
+
+
+Two cultivars, `Emu_Rock` and `Sunlamb`, are used in the example simulations to represent the very quick and very late maturity types, respectively [@celestina_cultivar_2023]. 
+
+| Cultivar   | Base Phyllochron (°C·days) |
+|------------|----------------------------|
+| Emu_Rock   | 94.77                      |
+| Sunlamb    | 100.38                     |
+
+Both cultivars have similar base phyllochron values, resulting in similar phyllochron intervals, but they reach the flag leaf stage at different times.
+
+```{r fig-huan-stage}
+plot_output("docs/Crops/Wheat/Examples/wheat_example1.apsimx",
+    y = "Wheat.Phenology.Phyllochron", 
+    #x = "Wheat.Phenology.Stage",
+    stage_name = TRUE, 
+    max_stage = 6)
+
+```
+
+
+
 ## See Also
 
 * [Photoperiod Effect on Phyllochron in Australian Wheat](/tips/phy-ppd-oz-wheat.qmd)

@@ -3,6 +3,11 @@ title: "Haun Stage"
 format: html
 ---
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
 Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.
 
 ## Overview
@@ -49,3 +54,20 @@ $$
 
 After five days at this rate, the Haun Stage increases by 1.0, meaning one new leaf tip has appeared. By tracking Haun Stage over time, researchers can compare development rates between varieties or under different treatments, supporting breeding and agronomic decisions.
 The Haun Stage model tracks the number of leaf tips that have appeared on a cereal plant since emergence. It provides a continuous measure of crop development and is critical for predicting phenological stages and leaf-related processes.
+
+
+## Simulation Example
+
+We demonstrate progress of Haun Stage using [example simulations](/docs/Crops/Wheat/Examples/wheat_example1.qmd) for wheat. 
+
+Two cultivars, `Emu_Rock` and `Sunlamb`, are used in the example simulations to represent the very quick and very late maturity types, respectively [@celestina_cultivar_2023]. Both cultivars have the similar [base phyllochron values](Phyllochron.qmd), resulting in similar Haun Stage.
+
+
+```{r fig-huan-stage}
+plot_output("docs/Crops/Wheat/Examples/wheat_example1.apsimx",
+    "Wheat.Phenology.HaunStage", stage_name = TRUE,
+    max_stage = 6)
+
+```
+
+
