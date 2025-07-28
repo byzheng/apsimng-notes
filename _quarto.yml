@@ -14,7 +14,7 @@ execute:
   warning: false
   fig.align: center
   out.width: 100%
-  freeze: false
+  freeze: true
 website:
   cookie-consent: true
   title: "APSIM NG Notes"
