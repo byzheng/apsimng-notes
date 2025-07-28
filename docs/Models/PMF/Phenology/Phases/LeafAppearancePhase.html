@@ -900,7 +900,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
 <p>The following input functions are required by <code>LeafAppearancePhase</code>:</p>
 <ul>
-<li><code>ThermalTime</code> — Daily thermal time</li>
 <li><code>FinalLeafNumber</code> — Total number of leaves the plant will develop.</li>
 <li><code>LeafNumber</code> — The current number of leaves that have appeared on the plant.</li>
 <li><code>FullyExpandedLeafNo</code> — The number of leaves that have fully expanded.</li>
@@ -915,24 +914,17 @@ window.Quarto = {
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The <code>LeafAppearancePhase</code> calculates the fraction of the phase completed using:</p>
+<p>The <code>LeafAppearancePhase</code> calculates the fraction of the phase completed (<span class="math inline">\(F\)</span>) using:</p>
 <p><span class="math display">\[
-\text{FractionComplete} = \frac{\text{LeafNumber} - \text{LeafNoAtStart}}{\text{TargetLeafForCompletion}}
+F = \frac{LN_i - LN_0}{FLN - LN_0}
 \]</span></p>
 <p>Where:</p>
 <ul>
-<li><span class="math inline">\(\text{LeafNoAtStart}\)</span> is recorded at the beginning of the phase.</li>
-<li><span class="math inline">\(\text{TargetLeafForCompletion} = \text{FinalLeafNumber} - \text{LeafNoAtStart}\)</span></li>
+<li><span class="math inline">\(LN_i\)</span> is the current leaf number at day <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(LN_0\)</span> is the leaf number at the start of the phase,</li>
+<li><span class="math inline">\(FLN\)</span> is the final leaf number.</li>
 </ul>
-<p>The function ensures that the <code>FractionComplete</code> never decreases between time steps, even if <code>FinalLeafNumber</code> is updated dynamically, by taking the maximum of the current value and the value from the previous day:</p>
-<p><span class="math display">\[
-\text{FractionComplete} = \max\left(\text{BoundedFraction}, \text{FractionCompleteYesterday}\right)
-\]</span></p>
-<p>Progression to the next phase occurs when the number of fully expanded leaves is greater than or equal to the number of initialized leaf primordia:</p>
-<p><span class="math display">\[
-\text{FullyExpandedLeafNo} \geq \text{InitialisedLeafNumber}
-\]</span></p>
-<p>When this condition is met, it is assumed that nearly all of today’s thermal time is used for development.</p>
+<p>When all initialised leaf primordia have fully expanded, the phase is considered complete and moves to the next phase.</p>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
