@@ -2372,6 +2372,81 @@
     ]
   },
   {
+    "objectID": "docs/Crops/Wheat/Phenology/StemElongating.html",
+    "href": "docs/Crops/Wheat/Phenology/StemElongating.html",
+    "title": "StemElongating",
+    "section": "",
+    "text": "The StemElongating phase in Wheat represents the developmental period from MaximumSpikeletPrimordia to FlagLeafAppearance. The Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "StemElongating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/StemElongating.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/StemElongating.html#overview",
+    "title": "StemElongating",
+    "section": "Overview",
+    "text": "Overview\nThe LeafAppearancePhase model simulates the time between the MaximumSpikeletPrimordia and FlagLeafAppearance stages.\n\nThis phase starts at MaximumSpikeletPrimordia and ends at FlagLeafAppearance.\nThe Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "StemElongating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/StemElongating.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/StemElongating.html#cultivar-specific-parameters",
+    "title": "StemElongating",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "StemElongating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/StemElongating.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/StemElongating.html#practical-example",
+    "title": "StemElongating",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "StemElongating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/StemElongating.html#simulation-example",
+    "href": "docs/Crops/Wheat/Phenology/StemElongating.html#simulation-example",
+    "title": "StemElongating",
+    "section": "Simulation Example",
+    "text": "Simulation Example\n\nno simulation example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "StemElongating"
+    ]
+  },
+  {
     "objectID": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
     "href": "docs/Crops/Wheat/Phenology/ReadyForHarvesting.html",
     "title": "ReadyForHarvesting",
@@ -4045,6 +4120,81 @@
       "Wheat",
       "Phenology",
       "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html",
+    "href": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html",
+    "title": "SpikeletsDifferentiating",
+    "section": "",
+    "text": "The SpikeletsDifferentiating phase in Wheat represents the developmental period from DoubleRidge to MaximumSpikeletPrimordia. It is influenced by vernalisation expression after double ridge.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "SpikeletsDifferentiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#overview",
+    "href": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#overview",
+    "title": "SpikeletsDifferentiating",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the DoubleRidge and MaximumSpikeletPrimordia stages.\n\nThis phase starts at DoubleRidge and ends at MaximumSpikeletPrimordia.\nThe model uses daily changes of vernalisation expression (\\(\\Delta Vrn\\) in the CAMP) to progress phase development.\nThe Target is fixed as constant for this phase, with default value of 1 which means the total vernalisation expression is reached 2 to proceed into next phase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "SpikeletsDifferentiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#cultivar-specific-parameters",
+    "title": "SpikeletsDifferentiating",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "SpikeletsDifferentiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#practical-example",
+    "href": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#practical-example",
+    "title": "SpikeletsDifferentiating",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "SpikeletsDifferentiating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#simulation-example",
+    "href": "docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html#simulation-example",
+    "title": "SpikeletsDifferentiating",
+    "section": "Simulation Example",
+    "text": "Simulation Example\nSee the practical example in the LeafInitiating.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "SpikeletsDifferentiating"
     ]
   },
   {
