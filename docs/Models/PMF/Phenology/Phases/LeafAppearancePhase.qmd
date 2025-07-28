@@ -1,0 +1,95 @@
+---
+title: "LeafAppearancePhase"
+output: html_document
+---
+
+The `LeafAppearancePhase` represents a developmental phase in a plant's life cycle. The Final leaf number is fixed at the start of this phase. The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+
+## Overview
+
+The `LeafAppearancePhase` is a phenological stage within the APSIM Next Generation framework that models the interval from a specified start stage to an end stage. The Final leaf number is fixed at the start of this phase (e.g. terminal spikelet). The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+
+## Inputs
+
+The following input functions are required by `LeafAppearancePhase`:
+
+- `ThermalTime` — Daily thermal time
+- `FinalLeafNumber` — Total number of leaves the plant will develop.
+- `LeafNumber` — The current number of leaves that have appeared on the plant.
+- `FullyExpandedLeafNo` — The number of leaves that have fully expanded.
+- `InitialisedLeafNumber` — The number of leaf primordia that have been initiated.
+
+The following configuration parameters can be set:
+
+- `Start` — Name of the phenological stage at which this phase begins.
+- `End` — Name of the phenological stage at which this phase ends.
+- `IsEmerged` — Boolean flag indicating whether this phase begins post-emergence. Default is `true`.
+
+## Methodology
+
+The `LeafAppearancePhase` calculates the fraction of the phase completed using:
+
+$$
+\text{FractionComplete} = \frac{\text{LeafNumber} - \text{LeafNoAtStart}}{\text{TargetLeafForCompletion}}
+$$
+
+Where:
+
+- $\text{LeafNoAtStart}$ is recorded at the beginning of the phase.
+- $\text{TargetLeafForCompletion} = \text{FinalLeafNumber} - \text{LeafNoAtStart}$
+
+The function ensures that the `FractionComplete` never decreases between time steps, even if `FinalLeafNumber` is updated dynamically, by taking the maximum of the current value and the value from the previous day:
+
+$$
+\text{FractionComplete} = \max\left(\text{BoundedFraction}, \text{FractionCompleteYesterday}\right)
+$$
+
+Progression to the next phase occurs when the number of fully expanded leaves is greater than or equal to the number of initialized leaf primordia:
+
+$$
+\text{FullyExpandedLeafNo} \geq \text{InitialisedLeafNumber}
+$$
+
+When this condition is met, it is assumed that nearly all of today's thermal time is used for development.
+
+## Events 
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Resets the phase state variables at the start of the simulation |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Start                | string  | Phenological stage at which this phase begins                               |
+| End                  | string  | Phenological stage at which this phase ends                                 |
+| IsEmerged            | bool    | Indicates whether the phase occurs after emergence                          |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| FractionComplete     | double  | Fractional completion of the phase, ranging from 0 to 1                      |
+
+## User Interface
+
+`LeafAppearancePhase` can be added as a child of a `Phenology` node in the model tree. Right-click the `Phenology` node, select "Add Model...", and search for `LeafAppearancePhase` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [LeafAppearancePhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/LeafAppearancePhase.cs)
