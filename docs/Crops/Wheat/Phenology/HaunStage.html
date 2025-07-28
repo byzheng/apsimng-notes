@@ -882,6 +882,7 @@ window.Quarto = {
   <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#simulation-example" id="toc-simulation-example" class="nav-link" data-scroll-target="#simulation-example">Simulation Example</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Phenology/HaunStage.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -946,12 +947,34 @@ window.Quarto = {
 \Delta \text{HaunStage} = \frac{24}{120} = 0.2
 \]</span></p>
 <p>After five days at this rate, the Haun Stage increases by 1.0, meaning one new leaf tip has appeared. By tracking Haun Stage over time, researchers can compare development rates between varieties or under different treatments, supporting breeding and agronomic decisions. The Haun Stage model tracks the number of leaf tips that have appeared on a cereal plant since emergence. It provides a continuous measure of crop development and is critical for predicting phenological stages and leaf-related processes.</p>
+</section>
+<section id="simulation-example" class="level2">
+<h2 class="anchored" data-anchor-id="simulation-example">Simulation Example</h2>
+<p>We demonstrate progress of Haun Stage using <a href="../../../../docs/Crops/Wheat/Examples/wheat_example1.html" class="crop-link">example simulations</a> for wheat.</p>
+<p>Two cultivars, <code>Emu_Rock</code> and <code>Sunlamb</code>, are used in the example simulations to represent the very quick and very late maturity types, respectively <span class="citation" data-cites="celestina_cultivar_2023">(<a href="#ref-celestina_cultivar_2023" role="doc-biblioref">Celestina et al. 2023</a>)</span>. Both cultivars have the similar <a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="crop-link">base phyllochron values</a>, resulting in similar Haun Stage.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-huan-stage" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="100%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-huan-stage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="HaunStage_files/figure-html/fig-huan-stage-1.png" id="fig-huan-stage" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-huan-stage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 
 
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-celestina_cultivar_2023" class="csl-entry" role="listitem">
+Celestina, Corinne, James Hunt, Haydn Kuchel, Felicity Harris, Kenton Porker, Ben Biddulph, Maxwell Bloomfield, et al. 2023. <span>“A Cultivar Phenology Classification Scheme for Wheat and Barley.”</span> <em>European Journal of Agronomy</em> 143 (February): 126732. <a href="https://doi.org/10.1016/j.eja.2022.126732">https://doi.org/10.1016/j.eja.2022.126732</a>.
+</div>
 <div id="ref-haun_visual_1973" class="csl-entry" role="listitem">
 Haun, J. R. 1973. <span>“Visual Quantification of Wheat Development.”</span> <em>Agronomy Journal</em> 65: 116. <a href="https://doi.org/10.2134/agronj1973.00021962006500010035x">https://doi.org/10.2134/agronj1973.00021962006500010035x</a>.
 </div>

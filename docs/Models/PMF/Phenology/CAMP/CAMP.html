@@ -918,6 +918,55 @@ window.Quarto = {
 <p>Progress through the vernalising phase is determined by the apparent expression of Vrn1 and Vrn2 genes. Vrn1 is the gene that orchestrates cold temperature responses in development. To complete the vernalising stage, Vrn1 expression must first reach a threshold of at least 1.0. In warm temperatures (above 18 °C), Vrn1 is expressed at a genotype-dependent base rate. This base rate is lower for vernalisation-sensitive genotypes, which develop slower under warm conditions. However, exposure to cold temperatures accelerates Vrn1 expression, causing vernalisation-sensitive varieties to reach this stage at a lower Haun stage.</p>
 <p>Vrn2 is upregulated by longer photoperiods and acts as a repressor of Vrn3, which is essential for progression to spikelet initiation. Vrn1 in turn represses Vrn2. Thus, higher photoperiod-induced Vrn2 expression raises the Vrn1 target above 1.0, extending the vernalisation phase. Conversely, shorter days reduce the Vrn1 target, a phenomenon known as <em>short-day vernalisation</em>. Vrn3 may also contribute to the acceleration of Vrn1 expression during vernalisation, a process represented by a composite parameter VrnX in the CAMP model.</p>
 <p>The CAMP model integrates molecular and physiological representations to better capture genotype × environment × management (G×E×M) interactions and to provide a mechanistic bridge between genetic parameters and field-level crop behavior. All gene expressions are derived daily based on haun stage increment, temperature, and photoperiod.</p>
+<p>Three groups of genes are involved in cereal phenology:</p>
+<ol type="1">
+<li><strong>Vernalisation genes (VRN)</strong>: These genes promote flowering in response to prolonged exposure to cold temperatures.</li>
+<li><strong>Photoperiod sensitivity genes (PPD)</strong>: These genes regulate flowering time based on day length.</li>
+<li><strong>Earliness per se genes (EPS)</strong>: These genes control the rate of development independently of environmental cues.</li>
+</ol>
+<p>Four treatments are used to represent the major gene effects on phenology <span class="citation" data-cites="bloomfield_vernalisation_2023 zheng_quantification_2013">(<a href="#ref-bloomfield_vernalisation_2023" role="doc-biblioref">Bloomfield et al. 2023</a>; <a href="#ref-zheng_quantification_2013" role="doc-biblioref">Zheng et al. 2013</a>)</span> including</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Treatment</th>
+<th>Description</th>
+<th>VRN</th>
+<th>PPD</th>
+<th>EPS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LV</code></td>
+<td>Long photoperiod with vernalisation</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr class="even">
+<td><code>LN</code></td>
+<td>Long photoperiod without vernalisation</td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr class="odd">
+<td><code>SV</code></td>
+<td>Short photoperiod with vernalisation</td>
+<td>✓</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr class="even">
+<td><code>SN</code></td>
+<td>Short photoperiod without vernalisation</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p>Vernalisation genes are activated by exposure to low temperatures following seed germination.</p>
 </section>
 <section id="inputs" class="level2">
 <h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
@@ -1367,6 +1416,9 @@ FLN = 2.85 + 1.1 \times HS_{TS}
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-bloomfield_vernalisation_2023" class="csl-entry" role="listitem">
+Bloomfield, Maxwell T., Corinne Celestina, James R. Hunt, Neil Huth, Bangyou Zheng, Hamish Brown, Zhigan Zhao, et al. 2023. <span>“Vernalisation and Photoperiod Responses of Diverse Wheat Genotypes.”</span> <em>Crop and Pasture Science</em>, March. <a href="https://doi.org/10.1071/CP22213">https://doi.org/10.1071/CP22213</a>.
+</div>
 <div id="ref-brown_integration_2013" class="csl-entry" role="listitem">
 Brown, Hamish E., Peter D. Jamieson, Ian R. Brooking, Derrick J. Moot, and Neil I. Huth. 2013. <span>“Integration of Molecular and Physiological Models to Explain Time of Anthesis in Wheat.”</span> <em>Annals of Botany</em> 112 (9): 1683–703. <a href="https://doi.org/10.1093/aob/mct224">https://doi.org/10.1093/aob/mct224</a>.
 </div>
@@ -1375,6 +1427,9 @@ Jamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. <span>�
 </div>
 <div id="ref-kirby_analysis_1988" class="csl-entry" role="listitem">
 Kirby, E. J. M. 1988. <span>“Analysis of Leaf, Stem and Ear Growth in Wheat from Terminal Spikelet Stage to Anthesis.”</span> <em>Field Crops Research</em> 18 (2): 127–40. <a href="https://doi.org/10.1016/0378-4290(88)90004-4">https://doi.org/10.1016/0378-4290(88)90004-4</a>.
+</div>
+<div id="ref-zheng_quantification_2013" class="csl-entry" role="listitem">
+Zheng, B. Y., B. Biddulph, D. Li, H. Kuchel, and S. C. Chapman. 2013. <span>“Quantification of the Effects of <span><span><em>VRN1</em></span></span> and <span><span><em>Ppd-D1</em></span></span> to Predict Spring Wheat (<span><span><em>Triticum Aestivum</em></span></span>) Heading Time Across Diverse Environments.”</span> <em>Journal of Experimental Botany</em> 64 (12): 3747–61.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
