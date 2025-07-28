@@ -13,7 +13,6 @@ The `LeafAppearancePhase` is a phenological stage within the APSIM Next Generati
 
 The following input functions are required by `LeafAppearancePhase`:
 
-- `ThermalTime` — Daily thermal time
 - `FinalLeafNumber` — Total number of leaves the plant will develop.
 - `LeafNumber` — The current number of leaves that have appeared on the plant.
 - `FullyExpandedLeafNo` — The number of leaves that have fully expanded.
@@ -27,30 +26,20 @@ The following configuration parameters can be set:
 
 ## Methodology
 
-The `LeafAppearancePhase` calculates the fraction of the phase completed using:
+The `LeafAppearancePhase` calculates the fraction of the phase completed ($F$) using:
 
 $$
-\text{FractionComplete} = \frac{\text{LeafNumber} - \text{LeafNoAtStart}}{\text{TargetLeafForCompletion}}
+F = \frac{LN_i - LN_0}{FLN - LN_0}
 $$
 
 Where:
 
-- $\text{LeafNoAtStart}$ is recorded at the beginning of the phase.
-- $\text{TargetLeafForCompletion} = \text{FinalLeafNumber} - \text{LeafNoAtStart}$
+- $LN_i$ is the current leaf number at day $i$,
+- $LN_0$ is the leaf number at the start of the phase,
+- $FLN$ is the final leaf number.
 
-The function ensures that the `FractionComplete` never decreases between time steps, even if `FinalLeafNumber` is updated dynamically, by taking the maximum of the current value and the value from the previous day:
 
-$$
-\text{FractionComplete} = \max\left(\text{BoundedFraction}, \text{FractionCompleteYesterday}\right)
-$$
-
-Progression to the next phase occurs when the number of fully expanded leaves is greater than or equal to the number of initialized leaf primordia:
-
-$$
-\text{FullyExpandedLeafNo} \geq \text{InitialisedLeafNumber}
-$$
-
-When this condition is met, it is assumed that nearly all of today's thermal time is used for development.
+When all initialised leaf primordia have fully expanded, the phase is considered complete and moves to the next phase.
 
 ## Events 
 

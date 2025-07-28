@@ -24,23 +24,12 @@ The `VernalisationPhase` utilises [Cereal Anthesis Molecular Phenology](../CAMP/
 
 Vernalisation progress is computed using [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model, summing gene expression components and scaling by a saturation threshold:
 
-Let  
-- $B$ = BaseVrn  
-- $V_1$ = Vrn1  
-- $V_2$ = Vrn2  
-- $V_3$ = Vrn3  
-- $M$ = MaxVrn  
-- $R_e$ = RelativeVernalisation at emergence
-
-Then:
-
 The $\text{target}$ of this phase is defined as:
 $$
 \text{Target} = 1 + Vrn2
 $$
 
 Where:
-
 
 - $Vrn2$ is the photoperiod-induced repressor of flowering.
 
