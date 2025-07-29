@@ -1,0 +1,114 @@
+---
+title: "FertiliserType"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+
+The `FertiliserType` function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.
+
+
+## Overview
+
+`FertiliserType` is a submodel of the `Fertiliser` model. It provides a detailed configuration of the fertiliser’s composition by defining up to six solutes, each with a specified name and mass fraction. Additionally, it includes a threshold fraction to determine when the remainder of the fertiliser is released. This model allows researchers and users to represent a wide variety of fertiliser types used in agricultural systems and tailor nutrient release behavior to specific scenarios. Pre-defined fertiliser types are stored in a resource file named [Fertiliser.json](https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json).
+
+## Inputs
+
+- `Name`: Identifier used within the simulation to refer to this fertiliser.
+- `Description`: A user-defined description of the fertiliser type.
+- `FractionWhenRemainderReleased`: A numeric threshold indicating when the remaining portion of the fertiliser is released (e.g., 0.995).
+- `Solute1Name` to `Solute6Name`: The names of up to six solutes in the fertiliser.
+- `Solute1Fraction` to `Solute6Fraction`: The corresponding fractions (by mass) of each solute in the fertiliser.
+
+
+## Methodology
+
+`FertiliserType` acts as a container for the fertiliser composition. When a fertiliser is applied in a simulation, the associated solutes are released into the soil according to the specified fractions. The `FractionWhenRemainderReleased` controls when the final residual portion of fertiliser is applied, which is useful for simulating slow-release or staged-release fertilisers.
+
+Each solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation.
+
+Below is a simplified summary of fertiliser types pre-defined in APSIM NG:
+
+
+```{r read-data}
+
+a <- read_apsimx("https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json")
+
+fertilisers <- a$Children[[1]]$Children
+
+fertilisers |> 
+    map_df(function(x) {
+        tibble(Name = x$Name,
+              Description = x$Description,
+              Release = x$Children[[1]]$FixedValue,
+              Solute1Name = x$Solute1Name,
+              Solute1Fraction = x$Solute1Fraction,
+              Solute2Name = x$Solute2Name,
+              Solute2Fraction = x$Solute2Fraction,
+              Solute3Name = x$Solute3Name,
+              Solute3Fraction = x$Solute3Fraction,
+              Solute4Name = x$Solute4Name,
+              Solute4Fraction = x$Solute4Fraction,
+              Solute5Name = x$Solute5Name,
+              Solute5Fraction = x$Solute5Fraction,
+              Solute6Name = x$Solute6Name,
+              Solute6Fraction = x$Solute6Fraction)
+    }) |> 
+  kable()
+
+
+```
+
+
+## Events
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property                    | Type    | Description                                                                 |
+|-----------------------------|---------|-----------------------------------------------------------------------------|
+| Description                 | string  | A description of the fertiliser type                                        |
+| FractionWhenRemainderReleased | double  | Threshold for full fertiliser release (e.g., 0.995)                         |
+| Solute1Name                 | string  | Name of the first solute component                                          |
+| Solute1Fraction             | double  | Fraction of the fertiliser that is solute 1                                 |
+| Solute2Name                 | string  | Name of the second solute component                                         |
+| Solute2Fraction             | double  | Fraction of the fertiliser that is solute 2                                 |
+| Solute3Name                 | string  | Name of the third solute component                                          |
+| Solute3Fraction             | double  | Fraction of the fertiliser that is solute 3                                 |
+| Solute4Name                 | string  | Name of the fourth solute component                                         |
+| Solute4Fraction             | double  | Fraction of the fertiliser that is solute 4                                 |
+| Solute5Name                 | string  | Name of the fifth solute component                                          |
+| Solute5Fraction             | double  | Fraction of the fertiliser that is solute 5                                 |
+| Solute6Name                 | string  | Name of the sixth solute component                                          |
+| Solute6Fraction             | double  | Fraction of the fertiliser that is solute 6                                 |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+> No user interface is available for this function.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [FertiliserType.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Management/FertiliserType.cs)
+
+

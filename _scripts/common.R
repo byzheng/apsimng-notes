@@ -17,6 +17,7 @@ setup_qmd <- function() {
             out.width = "100%"
         )
     }
+    options(knitr.kable.NA = "")
 }
 
 date2doy <- function(date) {
