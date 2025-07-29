@@ -111,3 +111,14 @@ Events are listed according the model that triggers them.
 | <a id="PlantEmerged"></a>PlantEmerged | Signals that the emergence phase has been completed                                 |
 | <a id="StageWasReset"></a>StageWasReset | Signals a manual reset of stage via `SetToStage()`                                  |
 | <a id="PostPhenology"></a>PostPhenology | Raised after daily phenological timestep completes                                  |
+
+
+## [BiomassRemovalEvents](/docs/Models/Management/BiomassRemovalEvents.qmd)
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| <a id="Cutting"></a>Cutting | Raised when a cutting event occurs, typically to simulate mechanical removal of plant biomass. |
+| <a id="Grazing"></a>Grazing | Raised when a grazing event occurs, representing animal consumption of plant material. |
+| <a id="Pruning"></a>Pruning | Raised when a pruning event occurs, representing manual or mechanical removal of plant parts. |
+| <a id="Harvesting"></a>Harvesting | Raised when a harvesting event occurs, representing the collection of crop yield. |
+| <a id="EndCrop"></a>EndCrop | Raised when a crop is ended, signaling the termination of the crop's lifecycle. |
