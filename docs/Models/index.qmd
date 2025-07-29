@@ -3,20 +3,23 @@ title: "Models"
 ---
 
 
-## [Functions](Functions)
+## [Functions](Functions/index.qmd)
 
 Functions or Models are basic building blocks of crop models in APSIM Next Generations. 
 
-## [Plant Modelling Framework](PMF)
+## [Plant Modelling Framework](PMF/index.qmd)
 
 The Plant Modelling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding [@brown_plant_2014].
 
-## [Graph](Graph)
+## [Graph](Graph/index.qmd)
 
 The Graph module provides a framework to visualise reports in APSIM Next Generation. It allows users to create and manage graphs, which can be used to display various data types, including time series and statistical analyses.
 
-## [Traits](Traits/)
+## [Management](Management/index.qmd)
 
+The Management module contains models for farm managements. These models allow users to simulate various agricultural practices and their effects on crop performance.
+
+## [Traits](Traits/)
 
 Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
 
