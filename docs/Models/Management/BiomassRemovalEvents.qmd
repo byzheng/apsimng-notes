@@ -1,0 +1,88 @@
+---
+title: "BiomassRemovalEvents"
+output: html_document
+---
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+The `BiomassRemovalEvents` function is used to trigger biomass removal events (such as [Cutting](/docs/Models/Events.qmd#Cutting), [Grazing](/docs/Models/Events.qmd#Grazing), [Pruning](/docs/Models/Events.qmd#Pruning), [Harvesting](/docs/Models/Events.qmd#Harvesting), or [EndCrop](/docs/Models/Events.qmd#EndCrop)). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.
+
+## Overview
+
+`BiomassRemovalEvents` facilitates biomass removal in simulations without requiring a manager script. It is linked to a crop model and specifies the type of biomass removal event to apply (e.g., Cutting, Grazing). It also defines removal dates and the fractions of biomass to be removed from each plant organ. The function optionally resets the plant’s phenology to a specified stage after removal. This model allows event-based crop management to be incorporated into the simulation workflow through either predefined schedules or external triggers.
+
+## Inputs
+
+- `NameOfPlantToRemoveFrom`: Name of the crop from which biomass will be removed.
+- `RemovalType`: Type of removal event (e.g., Cutting, Grazing, Pruning, Harvesting, EndCrop).
+- `StageToSet`: Phenological stage to set after the biomass removal (optional).
+- `RemovalDates`: A list of dates (dd/mm/yyyy or dd-mmm) to trigger biomass removal events.
+- `BiomassRemovalFractions`: A list specifying fractions of live and dead biomass to remove or send to residue for each organ.
+
+## Methodology
+
+On each simulation day, `BiomassRemovalEvents` checks if the current date matches any of the specified `RemovalDates`. If a match is found, or if a relevant phenology event occurs (e.g., `PhenologyDefoliate`), the `Remove()` method is triggered. 
+
+This method does the following:
+
+1. Validates the link to the specified crop.
+2. Raises an event corresponding to the `RemovalType` (e.g., `OnCutting`, `OnHarvesting`).
+3. Applies biomass removal to each plant organ using the defined fractions.
+4. If `StageToSet` is specified, updates the plant’s phenology stage accordingly.
+
+Validation ensures that all biomass fractions are numbers between 0 and 1. Any invalid input results in an exception.
+
+## Events
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event               | Purpose                                                                |
+|---------------------|------------------------------------------------------------------------|
+| [DoManagement](/docs/Models/Events.qmd#DoManagement)      | Triggers removal on matching dates                                     |
+| [PhenologyDefoliate](/docs/Models/Events.qmd#PhenologyDefoliate)| Triggers removal if `RemovalType` matches the event type               |
+| [PhenologyPrune](/docs/Models/Events.qmd#PhenologyPrune)    | Triggers removal if `RemovalType` is `Pruning`                         |
+| [PhenologyHarvest](/docs/Models/Events.qmd#PhenologyHarvest)  | Triggers removal if `RemovalType` is `Harvesting`                      |
+
+**Events Raised to**
+
+| Event     | Purpose                                                    |
+|----------|------------------------------------------------------------|
+| [Cutting](/docs/Models/Events.qmd#Cutting)   | Raised when `RemovalType` is Cutting                       |
+| [Grazing](/docs/Models/Events.qmd#Grazing)   | Raised when `RemovalType` is Grazing                       |
+| [Pruning](/docs/Models/Events.qmd#Pruning)   | Raised when `RemovalType` is Pruning                       |
+| [Harvesting](/docs/Models/Events.qmd#Harvesting) | Raised when `RemovalType` is Harvesting                    |
+| [EndCrop](/docs/Models/Events.qmd#EndCrop)   | Raised when `RemovalType` is EndCrop                       |
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property                  | Type     | Description                                                                 |
+|---------------------------|----------|-----------------------------------------------------------------------------|
+| NameOfPlantToRemoveFrom   | string   | Name of the crop to remove biomass from                                    |
+| RemovalType               | enum     | Type of removal (Cutting, Grazing, Pruning, Harvesting, EndCrop)           |
+| StageToSet                | string   | Crop stage to set after removal                                            |
+| RemovalDates              | string[] | List of dates when removal occurs                                          |
+| BiomassRemovalFractions   | list     | Biomass fractions to remove for each organ                                 |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## User Interface
+
+`BiomassRemovalEvents` can be added as a child of a `Zone` or `Folder` node in the model tree. Right-click the parent node, select "Add Model...", and search for `BiomassRemovalEvents` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [BiomassRemovalEvents.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Management/BiomassRemovalEvents.cs)
+* **Example Simulation:** [BiomassRemovalTests.apsimx](https://github.com/APSIMInitiative/ApsimX/blob/master/Tests/Simulation/BiomassRemoval/BiomassRemovalTests.apsimx)
