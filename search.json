@@ -7131,6 +7131,18 @@
     ]
   },
   {
+    "objectID": "docs/Models/index.html#management",
+    "href": "docs/Models/index.html#management",
+    "title": "Models",
+    "section": "Management",
+    "text": "Management\nThe Management module contains models for farm managements. These models allow users to simulate various agricultural practices and their effects on crop performance.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models"
+    ]
+  },
+  {
     "objectID": "docs/Models/index.html#traits",
     "href": "docs/Models/index.html#traits",
     "title": "Models",
