@@ -1463,59 +1463,129 @@
     ]
   },
   {
-    "objectID": "docs/Models/Management/fertiliser.html",
-    "href": "docs/Models/Management/fertiliser.html",
-    "title": "Fertiliser Types",
+    "objectID": "docs/Models/Management/FertiliserType.html",
+    "href": "docs/Models/Management/FertiliserType.html",
+    "title": "FertiliserType",
     "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "text": "The FertiliserType function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "Fertiliser Types"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/fertiliser.html#introduction",
-    "href": "docs/Models/Management/fertiliser.html#introduction",
-    "title": "Fertiliser Types",
-    "section": "",
-    "text": "The fertiliser module defines the characteristics of different fertiliser types, such as their chemical composition and release behaviour. These definitions are stored in a resource file named Fertiliser.json.\nUnderstanding the composition and behaviour of different fertilisers allows users to select the most appropriate input for specific scenarios, such as rapid nitrogen availability, slow-release fertilisers, or dual-nutrient blends.",
+    "objectID": "docs/Models/Management/FertiliserType.html#overview",
+    "href": "docs/Models/Management/FertiliserType.html#overview",
+    "title": "FertiliserType",
+    "section": "Overview",
+    "text": "Overview\nFertiliserType is a submodel of the Fertiliser model. It provides a detailed configuration of the fertiliser’s composition by defining up to six solutes, each with a specified name and mass fraction. Additionally, it includes a threshold fraction to determine when the remainder of the fertiliser is released. This model allows researchers and users to represent a wide variety of fertiliser types used in agricultural systems and tailor nutrient release behavior to specific scenarios. Pre-defined fertiliser types are stored in a resource file named Fertiliser.json.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "Fertiliser Types"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/fertiliser.html#structure-of-fertiliser-definitions",
-    "href": "docs/Models/Management/fertiliser.html#structure-of-fertiliser-definitions",
-    "title": "Fertiliser Types",
-    "section": "Structure of Fertiliser Definitions",
-    "text": "Structure of Fertiliser Definitions\nEach fertiliser type in APSIM has the following attributes:\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A human-readable explanation of the fertiliser’s nature or composition.\nSolute: The main chemical form of the nutrient (e.g., nitrate, ammonium) that the fertiliser releases into the soil.\nFraction: The proportion (from 0 to 1) of the nutrient solute in the fertiliser product.\nRelease Rate: The fixed amount or rate at which the nutrient becomes available in the soil after application. In most cases, this represents instantaneous release, but could be extended for controlled-release products.",
+    "objectID": "docs/Models/Management/FertiliserType.html#inputs",
+    "href": "docs/Models/Management/FertiliserType.html#inputs",
+    "title": "FertiliserType",
+    "section": "Inputs",
+    "text": "Inputs\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A user-defined description of the fertiliser type.\nFractionWhenRemainderReleased: A numeric threshold indicating when the remaining portion of the fertiliser is released (e.g., 0.995).\nSolute1Name to Solute6Name: The names of up to six solutes in the fertiliser.\nSolute1Fraction to Solute6Fraction: The corresponding fractions (by mass) of each solute in the fertiliser.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "Fertiliser Types"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "href": "docs/Models/Management/fertiliser.html#example-fertiliser-types-in-apsim",
-    "title": "Fertiliser Types",
-    "section": "Example Fertiliser Types in APSIM",
-    "text": "Example Fertiliser Types in APSIM\nBelow is a simplified summary of several fertiliser types defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nSolute1Name\nSolute1Fraction\nRelease\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\nCa\n1.00\n1\n\n\nCalciteFine\nfinely ground Agricultural Lime\nCa\n0.40\n1\n\n\nDolomite\nfinely ground dolomite\nCa\n0.22\n1\n\n\nNO3N\nN as nitrate\nNO3\n1.00\n1\n\n\nNH4N\nN as ammonium\nNH4\n1.00\n1\n\n\nNH4NO3N\nammonium nitrate\nNO3\n0.50\n1\n\n\nDAP\ndi-ammonium phosphate\nNH4\n0.18\n1\n\n\nMAP\nmono-ammonium phosphate\nNH4\n0.11\n1\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\nNO3\n0.25\n1\n\n\nUreaN\nN as urea\nUrea\n1.00\n1\n\n\nUreaNO3\nN as urea\nNO3\n0.50\n1\n\n\nUreaGranular\nUrea fertiliser\nUrea\n0.46\n1\n\n\nNH4SO4N\nammonium sulphate\nNH4\n1.00\n1\n\n\nRockP\nRock phosphorus\nRockP\n0.80\n1\n\n\nBandedP\nBanded phosphorus\nBandedP\n1.00\n1\n\n\nBroadcastP\nBroadcast phosphorus\nLabileP\n1.00\n1",
+    "objectID": "docs/Models/Management/FertiliserType.html#methodology",
+    "href": "docs/Models/Management/FertiliserType.html#methodology",
+    "title": "FertiliserType",
+    "section": "Methodology",
+    "text": "Methodology\nFertiliserType acts as a container for the fertiliser composition. When a fertiliser is applied in a simulation, the associated solutes are released into the soil according to the specified fractions. The FractionWhenRemainderReleased controls when the final residual portion of fertiliser is applied, which is useful for simulating slow-release or staged-release fertilisers.\nEach solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation.\nBelow is a simplified summary of fertiliser types pre-defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nRelease\nSolute1Name\nSolute1Fraction\nSolute2Name\nSolute2Fraction\nSolute3Name\nSolute3Fraction\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\n1\nCa\n1.00\n\n\n\n\n\n\nCalciteFine\nfinely ground Agricultural Lime\n1\nCa\n0.40\n\n\n\n\n\n\nDolomite\nfinely ground dolomite\n1\nCa\n0.22\n\n\n\n\n\n\nNO3N\nN as nitrate\n1\nNO3\n1.00\n\n\n\n\n\n\nNH4N\nN as ammonium\n1\nNH4\n1.00\n\n\n\n\n\n\nNH4NO3N\nammonium nitrate\n1\nNO3\n0.50\nNH4\n0.50\n\n\n\n\nDAP\ndi-ammonium phosphate\n1\nNH4\n0.18\n\n\n\n\n\n\nMAP\nmono-ammonium phosphate\n1\nNH4\n0.11\n\n\n\n\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\n1\nNO3\n0.25\nNH4\n0.25\nUrea\n0.5\n\n\nUreaN\nN as urea\n1\nUrea\n1.00\n\n\n\n\n\n\nUreaNO3\nN as urea\n1\nNO3\n0.50\nUrea\n0.50\n\n\n\n\nUreaGranular\nUrea fertiliser\n1\nUrea\n0.46\n\n\n\n\n\n\nNH4SO4N\nammonium sulphate\n1\nNH4\n1.00\n\n\n\n\n\n\nRockP\nRock phosphorus\n1\nRockP\n0.80\nLabileP\n0.20\n\n\n\n\nBandedP\nBanded phosphorus\n1\nBandedP\n1.00\n\n\n\n\n\n\nBroadcastP\nBroadcast phosphorus\n1\nLabileP\n1.00",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "Fertiliser Types"
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#events",
+    "href": "docs/Models/Management/FertiliserType.html#events",
+    "title": "FertiliserType",
+    "section": "Events",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#properties",
+    "href": "docs/Models/Management/FertiliserType.html#properties",
+    "title": "FertiliserType",
+    "section": "Properties",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDescription\nstring\nA description of the fertiliser type\n\n\nFractionWhenRemainderReleased\ndouble\nThreshold for full fertiliser release (e.g., 0.995)\n\n\nSolute1Name\nstring\nName of the first solute component\n\n\nSolute1Fraction\ndouble\nFraction of the fertiliser that is solute 1\n\n\nSolute2Name\nstring\nName of the second solute component\n\n\nSolute2Fraction\ndouble\nFraction of the fertiliser that is solute 2\n\n\nSolute3Name\nstring\nName of the third solute component\n\n\nSolute3Fraction\ndouble\nFraction of the fertiliser that is solute 3\n\n\nSolute4Name\nstring\nName of the fourth solute component\n\n\nSolute4Fraction\ndouble\nFraction of the fertiliser that is solute 4\n\n\nSolute5Name\nstring\nName of the fifth solute component\n\n\nSolute5Fraction\ndouble\nFraction of the fertiliser that is solute 5\n\n\nSolute6Name\nstring\nName of the sixth solute component\n\n\nSolute6Fraction\ndouble\nFraction of the fertiliser that is solute 6\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#user-interface",
+    "href": "docs/Models/Management/FertiliserType.html#user-interface",
+    "title": "FertiliserType",
+    "section": "User Interface",
+    "text": "User Interface\n\nNo user interface is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#practical-example",
+    "href": "docs/Models/Management/FertiliserType.html#practical-example",
+    "title": "FertiliserType",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#see-also",
+    "href": "docs/Models/Management/FertiliserType.html#see-also",
+    "title": "FertiliserType",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: FertiliserType.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
     ]
   },
   {
@@ -5938,7 +6008,7 @@
     "href": "docs/Models/Management/index.html",
     "title": "Management",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliser Types\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliserType\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
