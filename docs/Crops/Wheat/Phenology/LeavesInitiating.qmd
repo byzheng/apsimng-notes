@@ -310,11 +310,6 @@ p +
     )
 ```
 
-### Base and Max Vrn Expression
-
-The base Vrn expression $Vrn_{\text{base}}$ and the maximum Vrn expression $Vrn_{\text{max}}$ are calculated from the [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model as a ratio of daily changes of [Haun Stage](HaunStage.qmd).
-
-
 
 ### Final Leaf Number
 

@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "Version": 196,
+  "Version": 198,
   "Name": "Simulations",
   "ResourceName": null,
   "Children": [
@@ -164,7 +164,11 @@
                     "[Wheat].Phenology.CAMP.Params.PpVrn3FactVeg",
                     "[Wheat].Phenology.CAMP.Params.MaxVrn2",
                     "[Wheat].Phenology.CAMP.Params.MethalationThreshold",
-                    "[Wheat].Phenology.CAMP.Params.ColdVrn1Fact"
+                    "[Wheat].Phenology.CAMP.Params.ColdVrn1Fact",
+                    "",
+                    "",
+                    "",
+                    "[Wheat].Leaf.Fw"
                   ],
                   "EventNames": [
                     "[Clock].DoReport"
