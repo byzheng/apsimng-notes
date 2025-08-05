@@ -1,0 +1,68 @@
+---
+title: "SimpleLeafAppearancePhase"
+output: html_document
+---
+
+The `SimpleLeafAppearancePhase` represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number. 
+
+
+## Overview
+
+`SimpleLeafAppearancePhase` models a phenological phase that progresses based on final leaf number. It is a simplified approach to leaf appearance, where the phase completes when the number of leaves reaches final leaf number. This phase is useful for crops where leaf appearance is a key developmental milestone.
+
+## Inputs
+
+- `Start`: Name of the phenological stage where the phase begins (string).
+- `End`: Name of the phenological stage where the phase ends (string).
+- `IsEmerged`: Boolean value indicating whether the phase starts after emergence.
+- `TargetLeafNumber`: A child `IFunction` that provides the target leaf number for the phase.
+- `CurrentLeafNumber`: A child `IFunction` that returns the current number of leaves.
+
+## Methodology
+
+The `SimpleLeafAppearancePhase` progresses from the `Start` to the `End` stage based on the number of leaves that have appeared. On the first day, it stores the current number of leaves as `LeafNoAtStart` and computes the `TargetLeafForCompletion` by subtracting this from the final target leaf number, i.e. further changes of Final Leaf Number (i.e. `TargetLeafNumber`) will not impact the completion criteria.
+
+If the leaf number reaches the target leaf number, the phase is considered complete and the model proceeds to the next phase. 
+
+
+## Events 
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Reset the internal state before the simulation starts |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Start                | string  | Name of the phenological stage where this phase starts                      |
+| End                  | string  | Name of the phenological stage where this phase ends                        |
+| IsEmerged            | bool    | Whether the phase starts after emergence                                    |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| FractionComplete     | double  | The fraction of the phase that has been completed                          |
+
+## User Interface
+
+`SimpleLeafAppearancePhase` can be added as a child of a `Phenology` node in the model tree. Right-click the parent node, select "Add Model...", and search for `SimpleLeafAppearancePhase` in the Filter Box.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [SimpleLeafAppearancePhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.cs)
