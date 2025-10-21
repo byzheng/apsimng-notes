@@ -2971,7 +2971,7 @@
     "href": "docs/Crops/Wheat/Phenology/LeavesInitiating.html#simulation-example",
     "title": "LeavesInitiating",
     "section": "Simulation Example",
-    "text": "Simulation Example\nWe demonstrate progress of leaf initiation phase using example simulations for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.\nTwo cultivars, Emu_Rock and Sunlamb, are used in the example simulations to represent the very quick and very late maturity types, respectively (Celestina et al. 2023). The following table shows the FLN parameters for these two cultivars:\n\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\n[Phenology].CAMP.FLNparams.MinLN\n6\n7\n\n\n[Phenology].CAMP.FLNparams.PpLN\n1\n5\n\n\n[Phenology].CAMP.FLNparams.VrnLN\n1\n10\n\n\n[Phenology].CAMP.FLNparams.VxPLN\n-1\n-5\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: FLN parameters for Emu_Rock and Sunlamb Cultivars\n\n\n\n\n\nThe vernalisation rate parameters are calculated for each cultivar using the calcCAMPVrnRates function at Sowing, and should be genotype-specific values. The following table shows the calculated parameters for Emu_Rock and Sunlamb cultivars:\n\n\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\nBaseDVrnER\n0.37\n0.14\n\n\nBaseDVrnVeg\n0.34\n0.09\n\n\nMaxDVrnER\n0.57\n0.37\n\n\nMaxDVrnVeg\n0.49\n0.50\n\n\nPpVrn3FactER\n1.52\n2.70\n\n\nPpVrn3FactVeg\n2.69\n2.70\n\n\nMaxVrn2\n0.32\n0.22\n\n\nMethalationThreshold\n0.63\n1.04\n\n\nColdVrn1Fact\n4.86\n30.95\n\n\n\n\n\nTotal Vrn Expression\nThis plot shows the progress of the Vrn1 expression for the cultivar Sunlamb and Emu_Rock on the sowing date 1-May and 1-Jun. The LeavesInitiating phase is finished when Wheat.Phenology.CAMP.Vrn1 equal to 1 at vernalisation saturation.\n\n\n\n\n\n\n\n\nFigure 2: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1.\n\n\n\n\n\nThe total \\(Vrn\\) expression is the sum of the three Vrn genes, i.e. \\(Vrn = Vrn_{\\text{base}} + Vrn1 + Vrn3 - Vrn2\\), and capped below \\(Vrn_{\\text{max}}\\). The following figure shows the Vrn expressions for three Vrn genes for very late cultivar Sunlambon the sowing date 1-May and 1-Jun.\n\n\n\n\n\n\n\n\nFigure 3: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. \\(Vrn_{base}\\), \\(Vrn1\\), and \\(Vrn3\\) are stacked at the y positive axis. \\(Vrn2\\) is shown as a negative value at the y negative axis. The black lines represent the total \\(Vrn\\) expression. The red lines represent the maximum \\(Vrn\\) expression.\n\n\n\n\n\n\n\nBase Vrn Expression \\(Vrn_{\\text{base}}\\)\n\n\nFinal Leaf Number\n\n\n\n\n\n\n\n\nFigure 4",
+    "text": "Simulation Example\nWe demonstrate progress of leaf initiation phase using example simulations for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.\nTwo cultivars, Emu_Rock and Sunlamb, are used in the example simulations to represent the very quick and very late maturity types, respectively (Celestina et al. 2023). The following table shows the FLN parameters for these two cultivars:\n\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\n[Phenology].CAMP.FLNparams.MinLN\n6\n7\n\n\n[Phenology].CAMP.FLNparams.PpLN\n1\n5\n\n\n[Phenology].CAMP.FLNparams.VrnLN\n1\n10\n\n\n[Phenology].CAMP.FLNparams.VxPLN\n-1\n-5\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: FLN parameters for Emu_Rock and Sunlamb Cultivars\n\n\n\n\n\nThe vernalisation rate parameters are calculated for each cultivar using the calcCAMPVrnRates function at Sowing, and should be genotype-specific values. The following table shows the calculated parameters for Emu_Rock and Sunlamb cultivars:\n\n\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\nBaseDVrnER\n0.37\n0.14\n\n\nBaseDVrnVeg\n0.34\n0.09\n\n\nMaxDVrnER\n0.57\n0.37\n\n\nMaxDVrnVeg\n0.49\n0.50\n\n\nPpVrn3FactER\n1.52\n2.70\n\n\nPpVrn3FactVeg\n2.69\n2.70\n\n\nMaxVrn2\n0.32\n0.22\n\n\nMethalationThreshold\n0.63\n1.04\n\n\nColdVrn1Fact\n4.86\n30.95\n\n\n\n\n\nTotal Vrn Expression\nThis plot shows the progress of the Vrn1 expression for the cultivar Sunlamb and Emu_Rock on the sowing date 1-May and 1-Jun. The LeavesInitiating phase is finished when Wheat.Phenology.CAMP.Vrn1 equal to 1 at vernalisation saturation.\n\n\n\n\n\n\n\n\nFigure 2: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1.\n\n\n\n\n\nThe total \\(Vrn\\) expression is the sum of the three Vrn genes, i.e. \\(Vrn = Vrn_{\\text{base}} + Vrn1 + Vrn3 - Vrn2\\), and capped below \\(Vrn_{\\text{max}}\\). The following figure shows the Vrn expressions for three Vrn genes for very late cultivar Sunlambon the sowing date 1-May and 1-Jun.\n\n\n\n\n\n\n\n\nFigure 3: Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. \\(Vrn_{base}\\), \\(Vrn1\\), and \\(Vrn3\\) are stacked at the y positive axis. \\(Vrn2\\) is shown as a negative value at the y negative axis. The black lines represent the total \\(Vrn\\) expression. The red lines represent the maximum \\(Vrn\\) expression.\n\n\n\n\n\n\n\nFinal Leaf Number\n\n\n\n\n\n\n\n\nFigure 4",
     "crumbs": [
       "Home",
       "Docs",
@@ -3651,43 +3651,101 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Barley/index.html",
-    "href": "docs/Crops/Barley/index.html",
-    "title": "Barley",
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html",
+    "title": "BudDevelopment",
     "section": "",
-    "text": "The APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "The BudDevelopment phase in Canola represents the developmental period from FloralInitiation to GreenBud. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Barley"
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
     ]
   },
   {
-    "objectID": "docs/Crops/Barley/index.html#phenology",
-    "href": "docs/Crops/Barley/index.html#phenology",
-    "title": "Barley",
-    "section": "Phenology",
-    "text": "Phenology\nThe barley phenology is simulated from sowing to harvest.",
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
+    "title": "BudDevelopment",
+    "section": "Overview",
+    "text": "Overview\nThe SimpleLeafAppearancePhase model simulates the time between the FloralInitiation and GreenBud stages with following parameters:\n\nStart: FloralInitiation\nEnd: GreenBud\nIsEmerged: TRUE\nTargetLeafNumber: as FinalLeafNumber in Leaf model.\nCurrentLeafNumber: as NodeNumber in Leaf model",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Barley"
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
     ]
   },
   {
-    "objectID": "docs/Crops/Barley/index.html#see-also",
-    "href": "docs/Crops/Barley/index.html#see-also",
-    "title": "Barley",
-    "section": "See Also",
-    "text": "See Also\n\nOnline Resource File",
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
+    "title": "BudDevelopment",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters available",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Barley"
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
     ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
+    "title": "BudDevelopment",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Examples/canola_example1.html",
+    "href": "docs/Crops/Canola/Examples/canola_example1.html",
+    "title": "Canola Example Simulation 1",
+    "section": "",
+    "text": "This example demonstrates a Canola simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on canola growth and development.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Examples",
+      "Canola Example Simulation 1"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
+    "href": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
+    "title": "Canola Example Simulation 1",
+    "section": "Simulation Configuration",
+    "text": "Simulation Configuration\nThe two contrasting cultivars are GenericEearly for early maturity type and GenericLate for late maturity type, which represent different growth characteristics. The two different sowing dates are 1st May and 1st June.\nThe two contrasting locations are Roma in Queensland and Hamilton in Victoria, Australia. The weather data are obtained from SILO Patched Point Dataset.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Examples",
+      "Canola Example Simulation 1"
+    ]
+  },
+  {
+    "objectID": "disclaimer.html",
+    "href": "disclaimer.html",
+    "title": "Disclaimer",
+    "section": "",
+    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
   },
   {
     "objectID": "about.html",
@@ -3725,11 +3783,43 @@
     "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
   },
   {
-    "objectID": "disclaimer.html",
-    "href": "disclaimer.html",
-    "title": "Disclaimer",
+    "objectID": "docs/Crops/Barley/index.html",
+    "href": "docs/Crops/Barley/index.html",
+    "title": "Barley",
     "section": "",
-    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
+    "text": "The APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Barley/index.html#phenology",
+    "href": "docs/Crops/Barley/index.html#phenology",
+    "title": "Barley",
+    "section": "Phenology",
+    "text": "Phenology\nThe barley phenology is simulated from sowing to harvest.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Barley/index.html#see-also",
+    "href": "docs/Crops/Barley/index.html#see-also",
+    "title": "Barley",
+    "section": "See Also",
+    "text": "See Also\n\nOnline Resource File",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
   },
   {
     "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html",
@@ -4498,6 +4588,21 @@
     "title": "Phyllochron",
     "section": "Practical Example",
     "text": "Practical Example\nLeaf Rank Effects\nWe assume a wheat cultivar with a base phyllochron of 100 °C·days, a photoperiod sensitivity of 0.6, and sown at Inverleigh, Victoria, which has a day length of 11 hours in winter. The phyllochron for leaf 1 to 8 can be calculated as follows:\n\nBase phyllochron (\\(P_{\\text{base}}\\)): 100 °C·days\nPhotoperiod modifier (\\(f_{\\text{pp}}(11)\\)):\n\n\\(f_d(11) = \\frac{12 - 11}{12 - 8} = 0.25\\)\n\\(f_{\\text{pp}}(11) = 1 + 0.6 \\times 0.25 = 1.15\\)\n\nLeaf stage factor (\\(f_{\\text{leaf}}(n)\\)):\n\nLeaves 1–2: 0.75\nLeaves 3–7: 1.0\nLeaf 8: 1.4\n\n\nExample calculations:\nThis table shows the phyllochron for each leaf cohort under these example conditions.\n\n\n\n\n\n\n\n\nLeaf Cohort (\\(n\\))\n\\(f_{\\text{leaf}}(n)\\)\n\\(P_{\\text{eff}}\\) (°C·days)\n\n\n\n\n1\n0.75\n\\(100 \\times 0.75 \\times 1.15 = 86.25\\)\n\n\n2\n0.75\n\\(100 \\times 0.75 \\times 1.15 = 86.25\\)\n\n\n3\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n4\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n5\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n6\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n7\n1.0\n\\(100 \\times 1.0 \\times 1.15 = 115.0\\)\n\n\n8\n1.4\n\\(100 \\times 1.4 \\times 1.15 = 161.0\\)\n\n\n\nEffect of Photoperiod Sensitivity\nTo illustrate how photoperiod sensitivity (\\(S\\)) affects the phyllochron, let’s calculate \\(P_{\\text{eff}}\\) for a range of \\(S\\) values from 0 to 1 (at 0.2 intervals) with a fixed day length of 10 hours. We’ll use a base phyllochron of 100 °C·days and the leaf stage factor for leaf 3 (\\(f_{\\text{leaf}}(3) = 1.0\\)).\nFirst, calculate \\(f_d(10)\\): - \\(f_d(10) = \\frac{12 - 10}{12 - 8} = \\frac{2}{4} = 0.5\\)\nNow, for each \\(S\\):\n\n\n\n\n\n\n\n\nPhotoperiod Sensitivity (\\(S\\))\n\\(f_{\\text{pp}}(10)\\)\n\\(P_{\\text{eff}}\\) (°C·days)\n\n\n\n\n0.0\n\\(1 + 0.0 \\times 0.5 = 1.00\\)\n\\(100 \\times 1.0 \\times 1.00 = 100.0\\)\n\n\n0.2\n\\(1 + 0.2 \\times 0.5 = 1.10\\)\n\\(100 \\times 1.0 \\times 1.10 = 110.0\\)\n\n\n0.4\n\\(1 + 0.4 \\times 0.5 = 1.20\\)\n\\(100 \\times 1.0 \\times 1.20 = 120.0\\)\n\n\n0.6\n\\(1 + 0.6 \\times 0.5 = 1.30\\)\n\\(100 \\times 1.0 \\times 1.30 = 130.0\\)\n\n\n0.8\n\\(1 + 0.8 \\times 0.5 = 1.40\\)\n\\(100 \\times 1.0 \\times 1.40 = 140.0\\)\n\n\n1.0\n\\(1 + 1.0 \\times 0.5 = 1.50\\)\n\\(100 \\times 1.0 \\times 1.50 = 150.0\\)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Phenology",
+      "Phyllochron"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Phenology/Phyllochron.html#simulation-example",
+    "href": "docs/Crops/Wheat/Phenology/Phyllochron.html#simulation-example",
+    "title": "Phyllochron",
+    "section": "Simulation Example",
+    "text": "Simulation Example\nWe demonstrate Phyllochron using example simulations for wheat.\nTwo cultivars, Emu_Rock and Sunlamb, are used in the example simulations to represent the very quick and very late maturity types, respectively (Celestina et al. 2023).\n\n\n\nCultivar\nBase Phyllochron (°C·days)\n\n\n\n\nEmu_Rock\n94.77\n\n\nSunlamb\n100.38\n\n\n\nBoth cultivars have similar base phyllochron values, resulting in similar phyllochron intervals, but they reach the flag leaf stage at different times.\n\n\n\n\n\n\n\n\nFigure 1",
     "crumbs": [
       "Home",
       "Docs",
@@ -6634,7 +6739,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html#practical-example",
     "title": "FinalLeafNumberSet",
     "section": "Practical Example",
-    "text": "Practical Example\nBelow is a summary table for two cultivars including very quick maturity Emu_Rock and very late maturity Sunlamb (Celestina et al. 2023), showing their parameter values and calculated FLN for each treatment:\n\n\n\nTable 1: Final Leaf Number Parameters for Emu_Rock and Sunlamb Cultivars\n\n\n\nFinal Leaf Number Parameters for Emu_Rock and Sunlamb Cultivars\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\nMinLN\n6\n7\n\n\nPpLN\n1\n5\n\n\nVrnLN\n1\n10\n\n\nVxPLN\n-1\n-5\n\n\nLV\n6\n7\n\n\nSV\n7\n12\n\n\nSN\n8\n22\n\n\nLN\n6\n12\n\n\n\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
+    "text": "Practical Example\nBelow is a summary table for two cultivars including very quick maturity Emu_Rock and very late maturity Sunlamb (Celestina et al. 2023), showing their parameter values and calculated FLN for each treatment:\n\n\n\nTable 1: Final Leaf Number Parameters for Emu_Rock and Sunlamb Cultivars\n\n\n\n\n\nParameter\nEmu_Rock\nSunlamb\n\n\n\n\nMinLN\n6\n7\n\n\nPpLN\n1\n5\n\n\nVrnLN\n1\n10\n\n\nVxPLN\n-1\n-5\n\n\nLV\n6\n7\n\n\nSV\n7\n12\n\n\nSN\n8\n22\n\n\nLN\n6\n12\n\n\n\n\n\n\nThis figure illustrates the final leaf number (FLN) for the BattenWinter and BattenSpring cultivars under different treatments, including the contributions of each parameter to the final leaf number.\n\n\n\n\n\n\n\n\nFigure 1: Final Leaf Number (FLN) for BattenWinter and BattenSpring cultivars",
     "crumbs": [
       "Home",
       "Docs",
