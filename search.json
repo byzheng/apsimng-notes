@@ -3278,6 +3278,19 @@
     ]
   },
   {
+    "objectID": "docs/Crops/Canola/index.html#organs",
+    "href": "docs/Crops/Canola/index.html#organs",
+    "title": "Canola",
+    "section": "Organs",
+    "text": "Organs\n\nLeaf: The leaf organ model simulates leaf area development, senescence, and photosynthesis.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola"
+    ]
+  },
+  {
     "objectID": "docs/Crops/Canola/index.html#see-also",
     "href": "docs/Crops/Canola/index.html#see-also",
     "title": "Canola",
@@ -4939,11 +4952,11 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/index.html#grain",
-    "href": "docs/Crops/Wheat/index.html#grain",
+    "objectID": "docs/Crops/Wheat/index.html#organs",
+    "href": "docs/Crops/Wheat/index.html#organs",
     "title": "Wheat",
-    "section": "Grain",
-    "text": "Grain\nThe wheat grain is only for parts for economic yield without Spike.",
+    "section": "Organs",
+    "text": "Organs\n\nGrain: The wheat grain is only for parts for economic yield without Spike.",
     "crumbs": [
       "Home",
       "Docs",
