@@ -10,9 +10,10 @@ The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) [
 
 The wheat phenology is simulated from sowing to harvest.
 
-## [Grain](Grain)
 
-The wheat grain is only for parts for economic yield without [Spike](Spike).
+## Organs
+
+- [Grain](Grain/index.qmd): The wheat grain is only for parts for economic yield without [Spike](Spike).
 
 
 
