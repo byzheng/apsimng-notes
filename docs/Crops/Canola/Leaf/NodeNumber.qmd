@@ -1,0 +1,10 @@
+---
+title: "NodeNumber"
+output: html_document
+---
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+

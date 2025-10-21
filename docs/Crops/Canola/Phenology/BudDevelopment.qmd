@@ -1,0 +1,31 @@
+---
+title: "BudDevelopment"
+output: html_document
+---
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+The **BudDevelopment** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **FloralInitiation** to **GreenBud**. It is influenced by thermal time only.
+
+## Overview
+
+The [SimpleLeafAppearancePhase](/docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.qmd) model simulates the time between the `FloralInitiation` and `GreenBud` stages with following parameters:
+
+- **Start**: **FloralInitiation**
+- **End**: **GreenBud**
+- **IsEmerged**: TRUE
+- **TargetLeafNumber**: as [FinalLeafNumber](/docs/Crops/Canola/Leaf/FinalLeafNumber.qmd) in [Leaf](/docs/Crops/Canola/Leaf/index.qmd) model.
+- **CurrentLeafNumber**: as [NodeNumber](/docs/Crops/Canola/Leaf/NodeNumber.qmd) in [Leaf](/docs/Crops/Canola/Leaf/index.qmd) model
+
+## Cultivar-Specific Parameters
+
+> no cultivar-specific parameters available
+
+## Practical Example
+
+> no practical example available
+
