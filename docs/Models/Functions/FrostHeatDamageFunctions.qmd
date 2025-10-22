@@ -147,7 +147,83 @@ for (crop in names(params)) {
 
 ## Methodology
 
+Methodology
 
+This section describes the internal workflow and formulas used by FrostHeatDamageFunctions. The implementation is driven by two event handlers:
+
+- OnDoSowing — resets internal state at sowing.
+- OnDoManagementCalculations — runs daily to compute potentials, sensitivities, daily and cumulative reductions.
+
+Initialization (OnDoSowing)
+- All reportable and internal accumulators are initialized:
+    - per-day values: FrostPotentialReductionRatio, FrostSensitivity, FrostReductionRatio, HeatPotentialReductionRatio, HeatSensitivity, HeatReductionRatio, FrostHeatReductionRatio
+    - accumulators: FrostOverallRemaining = 1, HeatOverallRemaining = 1, CumulativeFrostReductionRatio = 0, CumulativeHeatReductionRatio = 0, CumulativeFrostHeatReductionRatio = 0
+    - counters and trackers: FrostEventNumber, HeatEventNumber, FrostSensitivePeriodStartDAS, FrostSensitivePeriodEndDAS, HeatSensitivePeriodStartDAS, HeatSensitivePeriodEndDAS
+
+Daily calculations (OnDoManagementCalculations)
+1. Preconditions
+     - The component verifies it is attached to the correct Plant parent and that Plant.IsAlive; otherwise the daily calculations are skipped.
+
+2. Track sensitive period start/end
+     - When the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.
+
+3. Potential reduction functions
+     - FrostPotentialReductionRatioFun(t):
+         - piecewise linear between FrostLowTT and FrostUpTT:
+             - if t <= FrostLowTT: ratio = FrostMaxReductionRatio
+             - if t >= FrostUpTT: ratio = FrostMinReductionRatio
+             - otherwise: linear interpolation
+                 ratio = FrostMaxReductionRatio + (t - FrostLowTT) * (FrostMinReductionRatio - FrostMaxReductionRatio) / (FrostUpTT - FrostLowTT)
+     - HeatPotentialReductionRatioFun(t):
+         - piecewise linear between HeatLowTT and HeatUpTT:
+             - if t <= HeatLowTT: ratio = HeatMinReductionRatio
+             - if t >= HeatUpTT: ratio = HeatMaxReductionRatio
+             - otherwise: linear interpolation
+                 ratio = HeatMinReductionRatio + (t - HeatLowTT) * (HeatMaxReductionRatio - HeatMinReductionRatio) / (HeatUpTT - HeatLowTT)
+
+     - Output ratios are constrained to [0,1] by parameter choice/logic.
+
+4. Growth-stage sensitivity functions
+     - FrostSensitivityFun(gs) and HeatSensitivityFun(gs):
+         - both implement a 4‑point piecewise linear sensitivity curve defined by
+             s0 (start of sensitive period), s1 (start of most sensitive), e1 (end of most sensitive), e0 (end of sensitive period).
+         - mapping: sensitivity = 0 at s0, linearly increases to 1 at s1, equals 1 between s1 and e1, then linearly decreases to 0 at e0.
+         - outside [s0, e0] sensitivity = 0.
+
+5. Daily actual reductions
+     - FrostReductionRatio = FrostPotentialReductionRatio * FrostSensitivity
+     - HeatReductionRatio  = HeatPotentialReductionRatio * HeatSensitivity
+     - Events counted when a daily reduction > 0:
+         - if FrostReductionRatio > 0 then FrostEventNumber++
+         - if HeatReductionRatio > 0 then HeatEventNumber++
+
+6. Combined daily reduction
+     - FrostHeatReductionRatio = 1 - (1 - FrostReductionRatio) * (1 - HeatReductionRatio)
+         - this assumes independent multiplicative survival from each stress.
+
+7. Cumulative reductions and remaining fractions
+     - FrostOverallRemaining = FrostOverallRemaining * (1 - FrostReductionRatio)
+     - CumulativeFrostReductionRatio = 1 - FrostOverallRemaining
+     - HeatOverallRemaining = HeatOverallRemaining * (1 - HeatReductionRatio)
+     - CumulativeHeatReductionRatio = 1 - HeatOverallRemaining
+     - CumulativeFrostHeatReductionRatio = 1 - FrostOverallRemaining * HeatOverallRemaining
+
+8. Frost- and heat-limited yield
+     - FrostHeatYield = organs.Wt * FrostOverallRemaining * HeatOverallRemaining
+         - here organs.Wt is the current reproductive organ (grain) weight used as a base to apply accumulated losses.
+
+Notes and assumptions
+- Piecewise linear parameterizations (thresholds and max/min reduction ratios) control severity and timing sensitivity.
+- Cumulative damage is applied multiplicatively (remaining fraction), which prevents total losses exceeding 100% and properly accounts for sequential events.
+- Sensitive period start/end are captured as the first day the crop growth stage equals or exceeds the corresponding threshold, recorded in days after sowing.
+
+Helper methods implemented in the code
+- FrostPotentialReductionRatioFun(double t)
+- FrostSensitivityFun(double GrowthStage)
+- HeatPotentialReductionRatioFun(double t)
+- HeatSensitivityFun(double GrowthStage)
+
+These implement the respective piecewise linear formulas described above and are invoked each day by OnDoManagementCalculations.
 
 ## Events 
 
@@ -158,7 +234,9 @@ These are signals or notifications that the function listens for from other part
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)   | Nothing to calculate at the start of the simulation |
+| [Sowing](/docs/Models/Events.html#Sowing)   | Initialize internal variables for frost and heat damage functions |
+| [DoManagementCalculations](/docs/Models/Events.html#DoManagementCalculations)   | Perform the actual calculations for frost and heat damage functions |
+
 
 
 **Events Raised to**
@@ -175,15 +253,31 @@ These are signals or notifications that the function listens for from other part
 
 **Read-Only Reportable Properties**
 
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `OutputValueType`   | string  | The type of variable for sub-daily values as `air temperature`                      |
+| Property | Type | Description                                                                                  |
+|--------|---:|--------------------------------------------------------------------------------------------------|
+| `FrostPotentialReductionRatio` | double | Daily potential yield reduction ratio by a frost event. |
+| `FrostSensitivity` | double | Daily sensitivity of yield reduction to growth stage when the frost event occurs. |
+| `FrostReductionRatio` | double | Daily actual yield reduction ratio by frost stress. |
+| `HeatPotentialReductionRatio` | double | Daily potential yield reduction ratio by a heat event. |
+| `HeatSensitivity` | double | Daily sensitivity of yield reduction to growth stage when the heat event occurs. |
+| `HeatReductionRatio` | double | Daily actual yield reduction ratio by heat stress. |
+| `FrostHeatReductionRatio` | double | Daily actual yield reduction ratio by combined frost and heat stress. |
+| `CumulativeFrostReductionRatio` | double | Cumulative actual yield reduction ratio induced by frost stress. |
+| `CumulativeHeatReductionRatio` | double | Cumulative actual yield reduction ratio induced by heat stress. |
+| `FrostEventNumber` | double | Number of frost events during the sensitive period. |
+| `HeatEventNumber` | double | Number of heat events during the sensitive period. |
+| `CumulativeFrostHeatReductionRatio` | double | Cumulative actual yield reduction ratio induced by both frost and heat stress. |
+| `FrostHeatYield` | double | Frost- and heat-limited yield (units: g/m²). |
+| `FrostSensitivePeriodStartDAS` | double | Start of frost sensitive period in days after sowing (units: days). |
+| `FrostSensitivePeriodEndDAS` | double | End of frost sensitive period in days after sowing (units: days). |
+| `HeatSensitivePeriodStartDAS` | double | Start of heat sensitive period in days after sowing (units: days). |
+| `HeatSensitivePeriodEndDAS` | double | End of heat sensitive period in days after sowing (units: days). |
 
 
 
 ## User Interface
 
-
+`FrostHeatDamageFunctions` can be added as a child of a Crop Model in the model tree.
 
 ## Practical Example
 
