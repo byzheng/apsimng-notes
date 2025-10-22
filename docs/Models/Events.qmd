@@ -86,6 +86,8 @@ Events that occur each day in calling order:
 
 #### Daily Finalization
 
+| Event | Description |
+|-------|-------------|
 | <a id="DoStock"></a>DoStock | Occurs each day to process stock methods in GrazPlan Stock. |
 | <a id="DoLifecycle"></a>DoLifecycle | Occurs each day to process a Pest and Disease lifecycle object. |
 | <a id="DoUpdate"></a>DoUpdate | Occurs near end of each day to do checks and finalising. |
@@ -95,12 +97,16 @@ Events that occur each day in calling order:
 
 #### End of Period Events
 
+| Event | Description |
+|-------|-------------|
 | <a id="EndOfWeek"></a>EndOfWeek | Occurs at end of each week (if Saturday). |
 | <a id="EndOfYear"></a>EndOfYear | Occurs at end of each year (if 31 Dec). |
 | <a id="EndOfMonth"></a>EndOfMonth | Occurs at end of each month. |
 
 #### Daily End
 
+| Event | Description |
+|-------|-------------|
 | <a id="EndOfDay"></a>EndOfDay | Occurs at end of each day. |
 | <a id="DoReport"></a>DoReport | Occurs at end of each day for daily reporting. |
 
@@ -108,6 +114,8 @@ Events that occur each day in calling order:
 
 Events that occur once at the end of the simulation:
 
+| Event | Description |
+|-------|-------------|
 | <a id="EndOfSimulation"></a>EndOfSimulation | Occurs at end of simulation. |
 
 ## Plant
