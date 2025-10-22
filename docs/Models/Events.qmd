@@ -17,84 +17,129 @@ Events are listed according the model that triggers them.
 
 ## [Clock](Clock.qmd)
 
+The Clock model triggers events in a specific order during simulation execution. Events are organized by their timing within the simulation lifecycle.
+
+### Start of Simulation
+
+Events that occur once at the beginning of the simulation:
+
 | Event | Description |
 |-------|-------------|
-| <a id="DoActualPlantGrowth"></a>DoActualPlantGrowth | Occurs each day to do actual plant growth. |
-| <a id="DoActualPlantPartioning"></a>DoActualPlantPartioning | Occurs each day to do nutrient allocations. |
+| <a id="DoInitialSummary"></a>DoInitialSummary | Occurs at start of simulation to make the initial summary. |
+| <a id="StartOfSimulation"></a>StartOfSimulation | Occurs once at the start of the simulation. |
+| <a id="FinalInitialise"></a>FinalInitialise | Final Initialise event. Occurs once at start of simulation. |
+| <a id="StartOfFirstDay"></a>StartOfFirstDay | Occurs once at the start of the first day of the simulation. |
+
+### Daily Loop
+
+Events that occur each day in calling order:
+
+#### Daily Initialization
+
+| Event | Description |
+|-------|-------------|
 | <a id="DoCatchYesterday"></a>DoCatchYesterday | Occurs first each day to allow yesterdays values to be caught. |
+| <a id="DoWeather"></a>DoWeather | Occurs each day to calculate weather. |
 | <a id="DoDailyInitialisation"></a>DoDailyInitialisation | Occurs each day to do daily updates to models. |
-| <a id="DoDCAPST"></a>DoDCAPST | Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning. |
-| <a id="DoEndPasture"></a>DoEndPasture | Occurs after pasture growth and sends material to SOM. |
-| <a id="DoEnergyArbitration"></a>DoEnergyArbitration | Occurs when the canopy energy balance needs to be calculated with MicroClimate. |
-| <a id="DoFertiliserApplications"></a>DoFertiliserApplications | Invoked to perform all fertiliser applications. |
-| <a id="DoInitialSummary"></a>DoInitialSummary | Occurs each day to make the initial summary. |
-| <a id="DoLifecycle"></a>DoLifecycle | Occurs each day to process a Pest and Disease lifecycle object. |
+| <a id="StartOfDay"></a>StartOfDay | Occurs at start of each day. |
+
+#### Conditional Daily Events
+
+| Event | Description |
+|-------|-------------|
+| <a id="StartOfMonth"></a>StartOfMonth | Occurs at start of each month (if 1st day). |
+| <a id="StartOfYear"></a>StartOfYear | Occurs at start of each year (if 1st day of year). |
+| <a id="StartOfWeek"></a>StartOfWeek | Occurs at start of each week (if Sunday). |
+
+#### Management and Soil Processes
+
+| Event | Description |
+|-------|-------------|
 | <a id="DoManagement"></a>DoManagement | Occurs each day to do management actions and changes. |
-| <a id="DoManagementCalculations"></a>DoManagementCalculations | Occurs each day after the simulation is done. Does management calculations. |
-| <a id="DoNutrientArbitration"></a>DoNutrientArbitration | Occurs each day to do nutrient arbitration. |
-| <a id="DoPastureWater"></a>DoPastureWater | Initiates water calculations for the Pasture model. |
+| <a id="DoFertiliserApplications"></a>DoFertiliserApplications | Invoked to perform all fertiliser applications. |
 | <a id="DoPestDiseaseDamage"></a>DoPestDiseaseDamage | Occurs to do Pest/Disease actions. |
+| <a id="DoEnergyArbitration"></a>DoEnergyArbitration | Occurs when the canopy energy balance needs to be calculated with MicroClimate. |
+| <a id="DoSoilErosion"></a>DoSoilErosion | Occurs to tell soil erosion to perform its calculations. |
+| <a id="DoSoilWaterMovement"></a>DoSoilWaterMovement | Occurs each day to do water calculations such as irrigation, swim, water balance etc. |
+| <a id="DoSoilTemperature"></a>DoSoilTemperature | Occurs to perform soil temperature calculations to do solute processes. |
+| <a id="DoSolute"></a>DoSolute | Occurs each day for solute processes. |
+| <a id="DoSurfaceOrganicMatterPotentialDecomposition"></a>DoSurfaceOrganicMatterPotentialDecomposition | Occurs each day to perform daily calculations of organic soil matter. |
+| <a id="DoSoilOrganicMatter"></a>DoSoilOrganicMatter | Occurs each day to perform daily calculations of organic soil matter. |
+| <a id="DoSurfaceOrganicMatterDecomposition"></a>DoSurfaceOrganicMatterDecomposition | Occurs each day to do the daily residue decomposition. |
+
+#### Plant Growth and Development
+
+| Event | Description |
+|-------|-------------|
+| <a id="DoUpdateWaterDemand"></a>DoUpdateWaterDemand | Occurs each day to do daily growth increment of total plant biomass. |
+| <a id="DoDCAPST"></a>DoDCAPST | Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning. |
+| <a id="DoWaterArbitration"></a>DoWaterArbitration | Occurs each day to do water arbitration. |
+| <a id="PrePhenology"></a>PrePhenology | Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs. |
 | <a id="DoPhenology"></a>DoPhenology | Occurs each day to perform phenology. |
 | <a id="DoPotentialPlantGrowth"></a>DoPotentialPlantGrowth | Occurs each day to do potential growth. |
 | <a id="DoPotentialPlantPartioning"></a>DoPotentialPlantPartioning | Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator. |
-| <a id="DoReport"></a>DoReport | Occurs at end of each day. |
-| <a id="DoReportCalculations"></a>DoReportCalculations | Occurs when [do report calculations]. |
-| <a id="DoSoilErosion"></a>DoSoilErosion | Occurs to tell soil erosion to perform its calculations. |
-| <a id="DoSoilOrganicMatter"></a>DoSoilOrganicMatter | Occurs each day to perform daily calculations of organic soil matter. |       
-| <a id="DoSoilTemperature"></a>DoSoilTemperature | Occurs to perform soil temperature calculations to do solute processes. |       
-| <a id="DoSoilWaterMovement"></a>DoSoilWaterMovement | Occurs each day to do water calculations such as irrigation, swim, water balance etc. |
-| <a id="DoSolute"></a>DoSolute | Occurs each day. |
-| <a id="DoStock"></a>DoStock | Occurs each day to process stock methods in GrazPlan Stock. |
-| <a id="DoSurfaceOrganicMatterDecomposition"></a>DoSurfaceOrganicMatterDecomposition | Occurs each day to do the daily residue decomposition. |      
-| <a id="DoSurfaceOrganicMatterPotentialDecomposition"></a>DoSurfaceOrganicMatterPotentialDecomposition | Occurs each day to perform daily calculations of organic soil matter. |
-| <a id="DoUpdate"></a>DoUpdate | Occurs near end of each day to do checks and finalising. |
-| <a id="DoUpdateWaterDemand"></a>DoUpdateWaterDemand | Occurs each day to do daily growth increment of total plant biomass. |        
-| <a id="DoWaterArbitration"></a>DoWaterArbitration | Occurs each day to do water arbitration. |
-| <a id="DoWeather"></a>DoWeather | Occurs each day to calculate weather. |
-| <a id="EndOfDay"></a>EndOfDay | Occurs at end of each day. |
-| <a id="EndOfMonth"></a>EndOfMonth | Occurs at end of each month. |
-| <a id="EndOfSimulation"></a>EndOfSimulation | Occurs at end of simulation. |
-| <a id="EndOfWeek"></a>EndOfWeek | Occurs at end of each week. |
-| <a id="EndOfYear"></a>EndOfYear | Occurs at end of each year. |
-| <a id="FinalInitialise"></a>FinalInitialise | Final Initialise event. Occurs once at start of simulation. |
+| <a id="DoPastureWater"></a>DoPastureWater | Initiates water calculations for the Pasture model. |
+| <a id="DoNutrientArbitration"></a>DoNutrientArbitration | Occurs each day to do nutrient arbitration. |
+| <a id="DoActualPlantPartioning"></a>DoActualPlantPartioning | Occurs each day to do nutrient allocations. |
+| <a id="DoActualPlantGrowth"></a>DoActualPlantGrowth | Occurs each day to do actual plant growth (nutrient limited). |
 | <a id="PartitioningComplete"></a>PartitioningComplete | Occurs each day to finish partitioning. |
-| <a id="PlantSowing"></a>PlantSowing | This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process. |
-| <a id="PrePhenology"></a>PrePhenology | Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs. |
-| <a id="StartOfDay"></a>StartOfDay | Occurs at start of each day. |
-| <a id="StartOfFirstDay"></a>StartOfFirstDay | Occurs once at the start of the first day of the simulation. |
-| <a id="StartOfMonth"></a>StartOfMonth | Occurs at start of each month. |
-| <a id="StartOfSimulation"></a>StartOfSimulation | Occurs once at the start of the simulation. |
-| <a id="StartOfWeek"></a>StartOfWeek | Occurs at start of each week. |
-| <a id="StartOfYear"></a>StartOfYear | Occurs at start of each year. |
-| <a id="CLEMAgeResources"></a>CLEMAgeResources | CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals). |
-| <a id="CLEMAnimalBreeding"></a>CLEMAnimalBreeding | CLEM Do Animal (Ruminant and Other) Breeding and milk calculations. |
-| <a id="CLEMAnimalBuy"></a>CLEMAnimalBuy | CLEM buy animals including transporting and labour. |
-| <a id="CLEMAnimalDeath"></a>CLEMAnimalDeath | CLEM Do Animal (Ruminant and Other) death. |
-| <a id="CLEMAnimalManage"></a>CLEMAnimalManage | CLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.). |
-| <a id="CLEMAnimalMark"></a>CLEMAnimalMark | CLEM Do animal marking so complete before undertaking management decisions. |      
-| <a id="CLEMAnimalMilking"></a>CLEMAnimalMilking | CLEM Do Animal (Ruminant and Other) milking. |
-| <a id="CLEMAnimalMilkProduction"></a>CLEMAnimalMilkProduction | CLEM Calculate Animals (Ruminant and Other) milk production. |
-| <a id="CLEMAnimalSell"></a>CLEMAnimalSell | CLEM sell animals to market including transporting and labour. |
-| <a id="CLEMAnimalStock"></a>CLEMAnimalStock | CLEM stock animals to pasture availability or other metrics. |
-| <a id="CLEMAnimalWeightGain"></a>CLEMAnimalWeightGain | CLEM Calculate Animals(Ruminant and Other) weight gain. |
-| <a id="CLEMCalculateEcologicalState"></a>CLEMCalculateEcologicalState | CLEM Calculate ecological state after all deaths and before management. |
-| <a id="CLEMCalculateManure"></a>CLEMCalculateManure | Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later. |
-| <a id="CLEMCollectManure"></a>CLEMCollectManure | Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later. |
-| <a id="CLEMDetachPasture"></a>CLEMDetachPasture | CLEM detach pasture. |
-| <a id="CLEMDoCutAndCarry"></a>CLEMDoCutAndCarry | CLEM cut and carry. |
-| <a id="CLEMEndOfTimeStep"></a>CLEMEndOfTimeStep | CLEM end of timestep event. |
-| <a id="CLEMFinalizeTimeStep"></a>CLEMFinalizeTimeStep | CLEM finalize time-step before end. |
-| <a id="CLEMGetResourcesRequired"></a>CLEMGetResourcesRequired | Request and perform the collection of manure after resources are allocated and manure produced in time-step. |
-| <a id="CLEMHerdSummary"></a>CLEMHerdSummary | CLEM event to calculate monthly herd summary. |
-| <a id="CLEMInitialiseActivity"></a>CLEMInitialiseActivity | CLEM initialise Activity occurs once at start of simulation. |
-| <a id="CLEMInitialiseResource"></a>CLEMInitialiseResource | CLEM initialise Resources occurs once at start of simulation. |
-| <a id="CLEMPastureReady"></a>CLEMPastureReady | CLEM pasture has been added and is ready for use. |
-| <a id="CLEMPotentialIntake"></a>CLEMPotentialIntake | Get potential intake. This includes suckling milk consumption. |
-| <a id="CLEMStartOfTimeStep"></a>CLEMStartOfTimeStep | CLEM start of timestep event. |
-| <a id="CLEMUpdateLabourAvailability"></a>CLEMUpdateLabourAvailability | CLEM set labour availability after start of timestep and financial considerations. |
-| <a id="CLEMUpdatePasture"></a>CLEMUpdatePasture | CLEM update pasture. |
-| <a id="CLEMValidate"></a>CLEMValidate | CLEM validate all data entry. |
 
+#### Daily Finalization
+
+| <a id="DoStock"></a>DoStock | Occurs each day to process stock methods in GrazPlan Stock. |
+| <a id="DoLifecycle"></a>DoLifecycle | Occurs each day to process a Pest and Disease lifecycle object. |
+| <a id="DoUpdate"></a>DoUpdate | Occurs near end of each day to do checks and finalising. |
+| <a id="DoManagementCalculations"></a>DoManagementCalculations | Occurs each day after the simulation is done. Does management calculations. |
+| <a id="DoEndPasture"></a>DoEndPasture | Occurs after pasture growth and sends material to SOM. |
+| <a id="DoReportCalculations"></a>DoReportCalculations | Occurs when do report calculations. |
+
+#### End of Period Events
+
+| <a id="EndOfWeek"></a>EndOfWeek | Occurs at end of each week (if Saturday). |
+| <a id="EndOfYear"></a>EndOfYear | Occurs at end of each year (if 31 Dec). |
+| <a id="EndOfMonth"></a>EndOfMonth | Occurs at end of each month. |
+
+#### Daily End
+
+| <a id="EndOfDay"></a>EndOfDay | Occurs at end of each day. |
+| <a id="DoReport"></a>DoReport | Occurs at end of each day for daily reporting. |
+
+### End of Simulation
+
+Events that occur once at the end of the simulation:
+
+| <a id="EndOfSimulation"></a>EndOfSimulation | Occurs at end of simulation. |
+
+## Plant
+
+### At Sow
+
+| Event | Description |
+|-------|-------------|
+| <a id="Sowing"></a>Sowing | Occurs when a plant is about to be sown. |
+| <a id="PlantSowing"></a>PlantSowing | This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process. |
+
+### At Harvest
+
+| Event | Description |
+|-------|-------------|
+| <a id="Harvesting"></a>Harvesting | Occurs when a plant is about to be harvested so that values can be reported. |
+| <a id="PostHarvesting"></a>PostHarvesting | Occurs when a plant is harvested, this event should trigger functions that remove biomass from organs and reset values. |
+
+
+
+### At EndCrop
+
+| Event | Description |
+|-------|-------------|
+| <a id="PlantEnding"></a>PlantEnding | Occurs when a plant is ended via EndCrop. |
+
+### At PhaseChanged
+
+| Event | Description |
+|-------|-------------|
+| <a id="Flowering"></a>Flowering | Occurs when a plant is about to flower. |
+| <a id="StartPodDevelopment"></a>StartPodDevelopment | Occurs when a plant is about to start pod development. |
 
 ## [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd)
 
