@@ -203,7 +203,7 @@ $$
 
 where:
 
-- Y is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.
+- $Y$ is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.
 
 ## Events 
 
