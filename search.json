@@ -2538,7 +2538,21 @@
     "href": "docs/Crops/Wheat/grain/index.html",
     "title": "Grain",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nGrain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Grain Nitrogen Demand",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Grain"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/grain/index.html#nitrogen",
+    "href": "docs/Crops/Wheat/grain/index.html#nitrogen",
+    "title": "Grain",
+    "section": "",
+    "text": "Grain Nitrogen Demand",
     "crumbs": [
       "Home",
       "Docs",

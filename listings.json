@@ -58,12 +58,6 @@
     ]
   },
   {
-    "listing": "/docs/Crops/Wheat/grain/index.html",
-    "items": [
-      "/docs/Crops/Wheat/grain/NitrogenDemand.html"
-    ]
-  },
-  {
     "listing": "/docs/Models/Management/index.html",
     "items": [
       "/docs/Models/Management/BiomassRemovalEvents.html",
