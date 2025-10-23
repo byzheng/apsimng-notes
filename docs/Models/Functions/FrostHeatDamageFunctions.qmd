@@ -13,7 +13,7 @@ This `FrostHeatDamageFunctions` function computes daily and cumulative damage ra
 ## Overview
 
 
-The `FrostHeatDamageFunctions` function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations.
+The `FrostHeatDamageFunctions` function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations. Multiple frost and heat events during the sensitive period have multiplicative effects on yield reduction rather than additive effects.
 
 
 ## Inputs
@@ -261,6 +261,66 @@ These are signals or notifications that the function listens for from other part
 
 ## Practical Example
 
+Consider a wheat crop experiencing two frost events during the critical anthesis period:
+
+- **Day 1 (Anthesis)**: Growth stage = 8.0, minimum temperature = -1°C
+- **Day 2 (Post-anthesis)**: Growth stage = 8.2, minimum temperature = -2°C
+
+Using the default wheat parameters from the table above, we can calculate the frost damage step by step.
+
+#### Step 1: Calculate Potential Reduction Ratios
+
+For each day, we calculate the potential reduction using the frost temperature response function:
+
+**Day 1** (T_min = -1°C):
+- Since -1°C is between FrostLowTT (-4°C) and FrostUpTT (1°C), we use linear interpolation:
+- $P_{frost}(-1) = 0.40 + (-1 - (-4)) \times \frac{(0.00 - 0.40)}{(1 - (-4))} = 0.40 + 3 \times \frac{-0.40}{5} = 0.40 - 0.24 = 0.16$
+
+**Day 2** (T_min = -2°C):
+- $P_{frost}(-2) = 0.40 + (-2 - (-4)) \times \frac{(0.00 - 0.40)}{(1 - (-4))} = 0.40 + 2 \times \frac{-0.40}{5} = 0.40 - 0.16 = 0.24$
+
+#### Step 2: Calculate Growth Stage Sensitivity
+
+For both days, we calculate sensitivity using the frost sensitivity function:
+
+**Day 1** (GS = 8.0):
+- GS 8.0 is between FrostStartMostSensitiveGS (8.0) and FrostEndMostSensitiveGS (9.5)
+- Therefore: $S_{frost}(8.0) = 1.0$ (maximum sensitivity)
+
+**Day 2** (GS = 8.2):
+- GS 8.2 is also between 8.0 and 9.5
+- Therefore: $S_{frost}(8.2) = 1.0$ (maximum sensitivity)
+
+#### Step 3: Calculate Daily Frost Reduction Ratios
+
+**Day 1**: $R_{frost}(1) = P_{frost}(-1) \times S_{frost}(8.0) = 0.16 \times 1.0 = 0.16$ (16% yield loss)
+
+**Day 2**: $R_{frost}(2) = P_{frost}(-2) \times S_{frost}(8.2) = 0.24 \times 1.0 = 0.24$ (24% yield loss)
+
+#### Step 4: Calculate Cumulative Frost Damage
+
+The cumulative frost reduction after both events is:
+
+$$R_{frost,\ cum}(2) = 1 - \prod_{i=1}^{2} (1 - R_{frost}(i))$$
+
+$$R_{frost,\ cum}(2) = 1 - [(1 - 0.16) \times (1 - 0.24)]$$
+
+$$R_{frost,\ cum}(2) = 1 - [0.84 \times 0.76] = 1 - 0.6384 = 0.3616$$
+
+#### Step 5: Calculate Final Yield Impact
+
+If the potential wheat yield was 5000 kg/ha (500 g/m²), the frost-limited yield would be:
+
+$$Y_{frost} = Y \times (1 - R_{frost,\ cum}) = 500 \times (1 - 0.3616) = 500 \times 0.6384 = 319.2 \text{ g/m²}$$
+
+**Result**: The two frost events result in a cumulative yield loss of **36.2%**, reducing the potential yield from 5000 kg/ha to 3192 kg/ha.
+
+This example demonstrates how:
+
+1. Multiple frost events have multiplicative (not additive) effects
+2. The timing during the sensitive period (anthesis) maximizes damage
+3. Colder temperatures cause proportionally more damage
+4. The cumulative effect (36.2%) is less than the sum of individual events (16% + 24% = 40%)
 
 ## See Also
 
