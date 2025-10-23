@@ -112,6 +112,35 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -944,7 +973,6 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>title: “FrostHeatDamageFunctions” output: html_document draft: true —</p>
 <p>This <code>FrostHeatDamageFunctions</code> function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
@@ -1115,86 +1143,50 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </section>
 <section id="methodology" class="level2">
 <h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>Methodology</p>
-<p>This section describes the internal workflow and formulas used by FrostHeatDamageFunctions. The implementation is driven by two event handlers:</p>
+<p>All internal and output variables are reset at sowing and then updated daily during crop growth until harvest at event <a href="../../../docs/Models/Events.html#ManagementCalculations" class="model-link">DoManagementCalculations</a>.</p>
+<section id="daily-reduction-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="daily-reduction-calculations">Daily reduction calculations</h3>
+<p>The daily frost (<span class="math inline">\(R_{frost}\)</span>) and heat (<span class="math inline">\(R_{heat}\)</span>) reductions are calculated by multiplying the potential reduction ratio (based on temperature) and the sensitivity (based on growth stage) for each stress.</p>
+<p><span class="math display">\[
+R_{frost} = P_{frost}(T_{min}) \times S_{frost}(GS)
+\]</span></p>
+<p>where:</p>
 <ul>
-<li>OnDoSowing — resets internal state at sowing.</li>
-<li>OnDoManagementCalculations — runs daily to compute potentials, sensitivities, daily and cumulative reductions.</li>
+<li><span class="math inline">\(P_{frost}(T_{min})\)</span> is the potential reduction ratio from the frost potential reduction function above given the daily minimum temperature (<span class="math inline">\(T_{min}\)</span>).</li>
+<li><span class="math inline">\(S_{frost}(GS)\)</span> is the sensitivity from the frost sensitivity function above given the current crop growth stage (GS).</li>
 </ul>
-<p>Initialization (OnDoSowing) - All reportable and internal accumulators are initialized: - per-day values: FrostPotentialReductionRatio, FrostSensitivity, FrostReductionRatio, HeatPotentialReductionRatio, HeatSensitivity, HeatReductionRatio, FrostHeatReductionRatio - accumulators: FrostOverallRemaining = 1, HeatOverallRemaining = 1, CumulativeFrostReductionRatio = 0, CumulativeHeatReductionRatio = 0, CumulativeFrostHeatReductionRatio = 0 - counters and trackers: FrostEventNumber, HeatEventNumber, FrostSensitivePeriodStartDAS, FrostSensitivePeriodEndDAS, HeatSensitivePeriodStartDAS, HeatSensitivePeriodEndDAS</p>
-<p>Daily calculations (OnDoManagementCalculations) 1. Preconditions - The component verifies it is attached to the correct Plant parent and that Plant.IsAlive; otherwise the daily calculations are skipped.</p>
-<ol start="2" type="1">
-<li>Track sensitive period start/end
+<p><span class="math display">\[
+R_{heat} = P_{heat}(T_{max}) \times S_{heat}(GS)
+\]</span></p>
+<p>where:</p>
 <ul>
-<li>When the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.</li>
-</ul></li>
-<li>Potential reduction functions
+<li><span class="math inline">\(P_{heat}(T_{max})\)</span> is the potential reduction ratio from the heat potential reduction function above given the daily maximum temperature (<span class="math inline">\(T_{max}\)</span>).</li>
+<li><span class="math inline">\(S_{heat}(GS)\)</span> is the sensitivity from the heat sensitivity function above given the current crop growth stage (GS).</li>
+</ul>
+<p>The total daily reduction ratio from both stresses is then calculated as:</p>
+<p><span class="math display">\[
+R_{frost\_heat} = 1 - (1 - R_{frost}) \times (1 - R_{heat})
+\]</span></p>
+<p>The cummulative frost reduction from sowing to today (t) is calculated as:</p>
+<p><span class="math display">\[
+R_{frost,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{frost} (i))
+\]</span></p>
+<p>The cumulative heat reduction from sowing to today (t) is calculated as:</p>
+<p><span class="math display">\[
+R_{heat,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{heat} (i))
+\]</span></p>
+<p>The cumulative frost and heat reduction from sowing to today (t) is calculated as: <span class="math display">\[
+R_{frost\_heat,\ cum} (t) = 1 - R_{frost,\ cum} (t)  \times R_{heat,\ cum} (t)
+\]</span></p>
+<p>Finally the frost- and heat-limited yield (Y_{frost_heat}) at harvest is calculated as:</p>
+<p><span class="math display">\[
+Y_{frost\_heat} = Y \times (1 - R_{frost\_heat,\ cum})
+\]</span></p>
+<p>where:</p>
 <ul>
-<li>FrostPotentialReductionRatioFun(t):
-<ul>
-<li>piecewise linear between FrostLowTT and FrostUpTT:
-<ul>
-<li>if t &lt;= FrostLowTT: ratio = FrostMaxReductionRatio</li>
-<li>if t &gt;= FrostUpTT: ratio = FrostMinReductionRatio</li>
-<li>otherwise: linear interpolation ratio = FrostMaxReductionRatio + (t - FrostLowTT) * (FrostMinReductionRatio - FrostMaxReductionRatio) / (FrostUpTT - FrostLowTT)</li>
-</ul></li>
-</ul></li>
-<li>HeatPotentialReductionRatioFun(t):
-<ul>
-<li>piecewise linear between HeatLowTT and HeatUpTT:
-<ul>
-<li>if t &lt;= HeatLowTT: ratio = HeatMinReductionRatio</li>
-<li>if t &gt;= HeatUpTT: ratio = HeatMaxReductionRatio</li>
-<li>otherwise: linear interpolation ratio = HeatMinReductionRatio + (t - HeatLowTT) * (HeatMaxReductionRatio - HeatMinReductionRatio) / (HeatUpTT - HeatLowTT)</li>
-</ul></li>
-</ul></li>
-<li>Output ratios are constrained to [0,1] by parameter choice/logic.</li>
-</ul></li>
-<li>Growth-stage sensitivity functions
-<ul>
-<li>FrostSensitivityFun(gs) and HeatSensitivityFun(gs):
-<ul>
-<li>both implement a 4‑point piecewise linear sensitivity curve defined by s0 (start of sensitive period), s1 (start of most sensitive), e1 (end of most sensitive), e0 (end of sensitive period).</li>
-<li>mapping: sensitivity = 0 at s0, linearly increases to 1 at s1, equals 1 between s1 and e1, then linearly decreases to 0 at e0.</li>
-<li>outside [s0, e0] sensitivity = 0.</li>
-</ul></li>
-</ul></li>
-<li>Daily actual reductions
-<ul>
-<li>FrostReductionRatio = FrostPotentialReductionRatio * FrostSensitivity</li>
-<li>HeatReductionRatio = HeatPotentialReductionRatio * HeatSensitivity</li>
-<li>Events counted when a daily reduction &gt; 0:
-<ul>
-<li>if FrostReductionRatio &gt; 0 then FrostEventNumber++</li>
-<li>if HeatReductionRatio &gt; 0 then HeatEventNumber++</li>
-</ul></li>
-</ul></li>
-<li>Combined daily reduction
-<ul>
-<li>FrostHeatReductionRatio = 1 - (1 - FrostReductionRatio) * (1 - HeatReductionRatio)
-<ul>
-<li>this assumes independent multiplicative survival from each stress.</li>
-</ul></li>
-</ul></li>
-<li>Cumulative reductions and remaining fractions
-<ul>
-<li>FrostOverallRemaining = FrostOverallRemaining * (1 - FrostReductionRatio)</li>
-<li>CumulativeFrostReductionRatio = 1 - FrostOverallRemaining</li>
-<li>HeatOverallRemaining = HeatOverallRemaining * (1 - HeatReductionRatio)</li>
-<li>CumulativeHeatReductionRatio = 1 - HeatOverallRemaining</li>
-<li>CumulativeFrostHeatReductionRatio = 1 - FrostOverallRemaining * HeatOverallRemaining</li>
-</ul></li>
-<li>Frost- and heat-limited yield
-<ul>
-<li>FrostHeatYield = organs.Wt * FrostOverallRemaining * HeatOverallRemaining
-<ul>
-<li>here organs.Wt is the current reproductive organ (grain) weight used as a base to apply accumulated losses.</li>
-</ul></li>
-</ul></li>
-</ol>
-<p>Notes and assumptions - Piecewise linear parameterizations (thresholds and max/min reduction ratios) control severity and timing sensitivity. - Cumulative damage is applied multiplicatively (remaining fraction), which prevents total losses exceeding 100% and properly accounts for sequential events. - Sensitive period start/end are captured as the first day the crop growth stage equals or exceeds the corresponding threshold, recorded in days after sowing.</p>
-<p>Helper methods implemented in the code - FrostPotentialReductionRatioFun(double t) - FrostSensitivityFun(double GrowthStage) - HeatPotentialReductionRatioFun(double t) - HeatSensitivityFun(double GrowthStage)</p>
-<p>These implement the respective piecewise linear formulas described above and are invoked each day by OnDoManagementCalculations.</p>
+<li><span class="math inline">\(Y\)</span> is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.</li>
+</ul>
+</section>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
@@ -1213,7 +1205,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <td>Initialize internal variables for frost and heat damage functions</td>
 </tr>
 <tr class="even">
-<td><a href="../../../docs/Models/Events.html#DoManagementCalculations" class="model-link">DoManagementCalculations</a></td>
+<td><a href="../../../docs/Models/Events.html#ManagementCalculations" class="model-link">DoManagementCalculations</a></td>
 <td>Perform the actual calculations for frost and heat damage functions</td>
 </tr>
 </tbody>
