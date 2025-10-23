@@ -61,7 +61,7 @@ ggplot(df, aes(x = VT, y = Response)) +
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
 | [Phenology].StemElongation.Target.Base.FixedValue   | Base thermal time target during stem elongation (°Cd)      | 250.0          |
-| [Phenology].StemElongation.PPResponse.Amount.FixedValue   | Thermal time response to photoperiod sensitivity (°Cd)      | 0          |
+| [Phenology].StemElongation.Target.PPResponse.Amount.FixedValue   | Thermal time response to photoperiod sensitivity (°Cd)      | 0          |
 
 ## Practical Example
 
