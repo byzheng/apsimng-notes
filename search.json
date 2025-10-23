@@ -2552,13 +2552,43 @@
     "href": "docs/Crops/Wheat/Traits/index.html",
     "title": "Traits",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2 for Wheat\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Here is a summary of the traits described in multiple components.\n\nCO2: Response of wheat to elevated atmospheric CO2 concentration.\nFrost and Heat Combined Stress: Frost and heat stresses impact on wheat development and yield.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Wheat",
       "Traits"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/FrostHeat.html",
+    "href": "docs/Crops/Wheat/Traits/FrostHeat.html",
+    "title": "Frost and Heat Combined Stress",
+    "section": "",
+    "text": "The low temperature stresses (frost) can cause damage to wheat crops, particularly during sensitive growth stages such as flowering. Frost stress can lead to reduced grain yield and quality by affecting the development of reproductive organs and impairing physiological processes. The frost stress damage is simulated based on minimum air temperature and crop development stage in the FrostHeatDamageFunction.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Traits",
+      "Frost and Heat Combined Stress"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Wheat/Traits/FrostHeat.html#overview",
+    "href": "docs/Crops/Wheat/Traits/FrostHeat.html#overview",
+    "title": "Frost and Heat Combined Stress",
+    "section": "Overview",
+    "text": "Overview\nThe FrostHeatDamageFunctions function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. See FrostHeatDamageFunction for detail implementation.\nFrostHeatDamageFunction is validated for wheat using field experiments in Australia. See Online ApsimX Repository for the validation configurations and data.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Wheat",
+      "Traits",
+      "Frost and Heat Combined Stress"
     ]
   },
   {
@@ -3127,946 +3157,89 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/index.html",
-    "href": "docs/Crops/Canola/index.html",
-    "title": "Canola",
+    "objectID": "docs/Crops/Wheat/Examples/wheat_example1.html",
+    "href": "docs/Crops/Wheat/Examples/wheat_example1.html",
+    "title": "Wheat Example Simulation 1",
     "section": "",
-    "text": "The Canola (Brassica napus) model in APSIM Next Generation simulates the growth and development of canola crops. It is designed to capture the key physiological processes that influence canola yield, including phenology, biomass accumulation, and stress responses.\nThe APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "This example demonstrates a wheat simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on wheat growth and development.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Canola"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/index.html#phenology",
-    "href": "docs/Crops/Canola/index.html#phenology",
-    "title": "Canola",
-    "section": "Phenology",
-    "text": "Phenology",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/index.html#organs",
-    "href": "docs/Crops/Canola/index.html#organs",
-    "title": "Canola",
-    "section": "Organs",
-    "text": "Organs\n\nLeaf: The leaf organ model simulates leaf area development, senescence, and photosynthesis.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/index.html#see-also",
-    "href": "docs/Crops/Canola/index.html#see-also",
-    "title": "Canola",
-    "section": "See Also",
-    "text": "See Also\n\nOnline Resource File",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html",
-    "href": "docs/Crops/Canola/Phenology/Vegetative.html",
-    "title": "Vegetative",
-    "section": "",
-    "text": "The Vegetative phase in Canola represents the developmental period from Emergence to FloralInitiation. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Vegetative"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#overview",
-    "href": "docs/Crops/Canola/Phenology/Vegetative.html#overview",
-    "title": "Vegetative",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the StartEmergence and StartFloralInitiation stages.\n\nThis phase starts at StartEmergence and ends at StartFloralInitiation, when the plant is considered to be fully developed.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is depending on vernalisation time from germination to floral initiation (\\(VT\\)) (Whish et al. 2020).\n\nThis response curve is defined by XYPairs with following values:\n\n\n\nCumulative Vernal Time (days)\nTarget Thermal Time (°Cd)\n\n\n\n\n0.0\n290.0\n\n\n25.0\n1.0\n\n\n\n\n\n\n\n\nTarget Thermal Time Function with Vernalisation Progress\n\n\n\n\nIn each day, the model checks whether the cumulative thermal time has reached the target thermal time. If it has, the phase is considered complete, and the model transitions to the next phase, which is FloralInitiation.\nThe cumulative thermal time is calculated as the sum of daily vernalisation time from germination to floral initiation.\nThe daily vernalisation time is calculated with SubDailyInterpolation using the following response function to air temperature after ThreeHourAirTemperature interpolation method:\n\n\n\nTemperature (°C)\nResponse (°Cd)\n\n\n\n\n0\n0\n\n\n2\n1\n\n\n8\n0.5\n\n\n15\n0\n\n\n\n\n\n\n\n\nDaily Vernalisation Time Function",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Vegetative"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/Vegetative.html#cultivar-specific-parameters",
-    "title": "Vegetative",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Vegetative.Target.XYPairs.X\nVernal time X values for target thermal time (days)\n0, 25\n\n\n[Phenology].Vegetative.Target.XYPairs.Y\nTarget thermal time Y values (°Cd)\n290, 1",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Vegetative"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/Vegetative.html#practical-example",
-    "title": "Vegetative",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Vegetative"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html",
-    "href": "docs/Crops/Canola/Phenology/StemElongation.html",
-    "title": "StemElongation",
-    "section": "",
-    "text": "The StemElongation phase in Canola represents the developmental period from GreenBud to StartFlowering. It is influenced by thermal time only and the target is influenced by photoperiod.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "StemElongation"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#overview",
-    "href": "docs/Crops/Canola/Phenology/StemElongation.html#overview",
-    "title": "StemElongation",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the GreenBud and StartFlowering stages with following parameters:\n\nStart: GreenBud\nEnd: StartFlowering\nIsEmerged: TRUE\nTarget: Calculated based on cultivar-specific parameters and photoperiod (Whish et al. 2020).\n\nThe Target thermal time is calculated using the following response function based on photoperiod:\n\\[\nTT = TT_{base} + TT_{P} \\times f_{pp}(d)\n\\]\nWhere: - \\(TT\\) = Target thermal time (°Cd) - \\(TT_{base}\\) = Base thermal time (°Cd) with default value of 250 °Cd - \\(TT_{P}\\) = Thermal time response to photoperiod sensitivity (°Cd) with default value of 0 °Cd, i.e. no photoperiod sensitivity - \\(f_{pp}(d)\\) = Multiplier for photoperiod response function based on day length \\(d\\) (hours). This multiplier is defined by 1 at day length of 13 hours and 0 at day length of 14 hours. It means the flowering time will be accelerated when day length is longer than 13 hours and equal to \\(TT_{base}\\) at 14 hours.\n\n\n\n\n\nPhotoperiod Response Function for Target Thermal Time",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "StemElongation"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/StemElongation.html#cultivar-specific-parameters",
-    "title": "StemElongation",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].StemElongation.Target.Base.FixedValue\nBase thermal time target during stem elongation (°Cd)\n250.0\n\n\n[Phenology].StemElongation.Target.PPResponse.Amount.FixedValue\nThermal time response to photoperiod sensitivity (°Cd)\n0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "StemElongation"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/StemElongation.html#practical-example",
-    "title": "StemElongation",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "StemElongation"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html",
-    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html",
-    "title": "ReadyForHarvesting",
-    "section": "",
-    "text": "The ReadyForHarvesting phase in Canola represents the last phase after HarvestRipe.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#overview",
-    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#overview",
-    "title": "ReadyForHarvesting",
-    "section": "Overview",
-    "text": "Overview\nThe EndPhase model simulates last phase after HarvestRipe.\n\nThis phase starts at EndGrainFill and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function. But it does not use here.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
-    "title": "ReadyForHarvesting",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nNo cultivar-specific parameters are defined for this phase.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#practical-example",
-    "title": "ReadyForHarvesting",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "ReadyForHarvesting"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Maturing.html",
-    "href": "docs/Crops/Canola/Phenology/Maturing.html",
-    "title": "Maturing",
-    "section": "",
-    "text": "The Maturing phase in Canola represents the developmental period from EndGrainFill to Maturity. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Maturing"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#overview",
-    "href": "docs/Crops/Canola/Phenology/Maturing.html#overview",
-    "title": "Maturing",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the EndGrainFill and Maturity stages.\n\nThis phase starts at EndGrainFill and ends at Maturity, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 5 °Cd.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Maturing"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/Maturing.html#cultivar-specific-parameters",
-    "title": "Maturing",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Ripening.Target.FixedValue\nThermal time target during maturing (°Cd)\n5.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Maturing"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/Maturing.html#practical-example",
-    "title": "Maturing",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Maturing"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Germinating.html",
-    "href": "docs/Crops/Canola/Phenology/Germinating.html",
-    "title": "Germinating",
-    "section": "",
-    "text": "The Germinating is a phenological phase in Canola used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Germinating"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#overview",
-    "href": "docs/Crops/Canola/Phenology/Germinating.html#overview",
-    "title": "Germinating",
-    "section": "Overview",
-    "text": "Overview\nThe GerminatingPhase Model is used to simulate the germination of canola seeds. This phase begins when Plant Sowing occurs and ends when plant is germinated with conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nThe Minimum Soil Temperature is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,\nThe Soil Water Content should be more than Lower Limit for germination to occur.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Germinating"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/Germinating.html#cultivar-specific-parameters",
-    "title": "Germinating",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Germinating.MinSoilTemperature.FixedValue\nMinimum soil temperature for germination (°C)\n0.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Germinating"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/Germinating.html#practical-example",
-    "title": "Germinating",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Germinating"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html",
-    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html",
-    "title": "EarlyPodDevelopment",
-    "section": "",
-    "text": "The EarlyPodDevelopment phase in Canola represents the developmental period from StartPodDevelopment to StartGrainFilling. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyPodDevelopment"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#overview",
-    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#overview",
-    "title": "EarlyPodDevelopment",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the StartPodDevelopment and StartGrainFilling stages.\n\nThis phase starts at StartPodDevelopment and ends at StartGrainFilling, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 140 °Cd (Robertson et al. 2002).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyPodDevelopment"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#cultivar-specific-parameters",
-    "title": "EarlyPodDevelopment",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].EarlyPodDevelopment.Target.FixedValue\nThermal time target during early pod development (°Cd)\n140",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyPodDevelopment"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#practical-example",
-    "title": "EarlyPodDevelopment",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyPodDevelopment"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html",
-    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html",
-    "title": "EarlyFlowering",
-    "section": "",
-    "text": "The EarlyFlowering phase in Canola represents the developmental period from StartFlowering to StartPodDevelopment. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyFlowering"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#overview",
-    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#overview",
-    "title": "EarlyFlowering",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the StartFlowering and StartPodDevelopment stages.\n\nThis phase starts at StartFlowering and ends at StartPodDevelopment, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 100 °Cd (Robertson et al. 2002).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyFlowering"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#cultivar-specific-parameters",
-    "title": "EarlyFlowering",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].EarlyFlowering.Target.FixedValue\nThermal time target during early flowering (°Cd)\n100",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyFlowering"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#practical-example",
-    "title": "EarlyFlowering",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyFlowering"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Barley/index.html",
-    "href": "docs/Crops/Barley/index.html",
-    "title": "Barley",
-    "section": "",
-    "text": "The APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Barley"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Barley/index.html#phenology",
-    "href": "docs/Crops/Barley/index.html#phenology",
-    "title": "Barley",
-    "section": "Phenology",
-    "text": "Phenology\nThe barley phenology is simulated from sowing to harvest.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Barley"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Barley/index.html#see-also",
-    "href": "docs/Crops/Barley/index.html#see-also",
-    "title": "Barley",
-    "section": "See Also",
-    "text": "See Also\n\nOnline Resource File",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Barley"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
-  },
-  {
-    "objectID": "about.html#what-this-site-includes",
-    "href": "about.html#what-this-site-includes",
-    "title": "About",
-    "section": "What This Site Includes",
-    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
-  },
-  {
-    "objectID": "about.html#not-official-documentation",
-    "href": "about.html#not-official-documentation",
-    "title": "About",
-    "section": "Not Official Documentation",
-    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
-  },
-  {
-    "objectID": "about.html#license-and-attribution",
-    "href": "about.html#license-and-attribution",
-    "title": "About",
-    "section": "⚖️ License and Attribution",
-    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
-  },
-  {
-    "objectID": "about.html#acknowledgment",
-    "href": "about.html#acknowledgment",
-    "title": "About",
-    "section": "🙏 Acknowledgment",
-    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
-  },
-  {
-    "objectID": "disclaimer.html",
-    "href": "disclaimer.html",
-    "title": "Disclaimer",
-    "section": "",
-    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
-  },
-  {
-    "objectID": "docs/Crops/Canola/Examples/canola_example1.html",
-    "href": "docs/Crops/Canola/Examples/canola_example1.html",
-    "title": "Canola Example Simulation 1",
-    "section": "",
-    "text": "This example demonstrates a Canola simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on canola growth and development.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
+      "Wheat",
       "Examples",
-      "Canola Example Simulation 1"
+      "Wheat Example Simulation 1"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
-    "href": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
-    "title": "Canola Example Simulation 1",
+    "objectID": "docs/Crops/Wheat/Examples/wheat_example1.html#simulation-configuration",
+    "href": "docs/Crops/Wheat/Examples/wheat_example1.html#simulation-configuration",
+    "title": "Wheat Example Simulation 1",
     "section": "Simulation Configuration",
-    "text": "Simulation Configuration\nThe two contrasting cultivars are GenericEearly for early maturity type and GenericLate for late maturity type, which represent different growth characteristics. The two different sowing dates are 1st May and 1st June.\nThe two contrasting locations are Roma in Queensland and Hamilton in Victoria, Australia. The weather data are obtained from SILO Patched Point Dataset.",
+    "text": "Simulation Configuration\nThe two contrasting cultivars are Emu Rock for early maturity type and Sunlamb for late maturity type, which represent different growth characteristics. The two different sowing dates are 1st May and 1st June.\nThe two contrasting locations are Roma in Queensland and Hamilton in Victoria, Australia. The weather data are obtained from SILO Patched Point Dataset.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Canola",
+      "Wheat",
       "Examples",
-      "Canola Example Simulation 1"
+      "Wheat Example Simulation 1"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html",
-    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html",
-    "title": "BudDevelopment",
+    "objectID": "docs/Crops/Canola/Phenology/index.html",
+    "href": "docs/Crops/Canola/Phenology/index.html",
+    "title": "Phenology",
     "section": "",
-    "text": "The BudDevelopment phase in Canola represents the developmental period from FloralInitiation to GreenBud. It is influenced by thermal time only.",
+    "text": "The Phenology model in APSIM NG simulates the development of canola plants.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology",
-      "BudDevelopment"
+      "Phenology"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
-    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
-    "title": "BudDevelopment",
-    "section": "Overview",
-    "text": "Overview\nThe SimpleLeafAppearancePhase model simulates the time between the FloralInitiation and GreenBud stages with following parameters:\n\nStart: FloralInitiation\nEnd: GreenBud\nIsEmerged: TRUE\nTargetLeafNumber: as FinalLeafNumber in Leaf model.\nCurrentLeafNumber: as NodeNumber in Leaf model",
+    "objectID": "docs/Crops/Canola/Phenology/index.html#thermal-time",
+    "href": "docs/Crops/Canola/Phenology/index.html#thermal-time",
+    "title": "Phenology",
+    "section": "Thermal Time",
+    "text": "Thermal Time\nDaily Thermal Time is based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology",
-      "BudDevelopment"
+      "Phenology"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
-    "title": "BudDevelopment",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters available",
+    "objectID": "docs/Crops/Canola/Phenology/index.html#photoperiod",
+    "href": "docs/Crops/Canola/Phenology/index.html#photoperiod",
+    "title": "Phenology",
+    "section": "Photoperiod",
+    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology",
-      "BudDevelopment"
+      "Phenology"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
-    "title": "BudDevelopment",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
+    "objectID": "docs/Crops/Canola/Phenology/index.html#stages-and-phases",
+    "href": "docs/Crops/Canola/Phenology/index.html#stages-and-phases",
+    "title": "Phenology",
+    "section": "Stages and Phases",
+    "text": "Stages and Phases\nThe numerical system is used to represent the development of wheat plants starting from 1. The stages are:\n\n\n\n\n\n\n\n\nStage\nName\nDescription\n\n\n\n\n1\nSowing\nSeeds are planted in the soil\n\n\n2\nGermination\nSeeds absorb water and begin to sprout\n\n\n3\nEmergence\nSeedlings break through the soil surface\n\n\n4\nFloralInitiation\nFloral organs begin to form in the shoot apex\n\n\n5\nGreenBud\nGreen buds become visible\n\n\n6\nStartFlowering\nFirst flowers open\n\n\n7\nStartPodDevelopment\nPods begin to form after flowering\n\n\n8\nStartGrainFilling\nSeeds begin to accumulate dry matter (grain filling starts)\n\n\n9\nEndFlowering\nFlowering is complete\n\n\n10\nEndPodDevelopment\nPod development is complete\n\n\n11\nEndGrainFill\nGrain filling is complete; seeds reach final size\n\n\n12\nMaturity\nSeeds reach physiological maturity\n\n\n13\nHarvestRipe\nSeeds are fully ripened and ready for harvest\n\n\n\nPhases are used to represent the development between two stages. The phases are:\n\n\n\nOrder\nName\nFrom\nTo\n\n\n\n\n1\nGerminating\nSowing\nGermination\n\n\n2\nEmerging\nGermination\nEmergence\n\n\n3\nVegetative\nEmergence\nFloralInitiation\n\n\n4\nBudDevelopment\nFloralInitiation\nGreenBud\n\n\n5\nStemElongation\nGreenBud\nStartFlowering\n\n\n6\nEarlyFlowering\nStartFlowering\nStartPodDevelopment\n\n\n7\nEarlyPodDevelopment\nStartPodDevelopment\nStartGrainFilling\n\n\n8\nEarlyGrainFilling\nStartGrainFilling\nEndFlowering\n\n\n9\nMidGrainFilling\nEndFlowering\nEndPodDevelopment\n\n\n10\nLateGrainFilling\nEndPodDevelopment\nEndGrainFill\n\n\n11\nMaturing\nEndGrainFill\nMaturity\n\n\n12\nRipening\nMaturity\nHarvestRipe\n\n\n13\nReadyForHarvesting\nHarvestRipe",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology",
-      "BudDevelopment"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html",
-    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html",
-    "title": "EarlyGrainFilling",
-    "section": "",
-    "text": "The EarlyGrainFilling phase in Canola represents the developmental period from StartGrainFilling to EndFlowering. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#overview",
-    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#overview",
-    "title": "EarlyGrainFilling",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at StartGrainFilling and ends at EndFlowering, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#cultivar-specific-parameters",
-    "title": "EarlyGrainFilling",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#practical-example",
-    "title": "EarlyGrainFilling",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "EarlyGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Emerging.html",
-    "href": "docs/Crops/Canola/Phenology/Emerging.html",
-    "title": "Emerging",
-    "section": "",
-    "text": "The Emerging phase in Canola represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#overview",
-    "href": "docs/Crops/Canola/Phenology/Emerging.html#overview",
-    "title": "Emerging",
-    "section": "Overview",
-    "text": "Overview\nThe EmergingPhase model simulates the time between the Germination and Emergence stages.\n\nThis phase starts at Germination and ends at Emergence, when the seedling is considered to have emerged from the soil.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time to complete this phase is defined as:\n\n\\[\n\\text{Target} = \\text{ShootLag} + (\\text{SowingDepth} \\times \\text{ShootRate})\n\\]\nWhere:\n\nShootLag is a lag when coleoptile starting to elongate (°Cd) with default value of 15.0 °Cd,\nShootRate is the rate of shoot elongation (°Cd/mm) with default value of 5 °Cd/mm,\nSowingDepth is the depth at which the seed is sown (mm), taken from [Plant].SowingData.Depth.\n\nDeeper sowing results in longer emergence delays due to greater thermal time requirement.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/Emerging.html#cultivar-specific-parameters",
-    "title": "Emerging",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Emerging.ShootLag.FixedValue\nLag before coleoptile starts to elongate (°Cd)\n15.0\n\n\n[Phenology].Emerging.ShootRate.FixedValue\nRate of shoot elongation (°Cd/mm)\n5.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/Emerging.html#practical-example",
-    "title": "Emerging",
-    "section": "Practical Example",
-    "text": "Practical Example\nThis table illustrates deeper sowing delays emergence due to higher thermal time requirements.\n\n\n\n\n\n\n\n\n\nSowing Depth (mm)\nShootLag (°Cd)\nShootRate (°Cd/mm)\nTarget Thermal Time (°Cd)\n\n\n\n\n20\n15.0\n5.0\n95.0\n\n\n25\n15.0\n5.0\n100.0\n\n\n30\n15.0\n5.0\n105.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Emerging"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html",
-    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html",
-    "title": "LateGrainFilling",
-    "section": "",
-    "text": "The LateGrainFilling phase in Canola represents the developmental period from EndPodDevelopment to EndGrainFill. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "LateGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#overview",
-    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#overview",
-    "title": "LateGrainFilling",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at EndPodDevelopment and ends at EndGrainFill, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "LateGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#cultivar-specific-parameters",
-    "title": "LateGrainFilling",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "LateGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#practical-example",
-    "title": "LateGrainFilling",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "LateGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html",
-    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html",
-    "title": "MidGrainFilling",
-    "section": "",
-    "text": "The MidGrainFilling phase in Canola represents the developmental period from EndFlowering to EndPodDevelopment. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "MidGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#overview",
-    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#overview",
-    "title": "MidGrainFilling",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at EndFlowering and ends at EndPodDevelopment, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "MidGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#cultivar-specific-parameters",
-    "title": "MidGrainFilling",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "MidGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#practical-example",
-    "title": "MidGrainFilling",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "MidGrainFilling"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Ripening.html",
-    "href": "docs/Crops/Canola/Phenology/Ripening.html",
-    "title": "Ripening",
-    "section": "",
-    "text": "The Ripening phase in Canola represents the developmental period from Maturity to HarvestRipe. It is influenced by thermal time only.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Ripening"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#overview",
-    "href": "docs/Crops/Canola/Phenology/Ripening.html#overview",
-    "title": "Ripening",
-    "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between the Maturity and HarvestRipe stages.\n\nThis phase starts at Maturity and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 1.0 °Cd, i.e. HarvestRipe stage is occurring in next day.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Ripening"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#cultivar-specific-parameters",
-    "href": "docs/Crops/Canola/Phenology/Ripening.html#cultivar-specific-parameters",
-    "title": "Ripening",
-    "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Ripening.Target.FixedValue\nThermal time target during ripening (°Cd)\n1.0",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Ripening"
-    ]
-  },
-  {
-    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#practical-example",
-    "href": "docs/Crops/Canola/Phenology/Ripening.html#practical-example",
-    "title": "Ripening",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nno practical example available",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Crops",
-      "Canola",
-      "Phenology",
-      "Ripening"
+      "Phenology"
     ]
   },
   {
@@ -4130,89 +3303,946 @@
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html",
-    "href": "docs/Crops/Canola/Phenology/index.html",
-    "title": "Phenology",
+    "objectID": "docs/Crops/Canola/Phenology/Ripening.html",
+    "href": "docs/Crops/Canola/Phenology/Ripening.html",
+    "title": "Ripening",
     "section": "",
-    "text": "The Phenology model in APSIM NG simulates the development of canola plants.",
+    "text": "The Ripening phase in Canola represents the developmental period from Maturity to HarvestRipe. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology"
+      "Phenology",
+      "Ripening"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html#thermal-time",
-    "href": "docs/Crops/Canola/Phenology/index.html#thermal-time",
-    "title": "Phenology",
-    "section": "Thermal Time",
-    "text": "Thermal Time\nDaily Thermal Time is based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
+    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#overview",
+    "href": "docs/Crops/Canola/Phenology/Ripening.html#overview",
+    "title": "Ripening",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the Maturity and HarvestRipe stages.\n\nThis phase starts at Maturity and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 1.0 °Cd, i.e. HarvestRipe stage is occurring in next day.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology"
+      "Phenology",
+      "Ripening"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html#photoperiod",
-    "href": "docs/Crops/Canola/Phenology/index.html#photoperiod",
-    "title": "Phenology",
-    "section": "Photoperiod",
-    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
+    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/Ripening.html#cultivar-specific-parameters",
+    "title": "Ripening",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Ripening.Target.FixedValue\nThermal time target during ripening (°Cd)\n1.0",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology"
+      "Phenology",
+      "Ripening"
     ]
   },
   {
-    "objectID": "docs/Crops/Canola/Phenology/index.html#stages-and-phases",
-    "href": "docs/Crops/Canola/Phenology/index.html#stages-and-phases",
-    "title": "Phenology",
-    "section": "Stages and Phases",
-    "text": "Stages and Phases\nThe numerical system is used to represent the development of wheat plants starting from 1. The stages are:\n\n\n\n\n\n\n\n\nStage\nName\nDescription\n\n\n\n\n1\nSowing\nSeeds are planted in the soil\n\n\n2\nGermination\nSeeds absorb water and begin to sprout\n\n\n3\nEmergence\nSeedlings break through the soil surface\n\n\n4\nFloralInitiation\nFloral organs begin to form in the shoot apex\n\n\n5\nGreenBud\nGreen buds become visible\n\n\n6\nStartFlowering\nFirst flowers open\n\n\n7\nStartPodDevelopment\nPods begin to form after flowering\n\n\n8\nStartGrainFilling\nSeeds begin to accumulate dry matter (grain filling starts)\n\n\n9\nEndFlowering\nFlowering is complete\n\n\n10\nEndPodDevelopment\nPod development is complete\n\n\n11\nEndGrainFill\nGrain filling is complete; seeds reach final size\n\n\n12\nMaturity\nSeeds reach physiological maturity\n\n\n13\nHarvestRipe\nSeeds are fully ripened and ready for harvest\n\n\n\nPhases are used to represent the development between two stages. The phases are:\n\n\n\nOrder\nName\nFrom\nTo\n\n\n\n\n1\nGerminating\nSowing\nGermination\n\n\n2\nEmerging\nGermination\nEmergence\n\n\n3\nVegetative\nEmergence\nFloralInitiation\n\n\n4\nBudDevelopment\nFloralInitiation\nGreenBud\n\n\n5\nStemElongation\nGreenBud\nStartFlowering\n\n\n6\nEarlyFlowering\nStartFlowering\nStartPodDevelopment\n\n\n7\nEarlyPodDevelopment\nStartPodDevelopment\nStartGrainFilling\n\n\n8\nEarlyGrainFilling\nStartGrainFilling\nEndFlowering\n\n\n9\nMidGrainFilling\nEndFlowering\nEndPodDevelopment\n\n\n10\nLateGrainFilling\nEndPodDevelopment\nEndGrainFill\n\n\n11\nMaturing\nEndGrainFill\nMaturity\n\n\n12\nRipening\nMaturity\nHarvestRipe\n\n\n13\nReadyForHarvesting\nHarvestRipe",
+    "objectID": "docs/Crops/Canola/Phenology/Ripening.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/Ripening.html#practical-example",
+    "title": "Ripening",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
       "Canola",
-      "Phenology"
+      "Phenology",
+      "Ripening"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Examples/wheat_example1.html",
-    "href": "docs/Crops/Wheat/Examples/wheat_example1.html",
-    "title": "Wheat Example Simulation 1",
+    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html",
+    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html",
+    "title": "MidGrainFilling",
     "section": "",
-    "text": "This example demonstrates a wheat simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on wheat growth and development.",
+    "text": "The MidGrainFilling phase in Canola represents the developmental period from EndFlowering to EndPodDevelopment. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Wheat",
+      "Canola",
+      "Phenology",
+      "MidGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#overview",
+    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#overview",
+    "title": "MidGrainFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at EndFlowering and ends at EndPodDevelopment, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "MidGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#cultivar-specific-parameters",
+    "title": "MidGrainFilling",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "MidGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/MidGrainFilling.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/MidGrainFilling.html#practical-example",
+    "title": "MidGrainFilling",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "MidGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html",
+    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html",
+    "title": "LateGrainFilling",
+    "section": "",
+    "text": "The LateGrainFilling phase in Canola represents the developmental period from EndPodDevelopment to EndGrainFill. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "LateGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#overview",
+    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#overview",
+    "title": "LateGrainFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at EndPodDevelopment and ends at EndGrainFill, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "LateGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#cultivar-specific-parameters",
+    "title": "LateGrainFilling",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "LateGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/LateGrainFilling.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/LateGrainFilling.html#practical-example",
+    "title": "LateGrainFilling",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "LateGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Emerging.html",
+    "href": "docs/Crops/Canola/Phenology/Emerging.html",
+    "title": "Emerging",
+    "section": "",
+    "text": "The Emerging phase in Canola represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#overview",
+    "href": "docs/Crops/Canola/Phenology/Emerging.html#overview",
+    "title": "Emerging",
+    "section": "Overview",
+    "text": "Overview\nThe EmergingPhase model simulates the time between the Germination and Emergence stages.\n\nThis phase starts at Germination and ends at Emergence, when the seedling is considered to have emerged from the soil.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time to complete this phase is defined as:\n\n\\[\n\\text{Target} = \\text{ShootLag} + (\\text{SowingDepth} \\times \\text{ShootRate})\n\\]\nWhere:\n\nShootLag is a lag when coleoptile starting to elongate (°Cd) with default value of 15.0 °Cd,\nShootRate is the rate of shoot elongation (°Cd/mm) with default value of 5 °Cd/mm,\nSowingDepth is the depth at which the seed is sown (mm), taken from [Plant].SowingData.Depth.\n\nDeeper sowing results in longer emergence delays due to greater thermal time requirement.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/Emerging.html#cultivar-specific-parameters",
+    "title": "Emerging",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Emerging.ShootLag.FixedValue\nLag before coleoptile starts to elongate (°Cd)\n15.0\n\n\n[Phenology].Emerging.ShootRate.FixedValue\nRate of shoot elongation (°Cd/mm)\n5.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Emerging.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/Emerging.html#practical-example",
+    "title": "Emerging",
+    "section": "Practical Example",
+    "text": "Practical Example\nThis table illustrates deeper sowing delays emergence due to higher thermal time requirements.\n\n\n\n\n\n\n\n\n\nSowing Depth (mm)\nShootLag (°Cd)\nShootRate (°Cd/mm)\nTarget Thermal Time (°Cd)\n\n\n\n\n20\n15.0\n5.0\n95.0\n\n\n25\n15.0\n5.0\n100.0\n\n\n30\n15.0\n5.0\n105.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html",
+    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html",
+    "title": "EarlyGrainFilling",
+    "section": "",
+    "text": "The EarlyGrainFilling phase in Canola represents the developmental period from StartGrainFilling to EndFlowering. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#overview",
+    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#overview",
+    "title": "EarlyGrainFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the EndPodDevelopment and EndGrainFill stages.\n\nThis phase starts at StartGrainFilling and ends at EndFlowering, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is assumed as follows:\n\nThe model assumes the entire grain filling period is a constant value defined as genotypic parameter [Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue (\\(T_\\text{total}\\)) and the default value is 700 °Cd, and divides this into three phases:\n\nEarly Grain Filling = 5% of the total period \\[\nT_\\text{early} = 0.05 \\times T_\\text{total}\n\\]\nMid Grain Filling = 50% of the remaining period after early grain fill\n\n\\[\nT_\\text{mid} = 0.5 \\times (T_\\text{total} - T_\\text{early})\n\\]\n\nLate Grain Filling = Residual period\n\n\\[\nT_\\text{late} = T_\\text{total} - T_\\text{early} - T_\\text{mid}\n\\]\n\nA variable Stress referring to [Phenology].Vegetative.PhotoperiodEffect is presented in the Canola model, but don’t actually use in the model.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#cultivar-specific-parameters",
+    "title": "EarlyGrainFilling",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].LateGrainFilling.Target.EntireGrainfillPeriod.FixedValue\nThermal time target during whole grain filling (°Cd)\n700",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/EarlyGrainFilling.html#practical-example",
+    "title": "EarlyGrainFilling",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyGrainFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html",
+    "title": "BudDevelopment",
+    "section": "",
+    "text": "The BudDevelopment phase in Canola represents the developmental period from FloralInitiation to GreenBud. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#overview",
+    "title": "BudDevelopment",
+    "section": "Overview",
+    "text": "Overview\nThe SimpleLeafAppearancePhase model simulates the time between the FloralInitiation and GreenBud stages with following parameters:\n\nStart: FloralInitiation\nEnd: GreenBud\nIsEmerged: TRUE\nTargetLeafNumber: as FinalLeafNumber in Leaf model.\nCurrentLeafNumber: as NodeNumber in Leaf model",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#cultivar-specific-parameters",
+    "title": "BudDevelopment",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nno cultivar-specific parameters available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/BudDevelopment.html#practical-example",
+    "title": "BudDevelopment",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "BudDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Examples/canola_example1.html",
+    "href": "docs/Crops/Canola/Examples/canola_example1.html",
+    "title": "Canola Example Simulation 1",
+    "section": "",
+    "text": "This example demonstrates a Canola simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on canola growth and development.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
       "Examples",
-      "Wheat Example Simulation 1"
+      "Canola Example Simulation 1"
     ]
   },
   {
-    "objectID": "docs/Crops/Wheat/Examples/wheat_example1.html#simulation-configuration",
-    "href": "docs/Crops/Wheat/Examples/wheat_example1.html#simulation-configuration",
-    "title": "Wheat Example Simulation 1",
+    "objectID": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
+    "href": "docs/Crops/Canola/Examples/canola_example1.html#simulation-configuration",
+    "title": "Canola Example Simulation 1",
     "section": "Simulation Configuration",
-    "text": "Simulation Configuration\nThe two contrasting cultivars are Emu Rock for early maturity type and Sunlamb for late maturity type, which represent different growth characteristics. The two different sowing dates are 1st May and 1st June.\nThe two contrasting locations are Roma in Queensland and Hamilton in Victoria, Australia. The weather data are obtained from SILO Patched Point Dataset.",
+    "text": "Simulation Configuration\nThe two contrasting cultivars are GenericEearly for early maturity type and GenericLate for late maturity type, which represent different growth characteristics. The two different sowing dates are 1st May and 1st June.\nThe two contrasting locations are Roma in Queensland and Hamilton in Victoria, Australia. The weather data are obtained from SILO Patched Point Dataset.",
     "crumbs": [
       "Home",
       "Docs",
       "Crops",
-      "Wheat",
+      "Canola",
       "Examples",
-      "Wheat Example Simulation 1"
+      "Canola Example Simulation 1"
+    ]
+  },
+  {
+    "objectID": "disclaimer.html",
+    "href": "disclaimer.html",
+    "title": "Disclaimer",
+    "section": "",
+    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
+  },
+  {
+    "objectID": "about.html#what-this-site-includes",
+    "href": "about.html#what-this-site-includes",
+    "title": "About",
+    "section": "What This Site Includes",
+    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
+  },
+  {
+    "objectID": "about.html#not-official-documentation",
+    "href": "about.html#not-official-documentation",
+    "title": "About",
+    "section": "Not Official Documentation",
+    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
+  },
+  {
+    "objectID": "about.html#license-and-attribution",
+    "href": "about.html#license-and-attribution",
+    "title": "About",
+    "section": "⚖️ License and Attribution",
+    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
+  },
+  {
+    "objectID": "about.html#acknowledgment",
+    "href": "about.html#acknowledgment",
+    "title": "About",
+    "section": "🙏 Acknowledgment",
+    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
+  },
+  {
+    "objectID": "docs/Crops/Barley/index.html",
+    "href": "docs/Crops/Barley/index.html",
+    "title": "Barley",
+    "section": "",
+    "text": "The APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Barley/index.html#phenology",
+    "href": "docs/Crops/Barley/index.html#phenology",
+    "title": "Barley",
+    "section": "Phenology",
+    "text": "Phenology\nThe barley phenology is simulated from sowing to harvest.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Barley/index.html#see-also",
+    "href": "docs/Crops/Barley/index.html#see-also",
+    "title": "Barley",
+    "section": "See Also",
+    "text": "See Also\n\nOnline Resource File",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Barley"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html",
+    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html",
+    "title": "EarlyFlowering",
+    "section": "",
+    "text": "The EarlyFlowering phase in Canola represents the developmental period from StartFlowering to StartPodDevelopment. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyFlowering"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#overview",
+    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#overview",
+    "title": "EarlyFlowering",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the StartFlowering and StartPodDevelopment stages.\n\nThis phase starts at StartFlowering and ends at StartPodDevelopment, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 100 °Cd (Robertson et al. 2002).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyFlowering"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#cultivar-specific-parameters",
+    "title": "EarlyFlowering",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].EarlyFlowering.Target.FixedValue\nThermal time target during early flowering (°Cd)\n100",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyFlowering"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyFlowering.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/EarlyFlowering.html#practical-example",
+    "title": "EarlyFlowering",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyFlowering"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html",
+    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html",
+    "title": "EarlyPodDevelopment",
+    "section": "",
+    "text": "The EarlyPodDevelopment phase in Canola represents the developmental period from StartPodDevelopment to StartGrainFilling. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyPodDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#overview",
+    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#overview",
+    "title": "EarlyPodDevelopment",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the StartPodDevelopment and StartGrainFilling stages.\n\nThis phase starts at StartPodDevelopment and ends at StartGrainFilling, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 140 °Cd (Robertson et al. 2002).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyPodDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#cultivar-specific-parameters",
+    "title": "EarlyPodDevelopment",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].EarlyPodDevelopment.Target.FixedValue\nThermal time target during early pod development (°Cd)\n140",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyPodDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/EarlyPodDevelopment.html#practical-example",
+    "title": "EarlyPodDevelopment",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "EarlyPodDevelopment"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Germinating.html",
+    "href": "docs/Crops/Canola/Phenology/Germinating.html",
+    "title": "Germinating",
+    "section": "",
+    "text": "The Germinating is a phenological phase in Canola used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#overview",
+    "href": "docs/Crops/Canola/Phenology/Germinating.html#overview",
+    "title": "Germinating",
+    "section": "Overview",
+    "text": "Overview\nThe GerminatingPhase Model is used to simulate the germination of canola seeds. This phase begins when Plant Sowing occurs and ends when plant is germinated with conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nThe Minimum Soil Temperature is configured as zero by default, which means that the germination will not occur if the soil temperature is below zero,\nThe Soil Water Content should be more than Lower Limit for germination to occur.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/Germinating.html#cultivar-specific-parameters",
+    "title": "Germinating",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Germinating.MinSoilTemperature.FixedValue\nMinimum soil temperature for germination (°C)\n0.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Germinating.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/Germinating.html#practical-example",
+    "title": "Germinating",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Maturing.html",
+    "href": "docs/Crops/Canola/Phenology/Maturing.html",
+    "title": "Maturing",
+    "section": "",
+    "text": "The Maturing phase in Canola represents the developmental period from EndGrainFill to Maturity. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Maturing"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#overview",
+    "href": "docs/Crops/Canola/Phenology/Maturing.html#overview",
+    "title": "Maturing",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the EndGrainFill and Maturity stages.\n\nThis phase starts at EndGrainFill and ends at Maturity, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is fixed as constant for this phase, with default value of 5 °Cd.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Maturing"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/Maturing.html#cultivar-specific-parameters",
+    "title": "Maturing",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Ripening.Target.FixedValue\nThermal time target during maturing (°Cd)\n5.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Maturing"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Maturing.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/Maturing.html#practical-example",
+    "title": "Maturing",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Maturing"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html",
+    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html",
+    "title": "ReadyForHarvesting",
+    "section": "",
+    "text": "The ReadyForHarvesting phase in Canola represents the last phase after HarvestRipe.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#overview",
+    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#overview",
+    "title": "ReadyForHarvesting",
+    "section": "Overview",
+    "text": "Overview\nThe EndPhase model simulates last phase after HarvestRipe.\n\nThis phase starts at EndGrainFill and ends at HarvestRipe, when the grain is considered to be fully ripe.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function. But it does not use here.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#cultivar-specific-parameters",
+    "title": "ReadyForHarvesting",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\nNo cultivar-specific parameters are defined for this phase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/ReadyForHarvesting.html#practical-example",
+    "title": "ReadyForHarvesting",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html",
+    "href": "docs/Crops/Canola/Phenology/StemElongation.html",
+    "title": "StemElongation",
+    "section": "",
+    "text": "The StemElongation phase in Canola represents the developmental period from GreenBud to StartFlowering. It is influenced by thermal time only and the target is influenced by photoperiod.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "StemElongation"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#overview",
+    "href": "docs/Crops/Canola/Phenology/StemElongation.html#overview",
+    "title": "StemElongation",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the GreenBud and StartFlowering stages with following parameters:\n\nStart: GreenBud\nEnd: StartFlowering\nIsEmerged: TRUE\nTarget: Calculated based on cultivar-specific parameters and photoperiod (Whish et al. 2020).\n\nThe Target thermal time is calculated using the following response function based on photoperiod:\n\\[\nTT = TT_{base} + TT_{P} \\times f_{pp}(d)\n\\]\nWhere: - \\(TT\\) = Target thermal time (°Cd) - \\(TT_{base}\\) = Base thermal time (°Cd) with default value of 250 °Cd - \\(TT_{P}\\) = Thermal time response to photoperiod sensitivity (°Cd) with default value of 0 °Cd, i.e. no photoperiod sensitivity - \\(f_{pp}(d)\\) = Multiplier for photoperiod response function based on day length \\(d\\) (hours). This multiplier is defined by 1 at day length of 13 hours and 0 at day length of 14 hours. It means the flowering time will be accelerated when day length is longer than 13 hours and equal to \\(TT_{base}\\) at 14 hours.\n\n\n\n\n\nPhotoperiod Response Function for Target Thermal Time",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "StemElongation"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/StemElongation.html#cultivar-specific-parameters",
+    "title": "StemElongation",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].StemElongation.Target.Base.FixedValue\nBase thermal time target during stem elongation (°Cd)\n250.0\n\n\n[Phenology].StemElongation.Target.PPResponse.Amount.FixedValue\nThermal time response to photoperiod sensitivity (°Cd)\n0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "StemElongation"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/StemElongation.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/StemElongation.html#practical-example",
+    "title": "StemElongation",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "StemElongation"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html",
+    "href": "docs/Crops/Canola/Phenology/Vegetative.html",
+    "title": "Vegetative",
+    "section": "",
+    "text": "The Vegetative phase in Canola represents the developmental period from Emergence to FloralInitiation. It is influenced by thermal time only.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Vegetative"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#overview",
+    "href": "docs/Crops/Canola/Phenology/Vegetative.html#overview",
+    "title": "Vegetative",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the time between the StartEmergence and StartFloralInitiation stages.\n\nThis phase starts at StartEmergence and ends at StartFloralInitiation, when the plant is considered to be fully developed.\nThe model uses daily Thermal Time, retrieved from the [Phenology].ThermalTime function.\nThe Target thermal time is depending on vernalisation time from germination to floral initiation (\\(VT\\)) (Whish et al. 2020).\n\nThis response curve is defined by XYPairs with following values:\n\n\n\nCumulative Vernal Time (days)\nTarget Thermal Time (°Cd)\n\n\n\n\n0.0\n290.0\n\n\n25.0\n1.0\n\n\n\n\n\n\n\n\nTarget Thermal Time Function with Vernalisation Progress\n\n\n\n\nIn each day, the model checks whether the cumulative thermal time has reached the target thermal time. If it has, the phase is considered complete, and the model transitions to the next phase, which is FloralInitiation.\nThe cumulative thermal time is calculated as the sum of daily vernalisation time from germination to floral initiation.\nThe daily vernalisation time is calculated with SubDailyInterpolation using the following response function to air temperature after ThreeHourAirTemperature interpolation method:\n\n\n\nTemperature (°C)\nResponse (°Cd)\n\n\n\n\n0\n0\n\n\n2\n1\n\n\n8\n0.5\n\n\n15\n0\n\n\n\n\n\n\n\n\nDaily Vernalisation Time Function",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Vegetative"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#cultivar-specific-parameters",
+    "href": "docs/Crops/Canola/Phenology/Vegetative.html#cultivar-specific-parameters",
+    "title": "Vegetative",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Vegetative.Target.XYPairs.X\nVernal time X values for target thermal time (days)\n0, 25\n\n\n[Phenology].Vegetative.Target.XYPairs.Y\nTarget thermal time Y values (°Cd)\n290, 1",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Vegetative"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/Phenology/Vegetative.html#practical-example",
+    "href": "docs/Crops/Canola/Phenology/Vegetative.html#practical-example",
+    "title": "Vegetative",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nno practical example available",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola",
+      "Phenology",
+      "Vegetative"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html",
+    "href": "docs/Crops/Canola/index.html",
+    "title": "Canola",
+    "section": "",
+    "text": "The Canola (Brassica napus) model in APSIM Next Generation simulates the growth and development of canola crops. It is designed to capture the key physiological processes that influence canola yield, including phenology, biomass accumulation, and stress responses.\nThe APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html#phenology",
+    "href": "docs/Crops/Canola/index.html#phenology",
+    "title": "Canola",
+    "section": "Phenology",
+    "text": "Phenology",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html#organs",
+    "href": "docs/Crops/Canola/index.html#organs",
+    "title": "Canola",
+    "section": "Organs",
+    "text": "Organs\n\nLeaf: The leaf organ model simulates leaf area development, senescence, and photosynthesis.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Crops/Canola/index.html#see-also",
+    "href": "docs/Crops/Canola/index.html#see-also",
+    "title": "Canola",
+    "section": "See Also",
+    "text": "See Also\n\nOnline Resource File",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Crops",
+      "Canola"
     ]
   },
   {
@@ -4891,7 +4921,7 @@
     "href": "docs/Crops/Wheat/index.html#organs",
     "title": "Wheat",
     "section": "Organs",
-    "text": "Organs\n\nGrain: The wheat grain is only for parts for economic yield without Spike.",
+    "text": "Organs\n\nLeaf\nStem\nRoot\nSpike\nGrain",
     "crumbs": [
       "Home",
       "Docs",

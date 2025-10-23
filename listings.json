@@ -64,12 +64,6 @@
     ]
   },
   {
-    "listing": "/docs/Crops/Wheat/Traits/index.html",
-    "items": [
-      "/docs/Crops/Wheat/Traits/co2-wheat.html"
-    ]
-  },
-  {
     "listing": "/docs/Models/Management/index.html",
     "items": [
       "/docs/Models/Management/BiomassRemovalEvents.html",
