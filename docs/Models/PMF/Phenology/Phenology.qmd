@@ -38,7 +38,7 @@ The phenology progression is triggered by several events, primarily the `DoPheno
 
 [DoPhenology](/docs/Models/Events.html#DoPhenology):
 
-This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from [Plant](/docs/Models/PMF/Plant.qmd) model.
+This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from Plant model.
 
 
 At each timestep, the `Phenology` model:
