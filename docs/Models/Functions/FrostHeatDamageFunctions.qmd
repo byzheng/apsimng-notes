@@ -1,3 +1,4 @@
+---
 title: "FrostHeatDamageFunctions"
 output: html_document
 draft: true
@@ -147,22 +148,8 @@ for (crop in names(params)) {
 
 ## Methodology
 
-Methodology
+All internal and output variables are reset at sowing and then updated daily during crop growth until harvest at event [DoManagementCalculations](/docs/Models/Events.html#ManagementCalculations).
 
-This section describes the internal workflow and formulas used by FrostHeatDamageFunctions. The implementation is driven by two event handlers:
-
-- OnDoSowing — resets internal state at sowing.
-- OnDoManagementCalculations — runs daily to compute potentials, sensitivities, daily and cumulative reductions.
-
-Initialization (OnDoSowing)
-- All reportable and internal accumulators are initialized:
-    - per-day values: FrostPotentialReductionRatio, FrostSensitivity, FrostReductionRatio, HeatPotentialReductionRatio, HeatSensitivity, HeatReductionRatio, FrostHeatReductionRatio
-    - accumulators: FrostOverallRemaining = 1, HeatOverallRemaining = 1, CumulativeFrostReductionRatio = 0, CumulativeHeatReductionRatio = 0, CumulativeFrostHeatReductionRatio = 0
-    - counters and trackers: FrostEventNumber, HeatEventNumber, FrostSensitivePeriodStartDAS, FrostSensitivePeriodEndDAS, HeatSensitivePeriodStartDAS, HeatSensitivePeriodEndDAS
-
-Daily calculations (OnDoManagementCalculations)
-1. Preconditions
-     - The component verifies it is attached to the correct Plant parent and that Plant.IsAlive; otherwise the daily calculations are skipped.
 
 2. Track sensitive period start/end
      - When the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.
@@ -235,7 +222,7 @@ These are signals or notifications that the function listens for from other part
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
 | [Sowing](/docs/Models/Events.html#Sowing)   | Initialize internal variables for frost and heat damage functions |
-| [DoManagementCalculations](/docs/Models/Events.html#DoManagementCalculations)   | Perform the actual calculations for frost and heat damage functions |
+| [DoManagementCalculations](/docs/Models/Events.html#ManagementCalculations)   | Perform the actual calculations for frost and heat damage functions |
 
 
 
