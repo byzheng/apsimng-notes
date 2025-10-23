@@ -1504,7 +1504,7 @@
     "href": "docs/Models/Functions/index.html",
     "title": "Functions",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\ndraft: true\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -2084,132 +2084,6 @@
       "Models",
       "Functions",
       "MaximumFunction"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html",
-    "title": "APSIM NG Notes",
-    "section": "",
-    "text": "title: “FrostHeatDamageFunctions” output: html_document draft: true —\nThis FrostHeatDamageFunctions function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
-    "title": "APSIM NG Notes",
-    "section": "Overview",
-    "text": "Overview\nThe FrostHeatDamageFunctions function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#inputs",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#inputs",
-    "title": "APSIM NG Notes",
-    "section": "Inputs",
-    "text": "Inputs\nThe following inputs are required for the FrostHeatDamageFunctions function with default values for wheat and canola crops:\n\nFrost parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nFrostLowTT\nLower temperature threshold for frost damage (°C)\n-4.00\n-4.11\n\n\nFrostMaxReductionRatio\nYield reduction ratio at the lower threshold (0–1, max reduction)\n0.40\n0.31\n\n\nFrostUpTT\nUpper temperature threshold for frost damage (°C)\n1.00\n-0.75\n\n\nFrostMinReductionRatio\nYield reduction ratio at the upper threshold (0–1, min reduction)\n0.00\n0.00\n\n\nFrostStartSensitiveGS\nStart of the frost-sensitive growth stage period (GS units)\n6.49\n7.22\n\n\nFrostStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n8.00\n7.33\n\n\nFrostEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n9.50\n8.06\n\n\nFrostEndSensitiveGS\nEnd of the frost-sensitive growth stage period (GS units)\n9.50\n8.18\n\n\n\n\n\nHeat parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nHeatLowTT\nLower temperature threshold for heat damage (°C)\n30.35\n27.45\n\n\nHeatMinReductionRatio\nYield reduction ratio at the lower threshold (0–1, min reduction)\n0.00\n0.00\n\n\nHeatUpTT\nUpper temperature threshold for heat damage (°C)\n34.00\n38.84\n\n\nHeatMaxReductionRatio\nYield reduction ratio at the upper threshold (0–1, max reduction)\n0.20\n0.58\n\n\nHeatStartSensitiveGS\nStart of the heat-sensitive growth stage period (GS units)\n7.28\n5.58\n\n\nHeatStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n7.48\n6.26\n\n\nHeatEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n8.97\n9.20\n\n\nHeatEndSensitiveGS\nEnd of the heat-sensitive growth stage period (GS units)\n9.09\n9.43\n\n\n\n\nReduction ratio from 0 to 1 indicates no to full yield reduction,\nSensitivity from 0 to 1 indicates no to full sensitivity to frost/heat damage.\n\nThe figures below illustrate the temperature response and growth stage sensitivity functions for frost and heat damage for both wheat and canola crops using the default parameters.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#methodology",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#methodology",
-    "title": "APSIM NG Notes",
-    "section": "Methodology",
-    "text": "Methodology\nMethodology\nThis section describes the internal workflow and formulas used by FrostHeatDamageFunctions. The implementation is driven by two event handlers:\n\nOnDoSowing — resets internal state at sowing.\nOnDoManagementCalculations — runs daily to compute potentials, sensitivities, daily and cumulative reductions.\n\nInitialization (OnDoSowing) - All reportable and internal accumulators are initialized: - per-day values: FrostPotentialReductionRatio, FrostSensitivity, FrostReductionRatio, HeatPotentialReductionRatio, HeatSensitivity, HeatReductionRatio, FrostHeatReductionRatio - accumulators: FrostOverallRemaining = 1, HeatOverallRemaining = 1, CumulativeFrostReductionRatio = 0, CumulativeHeatReductionRatio = 0, CumulativeFrostHeatReductionRatio = 0 - counters and trackers: FrostEventNumber, HeatEventNumber, FrostSensitivePeriodStartDAS, FrostSensitivePeriodEndDAS, HeatSensitivePeriodStartDAS, HeatSensitivePeriodEndDAS\nDaily calculations (OnDoManagementCalculations) 1. Preconditions - The component verifies it is attached to the correct Plant parent and that Plant.IsAlive; otherwise the daily calculations are skipped.\n\nTrack sensitive period start/end\n\nWhen the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.\n\nPotential reduction functions\n\nFrostPotentialReductionRatioFun(t):\n\npiecewise linear between FrostLowTT and FrostUpTT:\n\nif t &lt;= FrostLowTT: ratio = FrostMaxReductionRatio\nif t &gt;= FrostUpTT: ratio = FrostMinReductionRatio\notherwise: linear interpolation ratio = FrostMaxReductionRatio + (t - FrostLowTT) * (FrostMinReductionRatio - FrostMaxReductionRatio) / (FrostUpTT - FrostLowTT)\n\n\nHeatPotentialReductionRatioFun(t):\n\npiecewise linear between HeatLowTT and HeatUpTT:\n\nif t &lt;= HeatLowTT: ratio = HeatMinReductionRatio\nif t &gt;= HeatUpTT: ratio = HeatMaxReductionRatio\notherwise: linear interpolation ratio = HeatMinReductionRatio + (t - HeatLowTT) * (HeatMaxReductionRatio - HeatMinReductionRatio) / (HeatUpTT - HeatLowTT)\n\n\nOutput ratios are constrained to [0,1] by parameter choice/logic.\n\nGrowth-stage sensitivity functions\n\nFrostSensitivityFun(gs) and HeatSensitivityFun(gs):\n\nboth implement a 4‑point piecewise linear sensitivity curve defined by s0 (start of sensitive period), s1 (start of most sensitive), e1 (end of most sensitive), e0 (end of sensitive period).\nmapping: sensitivity = 0 at s0, linearly increases to 1 at s1, equals 1 between s1 and e1, then linearly decreases to 0 at e0.\noutside [s0, e0] sensitivity = 0.\n\n\nDaily actual reductions\n\nFrostReductionRatio = FrostPotentialReductionRatio * FrostSensitivity\nHeatReductionRatio = HeatPotentialReductionRatio * HeatSensitivity\nEvents counted when a daily reduction &gt; 0:\n\nif FrostReductionRatio &gt; 0 then FrostEventNumber++\nif HeatReductionRatio &gt; 0 then HeatEventNumber++\n\n\nCombined daily reduction\n\nFrostHeatReductionRatio = 1 - (1 - FrostReductionRatio) * (1 - HeatReductionRatio)\n\nthis assumes independent multiplicative survival from each stress.\n\n\nCumulative reductions and remaining fractions\n\nFrostOverallRemaining = FrostOverallRemaining * (1 - FrostReductionRatio)\nCumulativeFrostReductionRatio = 1 - FrostOverallRemaining\nHeatOverallRemaining = HeatOverallRemaining * (1 - HeatReductionRatio)\nCumulativeHeatReductionRatio = 1 - HeatOverallRemaining\nCumulativeFrostHeatReductionRatio = 1 - FrostOverallRemaining * HeatOverallRemaining\n\nFrost- and heat-limited yield\n\nFrostHeatYield = organs.Wt * FrostOverallRemaining * HeatOverallRemaining\n\nhere organs.Wt is the current reproductive organ (grain) weight used as a base to apply accumulated losses.\n\n\n\nNotes and assumptions - Piecewise linear parameterizations (thresholds and max/min reduction ratios) control severity and timing sensitivity. - Cumulative damage is applied multiplicatively (remaining fraction), which prevents total losses exceeding 100% and properly accounts for sequential events. - Sensitive period start/end are captured as the first day the crop growth stage equals or exceeds the corresponding threshold, recorded in days after sowing.\nHelper methods implemented in the code - FrostPotentialReductionRatioFun(double t) - FrostSensitivityFun(double GrowthStage) - HeatPotentialReductionRatioFun(double t) - HeatSensitivityFun(double GrowthStage)\nThese implement the respective piecewise linear formulas described above and are invoked each day by OnDoManagementCalculations.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "title": "APSIM NG Notes",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nSowing\nInitialize internal variables for frost and heat damage functions\n\n\nDoManagementCalculations\nPerform the actual calculations for frost and heat damage functions\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#properties",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#properties",
-    "title": "APSIM NG Notes",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFrostPotentialReductionRatio\ndouble\nDaily potential yield reduction ratio by a frost event.\n\n\nFrostSensitivity\ndouble\nDaily sensitivity of yield reduction to growth stage when the frost event occurs.\n\n\nFrostReductionRatio\ndouble\nDaily actual yield reduction ratio by frost stress.\n\n\nHeatPotentialReductionRatio\ndouble\nDaily potential yield reduction ratio by a heat event.\n\n\nHeatSensitivity\ndouble\nDaily sensitivity of yield reduction to growth stage when the heat event occurs.\n\n\nHeatReductionRatio\ndouble\nDaily actual yield reduction ratio by heat stress.\n\n\nFrostHeatReductionRatio\ndouble\nDaily actual yield reduction ratio by combined frost and heat stress.\n\n\nCumulativeFrostReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by frost stress.\n\n\nCumulativeHeatReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by heat stress.\n\n\nFrostEventNumber\ndouble\nNumber of frost events during the sensitive period.\n\n\nHeatEventNumber\ndouble\nNumber of heat events during the sensitive period.\n\n\nCumulativeFrostHeatReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by both frost and heat stress.\n\n\nFrostHeatYield\ndouble\nFrost- and heat-limited yield (units: g/m²).\n\n\nFrostSensitivePeriodStartDAS\ndouble\nStart of frost sensitive period in days after sowing (units: days).\n\n\nFrostSensitivePeriodEndDAS\ndouble\nEnd of frost sensitive period in days after sowing (units: days).\n\n\nHeatSensitivePeriodStartDAS\ndouble\nStart of heat sensitive period in days after sowing (units: days).\n\n\nHeatSensitivePeriodEndDAS\ndouble\nEnd of heat sensitive period in days after sowing (units: days).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#user-interface",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#user-interface",
-    "title": "APSIM NG Notes",
-    "section": "User Interface",
-    "text": "User Interface\nFrostHeatDamageFunctions can be added as a child of a Crop Model in the model tree.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#practical-example",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#practical-example",
-    "title": "APSIM NG Notes",
-    "section": "Practical Example",
-    "text": "Practical Example",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#see-also",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#see-also",
-    "title": "APSIM NG Notes",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: FrostHeatDamageFunctions.cs on GitHub",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "draft: true"
     ]
   },
   {
