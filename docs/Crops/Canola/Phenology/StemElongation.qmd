@@ -1,0 +1,66 @@
+---
+title: "StemElongation"
+output: html_document
+---
+
+
+
+The **StemElongation** phase in [Canola](/docs/Crops/Canola) represents the developmental period from **GreenBud** to **StartFlowering**. It is influenced by thermal time only and the target is influenced by photoperiod.
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `GreenBud` and `StartFlowering` stages with following parameters:
+
+- **Start**: **GreenBud**
+- **End**: **StartFlowering**
+- **IsEmerged**: TRUE
+- **Target**: Calculated based on cultivar-specific parameters and photoperiod [@whish_vernalisation_2020].
+
+The **Target thermal time** is calculated using the following response function based on photoperiod:
+
+$$
+TT = TT_{base} + TT_{P} \times f_{pp}(d)
+$$
+
+Where:
+- $TT$ = Target thermal time (°Cd)
+- $TT_{base}$ = Base thermal time (°Cd) with default value of 250 °Cd
+- $TT_{P}$ = Thermal time response to photoperiod sensitivity (°Cd) with default value of 0 °Cd, i.e. no photoperiod sensitivity
+- $f_{pp}(d)$ = Multiplier for photoperiod response function based on day length $d$ (hours). This multiplier is defined by 1 at day length of 13 hours and 0 at day length of 14 hours. It means the flowering time will be accelerated when day length is longer than 13 hours and equal to $TT_{base}$ at 14 hours.
+
+
+```{r plot-tt, fig.height = 3, fig.cap="Photoperiod Response Function for Target Thermal Time"}
+library(ggplot2)
+
+
+x <- c(13, 14)
+y <- c(1, 0)
+x_out <- seq(12, 15)
+df <- data.frame(VT = x_out, 
+                    Response = weaana::interpolationFunction(x, y, values = x_out))
+
+
+ggplot(df, aes(x = VT, y = Response)) +
+    geom_line(color = "darkorange", linewidth = 1.2) +
+    labs(
+        x = "Day length (hours)",
+        y = "Multiplier for Photoperiod Response"
+    ) +
+    theme_minimal()
+
+```
+
+## Cultivar-Specific Parameters
+
+> no cultivar-specific parameters available
+
+## Practical Example
+
+> no practical example available
+
