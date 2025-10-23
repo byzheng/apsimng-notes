@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Traits – APSIM NG Notes</title>
+<title>frostheatdamagefunctions – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,29 +23,27 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../../">
-<link href="../../../../images/icons/icon_192.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../../site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../../site_libs/bootstrap/bootstrap-320e1ef9edb861ce49b497581fe021d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-320e1ef9edb861ce49b497581fe021d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,35 +71,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -143,37 +112,8 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="../../../../styles.css">
+<link rel="stylesheet" href="../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -183,11 +123,11 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo light-content">
-    <img src="../../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo dark-content">
+    <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo light-content">
+    <img src="../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../../../../index.html">
+    <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -198,23 +138,23 @@ window.Quarto = {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../../../../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../docs/index.html"> 
+    <a class="nav-link" href="../../../docs/index.html"> 
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../tips/index.html"> 
+    <a class="nav-link" href="../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../about.html"> 
+    <a class="nav-link" href="../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../../disclaimer.html"> 
+    <a class="nav-link" href="../../../disclaimer.html"> 
 <span class="menu-text">Disclaimer</span></a>
   </li>  
 </ul>
@@ -235,7 +175,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Traits/index.html">Traits</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html">draft: true</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -246,14 +186,14 @@ window.Quarto = {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../../../../index.html" class="sidebar-logo-link">
+      <a href="../../../index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -262,34 +202,34 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/abbreviations.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/abbreviations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary of Abbreviations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/symbols.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/symbols.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Symbol Glossary</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Barley</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -307,7 +247,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola Example Simulation 1</span></a>
   </div>
 </li>
@@ -324,13 +264,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FinalLeafNumber</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Leaf/NodeNumber.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Leaf/NodeNumber.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NodeNumber</span></a>
   </div>
 </li>
@@ -338,7 +278,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -347,91 +287,91 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BudDevelopment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyFlowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyPodDevelopment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LateGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maturing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MidGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Photoperiod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ripening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">StemElongation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vegetative</span></a>
   </div>
 </li>
@@ -441,13 +381,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
@@ -459,7 +399,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat Example Simulation 1</span></a>
   </div>
 </li>
@@ -467,7 +407,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -476,85 +416,85 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Flowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainExpanding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainRipening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Haun Stage</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Heading</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LeavesInitiating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SpikeletsDifferentiating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/StemElongating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/StemElongating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">StemElongating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
@@ -562,16 +502,16 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2 for Wheat</span></a>
   </div>
 </li>
@@ -579,7 +519,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Wheat/grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -588,7 +528,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Crops/Wheat/grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -600,127 +540,127 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clock</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Events</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AccumulateFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AddFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Constant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DivideFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">draft: true</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HourlySinPpAdjusted</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MaximumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MinimumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MultiplyFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookupValue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Photoperiod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubDailyInterpolation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubtractFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ThreeHourAirTemperature</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
@@ -735,7 +675,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
   </div>
 </li>
@@ -745,7 +685,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -754,7 +694,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -762,7 +702,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Management</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -771,13 +711,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BiomassRemovalEvents</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Management/FertiliserType.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Management/FertiliserType.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FertiliserType</span></a>
   </div>
 </li>
@@ -785,7 +725,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -794,7 +734,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Arbitrator</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -803,13 +743,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nutrient Constrained Allocation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relative Allocation</span></a>
   </div>
 </li>
@@ -817,7 +757,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -826,13 +766,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAMP</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -841,37 +781,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CalcCAMPVrnRates</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAMP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ColdVrnResponse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CultivarRateParams</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FinalLeafNumberSet</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FLNParameterEnvironment</span></a>
   </div>
 </li>
@@ -879,7 +819,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phases</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -888,49 +828,49 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EmergingPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EndPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GenericPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GerminatingPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">IPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LeafAppearancePhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SimpleLeafAppearancePhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VernalisationPhase</span></a>
   </div>
 </li>
@@ -942,7 +882,7 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -951,7 +891,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2</span></a>
   </div>
 </li>
@@ -966,82 +906,433 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/FrostHeatDamageFunctions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Traits/index.html">Traits</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Traits</h1>
-</div>
-
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/index.html">Functions</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Functions/FrostHeatDamageFunctions.html">draft: true</a></li></ol></nav></header>
 
 
 
 
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<p>title: “FrostHeatDamageFunctions” output: html_document draft: true —</p>
+<p>This <code>FrostHeatDamageFunctions</code> function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <code>FrostHeatDamageFunctions</code> function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations.</p>
+</section>
+<section id="inputs" class="level2">
+<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<p>The following inputs are required for the <code>FrostHeatDamageFunctions</code> function with default values for wheat and canola crops:</p>
+<section id="frost-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="frost-parameters">Frost parameters</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Description
-</th>
-
+<tr class="header">
+<th>Parameter (property)</th>
+<th style="text-align: right;">Description</th>
+<th style="text-align: right;">Wheat</th>
+<th style="text-align: right;">Canola</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1761199313088" data-listing-reading-time-sort="1" data-listing-word-count-sort="15" data-listing-title-sort="CO2 for Wheat" data-listing-filename-sort="co2-wheat.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="title listing-title">CO2 for Wheat</a>
-</td>
-<td>
-<span class="listing-description">For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentrat…<span class="math inline"></span><span class="math inline"></span><span class="citation" data-cites="reyenga_modelling_1999"></span></span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>FrostLowTT</td>
+<td style="text-align: right;">Lower temperature threshold for frost damage (°C)</td>
+<td style="text-align: right;">-4.00</td>
+<td style="text-align: right;">-4.11</td>
 </tr>
-
+<tr class="even">
+<td>FrostMaxReductionRatio</td>
+<td style="text-align: right;">Yield reduction ratio at the lower threshold (0–1, max reduction)</td>
+<td style="text-align: right;">0.40</td>
+<td style="text-align: right;">0.31</td>
+</tr>
+<tr class="odd">
+<td>FrostUpTT</td>
+<td style="text-align: right;">Upper temperature threshold for frost damage (°C)</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">-0.75</td>
+</tr>
+<tr class="even">
+<td>FrostMinReductionRatio</td>
+<td style="text-align: right;">Yield reduction ratio at the upper threshold (0–1, min reduction)</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td>FrostStartSensitiveGS</td>
+<td style="text-align: right;">Start of the frost-sensitive growth stage period (GS units)</td>
+<td style="text-align: right;">6.49</td>
+<td style="text-align: right;">7.22</td>
+</tr>
+<tr class="even">
+<td>FrostStartMostSensitiveGS</td>
+<td style="text-align: right;">Start of the most-sensitive period (sensitivity = 1) (GS units)</td>
+<td style="text-align: right;">8.00</td>
+<td style="text-align: right;">7.33</td>
+</tr>
+<tr class="odd">
+<td>FrostEndMostSensitiveGS</td>
+<td style="text-align: right;">End of the most-sensitive period (sensitivity = 1) (GS units)</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">8.06</td>
+</tr>
+<tr class="even">
+<td>FrostEndSensitiveGS</td>
+<td style="text-align: right;">End of the frost-sensitive growth stage period (GS units)</td>
+<td style="text-align: right;">9.50</td>
+<td style="text-align: right;">8.18</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</section>
+<section id="heat-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="heat-parameters">Heat parameters</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 26%">
+<col style="width: 26%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter (property)</th>
+<th style="text-align: right;">Description</th>
+<th style="text-align: right;">Wheat</th>
+<th style="text-align: right;">Canola</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>HeatLowTT</td>
+<td style="text-align: right;">Lower temperature threshold for heat damage (°C)</td>
+<td style="text-align: right;">30.35</td>
+<td style="text-align: right;">27.45</td>
+</tr>
+<tr class="even">
+<td>HeatMinReductionRatio</td>
+<td style="text-align: right;">Yield reduction ratio at the lower threshold (0–1, min reduction)</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td>HeatUpTT</td>
+<td style="text-align: right;">Upper temperature threshold for heat damage (°C)</td>
+<td style="text-align: right;">34.00</td>
+<td style="text-align: right;">38.84</td>
+</tr>
+<tr class="even">
+<td>HeatMaxReductionRatio</td>
+<td style="text-align: right;">Yield reduction ratio at the upper threshold (0–1, max reduction)</td>
+<td style="text-align: right;">0.20</td>
+<td style="text-align: right;">0.58</td>
+</tr>
+<tr class="odd">
+<td>HeatStartSensitiveGS</td>
+<td style="text-align: right;">Start of the heat-sensitive growth stage period (GS units)</td>
+<td style="text-align: right;">7.28</td>
+<td style="text-align: right;">5.58</td>
+</tr>
+<tr class="even">
+<td>HeatStartMostSensitiveGS</td>
+<td style="text-align: right;">Start of the most-sensitive period (sensitivity = 1) (GS units)</td>
+<td style="text-align: right;">7.48</td>
+<td style="text-align: right;">6.26</td>
+</tr>
+<tr class="odd">
+<td>HeatEndMostSensitiveGS</td>
+<td style="text-align: right;">End of the most-sensitive period (sensitivity = 1) (GS units)</td>
+<td style="text-align: right;">8.97</td>
+<td style="text-align: right;">9.20</td>
+</tr>
+<tr class="even">
+<td>HeatEndSensitiveGS</td>
+<td style="text-align: right;">End of the heat-sensitive growth stage period (GS units)</td>
+<td style="text-align: right;">9.09</td>
+<td style="text-align: right;">9.43</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Reduction ratio</strong> from 0 to 1 indicates no to full yield reduction,</li>
+<li><strong>Sensitivity</strong> from 0 to 1 indicates no to full sensitivity to frost/heat damage.</li>
+</ul>
+<p>The figures below illustrate the temperature response and growth stage sensitivity functions for frost and heat damage for both wheat and canola crops using the default parameters.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="FrostHeatDamageFunctions_files/figure-html/example-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="FrostHeatDamageFunctions_files/figure-html/example-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Methodology</p>
+<p>This section describes the internal workflow and formulas used by FrostHeatDamageFunctions. The implementation is driven by two event handlers:</p>
+<ul>
+<li>OnDoSowing — resets internal state at sowing.</li>
+<li>OnDoManagementCalculations — runs daily to compute potentials, sensitivities, daily and cumulative reductions.</li>
+</ul>
+<p>Initialization (OnDoSowing) - All reportable and internal accumulators are initialized: - per-day values: FrostPotentialReductionRatio, FrostSensitivity, FrostReductionRatio, HeatPotentialReductionRatio, HeatSensitivity, HeatReductionRatio, FrostHeatReductionRatio - accumulators: FrostOverallRemaining = 1, HeatOverallRemaining = 1, CumulativeFrostReductionRatio = 0, CumulativeHeatReductionRatio = 0, CumulativeFrostHeatReductionRatio = 0 - counters and trackers: FrostEventNumber, HeatEventNumber, FrostSensitivePeriodStartDAS, FrostSensitivePeriodEndDAS, HeatSensitivePeriodStartDAS, HeatSensitivePeriodEndDAS</p>
+<p>Daily calculations (OnDoManagementCalculations) 1. Preconditions - The component verifies it is attached to the correct Plant parent and that Plant.IsAlive; otherwise the daily calculations are skipped.</p>
+<ol start="2" type="1">
+<li>Track sensitive period start/end
+<ul>
+<li>When the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.</li>
+</ul></li>
+<li>Potential reduction functions
+<ul>
+<li>FrostPotentialReductionRatioFun(t):
+<ul>
+<li>piecewise linear between FrostLowTT and FrostUpTT:
+<ul>
+<li>if t &lt;= FrostLowTT: ratio = FrostMaxReductionRatio</li>
+<li>if t &gt;= FrostUpTT: ratio = FrostMinReductionRatio</li>
+<li>otherwise: linear interpolation ratio = FrostMaxReductionRatio + (t - FrostLowTT) * (FrostMinReductionRatio - FrostMaxReductionRatio) / (FrostUpTT - FrostLowTT)</li>
+</ul></li>
+</ul></li>
+<li>HeatPotentialReductionRatioFun(t):
+<ul>
+<li>piecewise linear between HeatLowTT and HeatUpTT:
+<ul>
+<li>if t &lt;= HeatLowTT: ratio = HeatMinReductionRatio</li>
+<li>if t &gt;= HeatUpTT: ratio = HeatMaxReductionRatio</li>
+<li>otherwise: linear interpolation ratio = HeatMinReductionRatio + (t - HeatLowTT) * (HeatMaxReductionRatio - HeatMinReductionRatio) / (HeatUpTT - HeatLowTT)</li>
+</ul></li>
+</ul></li>
+<li>Output ratios are constrained to [0,1] by parameter choice/logic.</li>
+</ul></li>
+<li>Growth-stage sensitivity functions
+<ul>
+<li>FrostSensitivityFun(gs) and HeatSensitivityFun(gs):
+<ul>
+<li>both implement a 4‑point piecewise linear sensitivity curve defined by s0 (start of sensitive period), s1 (start of most sensitive), e1 (end of most sensitive), e0 (end of sensitive period).</li>
+<li>mapping: sensitivity = 0 at s0, linearly increases to 1 at s1, equals 1 between s1 and e1, then linearly decreases to 0 at e0.</li>
+<li>outside [s0, e0] sensitivity = 0.</li>
+</ul></li>
+</ul></li>
+<li>Daily actual reductions
+<ul>
+<li>FrostReductionRatio = FrostPotentialReductionRatio * FrostSensitivity</li>
+<li>HeatReductionRatio = HeatPotentialReductionRatio * HeatSensitivity</li>
+<li>Events counted when a daily reduction &gt; 0:
+<ul>
+<li>if FrostReductionRatio &gt; 0 then FrostEventNumber++</li>
+<li>if HeatReductionRatio &gt; 0 then HeatEventNumber++</li>
+</ul></li>
+</ul></li>
+<li>Combined daily reduction
+<ul>
+<li>FrostHeatReductionRatio = 1 - (1 - FrostReductionRatio) * (1 - HeatReductionRatio)
+<ul>
+<li>this assumes independent multiplicative survival from each stress.</li>
+</ul></li>
+</ul></li>
+<li>Cumulative reductions and remaining fractions
+<ul>
+<li>FrostOverallRemaining = FrostOverallRemaining * (1 - FrostReductionRatio)</li>
+<li>CumulativeFrostReductionRatio = 1 - FrostOverallRemaining</li>
+<li>HeatOverallRemaining = HeatOverallRemaining * (1 - HeatReductionRatio)</li>
+<li>CumulativeHeatReductionRatio = 1 - HeatOverallRemaining</li>
+<li>CumulativeFrostHeatReductionRatio = 1 - FrostOverallRemaining * HeatOverallRemaining</li>
+</ul></li>
+<li>Frost- and heat-limited yield
+<ul>
+<li>FrostHeatYield = organs.Wt * FrostOverallRemaining * HeatOverallRemaining
+<ul>
+<li>here organs.Wt is the current reproductive organ (grain) weight used as a base to apply accumulated losses.</li>
+</ul></li>
+</ul></li>
+</ol>
+<p>Notes and assumptions - Piecewise linear parameterizations (thresholds and max/min reduction ratios) control severity and timing sensitivity. - Cumulative damage is applied multiplicatively (remaining fraction), which prevents total losses exceeding 100% and properly accounts for sequential events. - Sensitive period start/end are captured as the first day the crop growth stage equals or exceeds the corresponding threshold, recorded in days after sowing.</p>
+<p>Helper methods implemented in the code - FrostPotentialReductionRatioFun(double t) - FrostSensitivityFun(double GrowthStage) - HeatPotentialReductionRatioFun(double t) - HeatSensitivityFun(double GrowthStage)</p>
+<p>These implement the respective piecewise linear formulas described above and are invoked each day by OnDoManagementCalculations.</p>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p><strong>Events Listened For</strong></p>
+<p>These are signals or notifications that the function listens for from other parts of the simulation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../docs/Models/Events.html#Sowing" class="model-link">Sowing</a></td>
+<td>Initialize internal variables for frost and heat damage functions</td>
+</tr>
+<tr class="even">
+<td><a href="../../../docs/Models/Events.html#DoManagementCalculations" class="model-link">DoManagementCalculations</a></td>
+<td>Perform the actual calculations for frost and heat damage functions</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<blockquote class="blockquote">
+<p>No configurable properties are available for this function.</p>
+</blockquote>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 89%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th style="text-align: right;">Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>FrostPotentialReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily potential yield reduction ratio by a frost event.</td>
+</tr>
+<tr class="even">
+<td><code>FrostSensitivity</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily sensitivity of yield reduction to growth stage when the frost event occurs.</td>
+</tr>
+<tr class="odd">
+<td><code>FrostReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily actual yield reduction ratio by frost stress.</td>
+</tr>
+<tr class="even">
+<td><code>HeatPotentialReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily potential yield reduction ratio by a heat event.</td>
+</tr>
+<tr class="odd">
+<td><code>HeatSensitivity</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily sensitivity of yield reduction to growth stage when the heat event occurs.</td>
+</tr>
+<tr class="even">
+<td><code>HeatReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily actual yield reduction ratio by heat stress.</td>
+</tr>
+<tr class="odd">
+<td><code>FrostHeatReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Daily actual yield reduction ratio by combined frost and heat stress.</td>
+</tr>
+<tr class="even">
+<td><code>CumulativeFrostReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Cumulative actual yield reduction ratio induced by frost stress.</td>
+</tr>
+<tr class="odd">
+<td><code>CumulativeHeatReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Cumulative actual yield reduction ratio induced by heat stress.</td>
+</tr>
+<tr class="even">
+<td><code>FrostEventNumber</code></td>
+<td style="text-align: right;">double</td>
+<td>Number of frost events during the sensitive period.</td>
+</tr>
+<tr class="odd">
+<td><code>HeatEventNumber</code></td>
+<td style="text-align: right;">double</td>
+<td>Number of heat events during the sensitive period.</td>
+</tr>
+<tr class="even">
+<td><code>CumulativeFrostHeatReductionRatio</code></td>
+<td style="text-align: right;">double</td>
+<td>Cumulative actual yield reduction ratio induced by both frost and heat stress.</td>
+</tr>
+<tr class="odd">
+<td><code>FrostHeatYield</code></td>
+<td style="text-align: right;">double</td>
+<td>Frost- and heat-limited yield (units: g/m²).</td>
+</tr>
+<tr class="even">
+<td><code>FrostSensitivePeriodStartDAS</code></td>
+<td style="text-align: right;">double</td>
+<td>Start of frost sensitive period in days after sowing (units: days).</td>
+</tr>
+<tr class="odd">
+<td><code>FrostSensitivePeriodEndDAS</code></td>
+<td style="text-align: right;">double</td>
+<td>End of frost sensitive period in days after sowing (units: days).</td>
+</tr>
+<tr class="even">
+<td><code>HeatSensitivePeriodStartDAS</code></td>
+<td style="text-align: right;">double</td>
+<td>Start of heat sensitive period in days after sowing (units: days).</td>
+</tr>
+<tr class="odd">
+<td><code>HeatSensitivePeriodEndDAS</code></td>
+<td style="text-align: right;">double</td>
+<td>End of heat sensitive period in days after sowing (units: days).</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<p><code>FrostHeatDamageFunctions</code> can be added as a child of a Crop Model in the model tree.</p>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/FrostHeatDamageFunctions.cs" class="external-link">FrostHeatDamageFunctions.cs on GitHub</a></li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1451,17 +1742,17 @@ Description
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../../../about.html">
+    <a class="nav-link" href="../../../about.html">
 <p>About</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../../../../disclaimer.html">
+    <a class="nav-link" href="../../../disclaimer.html">
 <p>Disclaimer</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Traits/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Functions/FrostHeatDamageFunctions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

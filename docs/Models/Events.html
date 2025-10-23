@@ -341,6 +341,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../docs/Crops/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photoperiod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../docs/Crops/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
@@ -349,6 +355,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <div class="sidebar-item-container"> 
   <a href="../../docs/Crops/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ripening</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/Crops/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StemElongation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -578,6 +590,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <div class="sidebar-item-container"> 
   <a href="../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DivideFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">draft: true</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -895,6 +913,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <ul class="collapse">
   <li><a href="#simulation" id="toc-simulation" class="nav-link active" data-scroll-target="#simulation">Simulation</a></li>
   <li><a href="#clock" id="toc-clock" class="nav-link" data-scroll-target="#clock">Clock</a></li>
+  <li><a href="#plant" id="toc-plant" class="nav-link" data-scroll-target="#plant">Plant</a></li>
   <li><a href="#germinatingphase" id="toc-germinatingphase" class="nav-link" data-scroll-target="#germinatingphase">GerminatingPhase</a></li>
   <li><a href="#phenology" id="toc-phenology" class="nav-link" data-scroll-target="#phenology">Phenology</a></li>
   <li><a href="#biomassremovalevents" id="toc-biomassremovalevents" class="nav-link" data-scroll-target="#biomassremovalevents">BiomassRemovalEvents</a></li>
@@ -952,6 +971,10 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </section>
 <section id="clock" class="level2">
 <h2 class="anchored" data-anchor-id="clock"><a href="../../docs/Models/Clock.html" class="model-link">Clock</a></h2>
+<p>The Clock model triggers events in a specific order during simulation execution. Events are organized by their timing within the simulation lifecycle.</p>
+<section id="start-of-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="start-of-simulation">Start of Simulation</h3>
+<p>Events that occur once at the beginning of the simulation:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 35%">
@@ -965,307 +988,432 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </thead>
 <tbody>
 <tr class="odd">
-<td><a id="DoActualPlantGrowth"></a>DoActualPlantGrowth</td>
-<td>Occurs each day to do actual plant growth.</td>
+<td><a id="DoInitialSummary"></a>DoInitialSummary</td>
+<td>Occurs at start of simulation to make the initial summary.</td>
 </tr>
 <tr class="even">
-<td><a id="DoActualPlantPartioning"></a>DoActualPlantPartioning</td>
-<td>Occurs each day to do nutrient allocations.</td>
+<td><a id="StartOfSimulation"></a>StartOfSimulation</td>
+<td>Occurs once at the start of the simulation.</td>
 </tr>
+<tr class="odd">
+<td><a id="FinalInitialise"></a>FinalInitialise</td>
+<td>Final Initialise event. Occurs once at start of simulation.</td>
+</tr>
+<tr class="even">
+<td><a id="StartOfFirstDay"></a>StartOfFirstDay</td>
+<td>Occurs once at the start of the first day of the simulation.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="daily-loop" class="level3">
+<h3 class="anchored" data-anchor-id="daily-loop">Daily Loop</h3>
+<p>Events that occur each day in calling order:</p>
+<section id="daily-initialization" class="level4">
+<h4 class="anchored" data-anchor-id="daily-initialization">Daily Initialization</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
 <tr class="odd">
 <td><a id="DoCatchYesterday"></a>DoCatchYesterday</td>
 <td>Occurs first each day to allow yesterdays values to be caught.</td>
-</tr>
-<tr class="even">
-<td><a id="DoDailyInitialisation"></a>DoDailyInitialisation</td>
-<td>Occurs each day to do daily updates to models.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoDCAPST"></a>DoDCAPST</td>
-<td>Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning.</td>
-</tr>
-<tr class="even">
-<td><a id="DoEndPasture"></a>DoEndPasture</td>
-<td>Occurs after pasture growth and sends material to SOM.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoEnergyArbitration"></a>DoEnergyArbitration</td>
-<td>Occurs when the canopy energy balance needs to be calculated with MicroClimate.</td>
-</tr>
-<tr class="even">
-<td><a id="DoFertiliserApplications"></a>DoFertiliserApplications</td>
-<td>Invoked to perform all fertiliser applications.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoInitialSummary"></a>DoInitialSummary</td>
-<td>Occurs each day to make the initial summary.</td>
-</tr>
-<tr class="even">
-<td><a id="DoLifecycle"></a>DoLifecycle</td>
-<td>Occurs each day to process a Pest and Disease lifecycle object.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoManagement"></a>DoManagement</td>
-<td>Occurs each day to do management actions and changes.</td>
-</tr>
-<tr class="even">
-<td><a id="DoManagementCalculations"></a>DoManagementCalculations</td>
-<td>Occurs each day after the simulation is done. Does management calculations.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoNutrientArbitration"></a>DoNutrientArbitration</td>
-<td>Occurs each day to do nutrient arbitration.</td>
-</tr>
-<tr class="even">
-<td><a id="DoPastureWater"></a>DoPastureWater</td>
-<td>Initiates water calculations for the Pasture model.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoPestDiseaseDamage"></a>DoPestDiseaseDamage</td>
-<td>Occurs to do Pest/Disease actions.</td>
-</tr>
-<tr class="even">
-<td><a id="DoPhenology"></a>DoPhenology</td>
-<td>Occurs each day to perform phenology.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoPotentialPlantGrowth"></a>DoPotentialPlantGrowth</td>
-<td>Occurs each day to do potential growth.</td>
-</tr>
-<tr class="even">
-<td><a id="DoPotentialPlantPartioning"></a>DoPotentialPlantPartioning</td>
-<td>Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoReport"></a>DoReport</td>
-<td>Occurs at end of each day.</td>
-</tr>
-<tr class="even">
-<td><a id="DoReportCalculations"></a>DoReportCalculations</td>
-<td>Occurs when [do report calculations].</td>
-</tr>
-<tr class="odd">
-<td><a id="DoSoilErosion"></a>DoSoilErosion</td>
-<td>Occurs to tell soil erosion to perform its calculations.</td>
-</tr>
-<tr class="even">
-<td><a id="DoSoilOrganicMatter"></a>DoSoilOrganicMatter</td>
-<td>Occurs each day to perform daily calculations of organic soil matter.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoSoilTemperature"></a>DoSoilTemperature</td>
-<td>Occurs to perform soil temperature calculations to do solute processes.</td>
-</tr>
-<tr class="even">
-<td><a id="DoSoilWaterMovement"></a>DoSoilWaterMovement</td>
-<td>Occurs each day to do water calculations such as irrigation, swim, water balance etc.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoSolute"></a>DoSolute</td>
-<td>Occurs each day.</td>
-</tr>
-<tr class="even">
-<td><a id="DoStock"></a>DoStock</td>
-<td>Occurs each day to process stock methods in GrazPlan Stock.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoSurfaceOrganicMatterDecomposition"></a>DoSurfaceOrganicMatterDecomposition</td>
-<td>Occurs each day to do the daily residue decomposition.</td>
-</tr>
-<tr class="even">
-<td><a id="DoSurfaceOrganicMatterPotentialDecomposition"></a>DoSurfaceOrganicMatterPotentialDecomposition</td>
-<td>Occurs each day to perform daily calculations of organic soil matter.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoUpdate"></a>DoUpdate</td>
-<td>Occurs near end of each day to do checks and finalising.</td>
-</tr>
-<tr class="even">
-<td><a id="DoUpdateWaterDemand"></a>DoUpdateWaterDemand</td>
-<td>Occurs each day to do daily growth increment of total plant biomass.</td>
-</tr>
-<tr class="odd">
-<td><a id="DoWaterArbitration"></a>DoWaterArbitration</td>
-<td>Occurs each day to do water arbitration.</td>
 </tr>
 <tr class="even">
 <td><a id="DoWeather"></a>DoWeather</td>
 <td>Occurs each day to calculate weather.</td>
 </tr>
 <tr class="odd">
-<td><a id="EndOfDay"></a>EndOfDay</td>
-<td>Occurs at end of each day.</td>
-</tr>
-<tr class="even">
-<td><a id="EndOfMonth"></a>EndOfMonth</td>
-<td>Occurs at end of each month.</td>
-</tr>
-<tr class="odd">
-<td><a id="EndOfSimulation"></a>EndOfSimulation</td>
-<td>Occurs at end of simulation.</td>
-</tr>
-<tr class="even">
-<td><a id="EndOfWeek"></a>EndOfWeek</td>
-<td>Occurs at end of each week.</td>
-</tr>
-<tr class="odd">
-<td><a id="EndOfYear"></a>EndOfYear</td>
-<td>Occurs at end of each year.</td>
-</tr>
-<tr class="even">
-<td><a id="FinalInitialise"></a>FinalInitialise</td>
-<td>Final Initialise event. Occurs once at start of simulation.</td>
-</tr>
-<tr class="odd">
-<td><a id="PartitioningComplete"></a>PartitioningComplete</td>
-<td>Occurs each day to finish partitioning.</td>
-</tr>
-<tr class="even">
-<td><a id="PlantSowing"></a>PlantSowing</td>
-<td>This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process.</td>
-</tr>
-<tr class="odd">
-<td><a id="PrePhenology"></a>PrePhenology</td>
-<td>Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs.</td>
+<td><a id="DoDailyInitialisation"></a>DoDailyInitialisation</td>
+<td>Occurs each day to do daily updates to models.</td>
 </tr>
 <tr class="even">
 <td><a id="StartOfDay"></a>StartOfDay</td>
 <td>Occurs at start of each day.</td>
 </tr>
-<tr class="odd">
-<td><a id="StartOfFirstDay"></a>StartOfFirstDay</td>
-<td>Occurs once at the start of the first day of the simulation.</td>
+</tbody>
+</table>
+</section>
+<section id="conditional-daily-events" class="level4">
+<h4 class="anchored" data-anchor-id="conditional-daily-events">Conditional Daily Events</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
 </tr>
-<tr class="even">
+</thead>
+<tbody>
+<tr class="odd">
 <td><a id="StartOfMonth"></a>StartOfMonth</td>
-<td>Occurs at start of each month.</td>
-</tr>
-<tr class="odd">
-<td><a id="StartOfSimulation"></a>StartOfSimulation</td>
-<td>Occurs once at the start of the simulation.</td>
+<td>Occurs at start of each month (if 1st day).</td>
 </tr>
 <tr class="even">
-<td><a id="StartOfWeek"></a>StartOfWeek</td>
-<td>Occurs at start of each week.</td>
-</tr>
-<tr class="odd">
 <td><a id="StartOfYear"></a>StartOfYear</td>
-<td>Occurs at start of each year.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAgeResources"></a>CLEMAgeResources</td>
-<td>CLEM Age your resources (eg. Decompose Fodder, Age your labour, Age your Animals).</td>
+<td>Occurs at start of each year (if 1st day of year).</td>
 </tr>
 <tr class="odd">
-<td><a id="CLEMAnimalBreeding"></a>CLEMAnimalBreeding</td>
-<td>CLEM Do Animal (Ruminant and Other) Breeding and milk calculations.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAnimalBuy"></a>CLEMAnimalBuy</td>
-<td>CLEM buy animals including transporting and labour.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMAnimalDeath"></a>CLEMAnimalDeath</td>
-<td>CLEM Do Animal (Ruminant and Other) death.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAnimalManage"></a>CLEMAnimalManage</td>
-<td>CLEM Do Animal (Ruminant and Other) Herd Management (adjust breeders and sires etc.).</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMAnimalMark"></a>CLEMAnimalMark</td>
-<td>CLEM Do animal marking so complete before undertaking management decisions.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAnimalMilking"></a>CLEMAnimalMilking</td>
-<td>CLEM Do Animal (Ruminant and Other) milking.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMAnimalMilkProduction"></a>CLEMAnimalMilkProduction</td>
-<td>CLEM Calculate Animals (Ruminant and Other) milk production.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAnimalSell"></a>CLEMAnimalSell</td>
-<td>CLEM sell animals to market including transporting and labour.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMAnimalStock"></a>CLEMAnimalStock</td>
-<td>CLEM stock animals to pasture availability or other metrics.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMAnimalWeightGain"></a>CLEMAnimalWeightGain</td>
-<td>CLEM Calculate Animals(Ruminant and Other) weight gain.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMCalculateEcologicalState"></a>CLEMCalculateEcologicalState</td>
-<td>CLEM Calculate ecological state after all deaths and before management.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMCalculateManure"></a>CLEMCalculateManure</td>
-<td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMCollectManure"></a>CLEMCollectManure</td>
-<td>Request and allocate resources to all Activities based on UI Tree order of priority. Some activities will obtain resources here and perform actions later.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMDetachPasture"></a>CLEMDetachPasture</td>
-<td>CLEM detach pasture.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMDoCutAndCarry"></a>CLEMDoCutAndCarry</td>
-<td>CLEM cut and carry.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMEndOfTimeStep"></a>CLEMEndOfTimeStep</td>
-<td>CLEM end of timestep event.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMFinalizeTimeStep"></a>CLEMFinalizeTimeStep</td>
-<td>CLEM finalize time-step before end.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMGetResourcesRequired"></a>CLEMGetResourcesRequired</td>
-<td>Request and perform the collection of manure after resources are allocated and manure produced in time-step.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMHerdSummary"></a>CLEMHerdSummary</td>
-<td>CLEM event to calculate monthly herd summary.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMInitialiseActivity"></a>CLEMInitialiseActivity</td>
-<td>CLEM initialise Activity occurs once at start of simulation.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMInitialiseResource"></a>CLEMInitialiseResource</td>
-<td>CLEM initialise Resources occurs once at start of simulation.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMPastureReady"></a>CLEMPastureReady</td>
-<td>CLEM pasture has been added and is ready for use.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMPotentialIntake"></a>CLEMPotentialIntake</td>
-<td>Get potential intake. This includes suckling milk consumption.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMStartOfTimeStep"></a>CLEMStartOfTimeStep</td>
-<td>CLEM start of timestep event.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMUpdateLabourAvailability"></a>CLEMUpdateLabourAvailability</td>
-<td>CLEM set labour availability after start of timestep and financial considerations.</td>
-</tr>
-<tr class="even">
-<td><a id="CLEMUpdatePasture"></a>CLEMUpdatePasture</td>
-<td>CLEM update pasture.</td>
-</tr>
-<tr class="odd">
-<td><a id="CLEMValidate"></a>CLEMValidate</td>
-<td>CLEM validate all data entry.</td>
+<td><a id="StartOfWeek"></a>StartOfWeek</td>
+<td>Occurs at start of each week (if Sunday).</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="management-and-soil-processes" class="level4">
+<h4 class="anchored" data-anchor-id="management-and-soil-processes">Management and Soil Processes</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="DoManagement"></a>DoManagement</td>
+<td>Occurs each day to do management actions and changes.</td>
+</tr>
+<tr class="even">
+<td><a id="DoFertiliserApplications"></a>DoFertiliserApplications</td>
+<td>Invoked to perform all fertiliser applications.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoPestDiseaseDamage"></a>DoPestDiseaseDamage</td>
+<td>Occurs to do Pest/Disease actions.</td>
+</tr>
+<tr class="even">
+<td><a id="DoEnergyArbitration"></a>DoEnergyArbitration</td>
+<td>Occurs when the canopy energy balance needs to be calculated with MicroClimate.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoSoilErosion"></a>DoSoilErosion</td>
+<td>Occurs to tell soil erosion to perform its calculations.</td>
+</tr>
+<tr class="even">
+<td><a id="DoSoilWaterMovement"></a>DoSoilWaterMovement</td>
+<td>Occurs each day to do water calculations such as irrigation, swim, water balance etc.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoSoilTemperature"></a>DoSoilTemperature</td>
+<td>Occurs to perform soil temperature calculations to do solute processes.</td>
+</tr>
+<tr class="even">
+<td><a id="DoSolute"></a>DoSolute</td>
+<td>Occurs each day for solute processes.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoSurfaceOrganicMatterPotentialDecomposition"></a>DoSurfaceOrganicMatterPotentialDecomposition</td>
+<td>Occurs each day to perform daily calculations of organic soil matter.</td>
+</tr>
+<tr class="even">
+<td><a id="DoSoilOrganicMatter"></a>DoSoilOrganicMatter</td>
+<td>Occurs each day to perform daily calculations of organic soil matter.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoSurfaceOrganicMatterDecomposition"></a>DoSurfaceOrganicMatterDecomposition</td>
+<td>Occurs each day to do the daily residue decomposition.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="plant-growth-and-development" class="level4">
+<h4 class="anchored" data-anchor-id="plant-growth-and-development">Plant Growth and Development</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="DoUpdateWaterDemand"></a>DoUpdateWaterDemand</td>
+<td>Occurs each day to do daily growth increment of total plant biomass.</td>
+</tr>
+<tr class="even">
+<td><a id="DoDCAPST"></a>DoDCAPST</td>
+<td>Occurs each day when dcaps performs its calculations. This must happen between DoPotentialPlantGrowth and DoPotentialPlantPartitioning.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoWaterArbitration"></a>DoWaterArbitration</td>
+<td>Occurs each day to do water arbitration.</td>
+</tr>
+<tr class="even">
+<td><a id="PrePhenology"></a>PrePhenology</td>
+<td>Occurs between DoWaterArbitration and DoPhenology. Performs sorghum final leaf no calcs.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoPhenology"></a>DoPhenology</td>
+<td>Occurs each day to perform phenology.</td>
+</tr>
+<tr class="even">
+<td><a id="DoPotentialPlantGrowth"></a>DoPotentialPlantGrowth</td>
+<td>Occurs each day to do potential growth.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoPotentialPlantPartioning"></a>DoPotentialPlantPartioning</td>
+<td>Occurs each day to do the water limited dm allocations. Water constraints to growth are accounted for in the calculation of DM supply and does initial N calculations to work out how much N uptake is required to pass to SoilArbitrator.</td>
+</tr>
+<tr class="even">
+<td><a id="DoPastureWater"></a>DoPastureWater</td>
+<td>Initiates water calculations for the Pasture model.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoNutrientArbitration"></a>DoNutrientArbitration</td>
+<td>Occurs each day to do nutrient arbitration.</td>
+</tr>
+<tr class="even">
+<td><a id="DoActualPlantPartioning"></a>DoActualPlantPartioning</td>
+<td>Occurs each day to do nutrient allocations.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoActualPlantGrowth"></a>DoActualPlantGrowth</td>
+<td>Occurs each day to do actual plant growth (nutrient limited).</td>
+</tr>
+<tr class="even">
+<td><a id="PartitioningComplete"></a>PartitioningComplete</td>
+<td>Occurs each day to finish partitioning.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="daily-finalization" class="level4">
+<h4 class="anchored" data-anchor-id="daily-finalization">Daily Finalization</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="DoStock"></a>DoStock</td>
+<td>Occurs each day to process stock methods in GrazPlan Stock.</td>
+</tr>
+<tr class="even">
+<td><a id="DoLifecycle"></a>DoLifecycle</td>
+<td>Occurs each day to process a Pest and Disease lifecycle object.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoUpdate"></a>DoUpdate</td>
+<td>Occurs near end of each day to do checks and finalising.</td>
+</tr>
+<tr class="even">
+<td><a id="DoManagementCalculations"></a>DoManagementCalculations</td>
+<td>Occurs each day after the simulation is done. Does management calculations.</td>
+</tr>
+<tr class="odd">
+<td><a id="DoEndPasture"></a>DoEndPasture</td>
+<td>Occurs after pasture growth and sends material to SOM.</td>
+</tr>
+<tr class="even">
+<td><a id="DoReportCalculations"></a>DoReportCalculations</td>
+<td>Occurs when do report calculations.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="end-of-period-events" class="level4">
+<h4 class="anchored" data-anchor-id="end-of-period-events">End of Period Events</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="EndOfWeek"></a>EndOfWeek</td>
+<td>Occurs at end of each week (if Saturday).</td>
+</tr>
+<tr class="even">
+<td><a id="EndOfYear"></a>EndOfYear</td>
+<td>Occurs at end of each year (if 31 Dec).</td>
+</tr>
+<tr class="odd">
+<td><a id="EndOfMonth"></a>EndOfMonth</td>
+<td>Occurs at end of each month.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="daily-end" class="level4">
+<h4 class="anchored" data-anchor-id="daily-end">Daily End</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="EndOfDay"></a>EndOfDay</td>
+<td>Occurs at end of each day.</td>
+</tr>
+<tr class="even">
+<td><a id="DoReport"></a>DoReport</td>
+<td>Occurs at end of each day for daily reporting.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="end-of-simulation" class="level3">
+<h3 class="anchored" data-anchor-id="end-of-simulation">End of Simulation</h3>
+<p>Events that occur once at the end of the simulation:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="EndOfSimulation"></a>EndOfSimulation</td>
+<td>Occurs at end of simulation.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="plant" class="level2">
+<h2 class="anchored" data-anchor-id="plant">Plant</h2>
+<section id="at-sow" class="level3">
+<h3 class="anchored" data-anchor-id="at-sow">At Sow</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="Sowing"></a>Sowing</td>
+<td>Occurs when a plant is about to be sown.</td>
+</tr>
+<tr class="even">
+<td><a id="PlantSowing"></a>PlantSowing</td>
+<td>This event is triggered when a plant is sown. It allows the model to initialize or reset any relevant state information related to the sowing process.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="at-harvest" class="level3">
+<h3 class="anchored" data-anchor-id="at-harvest">At Harvest</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="Harvesting"></a>Harvesting</td>
+<td>Occurs when a plant is about to be harvested so that values can be reported.</td>
+</tr>
+<tr class="even">
+<td><a id="PostHarvesting"></a>PostHarvesting</td>
+<td>Occurs when a plant is harvested, this event should trigger functions that remove biomass from organs and reset values.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="at-endcrop" class="level3">
+<h3 class="anchored" data-anchor-id="at-endcrop">At EndCrop</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="PlantEnding"></a>PlantEnding</td>
+<td>Occurs when a plant is ended via EndCrop.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="at-phasechanged" class="level3">
+<h3 class="anchored" data-anchor-id="at-phasechanged">At PhaseChanged</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a id="Flowering"></a>Flowering</td>
+<td>Occurs when a plant is about to flower.</td>
+</tr>
+<tr class="even">
+<td><a id="StartPodDevelopment"></a>StartPodDevelopment</td>
+<td>Occurs when a plant is about to start pod development.</td>
+</tr>
+</tbody>
+</table>
+</section>
 </section>
 <section id="germinatingphase" class="level2">
 <h2 class="anchored" data-anchor-id="germinatingphase"><a href="../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="model-link">GerminatingPhase</a></h2>

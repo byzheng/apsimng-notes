@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Traits – APSIM NG Notes</title>
+<title>StemElongation – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,8 +51,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../../">
 <link href="../../../../images/icons/icon_192.png" rel="icon" type="image/png">
-<script src="../../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -73,35 +91,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -235,7 +224,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Traits/index.html">Traits</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/index.html">Canola</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/Phenology/StemElongation.html">StemElongation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -291,11 +280,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
@@ -340,11 +329,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
@@ -419,7 +408,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../../docs/Crops/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../docs/Crops/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">StemElongation</span></a>
   </div>
 </li>
@@ -443,11 +432,11 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../../docs/Crops/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
@@ -562,13 +551,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../../../docs/Crops/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
@@ -966,15 +955,23 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Canola/Phenology/StemElongation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/index.html">Wheat</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Wheat/Traits/index.html">Traits</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/index.html">Canola</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../docs/Crops/Canola/Phenology/StemElongation.html">StemElongation</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Traits</h1>
+<h1 class="title">StemElongation</h1>
 </div>
 
 
@@ -991,57 +988,53 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<p>The <strong>StemElongation</strong> phase in <a href="../../../../docs/Crops/Canola" class="crop-link">Canola</a> represents the developmental period from <strong>GreenBud</strong> to <strong>StartFlowering</strong>. It is influenced by thermal time only and the target is influenced by photoperiod.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <a href="../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a> model simulates the time between the <code>GreenBud</code> and <code>StartFlowering</code> stages with following parameters:</p>
+<ul>
+<li><strong>Start</strong>: <strong>GreenBud</strong></li>
+<li><strong>End</strong>: <strong>StartFlowering</strong></li>
+<li><strong>IsEmerged</strong>: TRUE</li>
+<li><strong>Target</strong>: Calculated based on cultivar-specific parameters and photoperiod <span class="citation" data-cites="whish_vernalisation_2020">(<a href="#ref-whish_vernalisation_2020" role="doc-biblioref">Whish et al. 2020</a>)</span>.</li>
+</ul>
+<p>The <strong>Target thermal time</strong> is calculated using the following response function based on photoperiod:</p>
+<p><span class="math display">\[
+TT = TT_{base} + TT_{P} \times f_{pp}(d)
+\]</span></p>
+<p>Where: - <span class="math inline">\(TT\)</span> = Target thermal time (°Cd) - <span class="math inline">\(TT_{base}\)</span> = Base thermal time (°Cd) with default value of 250 °Cd - <span class="math inline">\(TT_{P}\)</span> = Thermal time response to photoperiod sensitivity (°Cd) with default value of 0 °Cd, i.e.&nbsp;no photoperiod sensitivity - <span class="math inline">\(f_{pp}(d)\)</span> = Multiplier for photoperiod response function based on day length <span class="math inline">\(d\)</span> (hours). This multiplier is defined by 1 at day length of 13 hours and 0 at day length of 14 hours. It means the flowering time will be accelerated when day length is longer than 13 hours and equal to <span class="math inline">\(TT_{base}\)</span> at 14 hours.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="StemElongation_files/figure-html/plot-tt-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Photoperiod Response Function for Target Thermal Time</figcaption>
+</figure>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
+</div>
+</div>
+</section>
+<section id="cultivar-specific-parameters" class="level2">
+<h2 class="anchored" data-anchor-id="cultivar-specific-parameters">Cultivar-Specific Parameters</h2>
+<blockquote class="blockquote">
+<p>no cultivar-specific parameters available</p>
+</blockquote>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<blockquote class="blockquote">
+<p>no practical example available</p>
+</blockquote>
 
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
 
-<th>
-Description
-</th>
 
-</tr>
-</thead>
-<tbody class="list">
+</section>
 
-<tr data-index="0" data-listing-file-modified-sort="1761199313088" data-listing-reading-time-sort="1" data-listing-word-count-sort="15" data-listing-title-sort="CO2 for Wheat" data-listing-filename-sort="co2-wheat.qmd">
-<td>
-<a href="../../../../docs/Crops/Wheat/Traits/co2-wheat.html" class="title listing-title">CO2 for Wheat</a>
-</td>
-<td>
-<span class="listing-description">For C3 plants (like wheat), Radiation Use Efficiency is scaled by the <span class="math inline">\(CO_{\text{2}}\)</span> factor which is calculated by a function of environmental <span class="math inline">\(CO_{\text{2}}\)</span> concentrat…<span class="math inline"></span><span class="math inline"></span><span class="citation" data-cites="reyenga_modelling_1999"></span></span>
-</td>
-
-</tr>
-
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-whish_vernalisation_2020" class="csl-entry" role="listitem">
+Whish, J. P. M., J. M. Lilley, M. J. Morrison, B. Cocks, and M. Bullock. 2020. <span>“Vernalisation in Australian Spring Canola Explains Variable Flowering Responses.”</span> <em>Field Crops Research</em> 258 (November): 107968. <a href="https://doi.org/10.1016/j.fcr.2020.107968">https://doi.org/10.1016/j.fcr.2020.107968</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1461,7 +1454,7 @@ Description
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Wheat/Traits/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Canola/Phenology/StemElongation.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
