@@ -1,10 +1,9 @@
 ---
 title: "Traits"
-listing:
-  contents: 
-   - "*.md"
-   - "*.qmd"
-  type: table
-  sort: "date desc"
-  fields: [title, description]
 ---
+
+Here is a summary of the traits described in multiple components.
+
+
+- [CO2](co2-wheat.qmd): Response of wheat to elevated atmospheric CO2 concentration.
+- [Frost and Heat Combined Stress](FrostHeat.qmd): Frost and heat stresses impact on wheat development and yield.
