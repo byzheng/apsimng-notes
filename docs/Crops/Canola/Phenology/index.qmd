@@ -10,7 +10,7 @@ The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simu
 
 Daily [Thermal Time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
 
-## Photoperiod
+## [Photoperiod](Photoperiod.md)
 
 The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. 
 
