@@ -13,9 +13,9 @@ The wheat [phenology](Phenology/index.qmd) is simulated from sowing to harvest.
 
 ## Organs
 
-- [Leaf](Leaf/index.qmd)
-- [Stem](Stem/index.qmd)
 - [Root](Root/index.qmd)
+- [Stem](Stem/index.qmd)
+- [Leaf](Leaf/index.qmd)
 - [Spike](Spike/index.qmd)
 - [Grain](Grain/index.qmd)
 
