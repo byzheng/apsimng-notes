@@ -1,10 +1,9 @@
 ---
 title: "Grain"
-listing:
-  contents: 
-   - "*.md"
-   - "*.qmd"
-  type: table
-  sort: "date desc"
-  fields: [title, description]
 ---
+
+
+## Nitrogen 
+
+
+- [Grain Nitrogen Demand](NitrogenDemand.qmd)
