@@ -1,7 +1,6 @@
 ---
 title: "FrostHeatDamageFunctions"
 output: html_document
-draft: true
 ---
 
 
@@ -150,67 +149,61 @@ for (crop in names(params)) {
 
 All internal and output variables are reset at sowing and then updated daily during crop growth until harvest at event [DoManagementCalculations](/docs/Models/Events.html#ManagementCalculations).
 
+### Daily reduction calculations
 
-2. Track sensitive period start/end
-     - When the crop growth stage (phen.Stage) first reaches each sensitive threshold, the corresponding start/end day-after-sowing (DAS) is recorded.
+The daily frost ($R_{frost}$) and heat ($R_{heat}$) reductions are calculated by multiplying the potential reduction ratio (based on temperature) and the sensitivity (based on growth stage) for each stress.
 
-3. Potential reduction functions
-     - FrostPotentialReductionRatioFun(t):
-         - piecewise linear between FrostLowTT and FrostUpTT:
-             - if t <= FrostLowTT: ratio = FrostMaxReductionRatio
-             - if t >= FrostUpTT: ratio = FrostMinReductionRatio
-             - otherwise: linear interpolation
-                 ratio = FrostMaxReductionRatio + (t - FrostLowTT) * (FrostMinReductionRatio - FrostMaxReductionRatio) / (FrostUpTT - FrostLowTT)
-     - HeatPotentialReductionRatioFun(t):
-         - piecewise linear between HeatLowTT and HeatUpTT:
-             - if t <= HeatLowTT: ratio = HeatMinReductionRatio
-             - if t >= HeatUpTT: ratio = HeatMaxReductionRatio
-             - otherwise: linear interpolation
-                 ratio = HeatMinReductionRatio + (t - HeatLowTT) * (HeatMaxReductionRatio - HeatMinReductionRatio) / (HeatUpTT - HeatLowTT)
+$$
+R_{frost} = P_{frost}(T_{min}) \times S_{frost}(GS)
+$$
 
-     - Output ratios are constrained to [0,1] by parameter choice/logic.
+where:
 
-4. Growth-stage sensitivity functions
-     - FrostSensitivityFun(gs) and HeatSensitivityFun(gs):
-         - both implement a 4‑point piecewise linear sensitivity curve defined by
-             s0 (start of sensitive period), s1 (start of most sensitive), e1 (end of most sensitive), e0 (end of sensitive period).
-         - mapping: sensitivity = 0 at s0, linearly increases to 1 at s1, equals 1 between s1 and e1, then linearly decreases to 0 at e0.
-         - outside [s0, e0] sensitivity = 0.
+- $P_{frost}(T_{min})$ is the potential reduction ratio from the frost potential reduction function above given the daily minimum temperature ($T_{min}$).
+- $S_{frost}(GS)$ is the sensitivity from the frost sensitivity function above given the current crop growth stage (GS).
 
-5. Daily actual reductions
-     - FrostReductionRatio = FrostPotentialReductionRatio * FrostSensitivity
-     - HeatReductionRatio  = HeatPotentialReductionRatio * HeatSensitivity
-     - Events counted when a daily reduction > 0:
-         - if FrostReductionRatio > 0 then FrostEventNumber++
-         - if HeatReductionRatio > 0 then HeatEventNumber++
+$$
+R_{heat} = P_{heat}(T_{max}) \times S_{heat}(GS)
+$$
 
-6. Combined daily reduction
-     - FrostHeatReductionRatio = 1 - (1 - FrostReductionRatio) * (1 - HeatReductionRatio)
-         - this assumes independent multiplicative survival from each stress.
+where:
 
-7. Cumulative reductions and remaining fractions
-     - FrostOverallRemaining = FrostOverallRemaining * (1 - FrostReductionRatio)
-     - CumulativeFrostReductionRatio = 1 - FrostOverallRemaining
-     - HeatOverallRemaining = HeatOverallRemaining * (1 - HeatReductionRatio)
-     - CumulativeHeatReductionRatio = 1 - HeatOverallRemaining
-     - CumulativeFrostHeatReductionRatio = 1 - FrostOverallRemaining * HeatOverallRemaining
+- $P_{heat}(T_{max})$ is the potential reduction ratio from the heat potential reduction function above given the daily maximum temperature ($T_{max}$).
+- $S_{heat}(GS)$ is the sensitivity from the heat sensitivity function above given the current crop growth stage (GS).
 
-8. Frost- and heat-limited yield
-     - FrostHeatYield = organs.Wt * FrostOverallRemaining * HeatOverallRemaining
-         - here organs.Wt is the current reproductive organ (grain) weight used as a base to apply accumulated losses.
+The total daily reduction ratio from both stresses is then calculated as:
 
-Notes and assumptions
-- Piecewise linear parameterizations (thresholds and max/min reduction ratios) control severity and timing sensitivity.
-- Cumulative damage is applied multiplicatively (remaining fraction), which prevents total losses exceeding 100% and properly accounts for sequential events.
-- Sensitive period start/end are captured as the first day the crop growth stage equals or exceeds the corresponding threshold, recorded in days after sowing.
+$$
+R_{frost\_heat} = 1 - (1 - R_{frost}) \times (1 - R_{heat})
+$$
 
-Helper methods implemented in the code
-- FrostPotentialReductionRatioFun(double t)
-- FrostSensitivityFun(double GrowthStage)
-- HeatPotentialReductionRatioFun(double t)
-- HeatSensitivityFun(double GrowthStage)
 
-These implement the respective piecewise linear formulas described above and are invoked each day by OnDoManagementCalculations.
+The cummulative frost reduction from sowing to today (t) is calculated as:
+
+$$
+R_{frost,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{frost} (i))
+$$
+
+The cumulative heat reduction from sowing to today (t) is calculated as:
+
+$$
+R_{heat,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{heat} (i))
+$$
+
+The cumulative frost and heat reduction from sowing to today (t) is calculated as:
+$$
+R_{frost\_heat,\ cum} (t) = 1 - R_{frost,\ cum} (t)  \times R_{heat,\ cum} (t)
+$$
+
+Finally the frost- and heat-limited yield (Y_{frost\_heat}) at harvest is calculated as:
+
+$$
+Y_{frost\_heat} = Y \times (1 - R_{frost\_heat,\ cum})
+$$
+
+where:
+
+- Y is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.
 
 ## Events 
 
