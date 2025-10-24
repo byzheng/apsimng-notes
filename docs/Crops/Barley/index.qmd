@@ -13,4 +13,4 @@ The barley phenology is simulated from sowing to harvest.
 
 ## See Also
 
-* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615/Models/Resources/Barley.json)
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Barley.json)

@@ -27,4 +27,4 @@ Some [Traits](Traits) are described in multiple components, which are summaried 
 
 ## See Also
 
-* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/b9f9abca67191765f8a2de01e7cf0ce1c3f4a615/Models/Resources/Wheat.json)
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json)
