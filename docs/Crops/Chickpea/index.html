@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Show Event Names on Graph – APSIM NG Notes</title>
+<title>Chickpea – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -175,7 +195,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Graph/index.html">Graph</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Graph/EventNamesOnGraph.html">Show Event Names on Graph</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../docs/Crops/Chickpea/index.html">Chickpea</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -216,11 +236,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../docs/Crops/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Crops</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Crops/Barley/index.html" class="sidebar-item-text sidebar-link">
@@ -381,13 +401,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../docs/Crops/Chickpea/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../docs/Crops/Chickpea/index.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Chickpea</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Crops/Chickpea/Phenology/index.html" class="sidebar-item-text sidebar-link">
@@ -589,11 +609,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
@@ -734,14 +754,14 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -953,15 +973,22 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#phenology" id="toc-phenology" class="nav-link active" data-scroll-target="#phenology">Phenology</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Chickpea/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Graph/index.html">Graph</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Graph/EventNamesOnGraph.html">Show Event Names on Graph</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Crops/index.html">Crops</a></li><li class="breadcrumb-item"><a href="../../../docs/Crops/Chickpea/index.html">Chickpea</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Show Event Names on Graph</h1>
+<h1 class="title">Chickpea</h1>
 </div>
 
 
@@ -978,23 +1005,26 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>Model <code>EventNamesOnGraph</code> is designed to add event names (e.g.&nbsp;growth stages) to a <code>Graph</code> <code>Series</code> in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.</p>
-<p>To display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:</p>
+<p>The APSIM Chickpea model is constructed using the Plant Modelling Framework (PMF) <span class="citation" data-cites="brown_plant_2014">(<a href="#ref-brown_plant_2014" role="doc-biblioref">Brown et al. 2014</a>)</span> by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as chickpea, by integrating components like photosynthesis and leaf development without additional coding.</p>
+<section id="phenology" class="level2">
+<h2 class="anchored" data-anchor-id="phenology">Phenology</h2>
+<p>The chickpea <a href="../../../docs/Crops/Chickpea/Phenology/index.html" class="crop-link">phenology</a> is simulated from sowing to harvest.</p>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li>Create a new model <code>Graph</code> in the simulation tree.</li>
-<li>Add a new model <code>Series</code> to the <code>Graph</code> and configure it as your desired output (e.g., x axis as <code>Wheat.Phenology.DaysAfterSowing</code>; y axis as <code>Wheat.Grain.Wt</code>).</li>
-<li>Add a new model <code>EventNamesOnGraph</code> to the <code>Series</code> and select the column name to plot, e.g.&nbsp;<code>Wheat.Phenology.CurrentStageName</code>.</li>
+<li><a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Chickpea.json" class="external-link">Online Resource File</a></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="EventNamesOnGraph-example.png" class="img-fluid figure-img"></p>
-<figcaption>Example output showing event names on a graph</figcaption>
-</figure>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-brown_plant_2014" class="csl-entry" role="listitem">
+Brown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. <span>“Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.”</span> <em>Environmental Modelling &amp; Software</em> 62: 385–98. <a href="https://doi.org/10.1016/j.envsoft.2014.09.005">https://doi.org/10.1016/j.envsoft.2014.09.005</a>.
 </div>
-
-
-
-</main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1414,7 +1444,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Graph/EventNamesOnGraph.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Crops/Chickpea/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
