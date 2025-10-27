@@ -1,5 +1,5 @@
 ---
-title: "Crops"
+title: "Plants"
 ---
 
 
@@ -9,24 +9,24 @@ setup_qmd()
 
 
 
-This section contains the documentation for `Crops` models in APSIM Next Generation. The `Crops` models are released as part of the APSIM Next Generation. The model is defined under [Resources](https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources) folder in the APSIM Next Generation repository. 
+This section contains the documentation for `Plants` models in APSIM Next Generation. The `Plants` models are released as part of the APSIM Next Generation. The model is defined under [Resources](https://github.com/APSIMInitiative/ApsimX/tree/master/Models/Resources) folder in the APSIM Next Generation repository. 
 
-For each crop, the documentation is organised as the original model structure defined in the `JSON` file.
+For each plant, the documentation is organised as the original model structure defined in the `JSON` file.
 
-```{r list-crops, echo=FALSE, results='asis'}
+```{r list-plants, echo=FALSE, results='asis'}
 # List subdirectories under Plants/
-crop_dirs <- list.dirs(path = here::here("docs/Plants"), full.names = FALSE, recursive = FALSE)
-crop_dirs <- crop_dirs[grepl("^[A-Z]", crop_dirs)]
+plant_dirs <- list.dirs(path = here::here("docs/Plants"), full.names = FALSE, recursive = FALSE)
+plant_dirs <- plant_dirs[grepl("^[A-Z]", plant_dirs)]
 
-get_progress <- function(crop) {
+get_progress <- function(plant) {
     # Default progress to 0
     progress <- 0
-    crop_path <- here::here("docs/Plants", crop, "index.qmd")
+    plant_path <- here::here("docs/Plants", plant, "index.qmd")
     # Attempt to read YAML-style header from HTML
-    if (!file.exists(crop_path)) {
+    if (!file.exists(plant_path)) {
         return(progress)
     }
-    html_lines <- readLines(crop_path, warn = FALSE)
+    html_lines <- readLines(plant_path, warn = FALSE)
     if (length(html_lines) > 0 && grepl("^---", html_lines[1])) {
         # Extract YAML block
         yaml_block <- html_lines[2:which(html_lines == "---")[2] - 1]
@@ -39,17 +39,17 @@ get_progress <- function(crop) {
 } 
 # Create HTML interface
 cat("::: {.grid}\n\n")
-for (crop in crop_dirs) {
-    progress <- get_progress(crop)
+for (plant in plant_dirs) {
+    progress <- get_progress(plant)
     cat(glue::glue(
         '
 :::{{.g-col-4 .p-3 .border .rounded}}
 
-<a href="{crop}">
-<img src="/images/{tolower(crop)}.png" alt="{crop} icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" />
+<a href="{plant}">
+<img src="/images/{tolower(plant)}.png" alt="{plant} icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" />
 </a>
 
-[Explore {crop} →]({crop})
+[Explore {plant} →]({plant})
 
 <div style="margin-top: 0.5rem;">
 <div style="background-color: #e0e0e0; border-radius: 5px; overflow: hidden; height: 1rem;">

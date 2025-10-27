@@ -17,14 +17,14 @@ format: html
 ::: {.g-col-6}
 ### 🧩 Models
 Technical notes on APSIM NG core models (e.g., soil, management, utilities).  
-[Explore Model →](Models)
+[Explore Model →](Models/index.qmd)
 :::
 
 
 ::: {.g-col-6}
-### 🌿 Crops
-Documentation for crop models, including phenology, grain filling, and stress responses.  
-[View Crop →](Crops)
+### 🌿 Plants
+Documentation for plant models, including phenology, grain filling, and stress responses.  
+[View Plants →](Plants/index.qmd)
 :::
 
 :::
