@@ -2,438 +2,438 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/summary.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/co2.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/LICENSE.html</loc>
-    <lastmod>2025-10-27T04:48:51.155Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.732Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.168Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.745Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.741Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.741Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Traits/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Traits/FrostHeat.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/StemElongating.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/ReadyForHarvesting.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/LeavesInitiating.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/HaunStage.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/GrainFilling.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/Germinating.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/Emerging.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Grain/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Examples/wheat_example1.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Chickpea/Phenology/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/ThermalTime.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Ripening.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/MidGrainFilling.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/LateGrainFilling.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Emerging.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/EarlyGrainFilling.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/BudDevelopment.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Leaf/NodeNumber.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Examples/canola_example1.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/CO2/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/IPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GenericPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/EmergingPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Management/FertiliserType.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/ThreeHourAirTemperature.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/SubDailyInterpolation.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/PhaseLookupValue.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/MultiplyFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/MaximumFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/FrostHeatDamageFunctions.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/AddFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Events.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/FrostHeat.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/StemElongating.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/ReadyForHarvesting.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/LeavesInitiating.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/HaunStage.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/GrainFilling.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Germinating.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Emerging.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Grain/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Examples/wheat_example1.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Chickpea/Phenology/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/ThermalTime.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Ripening.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/MidGrainFilling.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/LateGrainFilling.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Emerging.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/EarlyGrainFilling.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/BudDevelopment.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Leaf/NodeNumber.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Examples/canola_example1.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.734Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/disclaimer.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.734Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/about.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Barley/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Leaf/FinalLeafNumber.html</loc>
-    <lastmod>2025-10-27T04:48:51.157Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/EarlyFlowering.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/EarlyPodDevelopment.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Germinating.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Maturing.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/ReadyForHarvesting.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/StemElongation.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Vegetative.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Chickpea/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Grain/NitrogenDemand.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Flowering.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/GrainExpanding.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/GrainRipening.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Heading.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/Phyllochron.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/SpikeletsDifferentiating.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Phenology/ThermalTime.html</loc>
-    <lastmod>2025-10-27T04:48:51.159Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/Traits/co2-wheat.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
-  </url>
-  <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Wheat/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.734Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Clock.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.734Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/AccumulateFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.734Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/Constant.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/DivideFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/HourlySinPpAdjusted.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/MinimumFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.160Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/PhaseLookup.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/PhotoperiodFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/SubtractFunction.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Functions/XYPairs.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.735Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Graph/EventNamesOnGraph.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Management/BiomassRemovalEvents.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Management/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.161Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Arbitrator/RelativeAllocation.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/CAMP.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.736Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/CAMP/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/EndPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.162Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phases/VernalisationPhase.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/Phenology/Phenology.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/PMF/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.737Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/Models/Traits/index.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Barley/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Leaf/FinalLeafNumber.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/EarlyFlowering.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/EarlyPodDevelopment.html</loc>
+    <lastmod>2025-10-27T23:34:53.738Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Germinating.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Maturing.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/ReadyForHarvesting.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/StemElongation.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Vegetative.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Chickpea/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Grain/NitrogenDemand.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/Flowering.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/GrainExpanding.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/GrainRipening.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/Heading.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/Phyllochron.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/SpikeletsDifferentiating.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Phenology/ThermalTime.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/Traits/co2-wheat.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
+  </url>
+  <url>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Wheat/index.html</loc>
+    <lastmod>2025-10-27T23:34:53.740Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/abbreviations.html</loc>
-    <lastmod>2025-10-27T04:48:51.163Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.741Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/docs/symbols.html</loc>
-    <lastmod>2025-10-27T04:48:51.164Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.741Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/heading-ppd-oz-wheat.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/phy-ppd-oz-wheat.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
   <url>
-    <loc>https://apsimng-notes.bangyou.me/docs/Crops/Canola/Phenology/Photoperiod.html</loc>
-    <lastmod>2025-10-27T04:48:51.158Z</lastmod>
+    <loc>https://apsimng-notes.bangyou.me/docs/Plants/Canola/Phenology/Photoperiod.html</loc>
+    <lastmod>2025-10-27T23:34:53.739Z</lastmod>
   </url>
   <url>
     <loc>https://apsimng-notes.bangyou.me/tips/internal_variable.html</loc>
-    <lastmod>2025-10-27T04:48:51.170Z</lastmod>
+    <lastmod>2025-10-27T23:34:53.747Z</lastmod>
   </url>
 </urlset>
