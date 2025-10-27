@@ -1,0 +1,26 @@
+---
+title: "EarlyPodDevelopment"
+output: html_document
+---
+
+
+The **EarlyPodDevelopment** phase in [Canola](/docs/Plants/Canola) represents the developmental period from **StartPodDevelopment** to **StartGrainFilling**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `StartPodDevelopment` and `StartGrainFilling` stages.
+
+- This phase starts at **StartPodDevelopment** and ends at **StartGrainFilling**, when the grain is considered to be fully ripe.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is fixed as constant for this phase, with default value of 140 °Cd [@robertson_environmental_2002].
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].EarlyPodDevelopment.Target.FixedValue   | Thermal time target during early pod development (°Cd)      |     140          |
+
+## Practical Example
+
+> no practical example available

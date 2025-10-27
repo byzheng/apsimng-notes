@@ -1,0 +1,26 @@
+---
+title: "GrainExpanding"
+output: html_document
+---
+
+
+The **GrainExpanding** phase in [Wheat](/docs/Plants/Wheat) represents the developmental period from **Anthesis** to **MaximumGrainLength**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `Anthesis` and `MaximumGrainLength` stages.
+
+- This phase starts at **Anthesis** and ends at **MaximumGrainLength**, when the grain is considered to be fully ripe.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is fixed as constant for this phase, with default value of 120.0 °Cd.
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].GrainExpanding.Target.FixedValue   | Thermal time target during grain expanding (°Cd)      | 120.0          |
+
+## Practical Example
+
+> no practical example available

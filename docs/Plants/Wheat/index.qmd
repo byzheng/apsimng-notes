@@ -1,0 +1,30 @@
+---
+title: "Wheat"
+doc_progress: 10
+---
+
+The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) [@brown_plant_2014] by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.
+
+
+## Phenology
+
+The wheat [phenology](Phenology/index.qmd) is simulated from sowing to harvest.
+
+
+## Organs
+
+- [Root](Root/index.qmd)
+- [Stem](Stem/index.qmd)
+- [Leaf](Leaf/index.qmd)
+- [Spike](Spike/index.qmd)
+- [Grain](Grain/index.qmd)
+
+
+## Traits
+
+Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
+
+
+## See Also
+
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json)

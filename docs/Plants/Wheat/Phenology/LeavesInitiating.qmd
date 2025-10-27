@@ -1,0 +1,320 @@
+---
+title: "LeavesInitiating"
+output: html_document
+draft: false
+---
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+The **LeavesInitiating** phase in the [Wheat](/docs/Plants/Wheat) model represents the developmental period from **Emergence** to **DoubleRidge**, driven by the expression of the Vrn1, Vrn2, and Vrn3 genes. This phase concludes when vernalisation is saturated, as predicted by the [Cereal Anthesis Molecular Phenology](/docs/Models/PMF/Phenology/CAMP/index.qmd) (CAMP) model.
+
+
+## Overview
+
+The [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) Model is used to simulate the progress of vernalisation requirements. This phase begins when Plant `Emergence` to `DoubleRidge`.
+
+## Methodology
+
+See [VernalisationPhase](/docs/Models/PMF/Phenology/Phases/VernalisationPhase.qmd) and [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model for details on how the vernalisation progress is calculated. Here is focusing on the parameters used in this phase, i.e. [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) with the following parameters:
+
+* `TT`: [Daily thermal time](ThermalTime.qmd)
+* `HaunStage`: [Haun stage](HaunStage.qmd) is the number of leaves on the main stem
+* `DeltaHaunStage`: Change in [Haun stage](HaunStage.qmd) from the previous day
+* `BasePhyllochron`: Base [Phyllochron](Phyllochron.qmd), the thermal time required for each new leaf to appear under standard conditions
+* `PpResponse`: Photoperiod response for vernalisation
+* `ColdVrnResponse`: Function for cold temperature response driving Vrn1 expression
+* `EnvData`: The [controlled environmental](/docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.qmd) conditions under which Final Leaf Number (FLN) observations were made
+* `FLNparams`: [Final leaf number](/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.qmd) (FLN) for a genotype under controlled environmental conditions
+* `calcCAMPVrnRates`: Function to calculate the Vrn1, Vrn2, and Vrn3 rates based on the above parameters
+
+**Thermal Time (`TT`)**
+
+The [daily thermal time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+**Haun Stage (`HaunStage`) and Delta Haun Stage (`DeltaHaunStage`)**
+
+[Haun Stage](HaunStage.qmd) ($HS$) and $\Delta HS$ is calculated from daily [thermal time](ThermalTime.qmd) and a cultivar-specific [phyllochron](Phyllochron.qmd), which is the rate of leaf appearance.
+
+**Base Phyllochron (`BasePhyllochron`)**
+
+The Base [Phyllochron](Phyllochron.qmd) is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days.
+
+**Photoperiod Response (`PpResponse`)**
+
+In the [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model, the photoperiod response is used to calculate the Vrn2 expression.
+
+```{r camp-pp-response, fig.height = 3, fig.cap="Leaf Stage Factor as a Function of Leaf Cohort Number"}
+# Plot the leaf stage factor as a function of leaf cohort number
+library(ggplot2)
+
+x <- c(0, 8, 16, 24)
+y <- c(0, 0, 1, 1)
+x_out <- seq(0, 24)
+df <- data.frame(day_length = x_out, f_d = weaana::interpolationFunction(x, y, values = x_out))
+
+ggplot(df, aes(x = day_length)) +
+    geom_line(aes(y = f_d)) +
+    labs(
+        x = "Day Length (hours)",
+        y = "Modifier Value"
+    ) +
+    scale_x_continuous(breaks = x_out) +
+    theme_minimal()
+```
+
+**Cold Vernalisation Response (`ColdVrnResponse`)**
+
+The daily upregulation of Vrn1 from cold temperature counts for [sub-daily temperature variations](/docs/Models/Functions/SubDailyInterpolation.qmd). 
+
+The hourly temperature is interpolated from the daily minimum and maximum temperatures using [a sinusoidal method during sunlight hours and an exponential decline during nighttime hours](/docs/Models/Functions/HourlySinPpAdjusted.qmd) [@goudriaan_climatic_1994].
+
+The hourly upregulation of Vrn1 from cold temperature is calculated using a [cold response function](/docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.qmd), with the following parameters:
+
+
+| Name                       | Description                                         | Value         |
+|----------------------------|-----------------------------------------------------|---------------|
+| k                          | Exponential shape factor for cold temperature response. | -0.17           |
+| deVernalisationTemp        | Temperature above which de-vernalisation occurs.    | 20          |
+| deVernalisationRate        | Rate of *Vrn1* downregulation above the temperature threshold. | 0          |
+
+
+`deVernalisationRate` is set to 0, indicating that there is no down-regulation of *Vrn1* expression at temperatures above the de-vernalisation threshold (i.e. 20°C). 
+
+The upregulation of *Vrn1* from cold at hourly temperature $T$ is shown in the following plot.
+
+```{r cold-vrn-response-example, fig.height = 3, fig.cap="Cold Vrn Response as a Function of Temperature"}
+# Plot the cold Vrn response as a function of temperature
+library(ggplot2)
+x <- seq(-10, 40, by = 0.1)
+y <- ifelse(x < 20, exp(-0.17 * x) / 24, 0)
+df <- data.frame(temperature = x, cold_vrn_response = y)
+ggplot(df, aes(x = temperature)) +
+    geom_line(aes(y = cold_vrn_response)) +
+    labs(
+        x = "Temperature (°C)",
+        y = "Cold Vrn Response (Vrn1 Upregulation)"
+    ) +
+    scale_x_continuous(breaks = seq(-10, 40, by = 5)) +
+    theme_minimal()
+
+```
+
+Finally, the daily upregulation of Vrn1 from cold temperature is calculated by summing the hourly upregulation over the day using method in [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd).
+
+> Note: The [hourly interpolation](/docs/Models/Functions/HourlySinPpAdjusted.qmd) of temperature is different with [three hourly interpolation method](/docs/Models/Functions/ThreeHourAirTemperature.qmd) which is used in the [Thermal Time](/docs/Plants/Wheat/Phenology/ThermalTime.qmd).
+
+**Controlled Environment Conditions (`EnvData`)**
+
+The controlled environment conditions under which Final Leaf Number (FLN) observations were made include:
+
+| Name               | Description                                               | Default Value |
+|--------------------|-----------------------------------------------------------|---------------|
+| VrnTreatTemp       | Vernalisation treatment temperature (°C)                  | 6             |
+| VrnTreatDuration   | Days of exposure to vernalising temperature               | 60            |
+| TreatmentPp_L      | Photoperiod under long-day treatment (hours)              | 16            |
+| TtEmerge           | Observed thermal time from sowing to emergence (°C·days)  | 90            |
+
+
+These parameters are used in the [FLNParameterEnvironment](/docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.qmd) of [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd).
+
+**Final leaf number (`FLNparams`)**
+
+The final leaf number (FLN) for a genotype are observed or estimated under four controlled environmental conditions, which are the key driver of progress to the DoubleRidge stage.
+
+The four FLN parameters include:
+
+| Name    | Description                                                                 | Default Value |
+|-------------|-----------------------------------------------------------------------------|---------------|
+| MinLN       | Final Leaf Number under full vernalisation and long photoperiod (>16h)      | 8.3           |
+| PpLN        | Increase in FLN under short photoperiod (<8h) following full vernalisation  | 3.8           |
+| VrnLN       | Increase in FLN when un-vernalised and grown under short photoperiod        | 5.0           |
+| VxPLN       | Change in FLN from photoperiod effect under un-vernalised, long-day growth  | -2.0          |
+
+These parameters are used in the [FinalLeafNumberSet](/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.qmd) of [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd). See [FinalLeafNumberSet](/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.qmd) for details on how these parameters are used to calculate the final leaf number (FLN) for a genotype under controlled environmental conditions.
+
+
+**Calculation of Vrn expression (`calcCAMPVrnRates`)**
+
+The internal function `calcCAMPVrnRates` is used to calculate the Vrn1, Vrn2, and Vrn3 rates based on the above parameters. It only requires an external parameter Base [Phyllochron](Phyllochron.qmd) which is defined as the thermal time required for each new leaf to appear under standard conditions with a default value of 120 °C·days. 
+
+## Cultivar-Specific Parameters
+
+| Name                                         | Description                                                      | Default Value |
+|---------------------------------------------- |------------------------------------------------------------------|---------------|
+| [Phenology].CAMP.FLNparams.MinLN              | Final Leaf Number under full vernalisation and long photoperiod   | 8.3           |
+| [Phenology].CAMP.FLNparams.PpLN               | Increase in FLN under short photoperiod following full vernalisation | 3.8           |
+| [Phenology].CAMP.FLNparams.VrnLN              | Increase in FLN when un-vernalised and grown under short photoperiod | 5.0           |
+| [Phenology].CAMP.FLNparams.VxPLN              | Change in FLN from photoperiod effect under un-vernalised, long-day growth | -2.0          |
+| [Phenology].CAMP.EnvData.VrnTreatTemp         | Vernalisation treatment temperature (°C)                         | 6             |
+| [Phenology].CAMP.EnvData.VrnTreatDuration     | Days of exposure to vernalising temperature                      | 60            |
+| [Phenology].CAMP.EnvData.TreatmentPp_L        | Photoperiod under long-day treatment (hours)                      | 16            |
+| [Phenology].CAMP.EnvData.TtEmerge             | Observed thermal time from sowing to emergence (°C·days)          | 90            |
+
+
+
+## Practical Example
+
+> No practical example is provided here.
+
+
+## Simulation Example
+
+We demonstrate progress of leaf initiation phase using [example simulations](/docs/Plants/Wheat/Examples/wheat_example1.qmd) for wheat. These simulations illustrate how Vrn expression progresses the development of wheat phenology.
+
+
+Two cultivars, `Emu_Rock` and `Sunlamb`, are used in the example simulations to represent the very quick and very late maturity types, respectively [@celestina_cultivar_2023]. The following table shows the FLN parameters for these two cultivars:
+
+| Parameter                        | Emu_Rock | Sunlamb |
+|-----------------------------------|----------|---------|
+| [Phenology].CAMP.FLNparams.MinLN  | 6        | 7       |
+| [Phenology].CAMP.FLNparams.PpLN   | 1        | 5       |
+| [Phenology].CAMP.FLNparams.VrnLN  | 1        | 10      |
+| [Phenology].CAMP.FLNparams.VxPLN  | -1       | -5      |
+
+```{r fig-cultivar-parameters, fig.height = 6, fig.cap="FLN parameters for Emu_Rock and Sunlamb Cultivars"}
+
+fln_params <- data.frame(
+    Parameter_FLN = c("MinLN", "PpLN", "VrnLN", "VxPLN"),
+    Emu_Rock = c(6, 1, 1, -1),
+    Sunlamb = c(7, 5, 10, -5)
+) |> 
+    pivot_longer(cols = c("Emu_Rock", "Sunlamb"), names_to = "Cultivar", values_to = "FLN")
+
+plot_fln(fln_params)
+
+```
+```{r read-data}
+file <- "docs/Plants/Wheat/Examples/wheat_example1.apsimx"
+    
+df <- read_example(file, max_stage = 5)
+```
+
+The [vernalisation rate parameters](/docs/Models/PMF/Phenology/CAMP/CultivarRateParams.qmd) are calculated for each cultivar using the [calcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) function at [Sowing](/docs/Models/Events.qmd#PlantSowing), and should be genotype-specific values. The following table shows the calculated parameters for Emu_Rock and Sunlamb cultivars:
+
+```{r cultivar-rate-parameters, results = "asis"}
+
+df |>
+    dplyr::group_by(Cultivar) |>
+    dplyr::slice(1) |> 
+    dplyr::select(
+        Wheat.Phenology.CAMP.Params.BaseDVrnER,
+        Wheat.Phenology.CAMP.Params.BaseDVrnVeg,
+        Wheat.Phenology.CAMP.Params.MaxDVrnER,
+        Wheat.Phenology.CAMP.Params.MaxDVrnVeg,
+        Wheat.Phenology.CAMP.Params.PpVrn3FactER,
+        Wheat.Phenology.CAMP.Params.PpVrn3FactVeg,
+        Wheat.Phenology.CAMP.Params.MaxVrn2,
+        Wheat.Phenology.CAMP.Params.MethalationThreshold,
+        Wheat.Phenology.CAMP.Params.ColdVrn1Fact
+    ) |>
+    tidyr::pivot_longer(cols = starts_with("Wheat.Phenology.CAMP.Params."), 
+        names_to = "Parameter", 
+        values_to = "Value") |>
+    dplyr::mutate(Parameter = gsub("Wheat\\.Phenology\\.CAMP\\.Params\\.", "", Parameter)) |>
+    dplyr::ungroup() |>
+    dplyr::mutate(Value = as.numeric(Value)) |> 
+    tidyr::pivot_wider(names_from = Cultivar, values_from = Value) |> 
+    knitr::kable(digits = 2)
+
+```
+
+
+### Total Vrn Expression
+
+This plot shows the progress of the Vrn1 expression for the cultivar `Sunlamb` and `Emu_Rock` on the sowing date `1-May` and `1-Jun`. The `LeavesInitiating` phase is finished when `Wheat.Phenology.CAMP.Vrn1` equal to `1` at vernalisation saturation.
+
+```{r fig-vrn, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1."}
+plot_output(file, y = "Wheat.Phenology.CAMP.Vrn",
+    max_stage = 5) +
+    ggplot2::geom_hline(yintercept = c(0, 1, 2), linetype = "dashed", color = "grey50")
+```
+
+
+The total $Vrn$ expression is the sum of the three Vrn genes, i.e. $Vrn = Vrn_{\text{base}} + Vrn1 + Vrn3 - Vrn2$, and capped below $Vrn_{\text{max}}$. The following figure shows the Vrn expressions for three Vrn genes for very late cultivar `Sunlamb`on the sowing date `1-May` and `1-Jun`.
+
+```{r fig-vrn-all, fig.cap="Vrn Expression from stage sowing to maximum spikelet primordia in Wheat Example 1. $Vrn_{base}$, $Vrn1$, and $Vrn3$ are stacked at the y positive axis. $Vrn2$ is shown as a negative value at the y negative axis. The black lines represent the total $Vrn$ expression. The red lines represent the maximum $Vrn$ expression."}
+
+df_sunlamb  <- df |> 
+    dplyr::filter(Cultivar == "Sunlamb")
+
+pd <- df_sunlamb |>
+    dplyr::mutate(Wheat.Phenology.CAMP.Vrn2 = -Wheat.Phenology.CAMP.Vrn2) |> 
+    dplyr::select(Site, SowingDate, Cultivar, 
+        Wheat.DaysAfterSowing,
+        Wheat.Phenology.CAMP.MaxVrn,
+        Wheat.Phenology.CAMP.Vrn,
+        Wheat.Phenology.CAMP.BaseVrn,
+        Wheat.Phenology.CAMP.Vrn1,
+        Wheat.Phenology.CAMP.Vrn2,
+        Wheat.Phenology.CAMP.Vrn3) |> 
+    tidyr::pivot_longer(
+        cols = c(
+            Wheat.Phenology.CAMP.BaseVrn,
+            Wheat.Phenology.CAMP.Vrn1,
+            Wheat.Phenology.CAMP.Vrn2,
+            Wheat.Phenology.CAMP.Vrn3),
+        names_to = "Vrn",
+        values_to = "value"
+    ) |>
+    dplyr::mutate(Vrn = gsub("Wheat\\.Phenology\\.CAMP\\.", "", Vrn))
+p <- pd |> 
+    ggplot2::ggplot() +
+    ggplot2::geom_line(ggplot2::aes(x = Wheat.DaysAfterSowing, y = Wheat.Phenology.CAMP.Vrn), linewidth = 1) +
+    ggplot2::geom_area(
+        ggplot2::aes(x = Wheat.DaysAfterSowing, y = value, fill = Vrn),
+        stat = "identity",
+        alpha = 0.4,
+        position = "stack"
+    ) +
+    ggplot2::geom_line(ggplot2::aes(x = Wheat.DaysAfterSowing, y = Wheat.Phenology.CAMP.MaxVrn), 
+        linetype = "solid", color = "red") +
+    ggplot2::geom_hline(yintercept = c(1, 0, 2), linetype = "dashed", color = "grey50") +
+    ggplot2::facet_grid(Site ~ SowingDate) +
+    ggplot2::theme_bw() +
+    ggplot2::theme(legend.position = "bottom")
+
+pd_label <- df_sunlamb |>
+    dplyr::mutate(y = 0) |>
+    dplyr::select(all_of(c("Site", "SowingDate", "Cultivar", "Wheat.DaysAfterSowing", "Wheat.Phenology.CurrentStageName", "y"))) |>
+    dplyr::filter(nchar(Wheat.Phenology.CurrentStageName) > 0)
+p <- p +
+    ggplot2::geom_text(
+        data = pd_label,
+        ggplot2::aes(x = Wheat.DaysAfterSowing, y = y, label = Wheat.Phenology.CurrentStageName),
+        vjust = 0.5,
+        angle = 90,
+        hjust = 0,
+        size = 3.5
+    )
+
+pd_maxvrn <- pd |> 
+    dplyr::group_by(Site, SowingDate, Cultivar) |>
+    dplyr::filter(Wheat.Phenology.CAMP.MaxVrn == max(Wheat.Phenology.CAMP.MaxVrn)) |> 
+    dplyr::filter(Wheat.DaysAfterSowing == max(Wheat.DaysAfterSowing)) |> 
+    dplyr::slice(1) |> 
+    dplyr::ungroup() |>
+    dplyr::distinct()
+
+p + 
+    ggplot2::geom_text(aes(
+        x = Wheat.DaysAfterSowing, 
+        y = Wheat.Phenology.CAMP.MaxVrn + 0.1, 
+        label = "Max Vrn"),
+        data = pd_maxvrn,
+        vjust = 0,
+        hjust = 1,
+        size = 3.5
+    )
+```
+
+
+### Final Leaf Number
+
+```{r fig-fln}
+plot_output(file, y = "Wheat.Phenology.CAMP.FLN",
+    max_stage = 5.2) +
+    ggplot2::scale_y_continuous(breaks = seq(3, 20, by = 2))
+```

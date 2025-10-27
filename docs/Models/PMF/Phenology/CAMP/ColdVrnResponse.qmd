@@ -71,7 +71,7 @@ $$ \Delta Vrn1_{T} = \frac{R_{\text{devernalisationRate}}}{24} $$
 
 ## Practical Example
 
-In the wheat [CAMP model or LeavesInitiating phase](/docs/Crops/Wheat/Phenology/LeavesInitiating.qmd), the following parameters are used for the `ColdVrnResponse` function:
+In the wheat [CAMP model or LeavesInitiating phase](/docs/Plants/Wheat/Phenology/LeavesInitiating.qmd), the following parameters are used for the `ColdVrnResponse` function:
 
 | Name                       | Description                                         | Value         |
 |----------------------------|-----------------------------------------------------|---------------|

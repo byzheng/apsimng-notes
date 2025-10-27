@@ -1,0 +1,97 @@
+---
+title: "Vegetative"
+output: html_document
+---
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+
+The **Vegetative** phase in [Canola](/docs/Plants/Canola) represents the developmental period from **Emergence** to **FloralInitiation**. It is influenced by thermal time only.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the `StartEmergence` and `StartFloralInitiation` stages.
+
+- This phase starts at **StartEmergence** and ends at **StartFloralInitiation**, when the plant is considered to be fully developed.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function.
+- The **Target thermal time** is depending on vernalisation time from germination to floral initiation ($VT$) [@whish_vernalisation_2020].
+
+This response curve is defined by [XYPairs](/docs/Models/Functions/XYPairs.qmd) with following values:
+
+| Cumulative Vernal Time (days) | Target Thermal Time (°Cd) |
+|-------------------------------|---------------------------|   
+| 0.0                           | 290.0                     |
+| 25.0                          | 1.0                       |
+
+
+```{r plot-vt-target, fig.height = 3, fig.cap="Target Thermal Time Function with Vernalisation Progress"}
+library(ggplot2)
+
+
+x <- c(0, 25)
+y <- c(290, 1)
+x_out <- seq(0, 25)
+df <- data.frame(VT = x_out, 
+                    Response = weaana::interpolationFunction(x, y, values = x_out))
+
+
+ggplot(df, aes(x = VT, y = Response)) +
+    geom_line(color = "darkorange", size = 1.2) +
+    labs(
+        x = "Cumulative Vernal Time (days)",
+        y = "Target Thermal Time (°Cd)"
+    ) +
+    theme_minimal()
+
+```
+
+In each day, the model checks whether the **cumulative thermal time** has reached the **target thermal time**. If it has, the phase is considered complete, and the model transitions to the next phase, which is **FloralInitiation**.
+
+The **cumulative thermal time** is calculated as the sum of **daily vernalisation time** from germination to floral initiation.
+
+The **daily vernalisation time** is calculated with [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) using the following response function to air temperature after [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method:
+
+| Temperature (°C) | Response (°Cd) |
+|-------------------|-----------------|
+| 0                 | 0               |
+| 2                 | 1               |
+| 8                 | 0.5             |
+| 15                | 0               |
+
+
+```{r plot-daily-vernalisation, fig.height = 3, fig.cap="Daily Vernalisation Time Function"}
+library(ggplot2)
+
+
+x <- c(0, 2, 8, 15)
+y <- c(0, 1, 0.5, 0)
+x_out <- seq(-5, 20)
+df <- data.frame(VT = x_out, 
+                    Response = weaana::interpolationFunction(x, y, values = x_out))
+
+
+ggplot(df, aes(x = VT, y = Response)) +
+    geom_line(color = "darkorange", size = 1.2) +
+    labs(
+        x = "Air Temperature (°C)",
+        y = "Daily Vernalisation Time (°Cd)"
+    ) +
+    theme_minimal()
+
+```
+
+
+## Cultivar-Specific Parameters
+
+| Name                                         | Description                                         | Default Value      |
+|----------------------------------------------|-----------------------------------------------------|--------------------|
+| [Phenology].Vegetative.Target.XYPairs.X      | Vernal time X values for target thermal time (days) | 0, 25              |
+| [Phenology].Vegetative.Target.XYPairs.Y      | Target thermal time Y values (°Cd)                  | 290, 1           |
+
+## Practical Example
+
+> no practical example available
+

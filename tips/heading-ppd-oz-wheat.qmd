@@ -11,7 +11,7 @@ setup_qmd()
 
 
 
-[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, is a key environmental factor influencing duration of ([Heading](/docs/Crops/Wheat/Phenology/Heading.qmd)) phase in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop.
+[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, is a key environmental factor influencing duration of ([Heading](/docs/Plants/Wheat/Phenology/Heading.qmd)) phase in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop.
 
 
 ```{r config}
@@ -72,7 +72,7 @@ ggplot(grid, aes(x = day, y = lat)) +
 ## Photoperiod Effects on Phyllochron
 
 
-[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, impacts on [Heading](/docs/Crops/Wheat/Phenology/Heading.qmd) phase when day length is shorter than 20 hours. 
+[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, impacts on [Heading](/docs/Plants/Wheat/Phenology/Heading.qmd) phase when day length is shorter than 20 hours. 
 
 | Day Length (h) | Modifier $\text{PpResponse}$ |
 |----------------|-------------------|

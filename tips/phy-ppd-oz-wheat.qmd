@@ -11,7 +11,7 @@ setup_qmd()
 
 
 
-[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, is a key environmental factor influencing the rate of leaf appearance ([phyllochron](/docs/Crops/Wheat/Phenology/Phyllochron.qmd)) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase.
+[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, is a key environmental factor influencing the rate of leaf appearance ([phyllochron](/docs/Plants/Wheat/Phenology/Phyllochron.qmd)) in wheat. In Australia, the wide range of latitudes means that day length varies significantly across the country and throughout the year. This variation impacts how quickly wheat plants develop, especially during the critical vegetative phase.
 
 
 
@@ -74,7 +74,7 @@ ggplot(grid, aes(x = day, y = lat)) +
 
 
 
-[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, impacts on ([phyllochron](/docs/Crops/Wheat/Phenology/Phyllochron.qmd)) when day length is shorter than 12 hours. 
+[Photoperiod](/docs/Models/Functions/PhotoperiodFunction.qmd), or day length, impacts on ([phyllochron](/docs/Plants/Wheat/Phenology/Phyllochron.qmd)) when day length is shorter than 12 hours. 
 
 | Day Length (h) | Modifier $f_d(d)$ |
 |----------------|-------------------|

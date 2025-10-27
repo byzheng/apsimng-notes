@@ -67,7 +67,7 @@ function Link(el)
 
     if resolved_path:match("/docs/Models") then
         el.attributes["class"] = "model-link"
-    elseif resolved_path:match("/docs/Crops") then
+    elseif resolved_path:match("/docs/Plants") then
         el.attributes["class"] = "crop-link"
     end
 
