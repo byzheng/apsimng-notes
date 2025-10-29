@@ -1,0 +1,119 @@
+---
+title: "ZadokPMFWheat"
+---
+
+
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+The `ZadokPMFWheat` model calculates Zadoks growth stage values [@zadoks_decimal_1974] for [wheat](/docs/Plants/Wheat/Phenology/index.qmd) based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.
+
+## Overview
+
+The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-100) used to describe the growth stages of cereal crops, particularly wheat. The `ZadokPMFWheat` model translates APSIM's internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology.
+
+
+
+## Inputs
+
+The following input functions are required by `ZadokPMFWheat`:
+
+- `TillerNumber` — Total number of tillers the plant will develop.
+- `HaunStage` — The current Haun stage of the plant.
+
+## Methodology
+
+The `ZadokPMFWheat` model calculates the Zadoks growth stage ($Z$) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase:
+
+In **[Germinating](/docs/Plants/Wheat/Phenology/Germinating.qmd)**, Zadoks Stage ($Z$) is 5 times the fraction of the germination phase completed ($F(t)$):
+
+$$
+Z = 5.0 \times F(t)
+$$
+
+In **[Emerging](/docs/Plants/Wheat/Phenology/Emerging.qmd)**, Zadoks Stage ($Z$) is calculated as 5 plus 5 times the fraction of the emergence phase completed ($F(t)$):
+$$
+Z = 5.0 + (5.0 \times F(t))
+$$
+
+Before the phenological stage is less than 5.3 during [StemElongating](/docs/Plants/Wheat/Phenology/StemElongating.qmd) phase, Zadoks Stage ($Z$) is calculated as 10 plus the Haun stage value ($HS$):
+
+$$
+Z = 10.0 + HS
+$$
+
+After the phenological stage reaches 5.3, Zadoks Stage ($Z$) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:
+
+| APSIM Growth Stage | Zadok Stage | Growth Stage Description | 
+|-------------------|-------------|--------------------------|
+| 5.0 | 30.0 | MaximumSpikeletPrimordia |
+| 5.99 | 34.0 | Fourth node detectable |
+| 6.0 | 39.0 | FlagLeafAppearance |
+| 7.0 | 55.0 | HeadEmergence |
+| 8.0 | 65.0 | Anthesis |
+| 9.0 | 71.0 | MaximumGrainLength |
+| 10.0 | 87.0 | EndGrainFill |
+| 11.0 | 90.0 | HarvestRipe |
+
+```{r fig-zadok-mapping, fig.height = 5, fig.cap="APSIM to Zadok Growth Stage Mapping"}
+stage_data <- data.frame(
+    APSIM_Stage = c(5.0, 5.99, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0),
+    Zadok_Stage = c(30.0, 34.0, 39.0, 55.0, 65.0, 71.0, 87.0, 90.0),
+    Description = c("Terminal spikelet stage", "Beginning of stem elongation", 
+                                    "Flag leaf stage", "Heading", "Anthesis", 
+                                    "Kernel watery ripe", "Hard dough", "Harvest ripe")
+)
+
+# Create the plot
+library(ggplot2)
+
+ggplot(stage_data, aes(x = APSIM_Stage, y = Zadok_Stage)) +
+    geom_line(color = "blue", size = 1.2) +
+    geom_point(color = "red", size = 3) +
+    geom_text(aes(label = paste0("Z", Zadok_Stage)), 
+                        hjust = -0.1, vjust = -0.5, size = 3) +
+    labs(title = "APSIM to Zadok Growth Stage Mapping",
+             x = "APSIM Growth Stage",
+             y = "Zadok Growth Stage",
+             subtitle = "Linear interpolation between defined growth stages") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+                plot.subtitle = element_text(hjust = 0.5)) +
+    scale_x_continuous(breaks = stage_data$APSIM_Stage) +
+    scale_y_continuous(breaks = stage_data$Zadok_Stage)
+```
+
+At **HarvestRipe** stage, Zadok stage is fixed at 90.0:
+
+
+
+## Events 
+
+> No events are listened for by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Properties
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Stage     | double  | Zadok stage (Z) value                                                        |
+
+## User Interface
+
+> No user interface is provided for this function.
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [ZadokPMFWheat.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/ZadokPMFWheat.cs)
