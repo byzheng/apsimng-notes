@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Glossary of Abbreviations – APSIM NG Notes</title>
+<title>ZadokPMFWheat – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,30 +20,50 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../images/icons/icon_192.png" rel="icon" type="image/png">
-<script src="../site_libs/cookie-consent/cookie-consent.js"></script>
-<link href="../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-320e1ef9edb861ce49b497581fe021d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<link href="../../../../../images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="../../../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-320e1ef9edb861ce49b497581fe021d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -112,8 +132,37 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -123,11 +172,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo light-content">
-    <img src="../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo dark-content">
+    <a href="../../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo light-content">
+    <img src="../../../../../images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../../../../index.html">
     <span class="navbar-title">APSIM NG Notes</span>
     </a>
   </div>
@@ -138,23 +187,23 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../index.html" aria-current="page"> 
+    <a class="nav-link active" href="../../../../../index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../docs/index.html"> 
+    <a class="nav-link" href="../../../../../docs/index.html"> 
 <span class="menu-text">Docs</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../tips/index.html"> 
+    <a class="nav-link" href="../../../../../tips/index.html"> 
 <span class="menu-text">Tips</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../../../../about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../disclaimer.html"> 
+    <a class="nav-link" href="../../../../../disclaimer.html"> 
 <span class="menu-text">Disclaimer</span></a>
   </li>  
 </ul>
@@ -175,7 +224,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../docs/abbreviations.html">Glossary of Abbreviations</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html">Scales</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html">ZadokPMFWheat</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -186,14 +235,14 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
+      <a href="../../../../../index.html" class="sidebar-logo-link">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Docs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -202,40 +251,40 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/abbreviations.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../../../../docs/abbreviations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossary of Abbreviations</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/symbols.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/symbols.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Symbol Glossary</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Clock</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Events.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Events</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Functions</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -244,97 +293,97 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AccumulateFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">AddFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Constant</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">DivideFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FrostHeatDamageFunctions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">HourlySinPpAdjusted</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MaximumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MinimumFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MultiplyFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PhaseLookupValue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Photoperiod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubDailyInterpolation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SubtractFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ThreeHourAirTemperature</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">XYPairs Function</span></a>
   </div>
 </li>
@@ -349,7 +398,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
   </div>
 </li>
@@ -359,7 +408,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -368,7 +417,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Show Event Names on Graph</span></a>
   </div>
 </li>
@@ -376,7 +425,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Management</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -385,13 +434,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BiomassRemovalEvents</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Management/FertiliserType.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Management/FertiliserType.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FertiliserType</span></a>
   </div>
 </li>
@@ -399,16 +448,16 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Arbitrator</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -417,13 +466,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Nutrient Constrained Allocation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Relative Allocation</span></a>
   </div>
 </li>
@@ -431,22 +480,22 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAMP</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -455,37 +504,37 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CalcCAMPVrnRates</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAMP</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ColdVrnResponse</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CultivarRateParams</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FinalLeafNumberSet</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FLNParameterEnvironment</span></a>
   </div>
 </li>
@@ -493,7 +542,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phases</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -502,49 +551,49 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EmergingPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EndPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GenericPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GerminatingPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">IPhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LeafAppearancePhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SimpleLeafAppearancePhase</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">VernalisationPhase</span></a>
   </div>
 </li>
@@ -552,16 +601,16 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
  <span class="menu-text">Scales</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth5 ">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth5 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">ZadokPMFWheat</span></a>
   </div>
 </li>
@@ -573,7 +622,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -582,7 +631,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2</span></a>
   </div>
 </li>
@@ -592,7 +641,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plants</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -601,13 +650,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Barley/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Barley/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Barley</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Canola/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -625,7 +674,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola Example Simulation 1</span></a>
   </div>
 </li>
@@ -642,13 +691,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FinalLeafNumber</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Leaf/NodeNumber.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Leaf/NodeNumber.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">NodeNumber</span></a>
   </div>
 </li>
@@ -656,7 +705,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -665,91 +714,91 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BudDevelopment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyFlowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">EarlyPodDevelopment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LateGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Maturing</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MidGrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Photoperiod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ripening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">StemElongation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vegetative</span></a>
   </div>
 </li>
@@ -759,7 +808,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Chickpea/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Chickpea/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chickpea</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -768,7 +817,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Chickpea/Phenology/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Chickpea/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
   </div>
 </li>
@@ -776,7 +825,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Wheat/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -785,25 +834,25 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Leaf/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Leaf/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Leaf</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Root/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Root/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Root</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Spike/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Spike/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Spike</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Stem/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Stem/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stem</span></a>
   </div>
 </li>
@@ -818,7 +867,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat Example Simulation 1</span></a>
   </div>
 </li>
@@ -826,7 +875,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Wheat/Grain/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Wheat/Grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -835,7 +884,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
   </div>
 </li>
@@ -843,7 +892,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -852,91 +901,91 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Emerging</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Flowering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Germinating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainExpanding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainFilling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">GrainRipening</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Haun Stage</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Heading</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">LeavesInitiating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phyllochron</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">ReadyForHarvesting</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/SpikeletsDifferentiating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/SpikeletsDifferentiating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">SpikeletsDifferentiating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/StemElongating.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/StemElongating.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">StemElongating</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Thermal Time</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Phenology/Variables.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Phenology/Variables.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Variables</span></a>
   </div>
 </li>
@@ -944,7 +993,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../docs/Plants/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../../../../../docs/Plants/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -953,13 +1002,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CO2 for Wheat</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../docs/Plants/Wheat/Traits/FrostHeat.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../../../docs/Plants/Wheat/Traits/FrostHeat.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Frost and Heat Combined Stress</span></a>
   </div>
 </li>
@@ -981,18 +1030,23 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#common-abbreviations" id="toc-common-abbreviations" class="nav-link active" data-scroll-target="#common-abbreviations">Common Abbreviations</a></li>
-  <li><a href="#usage-notes" id="toc-usage-notes" class="nav-link" data-scroll-target="#usage-notes">Usage Notes</a></li>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/abbreviations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../docs/abbreviations.html">Glossary of Abbreviations</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/index.html">Phenology</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html">Scales</a></li><li class="breadcrumb-item"><a href="../../../../../docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html">ZadokPMFWheat</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Glossary of Abbreviations</h1>
+<h1 class="title">ZadokPMFWheat</h1>
 </div>
 
 
@@ -1009,62 +1063,166 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>This glossary provides definitions for common abbreviations used throughout the APSIM NG documentation.</p>
-<p>It helps ensure clarity and consistency for all readers and contributors.</p>
-<section id="common-abbreviations" class="level2">
-<h2 class="anchored" data-anchor-id="common-abbreviations">Common Abbreviations</h2>
+<p>The <code>ZadokPMFWheat</code> model calculates Zadoks growth stage values <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> for <a href="../../../../../docs/Plants/Wheat/Phenology/index.html" class="crop-link">wheat</a> based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The Zadoks scale <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> is a numerical system (0-100) used to describe the growth stages of cereal crops, particularly wheat. The <code>ZadokPMFWheat</code> model translates APSIM’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology.</p>
+</section>
+<section id="inputs" class="level2">
+<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<p>The following input functions are required by <code>ZadokPMFWheat</code>:</p>
+<ul>
+<li><code>TillerNumber</code> — Total number of tillers the plant will develop.</li>
+<li><code>HaunStage</code> — The current Haun stage of the plant.</li>
+</ul>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>The <code>ZadokPMFWheat</code> model calculates the Zadoks growth stage (<span class="math inline">\(Z\)</span>) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase:</p>
+<p>In <strong><a href="../../../../../docs/Plants/Wheat/Phenology/Germinating.html" class="crop-link">Germinating</a></strong>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is 5 times the fraction of the germination phase completed (<span class="math inline">\(F(t)\)</span>):</p>
+<p><span class="math display">\[
+Z = 5.0 \times F(t)
+\]</span></p>
+<p>In <strong><a href="../../../../../docs/Plants/Wheat/Phenology/Emerging.html" class="crop-link">Emerging</a></strong>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 5 plus 5 times the fraction of the emergence phase completed (<span class="math inline">\(F(t)\)</span>): <span class="math display">\[
+Z = 5.0 + (5.0 \times F(t))
+\]</span></p>
+<p>Before the phenological stage is less than 5.3 during <a href="../../../../../docs/Plants/Wheat/Phenology/StemElongating.html" class="crop-link">StemElongating</a> phase, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 10 plus the Haun stage value (<span class="math inline">\(HS\)</span>):</p>
+<p><span class="math display">\[
+Z = 10.0 + HS
+\]</span></p>
+<p>After the phenological stage reaches 5.3, Zadoks Stage (<span class="math inline">\(Z\)</span>) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 35%">
-<col style="width: 45%">
-</colgroup>
 <thead>
 <tr class="header">
-<th>Abbreviation</th>
-<th>Meaning</th>
-<th>Notes</th>
+<th>APSIM Growth Stage</th>
+<th>Zadok Stage</th>
+<th>Growth Stage Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>TT</td>
-<td>Thermal Time</td>
-<td>Daily thermal time in °Cd</td>
+<td>5.0</td>
+<td>30.0</td>
+<td>MaximumSpikeletPrimordia</td>
 </tr>
 <tr class="even">
-<td>PP</td>
-<td>Photoperiod</td>
-<td>Day length influencing development in phenology</td>
+<td>5.99</td>
+<td>34.0</td>
+<td>Fourth node detectable</td>
 </tr>
 <tr class="odd">
-<td>Ph</td>
-<td>Phyllochron</td>
-<td>Thermal time required for the appearance of successive leaves on the main stem</td>
+<td>6.0</td>
+<td>39.0</td>
+<td>FlagLeafAppearance</td>
+</tr>
+<tr class="even">
+<td>7.0</td>
+<td>55.0</td>
+<td>HeadEmergence</td>
+</tr>
+<tr class="odd">
+<td>8.0</td>
+<td>65.0</td>
+<td>Anthesis</td>
+</tr>
+<tr class="even">
+<td>9.0</td>
+<td>71.0</td>
+<td>MaximumGrainLength</td>
+</tr>
+<tr class="odd">
+<td>10.0</td>
+<td>87.0</td>
+<td>EndGrainFill</td>
+</tr>
+<tr class="even">
+<td>11.0</td>
+<td>90.0</td>
+<td>HarvestRipe</td>
 </tr>
 </tbody>
 </table>
-<hr>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-zadok-mapping" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zadok-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ZadokPMFWheat_files/figure-html/fig-zadok-mapping-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zadok-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: APSIM to Zadok Growth Stage Mapping
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>At <strong>HarvestRipe</strong> stage, Zadok stage is fixed at 90.0:</p>
 </section>
-<section id="usage-notes" class="level2">
-<h2 class="anchored" data-anchor-id="usage-notes">Usage Notes</h2>
-<ul>
-<li>Please refer to this glossary before introducing new abbreviations to maintain consistency.</li>
-<li>When writing documentation or code comments, spell out abbreviations on first use followed by the abbreviation in parentheses, e.g., <em>Photoperiod (Pp)</em>.</li>
-<li>This glossary will be updated as the APSIM NG project evolves.</li>
-</ul>
-<hr>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<blockquote class="blockquote">
+<p>No events are listened for by this function.</p>
+</blockquote>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<blockquote class="blockquote">
+<p>No configurable properties are available for this function.</p>
+</blockquote>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stage</td>
+<td>double</td>
+<td>Zadok stage (Z) value</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<blockquote class="blockquote">
+<p>No user interface is provided for this function.</p>
+</blockquote>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<blockquote class="blockquote">
+<p>No practical example is available for this function.</p>
+</blockquote>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><a href="../docs/symbols.html">Symbols</a></li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/ZadokPMFWheat.cs" class="external-link">ZadokPMFWheat.cs on GitHub</a></li>
 </ul>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-zadoks_decimal_1974" class="csl-entry" role="listitem">
+Zadoks, J. C., T. T. Chang, and C. F. Konzak. 1974. <span>“A Decimal Code for the Growth Stages of Cereals.”</span> <em>Weed Research</em> 14 (6): 415–21. <a href="https://doi.org/10.1111/j.1365-3180.1974.tb01084.x">https://doi.org/10.1111/j.1365-3180.1974.tb01084.x</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1474,17 +1632,17 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
     <div class="nav-footer-center">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../about.html">
+    <a class="nav-link" href="../../../../../about.html">
 <p>About</p>
 </a>
   </li>  
     <li class="nav-item">
-    <a class="nav-link" href="../disclaimer.html">
+    <a class="nav-link" href="../../../../../disclaimer.html">
 <p>Disclaimer</p>
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/abbreviations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

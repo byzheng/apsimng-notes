@@ -10,6 +10,12 @@
     ]
   },
   {
+    "listing": "/docs/Models/Traits/index.html",
+    "items": [
+      "/docs/Models/Traits/CO2/index.html"
+    ]
+  },
+  {
     "listing": "/docs/Models/PMF/Phenology/Phases/index.html",
     "items": [
       "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
@@ -62,12 +68,6 @@
     "items": [
       "/docs/Models/Management/BiomassRemovalEvents.html",
       "/docs/Models/Management/FertiliserType.html"
-    ]
-  },
-  {
-    "listing": "/docs/Models/Traits/index.html",
-    "items": [
-      "/docs/Models/Traits/CO2/index.html"
     ]
   }
 ]
