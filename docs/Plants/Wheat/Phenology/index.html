@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -1027,7 +1047,8 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </section>
 <section id="stages-and-phases" class="level2">
 <h2 class="anchored" data-anchor-id="stages-and-phases">Stages and Phases</h2>
-<p>The numerical system is used to represent the development of wheat plants starting from 1. The stages are:</p>
+<p>The wheat models outputs of phase names (Phenology.CurrentPhase.Name), stage names (Phenology.CurrentStageName) and decimal stage (Phenology.Stage) are consistent with the population culm development score (PCSD) as described by <span class="citation" data-cites="celestina_scales_2023">Celestina et al. (<a href="#ref-celestina_scales_2023" role="doc-biblioref">2023</a>)</span>. Observations recorded following the protocole outlined by <span class="citation" data-cites="celestina_scales_2023">Celestina et al. (<a href="#ref-celestina_scales_2023" role="doc-biblioref">2023</a>)</span> are suitable for testing model accuracy and calibrating cultivar coefficients.</p>
+<p>The stages are:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 8%">
@@ -1184,9 +1205,14 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <p>In addition to reportable variables defined in all sub-models above, the phenology model reports several <a href="../../../../docs/Plants/Wheat/Phenology/Variables.html" class="crop-link">other variables</a> that provide insights into the development of the wheat crop.</p>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-celestina_scales_2023" class="csl-entry" role="listitem">
+Celestina, Corinne, James Hunt, Hamish Brown, Neil Huth, Mariana Andreucci, Zvi Hochman, Maxwell Bloomfield, et al. 2023. <span>“Scales of Development for Wheat and Barley Specific to Either Single Culms or a Population of Culms.”</span> <em>European Journal of Agronomy</em> 147 (July): 126824. <a href="https://doi.org/10.1016/j.eja.2023.126824">https://doi.org/10.1016/j.eja.2023.126824</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
