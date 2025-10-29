@@ -54,3 +54,8 @@ Phases are used to represent the development between two stages. The phases are:
 | 9     | [GrainFilling](GrainFilling.qmd)       | MaximumGrainLength        | End Grain Fill        |
 | 10    | [GrainRipening](GrainRipening.qmd)     | End Grain Fill            | HarvestRipe           |
 | 11    | [ReadyForHarvesting](ReadyForHarvesting.qmd) | HarvestRipe               |                       |
+
+
+## Other Reported Variables
+
+In addition to reportable variables defined in all sub-models above, the phenology model reports several [other variables](Variables.qmd) that provide insights into the development of the wheat crop.
