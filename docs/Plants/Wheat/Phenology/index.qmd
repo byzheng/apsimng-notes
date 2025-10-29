@@ -22,7 +22,9 @@ The [Haun Stage](HaunStage.qmd) is defined as the number of leaf tips that have 
 
 ## Stages and Phases
 
-The numerical system is used to represent the development of wheat plants starting from 1. The stages are:
+The wheat models outputs of phase names (Phenology.CurrentPhase.Name), stage names (Phenology.CurrentStageName) and decimal stage (Phenology.Stage) are consistent with the population culm development score (PCSD) as described by @celestina_scales_2023. Observations recorded following the protocole outlined by @celestina_scales_2023 are suitable for testing model accuracy and calibrating cultivar coefficients.
+
+The stages are:
 
 | Stage | Name                       | Description                                      |
 |-------|----------------------------|--------------------------------------------------|
