@@ -17,5 +17,5 @@ _freeze
 *.db-wal
 *.bak
 _tmp_*
-
 /.luarc.json
+_apsimx
