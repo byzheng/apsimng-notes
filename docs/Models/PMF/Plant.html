@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Traits – APSIM NG Notes</title>
+<title>Plant Model – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,8 +51,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../../">
 <link href="../../../images/icons/icon_192.png" rel="icon" type="image/png">
-<script src="../../../site_libs/quarto-listing/list.min.js"></script>
-<script src="../../../site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -73,35 +91,6 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
 
 <script type="text/plain" cookie-consent="tracking">
@@ -143,35 +132,6 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../../styles.css">
 </head>
@@ -235,7 +195,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Traits/index.html">Traits</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/PMF/Plant.html">Plant Model</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -478,14 +438,14 @@ window.Quarto = {
       <div class="sidebar-item-container"> 
             <a href="../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../docs/Models/PMF/Plant.html" class="sidebar-item-text sidebar-link">
+  <a href="../../../docs/Models/PMF/Plant.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Plant Model</span></a>
   </div>
 </li>
@@ -656,13 +616,13 @@ window.Quarto = {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
@@ -1059,15 +1019,28 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
+  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Plant.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/Traits/index.html">Traits</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/PMF/index.html">PMF</a></li><li class="breadcrumb-item"><a href="../../../docs/Models/PMF/Plant.html">Plant Model</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Traits</h1>
+<h1 class="title">Plant Model</h1>
 </div>
 
 
@@ -1084,57 +1057,398 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<p>The Plant model serves as the central coordinating entity within the Plant Modelling Framework (PMF) <span class="citation" data-cites="brown_plant_2014">(<a href="#ref-brown_plant_2014" role="doc-biblioref">Brown et al. 2014</a>)</span>. It provides a dynamic composition system that enables runtime assembly of organ and process submodels to construct complete crop models for species such as wheat, maize, and sorghum without requiring additional programming.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The Plant model represents the fundamental unit of crop simulation, orchestrating all plant-related processes throughout the complete lifecycle from sowing to harvest. As the central coordinator, it manages phenological development, resource allocation among organs, population dynamics, and cultivar-specific parameterization. The model’s architecture enables modular construction where individual organ models (leaf, root, stem) and process models (photosynthesis, respiration) can be dynamically coupled to represent diverse crop species and management scenarios.</p>
+<p>The Plant model’s design philosophy emphasizes biological realism through mechanistic representation of plant processes while maintaining computational efficiency for large-scale agricultural system modeling. It integrates temporal scales from sub-daily physiological processes to seasonal crop cycles, and spatial scales from individual plant organs to field-level populations.</p>
+</section>
+<section id="inputs" class="level2">
+<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<p>The Plant model requires several inputs to function properly, ranging from mandatory components to optional enhancements that provide additional functionality.</p>
+<p><strong>Required Components:</strong></p>
+<ul>
+<li><strong><a href="../../../docs/Models/PMF/Phenology/index.html" class="model-link">Phenology</a></strong> (Child Model): Controls plant development stages and timing</li>
+<li><strong>Organs</strong> (Child Models): Array of organ models (e.g., Leaf, Root, Stem) that comprise the plant</li>
+<li><strong>PlantType</strong> (String Property): Crop species identifier for organ parameterization</li>
+</ul>
+<p><strong>Optional Components:</strong></p>
+<ul>
+<li><strong>mortalityRate</strong> (Function): Plant mortality rate for established plants</li>
+<li><strong>seedMortalityRate</strong> (Function): Seed mortality rate applied during pre-emergence period</li>
+<li><strong>Arbitrator</strong> (Model): Resource allocation coordinator between competing organs</li>
+<li><strong>structure</strong> (Structure Model): Plant architectural framework for organ positioning</li>
+<li><strong>Leaf</strong> (Canopy Model): Leaf organ model implementing canopy processes</li>
+<li><strong>Root</strong> (Root Model): Root system model for water and nutrient uptake</li>
+<li><strong>AboveGround</strong> (Biomass Model): Above-ground biomass aggregation model</li>
+</ul>
+<p><strong>Linked Services:</strong></p>
+<ul>
+<li><strong>Structure</strong> (IStructure): APSIM core structure service for model organization</li>
+<li><strong>summary</strong> (ISummary): Summary reporting service for simulation outputs</li>
+<li><strong>clock</strong> (IClock): Simulation timing and date management service</li>
+</ul>
+<p>All components are automatically linked through APSIM’s dependency injection system using <code>[Link]</code> attributes. The Plant model will function with minimal required components but gains enhanced capabilities when optional models are included in the simulation structure.</p>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<p>Plant model defines several life cycle actions to manage crop growth and development, including <code>Sow</code>, <code>Harvest</code> and <code>EndCrop</code>, which have to be explicitly called in the management scripts to trigger plant growth and development.</p>
+<section id="sow" class="level3">
+<h3 class="anchored" data-anchor-id="sow">Sow</h3>
+<p>The <code>&lt;Plant&gt;.Sow</code> can be called from management scripts to initiate the sowing process. This action sets up the initial conditions for the crop simulation, including population density, sowing depth, and cultivar selection.</p>
+<p><strong>Sowing Parameters</strong> include:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 20%">
+</colgroup>
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Description
-</th>
-
+<tr class="header">
+<th>Parameter</th>
+<th>Type</th>
+<th>Default Value</th>
+<th>Required/Optional</th>
+<th>Description</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1761825973178" data-listing-reading-time-sort="1" data-listing-word-count-sort="80" data-listing-title-sort="CO2" data-listing-filename-sort="index.qmd">
-<td>
-<a href="../../../docs/Models/Traits/CO2/index.html" class="title listing-title">CO2</a>
-</td>
-<td>
-<span class="listing-description">CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation…</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td>cultivar</td>
+<td>string</td>
+<td>-</td>
+<td>Required</td>
+<td>The cultivar to be sown</td>
 </tr>
-
+<tr class="even">
+<td>population</td>
+<td>double</td>
+<td>-</td>
+<td>Required</td>
+<td>The final plant population at emergence</td>
+</tr>
+<tr class="odd">
+<td>depth</td>
+<td>double</td>
+<td>-</td>
+<td>Required</td>
+<td>The sowing depth in millimeters</td>
+</tr>
+<tr class="even">
+<td>rowSpacing</td>
+<td>double</td>
+<td>-</td>
+<td>Required</td>
+<td>The row spacing in millimeters</td>
+</tr>
+<tr class="odd">
+<td>maxCover</td>
+<td>double</td>
+<td>1</td>
+<td>Optional</td>
+<td>The maximum cover</td>
+</tr>
+<tr class="even">
+<td>budNumber</td>
+<td>double</td>
+<td>1</td>
+<td>Optional</td>
+<td>The bud number</td>
+</tr>
+<tr class="odd">
+<td>rowConfig</td>
+<td>double</td>
+<td>0</td>
+<td>Optional</td>
+<td>SkipRow configuration</td>
+</tr>
+<tr class="even">
+<td>seeds</td>
+<td>double</td>
+<td>0</td>
+<td>Optional</td>
+<td>The number of seeds sown per square meter (/m²)</td>
+</tr>
+<tr class="odd">
+<td>tillering</td>
+<td>int</td>
+<td>0</td>
+<td>Optional</td>
+<td>Tillering method (-1, 0, 1)</td>
+</tr>
+<tr class="even">
+<td>ftn</td>
+<td>double</td>
+<td>0.0</td>
+<td>Optional</td>
+<td>Fertile Tiller Number</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+<p>One of <code>seeds</code> and <code>population</code> must be provided to define the initial plant density.</p>
+<p><strong>Row Configuration Options</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 27%">
+<col style="width: 15%">
+<col style="width: 13%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>rowConfig Value</th>
+<th>Configuration Type</th>
+<th>SkipPlant</th>
+<th>SkipRow</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>No skip row</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>Standard continuous planting pattern</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>Alternate rows</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>Plant 1 row, skip 1 row pattern</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>Plant 2, skip 1</td>
+<td>2.0</td>
+<td>1.0</td>
+<td>Plant 2 rows, skip 1 row pattern</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>Alternate pairs</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>Plant 2 rows, skip 2 rows pattern</td>
+</tr>
+</tbody>
+</table>
+<p><code>IsAlive</code> property will be set to true upon successful sowing.</p>
+<p>Two events <code>Sowing</code> and <code>PlantSowing</code> are raised during the sowing process to notify dependent models and allow for additional setup operations.</p>
+</section>
+<section id="harvest" class="level3">
+<h3 class="anchored" data-anchor-id="harvest">Harvest</h3>
+<p>Two events <code>Harvesting</code> and <code>PostHarvesting</code> are raised during the harvesting process to allow dependent models to perform pre-harvest data collection and post-harvest biomass removal respectively.</p>
+</section>
+<section id="endcrop" class="level3">
+<h3 class="anchored" data-anchor-id="endcrop">EndCrop</h3>
+<p>One event <code>PlantEnding</code> is raised during the end of the crop cycle to coordinate end-of-season cleanup and final reporting.</p>
+<p>All internal states are reset to prepare for the next crop cycle. Plant <code>IsAlive</code> property will be set to false after the end of crop cycle.</p>
+</section>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<p><strong>Events Listened For</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
+<td>Initialize plant state and validate cultivar definitions at simulation start</td>
+</tr>
+<tr class="even">
+<td><a href="../../../docs/Models/Events.html#PhaseChanged" class="model-link">PhaseChanged</a></td>
+<td>Respond to phenological transitions and trigger phase-specific events</td>
+</tr>
+<tr class="odd">
+<td><a href="../../../docs/Models/Events.html#DoPotentialPlantGrowth" class="model-link">DoPotentialPlantGrowth</a></td>
+<td>Execute daily mortality processes and population adjustments</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>PhaseChanged</strong>: Two events <code>Flowering</code> and <code>StartPodDevelopment</code> are raised during the crop development process when <code>Phenology.CurrentPhase.Start</code> reaches the respective stages.</li>
+</ul>
+<p><strong>Events Raised</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sowing</td>
+<td>Signal preparation phase before sowing operations commence</td>
+</tr>
+<tr class="even">
+<td>PlantSowing</td>
+<td>Communicate sowing parameters to dependent models</td>
+</tr>
+<tr class="odd">
+<td>Harvesting</td>
+<td>Enable pre-harvest data collection and reporting</td>
+</tr>
+<tr class="even">
+<td>PostHarvesting</td>
+<td>Trigger biomass removal and state reset operations</td>
+</tr>
+<tr class="odd">
+<td>PlantEnding</td>
+<td>Coordinate end-of-season cleanup and final reporting</td>
+</tr>
+<tr class="even">
+<td>Flowering</td>
+<td>Signal reproductive phase initiation for dependent processes</td>
+</tr>
+<tr class="odd">
+<td>StartPodDevelopment</td>
+<td>Indicate beginning of reproductive organ development</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="properties" class="level2">
+<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<p><strong>Configurable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 20%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PlantType</td>
+<td>string</td>
+<td>Crop species identifier for organ parameterization</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 20%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Population</td>
+<td>double</td>
+<td>Current plant population density (/m²)</td>
+</tr>
+<tr class="even">
+<td>IsAlive</td>
+<td>bool</td>
+<td>Plant viability status in simulation</td>
+</tr>
+<tr class="odd">
+<td>IsEmerged</td>
+<td>bool</td>
+<td>Emergence status from phenological assessment</td>
+</tr>
+<tr class="even">
+<td>IsReadyForHarvesting</td>
+<td>bool</td>
+<td>Harvest readiness based on phenological maturity</td>
+</tr>
+<tr class="odd">
+<td>DaysAfterSowing</td>
+<td>int</td>
+<td>Accumulated days since sowing event</td>
+</tr>
+<tr class="even">
+<td>CoverGreen</td>
+<td>double</td>
+<td>Fractional green canopy cover</td>
+</tr>
+<tr class="odd">
+<td>CoverTotal</td>
+<td>double</td>
+<td>Total fractional canopy cover including senescent material</td>
+</tr>
+<tr class="even">
+<td>LAI</td>
+<td>double</td>
+<td>Leaf area index (m²/m²)</td>
+</tr>
+<tr class="odd">
+<td>WaterUptake</td>
+<td>double[]</td>
+<td>Daily water uptake by soil layer (mm)</td>
+</tr>
+<tr class="even">
+<td>NitrogenUptake</td>
+<td>double[]</td>
+<td>Daily nitrogen uptake by soil layer (kg/ha)</td>
+</tr>
+<tr class="odd">
+<td>SowingDate</td>
+<td>DateTime</td>
+<td>Date of sowing operation</td>
+</tr>
+<tr class="even">
+<td>CultivarNames</td>
+<td>string[]</td>
+<td>Available cultivar options for the crop</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<p>The Plant model serves as the primary container for crop simulations and can be added directly to a <a href="../../../docs/Models/Cores/Zone.html" class="model-link">Zone</a> in the simulation tree. Right-click a <a href="../../../docs/Models/Cores/Zone.html" class="model-link">Zone</a> node, select “Add Model…”, and search for the specific Plant model (e.g., “Wheat”, “Maize”) in the Filter Box.</p>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<blockquote class="blockquote">
+<p>No practical example is provided here.</p>
+</blockquote>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><strong>Source code:</strong> <a href="https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Plant.cs" class="external-link">Plant.cs on GitHub</a></li>
+</ul>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-brown_plant_2014" class="csl-entry" role="listitem">
+Brown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. <span>“Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.”</span> <em>Environmental Modelling &amp; Software</em> 62: 385–98. <a href="https://doi.org/10.1016/j.envsoft.2014.09.005">https://doi.org/10.1016/j.envsoft.2014.09.005</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -1554,7 +1868,7 @@ Description
 </a>
   </li>  
 </ul>
-    <div class="toc-actions"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Traits/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Plant.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
