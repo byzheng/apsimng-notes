@@ -1,0 +1,152 @@
+---
+title: "Plant Model"
+---
+
+The Plant model serves as the central coordinating entity within the Plant Modelling Framework (PMF) [@brown_plant_2014]. It provides a dynamic composition system that enables runtime assembly of organ and process submodels to construct complete crop models for species such as wheat, maize, and sorghum without requiring additional programming.
+
+## Overview
+
+The Plant model represents the fundamental unit of crop simulation, orchestrating all plant-related processes throughout the complete lifecycle from sowing to harvest. As the central coordinator, it manages phenological development, resource allocation among organs, population dynamics, and cultivar-specific parameterization. The model's architecture enables modular construction where individual organ models (leaf, root, stem) and process models (photosynthesis, respiration) can be dynamically coupled to represent diverse crop species and management scenarios.
+
+The Plant model's design philosophy emphasizes biological realism through mechanistic representation of plant processes while maintaining computational efficiency for large-scale agricultural system modeling. It integrates temporal scales from sub-daily physiological processes to seasonal crop cycles, and spatial scales from individual plant organs to field-level populations.
+
+## Inputs
+
+The Plant model requires several inputs to function properly, ranging from mandatory components to optional enhancements that provide additional functionality.
+
+**Required Components:**
+
+- **[Phenology](Phenology/index.qmd)** (Child Model): Controls plant development stages and timing
+- **Organs** (Child Models): Array of organ models (e.g., Leaf, Root, Stem) that comprise the plant
+- **PlantType** (String Property): Crop species identifier for organ parameterization
+
+**Optional Components:**
+
+- **mortalityRate** (Function): Plant mortality rate for established plants
+- **seedMortalityRate** (Function): Seed mortality rate applied during pre-emergence period
+- **Arbitrator** (Model): Resource allocation coordinator between competing organs
+- **structure** (Structure Model): Plant architectural framework for organ positioning
+- **Leaf** (Canopy Model): Leaf organ model implementing canopy processes
+- **Root** (Root Model): Root system model for water and nutrient uptake
+- **AboveGround** (Biomass Model): Above-ground biomass aggregation model
+
+**Linked Services:**
+
+- **Structure** (IStructure): APSIM core structure service for model organization
+- **summary** (ISummary): Summary reporting service for simulation outputs
+- **clock** (IClock): Simulation timing and date management service
+
+All components are automatically linked through APSIM's dependency injection system using `[Link]` attributes. The Plant model will function with minimal required components but gains enhanced capabilities when optional models are included in the simulation structure.
+
+## Methodology
+
+Plant model defines several life cycle actions to manage crop growth and development, including `Sow`, `Harvest` and `EndCrop`, which have to be explicitly called in the management scripts to trigger plant growth and development.
+
+
+### Sow
+
+The `<Plant>.Sow` can be called from management scripts to initiate the sowing process. This action sets up the initial conditions for the crop simulation, including population density, sowing depth, and cultivar selection.
+
+**Sowing Parameters** include:
+
+| Parameter | Type | Default Value | Required/Optional | Description |
+|-----------|------|---------------|-------------------|-------------|
+| cultivar | string | - | Required | The cultivar to be sown |
+| population | double | - | Required | The final plant population at emergence |
+| depth | double | - | Required | The sowing depth in millimeters |
+| rowSpacing | double | - | Required | The row spacing in millimeters |
+| maxCover | double | 1 | Optional | The maximum cover |
+| budNumber | double | 1 | Optional | The bud number |
+| rowConfig | double | 0 | Optional | SkipRow configuration |
+| seeds | double | 0 | Optional | The number of seeds sown per square meter (/m²) |
+| tillering | int | 0 | Optional | Tillering method (-1, 0, 1) |
+| ftn | double | 0.0 | Optional | Fertile Tiller Number |
+
+One of `seeds` and `population` must be provided to define the initial plant density.
+
+**Row Configuration Options**
+
+| rowConfig Value | Configuration Type | SkipPlant | SkipRow | Description |
+|-----------------|-------------------|-----------|---------|-------------|
+| 0 | No skip row | 1.0 | 0.0 | Standard continuous planting pattern |
+| 1 | Alternate rows | 1.0 | 1.0 | Plant 1 row, skip 1 row pattern |
+| 2 | Plant 2, skip 1 | 2.0 | 1.0 | Plant 2 rows, skip 1 row pattern |
+| 3 | Alternate pairs | 2.0 | 2.0 | Plant 2 rows, skip 2 rows pattern |
+
+`IsAlive` property will be set to true upon successful sowing.
+
+Two events `Sowing` and `PlantSowing` are raised during the sowing process to notify dependent models and allow for additional setup operations.
+
+
+### Harvest
+
+Two events `Harvesting` and `PostHarvesting` are raised during the harvesting process to allow dependent models to perform pre-harvest data collection and post-harvest biomass removal respectively.
+
+### EndCrop
+
+One event `PlantEnding` is raised during the end of the crop cycle to coordinate end-of-season cleanup and final reporting. 
+
+All internal states are reset to prepare for the next crop cycle. Plant `IsAlive` property will be set to false after the end of crop cycle.
+
+
+## Events
+
+**Events Listened For**
+
+| Event | Purpose |
+|-------|---------|
+| [Commencing](/docs/Models/Events.html#Commencing) | Initialize plant state and validate cultivar definitions at simulation start |
+| [PhaseChanged](/docs/Models/Events.html#PhaseChanged) | Respond to phenological transitions and trigger phase-specific events |
+| [DoPotentialPlantGrowth](/docs/Models/Events.html#DoPotentialPlantGrowth) | Execute daily mortality processes and population adjustments |
+
+* **PhaseChanged**: Two events `Flowering` and `StartPodDevelopment` are raised during the crop development process when `Phenology.CurrentPhase.Start` reaches the respective stages.
+
+
+**Events Raised**
+
+| Event | Purpose |
+|-------|---------|
+| Sowing | Signal preparation phase before sowing operations commence |
+| PlantSowing | Communicate sowing parameters to dependent models |
+| Harvesting | Enable pre-harvest data collection and reporting |
+| PostHarvesting | Trigger biomass removal and state reset operations |
+| PlantEnding | Coordinate end-of-season cleanup and final reporting |
+| Flowering | Signal reproductive phase initiation for dependent processes |
+| StartPodDevelopment | Indicate beginning of reproductive organ development |
+
+## Properties
+
+**Configurable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| PlantType | string | Crop species identifier for organ parameterization |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Population | double | Current plant population density (/m²) |
+| IsAlive | bool | Plant viability status in simulation |
+| IsEmerged | bool | Emergence status from phenological assessment |
+| IsReadyForHarvesting | bool | Harvest readiness based on phenological maturity |
+| DaysAfterSowing | int | Accumulated days since sowing event |
+| CoverGreen | double | Fractional green canopy cover |
+| CoverTotal | double | Total fractional canopy cover including senescent material |
+| LAI | double | Leaf area index (m²/m²) |
+| WaterUptake | double[] | Daily water uptake by soil layer (mm) |
+| NitrogenUptake | double[] | Daily nitrogen uptake by soil layer (kg/ha) |
+| SowingDate | DateTime | Date of sowing operation |
+| CultivarNames | string[] | Available cultivar options for the crop |
+
+## User Interface
+
+The Plant model serves as the primary container for crop simulations and can be added directly to a [Zone](../Cores/Zone.qmd) in the simulation tree. Right-click a [Zone](../Cores/Zone.qmd) node, select "Add Model...", and search for the specific Plant model (e.g., "Wheat", "Maize") in the Filter Box.
+
+## Practical Example
+
+> No practical example is provided here.
+
+## See Also
+
+* **Source code:** [Plant.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Plant.cs)

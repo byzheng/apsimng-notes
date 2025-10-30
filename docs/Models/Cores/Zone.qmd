@@ -1,0 +1,5 @@
+---
+title: "Zone"
+---
+
+Zone is a core model that defines a spatial area within a field.
