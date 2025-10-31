@@ -1,0 +1,90 @@
+---
+title: "Connections Between Models"
+output: html_document
+---
+
+In APSIM Next Generation, models interact through a structured system of **connections**, allowing one model to access information or functionality provided by another.  
+
+These connections are established through *Links* (i.e. `[Link]` in the source code), which define **how models communicate and exchange biological or physical information** within a simulation.
+
+
+## Overview
+
+In biological or physical terms, a *Link* represents a **relationship** or **dependency** between two parts of the simulation.  
+
+For example, a *Leaf* model depends on information from the *Phenology* model to know when new leaves should appear, or from the *Plant* model to understand the overall plant state.
+
+These relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.
+
+
+## Purpose of Links
+
+Links serve several key purposes in APSIM NG:
+
+* **Integration of biological processes** — e.g., linking photosynthesis with canopy development.  
+* **Re-use of common models** — e.g., several organs may link to the same *Thermal Time* module.  
+* **Hierarchical organization** — e.g., a *Plant* contains *Leaf*, *Stem*, and *Root* components that interact through internal connections.  
+* **Parameter sharing** — e.g., a *Structure* model accessing *FinalLeafNumber* from a function defined elsewhere.
+
+## Types of Connections
+
+Different kinds of connections define *how* APSIM NG searches for and establishes relationships between models.  
+These can be understood as different **biological or structural scopes**:
+
+| Connection Type | Description | Scientific Analogy | Typical Use |
+|------------------|-------------|--------------------|--------------|
+| **First Available** | Searches upward or outward in the model hierarchy until a matching model is found. | A plant organ seeking information from its parent plant system. | Most common; used for high-level interactions such as organ ↔ plant communication. |
+| **Child Connection** | Connects directly to a component located *within* the same model. | An internal process within the same organ (e.g., leaf temperature model within Leaf). | Used for tightly coupled sub-processes or response functions. |
+| **Named Connection** | Connects to a model explicitly identified by name. | Targeted reference to a specific process or dataset. | Used when multiple similar models exist (e.g., several temperature response functions). |
+
+> These types correspond to APSIM’s internal connection logic (e.g., *By first appearance*, *Child*, *By name*), but are presented here in biological terms for clarity.
+
+
+## Example: Connections in a Plant Structure Model
+
+Below is connections used in the [**Structure** model](/docs/Models/PMF/Structure/Structure.qmd).
+
+
+| Connected Component | Connection Type | Role in the Model | Description |
+|----------------------|-----------------|------------------|-------------|
+| Plant | **First Available** | Broader plant context | Provides structural and lifecycle information for the plant. |
+| Phenology | **First Available** | Developmental driver | Supplies current growth stage and timing of key events. |
+| Leaf | **First Available** | Organ-level interaction | Provides information on leaf area, appearance, and expansion. |
+| ThermalTime | **Child Connection** | Internal driver | Calculates accumulated temperature used for leaf and stem development. |
+| Phyllochron | **Child Connection** | Internal driver | Defines the thermal interval between successive leaf appearances. |
+| FinalLeafNumber | **Child Connection** | Genotypic parameter | Determines the maximum number of leaves for this genotype. |
+| HeightModel | **Child Connection** | Structural process | Computes plant height as a function of temperature and development. |
+| BranchingRate | **Child Connection** | Growth process | Determines the rate of new branch initiation. |
+| BranchMortality | **Child Connection** | Senescence process | Determines the rate at which branches die or are lost. |
+
+
+## Conceptual View
+
+In a simulation, these connections can be visualized as information pathways:
+
+```
+Plant
+├── Phenology
+├── Structure
+│ ├── ThermalTime
+│ ├── Phyllochron
+│ ├── FinalLeafNumber
+│ └── HeightModel
+└── Leaf
+```
+
+Each arrow represents a *Link*, enabling data flow from one model to another — ensuring biological realism and modular consistency.
+
+
+## Why This Matters
+
+Understanding *Links* helps scientists interpret model behavior correctly:
+
+* When a model outputs or responds to a variable, that information may originate from another connected model.  
+* Adding or removing sub-models (e.g., replacing one *ThermalTime* with another) changes biological relationships.  
+* Proper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.
+
+
+## See Also
+
+* [Structure Model](/docs/Models/PMF/Structure/Structure.qmd)  
