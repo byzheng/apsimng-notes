@@ -52,11 +52,15 @@ h4 {
 }
 
 
-
-.connections-intro {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: -0.3em;
-    margin-bottom: 0.8em;
+.intro-text {
+    font-size: 0.8rem;    
+    color: #888;            
+    margin-top: -0.2em;
+    margin-bottom: 0.6em;
     font-style: italic;
+    line-height: 1.2;        
+}
+
+.intro-text a {
+    color: inherit
 }
