@@ -27,3 +27,4 @@ Some [Traits](Traits) are described in multiple components, which are summaried 
 
 * [Clock](Clock.qmd): The Clock model is responsible for managing the simulation time and triggering events at specific times.
 * [Events](Events.qmd): Events are used by APSIM NG to trigger actions or notify other models about changes in the simulation state. Models can respond to these events in predefined ways.
+* [Connections](Connections.qmd): Connections define how models link and interact with each other within APSIM NG, enabling data flow and coordination between different components.
