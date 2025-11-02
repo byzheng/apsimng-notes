@@ -16,17 +16,21 @@ The interface tracks the number of leaf cohorts, the number of leaves that have 
 {{< include /includes/_model-variables-intro.md >}}
 
 
-| Variable | Data Type | User-Adjustable | Report Only | Description                                               |
-|----------|-----------|----------------|------------|-------------------------------------------------------------|
-| CohortsInitialised | Boolean | No | Yes | Indicates whether leaf cohorts have been initialised in the simulation. |
-| PlantAppearedLeafNo | Numeric | No | Yes | Number of leaves that have appeared on the plant. |
-| InitialisedCohortNo | Integer | No | Yes | Number of leaf cohorts that have been initialised since the start of the simulation. |
-| AppearedCohortNo | Integer | No | Yes | Number of leaf cohorts that have fully appeared at the top of the plant. |
-| TipsAtEmergence | Integer | No | Yes | Number of leaf tips visible when the plant emerges. |
-| CohortsAtInitialisation | Integer | No | Yes | Number of leaf cohorts present when the leaf component is first initialised. |
-| ApicalCohortNo | Integer | No | Yes | Number of leaf cohorts at the apex that are yet to expand. |
+**Configurable and Reportable Properties**
 
+> No configurable properties are available for this function.
 
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| CohortsInitialised | Boolean | Indicates whether leaf cohorts have been initialised in the simulation. |
+| PlantAppearedLeafNo | Numeric | Number of leaves that have appeared on the plant. |
+| InitialisedCohortNo | Integer | Number of leaf cohorts that have been initialised since the start of the simulation. |
+| AppearedCohortNo | Integer | Number of leaf cohorts that have fully appeared at the top of the plant. |
+| TipsAtEmergence | Integer | Number of leaf tips visible when the plant emerges. |
+| CohortsAtInitialisation | Integer | Number of leaf cohorts present when the leaf component is first initialised. |
+| ApicalCohortNo | Integer | Number of leaf cohorts at the apex that are yet to expand. |
 
 ## Processes and Algorithms
 
