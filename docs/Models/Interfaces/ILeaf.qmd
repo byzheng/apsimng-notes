@@ -1,0 +1,50 @@
+---
+title: "ILeaf"
+output: html_document
+---
+
+The ILeaf interface defines the required properties and methods for organ **Leaf**.
+
+## Overview
+
+The leaf component represents the photosynthetic and structural organ responsible for intercepting light and contributing to growth. The ILeaf interface defines a set of rules that any leaf model must follow to ensure compatibility within the plant framework. It allows the plant system to interact with the leaf component in a standardised way, regardless of the specific implementation (e.g., Leaf or SimpleLeaf).
+
+The interface tracks the number of leaf cohorts, the number of leaves that have appeared or expanded, and provides mechanisms for thinning, removal, and resetting of leaf states.
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+
+| Variable | Data Type | User-Adjustable | Report Only | Description                                               |
+|----------|-----------|----------------|------------|-------------------------------------------------------------|
+| CohortsInitialised | Boolean | No | Yes | Indicates whether leaf cohorts have been initialised in the simulation. |
+| PlantAppearedLeafNo | Numeric | No | Yes | Number of leaves that have appeared on the plant. |
+| InitialisedCohortNo | Integer | No | Yes | Number of leaf cohorts that have been initialised since the start of the simulation. |
+| AppearedCohortNo | Integer | No | Yes | Number of leaf cohorts that have fully appeared at the top of the plant. |
+| TipsAtEmergence | Integer | No | Yes | Number of leaf tips visible when the plant emerges. |
+| CohortsAtInitialisation | Integer | No | Yes | Number of leaf cohorts present when the leaf component is first initialised. |
+| ApicalCohortNo | Integer | No | Yes | Number of leaf cohorts at the apex that are yet to expand. |
+
+
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### DoThin
+
+This method simulates the thinning of leaf material in response to environmental conditions or developmental cues.
+
+
+### RemoveHighestLeaf
+
+This method removes the youngest or topmost leaf cohort from the plant, simulating natural leaf senescence or damage.
+
+### Reset
+
+This method resets all leaf counters and states, typically called during reinitialisation or sowing to prepare for a new simulation cycle.
+
+## See Also
+
+**Source code:** [ILeaf.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/ILeaf.cs)

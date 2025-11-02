@@ -1,0 +1,27 @@
+---
+title: "Model Variables"
+format: html
+---
+
+Model variables describe the quantities used by APSIM Next Generation to represent the state, structure, or behaviour of each model component.  
+
+They can represent measurable properties (e.g., leaf area, soil water content) or control parameters (e.g., growth rate factors).  
+
+This page explains how variables are classified and used throughout the APSIM framework.
+
+## Overview
+
+Each component in APSIM NG exchanges information through well-defined variables.  
+
+Some variables can be adjusted by users in the simulation configuration to modify behaviour, while others are produced by the model as results of internal calculations.  
+Together, they form the scientific link between model structure, parameterisation, and output.
+
+## Types of Variables
+
+| Variable Type | Description | Example |
+|----------------|-------------|----------|
+| **Configurable Variables** | Inputs that can be adjusted by users to change how the model behaves. They represent experimentally or genetically determined traits, constants, or settings. | Maximum leaf area, specific leaf weight, soil depth |
+| **Calculated (Reportable) Variables** | Quantities derived by the model during simulation. These are read-only and can be reported in outputs or used by other models. | Leaf area index (LAI), soil water potential, biomass accumulation |
+| **Derived Functions** | Quantities calculated continuously from other variables, often expressed as empirical or mechanistic equations. | Radiation use efficiency, temperature response function |
+
+
