@@ -1,0 +1,28 @@
+---
+title: "IFunction Interface"
+---
+
+The IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.
+
+## Overview
+
+The IFunction interface serves as the foundational abstraction layer for all computational functions in APSIM-NG, enabling modular and interchangeable calculation components within the simulation system. This interface establishes a uniform protocol for value retrieval that supports diverse mathematical operations, from simple constants to complex environmental response functions. By implementing this interface, functions can be dynamically linked and exchanged within model configurations, supporting flexible model construction and parameterization.
+
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable Properties**
+
+> No configurable properties are available for this interface.
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Value() | double | The calculated output value of the function |
+
+## See Also
+
+* **Source code:** [IFunction.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/IFunction.cs)

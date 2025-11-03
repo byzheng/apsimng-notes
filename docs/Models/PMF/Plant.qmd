@@ -141,7 +141,7 @@ All internal states are reset to prepare for the next crop cycle. Plant `IsAlive
 
 ## User Interface
 
-The Plant model serves as the primary container for crop simulations and can be added directly to a [Zone](../Cores/Zone.qmd) in the simulation tree. Right-click a [Zone](../Cores/Zone.qmd) node, select "Add Model...", and search for the specific Plant model (e.g., "Wheat", "Maize") in the Filter Box.
+The Plant model serves as the primary container for crop simulations and can be added directly to a [Zone](../Core/Zone.qmd) in the simulation tree. Right-click a [Zone](../Core/Zone.qmd) node, select "Add Model...", and search for the specific Plant model (e.g., "Wheat", "Maize") in the Filter Box.
 
 ## Practical Example
 

@@ -1,0 +1,47 @@
+---
+title: "Model Base Class"
+---
+
+The Model base class serves as the fundamental foundation for all simulation components within APSIM-NG, providing essential structure management, hierarchy organization, and lifecycle coordination. It establishes the core framework that enables modular construction of complex agricultural simulation models through standardized component interactions and data flow patterns.
+
+## Overview
+
+The Model base class represents the architectural backbone of the APSIM-NG simulation framework, implementing core functionality that supports hierarchical model organization, component lifecycle management, and inter-model communication protocols. This abstract base class defines essential properties and behaviors that all simulation components inherit, ensuring consistent model structure and enabling sophisticated agricultural system modeling through component composition.
+
+The class design emphasizes modularity and reusability, allowing researchers to construct complex crop and farming system models by combining specialized components in flexible hierarchical arrangements. Each model component inherits fundamental capabilities for parent-child relationships, enabling and disabling functionality, state management, and integration with the broader simulation infrastructure. This architectural approach supports both simple single-component models and elaborate multi-scale simulations spanning from molecular processes to farm-level management decisions.
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* IModel - Core model interface defining essential model contracts
+* INodeModel - Node-based model interface for hierarchical tree structures  
+* ICreatable - Interface supporting model creation and initialization protocols
+
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Name | string | Identifier name for the model component within the simulation hierarchy |
+| ResourceName | string | Name for external resource references and documentation |
+| Enabled | bool | Flag controlling whether the model participates in simulation execution |
+| ReadOnly | bool | Flag preventing modification of model structure and parameters |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Children | List<IModel> | Collection of child model components organized under this model |
+| Parent | IModel | Reference to the parent model in the hierarchical structure |
+| IsHidden | bool | Flag indicating whether the model is visible in user interface displays |
+| FullPath | string | Complete hierarchical path from simulation root to this model component |
+| Node | Node | Reference to the underlying node structure managing tree relationships |
+
+## See Also
+
+* **Source code:** [Model.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Core/Model.cs)
