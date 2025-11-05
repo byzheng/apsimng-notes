@@ -4093,8 +4093,8 @@
     ]
   },
   {
-    "objectID": "docs/Models/Cores/Zone.html",
-    "href": "docs/Models/Cores/Zone.html",
+    "objectID": "docs/Models/Core/Zone.html",
+    "href": "docs/Models/Core/Zone.html",
     "title": "Zone",
     "section": "",
     "text": "Zone is a core model that defines a spatial area within a field.",
@@ -4102,9 +4102,207 @@
       "Home",
       "Docs",
       "Models",
-      "Cores",
+      "Core",
       "Zone"
     ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html",
+    "href": "docs/Models/Connections.html",
+    "title": "Connections Between Models",
+    "section": "",
+    "text": "In APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#overview",
+    "href": "docs/Models/Connections.html#overview",
+    "title": "Connections Between Models",
+    "section": "Overview",
+    "text": "Overview\nIn biological or physical terms, a Link represents a relationship or dependency between two parts of the simulation.\nFor example, a Leaf model depends on information from the Phenology model to know when new leaves should appear, or from the Plant model to understand the overall plant state.\nThese relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#purpose-of-links",
+    "href": "docs/Models/Connections.html#purpose-of-links",
+    "title": "Connections Between Models",
+    "section": "Purpose of Links",
+    "text": "Purpose of Links\nLinks serve several key purposes in APSIM NG:\n\nIntegration of biological processes — e.g., linking photosynthesis with canopy development.\n\nRe-use of common models — e.g., several organs may link to the same Thermal Time module.\n\nHierarchical organization — e.g., a Plant contains Leaf, Stem, and Root components that interact through internal connections.\n\nParameter sharing — e.g., a Structure model accessing FinalLeafNumber from a function defined elsewhere.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#types-of-connections",
+    "href": "docs/Models/Connections.html#types-of-connections",
+    "title": "Connections Between Models",
+    "section": "Types of Connections",
+    "text": "Types of Connections\nDifferent kinds of connections define how APSIM NG searches for and establishes relationships between models.\nThese can be understood as different biological or structural scopes:\n\n\n\n\n\n\n\n\n\nConnection Type\nDescription\nScientific Analogy\nTypical Use\n\n\n\n\nFirst Available\nSearches upward or outward in the model hierarchy until a matching model is found.\nA plant organ seeking information from its parent plant system.\nMost common; used for high-level interactions such as organ ↔︎ plant communication.\n\n\nChild Connection\nConnects directly to a component located within the same model.\nAn internal process within the same organ (e.g., leaf temperature model within Leaf).\nUsed for tightly coupled sub-processes or response functions.\n\n\nNamed Connection\nConnects to a model explicitly identified by name.\nTargeted reference to a specific process or dataset.\nUsed when multiple similar models exist (e.g., several temperature response functions).\n\n\n\n\nThese types correspond to APSIM’s internal connection logic (e.g., By first appearance, Child, By name), but are presented here in biological terms for clarity.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
+    "href": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
+    "title": "Connections Between Models",
+    "section": "Example: Connections in a Plant Structure Model",
+    "text": "Example: Connections in a Plant Structure Model\nBelow is connections used in the Structure model.\n\n\n\n\n\n\n\n\n\nConnected Component\nConnection Type\nRole in the Model\nDescription\n\n\n\n\nPlant\nFirst Available\nBroader plant context\nProvides structural and lifecycle information for the plant.\n\n\nPhenology\nFirst Available\nDevelopmental driver\nSupplies current growth stage and timing of key events.\n\n\nLeaf\nFirst Available\nOrgan-level interaction\nProvides information on leaf area, appearance, and expansion.\n\n\nThermalTime\nChild Connection\nInternal driver\nCalculates accumulated temperature used for leaf and stem development.\n\n\nPhyllochron\nChild Connection\nInternal driver\nDefines the thermal interval between successive leaf appearances.\n\n\nFinalLeafNumber\nChild Connection\nGenotypic parameter\nDetermines the maximum number of leaves for this genotype.\n\n\nHeightModel\nChild Connection\nStructural process\nComputes plant height as a function of temperature and development.\n\n\nBranchingRate\nChild Connection\nGrowth process\nDetermines the rate of new branch initiation.\n\n\nBranchMortality\nChild Connection\nSenescence process\nDetermines the rate at which branches die or are lost.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#conceptual-view",
+    "href": "docs/Models/Connections.html#conceptual-view",
+    "title": "Connections Between Models",
+    "section": "Conceptual View",
+    "text": "Conceptual View\nIn a simulation, these connections can be visualized as information pathways:\nPlant\n├── Phenology\n├── Structure\n│ ├── ThermalTime\n│ ├── Phyllochron\n│ ├── FinalLeafNumber\n│ └── HeightModel\n└── Leaf\nEach arrow represents a Link, enabling data flow from one model to another — ensuring biological realism and modular consistency.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#why-this-matters",
+    "href": "docs/Models/Connections.html#why-this-matters",
+    "title": "Connections Between Models",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nUnderstanding Links helps scientists interpret model behavior correctly:\n\nWhen a model outputs or responds to a variable, that information may originate from another connected model.\n\nAdding or removing sub-models (e.g., replacing one ThermalTime with another) changes biological relationships.\n\nProper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#see-also",
+    "href": "docs/Models/Connections.html#see-also",
+    "title": "Connections Between Models",
+    "section": "See Also",
+    "text": "See Also\n\nStructure Model",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html",
+    "href": "docs/APSIM.Core/IFunction.html",
+    "title": "IFunction Interface",
+    "section": "",
+    "text": "The IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#overview",
+    "href": "docs/APSIM.Core/IFunction.html#overview",
+    "title": "IFunction Interface",
+    "section": "Overview",
+    "text": "Overview\nThe IFunction interface serves as the foundational abstraction layer for all computational functions in APSIM-NG, enabling modular and interchangeable calculation components within the simulation system. This interface establishes a uniform protocol for value retrieval that supports diverse mathematical operations, from simple constants to complex environmental response functions. By implementing this interface, functions can be dynamically linked and exchanged within model configurations, supporting flexible model construction and parameterization.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#model-variables",
+    "href": "docs/APSIM.Core/IFunction.html#model-variables",
+    "title": "IFunction Interface",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable Properties\n\nNo configurable properties are available for this interface.\n\nRead-Only Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue()\ndouble\nThe calculated output value of the function",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#see-also",
+    "href": "docs/APSIM.Core/IFunction.html#see-also",
+    "title": "IFunction Interface",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
+  },
+  {
+    "objectID": "about.html#what-this-site-includes",
+    "href": "about.html#what-this-site-includes",
+    "title": "About",
+    "section": "What This Site Includes",
+    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
+  },
+  {
+    "objectID": "about.html#not-official-documentation",
+    "href": "about.html#not-official-documentation",
+    "title": "About",
+    "section": "Not Official Documentation",
+    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
+  },
+  {
+    "objectID": "about.html#license-and-attribution",
+    "href": "about.html#license-and-attribution",
+    "title": "About",
+    "section": "⚖️ License and Attribution",
+    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
+  },
+  {
+    "objectID": "about.html#acknowledgment",
+    "href": "about.html#acknowledgment",
+    "title": "About",
+    "section": "🙏 Acknowledgment",
+    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
+  },
+  {
+    "objectID": "disclaimer.html",
+    "href": "disclaimer.html",
+    "title": "Disclaimer",
+    "section": "",
+    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
   },
   {
     "objectID": "docs/Models/Clock.html",
@@ -4224,149 +4422,73 @@
     ]
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "docs/Models/Core/Model.html",
+    "href": "docs/Models/Core/Model.html",
+    "title": "Model Base Class",
     "section": "",
-    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
-  },
-  {
-    "objectID": "about.html#what-this-site-includes",
-    "href": "about.html#what-this-site-includes",
-    "title": "About",
-    "section": "What This Site Includes",
-    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
-  },
-  {
-    "objectID": "about.html#not-official-documentation",
-    "href": "about.html#not-official-documentation",
-    "title": "About",
-    "section": "Not Official Documentation",
-    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
-  },
-  {
-    "objectID": "about.html#license-and-attribution",
-    "href": "about.html#license-and-attribution",
-    "title": "About",
-    "section": "⚖️ License and Attribution",
-    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
-  },
-  {
-    "objectID": "about.html#acknowledgment",
-    "href": "about.html#acknowledgment",
-    "title": "About",
-    "section": "🙏 Acknowledgment",
-    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
-  },
-  {
-    "objectID": "disclaimer.html",
-    "href": "disclaimer.html",
-    "title": "Disclaimer",
-    "section": "",
-    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
-  },
-  {
-    "objectID": "docs/Models/Connections.html",
-    "href": "docs/Models/Connections.html",
-    "title": "Connections Between Models",
-    "section": "",
-    "text": "In APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
+    "text": "The Model base class serves as the fundamental foundation for all simulation components within APSIM-NG, providing essential structure management, hierarchy organization, and lifecycle coordination. It establishes the core framework that enables modular construction of complex agricultural simulation models through standardized component interactions and data flow patterns.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
+      "Core",
+      "Model Base Class"
     ]
   },
   {
-    "objectID": "docs/Models/Connections.html#overview",
-    "href": "docs/Models/Connections.html#overview",
-    "title": "Connections Between Models",
+    "objectID": "docs/Models/Core/Model.html#overview",
+    "href": "docs/Models/Core/Model.html#overview",
+    "title": "Model Base Class",
     "section": "Overview",
-    "text": "Overview\nIn biological or physical terms, a Link represents a relationship or dependency between two parts of the simulation.\nFor example, a Leaf model depends on information from the Phenology model to know when new leaves should appear, or from the Plant model to understand the overall plant state.\nThese relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.",
+    "text": "Overview\nThe Model base class represents the architectural backbone of the APSIM-NG simulation framework, implementing core functionality that supports hierarchical model organization, component lifecycle management, and inter-model communication protocols. This abstract base class defines essential properties and behaviors that all simulation components inherit, ensuring consistent model structure and enabling sophisticated agricultural system modeling through component composition.\nThe class design emphasizes modularity and reusability, allowing researchers to construct complex crop and farming system models by combining specialized components in flexible hierarchical arrangements. Each model component inherits fundamental capabilities for parent-child relationships, enabling and disabling functionality, state management, and integration with the broader simulation infrastructure. This architectural approach supports both simple single-component models and elaborate multi-scale simulations spanning from molecular processes to farm-level management decisions.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
+      "Core",
+      "Model Base Class"
     ]
   },
   {
-    "objectID": "docs/Models/Connections.html#purpose-of-links",
-    "href": "docs/Models/Connections.html#purpose-of-links",
-    "title": "Connections Between Models",
-    "section": "Purpose of Links",
-    "text": "Purpose of Links\nLinks serve several key purposes in APSIM NG:\n\nIntegration of biological processes — e.g., linking photosynthesis with canopy development.\n\nRe-use of common models — e.g., several organs may link to the same Thermal Time module.\n\nHierarchical organization — e.g., a Plant contains Leaf, Stem, and Root components that interact through internal connections.\n\nParameter sharing — e.g., a Structure model accessing FinalLeafNumber from a function defined elsewhere.",
+    "objectID": "docs/Models/Core/Model.html#model-structure",
+    "href": "docs/Models/Core/Model.html#model-structure",
+    "title": "Model Base Class",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nIModel - Core model interface defining essential model contracts\nINodeModel - Node-based model interface for hierarchical tree structures\n\nICreatable - Interface supporting model creation and initialization protocols",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
+      "Core",
+      "Model Base Class"
     ]
   },
   {
-    "objectID": "docs/Models/Connections.html#types-of-connections",
-    "href": "docs/Models/Connections.html#types-of-connections",
-    "title": "Connections Between Models",
-    "section": "Types of Connections",
-    "text": "Types of Connections\nDifferent kinds of connections define how APSIM NG searches for and establishes relationships between models.\nThese can be understood as different biological or structural scopes:\n\n\n\n\n\n\n\n\n\nConnection Type\nDescription\nScientific Analogy\nTypical Use\n\n\n\n\nFirst Available\nSearches upward or outward in the model hierarchy until a matching model is found.\nA plant organ seeking information from its parent plant system.\nMost common; used for high-level interactions such as organ ↔︎ plant communication.\n\n\nChild Connection\nConnects directly to a component located within the same model.\nAn internal process within the same organ (e.g., leaf temperature model within Leaf).\nUsed for tightly coupled sub-processes or response functions.\n\n\nNamed Connection\nConnects to a model explicitly identified by name.\nTargeted reference to a specific process or dataset.\nUsed when multiple similar models exist (e.g., several temperature response functions).\n\n\n\n\nThese types correspond to APSIM’s internal connection logic (e.g., By first appearance, Child, By name), but are presented here in biological terms for clarity.",
+    "objectID": "docs/Models/Core/Model.html#model-variables",
+    "href": "docs/Models/Core/Model.html#model-variables",
+    "title": "Model Base Class",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nName\nstring\nIdentifier name for the model component within the simulation hierarchy\n\n\nResourceName\nstring\nName for external resource references and documentation\n\n\nEnabled\nbool\nFlag controlling whether the model participates in simulation execution\n\n\nReadOnly\nbool\nFlag preventing modification of model structure and parameters\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nChildren\nList\nCollection of child model components organized under this model\n\n\nParent\nIModel\nReference to the parent model in the hierarchical structure\n\n\nIsHidden\nbool\nFlag indicating whether the model is visible in user interface displays\n\n\nFullPath\nstring\nComplete hierarchical path from simulation root to this model component\n\n\nNode\nNode\nReference to the underlying node structure managing tree relationships",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
+      "Core",
+      "Model Base Class"
     ]
   },
   {
-    "objectID": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
-    "href": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
-    "title": "Connections Between Models",
-    "section": "Example: Connections in a Plant Structure Model",
-    "text": "Example: Connections in a Plant Structure Model\nBelow is connections used in the Structure model.\n\n\n\n\n\n\n\n\n\nConnected Component\nConnection Type\nRole in the Model\nDescription\n\n\n\n\nPlant\nFirst Available\nBroader plant context\nProvides structural and lifecycle information for the plant.\n\n\nPhenology\nFirst Available\nDevelopmental driver\nSupplies current growth stage and timing of key events.\n\n\nLeaf\nFirst Available\nOrgan-level interaction\nProvides information on leaf area, appearance, and expansion.\n\n\nThermalTime\nChild Connection\nInternal driver\nCalculates accumulated temperature used for leaf and stem development.\n\n\nPhyllochron\nChild Connection\nInternal driver\nDefines the thermal interval between successive leaf appearances.\n\n\nFinalLeafNumber\nChild Connection\nGenotypic parameter\nDetermines the maximum number of leaves for this genotype.\n\n\nHeightModel\nChild Connection\nStructural process\nComputes plant height as a function of temperature and development.\n\n\nBranchingRate\nChild Connection\nGrowth process\nDetermines the rate of new branch initiation.\n\n\nBranchMortality\nChild Connection\nSenescence process\nDetermines the rate at which branches die or are lost.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#conceptual-view",
-    "href": "docs/Models/Connections.html#conceptual-view",
-    "title": "Connections Between Models",
-    "section": "Conceptual View",
-    "text": "Conceptual View\nIn a simulation, these connections can be visualized as information pathways:\nPlant\n├── Phenology\n├── Structure\n│ ├── ThermalTime\n│ ├── Phyllochron\n│ ├── FinalLeafNumber\n│ └── HeightModel\n└── Leaf\nEach arrow represents a Link, enabling data flow from one model to another — ensuring biological realism and modular consistency.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#why-this-matters",
-    "href": "docs/Models/Connections.html#why-this-matters",
-    "title": "Connections Between Models",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nUnderstanding Links helps scientists interpret model behavior correctly:\n\nWhen a model outputs or responds to a variable, that information may originate from another connected model.\n\nAdding or removing sub-models (e.g., replacing one ThermalTime with another) changes biological relationships.\n\nProper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#see-also",
-    "href": "docs/Models/Connections.html#see-also",
-    "title": "Connections Between Models",
+    "objectID": "docs/Models/Core/Model.html#see-also",
+    "href": "docs/Models/Core/Model.html#see-also",
+    "title": "Model Base Class",
     "section": "See Also",
-    "text": "See Also\n\nStructure Model",
+    "text": "See Also\n\nSource code: Model.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
+      "Core",
+      "Model Base Class"
     ]
   },
   {
