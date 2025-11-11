@@ -10,19 +10,6 @@
     ]
   },
   {
-    "listing": "/docs/Models/PMF/Phenology/Phases/index.html",
-    "items": [
-      "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/EndPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/IPhase.html",
-      "/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
-      "/docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html",
-      "/docs/Models/PMF/Phenology/Phases/VernalisationPhase.html"
-    ]
-  },
-  {
     "listing": "/docs/Models/PMF/Arbitrator/index.html",
     "items": [
       "/docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
@@ -62,6 +49,19 @@
     "items": [
       "/docs/Models/Management/BiomassRemovalEvents.html",
       "/docs/Models/Management/FertiliserType.html"
+    ]
+  },
+  {
+    "listing": "/docs/Models/PMF/Phenology/Phases/index.html",
+    "items": [
+      "/docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/EndPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/IPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
+      "/docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html",
+      "/docs/Models/PMF/Phenology/Phases/VernalisationPhase.html"
     ]
   },
   {
