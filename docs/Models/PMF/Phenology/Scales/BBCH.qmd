@@ -1,0 +1,106 @@
+---
+title: "BBCH"
+output: html_document
+---
+
+A phenological staging system that converts APSIM-NG's internal growth stages into standardized BBCH (Biologische Bundesanstalt, Bundessortenamt und CHemische Industrie) growth stages for cereals [@meier_growth_2001], providing internationally recognized developmental benchmarks for agricultural research and management.
+
+## Overview
+
+The BBCH implements a comprehensive translation system that converts APSIM-NG's internal phenological phases into the internationally standardized BBCH growth stage codes [@meier_growth_2001] widely used in agricultural research and crop management. This system provides a common language for describing crop development stages across different simulation platforms and field observations, enabling seamless integration between modeling and practical applications.
+
+The BBCH system divides crop development into 10 principal growth stages (0-9), each subdivided into secondary stages, creating a numerical scale from 00 to 99. This model specifically handles cereal crops from germination through harvest, incorporating key developmental milestones such as emergence, leaf appearance, stem extension, flowering, and grain development.
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+| Connected Component | Connection Type | Role in the Model | Description                                          |
+|----------------------|-----------------|------------------|------------------------------------------------------|
+| [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **Link** | Developmental driver | Provides current growth phase, stage progression, and fraction completed within phases. |
+| [Leaf](/docs/Models/PMF/Organs/Leaf.qmd) | **Link** | Organ-level information | Supplies leaf appearance, expansion, and cohort data for calculating vegetative stages. |
+| [Structure](/docs/Models/PMF/Structure/Structure.qmd) | **Link** | Architectural information | Provides final leaf number and structural development parameters. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Stage | double | Current BBCH growth stage value (0-99 scale) calculated from internal phenological state. |
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+
+The BBCH model calculates growth stages through matching phase name in a [Plant](/docs/Models/PMF/Plant.qmd), with different calculation methods for early vegetative, stem extension, and reproductive development:
+
+**Early Vegetative Stages (BBCH 00-39)**
+
+| Begin Stage | Growth Phase | BBCH Calculation | Description |
+|-------------|--------------|------------------|-------------|
+| 1 | Germinating | `5 × FractionThroughPhase` | Early germination progress |
+| 2 | Emerging | `5 + 5 × FractionThroughPhase` | Emergence from soil surface |
+| 3 | Juvenile or PhotoSensitive | `10 + (Leaf.AppearedCohortNo - 1)` | Initial leaf development |
+| 4 | PhotoSensitive | `10 + (Leaf.AppearedCohortNo - 1)` | Continued leaf appearance |
+| 5 | LeafAppearance | `30 + LeavesAppearedInPhase` | Stem extension and node development |
+
+Notes:
+
+- BBCH stages 11-19 use the "droopy leaf" method where visible leaf tips are one fewer than fully developed leaves
+- Stem extension (BBCH 30) corresponds to floral initiation (Stage 5)
+- Scores between 31 and 39 depend on the number of nodes visiable
+
+
+**Flag Leaf Emergence (BBCH 50-59)**
+
+- BBCH 50 (tassel visibility) coincides with flag leaf tip appearance
+- During flag leaf expansion: `BBCH = 50 + 5 × FractionFlagLeafExpansion`
+
+**Reproductive Stage Mapping:**
+
+| APSIM Stage | APSIM Name | BBCH Code | BBCH Description |
+|-------------|------------|-----------|------------------|
+| 6.0 | FlagLeafFullyExpanded | 55 | Mid-tassel emergence |
+| 7.0 | Flowering | 65 | Mid-flowering |
+| 8.0 | StartGrainFill | 70 | Beginning of grain development |
+| 9.0 | EndGrainFill | 87 | Physiological maturity |
+| 10.0 | Maturity | 99 | Harvest product |
+
+
+## User Interface
+
+BBCH can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select "Add Model...", and search for BBCH in the Filter Box.
+
+## Practical Example
+
+> No practical example is provided here.
+
+## See Also
+
+* **Source code:** [BBCH.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/BBCH.cs)
