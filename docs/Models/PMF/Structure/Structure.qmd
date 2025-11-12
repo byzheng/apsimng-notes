@@ -123,6 +123,9 @@ where $N_{emergence}$ is the number of leaf tips at emergence which is determine
 When $N_{tips}(t)$ increments more than 1, a new leaf cohort is initialised. The `CohortToInitialise` property is incremented by 1 to indicate one extra leaf cohort, and the `AddLeafCohort` event is raised with the current leaf rank as a parameter. A new leaf tip also appears, see [Leaf Tip Appearance](#leaf-tip-appearance) for details.
 
 
+
+<!-- 
+
 ### Branch Development Process
 
 Branch initiation follows main stem development with environmental modifications:
@@ -145,7 +148,9 @@ This ensures biological realism when final leaf number is non-integer.
 The model accounts for both plant-level and branch-specific mortality:
 $$P_{total}(t+1) = P_{total}(t) - M_{plant} \times P_{total}(t) - M_{branch} \times P_{branch}(t)$$
 
-Where $M_{plant}$ is plant mortality proportion and $M_{branch}$ is branch mortality rate.
+Where $M_{plant}$ is plant mortality proportion and $M_{branch}$ is branch mortality rate. 
+
+-->
 
 ### Leaf Initialisation {#leaf-initialisation}
 
