@@ -1129,10 +1129,11 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
@@ -1161,33 +1162,161 @@ window.Quarto = {
 </header>
 
 
-<p>The <code>ZadokPMFWheat</code> model calculates Zadoks growth stage values <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> for <a href="../../../../../docs/Plants/Wheat/Phenology/index.html" class="crop-link">wheat</a> based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.</p>
+<p>The ZadokPMFWheat model calculates Zadoks growth stage values <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The Zadoks scale <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> is a numerical system (0-100) used to describe the growth stages of cereal crops, particularly wheat. The <code>ZadokPMFWheat</code> model translates APSIM’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology.</p>
+<p>The Zadoks scale <span class="citation" data-cites="zadoks_decimal_1974">(<a href="#ref-zadoks_decimal_1974" role="doc-biblioref">Zadoks, Chang, and Konzak 1974</a>)</span> is a numerical system (0-99) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM-NG’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology and facilitating integration between modeling and field observations.</p>
 </section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
-<p>The following input functions are required by <code>ZadokPMFWheat</code>:</p>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
 <ul>
-<li><code>TillerNumber</code> — Total number of tillers the plant will develop.</li>
-<li><code>HaunStage</code> — The current Haun stage of the plant.</li>
+<li><a href="../../../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
 </ul>
 </section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The <code>ZadokPMFWheat</code> model calculates the Zadoks growth stage (<span class="math inline">\(Z\)</span>) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase:</p>
-<p>In <strong><a href="../../../../../docs/Plants/Wheat/Phenology/Germinating.html" class="crop-link">Germinating</a></strong>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is 5 times the fraction of the germination phase completed (<span class="math inline">\(F(t)\)</span>):</p>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Connected Component</th>
+<th>Connection Type</th>
+<th>Role in the Model</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a></td>
+<td><strong>First Available</strong></td>
+<td>Developmental driver</td>
+<td>Provides current growth phase, stage progression, and fraction completed within phases.</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../../docs/Models/PMF/Plant.html" class="model-link">Plant</a></td>
+<td><strong>First Available</strong></td>
+<td>Broader plant context</td>
+<td>Supply plant is alive and today’s DaysAfterSowing.</td>
+</tr>
+<tr class="odd">
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">TillerNumber</a></td>
+<td><strong>Child Connection</strong></td>
+<td>Input function</td>
+<td>Total number of tillers the plant will develop.</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">HaunStage</a></td>
+<td><strong>Child Connection</strong></td>
+<td>Input function</td>
+<td>The current Haun stage of the plant.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TillerNumber</td>
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>Total number of tillers the plant will develop.</td>
+</tr>
+<tr class="even">
+<td>HaunStage</td>
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>The current Haun stage of the plant.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 20%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Stage</td>
+<td>double</td>
+<td>Current Zadok Stage value</td>
+</tr>
+<tr class="even">
+<td>StageDAS</td>
+<td>double</td>
+<td>Days After Sowing for specific Zadok stage when it first occurs. Example usage is <code>StageDAS(51)</code>.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<div class="intro-text">
+<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
+</div>
+<p><strong>Events Listened For</strong></p>
+<blockquote class="blockquote">
+<p>No events are listened by this function.</p>
+</blockquote>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="early-vegetative-development-zadok-00-19" class="level3">
+<h3 class="anchored" data-anchor-id="early-vegetative-development-zadok-00-19">Early Vegetative Development (Zadok 00-19)</h3>
+<p>The ZadokPMFWheat model calculates the Zadoks growth stage (<span class="math inline">\(Z\)</span>) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase.</p>
+<p><strong>Germinating Phase:</strong></p>
+<p>In <a href="../../../../../docs/Plants/Wheat/Phenology/Germinating.html" class="crop-link">Germinating</a>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is 5 times the fraction of the germination phase completed (<span class="math inline">\(F(t)\)</span>):</p>
 <p><span class="math display">\[
 Z = 5.0 \times F(t)
 \]</span></p>
-<p>In <strong><a href="../../../../../docs/Plants/Wheat/Phenology/Emerging.html" class="crop-link">Emerging</a></strong>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 5 plus 5 times the fraction of the emergence phase completed (<span class="math inline">\(F(t)\)</span>): <span class="math display">\[
+<p><strong>Emerging Phase:</strong></p>
+<p>In <a href="../../../../../docs/Plants/Wheat/Phenology/Emerging.html" class="crop-link">Emerging</a>, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 5 plus 5 times the fraction of the emergence phase completed (<span class="math inline">\(F(t)\)</span>):</p>
+<p><span class="math display">\[
 Z = 5.0 + (5.0 \times F(t))
 \]</span></p>
-<p>Before the phenological stage is less than 5.3 during <a href="../../../../../docs/Plants/Wheat/Phenology/StemElongating.html" class="crop-link">StemElongating</a> phase, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 10 plus the Haun stage value (<span class="math inline">\(HS\)</span>):</p>
+</section>
+<section id="tillering-and-stem-extension-zadok-10-39" class="level3">
+<h3 class="anchored" data-anchor-id="tillering-and-stem-extension-zadok-10-39">Tillering and Stem Extension (Zadok 10-39)</h3>
+<p>Before the phenological stage reaches 5.3 during <a href="../../../../../docs/Plants/Wheat/Phenology/StemElongating.html" class="crop-link">StemElongating</a> phase, Zadoks Stage (<span class="math inline">\(Z\)</span>) is calculated as 10 plus the Haun stage value (<span class="math inline">\(HS\)</span>):</p>
 <p><span class="math display">\[
 Z = 10.0 + HS
 \]</span></p>
+</section>
+<section id="reproductive-development-zadok-30-90" class="level3">
+<h3 class="anchored" data-anchor-id="reproductive-development-zadok-30-90">Reproductive Development (Zadok 30-90)</h3>
 <p>After the phenological stage reaches 5.3, Zadoks Stage (<span class="math inline">\(Z\)</span>) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:</p>
 <table class="caption-top table">
 <thead>
@@ -1254,51 +1383,12 @@ Figure&nbsp;1: APSIM to Zadok Growth Stage Mapping
 </div>
 </div>
 </div>
-<p>At <strong>HarvestRipe</strong> stage, Zadok stage is fixed at 90.0:</p>
+<p>At HarvestRipe stage, Zadok stage is fixed at 90.0.</p>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<blockquote class="blockquote">
-<p>No events are listened for by this function.</p>
-</blockquote>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
-</section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<blockquote class="blockquote">
-<p>No configurable properties are available for this function.</p>
-</blockquote>
-<p><strong>Read-Only Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 8%">
-<col style="width: 71%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Stage</td>
-<td>double</td>
-<td>Zadok stage (Z) value</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<blockquote class="blockquote">
-<p>No user interface is provided for this function.</p>
-</blockquote>
+<p>ZadokPMFWheat can be added as a child of a <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a> node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for ZadokPMFWheat in the Filter Box.</p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>

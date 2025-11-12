@@ -1632,7 +1632,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#overview",
     "title": "ZadokPMFWheat",
     "section": "Overview",
-    "text": "Overview\nThe Zadoks scale (Zadoks, Chang, and Konzak 1974) is a numerical system (0-100) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology.",
+    "text": "Overview\nThe Zadoks scale (Zadoks, Chang, and Konzak 1974) is a numerical system (0-99) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM-NG’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology and facilitating integration between modeling and field observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1644,11 +1644,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#inputs",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#inputs",
+    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#model-structure",
+    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#model-structure",
     "title": "ZadokPMFWheat",
-    "section": "Inputs",
-    "text": "Inputs\nThe following input functions are required by ZadokPMFWheat:\n\nTillerNumber — Total number of tillers the plant will develop.\nHaunStage — The current Haun stage of the plant.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel",
     "crumbs": [
       "Home",
       "Docs",
@@ -1660,11 +1660,27 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#methodology",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#methodology",
+    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#connections-to-other-components",
+    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#connections-to-other-components",
     "title": "ZadokPMFWheat",
-    "section": "Methodology",
-    "text": "Methodology\nThe ZadokPMFWheat model calculates the Zadoks growth stage (\\(Z\\)) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase:\nIn Germinating, Zadoks Stage (\\(Z\\)) is 5 times the fraction of the germination phase completed (\\(F(t)\\)):\n\\[\nZ = 5.0 \\times F(t)\n\\]\nIn Emerging, Zadoks Stage (\\(Z\\)) is calculated as 5 plus 5 times the fraction of the emergence phase completed (\\(F(t)\\)): \\[\nZ = 5.0 + (5.0 \\times F(t))\n\\]\nBefore the phenological stage is less than 5.3 during StemElongating phase, Zadoks Stage (\\(Z\\)) is calculated as 10 plus the Haun stage value (\\(HS\\)):\n\\[\nZ = 10.0 + HS\n\\]\nAfter the phenological stage reaches 5.3, Zadoks Stage (\\(Z\\)) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:\n\n\n\nAPSIM Growth Stage\nZadok Stage\nGrowth Stage Description\n\n\n\n\n5.0\n30.0\nMaximumSpikeletPrimordia\n\n\n5.99\n34.0\nFourth node detectable\n\n\n6.0\n39.0\nFlagLeafAppearance\n\n\n7.0\n55.0\nHeadEmergence\n\n\n8.0\n65.0\nAnthesis\n\n\n9.0\n71.0\nMaximumGrainLength\n\n\n10.0\n87.0\nEndGrainFill\n\n\n11.0\n90.0\nHarvestRipe\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: APSIM to Zadok Growth Stage Mapping\n\n\n\n\n\nAt HarvestRipe stage, Zadok stage is fixed at 90.0:",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nConnected Component\nConnection Type\nRole in the Model\nDescription\n\n\n\n\nPhenology\nFirst Available\nDevelopmental driver\nProvides current growth phase, stage progression, and fraction completed within phases.\n\n\nPlant\nFirst Available\nBroader plant context\nSupply plant is alive and today’s DaysAfterSowing.\n\n\nTillerNumber\nChild Connection\nInput function\nTotal number of tillers the plant will develop.\n\n\nHaunStage\nChild Connection\nInput function\nThe current Haun stage of the plant.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Scales",
+      "ZadokPMFWheat"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#model-variables",
+    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#model-variables",
+    "title": "ZadokPMFWheat",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nTillerNumber\nIFunction\nTotal number of tillers the plant will develop.\n\n\nHaunStage\nIFunction\nThe current Haun stage of the plant.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStage\ndouble\nCurrent Zadok Stage value\n\n\nStageDAS\ndouble\nDays After Sowing for specific Zadok stage when it first occurs. Example usage is StageDAS(51).",
     "crumbs": [
       "Home",
       "Docs",
@@ -1680,7 +1696,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#events",
     "title": "ZadokPMFWheat",
     "section": "Events",
-    "text": "Events\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1692,11 +1708,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#properties",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#properties",
+    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#processes-and-algorithms",
+    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#processes-and-algorithms",
     "title": "ZadokPMFWheat",
-    "section": "Properties",
-    "text": "Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStage\ndouble\nZadok stage (Z) value",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nEarly Vegetative Development (Zadok 00-19)\nThe ZadokPMFWheat model calculates the Zadoks growth stage (\\(Z\\)) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase.\nGerminating Phase:\nIn Germinating, Zadoks Stage (\\(Z\\)) is 5 times the fraction of the germination phase completed (\\(F(t)\\)):\n\\[\nZ = 5.0 \\times F(t)\n\\]\nEmerging Phase:\nIn Emerging, Zadoks Stage (\\(Z\\)) is calculated as 5 plus 5 times the fraction of the emergence phase completed (\\(F(t)\\)):\n\\[\nZ = 5.0 + (5.0 \\times F(t))\n\\]\n\n\nTillering and Stem Extension (Zadok 10-39)\nBefore the phenological stage reaches 5.3 during StemElongating phase, Zadoks Stage (\\(Z\\)) is calculated as 10 plus the Haun stage value (\\(HS\\)):\n\\[\nZ = 10.0 + HS\n\\]\n\n\nReproductive Development (Zadok 30-90)\nAfter the phenological stage reaches 5.3, Zadoks Stage (\\(Z\\)) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:\n\n\n\nAPSIM Growth Stage\nZadok Stage\nGrowth Stage Description\n\n\n\n\n5.0\n30.0\nMaximumSpikeletPrimordia\n\n\n5.99\n34.0\nFourth node detectable\n\n\n6.0\n39.0\nFlagLeafAppearance\n\n\n7.0\n55.0\nHeadEmergence\n\n\n8.0\n65.0\nAnthesis\n\n\n9.0\n71.0\nMaximumGrainLength\n\n\n10.0\n87.0\nEndGrainFill\n\n\n11.0\n90.0\nHarvestRipe\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: APSIM to Zadok Growth Stage Mapping\n\n\n\n\n\nAt HarvestRipe stage, Zadok stage is fixed at 90.0.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1712,7 +1728,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#user-interface",
     "title": "ZadokPMFWheat",
     "section": "User Interface",
-    "text": "User Interface\n\nNo user interface is provided for this function.",
+    "text": "User Interface\nZadokPMFWheat can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for ZadokPMFWheat in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8301,7 +8317,7 @@
     "href": "docs/Plants/Wheat/Phenology/Variables.html#overview",
     "title": "Variables",
     "section": "Overview",
-    "text": "Overview\nThe extra reported variables from the phenology model include:\n\n\n\nName\nDescription\nUnits\n\n\n\n\n[Wheat].Phenology.Zadok\nCurrent Zadoks growth stage\nstage\n\n\n[Wheat].Phenology.EmergenceDAS\nDays after sowing when emergence occurs\ndays after sowing\n\n\n[Wheat].Phenology.DoubleRidgeDAS\nDays after sowing when double ridge is formed\ndays after sowing\n\n\n[Wheat].Phenology.TerminalSpikeletDAS\nDays after sowing when terminal spikelet is formed\ndays after sowing\n\n\n[Wheat].Phenology.FlagLeafDAS\nDays after sowing when flag leaf appears\ndays after sowing\n\n\n[Wheat].Phenology.HeadingDAS\nDays after sowing when heading occurs\ndays after sowing\n\n\n[Wheat].Phenology.FloweringDAS\nDays after sowing when flowering occurs\ndays after sowing\n\n\n[Wheat].Phenology.MaturityDAS\nDays after sowing when maturity is reached\ndays after sowing\n\n\n[Wheat].Phenology.DoubleRidgePhotoperiod\nPhotoperiod at double ridge formation\nhours",
+    "text": "Overview\nThe extra reported variables from the phenology model include:\n\n\n\nName\nDescription\nUnits\n\n\n\n\n[Wheat].Phenology.Zadok.Stage\nCurrent Zadoks growth stage\nZadoks Score\n\n\n[Wheat].Phenology.Zadok.StageDAS\nCurrent Zadoks growth stage\nDays After Sowing\n\n\n[Wheat].Phenology.EmergenceDAS\nDays after sowing when emergence occurs\ndays after sowing\n\n\n[Wheat].Phenology.DoubleRidgeDAS\nDays after sowing when double ridge is formed\ndays after sowing\n\n\n[Wheat].Phenology.TerminalSpikeletDAS\nDays after sowing when terminal spikelet is formed\ndays after sowing\n\n\n[Wheat].Phenology.FlagLeafDAS\nDays after sowing when flag leaf appears\ndays after sowing\n\n\n[Wheat].Phenology.HeadingDAS\nDays after sowing when heading occurs\ndays after sowing\n\n\n[Wheat].Phenology.FloweringDAS\nDays after sowing when flowering occurs\ndays after sowing\n\n\n[Wheat].Phenology.MaturityDAS\nDays after sowing when maturity is reached\ndays after sowing\n\n\n[Wheat].Phenology.DoubleRidgePhotoperiod\nPhotoperiod at double ridge formation\nhours",
     "crumbs": [
       "Home",
       "Docs",
