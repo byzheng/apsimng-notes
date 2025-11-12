@@ -28,7 +28,7 @@ The model's approach combines mechanistic representation of developmental proces
 | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Developmental driver | Supplies current growth stage and timing of key developmental events. |
 | [thermalTime](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Internal driver | Calculates accumulated temperature used for leaf and stem development. |
 | [phyllochron](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Development timing | Thermal time interval between successive leaf appearances. |
-| [finalLeafNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture limit | Maximum number of leaves produced by the main stem. |
+| [finalLeafNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture limit | Final leaf number produced by the main stem. |
 | [heightModel](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Structural dimension | Function describing plant height progression with development. |
 | [branchingRate](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture complexity | Rate of branch initiation relative to main stem development. |
 | [branchMortality](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Stress response | Rate of branch mortality under environmental stress conditions. |
@@ -118,7 +118,10 @@ $$\Delta N_{tip} = \frac{TT}{Ph}$$
 The cumulative leaf number progresses according to:
 $$N_{tips}(t) = N_{emergence} + \sum_{i=emergence+1}^{t} \Delta N_{tip}$$
 
-where $N_{emergence}$ is the number of leaf tips at emergence which is determined by `TipsAtEmergence` property of the connected ILeaf model (e.g. 1 for wheat).
+where $N_{emergence}$ is the number of leaf tips at emergence which is determined by `TipsAtEmergence` property of the connected ILeaf model (e.g. 1 for wheat). $N_{tips}(t)$ is capped at the final leaf number of the main stem ($FLN$) provided by the `finalLeafNumber` property.
+
+When $N_{tips}(t)$ increments more than 1, a new leaf cohort is initialised. The `CohortToInitialise` property is incremented by 1 to indicate one extra leaf cohort, and the `AddLeafCohort` event is raised with the current leaf rank as a parameter. A new leaf tip also appears, see [Leaf Tip Appearance](#leaf-tip-appearance) for details.
+
 
 ### Branch Development Process
 
