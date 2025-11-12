@@ -104,7 +104,7 @@ When the phenological stage reaches `CohortInitialisationStage` (Germination in 
 
 ### At leaf initialisation stage
 
-When the phenological stage reaches `LeafInitialisationStage` (Emergence in default), the Structure model performs leaf cohort initialization.
+When the phenological stage reaches `LeafInitialisationStage` (Emergence in default), the Structure model performs [leaf cohort initialization](#leaf-initialisation).
 
 ### Leaf Appearance Calculation
 
@@ -116,11 +116,10 @@ The Structure model calculates daily leaf tip appearance ($\Delta N_{tip}$) base
 $$\Delta N_{tip} = \frac{TT}{Ph}$$
 
 The cumulative leaf number progresses according to:
-$$N_{tips}(t) = 1 + \sum_{i=emergence+1}^{t} \Delta N_{tip}$$
+$$N_{tips}(t) = N_{emergence} + \sum_{i=emergence+1}^{t} \Delta N_{tip}$$
 
-```{tex}
+where $N_{emergence}$ is the number of leaf tips at emergence which is determined by `TipsAtEmergence` property of the connected ILeaf model (e.g. 1 for wheat).
 
-```
 ### Branch Development Process
 
 Branch initiation follows main stem development with environmental modifications:
@@ -147,15 +146,16 @@ Where $M_{plant}$ is plant mortality proportion and $M_{branch}$ is branch morta
 
 ### Leaf Initialisation {#leaf-initialisation}
 
-Leaf cohort(s) are initialised when no leaf exists (e.g. at emergence or defoliation). The number of cohorts initialised is determined by the `CohortsAtInitialisation` property of the connected ILeaf model. `CohortToInitialise` property is set as `CohortsAtInitialisation` property.
+Leaf cohorts are initialised when no leaves exist (e.g., at emergence or following defoliation). The number of cohorts to initialise is determined by the `CohortsAtInitialisation` property of the connected ILeaf model, which sets the `CohortToInitialise` property.
 
-The number of appeared leaf cohorts or tips at initialisation is determined by the `TipsAtEmergence` property of the connected ILeaf model. At each leaf tip at emergence, a new leaf tip is [appeared](#leaf-tip-appearance). Then the `PotLeafTipsAppeared` and `CohortToInitialise` properties are incremented by 1, and the `AddLeafCohort` event with parameter of current leaf rank is raised.
+The number of leaf cohorts or tips that appear at initialisation is determined by the `TipsAtEmergence` property of the connected ILeaf model. For each leaf tip at emergence, a new leaf tip [appears](#leaf-tip-appearance). The `PotLeafTipsAppeared` and `CohortToInitialise` properties are then incremented by 1, and the `AddLeafCohort` event is raised with the current leaf rank as a parameter.
 
-In case of wheat, `CohortsAtInitialisation` is 2 and `TipsAtEmergence` is 1 by default. Therefore, at emergence, three leaf cohorts will be initialised and one leaf tip will appear. 
+For wheat, the default values are `CohortsAtInitialisation` = 2 and `TipsAtEmergence` = 1. Therefore, at emergence, three leaf cohorts will be initialised and one leaf tip will appear.
 
 ## Leaf Tip Appearance {#leaf-tip-appearance}
 
-At each leaf tip appearance, the `TipToAppear` property is incremented by 1, and the `LeafTipAppearance` event is raised with parameter current total stem population (`TotalStemPopn`), cohort age (i.e. 0), final fraction (i.e. `NextLeafProportion`, fraction for final leaf and 1 for other leaves).
+When each leaf tip appears, the `TipToAppear` property is incremented by 1, and the `LeafTipAppearance` event is raised with the following parameters: current total stem population (`TotalStemPopn`), cohort age (0), and final fraction (`NextLeafProportion` for the final leaf, 1 for all other leaves).
+
 
 ## User Interface
 
