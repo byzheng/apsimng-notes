@@ -1,5 +1,6 @@
 ---
 title: "ZadokPMFWheat"
+output: html_document
 ---
 
 
@@ -7,41 +8,93 @@ title: "ZadokPMFWheat"
 setup_qmd()
 ```
 
-The `ZadokPMFWheat` model calculates Zadoks growth stage values [@zadoks_decimal_1974] for [wheat](/docs/Plants/Wheat/Phenology/index.qmd) based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.
+The ZadokPMFWheat model calculates Zadoks growth stage values [@zadoks_decimal_1974] for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.
 
 ## Overview
 
-The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-100) used to describe the growth stages of cereal crops, particularly wheat. The `ZadokPMFWheat` model translates APSIM's internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology.
+The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM-NG's internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology and facilitating integration between modeling and field observations.
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+| Connected Component | Connection Type | Role in the Model | Description                                          |
+|----------------------|-----------------|------------------|------------------------------------------------------|
+| [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Developmental driver | Provides current growth phase, stage progression, and fraction completed within phases. |
+| [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Broader plant context | Supply plant is alive and today's DaysAfterSowing. |
+| [TillerNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Input function | Total number of tillers the plant will develop. |
+| [HaunStage](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Input function | The current Haun stage of the plant. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
 
 
+| Property | Type | Description |
+|----------|------|-------------|
+| TillerNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Total number of tillers the plant will develop. |
+| HaunStage | [IFunction](/docs/APSIM.Core/IFunction.qmd) | The current Haun stage of the plant. |
 
-## Inputs
+**Read-Only Reportable Properties**
 
-The following input functions are required by `ZadokPMFWheat`:
+| Property | Type | Description |
+|----------|------|-------------|
+| Stage | double | Current Zadok Stage value |
+| StageDAS | double | Days After Sowing for specific Zadok stage when it first occurs. Example usage is `StageDAS(51)`. |
 
-- `TillerNumber` — Total number of tillers the plant will develop.
-- `HaunStage` — The current Haun stage of the plant.
+## Events 
 
-## Methodology
+{{< include /includes/_events-intro.md >}}
 
-The `ZadokPMFWheat` model calculates the Zadoks growth stage ($Z$) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase:
+**Events Listened For**
 
-In **[Germinating](/docs/Plants/Wheat/Phenology/Germinating.qmd)**, Zadoks Stage ($Z$) is 5 times the fraction of the germination phase completed ($F(t)$):
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### Early Vegetative Development (Zadok 00-19)
+
+The ZadokPMFWheat model calculates the Zadoks growth stage ($Z$) based on the current phenological phase of the wheat plant. Different calculation methods are applied depending on the developmental phase.
+
+**Germinating Phase:**
+
+In [Germinating](/docs/Plants/Wheat/Phenology/Germinating.qmd), Zadoks Stage ($Z$) is 5 times the fraction of the germination phase completed ($F(t)$):
 
 $$
 Z = 5.0 \times F(t)
 $$
 
-In **[Emerging](/docs/Plants/Wheat/Phenology/Emerging.qmd)**, Zadoks Stage ($Z$) is calculated as 5 plus 5 times the fraction of the emergence phase completed ($F(t)$):
+**Emerging Phase:**
+
+In [Emerging](/docs/Plants/Wheat/Phenology/Emerging.qmd), Zadoks Stage ($Z$) is calculated as 5 plus 5 times the fraction of the emergence phase completed ($F(t)$):
+
 $$
 Z = 5.0 + (5.0 \times F(t))
 $$
 
-Before the phenological stage is less than 5.3 during [StemElongating](/docs/Plants/Wheat/Phenology/StemElongating.qmd) phase, Zadoks Stage ($Z$) is calculated as 10 plus the Haun stage value ($HS$):
+### Tillering and Stem Extension (Zadok 10-39)
+
+Before the phenological stage reaches 5.3 during [StemElongating](/docs/Plants/Wheat/Phenology/StemElongating.qmd) phase, Zadoks Stage ($Z$) is calculated as 10 plus the Haun stage value ($HS$):
 
 $$
 Z = 10.0 + HS
 $$
+
+### Reproductive Development (Zadok 30-90)
 
 After the phenological stage reaches 5.3, Zadoks Stage ($Z$) is determined through linear interpolation between predefined growth stages and their corresponding Zadok values:
 
@@ -84,31 +137,11 @@ ggplot(stage_data, aes(x = APSIM_Stage, y = Zadok_Stage)) +
     scale_y_continuous(breaks = stage_data$Zadok_Stage)
 ```
 
-At **HarvestRipe** stage, Zadok stage is fixed at 90.0:
-
-
-
-## Events 
-
-> No events are listened for by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-> No configurable properties are available for this function.
-
-**Read-Only Reportable Properties**
-
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| Stage     | double  | Zadok stage (Z) value                                                        |
+At HarvestRipe stage, Zadok stage is fixed at 90.0.
 
 ## User Interface
 
-> No user interface is provided for this function.
+ZadokPMFWheat can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for ZadokPMFWheat in the Filter Box.
 
 ## Practical Example
 
