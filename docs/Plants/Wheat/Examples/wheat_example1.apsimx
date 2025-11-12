@@ -1,6 +1,6 @@
 {
   "$type": "Models.Core.Simulations, Models",
-  "Version": 198,
+  "Version": 205,
   "Name": "Simulations",
   "ResourceName": null,
   "Children": [
@@ -167,8 +167,8 @@
                     "[Wheat].Phenology.CAMP.Params.ColdVrn1Fact",
                     "",
                     "",
-                    "",
-                    "[Wheat].Leaf.Fw"
+                    "[Wheat].Structure.PotLeafTipsAppeared",
+                    "[Wheat].Structure.CohortToInitialise"
                   ],
                   "EventNames": [
                     "[Clock].DoReport"
@@ -682,12 +682,6 @@
                 },
                 {
                   "$type": "Models.PMF.Plant, Models",
-                  "Phenology": null,
-                  "Arbitrator": null,
-                  "structure": null,
-                  "Leaf": null,
-                  "Root": null,
-                  "AboveGround": null,
                   "Name": "Wheat",
                   "ResourceName": "Wheat",
                   "Children": [],

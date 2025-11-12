@@ -1,0 +1,188 @@
+---
+title: "Structure"
+---
+
+The Structure model simulates morphological development of plants to coordinate leaf and branch appearance patterns within the Plant Modelling Framework (PMF). It provides temporal control over organ initiation and development, informing other components when and how many leaves and branches appear while estimating plant height progression throughout the growing season.
+
+## Overview
+
+The Structure model serves as the developmental coordinator for plant morphology, managing the temporal sequence of organ appearance and structural changes that define plant architecture. This model integrates thermal time accumulation with species-specific development patterns to simulate realistic leaf emergence, branch initiation, and height development. The Structure model operates as the central hub for morphological information, coordinating between phenological development and organ-specific growth processes.
+
+The model's approach combines mechanistic representation of developmental processes with empirical relationships that capture species-specific architectural patterns. It accounts for environmental influences on development timing through thermal time integration while maintaining biological realism in organ appearance sequences. The Structure model enables simulation of diverse plant architectures from simple annual crops to complex perennial systems with branching patterns.
+
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd): fundamental base class for all simulation components
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+| Connected Component | Connection Type | Role in the Model | Description                                          |
+|----------------------|-----------------|------------------|------------------------------------------------------|
+| [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Broader plant context | Provides structural and lifecycle information for the plant. |
+| [ILeaf](/docs/Models/Interfaces/ILeaf.qmd) | **First Available** | Organ-level interaction | Provides information on leaf cohort status, appearance, and expansion. |
+| [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Developmental driver | Supplies current growth stage and timing of key developmental events. |
+| [thermalTime](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Internal driver | Calculates accumulated temperature used for leaf and stem development. |
+| [phyllochron](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Development timing | Thermal time interval between successive leaf appearances. |
+| [finalLeafNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture limit | Maximum number of leaves produced by the main stem. |
+| [heightModel](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Structural dimension | Function describing plant height progression with development. |
+| [branchingRate](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture complexity | Rate of branch initiation relative to main stem development. |
+| [branchMortality](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Stress response | Rate of branch mortality under environmental stress conditions. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| CohortInitialisationStage | string | Phenological stage for initiating leaf cohorts (default: "Germination") |
+| LeafInitialisationStage | string | Phenological stage for beginning leaf appearance (default: "Emergence") |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| PrimaryBudNo | double | Number of primary buds per plant |
+| TotalStemPopn | double | Total stem population including branches (/m²) |
+| MainStemPopn | double | Population density of main stems (/m²) |
+| PotLeafTipsAppeared | double | Potential leaf tips based on thermal time accumulation |
+| LeafTipsAppeared | double | Number of main stem leaf tips that have appeared |
+| PlantTotalNodeNo | double | Total node number including main stem and branches |
+| BranchNumber | double | Average number of branches per plant |
+| Height | double | Current plant height (mm) |
+| RemainingNodeNo | double | Number of leaves yet to appear |
+| RelativeNodeApperance | double | Relative progress toward final leaf (0-1) |
+| DeltaHaunStage | double | Daily increment in Haun stage |
+| DeltaTipNumber | double | Daily increment in tip appearance |
+| NextLeafProportion | double | Proportion of next leaf cohort, 1 for all leaves except the last leaf which simulate the proportion of final leaf in the population scale |
+| AllLeavesAppeared | bool | Flag indicating all leaves have appeared |
+| TimeForAnotherLeaf | bool | Flag indicating conditions for next leaf appearance |
+| ProportionBranchMortality | double | Proportion of branch mortality |
+| ProportionPlantMortality | double | Proportion of plant mortality |
+| TotalLeavesPerShoot | double | Total number of leaves per shoot |
+
+
+## Events
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+
+| Event | Purpose |
+|-------|---------|
+| [Commencing](/docs/Models/Events.html#Commencing) | Initialize structural parameters and clear previous state |
+| [StartOfDay](/docs/Models/Events.html#StartOfDay) | Reset daily population change tracking |
+| [DoDailyInitialisation](/docs/Models/Events.html#DoDailyInitialisation) | Set initial leaf appearance at emergence |
+| [DoPotentialPlantGrowth](/docs/Models/Events.html#DoPotentialPlantGrowth) | Calculate daily structural development and organ appearance |
+| [DoActualPlantPartioning](/docs/Models/Events.html#DoActualPlantPartioning) | Update total plant node numbers from organ feedback |
+| [PhaseChanged](/docs/Models/Events.html#PhaseChanged) | Trigger cohort initialization and leaf appearance sequences |
+| [PlantSowing](/docs/Models/Events.html#PlantSowing) | Initialize structural parameters from sowing data |
+| [PlantEnding](/docs/Models/Events.html#PlantEnding) | Reset structural state at crop termination |
+
+**Events Raised**
+
+| Event | Purpose |
+|-------|---------|
+| InitialiseLeafCohorts | Signal leaf model to prepare cohort structures |
+| AddLeafCohort | Initiate new leaf cohort with specific parameters |
+| LeafTipAppearance | Trigger appearance of leaf tip with population data |
+
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### At cohort initialisation stage
+
+When the phenological stage reaches `CohortInitialisationStage` (Germination in default), the Structure model raises the `InitialiseLeafCohorts` event to notify other models.
+
+### At leaf initialisation stage
+
+When the phenological stage reaches `LeafInitialisationStage` (Emergence in default), the Structure model performs leaf cohort initialization.
+
+### Leaf Appearance Calculation
+
+
+At stage `Emergence`, the Structure model initializes ONE appeared leaf tip (i.e. `LeafTipsAppeared = 1.0`).
+
+The Structure model calculates daily leaf tip appearance ($\Delta N_{tip}$) based on daily thermal time ($TT$) and phyllochron ($Ph$) after leaf inilisation stage `Emergence`, but not increment on the day of emergence:
+
+$$\Delta N_{tip} = \frac{TT}{Ph}$$
+
+The cumulative leaf number progresses according to:
+$$N_{tips}(t) = 1 + \sum_{i=emergence+1}^{t} \Delta N_{tip}$$
+
+```{tex}
+
+```
+### Branch Development Process
+
+Branch initiation follows main stem development with environmental modifications:
+$$N_{branches}(t) = N_{branches}(t-1) + BR \times N_{mainstem}$$
+
+Where $BR$ is the branching rate function value.
+
+Total stem population integrates main stem and branch contributions:
+$$P_{total} = P_{plant} \times N_{buds} + \sum_{i=1}^{t} BR_i \times P_{mainstem}$$
+
+### Final Leaf Proportion Management
+
+For the final leaf cohort when all cohorts are initialized:
+$$f_{final} = \max(10^{-10}, 1 - (N_{initialized} - FLN))$$
+
+This ensures biological realism when final leaf number is non-integer.
+
+### Mortality Integration
+
+The model accounts for both plant-level and branch-specific mortality:
+$$P_{total}(t+1) = P_{total}(t) - M_{plant} \times P_{total}(t) - M_{branch} \times P_{branch}(t)$$
+
+Where $M_{plant}$ is plant mortality proportion and $M_{branch}$ is branch mortality rate.
+
+### Leaf Initialisation {#leaf-initialisation}
+
+Leaf cohort(s) are initialised when no leaf exists (e.g. at emergence or defoliation). The number of cohorts initialised is determined by the `CohortsAtInitialisation` property of the connected ILeaf model. `CohortToInitialise` property is set as `CohortsAtInitialisation` property.
+
+The number of appeared leaf cohorts or tips at initialisation is determined by the `TipsAtEmergence` property of the connected ILeaf model. At each leaf tip at emergence, a new leaf tip is [appeared](#leaf-tip-appearance). Then the `PotLeafTipsAppeared` and `CohortToInitialise` properties are incremented by 1, and the `AddLeafCohort` event with parameter of current leaf rank is raised.
+
+In case of wheat, `CohortsAtInitialisation` is 2 and `TipsAtEmergence` is 1 by default. Therefore, at emergence, three leaf cohorts will be initialised and one leaf tip will appear. 
+
+## Leaf Tip Appearance {#leaf-tip-appearance}
+
+At each leaf tip appearance, the `TipToAppear` property is incremented by 1, and the `LeafTipAppearance` event is raised with parameter current total stem population (`TotalStemPopn`), cohort age (i.e. 0), final fraction (i.e. `NextLeafProportion`, fraction for final leaf and 1 for other leaves).
+
+## User Interface
+
+Structure can be added as a child of a Plant node in the model tree. Right-click the Plant node, select "Add Model...", and search for Structure in the Filter Box.
+
+## Practical Example
+
+Consider wheat development under different thermal environments:
+
+**Cool Environment (slow development):**
+- Daily thermal time: 8°C·d
+- Phyllochron: 95°C·d  
+- Time between leaves: 95/8 = 11.9 days
+- Final leaf number: 12 leaves
+- Total leaf appearance duration: ~143 days
+
+**Warm Environment (rapid development):**
+- Daily thermal time: 15°C·d
+- Phyllochron: 95°C·d
+- Time between leaves: 95/15 = 6.3 days  
+- Final leaf number: 12 leaves
+- Total leaf appearance duration: ~76 days
+
+The Structure model automatically adjusts leaf appearance timing based on thermal accumulation while maintaining species-specific architectural patterns. Branch development follows similar thermal-driven patterns, with branching rates potentially modified by environmental stress through the branchingRate function.
+
+This thermal integration enables realistic simulation of development plasticity, where the same genotype expresses different temporal patterns under varying environmental conditions while maintaining consistent final architecture.
+
+## See Also
+
+* **Source code:** [Structure.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Structure/Structure.cs)
