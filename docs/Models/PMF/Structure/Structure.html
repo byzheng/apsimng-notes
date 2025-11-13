@@ -1181,65 +1181,65 @@ These connections allow the model to exchange information—such as environmenta
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Connected Component</th>
+<th>Component</th>
+<th>Model</th>
 <th>Connection Type</th>
-<th>Role in the Model</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td>Plant</td>
 <td><a href="../../../../docs/Models/PMF/Plant.html" class="model-link">Plant</a></td>
 <td><strong>First Available</strong></td>
-<td>Broader plant context</td>
 <td>Provides structural and lifecycle information for the plant.</td>
 </tr>
 <tr class="even">
+<td>Leaf</td>
 <td><a href="../../../../docs/Models/Interfaces/ILeaf.html" class="model-link">ILeaf</a></td>
 <td><strong>First Available</strong></td>
-<td>Organ-level interaction</td>
 <td>Provides information on leaf cohort status, appearance, and expansion.</td>
 </tr>
 <tr class="odd">
+<td>Phenology</td>
 <td><a href="../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a></td>
 <td><strong>First Available</strong></td>
-<td>Developmental driver</td>
 <td>Supplies current growth stage and timing of key developmental events.</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">thermalTime</a></td>
+<td>thermalTime</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Internal driver</td>
 <td>Calculates accumulated temperature used for leaf and stem development.</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">phyllochron</a></td>
+<td>phyllochron</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Development timing</td>
 <td>Thermal time interval between successive leaf appearances.</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">finalLeafNumber</a></td>
+<td>finalLeafNumber</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Architecture limit</td>
 <td>Final leaf number produced by the main stem.</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">heightModel</a></td>
+<td>heightModel</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Structural dimension</td>
 <td>Function describing plant height progression with development.</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">branchingRate</a></td>
+<td>branchingRate</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Architecture complexity</td>
 <td>Rate of branch initiation relative to main stem development.</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">branchMortality</a></td>
+<td>branchMortality</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
 <td><strong>Child Connection</strong></td>
-<td>Stress response</td>
 <td>Rate of branch mortality under environmental stress conditions.</td>
 </tr>
 </tbody>
