@@ -3905,7 +3905,49 @@
     "href": "docs/Models/Functions/AddFunction.html#overview",
     "title": "AddFunction",
     "section": "Overview",
-    "text": "Overview\nThe AddFunction is used to sum up multiple values for a mathematical equation. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "text": "Overview\nThe AddFunction is used to sum up multiple values for a mathematical equation. It summarises values of all children functions (i.e. IFunction) and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AddFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#model-structure",
+    "href": "docs/Models/Functions/AddFunction.html#model-structure",
+    "title": "AddFunction",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction\nIStructureDependency",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AddFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/AddFunction.html#connections-to-other-components",
+    "title": "AddFunction",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nAll child functions whose values are summed together.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AddFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AddFunction.html#model-variables",
+    "href": "docs/Models/Functions/AddFunction.html#model-variables",
+    "title": "AddFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3919,7 +3961,7 @@
     "href": "docs/Models/Functions/AddFunction.html#events",
     "title": "AddFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\n\nNo events are listened or raisedby this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3929,11 +3971,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AddFunction.html#properties",
-    "href": "docs/Models/Functions/AddFunction.html#properties",
+    "objectID": "docs/Models/Functions/AddFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/AddFunction.html#processes-and-algorithms",
     "title": "AddFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\nThe AddFunction implements a simple summation algorithm that iterates through all child functions and accumulates their values:\n\\[\nV_{\\text{total}} = \\sum_{i=1}^{n} V_i\n\\]\nwhere \\(V_{\\text{total}}\\) is the total sum, \\(V_i\\) is the value of the \\(i\\)-th child function, and \\(n\\) is the number of child functions.\nThe algorithm:\n\nLocates all child functions that implement the IFunction interface\nIterates through each child function\nCalls the Value method on each child function\nAccumulates the returned values\nReturns the total sum\n\nThis allows for flexible composition of complex calculations by combining multiple simpler functions hierarchically.\nThis allows for flexible composition of complex calculations by combining multiple simpler functions hierarchically.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3947,7 +3989,7 @@
     "href": "docs/Models/Functions/AddFunction.html#user-interface",
     "title": "AddFunction",
     "section": "User Interface",
-    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search Addfunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nAddFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search AddFunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4263,6 +4305,58 @@
     ]
   },
   {
+    "objectID": "docs/APSIM.Core/IStructure.html",
+    "href": "docs/APSIM.Core/IStructure.html",
+    "title": "IStructure",
+    "section": "",
+    "text": "The IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#overview",
+    "href": "docs/APSIM.Core/IStructure.html#overview",
+    "title": "IStructure",
+    "section": "Overview",
+    "text": "Overview\nThe IStructure interface is the backbone of APSIM-NG’s component architecture, providing a comprehensive set of methods for navigating and manipulating the hierarchical model tree. This interface abstracts the complexity of the model tree structure, offering intuitive methods for finding child models, parent models, siblings, and models in scope. It also provides powerful locator functionality for accessing model properties and variables using path-based notation, similar to file system navigation.\nModels receive an IStructure instance through dependency injection (via IStructureDependency), which grants them the ability to dynamically discover and interact with other components without hard-coded dependencies. This design enables flexible model composition, where complex behaviors emerge from simple, loosely-coupled components working together through the structure system.\nThe interface supports both direct tree navigation (parent-child-sibling relationships) and scope-based discovery (finding models according to APSIM-NG’s scoping rules), making it suitable for both simple component access and complex cross-model interactions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#model-variables",
+    "href": "docs/APSIM.Core/IStructure.html#model-variables",
+    "title": "IStructure",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFileName\nstring\nThe file name associated with the structure.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nName\nstring\nThe name of the current model node.\n\n\nFullNameAndPath\nstring\nThe complete path from root to the current node.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#see-also",
+    "href": "docs/APSIM.Core/IStructure.html#see-also",
+    "title": "IStructure",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IStructure.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
     "objectID": "disclaimer.html",
     "href": "disclaimer.html",
     "title": "Disclaimer",
@@ -4354,6 +4448,45 @@
       "Docs",
       "APSIM.Core",
       "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html",
+    "href": "docs/APSIM.Core/IStructureDependency.html",
+    "title": "IStructureDependency",
+    "section": "",
+    "text": "The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html#overview",
+    "href": "docs/APSIM.Core/IStructureDependency.html#overview",
+    "title": "IStructureDependency",
+    "section": "Overview",
+    "text": "Overview\nThe IStructureDependency interface is a fundamental component of APSIM-NG’s dependency injection system. It provides a standardized mechanism for models to receive an IStructure instance, which grants access to the simulation’s hierarchical model tree. This interface is essential for models that need to dynamically locate and interact with other components in the simulation, such as finding child functions, accessing sibling models, or navigating the parent-child relationships within the plant model structure.\nModels implementing this interface receive the Structure property automatically populated by the APSIM.Core framework during initialization, eliminating the need for manual dependency wiring and enabling clean, maintainable code.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html#see-also",
+    "href": "docs/APSIM.Core/IStructureDependency.html#see-also",
+    "title": "IStructureDependency",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IStructureDependency.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
     ]
   },
   {

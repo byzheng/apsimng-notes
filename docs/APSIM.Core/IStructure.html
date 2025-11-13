@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Connections Between Models – APSIM NG Notes</title>
+<title>IStructure – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -175,7 +175,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../docs/Models/Connections.html">Connections Between Models</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/APSIM.Core/IFunction.html">APSIM.Core</a></li><li class="breadcrumb-item"><a href="../../docs/APSIM.Core/IStructure.html">IStructure</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -210,13 +210,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">APSIM.Core</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/APSIM.Core/IFunction.html" class="sidebar-item-text sidebar-link">
@@ -225,7 +225,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/APSIM.Core/IStructure.html" class="sidebar-item-text sidebar-link">
+  <a href="../../docs/APSIM.Core/IStructure.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">IStructure</span></a>
   </div>
 </li>
@@ -241,11 +241,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../docs/Models/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Models</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
@@ -254,7 +254,7 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../docs/Models/Connections.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../docs/Models/Connections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Connections Between Models</span></a>
   </div>
 </li>
@@ -1105,21 +1105,17 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#purpose-of-links" id="toc-purpose-of-links" class="nav-link" data-scroll-target="#purpose-of-links">Purpose of Links</a></li>
-  <li><a href="#types-of-connections" id="toc-types-of-connections" class="nav-link" data-scroll-target="#types-of-connections">Types of Connections</a></li>
-  <li><a href="#example-connections-in-a-plant-structure-model" id="toc-example-connections-in-a-plant-structure-model" class="nav-link" data-scroll-target="#example-connections-in-a-plant-structure-model">Example: Connections in a Plant Structure Model</a></li>
-  <li><a href="#conceptual-view" id="toc-conceptual-view" class="nav-link" data-scroll-target="#conceptual-view">Conceptual View</a></li>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">Why This Matters</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Connections.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/APSIM.Core/IStructure.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/Models/index.html">Models</a></li><li class="breadcrumb-item"><a href="../../docs/Models/Connections.html">Connections Between Models</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../docs/index.html">Docs</a></li><li class="breadcrumb-item"><a href="../../docs/APSIM.Core/IFunction.html">APSIM.Core</a></li><li class="breadcrumb-item"><a href="../../docs/APSIM.Core/IStructure.html">IStructure</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Connections Between Models</h1>
+<h1 class="title">IStructure</h1>
 </div>
 
 
@@ -1136,175 +1132,67 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>In APSIM Next Generation, models interact through a structured system of <strong>connections</strong>, allowing one model to access information or functionality provided by another.</p>
-<p>These connections are established through <em>Links</em> (i.e.&nbsp;<code>[Link]</code> in the source code), which define <strong>how models communicate and exchange biological or physical information</strong> within a simulation.</p>
+<p>The IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In biological or physical terms, a <em>Link</em> represents a <strong>relationship</strong> or <strong>dependency</strong> between two parts of the simulation.</p>
-<p>For example, a <em>Leaf</em> model depends on information from the <em>Phenology</em> model to know when new leaves should appear, or from the <em>Plant</em> model to understand the overall plant state.</p>
-<p>These relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.</p>
+<p>The IStructure interface is the backbone of APSIM-NG’s component architecture, providing a comprehensive set of methods for navigating and manipulating the hierarchical model tree. This interface abstracts the complexity of the model tree structure, offering intuitive methods for finding child models, parent models, siblings, and models in scope. It also provides powerful locator functionality for accessing model properties and variables using path-based notation, similar to file system navigation.</p>
+<p>Models receive an IStructure instance through dependency injection (via IStructureDependency), which grants them the ability to dynamically discover and interact with other components without hard-coded dependencies. This design enables flexible model composition, where complex behaviors emerge from simple, loosely-coupled components working together through the structure system.</p>
+<p>The interface supports both direct tree navigation (parent-child-sibling relationships) and scope-based discovery (finding models according to APSIM-NG’s scoping rules), making it suitable for both simple component access and complex cross-model interactions.</p>
 </section>
-<section id="purpose-of-links" class="level2">
-<h2 class="anchored" data-anchor-id="purpose-of-links">Purpose of Links</h2>
-<p>Links serve several key purposes in APSIM NG:</p>
-<ul>
-<li><strong>Integration of biological processes</strong> — e.g., linking photosynthesis with canopy development.<br>
-</li>
-<li><strong>Re-use of common models</strong> — e.g., several organs may link to the same <em>Thermal Time</em> module.<br>
-</li>
-<li><strong>Hierarchical organization</strong> — e.g., a <em>Plant</em> contains <em>Leaf</em>, <em>Stem</em>, and <em>Root</em> components that interact through internal connections.<br>
-</li>
-<li><strong>Parameter sharing</strong> — e.g., a <em>Structure</em> model accessing <em>FinalLeafNumber</em> from a function defined elsewhere.</li>
-</ul>
-</section>
-<section id="types-of-connections" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-connections">Types of Connections</h2>
-<p>Different kinds of connections define <em>how</em> APSIM NG searches for and establishes relationships between models.<br>
-These can be understood as different <strong>biological or structural scopes</strong>:</p>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FileName</td>
+<td>string</td>
+<td>The file name associated with the structure.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 27%">
+<col style="width: 34%">
 <col style="width: 20%">
-<col style="width: 30%">
-<col style="width: 21%">
+<col style="width: 44%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Connection Type</th>
-<th>Description</th>
-<th>Scientific Analogy</th>
-<th>Typical Use</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>First Available</strong></td>
-<td>Searches upward or outward in the model hierarchy until a matching model is found.</td>
-<td>A plant organ seeking information from its parent plant system.</td>
-<td>Most common; used for high-level interactions such as organ ↔︎ plant communication.</td>
-</tr>
-<tr class="even">
-<td><strong>Child Connection</strong></td>
-<td>Connects directly to a component located <em>within</em> the same model.</td>
-<td>An internal process within the same organ (e.g., leaf temperature model within Leaf).</td>
-<td>Used for tightly coupled sub-processes or response functions.</td>
-</tr>
-<tr class="odd">
-<td><strong>Named Connection</strong></td>
-<td>Connects to a model explicitly identified by name.</td>
-<td>Targeted reference to a specific process or dataset.</td>
-<td>Used when multiple similar models exist (e.g., several temperature response functions).</td>
-</tr>
-</tbody>
-</table>
-<blockquote class="blockquote">
-<p>These types correspond to APSIM’s internal connection logic (e.g., <em>By first appearance</em>, <em>Child</em>, <em>By name</em>), but are presented here in biological terms for clarity.</p>
-</blockquote>
-</section>
-<section id="example-connections-in-a-plant-structure-model" class="level2">
-<h2 class="anchored" data-anchor-id="example-connections-in-a-plant-structure-model">Example: Connections in a Plant Structure Model</h2>
-<p>Below is connections used in the <a href="../../docs/Models/PMF/Structure/Structure.html" class="model-link"><strong>Structure</strong> model</a>.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 31%">
-<col style="width: 24%">
-<col style="width: 25%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Connected Component</th>
-<th>Connection Type</th>
-<th>Role in the Model</th>
+<th>Property</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Plant</td>
-<td><strong>First Available</strong></td>
-<td>Broader plant context</td>
-<td>Provides structural and lifecycle information for the plant.</td>
+<td>Name</td>
+<td>string</td>
+<td>The name of the current model node.</td>
 </tr>
 <tr class="even">
-<td>Phenology</td>
-<td><strong>First Available</strong></td>
-<td>Developmental driver</td>
-<td>Supplies current growth stage and timing of key events.</td>
-</tr>
-<tr class="odd">
-<td>Leaf</td>
-<td><strong>First Available</strong></td>
-<td>Organ-level interaction</td>
-<td>Provides information on leaf area, appearance, and expansion.</td>
-</tr>
-<tr class="even">
-<td>ThermalTime</td>
-<td><strong>Child Connection</strong></td>
-<td>Internal driver</td>
-<td>Calculates accumulated temperature used for leaf and stem development.</td>
-</tr>
-<tr class="odd">
-<td>Phyllochron</td>
-<td><strong>Child Connection</strong></td>
-<td>Internal driver</td>
-<td>Defines the thermal interval between successive leaf appearances.</td>
-</tr>
-<tr class="even">
-<td>FinalLeafNumber</td>
-<td><strong>Child Connection</strong></td>
-<td>Genotypic parameter</td>
-<td>Determines the maximum number of leaves for this genotype.</td>
-</tr>
-<tr class="odd">
-<td>HeightModel</td>
-<td><strong>Child Connection</strong></td>
-<td>Structural process</td>
-<td>Computes plant height as a function of temperature and development.</td>
-</tr>
-<tr class="even">
-<td>BranchingRate</td>
-<td><strong>Child Connection</strong></td>
-<td>Growth process</td>
-<td>Determines the rate of new branch initiation.</td>
-</tr>
-<tr class="odd">
-<td>BranchMortality</td>
-<td><strong>Child Connection</strong></td>
-<td>Senescence process</td>
-<td>Determines the rate at which branches die or are lost.</td>
+<td>FullNameAndPath</td>
+<td>string</td>
+<td>The complete path from root to the current node.</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="conceptual-view" class="level2">
-<h2 class="anchored" data-anchor-id="conceptual-view">Conceptual View</h2>
-<p>In a simulation, these connections can be visualized as information pathways:</p>
-<pre><code>Plant
-├── Phenology
-├── Structure
-│ ├── ThermalTime
-│ ├── Phyllochron
-│ ├── FinalLeafNumber
-│ └── HeightModel
-└── Leaf</code></pre>
-<p>Each arrow represents a <em>Link</em>, enabling data flow from one model to another — ensuring biological realism and modular consistency.</p>
-</section>
-<section id="why-this-matters" class="level2">
-<h2 class="anchored" data-anchor-id="why-this-matters">Why This Matters</h2>
-<p>Understanding <em>Links</em> helps scientists interpret model behavior correctly:</p>
-<ul>
-<li>When a model outputs or responds to a variable, that information may originate from another connected model.<br>
-</li>
-<li>Adding or removing sub-models (e.g., replacing one <em>ThermalTime</em> with another) changes biological relationships.<br>
-</li>
-<li>Proper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.</li>
-</ul>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><a href="../../docs/Models/PMF/Structure/Structure.html" class="model-link">Structure Model</a></li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/IStructure.cs" class="external-link">IStructure.cs on GitHub</a></li>
 </ul>
 
 
@@ -1730,7 +1618,7 @@ These can be understood as different <strong>biological or structural scopes</st
 </a>
   </li>  
 </ul>
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/Connections.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/APSIM.Core/IStructure.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
