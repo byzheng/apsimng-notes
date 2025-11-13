@@ -20,8 +20,10 @@ The BBCH system divides crop development into 10 principal growth stages (0-9), 
 ## Connections to Other Components
 
 {{< include /includes/_connections-intro.md >}}
-| Connected Component | Model | Connection Type | Description                                          |
-|---------------------|-------|-----------------|------------------------------------------------------|
+
+
+| Component     | Model         | Connection Type | Description                                          |
+|:--------------|:--------------|:----------------|:-----------------------------------------------------|
 | Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Provides current growth phase, stage progression, and fraction completed within phases. |
 | Leaf | [Leaf](/docs/Models/PMF/Organs/Leaf.qmd) | **First Available** | Supplies leaf appearance, expansion, and cohort data for calculating vegetative stages. |
 | Structure | [Structure](/docs/Models/PMF/Structure/Structure.qmd) | **First Available** | Provides final leaf number and structural development parameters. |
