@@ -1,0 +1,37 @@
+---
+title: "IStructure"
+output: html_document
+---
+
+The IStructure interface provides the core navigation and manipulation system for APSIM-NG's hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.
+
+## Overview
+
+The IStructure interface is the backbone of APSIM-NG's component architecture, providing a comprehensive set of methods for navigating and manipulating the hierarchical model tree. This interface abstracts the complexity of the model tree structure, offering intuitive methods for finding child models, parent models, siblings, and models in scope. It also provides powerful locator functionality for accessing model properties and variables using path-based notation, similar to file system navigation.
+
+Models receive an IStructure instance through dependency injection (via IStructureDependency), which grants them the ability to dynamically discover and interact with other components without hard-coded dependencies. This design enables flexible model composition, where complex behaviors emerge from simple, loosely-coupled components working together through the structure system.
+
+The interface supports both direct tree navigation (parent-child-sibling relationships) and scope-based discovery (finding models according to APSIM-NG's scoping rules), making it suitable for both simple component access and complex cross-model interactions.
+
+
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| FileName | string | The file name associated with the structure. |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Name | string | The name of the current model node. |
+| FullNameAndPath | string | The complete path from root to the current node. |
+
+## See Also
+
+* **Source code:** [IStructure.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/IStructure.cs)

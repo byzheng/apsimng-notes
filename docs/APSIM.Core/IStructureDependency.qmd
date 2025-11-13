@@ -1,0 +1,16 @@
+---
+title: "IStructureDependency"
+output: html_document
+---
+
+The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.
+
+## Overview
+
+The IStructureDependency interface is a fundamental component of APSIM-NG's dependency injection system. It provides a standardized mechanism for models to receive an IStructure instance, which grants access to the simulation's hierarchical model tree. This interface is essential for models that need to dynamically locate and interact with other components in the simulation, such as finding child functions, accessing sibling models, or navigating the parent-child relationships within the plant model structure.
+
+Models implementing this interface receive the Structure property automatically populated by the APSIM.Core framework during initialization, eliminating the need for manual dependency wiring and enabling clean, maintainable code.
+
+## See Also
+
+* **Source code:** [IStructureDependency.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/IStructureDependency.cs)
