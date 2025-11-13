@@ -21,17 +21,17 @@ The model's approach combines mechanistic representation of developmental proces
 
 {{< include /includes/_connections-intro.md >}}
 
-| Connected Component | Connection Type | Role in the Model | Description                                          |
-|----------------------|-----------------|------------------|------------------------------------------------------|
-| [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Broader plant context | Provides structural and lifecycle information for the plant. |
-| [ILeaf](/docs/Models/Interfaces/ILeaf.qmd) | **First Available** | Organ-level interaction | Provides information on leaf cohort status, appearance, and expansion. |
-| [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Developmental driver | Supplies current growth stage and timing of key developmental events. |
-| [thermalTime](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Internal driver | Calculates accumulated temperature used for leaf and stem development. |
-| [phyllochron](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Development timing | Thermal time interval between successive leaf appearances. |
-| [finalLeafNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture limit | Final leaf number produced by the main stem. |
-| [heightModel](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Structural dimension | Function describing plant height progression with development. |
-| [branchingRate](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Architecture complexity | Rate of branch initiation relative to main stem development. |
-| [branchMortality](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Stress response | Rate of branch mortality under environmental stress conditions. |
+| Component | Model | Connection Type | Description                                          |
+|----------------------|-------|-----------------|------------------------------------------------------|
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Provides structural and lifecycle information for the plant. |
+| Leaf | [ILeaf](/docs/Models/Interfaces/ILeaf.qmd) | **First Available** | Provides information on leaf cohort status, appearance, and expansion. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Supplies current growth stage and timing of key developmental events. |
+| thermalTime | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Calculates accumulated temperature used for leaf and stem development. |
+| phyllochron | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Thermal time interval between successive leaf appearances. |
+| finalLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Final leaf number produced by the main stem. |
+| heightModel | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Function describing plant height progression with development. |
+| branchingRate | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Rate of branch initiation relative to main stem development. |
+| branchMortality | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Rate of branch mortality under environmental stress conditions. |
 
 ## Model Variables
 

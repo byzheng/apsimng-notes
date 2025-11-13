@@ -24,12 +24,12 @@ The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to des
 
 {{< include /includes/_connections-intro.md >}}
 
-| Connected Component | Connection Type | Role in the Model | Description                                          |
-|----------------------|-----------------|------------------|------------------------------------------------------|
-| [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Developmental driver | Provides current growth phase, stage progression, and fraction completed within phases. |
-| [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Broader plant context | Supply plant is alive and today's DaysAfterSowing. |
-| [TillerNumber](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Input function | Total number of tillers the plant will develop. |
-| [HaunStage](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Input function | The current Haun stage of the plant. |
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Provides current growth phase, stage progression, and fraction completed within phases. |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Supply plant is alive and today's DaysAfterSowing. |
+| TillerNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Total number of tillers the plant will develop. |
+| HaunStage | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | The current Haun stage of the plant. |
 
 ## Model Variables
 
