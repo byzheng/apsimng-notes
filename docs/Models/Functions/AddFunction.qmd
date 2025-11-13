@@ -3,30 +3,31 @@ title: "AddFunction"
 output: html_document
 ---
 
-The `AddFunction` is a utility function that returns the **sum of values** from all of its child functions.
-
+The AddFunction is a utility function that returns the **sum of values** from all of its child functions.
 
 ## Overview
 
-The `AddFunction` is used to sum up multiple values for a mathematical equation. It summarises values of all children functions and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models. 
+The AddFunction is used to sum up multiple values for a mathematical equation. It summarises values of all children functions (i.e. [IFunction](/docs/APSIM.Core/IFunction.qmd)) and returns the total sum. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.
 
+## Model Structure
 
+{{< include /includes/_model-structure-intro.md >}}
 
-## Events 
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
+## Connections to Other Components
 
-**Events Listened For**
+{{< include /includes/_connections-intro.md >}}
 
-> No events are listened for by this function.
+| Component | Connection Type | Description |
+|-----------|-----------------|-------------|
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | All child functions whose values are summed together. |
 
+## Model Variables
 
-**Events Raised to**
-
-> No events are raised by this function.
-
-
-## Properties
-
+{{< include /includes/_model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -34,15 +35,49 @@ The `AddFunction` is used to sum up multiple values for a mathematical equation.
 
 **Read-Only Reportable Properties**
 
-> No read-only reportable properties are available for this function.
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
 
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+
+> No events are listened or raisedby this function.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+
+The AddFunction implements a simple summation algorithm that iterates through all child functions and accumulates their values:
+
+$$
+V_{\text{total}} = \sum_{i=1}^{n} V_i
+$$
+
+where $V_{\text{total}}$ is the total sum, $V_i$ is the value of the $i$-th child function, and $n$ is the number of child functions.
+
+The algorithm:
+
+1. Locates all child functions that implement the IFunction interface
+2. Iterates through each child function
+3. Calls the Value method on each child function
+4. Accumulates the returned values
+5. Returns the total sum
+
+This allows for flexible composition of complex calculations by combining multiple simpler functions hierarchically.
+
+
+This allows for flexible composition of complex calculations by combining multiple simpler functions hierarchically.
 
 ## User Interface
 
-`AddFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `Addfunction` in the Filter Box. A symbol for the `AddFunction` is displayed in the user interface to represent the function.
+AddFunction can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search AddFunction in the Filter Box. A symbol for the AddFunction is displayed in the user interface to represent the function.
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/AddFunction.png){ width=64px }
-
 
 ## Practical Example
 
@@ -52,9 +87,7 @@ $$
 TT = ShootLag + (SowingDepth \times ShootRate)
 $$
 
-The `AddFunction` is used to sum these two values to get the total target thermal time in the equation above.
-
-
+The AddFunction is used to sum these two values to get the total target thermal time in the equation above.
 
 ## See Also
 
