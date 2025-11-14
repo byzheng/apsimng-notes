@@ -3,71 +3,55 @@ title: "Constant"
 output: html_document
 ---
 
-The `Constant` function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM Next Gen.
+The Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM-NG.
 
 ## Overview
 
 This function provides a simple way to input a value that does not change over time. It can be added wherever a numerical input is required and does not depend on environmental conditions, crop stage, or other simulation variables.
 
-In APSIM NG, `Constant` is widely used as a basic building block within more complex functions, or to define cultivar-specific constants (e.g., base temperature = 0 °C, leaf width = 10 mm).
+In APSIM-NG, Constant is widely used as a basic building block within more complex functions, or to define cultivar-specific constants (e.g., base temperature = 0 °C, leaf width = 10 mm). It implements the IFunction interface, making it compatible with any APSIM component that accepts functions as inputs.
 
-## Inputs
+## Model Structure
 
-- `FixedValue`: The constant numerical value returned.
-- `Units` (optional): The units associated with the value (e.g., °C, mm/day).
+{{< include /includes/_model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
-This function always returns the same value, specified by the user in the `FixedValue` property. It does not depend on any conditions or crop stages.
+## Model Variables
 
-Mathematically:
-$$
-\text{Value} = \text{FixedValue}
-$$
-
-It implements the `IFunction` interface, making it compatible with any APSIM component that accepts functions as inputs.
-
-## Events
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
+{{< include /includes/_model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
-| Property     | Type    | Description                              |
-|--------------|---------|------------------------------------------|
-| FixedValue   | double  | The constant value to return             |
-| Units        | string  | Optional units associated with the value |
+| Property | Type | Description |
+|----------|------|-------------|
+| FixedValue | double | The constant value to return |
+| Units | string | Optional units associated with the value |
 
 **Read-Only Reportable Properties**
 
-> No read-only properties are available for this function.
+| Property | Type | Description |
+|----------|------|-------------|
+| Value | double | The constant value returned by the function |
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+
+This function always returns the same value, specified by the user in the FixedValue property. It does not depend on any conditions or crop stages.
+
 
 ## User Interface
 
-`Constant` can be added as a child of any function-based node (e.g., `PhaseLookupValue`, `MultiplyFunction`, `AddFunction`) in the model tree. To use:
+Constant can be added as a child of any function-based node (e.g., PhaseLookupValue, MultiplyFunction, AddFunction) in the model tree. To use:
 
 1. Right-click the parent node.
 2. Select "Add Model...".
 3. Search for "Constant" and select it.
 4. Enter the desired numeric value and optional units.
 
-## Practical Example
-
-To define a base temperature of 0 °C used in a thermal time calculation:
-
-- Add a `Constant` function under a `ThermalTime` node.
-- Set `FixedValue` to `0.0`
-- Set `Units` to `°C`
-
-This constant will now serve as the threshold temperature in the growing degree-day calculation.
 
 ## See Also
 
