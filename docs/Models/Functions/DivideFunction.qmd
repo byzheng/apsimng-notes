@@ -3,23 +3,31 @@ title: "DivideFunction"
 output: html_document
 ---
 
-The `DivideFunction` is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).
+The DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).
 
 ## Overview
 
-The `DivideFunction` divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns `double.MaxValue` (close to 1.8 × 10^308). This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while avoiding division-by-zero errors.
+The DivideFunction divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns positive or negative infinity depending on the sign of the numerator. This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while handling division-by-zero scenarios.
 
-## Events
+## Model Structure
 
-**Events Listened For**
+{{< include /includes/_model-structure-intro.md >}}
 
-> No events are listened for by this function.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-**Events Raised to**
+## Connections to Other Components
 
-> No events are raised by this function.
+{{< include /includes/_connections-intro.md >}}
 
-## Properties
+| Component | Connection Type | Description |
+|-----------|-----------------|-------------|
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | All child functions are used in the division operation; the first child is the numerator, and subsequent children are denominators. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -27,13 +35,26 @@ The `DivideFunction` divides the value of the first child function by the produc
 
 **Read-Only Reportable Properties**
 
-> No read-only reportable properties are available for this function.
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### Division Algorithm
+
+The DivideFunction implements a sequential division algorithm with special handling for edge cases:
+
+
+Starting with the first child function as the numerator, the algorithm recursively divides by each subsequent child function:
+
 
 ## User Interface
 
-`DivideFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `DivideFunction` in the Filter Box. A symbol for the `DivideFunction` is displayed in the user interface to represent the function.
+DivideFunction can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for DivideFunction in the Filter Box. A symbol for the DivideFunction is displayed in the user interface to represent the function.
 
-![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/DivideFunction.png){ width=64px }
 
 ## Practical Example
 
@@ -43,7 +64,7 @@ $$
 WUE = \frac{Yield}{WaterUsed}
 $$
 
-The `DivideFunction` can be used to divide the `Yield` by `WaterUsed`. If `WaterUsed` is zero, the function will return `double.MaxValue` to indicate an undefined or infinite result.
+The DivideFunction can be used to divide the Yield by WaterUsed. If WaterUsed is zero, the function will return positive infinity to indicate an undefined or infinite result.
 
 ## See Also
 
