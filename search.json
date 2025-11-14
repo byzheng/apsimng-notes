@@ -4738,7 +4738,7 @@
     "href": "docs/Models/Functions/Constant.html",
     "title": "Constant",
     "section": "",
-    "text": "The Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM Next Gen.",
+    "text": "The Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM-NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4752,7 +4752,7 @@
     "href": "docs/Models/Functions/Constant.html#overview",
     "title": "Constant",
     "section": "Overview",
-    "text": "Overview\nThis function provides a simple way to input a value that does not change over time. It can be added wherever a numerical input is required and does not depend on environmental conditions, crop stage, or other simulation variables.\nIn APSIM NG, Constant is widely used as a basic building block within more complex functions, or to define cultivar-specific constants (e.g., base temperature = 0 °C, leaf width = 10 mm).",
+    "text": "Overview\nThis function provides a simple way to input a value that does not change over time. It can be added wherever a numerical input is required and does not depend on environmental conditions, crop stage, or other simulation variables.\nIn APSIM-NG, Constant is widely used as a basic building block within more complex functions, or to define cultivar-specific constants (e.g., base temperature = 0 °C, leaf width = 10 mm). It implements the IFunction interface, making it compatible with any APSIM component that accepts functions as inputs.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4762,11 +4762,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/Constant.html#inputs",
-    "href": "docs/Models/Functions/Constant.html#inputs",
+    "objectID": "docs/Models/Functions/Constant.html#model-structure",
+    "href": "docs/Models/Functions/Constant.html#model-structure",
     "title": "Constant",
-    "section": "Inputs",
-    "text": "Inputs\n\nFixedValue: The constant numerical value returned.\nUnits (optional): The units associated with the value (e.g., °C, mm/day).",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction",
     "crumbs": [
       "Home",
       "Docs",
@@ -4776,11 +4776,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/Constant.html#methodology",
-    "href": "docs/Models/Functions/Constant.html#methodology",
+    "objectID": "docs/Models/Functions/Constant.html#model-variables",
+    "href": "docs/Models/Functions/Constant.html#model-variables",
     "title": "Constant",
-    "section": "Methodology",
-    "text": "Methodology\nThis function always returns the same value, specified by the user in the FixedValue property. It does not depend on any conditions or crop stages.\nMathematically: \\[\n\\text{Value} = \\text{FixedValue}\n\\]\nIt implements the IFunction interface, making it compatible with any APSIM component that accepts functions as inputs.",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFixedValue\ndouble\nThe constant value to return\n\n\nUnits\nstring\nOptional units associated with the value\n\n\n\nRead-Only Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe constant value returned by the function",
     "crumbs": [
       "Home",
       "Docs",
@@ -4790,25 +4790,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/Constant.html#events",
-    "href": "docs/Models/Functions/Constant.html#events",
+    "objectID": "docs/Models/Functions/Constant.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/Constant.html#processes-and-algorithms",
     "title": "Constant",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "Constant"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/Constant.html#properties",
-    "href": "docs/Models/Functions/Constant.html#properties",
-    "title": "Constant",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFixedValue\ndouble\nThe constant value to return\n\n\nUnits\nstring\nOptional units associated with the value\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\nThis function always returns the same value, specified by the user in the FixedValue property. It does not depend on any conditions or crop stages.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4823,20 +4809,6 @@
     "title": "Constant",
     "section": "User Interface",
     "text": "User Interface\nConstant can be added as a child of any function-based node (e.g., PhaseLookupValue, MultiplyFunction, AddFunction) in the model tree. To use:\n\nRight-click the parent node.\nSelect “Add Model…”.\nSearch for “Constant” and select it.\nEnter the desired numeric value and optional units.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "Constant"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/Constant.html#practical-example",
-    "href": "docs/Models/Functions/Constant.html#practical-example",
-    "title": "Constant",
-    "section": "Practical Example",
-    "text": "Practical Example\nTo define a base temperature of 0 °C used in a thermal time calculation:\n\nAdd a Constant function under a ThermalTime node.\nSet FixedValue to 0.0\nSet Units to °C\n\nThis constant will now serve as the threshold temperature in the growing degree-day calculation.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4878,7 +4850,7 @@
     "href": "docs/Models/Functions/DivideFunction.html#overview",
     "title": "DivideFunction",
     "section": "Overview",
-    "text": "Overview\nThe DivideFunction divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns double.MaxValue (close to 1.8 × 10^308). This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while avoiding division-by-zero errors.",
+    "text": "Overview\nThe DivideFunction divides the value of the first child function by the product of all subsequent child functions (i.e. It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns positive or negative infinity depending on the sign of the numerator. This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while handling division-by-zero scenarios.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4888,11 +4860,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DivideFunction.html#events",
-    "href": "docs/Models/Functions/DivideFunction.html#events",
+    "objectID": "docs/Models/Functions/DivideFunction.html#model-structure",
+    "href": "docs/Models/Functions/DivideFunction.html#model-structure",
     "title": "DivideFunction",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -4902,11 +4874,39 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/DivideFunction.html#properties",
-    "href": "docs/Models/Functions/DivideFunction.html#properties",
+    "objectID": "docs/Models/Functions/DivideFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/DivideFunction.html#connections-to-other-components",
     "title": "DivideFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nAll child functions are used in the division operation; the first child is the numerator, and subsequent children are denominators.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#model-variables",
+    "href": "docs/Models/Functions/DivideFunction.html#model-variables",
+    "title": "DivideFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "DivideFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/DivideFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/DivideFunction.html#processes-and-algorithms",
+    "title": "DivideFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nDivision Algorithm\nThe DivideFunction implements a sequential division algorithm with special handling for edge cases:\nStarting with the first child function as the numerator, the algorithm recursively divides by each subsequent child function:",
     "crumbs": [
       "Home",
       "Docs",
@@ -4934,7 +4934,7 @@
     "href": "docs/Models/Functions/DivideFunction.html#practical-example",
     "title": "DivideFunction",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose you want to calculate the water use efficiency (WUE) of a crop, which is the ratio of yield to water used:\n\\[\nWUE = \\frac{Yield}{WaterUsed}\n\\]\nThe DivideFunction can be used to divide the Yield by WaterUsed. If WaterUsed is zero, the function will return double.MaxValue to indicate an undefined or infinite result.",
+    "text": "Practical Example\nSuppose you want to calculate the water use efficiency (WUE) of a crop, which is the ratio of yield to water used:\n\\[\nWUE = \\frac{Yield}{WaterUsed}\n\\]\nThe DivideFunction can be used to divide the Yield by WaterUsed. If WaterUsed is zero, the function will return positive infinity to indicate an undefined or infinite result.",
     "crumbs": [
       "Home",
       "Docs",

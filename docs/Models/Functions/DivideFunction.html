@@ -1134,8 +1134,10 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
@@ -1164,37 +1166,92 @@ window.Quarto = {
 </header>
 
 
-<p>The <code>DivideFunction</code> is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).</p>
+<p>The DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>DivideFunction</code> divides the value of the first child function by the product of all subsequent child functions (i.e.&nbsp;It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns <code>double.MaxValue</code> (close to 1.8 × 10^308). This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while avoiding division-by-zero errors.</p>
+<p>The DivideFunction divides the value of the first child function by the product of all subsequent child functions (i.e.&nbsp;It starts from the first child function, recursively divide by the values of the subsequent child functions). If the numerator is zero, the function returns zero. If any denominator is zero, the function returns positive or negative infinity depending on the sign of the numerator. This is useful for safely performing division operations in plant growth models, such as calculating ratios or efficiencies, while handling division-by-zero scenarios.</p>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened For</strong></p>
-<blockquote class="blockquote">
-<p>No events are listened for by this function.</p>
-</blockquote>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
+<ul>
+<li><a href="../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
+<li><a href="../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></li>
+<li><a href="../../../docs/APSIM.Core/IStructureDependency.html" class="model-link">IStructureDependency</a></li>
+</ul>
 </section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Connection Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Child Functions</td>
+<td><a href="../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>All child functions are used in the division operation; the first child is the numerator, and subsequent children are denominators.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
 <p><strong>Configurable and Reportable Properties</strong></p>
 <blockquote class="blockquote">
 <p>No configurable properties are available for this function.</p>
 </blockquote>
 <p><strong>Read-Only Reportable Properties</strong></p>
-<blockquote class="blockquote">
-<p>No read-only reportable properties are available for this function.</p>
-</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Value</td>
+<td>double</td>
+<td>The sum of values from all child functions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="division-algorithm" class="level3">
+<h3 class="anchored" data-anchor-id="division-algorithm">Division Algorithm</h3>
+<p>The DivideFunction implements a sequential division algorithm with special handling for edge cases:</p>
+<p>Starting with the first child function as the numerator, the algorithm recursively divides by each subsequent child function:</p>
+</section>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<p><code>DivideFunction</code> can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for <code>DivideFunction</code> in the Filter Box. A symbol for the <code>DivideFunction</code> is displayed in the user interface to represent the function.</p>
-<p><img src="https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/DivideFunction.png" class="img-fluid" width="64"></p>
+<p>DivideFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for DivideFunction in the Filter Box. A symbol for the DivideFunction is displayed in the user interface to represent the function.</p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
@@ -1202,7 +1259,7 @@ window.Quarto = {
 <p><span class="math display">\[
 WUE = \frac{Yield}{WaterUsed}
 \]</span></p>
-<p>The <code>DivideFunction</code> can be used to divide the <code>Yield</code> by <code>WaterUsed</code>. If <code>WaterUsed</code> is zero, the function will return <code>double.MaxValue</code> to indicate an undefined or infinite result.</p>
+<p>The DivideFunction can be used to divide the Yield by WaterUsed. If WaterUsed is zero, the function will return positive infinity to indicate an undefined or infinite result.</p>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
