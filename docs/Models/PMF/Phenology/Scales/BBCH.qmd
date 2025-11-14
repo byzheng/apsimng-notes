@@ -43,48 +43,89 @@ The BBCH system divides crop development into 10 principal growth stages (0-9), 
 |----------|------|-------------|
 | Stage | double | Current BBCH growth stage value (0-99 scale) calculated from internal phenological state. |
 
-## Events 
-
-{{< include /includes/_events-intro.md >}}
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
 
 ## Processes and Algorithms
 
 {{< include /includes/_processes-intro.md >}}
 
 
-The BBCH model calculates growth stages through matching phase name in a [Plant](/docs/Models/PMF/Plant.qmd), with different calculation methods for early vegetative, stem extension, and reproductive development:
 
-**Early Vegetative Stages (BBCH 00-39)**
+### Reference Table: Phase-Based BBCH Calculations
+
+For reference, the complete mapping of APSIM-NG phases to BBCH calculations:
 
 | Begin Stage | Growth Phase | BBCH Calculation | Description |
 |-------------|--------------|------------------|-------------|
-| 1 | Germinating | `5 × FractionThroughPhase` | Early germination progress |
-| 2 | Emerging | `5 + 5 × FractionThroughPhase` | Emergence from soil surface |
-| 3 | Juvenile or PhotoSensitive | `10 + (Leaf.AppearedCohortNo - 1)` | Initial leaf development |
-| 4 | PhotoSensitive | `10 + (Leaf.AppearedCohortNo - 1)` | Continued leaf appearance |
-| 5 | LeafAppearance | `30 + LeavesAppearedInPhase` | Stem extension and node development |
+| 1 | Germinating | $5 \times F_{\text{phase}}$ | Early germination progress |
+| 2 | Emerging | $5 + 5 \times F_{\text{phase}}$ | Emergence from soil surface |
+| 3-4 | Juvenile or PhotoSensitive | $10 + (N_{\text{leaves}} - 1)$ | Initial leaf development |
+| 5 | LeafAppearance (before flag) | $30 + N_{\text{leaves expanded}}$ | Stem extension and node development |
+| 5 | LeafAppearance (after flag) | $50 + 5 \times F_{\text{flag expansion}}$ | Flag leaf emergence |
+| 6-10 | Reproductive phases | Linear interpolation | Flowering to maturity |
 
-Notes:
-
-- BBCH stages 11-19 use the "droopy leaf" method where visible leaf tips are one fewer than fully developed leaves
-- Stem extension (BBCH 30) corresponds to floral initiation (Stage 5)
-- Scores between 31 and 39 depend on the number of nodes visiable
+where $F_{\text{phase}}$ is the fraction through the current phase, $N_{\text{leaves}}$ is the number of appeared leaves, and $F_{\text{flag expansion}}$ is the fraction of flag leaf expansion.
 
 
-**Flag Leaf Emergence (BBCH 50-59)**
 
-- BBCH 50 (tassel visibility) coincides with flag leaf tip appearance
-- During flag leaf expansion: `BBCH = 50 + 5 × FractionFlagLeafExpansion`
+### Early Vegetative Development (BBCH 00-19)
 
-**Reproductive Stage Mapping:**
+The BBCH model calculates growth stages based on the current phenological phase, with different calculation methods applied depending on the developmental stage.
+
+**Germination Phase (BBCH 00-05):**
+
+During the Germinating phase, BBCH stage is calculated as:
+
+$$
+\text{BBCH} = 5 \times F_{\text{germ}}
+$$
+
+where $F_{\text{germ}}$ represents the fraction of progress through the germination phase.
+
+**Emergence Phase (BBCH 05-10):**
+
+During the Emerging phase, BBCH stage is calculated as:
+
+$$
+\text{BBCH} = 5 + 5 \times F_{\text{emerg}}
+$$
+
+where $F_{\text{emerg}}$ represents the fraction of progress through the emergence phase.
+
+**Leaf Development Phase (BBCH 10-19):**
+
+During Juvenile or PhotoSensitive phases, BBCH stage is calculated based on the number of appeared leaf cohorts:
+
+$$
+\text{BBCH} = \min(19, 10 + \max(0, N_{\text{appeared}} - 1))
+$$
+
+where $N_{\text{appeared}}$ is the number of leaf cohorts that have appeared. This calculation accounts for the "droopy leaf" method where visible leaf tips are one fewer than fully developed leaves.
+
+### Stem Extension and Node Development (BBCH 30-39)
+
+When the plant enters the LeafAppearance phase and appeared leaf cohort number is less than final leaf number, the BBCH transitions to stem extension stages:
+
+$$
+\text{BBCH} = 30 + \min(9, N_{\text{expanded}} - N_{\text{initial}})
+$$
+
+where $N_{\text{expanded}}$ is the current number of expanded leaf cohorts and $N_{\text{initial}}$ is the number of expanded cohorts at the start of stem extension. The model assumes node appearance occurs at the same rate as leaf appearance.
+
+### Inflorescence Development (BBCH 50-59)
+
+BBCH stage 50 occurs when the tassel becomes visible, which corresponds to the appearance of the flag leaf tip. During flag leaf expansion within the LeafAppearance phase after the final leaf has appeared:
+
+$$
+\text{BBCH} = 50 + 5 \times \frac{F_{\text{current}} - F_{\text{BBCH50}}}{1 - F_{\text{BBCH50}}}
+$$
+
+where $F_{\text{current}}$ is the current fraction through the LeafAppearance phase and $F_{\text{BBCH50}}$ is the fraction when BBCH 50 was reached. This assumes the tassel will be half emerged when the flag leaf is fully expanded.
+
+### Reproductive Development (BBCH 55-99)
+
+Later stages use linear interpolation between key phenological milestones:
+
+The mapping between APSIM-NG stages and BBCH codes is:
 
 | APSIM Stage | APSIM Name | BBCH Code | BBCH Description |
 |-------------|------------|-----------|------------------|
@@ -95,13 +136,39 @@ Notes:
 | 10.0 | Maturity | 99 | Harvest product |
 
 
+```{r fig-zadok-mapping, fig.height = 5, fig.cap="APSIM to Zadok Growth Stage Mapping"}
+stage_data <- data.frame(
+    APSIM_Stage = c(6.0, 7.0, 8.0, 9.0, 10.0),
+    BBCH_Stage = c(55, 65, 70, 87, 99),
+    Description = c("Mid-tassel emergence", "Mid-flowering", 
+                   "Beginning of grain development", "Physiological maturity", 
+                   "Harvest product")
+)
+
+# Create the plot
+library(ggplot2)
+
+ggplot(stage_data, aes(x = APSIM_Stage, y = BBCH_Stage)) +
+    geom_line(color = "blue", size = 1.2) +
+    geom_point(color = "red", size = 3) +
+    geom_text(aes(label = paste0("BBCH ", BBCH_Stage)), 
+              hjust = -0.1, vjust = -0.5, size = 3) +
+    labs(title = "APSIM to BBCH Growth Stage Mapping",
+         x = "APSIM Growth Stage",
+         y = "BBCH Growth Stage",
+         subtitle = "Linear interpolation between defined reproductive growth stages") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5)) +
+    scale_x_continuous(breaks = stage_data$APSIM_Stage) +
+    scale_y_continuous(breaks = stage_data$BBCH_Stage)
+```
+
+
 ## User Interface
 
 BBCH can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select "Add Model...", and search for BBCH in the Filter Box.
 
-## Practical Example
-
-> No practical example is provided here.
 
 ## See Also
 

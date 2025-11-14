@@ -50,18 +50,6 @@ The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to des
 | Stage | double | Current Zadok Stage value |
 | StageDAS | double | Days After Sowing for specific Zadok stage when it first occurs. Example usage is `StageDAS(51)`. |
 
-## Events 
-
-{{< include /includes/_events-intro.md >}}
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
 ## Processes and Algorithms
 
 {{< include /includes/_processes-intro.md >}}
@@ -143,10 +131,5 @@ At HarvestRipe stage, Zadok stage is fixed at 90.0.
 
 ZadokPMFWheat can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for ZadokPMFWheat in the Filter Box.
 
-## Practical Example
-
-> No practical example is available for this function.
-
-## See Also
 
 * **Source code:** [ZadokPMFWheat.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/ZadokPMFWheat.cs)
