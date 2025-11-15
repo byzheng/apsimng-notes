@@ -3,78 +3,48 @@ title: "IPhase"
 output: html_document
 ---
 
-Represents a **single developmental phase** in the APSIM NG phenology module.  
-`IPhase` defines the contract that every phase model (e.g. *Sowing → Emergence*, *Emergence → Floral Initiation*) must obey so that the phenology engine can advance crop development in a modular, interchangeable way.
+The `IPhase` interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.
 
 ## Overview
 
-In APSIM NG, crop development is broken into discrete phases.  
-Each phase knows **when it starts**, **when it ends**, **how fast it is progressing**, and **when it has finished**.  
+In APSIM NG, crop development is organized into discrete phenological phases (e.g., Germination, Emergence, Flowering, Grain Filling). The `IPhase` interface provides a standardized framework that allows the Phenology model to manage these phases uniformly, regardless of their specific implementation details.
 
-Models that implement `IPhase` plug into the core *Phenology* model; the latter calls `DoTimeStep()` in every simulation step (i.e. day) to update development and query `FractionComplete` to determine when to hand control to the next phase.
+Each phase implementing this interface:
 
-## Inputs
+- Defines its **start** and **end** phenological stages (e.g., from "Sowing" to "Germinated")
+- Calculates daily **progress** through the phase using environmental drivers (temperature, photoperiod, etc.)
+- Reports its **completion status** as a fraction between 0 and 1
+- Can be **reset** for new simulations or seasons
+- Indicates whether it represents **above-ground** or **below-ground** development
 
-| Name | Type | Source | Purpose |
-|------|------|--------|---------|
-| `Start` | string | .apsimx file / UI | The phenological stage at which this phase begins. |
-| `End` | string | .apsimx file / UI | The phenological stage at which this phase ends. |
-| `PropOfDayToUse` | **ref** double | Phenology engine | Proportion of today that can be used by this phase; set to 0 when the phase finishes. |
+The Phenology model orchestrates phases by calling `DoTimeStep()` each simulation day to advance development and checking `FractionComplete` to determine when to transition to the next phase.
 
-*(Implementations will usually read additional daily meteorological or crop‑state variables, but those are outside the scope of the interface itself.)*
+## Model Structure
 
-## Methodology
+{{< include /includes/_model-structure-intro.md >}}
 
-1. **Progress calculation**  
+* [IModel](/docs/Models/Core/IModel.qmd)
 
-Each concrete phase overrides `DoTimeStep(ref PropOfDayToUse)` to accumulate development using its own algorithm (thermal time, photoperiod, vernalisation, etc.).  
+## Model Variables
 
-When the cumulative progress reaches its target, the method returns a **non‑zero** value and sets `PropOfDayToUse` to the unused fraction of the day so the next phase can continue.
+{{< include /includes/_model-variables-intro.md >}}
 
-2. **Fraction complete**  
-
-`FractionComplete` exposes the running total as a value in $$[0,1]$$, enabling other models (e.g. *Leaf* growth) to scale processes smoothly across phase boundaries.
-
-3. **State management**  
-
-- `ResetPhase()` allows a simulation (or a new season) to restart the phase from scratch.  
-- `IsEmerged` lets other models know whether the crop has emerged above the soil surface (i.e. this phase is happening above ground), which is critical for processes such as light interception or grazing.
-
-## Events 
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised To**
-
-> No events are raised by this function.
-
-## Properties
-
-### Configurable and Reportable Properties
+**Configurable and Reportable Properties**
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `Start` | string | Name of the phenological stage that marks the **start** of this phase. |
-| `End` | string | Name of the phenological stage that marks the **end** of this phase. |
+| `Start` | string | Name of the phenological stage that marks the beginning of this phase (e.g., "Sowing", "Germinated"). |
+| `End` | string | Name of the phenological stage that marks the completion of this phase (e.g., "Germinated", "Emergence"). |
+| `IsEmerged` | bool | Boolean flag indicating whether the crop has emerged above the soil surface during this phase. Used by other models for processes like light interception. |
 
-### Read‑Only Reportable Properties
+**Read-Only Reportable Properties**
 
 | Property | Type | Description |
 |----------|------|-------------|
-| `FractionComplete` | double | Fractional progress through the phase $0 \le F \le 1$. |
-| `IsEmerged` | bool | **True** once the crop has emerged from the soil. |
+| `FractionComplete` | double | Fractional progress through the phase, where $0 \le F \le 1$. Returns 0 at phase start and 1 when the phase target is met. |
 
-## User Interface
-
-`IPhase` implementations can be added as children of a **Phenology** node in the APSIM NG model tree.  
-Right‑click *Phenology* → **Add Model…** and search for the desired phase (e.g. *Germination*, *Floral Initiation*).
-
-## Practical Example
-
-> No practical example is available for this function.
 
 ## See Also
 
-* **Source code:** [IPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhase.cs)
+* **Source code:** [IPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhase.cs)
+
