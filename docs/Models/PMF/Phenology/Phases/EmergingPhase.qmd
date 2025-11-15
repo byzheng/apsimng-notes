@@ -22,9 +22,9 @@ The phase progresses using thermal time accumulation, typically calculated from 
 {{< include /includes/_model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/APSIM.Core/IPhase.qmd)
-* [IPhaseWithTarget](/docs/APSIM.Core/IPhaseWithTarget.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/APSIM.Core/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithTarget](/docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 ## Connections to Other Components
 

@@ -1,0 +1,31 @@
+---
+title: "IPhaseWithSetableCompletionDate"
+output: html_document
+---
+
+The `IPhaseWithSetableCompletionDate` interface extends phenological phases by allowing external specification of a fixed completion date. This enables users to override the phase's normal progression logic and force completion on a specific calendar date.
+
+## Overview
+
+The `IPhaseWithSetableCompletionDate` interface provides a mechanism for externally controlling when a phenological phase completes, bypassing the phase's normal environmental or developmental progression logic. 
+
+The interface is intentionally minimal, adding only a single property to enable this date-based override functionality. Phases implementing this interface maintain their normal progression logic but check the `DateToProgress` property first—if set, the date override takes precedence over environmental calculations.
+
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `DateToProgress` | string | Calendar date on which the phase should complete, formatted as "d-MMM" (e.g., "15-Oct", "1-Apr"). When set, this overrides the phase's normal progression logic. When empty or null, the phase progresses normally based on environmental drivers. |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this interface.
+
+## See Also
+
+* **Source code:** [IPhaseWithSetableCompletionDate.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.cs)

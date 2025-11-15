@@ -1,0 +1,51 @@
+---
+title: "IPhaseWithTarget"
+output: html_document
+---
+
+The `IPhaseWithTarget` interface extends the `IPhase` interface to define phenological phases that progress toward a specific target value. It provides standardized properties for tracking both the target threshold and the accumulated progress through the phase.
+
+## Overview
+
+The `IPhaseWithTarget` interface is implemented by phenological phases that advance based on accumulating a measurable quantity (typically thermal time in degree days) until a target threshold is reached. This interface extends the basic `IPhase` contract by adding:
+
+- A **target value** that defines when the phase is complete
+- A **progress tracker** that accumulates the quantity through the phase
+
+Common examples include:
+
+- Thermal time-based phases that accumulate degree days until emergence, flowering, or maturity
+- Development phases that track cumulative photoperiod or vernalization units
+- Growth stages that progress based on accumulated growing degree days
+
+By standardizing these properties, the interface enables consistent implementation of target-driven phases and allows other models to query phase progress and completion criteria in a uniform way.
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+This interface inherits all configurable properties from [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd) and adds:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `ProgressThroughPhase` | double | The accumulated progress through this phase (e.g., cumulative thermal time in °Cd). Can be set externally to initialize or adjust phase progress. |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Target` | double | The target value that must be reached for the phase to complete (e.g., thermal time requirement in °Cd). |
+
+## See Also
+
+* **Source code:** [IPhaseWithTrarget.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhaseWithTrarget.cs)
+* **Parent Interface:** [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* **Implementations:** [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd), [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
