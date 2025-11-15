@@ -1,0 +1,48 @@
+---
+title: "IModel"
+output: html_document
+---
+
+The `IModel` interface defines the fundamental contract that all models in APSIM NG must implement. It establishes the core properties and methods required for model hierarchy management, lifecycle coordination, and integration within the simulation framework.
+
+## Overview
+
+The `IModel` interface serves as the foundational abstraction for all simulation components in APSIM NG, defining the essential structure that enables modular model construction and hierarchical organization. Every model in the system—from simple functions to complex crop models—implements this interface, ensuring consistent behavior across the entire simulation framework.
+
+Key responsibilities defined by this interface include:
+
+- **Hierarchical organization**: Models maintain parent-child relationships, forming a tree structure that represents the simulation
+- **Identity and naming**: Each model has a unique name within its scope and a full path from the simulation root
+- **State management**: Models can be enabled/disabled, hidden from the user interface, or marked as read-only
+- **Lifecycle hooks**: Methods for initialization and pre-simulation setup allow models to prepare themselves for execution
+- **Resource management**: Models can reference external resources through the resource name system
+
+This interface is the cornerstone of APSIM NG's component-based architecture, allowing researchers to build sophisticated agricultural simulations by composing specialized models in flexible hierarchical arrangements.
+
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Name` | string | The name of the model component. Must be unique among siblings in the model hierarchy. |
+| `ResourceName` | string | Optional name for external resource references and documentation purposes. |
+| `Parent` | IModel | Reference to the parent model in the hierarchy. Can be null for root models. |
+| `Children` | List<IModel> | Collection of child models. Always initialized (never null), but may be empty. |
+| `IsHidden` | bool | Flag indicating whether the model should be hidden from the user interface. |
+| `Enabled` | bool | Flag controlling whether the model participates in simulation execution. Disabled models are skipped. |
+| `ReadOnly` | bool | Flag preventing modification of the model's structure and parameters. |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Node` | Node | The associated node structure that manages the model's position in the tree hierarchy. |
+| `FullPath` | string | Complete hierarchical path from the simulation root to this model (e.g., `.Simulations.Simulation.Field.Wheat`). |
+
+## See Also
+
+* **Source code:** [IModel.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Core/IModel.cs)
