@@ -3,14 +3,81 @@ title: "EmergingPhase"
 output: html_document
 ---
 
-The `EmergingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.
+The `EmergingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges from the soil and completes the phase once those criteria are satisfied. Typically, it spans from the Germinated stage to the Emergence stage, and its completion is determined by either thermal time accumulation or a user-specified emergence date.
 
 ## Overview
 
-The `EmergingPhase` models the transition from germination to emergence in the crop's phenological development. Germination is assumed to occur when any of the following conditions are met:
+The `EmergingPhase` models the transition from germination to emergence in the crop's phenological development. This phase simulates the time required for the shoot to grow from the seed depth to the soil surface, which is influenced by temperature and sowing depth.
 
-- Target thermal time for emergence is reached,
-- A specific **emergence date** is provided via the `EmergenceDate` property.
+Emergence occurs when any of the following conditions are met:
+
+- Accumulated thermal time reaches the target value (specified by the `Target` child function),
+- A specific **emergence date** is provided via the `DateToProgress` property.
+
+The phase progresses using thermal time accumulation, typically calculated from the `Phenology.ThermalTime` function. Once the target is reached, the phase completes and triggers the transition to the next phenological stage.
+
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/APSIM.Core/IPhase.qmd)
+* [IPhaseWithTarget](/docs/APSIM.Core/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/APSIM.Core/IPhaseWithSetableCompletionDate.qmd)
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **Link** | Provides thermal time for phase progression. |
+| Clock | IClock | **Link** | Supplies current simulation date and timing information. |
+| Target | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child Connection** | Specifies the target thermal time required for emergence. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property       | Type        | Description                                                                 | Required   |
+|:-------------- |:----------- |:--------------------------------------------------------------------------- |:---------- |
+| `Start`        | string      | Phenological stage at which this phase begins (e.g., `Germinated`).         | Yes        |
+| `End`          | string      | Phenological stage that marks completion of the phase (e.g., `Emergence`).  | Yes        |
+| `Target`       | IFunction   | The target thermal time value for phase completion (in °Cd).                | Yes        |
+| `IsEmerged`    | bool        | Boolean flag indicating whether this phase represents above-ground growth. Default is `false`. | No |
+
+**Read-Only Reportable Properties**
+
+| Property                   | Type    | Description                                                                |
+|:-------------------------- |:------- |:-------------------------------------------------------------------------- |
+| `FractionComplete`         | double  | Fraction (0–1) indicating how much of the phase is complete.               |
+| `TTForTimeStep`            | double  | The thermal time accumulated during the current time step (in °Cd).        |
+| `ProgressThroughPhase`     | double  | Accumulated thermal time through this phase (in °Cd).                      |
+| `DateToProgress`           | string  | Optional fixed calendar date to override thermal time-based progression.   |
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the `EmergingPhase` listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Reset phase progress at the start of simulations.                                        |
+| [PlantSowing](/docs/Models/Events.html#PlantSowing)  | Set the phase target value based on the `Target` child function. The target is fixed at sowing and cannot be dynamically modified during the phase. |
+
+**Events Raised to**
+
+> No events are raised by this phase.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
 
 
 ### Emergence Triggers
@@ -19,53 +86,59 @@ Emergence occurs in one of two ways:
 
 1. **User-defined emergence date**  
 
-If `EmergenceDate` is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.
+   If `DateToProgress` is specified, emergence occurs exactly on that date, regardless of thermal time accumulation. This allows users to override the environmental-based calculation with observed or expected emergence dates.
 
-2. **Phase Target** as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)  
+2. **Thermal time accumulation**  
 
-
-## Events 
-
-
-**Events Listened For**
-
-These are signals or notifications that the `GerminatingPhase` listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)   | Reset progress at the start of simulations                                               |
-| [PlantSowing](/docs/Models/Events.html#PlantSowing)  | Set the phase target as [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd). It also indicates the phase target cannot be dynamically modified. |
+   If no date is defined, emergence is triggered when accumulated thermal time (`ProgressThroughPhase`) equals or exceeds the target value (`Target`). The target is set at sowing and represents the total thermal time required for the shoot to reach the soil surface from the sowing depth.
 
 
-## Properties
+### Date Override
+
+If `DateToProgress` is set to a specific date, the phase ignores thermal time accumulation and completes exactly on that date. This is useful for calibrating the model to match observed emergence dates or for scenarios where emergence timing is known.
 
 
-**Configurable and Reportable Properties**
+### Thermal Time Accumulation
 
-| Property             | Type    | Description                                                                 | Required   |
-|----------------------|---------|-----------------------------------------------------------------------------|-------------|
-| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | Yes          |
-| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | Yes          |
-| `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
-| `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
-| `EmergenceDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
+The `EmergingPhase` progresses based on thermal time accumulation. Each day, the phase calculates the thermal time for that day and adds it to the accumulated progress:
 
-| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | No         |
+Let $TT_{\text{day}}$ be the thermal time for the current day (from `Phenology.ThermalTime`), $P$ be the accumulated progress through the phase (`ProgressThroughPhase`), and $T$ be the target thermal time (`Target`).
 
+On each time step:
 
-**Read-Only Reportable Properties**
+$$
+P_{t+1} = P_t + TT_{\text{day}} \times f_{\text{day}}
+$$
 
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing. |
-| `ProgressionForTimeStep`   | double  | The amount of progression made during the current time step (e.g. day).    |
-| `ProgressThroughPhase`     | double  | Accumulated units of progress through this phase between zero and target.  |
+where $f_{\text{day}}$ is the proportion of the day to use (between 0 and 1), which accounts for phases that may complete mid-day.
 
-## Usage
+### Phase Completion
 
-An `EmergingPhase` can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.
+The phase is considered complete when:
+
+$$
+P \geq T
+$$
+
+If the phase completes mid-day (i.e., $P_t + TT_{\text{day}} > T$), the unused portion of the day is calculated as:
+
+$$
+f_{\text{unused}} = \frac{P - T}{TT_{\text{day}}}
+$$
+
+This unused fraction is passed to the next phase, allowing it to begin progressing immediately.
+
+## User Interface
+
+EmergingPhase can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for EmergingPhase in the Filter Box.
+
+The phase requires a child function named `Target` to specify the thermal time requirement for emergence. This can be a constant value or a more complex function that accounts for sowing depth effects.
+
+## Practical Example
+
+> No practical example is available for this function.
 
 ## See Also
 
-* **Source code:** [EmergingPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs).
+* **Source code:** [EmergingPhase.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs)
 
