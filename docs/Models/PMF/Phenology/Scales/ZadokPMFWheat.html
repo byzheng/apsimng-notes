@@ -330,6 +330,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/Core/IModel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IModel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Core/Model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Base Class</span></a>
   </div>
@@ -643,6 +649,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithSetableCompletionDate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithTarget</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1157,11 +1175,8 @@ window.Quarto = {
   <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
   <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
   <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
-  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1300,20 +1315,6 @@ These connections allow the model to exchange information—such as environmenta
 </tbody>
 </table>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<div class="intro-text">
-<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
-</div>
-<p><strong>Events Listened For</strong></p>
-<blockquote class="blockquote">
-<p>No events are listened by this function.</p>
-</blockquote>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
-</section>
 <section id="processes-and-algorithms" class="level2">
 <h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
 <div class="intro-text">
@@ -1414,15 +1415,6 @@ Figure&nbsp;1: APSIM to Zadok Growth Stage Mapping
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
 <p>ZadokPMFWheat can be added as a child of a <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a> node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for ZadokPMFWheat in the Filter Box.</p>
-</section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is available for this function.</p>
-</blockquote>
-</section>
-<section id="see-also" class="level2">
-<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
 <li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/ZadokPMFWheat.cs" class="external-link">ZadokPMFWheat.cs on GitHub</a></li>
 </ul>

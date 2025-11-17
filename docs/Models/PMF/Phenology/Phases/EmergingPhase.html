@@ -112,6 +112,35 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../../styles.css">
 </head>
@@ -279,6 +308,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/Core/IModel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IModel</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Core/Model.html" class="sidebar-item-text sidebar-link">
@@ -594,6 +629,18 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithSetableCompletionDate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithTarget</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1105,9 +1152,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#usage" id="toc-usage" class="nav-link" data-scroll-target="#usage">Usage</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
+  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
+  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -1134,30 +1185,160 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g.&nbsp;temperature, or a user-specified germination date.</p>
+<p>The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges from the soil and completes the phase once those criteria are satisfied. Typically, it spans from the Germinated stage to the Emergence stage, and its completion is determined by either thermal time accumulation or a user-specified emergence date.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>EmergingPhase</code> models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:</p>
+<p>The <code>EmergingPhase</code> models the transition from germination to emergence in the crop’s phenological development. This phase simulates the time required for the shoot to grow from the seed depth to the soil surface, which is influenced by temperature and sowing depth.</p>
+<p>Emergence occurs when any of the following conditions are met:</p>
 <ul>
-<li>Target thermal time for emergence is reached,</li>
-<li>A specific <strong>emergence date</strong> is provided via the <code>EmergenceDate</code> property.</li>
+<li>Accumulated thermal time reaches the target value (specified by the <code>Target</code> child function),</li>
+<li>A specific <strong>emergence date</strong> is provided via the <code>DateToProgress</code> property.</li>
 </ul>
-<section id="emergence-triggers" class="level3">
-<h3 class="anchored" data-anchor-id="emergence-triggers">Emergence Triggers</h3>
-<p>Emergence occurs in one of two ways:</p>
-<ol type="1">
-<li><strong>User-defined emergence date</strong></li>
-</ol>
-<p>If <code>EmergenceDate</code> is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.</p>
-<ol start="2" type="1">
-<li><strong>Phase Target</strong> as <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a></li>
-</ol>
+<p>The phase progresses using thermal time accumulation, typically calculated from the <code>Phenology.ThermalTime</code> function. Once the target is reached, the phase completes and triggers the transition to the next phenological stage.</p>
 </section>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
+<ul>
+<li><a href="../../../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
+<li><a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="model-link">IPhase</a></li>
+<li><a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="model-link">IPhaseWithTarget</a></li>
+<li><a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="model-link">IPhaseWithSetableCompletionDate</a></li>
+</ul>
+</section>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Model</th>
+<th>Connection Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Phenology</td>
+<td><a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a></td>
+<td><strong>Link</strong></td>
+<td>Provides thermal time for phase progression.</td>
+</tr>
+<tr class="even">
+<td>Clock</td>
+<td>IClock</td>
+<td><strong>Link</strong></td>
+<td>Supplies current simulation date and timing information.</td>
+</tr>
+<tr class="odd">
+<td>Target</td>
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td><strong>Child Connection</strong></td>
+<td>Specifies the target thermal time required for emergence.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
+<p><strong>Configurable and Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 66%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+<th style="text-align: left;">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>Start</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Phenological stage at which this phase begins (e.g., <code>Germinated</code>).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>End</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Phenological stage that marks completion of the phase (e.g., <code>Emergence</code>).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>Target</code></td>
+<td style="text-align: left;">IFunction</td>
+<td style="text-align: left;">The target thermal time value for phase completion (in °Cd).</td>
+<td style="text-align: left;">Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IsEmerged</code></td>
+<td style="text-align: left;">bool</td>
+<td style="text-align: left;">Boolean flag indicating whether this phase represents above-ground growth. Default is <code>false</code>.</td>
+<td style="text-align: left;">No</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Read-Only Reportable Properties</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 7%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Property</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>FractionComplete</code></td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">Fraction (0–1) indicating how much of the phase is complete.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>TTForTimeStep</code></td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">The thermal time accumulated during the current time step (in °Cd).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>ProgressThroughPhase</code></td>
+<td style="text-align: left;">double</td>
+<td style="text-align: left;">Accumulated thermal time through this phase (in °Cd).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>DateToProgress</code></td>
+<td style="text-align: left;">string</td>
+<td style="text-align: left;">Optional fixed calendar date to override thermal time-based progression.</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="events" class="level2">
 <h2 class="anchored" data-anchor-id="events">Events</h2>
+<div class="intro-text">
+<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
+</div>
 <p><strong>Events Listened For</strong></p>
-<p>These are signals or notifications that the <code>GerminatingPhase</code> listens for from other parts of the simulation:</p>
+<p>These are signals or notifications that the <code>EmergingPhase</code> listens for from other parts of the simulation:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1168,108 +1349,76 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <tbody>
 <tr class="odd">
 <td><a href="../../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
-<td>Reset progress at the start of simulations</td>
+<td>Reset phase progress at the start of simulations.</td>
 </tr>
 <tr class="even">
 <td><a href="../../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a></td>
-<td>Set the phase target as <a href="../../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a>. It also indicates the phase target cannot be dynamically modified.</td>
+<td>Set the phase target value based on the <code>Target</code> child function. The target is fixed at sowing and cannot be dynamically modified during the phase.</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this phase.</p>
+</blockquote>
 </section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<p><strong>Configurable and Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 18%">
-<col style="width: 7%">
-<col style="width: 63%">
-<col style="width: 10%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Start</code></td>
-<td>string</td>
-<td>Phenological stage at which this phase begins (e.g.&nbsp;<code>Sowing</code>).</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td><code>End</code></td>
-<td>string</td>
-<td>Phenological stage that marks completion of the phase (e.g.&nbsp;<code>Germinated</code>).</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td><code>Target</code></td>
-<td>IFunction</td>
-<td>The target value for phase completion (e.g., required thermal time).</td>
-<td>Yes</td>
-</tr>
-<tr class="even">
-<td><code>Progression</code></td>
-<td>IFunction</td>
-<td>The daily progression towards the target (e.g., daily thermal time).</td>
-<td>Yes</td>
-</tr>
-<tr class="odd">
-<td><code>EmergenceDate</code></td>
-<td>string</td>
-<td>Optional fixed calendar date to override environmental conditions.</td>
-<td>No</td>
-</tr>
-</tbody>
-</table>
-<div class="line-block"><code>IsEmerged</code> | bool | Boolean flag indicating whether the crop has emerged above the soil surface (i.e.&nbsp;this phase is happening above ground). | No |</div>
-<p><strong>Read-Only Reportable Properties</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 8%">
-<col style="width: 71%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>FractionComplete</code></td>
-<td>double</td>
-<td>Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.</td>
-</tr>
-<tr class="even">
-<td><code>ProgressionForTimeStep</code></td>
-<td>double</td>
-<td>The amount of progression made during the current time step (e.g.&nbsp;day).</td>
-</tr>
-<tr class="odd">
-<td><code>ProgressThroughPhase</code></td>
-<td>double</td>
-<td>Accumulated units of progress through this phase between zero and target.</td>
-</tr>
-</tbody>
-</table>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="emergence-triggers" class="level3">
+<h3 class="anchored" data-anchor-id="emergence-triggers">Emergence Triggers</h3>
+<p>Emergence occurs in one of two ways:</p>
+<ol type="1">
+<li><p><strong>User-defined emergence date</strong></p>
+<p>If <code>DateToProgress</code> is specified, emergence occurs exactly on that date, regardless of thermal time accumulation. This allows users to override the environmental-based calculation with observed or expected emergence dates.</p></li>
+<li><p><strong>Thermal time accumulation</strong></p>
+<p>If no date is defined, emergence is triggered when accumulated thermal time (<code>ProgressThroughPhase</code>) equals or exceeds the target value (<code>Target</code>). The target is set at sowing and represents the total thermal time required for the shoot to reach the soil surface from the sowing depth.</p></li>
+</ol>
 </section>
-<section id="usage" class="level2">
-<h2 class="anchored" data-anchor-id="usage">Usage</h2>
-<p>An <code>EmergingPhase</code> can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.</p>
+<section id="date-override" class="level3">
+<h3 class="anchored" data-anchor-id="date-override">Date Override</h3>
+<p>If <code>DateToProgress</code> is set to a specific date, the phase ignores thermal time accumulation and completes exactly on that date. This is useful for calibrating the model to match observed emergence dates or for scenarios where emergence timing is known.</p>
+</section>
+<section id="thermal-time-accumulation" class="level3">
+<h3 class="anchored" data-anchor-id="thermal-time-accumulation">Thermal Time Accumulation</h3>
+<p>The <code>EmergingPhase</code> progresses based on thermal time accumulation. Each day, the phase calculates the thermal time for that day and adds it to the accumulated progress:</p>
+<p>Let <span class="math inline">\(TT_{\text{day}}\)</span> be the thermal time for the current day (from <code>Phenology.ThermalTime</code>), <span class="math inline">\(P\)</span> be the accumulated progress through the phase (<code>ProgressThroughPhase</code>), and <span class="math inline">\(T\)</span> be the target thermal time (<code>Target</code>).</p>
+<p>On each time step:</p>
+<p><span class="math display">\[
+P_{t+1} = P_t + TT_{\text{day}} \times f_{\text{day}}
+\]</span></p>
+<p>where <span class="math inline">\(f_{\text{day}}\)</span> is the proportion of the day to use (between 0 and 1), which accounts for phases that may complete mid-day.</p>
+</section>
+<section id="phase-completion" class="level3">
+<h3 class="anchored" data-anchor-id="phase-completion">Phase Completion</h3>
+<p>The phase is considered complete when:</p>
+<p><span class="math display">\[
+P \geq T
+\]</span></p>
+<p>If the phase completes mid-day (i.e., <span class="math inline">\(P_t + TT_{\text{day}} &gt; T\)</span>), the unused portion of the day is calculated as:</p>
+<p><span class="math display">\[
+f_{\text{unused}} = \frac{P - T}{TT_{\text{day}}}
+\]</span></p>
+<p>This unused fraction is passed to the next phase, allowing it to begin progressing immediately.</p>
+</section>
+</section>
+<section id="user-interface" class="level2">
+<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
+<p>EmergingPhase can be added as a child of a <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a> node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for EmergingPhase in the Filter Box.</p>
+<p>The phase requires a child function named <code>Target</code> to specify the thermal time requirement for emergence. This can be a constant value or a more complex function that accounts for sowing depth effects.</p>
+</section>
+<section id="practical-example" class="level2">
+<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
+<blockquote class="blockquote">
+<p>No practical example is available for this function.</p>
+</blockquote>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs" class="external-link">EmergingPhase.cs on GitHub</a>.</li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/EmergingPhase.cs" class="external-link">EmergingPhase.cs on GitHub</a></li>
 </ul>
 
 

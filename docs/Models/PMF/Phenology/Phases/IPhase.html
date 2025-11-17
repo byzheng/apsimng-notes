@@ -310,6 +310,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/Core/IModel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IModel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Core/Model.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Model Base Class</span></a>
   </div>
@@ -623,6 +629,18 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithSetableCompletionDate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithTarget</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1134,12 +1152,8 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
-  <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phases/IPhase.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -1166,89 +1180,36 @@ window.Quarto = {
 </header>
 
 
-<p>Represents a <strong>single developmental phase</strong> in the APSIM NG phenology module.<br>
-<code>IPhase</code> defines the contract that every phase model (e.g.&nbsp;<em>Sowing → Emergence</em>, <em>Emergence → Floral Initiation</em>) must obey so that the phenology engine can advance crop development in a modular, interchangeable way.</p>
+<p>The <code>IPhase</code> interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In APSIM NG, crop development is broken into discrete phases.<br>
-Each phase knows <strong>when it starts</strong>, <strong>when it ends</strong>, <strong>how fast it is progressing</strong>, and <strong>when it has finished</strong>.</p>
-<p>Models that implement <code>IPhase</code> plug into the core <em>Phenology</em> model; the latter calls <code>DoTimeStep()</code> in every simulation step (i.e.&nbsp;day) to update development and query <code>FractionComplete</code> to determine when to hand control to the next phase.</p>
-</section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 27%">
-<col style="width: 31%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Type</th>
-<th>Source</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>Start</code></td>
-<td>string</td>
-<td>.apsimx file / UI</td>
-<td>The phenological stage at which this phase begins.</td>
-</tr>
-<tr class="even">
-<td><code>End</code></td>
-<td>string</td>
-<td>.apsimx file / UI</td>
-<td>The phenological stage at which this phase ends.</td>
-</tr>
-<tr class="odd">
-<td><code>PropOfDayToUse</code></td>
-<td><strong>ref</strong>&nbsp;double</td>
-<td>Phenology engine</td>
-<td>Proportion of today that can be used by this phase; set to&nbsp;0 when the phase finishes.</td>
-</tr>
-</tbody>
-</table>
-<p><em>(Implementations will usually read additional daily meteorological or crop‑state variables, but those are outside the scope of the interface itself.)</em></p>
-</section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<ol type="1">
-<li><strong>Progress calculation</strong></li>
-</ol>
-<p>Each concrete phase overrides <code>DoTimeStep(ref PropOfDayToUse)</code> to accumulate development using its own algorithm (thermal time, photoperiod, vernalisation, etc.).</p>
-<p>When the cumulative progress reaches its target, the method returns a <strong>non‑zero</strong> value and sets <code>PropOfDayToUse</code> to the unused fraction of the day so the next phase can continue.</p>
-<ol start="2" type="1">
-<li><strong>Fraction complete</strong></li>
-</ol>
-<p><code>FractionComplete</code> exposes the running total as a value in&nbsp;<span class="math display">\[[0,1]\]</span>, enabling other models (e.g.&nbsp;<em>Leaf</em> growth) to scale processes smoothly across phase boundaries.</p>
-<ol start="3" type="1">
-<li><strong>State management</strong></li>
-</ol>
+<p>In APSIM NG, crop development is organized into discrete phenological phases (e.g., Germination, Emergence, Flowering, Grain Filling). The <code>IPhase</code> interface provides a standardized framework that allows the Phenology model to manage these phases uniformly, regardless of their specific implementation details.</p>
+<p>Each phase implementing this interface:</p>
 <ul>
-<li><code>ResetPhase()</code> allows a simulation (or a new season) to restart the phase from scratch.<br>
-</li>
-<li><code>IsEmerged</code> lets other models know whether the crop has emerged above the soil surface (i.e.&nbsp;this phase is happening above ground), which is critical for processes such as light interception or grazing.</li>
+<li>Defines its <strong>start</strong> and <strong>end</strong> phenological stages (e.g., from “Sowing” to “Germinated”)</li>
+<li>Calculates daily <strong>progress</strong> through the phase using environmental drivers (temperature, photoperiod, etc.)</li>
+<li>Reports its <strong>completion status</strong> as a fraction between 0 and 1</li>
+<li>Can be <strong>reset</strong> for new simulations or seasons</li>
+<li>Indicates whether it represents <strong>above-ground</strong> or <strong>below-ground</strong> development</li>
+</ul>
+<p>The Phenology model orchestrates phases by calling <code>DoTimeStep()</code> each simulation day to advance development and checking <code>FractionComplete</code> to determine when to transition to the next phase.</p>
+</section>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
+<ul>
+<li><a href="../../../../../docs/Models/Core/IModel.html" class="model-link">IModel</a></li>
 </ul>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened&nbsp;For</strong></p>
-<blockquote class="blockquote">
-<p>No events are listened by this function.</p>
-</blockquote>
-<p><strong>Events Raised&nbsp;To</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
-</section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
-<section id="configurable-and-reportable-properties" class="level3">
-<h3 class="anchored" data-anchor-id="configurable-and-reportable-properties">Configurable and Reportable Properties</h3>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
+<p><strong>Configurable and Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 34%">
@@ -1266,18 +1227,21 @@ Each phase knows <strong>when it starts</strong>, <strong>when it ends</strong>,
 <tr class="odd">
 <td><code>Start</code></td>
 <td>string</td>
-<td>Name of the phenological stage that marks the <strong>start</strong> of this phase.</td>
+<td>Name of the phenological stage that marks the beginning of this phase (e.g., “Sowing”, “Germinated”).</td>
 </tr>
 <tr class="even">
 <td><code>End</code></td>
 <td>string</td>
-<td>Name of the phenological stage that marks the <strong>end</strong> of this phase.</td>
+<td>Name of the phenological stage that marks the completion of this phase (e.g., “Germinated”, “Emergence”).</td>
+</tr>
+<tr class="odd">
+<td><code>IsEmerged</code></td>
+<td>bool</td>
+<td>Boolean flag indicating whether the crop has emerged above the soil surface during this phase. Used by other models for processes like light interception.</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="readonly-reportable-properties" class="level3">
-<h3 class="anchored" data-anchor-id="readonly-reportable-properties">Read‑Only Reportable Properties</h3>
+<p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 34%">
@@ -1295,32 +1259,15 @@ Each phase knows <strong>when it starts</strong>, <strong>when it ends</strong>,
 <tr class="odd">
 <td><code>FractionComplete</code></td>
 <td>double</td>
-<td>Fractional progress through the phase&nbsp;<span class="math inline">\(0 \le F \le 1\)</span>.</td>
-</tr>
-<tr class="even">
-<td><code>IsEmerged</code></td>
-<td>bool</td>
-<td><strong>True</strong> once the crop has emerged from the soil.</td>
+<td>Fractional progress through the phase, where <span class="math inline">\(0 \le F \le 1\)</span>. Returns 0 at phase start and 1 when the phase target is met.</td>
 </tr>
 </tbody>
 </table>
 </section>
-</section>
-<section id="user-interface" class="level2">
-<h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<p><code>IPhase</code> implementations can be added as children of a <strong>Phenology</strong> node in the APSIM NG model tree.<br>
-Right‑click <em>Phenology</em> → <strong>Add Model…</strong> and search for the desired phase (e.g.&nbsp;<em>Germination</em>, <em>Floral&nbsp;Initiation</em>).</p>
-</section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is available for this function.</p>
-</blockquote>
-</section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
-<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhase.cs" class="external-link">IPhase.cs on GitHub</a></li>
+<li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Phases/IPhase.cs" class="external-link">IPhase.cs on GitHub</a></li>
 </ul>
 
 

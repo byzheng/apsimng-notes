@@ -132,6 +132,35 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../../styles.css">
 </head>
@@ -299,6 +328,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/Core/IModel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IModel</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Core/Model.html" class="sidebar-item-text sidebar-link">
@@ -614,6 +649,18 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithSetableCompletionDate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithTarget</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1128,10 +1175,8 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
   <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
   <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
   <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Scales/BBCH.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -1243,27 +1288,14 @@ These connections allow the model to exchange information—such as environmenta
 </tbody>
 </table>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<div class="intro-text">
-<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
-</div>
-<p><strong>Events Listened For</strong></p>
-<blockquote class="blockquote">
-<p>No events are listened by this function.</p>
-</blockquote>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
-</section>
 <section id="processes-and-algorithms" class="level2">
 <h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
 <div class="intro-text">
 <p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
 </div>
-<p>The BBCH model calculates growth stages through matching phase name in a <a href="../../../../../docs/Models/PMF/Plant.html" class="model-link">Plant</a>, with different calculation methods for early vegetative, stem extension, and reproductive development:</p>
-<p><strong>Early Vegetative Stages (BBCH 00-39)</strong></p>
+<section id="reference-table-phase-based-bbch-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="reference-table-phase-based-bbch-calculations">Reference Table: Phase-Based BBCH Calculations</h3>
+<p>For reference, the complete mapping of APSIM-NG phases to BBCH calculations:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
@@ -1283,47 +1315,85 @@ These connections allow the model to exchange information—such as environmenta
 <tr class="odd">
 <td>1</td>
 <td>Germinating</td>
-<td><code>5 × FractionThroughPhase</code></td>
+<td><span class="math inline">\(5 \times F_{\text{phase}}\)</span></td>
 <td>Early germination progress</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>Emerging</td>
-<td><code>5 + 5 × FractionThroughPhase</code></td>
+<td><span class="math inline">\(5 + 5 \times F_{\text{phase}}\)</span></td>
 <td>Emergence from soil surface</td>
 </tr>
 <tr class="odd">
-<td>3</td>
+<td>3-4</td>
 <td>Juvenile or PhotoSensitive</td>
-<td><code>10 + (Leaf.AppearedCohortNo - 1)</code></td>
+<td><span class="math inline">\(10 + (N_{\text{leaves}} - 1)\)</span></td>
 <td>Initial leaf development</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td>PhotoSensitive</td>
-<td><code>10 + (Leaf.AppearedCohortNo - 1)</code></td>
-<td>Continued leaf appearance</td>
+<td>5</td>
+<td>LeafAppearance (before flag)</td>
+<td><span class="math inline">\(30 + N_{\text{leaves expanded}}\)</span></td>
+<td>Stem extension and node development</td>
 </tr>
 <tr class="odd">
 <td>5</td>
-<td>LeafAppearance</td>
-<td><code>30 + LeavesAppearedInPhase</code></td>
-<td>Stem extension and node development</td>
+<td>LeafAppearance (after flag)</td>
+<td><span class="math inline">\(50 + 5 \times F_{\text{flag expansion}}\)</span></td>
+<td>Flag leaf emergence</td>
+</tr>
+<tr class="even">
+<td>6-10</td>
+<td>Reproductive phases</td>
+<td>Linear interpolation</td>
+<td>Flowering to maturity</td>
 </tr>
 </tbody>
 </table>
-<p>Notes:</p>
-<ul>
-<li>BBCH stages 11-19 use the “droopy leaf” method where visible leaf tips are one fewer than fully developed leaves</li>
-<li>Stem extension (BBCH 30) corresponds to floral initiation (Stage 5)</li>
-<li>Scores between 31 and 39 depend on the number of nodes visiable</li>
-</ul>
-<p><strong>Flag Leaf Emergence (BBCH 50-59)</strong></p>
-<ul>
-<li>BBCH 50 (tassel visibility) coincides with flag leaf tip appearance</li>
-<li>During flag leaf expansion: <code>BBCH = 50 + 5 × FractionFlagLeafExpansion</code></li>
-</ul>
-<p><strong>Reproductive Stage Mapping:</strong></p>
+<p>where <span class="math inline">\(F_{\text{phase}}\)</span> is the fraction through the current phase, <span class="math inline">\(N_{\text{leaves}}\)</span> is the number of appeared leaves, and <span class="math inline">\(F_{\text{flag expansion}}\)</span> is the fraction of flag leaf expansion.</p>
+</section>
+<section id="early-vegetative-development-bbch-00-19" class="level3">
+<h3 class="anchored" data-anchor-id="early-vegetative-development-bbch-00-19">Early Vegetative Development (BBCH 00-19)</h3>
+<p>The BBCH model calculates growth stages based on the current phenological phase, with different calculation methods applied depending on the developmental stage.</p>
+<p><strong>Germination Phase (BBCH 00-05):</strong></p>
+<p>During the Germinating phase, BBCH stage is calculated as:</p>
+<p><span class="math display">\[
+\text{BBCH} = 5 \times F_{\text{germ}}
+\]</span></p>
+<p>where <span class="math inline">\(F_{\text{germ}}\)</span> represents the fraction of progress through the germination phase.</p>
+<p><strong>Emergence Phase (BBCH 05-10):</strong></p>
+<p>During the Emerging phase, BBCH stage is calculated as:</p>
+<p><span class="math display">\[
+\text{BBCH} = 5 + 5 \times F_{\text{emerg}}
+\]</span></p>
+<p>where <span class="math inline">\(F_{\text{emerg}}\)</span> represents the fraction of progress through the emergence phase.</p>
+<p><strong>Leaf Development Phase (BBCH 10-19):</strong></p>
+<p>During Juvenile or PhotoSensitive phases, BBCH stage is calculated based on the number of appeared leaf cohorts:</p>
+<p><span class="math display">\[
+\text{BBCH} = \min(19, 10 + \max(0, N_{\text{appeared}} - 1))
+\]</span></p>
+<p>where <span class="math inline">\(N_{\text{appeared}}\)</span> is the number of leaf cohorts that have appeared. This calculation accounts for the “droopy leaf” method where visible leaf tips are one fewer than fully developed leaves.</p>
+</section>
+<section id="stem-extension-and-node-development-bbch-30-39" class="level3">
+<h3 class="anchored" data-anchor-id="stem-extension-and-node-development-bbch-30-39">Stem Extension and Node Development (BBCH 30-39)</h3>
+<p>When the plant enters the LeafAppearance phase and appeared leaf cohort number is less than final leaf number, the BBCH transitions to stem extension stages:</p>
+<p><span class="math display">\[
+\text{BBCH} = 30 + \min(9, N_{\text{expanded}} - N_{\text{initial}})
+\]</span></p>
+<p>where <span class="math inline">\(N_{\text{expanded}}\)</span> is the current number of expanded leaf cohorts and <span class="math inline">\(N_{\text{initial}}\)</span> is the number of expanded cohorts at the start of stem extension. The model assumes node appearance occurs at the same rate as leaf appearance.</p>
+</section>
+<section id="inflorescence-development-bbch-50-59" class="level3">
+<h3 class="anchored" data-anchor-id="inflorescence-development-bbch-50-59">Inflorescence Development (BBCH 50-59)</h3>
+<p>BBCH stage 50 occurs when the tassel becomes visible, which corresponds to the appearance of the flag leaf tip. During flag leaf expansion within the LeafAppearance phase after the final leaf has appeared:</p>
+<p><span class="math display">\[
+\text{BBCH} = 50 + 5 \times \frac{F_{\text{current}} - F_{\text{BBCH50}}}{1 - F_{\text{BBCH50}}}
+\]</span></p>
+<p>where <span class="math inline">\(F_{\text{current}}\)</span> is the current fraction through the LeafAppearance phase and <span class="math inline">\(F_{\text{BBCH50}}\)</span> is the fraction when BBCH 50 was reached. This assumes the tassel will be half emerged when the flag leaf is fully expanded.</p>
+</section>
+<section id="reproductive-development-bbch-55-99" class="level3">
+<h3 class="anchored" data-anchor-id="reproductive-development-bbch-55-99">Reproductive Development (BBCH 55-99)</h3>
+<p>Later stages use linear interpolation between key phenological milestones:</p>
+<p>The mapping between APSIM-NG stages and BBCH codes is:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1366,16 +1436,25 @@ These connections allow the model to exchange information—such as environmenta
 </tr>
 </tbody>
 </table>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-zadok-mapping" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zadok-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="BBCH_files/figure-html/fig-zadok-mapping-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zadok-mapping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: APSIM to Zadok Growth Stage Mapping
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
 <p>BBCH can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for BBCH in the Filter Box.</p>
-</section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is provided here.</p>
-</blockquote>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>

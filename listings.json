@@ -17,6 +17,8 @@
       "/docs/Models/PMF/Phenology/Phases/GenericPhase.html",
       "/docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
       "/docs/Models/PMF/Phenology/Phases/IPhase.html",
+      "/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html",
+      "/docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html",
       "/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
       "/docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html",
       "/docs/Models/PMF/Phenology/Phases/VernalisationPhase.html"

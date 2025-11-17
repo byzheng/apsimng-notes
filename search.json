@@ -1745,27 +1745,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Scales/BBCH.html#events",
-    "href": "docs/Models/PMF/Phenology/Scales/BBCH.html#events",
-    "title": "BBCH",
-    "section": "Events",
-    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Scales",
-      "BBCH"
-    ]
-  },
-  {
     "objectID": "docs/Models/PMF/Phenology/Scales/BBCH.html#processes-and-algorithms",
     "href": "docs/Models/PMF/Phenology/Scales/BBCH.html#processes-and-algorithms",
     "title": "BBCH",
     "section": "Processes and Algorithms",
-    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\nThe BBCH model calculates growth stages through matching phase name in a Plant, with different calculation methods for early vegetative, stem extension, and reproductive development:\nEarly Vegetative Stages (BBCH 00-39)\n\n\n\n\n\n\n\n\n\nBegin Stage\nGrowth Phase\nBBCH Calculation\nDescription\n\n\n\n\n1\nGerminating\n5 × FractionThroughPhase\nEarly germination progress\n\n\n2\nEmerging\n5 + 5 × FractionThroughPhase\nEmergence from soil surface\n\n\n3\nJuvenile or PhotoSensitive\n10 + (Leaf.AppearedCohortNo - 1)\nInitial leaf development\n\n\n4\nPhotoSensitive\n10 + (Leaf.AppearedCohortNo - 1)\nContinued leaf appearance\n\n\n5\nLeafAppearance\n30 + LeavesAppearedInPhase\nStem extension and node development\n\n\n\nNotes:\n\nBBCH stages 11-19 use the “droopy leaf” method where visible leaf tips are one fewer than fully developed leaves\nStem extension (BBCH 30) corresponds to floral initiation (Stage 5)\nScores between 31 and 39 depend on the number of nodes visiable\n\nFlag Leaf Emergence (BBCH 50-59)\n\nBBCH 50 (tassel visibility) coincides with flag leaf tip appearance\nDuring flag leaf expansion: BBCH = 50 + 5 × FractionFlagLeafExpansion\n\nReproductive Stage Mapping:\n\n\n\nAPSIM Stage\nAPSIM Name\nBBCH Code\nBBCH Description\n\n\n\n\n6.0\nFlagLeafFullyExpanded\n55\nMid-tassel emergence\n\n\n7.0\nFlowering\n65\nMid-flowering\n\n\n8.0\nStartGrainFill\n70\nBeginning of grain development\n\n\n9.0\nEndGrainFill\n87\nPhysiological maturity\n\n\n10.0\nMaturity\n99\nHarvest product",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nReference Table: Phase-Based BBCH Calculations\nFor reference, the complete mapping of APSIM-NG phases to BBCH calculations:\n\n\n\n\n\n\n\n\n\nBegin Stage\nGrowth Phase\nBBCH Calculation\nDescription\n\n\n\n\n1\nGerminating\n\\(5 \\times F_{\\text{phase}}\\)\nEarly germination progress\n\n\n2\nEmerging\n\\(5 + 5 \\times F_{\\text{phase}}\\)\nEmergence from soil surface\n\n\n3-4\nJuvenile or PhotoSensitive\n\\(10 + (N_{\\text{leaves}} - 1)\\)\nInitial leaf development\n\n\n5\nLeafAppearance (before flag)\n\\(30 + N_{\\text{leaves expanded}}\\)\nStem extension and node development\n\n\n5\nLeafAppearance (after flag)\n\\(50 + 5 \\times F_{\\text{flag expansion}}\\)\nFlag leaf emergence\n\n\n6-10\nReproductive phases\nLinear interpolation\nFlowering to maturity\n\n\n\nwhere \\(F_{\\text{phase}}\\) is the fraction through the current phase, \\(N_{\\text{leaves}}\\) is the number of appeared leaves, and \\(F_{\\text{flag expansion}}\\) is the fraction of flag leaf expansion.\n\n\nEarly Vegetative Development (BBCH 00-19)\nThe BBCH model calculates growth stages based on the current phenological phase, with different calculation methods applied depending on the developmental stage.\nGermination Phase (BBCH 00-05):\nDuring the Germinating phase, BBCH stage is calculated as:\n\\[\n\\text{BBCH} = 5 \\times F_{\\text{germ}}\n\\]\nwhere \\(F_{\\text{germ}}\\) represents the fraction of progress through the germination phase.\nEmergence Phase (BBCH 05-10):\nDuring the Emerging phase, BBCH stage is calculated as:\n\\[\n\\text{BBCH} = 5 + 5 \\times F_{\\text{emerg}}\n\\]\nwhere \\(F_{\\text{emerg}}\\) represents the fraction of progress through the emergence phase.\nLeaf Development Phase (BBCH 10-19):\nDuring Juvenile or PhotoSensitive phases, BBCH stage is calculated based on the number of appeared leaf cohorts:\n\\[\n\\text{BBCH} = \\min(19, 10 + \\max(0, N_{\\text{appeared}} - 1))\n\\]\nwhere \\(N_{\\text{appeared}}\\) is the number of leaf cohorts that have appeared. This calculation accounts for the “droopy leaf” method where visible leaf tips are one fewer than fully developed leaves.\n\n\nStem Extension and Node Development (BBCH 30-39)\nWhen the plant enters the LeafAppearance phase and appeared leaf cohort number is less than final leaf number, the BBCH transitions to stem extension stages:\n\\[\n\\text{BBCH} = 30 + \\min(9, N_{\\text{expanded}} - N_{\\text{initial}})\n\\]\nwhere \\(N_{\\text{expanded}}\\) is the current number of expanded leaf cohorts and \\(N_{\\text{initial}}\\) is the number of expanded cohorts at the start of stem extension. The model assumes node appearance occurs at the same rate as leaf appearance.\n\n\nInflorescence Development (BBCH 50-59)\nBBCH stage 50 occurs when the tassel becomes visible, which corresponds to the appearance of the flag leaf tip. During flag leaf expansion within the LeafAppearance phase after the final leaf has appeared:\n\\[\n\\text{BBCH} = 50 + 5 \\times \\frac{F_{\\text{current}} - F_{\\text{BBCH50}}}{1 - F_{\\text{BBCH50}}}\n\\]\nwhere \\(F_{\\text{current}}\\) is the current fraction through the LeafAppearance phase and \\(F_{\\text{BBCH50}}\\) is the fraction when BBCH 50 was reached. This assumes the tassel will be half emerged when the flag leaf is fully expanded.\n\n\nReproductive Development (BBCH 55-99)\nLater stages use linear interpolation between key phenological milestones:\nThe mapping between APSIM-NG stages and BBCH codes is:\n\n\n\nAPSIM Stage\nAPSIM Name\nBBCH Code\nBBCH Description\n\n\n\n\n6.0\nFlagLeafFullyExpanded\n55\nMid-tassel emergence\n\n\n7.0\nFlowering\n65\nMid-flowering\n\n\n8.0\nStartGrainFill\n70\nBeginning of grain development\n\n\n9.0\nEndGrainFill\n87\nPhysiological maturity\n\n\n10.0\nMaturity\n99\nHarvest product\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: APSIM to Zadok Growth Stage Mapping",
     "crumbs": [
       "Home",
       "Docs",
@@ -1782,22 +1766,6 @@
     "title": "BBCH",
     "section": "User Interface",
     "text": "User Interface\nBBCH can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for BBCH in the Filter Box.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Scales",
-      "BBCH"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Scales/BBCH.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/Scales/BBCH.html#practical-example",
-    "title": "BBCH",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is provided here.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1829,7 +1797,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/index.html",
     "title": "Phases",
     "section": "",
-    "text": "Phases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nIPhase\n\n\n\n\n\n\n\n\n\nLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nSimpleLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nVernalisationPhase\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Phases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nIPhase\n\n\n\n\n\n\n\n\n\nIPhaseWithSetableCompletionDate\n\n\n\n\n\n\n\n\n\nIPhaseWithTarget\n\n\n\n\n\n\n\n\n\nLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nSimpleLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nVernalisationPhase\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -1984,11 +1952,91 @@
     ]
   },
   {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html",
+    "title": "IPhaseWithTarget",
+    "section": "",
+    "text": "The IPhaseWithTarget interface extends the IPhase interface to define phenological phases that progress toward a specific target value. It provides standardized properties for tracking both the target threshold and the accumulated progress through the phase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithTarget"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#overview",
+    "title": "IPhaseWithTarget",
+    "section": "Overview",
+    "text": "Overview\nThe IPhaseWithTarget interface is implemented by phenological phases that advance based on accumulating a measurable quantity (typically thermal time in degree days) until a target threshold is reached. This interface extends the basic IPhase contract by adding:\n\nA target value that defines when the phase is complete\nA progress tracker that accumulates the quantity through the phase\n\nCommon examples include:\n\nThermal time-based phases that accumulate degree days until emergence, flowering, or maturity\nDevelopment phases that track cumulative photoperiod or vernalization units\nGrowth stages that progress based on accumulated growing degree days\n\nBy standardizing these properties, the interface enables consistent implementation of target-driven phases and allows other models to query phase progress and completion criteria in a uniform way.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithTarget"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#model-structure",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#model-structure",
+    "title": "IPhaseWithTarget",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nIPhase",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithTarget"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#model-variables",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#model-variables",
+    "title": "IPhaseWithTarget",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\nThis interface inherits all configurable properties from IPhase and adds:\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nProgressThroughPhase\ndouble\nThe accumulated progress through this phase (e.g., cumulative thermal time in °Cd). Can be set externally to initialize or adjust phase progress.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nTarget\ndouble\nThe target value that must be reached for the phase to complete (e.g., thermal time requirement in °Cd).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithTarget"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html#see-also",
+    "title": "IPhaseWithTarget",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IPhaseWithTrarget.cs on GitHub\nParent Interface: IPhase\nImplementations: EmergingPhase, GenericPhase",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithTarget"
+    ]
+  },
+  {
     "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html",
     "href": "docs/Models/PMF/Phenology/Phases/IPhase.html",
     "title": "IPhase",
     "section": "",
-    "text": "Represents a single developmental phase in the APSIM NG phenology module.\nIPhase defines the contract that every phase model (e.g. Sowing → Emergence, Emergence → Floral Initiation) must obey so that the phenology engine can advance crop development in a modular, interchangeable way.",
+    "text": "The IPhase interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2004,7 +2052,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#overview",
     "title": "IPhase",
     "section": "Overview",
-    "text": "Overview\nIn APSIM NG, crop development is broken into discrete phases.\nEach phase knows when it starts, when it ends, how fast it is progressing, and when it has finished.\nModels that implement IPhase plug into the core Phenology model; the latter calls DoTimeStep() in every simulation step (i.e. day) to update development and query FractionComplete to determine when to hand control to the next phase.",
+    "text": "Overview\nIn APSIM NG, crop development is organized into discrete phenological phases (e.g., Germination, Emergence, Flowering, Grain Filling). The IPhase interface provides a standardized framework that allows the Phenology model to manage these phases uniformly, regardless of their specific implementation details.\nEach phase implementing this interface:\n\nDefines its start and end phenological stages (e.g., from “Sowing” to “Germinated”)\nCalculates daily progress through the phase using environmental drivers (temperature, photoperiod, etc.)\nReports its completion status as a fraction between 0 and 1\nCan be reset for new simulations or seasons\nIndicates whether it represents above-ground or below-ground development\n\nThe Phenology model orchestrates phases by calling DoTimeStep() each simulation day to advance development and checking FractionComplete to determine when to transition to the next phase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2016,11 +2064,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#inputs",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#inputs",
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#model-structure",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#model-structure",
     "title": "IPhase",
-    "section": "Inputs",
-    "text": "Inputs\n\n\n\n\n\n\n\n\n\nName\nType\nSource\nPurpose\n\n\n\n\nStart\nstring\n.apsimx file / UI\nThe phenological stage at which this phase begins.\n\n\nEnd\nstring\n.apsimx file / UI\nThe phenological stage at which this phase ends.\n\n\nPropOfDayToUse\nref double\nPhenology engine\nProportion of today that can be used by this phase; set to 0 when the phase finishes.\n\n\n\n(Implementations will usually read additional daily meteorological or crop‑state variables, but those are outside the scope of the interface itself.)",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nIModel",
     "crumbs": [
       "Home",
       "Docs",
@@ -2032,75 +2080,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#methodology",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#methodology",
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#model-variables",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#model-variables",
     "title": "IPhase",
-    "section": "Methodology",
-    "text": "Methodology\n\nProgress calculation\n\nEach concrete phase overrides DoTimeStep(ref PropOfDayToUse) to accumulate development using its own algorithm (thermal time, photoperiod, vernalisation, etc.).\nWhen the cumulative progress reaches its target, the method returns a non‑zero value and sets PropOfDayToUse to the unused fraction of the day so the next phase can continue.\n\nFraction complete\n\nFractionComplete exposes the running total as a value in \\[[0,1]\\], enabling other models (e.g. Leaf growth) to scale processes smoothly across phase boundaries.\n\nState management\n\n\nResetPhase() allows a simulation (or a new season) to restart the phase from scratch.\n\nIsEmerged lets other models know whether the crop has emerged above the soil surface (i.e. this phase is happening above ground), which is critical for processes such as light interception or grazing.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "IPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#events",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#events",
-    "title": "IPhase",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised To\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "IPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#properties",
-    "title": "IPhase",
-    "section": "Properties",
-    "text": "Properties\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nName of the phenological stage that marks the start of this phase.\n\n\nEnd\nstring\nName of the phenological stage that marks the end of this phase.\n\n\n\n\n\nRead‑Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFractional progress through the phase \\(0 \\le F \\le 1\\).\n\n\nIsEmerged\nbool\nTrue once the crop has emerged from the soil.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "IPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#user-interface",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#user-interface",
-    "title": "IPhase",
-    "section": "User Interface",
-    "text": "User Interface\nIPhase implementations can be added as children of a Phenology node in the APSIM NG model tree.\nRight‑click Phenology → Add Model… and search for the desired phase (e.g. Germination, Floral Initiation).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Phases",
-      "IPhase"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Phases/IPhase.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#practical-example",
-    "title": "IPhase",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nName of the phenological stage that marks the beginning of this phase (e.g., “Sowing”, “Germinated”).\n\n\nEnd\nstring\nName of the phenological stage that marks the completion of this phase (e.g., “Germinated”, “Emergence”).\n\n\nIsEmerged\nbool\nBoolean flag indicating whether the crop has emerged above the soil surface during this phase. Used by other models for processes like light interception.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFractional progress through the phase, where \\(0 \\le F \\le 1\\). Returns 0 at phase start and 1 when the phase target is met.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2116,7 +2100,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/IPhase.html#see-also",
     "title": "IPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: IPhase.cs on GitHub",
+    "text": "See Also\n\nSource code: IPhase.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -2228,7 +2212,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
     "title": "EmergingPhase",
     "section": "",
-    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges and completes the phase once those criteria are satisfied. Typically, it spans from the Germination stage to the Eergence stage, and its completion is determined by either environmental triggers, e.g. temperature, or a user-specified germination date.",
+    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges from the soil and completes the phase once those criteria are satisfied. Typically, it spans from the Germinated stage to the Emergence stage, and its completion is determined by either thermal time accumulation or a user-specified emergence date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2244,7 +2228,55 @@
     "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#overview",
     "title": "EmergingPhase",
     "section": "Overview",
-    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. Germination is assumed to occur when any of the following conditions are met:\n\nTarget thermal time for emergence is reached,\nA specific emergence date is provided via the EmergenceDate property.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\n\nIf EmergenceDate is specified, emergence occurs exactly on that date, regardless of soil moisture or temperature.\n\nPhase Target as GenericPhase",
+    "text": "Overview\nThe EmergingPhase models the transition from germination to emergence in the crop’s phenological development. This phase simulates the time required for the shoot to grow from the seed depth to the soil surface, which is influenced by temperature and sowing depth.\nEmergence occurs when any of the following conditions are met:\n\nAccumulated thermal time reaches the target value (specified by the Target child function),\nA specific emergence date is provided via the DateToProgress property.\n\nThe phase progresses using thermal time accumulation, typically calculated from the Phenology.ThermalTime function. Once the target is reached, the phase completes and triggers the transition to the next phenological stage.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EmergingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#model-structure",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#model-structure",
+    "title": "EmergingPhase",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIPhase\nIPhaseWithTarget\nIPhaseWithSetableCompletionDate",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EmergingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#connections-to-other-components",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#connections-to-other-components",
+    "title": "EmergingPhase",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nPhenology\nPhenology\nLink\nProvides thermal time for phase progression.\n\n\nClock\nIClock\nLink\nSupplies current simulation date and timing information.\n\n\nTarget\nIFunction\nChild Connection\nSpecifies the target thermal time required for emergence.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EmergingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#model-variables",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#model-variables",
+    "title": "EmergingPhase",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g., Germinated).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g., Emergence).\nYes\n\n\nTarget\nIFunction\nThe target thermal time value for phase completion (in °Cd).\nYes\n\n\nIsEmerged\nbool\nBoolean flag indicating whether this phase represents above-ground growth. Default is false.\nNo\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete.\n\n\nTTForTimeStep\ndouble\nThe thermal time accumulated during the current time step (in °Cd).\n\n\nProgressThroughPhase\ndouble\nAccumulated thermal time through this phase (in °Cd).\n\n\nDateToProgress\nstring\nOptional fixed calendar date to override thermal time-based progression.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2260,7 +2292,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#events",
     "title": "EmergingPhase",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the GerminatingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset progress at the start of simulations\n\n\nPlantSowing\nSet the phase target as GenericPhase. It also indicates the phase target cannot be dynamically modified.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\nThese are signals or notifications that the EmergingPhase listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nReset phase progress at the start of simulations.\n\n\nPlantSowing\nSet the phase target value based on the Target child function. The target is fixed at sowing and cannot be dynamically modified during the phase.\n\n\n\nEvents Raised to\n\nNo events are raised by this phase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2272,11 +2304,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#properties",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#processes-and-algorithms",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#processes-and-algorithms",
     "title": "EmergingPhase",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\nRequired\n\n\n\n\nStart\nstring\nPhenological stage at which this phase begins (e.g. Sowing).\nYes\n\n\nEnd\nstring\nPhenological stage that marks completion of the phase (e.g. Germinated).\nYes\n\n\nTarget\nIFunction\nThe target value for phase completion (e.g., required thermal time).\nYes\n\n\nProgression\nIFunction\nThe daily progression towards the target (e.g., daily thermal time).\nYes\n\n\nEmergenceDate\nstring\nOptional fixed calendar date to override environmental conditions.\nNo\n\n\n\nIsEmerged | bool | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground). | No |\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFractionComplete\ndouble\nFraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing.\n\n\nProgressionForTimeStep\ndouble\nThe amount of progression made during the current time step (e.g. day).\n\n\nProgressThroughPhase\ndouble\nAccumulated units of progress through this phase between zero and target.",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nEmergence Triggers\nEmergence occurs in one of two ways:\n\nUser-defined emergence date\nIf DateToProgress is specified, emergence occurs exactly on that date, regardless of thermal time accumulation. This allows users to override the environmental-based calculation with observed or expected emergence dates.\nThermal time accumulation\nIf no date is defined, emergence is triggered when accumulated thermal time (ProgressThroughPhase) equals or exceeds the target value (Target). The target is set at sowing and represents the total thermal time required for the shoot to reach the soil surface from the sowing depth.\n\n\n\nDate Override\nIf DateToProgress is set to a specific date, the phase ignores thermal time accumulation and completes exactly on that date. This is useful for calibrating the model to match observed emergence dates or for scenarios where emergence timing is known.\n\n\nThermal Time Accumulation\nThe EmergingPhase progresses based on thermal time accumulation. Each day, the phase calculates the thermal time for that day and adds it to the accumulated progress:\nLet \\(TT_{\\text{day}}\\) be the thermal time for the current day (from Phenology.ThermalTime), \\(P\\) be the accumulated progress through the phase (ProgressThroughPhase), and \\(T\\) be the target thermal time (Target).\nOn each time step:\n\\[\nP_{t+1} = P_t + TT_{\\text{day}} \\times f_{\\text{day}}\n\\]\nwhere \\(f_{\\text{day}}\\) is the proportion of the day to use (between 0 and 1), which accounts for phases that may complete mid-day.\n\n\nPhase Completion\nThe phase is considered complete when:\n\\[\nP \\geq T\n\\]\nIf the phase completes mid-day (i.e., \\(P_t + TT_{\\text{day}} &gt; T\\)), the unused portion of the day is calculated as:\n\\[\nf_{\\text{unused}} = \\frac{P - T}{TT_{\\text{day}}}\n\\]\nThis unused fraction is passed to the next phase, allowing it to begin progressing immediately.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2288,11 +2320,27 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
-    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#usage",
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#user-interface",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#user-interface",
     "title": "EmergingPhase",
-    "section": "Usage",
-    "text": "Usage\nAn EmergingPhase can be used to represent the emergence process of a plant, which is primarily influenced by sowing depth, shoot lag and shoot rate.",
+    "section": "User Interface",
+    "text": "User Interface\nEmergingPhase can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for EmergingPhase in the Filter Box.\nThe phase requires a child function named Target to specify the thermal time requirement for emergence. This can be a constant value or a more complex function that accounts for sowing depth effects.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "EmergingPhase"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#practical-example",
+    "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#practical-example",
+    "title": "EmergingPhase",
+    "section": "Practical Example",
+    "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2308,7 +2356,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html#see-also",
     "title": "EmergingPhase",
     "section": "See Also",
-    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub.",
+    "text": "See Also\n\nSource code: EmergingPhase.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -4188,6 +4236,295 @@
     ]
   },
   {
+    "objectID": "docs/Models/Connections.html",
+    "href": "docs/Models/Connections.html",
+    "title": "Connections Between Models",
+    "section": "",
+    "text": "In APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#overview",
+    "href": "docs/Models/Connections.html#overview",
+    "title": "Connections Between Models",
+    "section": "Overview",
+    "text": "Overview\nIn biological or physical terms, a Link represents a relationship or dependency between two parts of the simulation.\nFor example, a Leaf model depends on information from the Phenology model to know when new leaves should appear, or from the Plant model to understand the overall plant state.\nThese relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#purpose-of-links",
+    "href": "docs/Models/Connections.html#purpose-of-links",
+    "title": "Connections Between Models",
+    "section": "Purpose of Links",
+    "text": "Purpose of Links\nLinks serve several key purposes in APSIM NG:\n\nIntegration of biological processes — e.g., linking photosynthesis with canopy development.\n\nRe-use of common models — e.g., several organs may link to the same Thermal Time module.\n\nHierarchical organization — e.g., a Plant contains Leaf, Stem, and Root components that interact through internal connections.\n\nParameter sharing — e.g., a Structure model accessing FinalLeafNumber from a function defined elsewhere.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#types-of-connections",
+    "href": "docs/Models/Connections.html#types-of-connections",
+    "title": "Connections Between Models",
+    "section": "Types of Connections",
+    "text": "Types of Connections\nDifferent kinds of connections define how APSIM NG searches for and establishes relationships between models.\nThese can be understood as different biological or structural scopes:\n\n\n\n\n\n\n\n\n\nConnection Type\nDescription\nScientific Analogy\nTypical Use\n\n\n\n\nFirst Available\nSearches upward or outward in the model hierarchy until a matching model is found.\nA plant organ seeking information from its parent plant system.\nMost common; used for high-level interactions such as organ ↔︎ plant communication.\n\n\nChild Connection\nConnects directly to a component located within the same model.\nAn internal process within the same organ (e.g., leaf temperature model within Leaf).\nUsed for tightly coupled sub-processes or response functions.\n\n\nNamed Connection\nConnects to a model explicitly identified by name.\nTargeted reference to a specific process or dataset.\nUsed when multiple similar models exist (e.g., several temperature response functions).\n\n\n\n\nThese types correspond to APSIM’s internal connection logic (e.g., By first appearance, Child, By name), but are presented here in biological terms for clarity.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
+    "href": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
+    "title": "Connections Between Models",
+    "section": "Example: Connections in a Plant Structure Model",
+    "text": "Example: Connections in a Plant Structure Model\nBelow is connections used in the Structure model.\n\n\n\n\n\n\n\n\n\nConnected Component\nConnection Type\nRole in the Model\nDescription\n\n\n\n\nPlant\nFirst Available\nBroader plant context\nProvides structural and lifecycle information for the plant.\n\n\nPhenology\nFirst Available\nDevelopmental driver\nSupplies current growth stage and timing of key events.\n\n\nLeaf\nFirst Available\nOrgan-level interaction\nProvides information on leaf area, appearance, and expansion.\n\n\nThermalTime\nChild Connection\nInternal driver\nCalculates accumulated temperature used for leaf and stem development.\n\n\nPhyllochron\nChild Connection\nInternal driver\nDefines the thermal interval between successive leaf appearances.\n\n\nFinalLeafNumber\nChild Connection\nGenotypic parameter\nDetermines the maximum number of leaves for this genotype.\n\n\nHeightModel\nChild Connection\nStructural process\nComputes plant height as a function of temperature and development.\n\n\nBranchingRate\nChild Connection\nGrowth process\nDetermines the rate of new branch initiation.\n\n\nBranchMortality\nChild Connection\nSenescence process\nDetermines the rate at which branches die or are lost.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#conceptual-view",
+    "href": "docs/Models/Connections.html#conceptual-view",
+    "title": "Connections Between Models",
+    "section": "Conceptual View",
+    "text": "Conceptual View\nIn a simulation, these connections can be visualized as information pathways:\nPlant\n├── Phenology\n├── Structure\n│ ├── ThermalTime\n│ ├── Phyllochron\n│ ├── FinalLeafNumber\n│ └── HeightModel\n└── Leaf\nEach arrow represents a Link, enabling data flow from one model to another — ensuring biological realism and modular consistency.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#why-this-matters",
+    "href": "docs/Models/Connections.html#why-this-matters",
+    "title": "Connections Between Models",
+    "section": "Why This Matters",
+    "text": "Why This Matters\nUnderstanding Links helps scientists interpret model behavior correctly:\n\nWhen a model outputs or responds to a variable, that information may originate from another connected model.\n\nAdding or removing sub-models (e.g., replacing one ThermalTime with another) changes biological relationships.\n\nProper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Connections.html#see-also",
+    "href": "docs/Models/Connections.html#see-also",
+    "title": "Connections Between Models",
+    "section": "See Also",
+    "text": "See Also\n\nStructure Model",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Connections Between Models"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html",
+    "href": "docs/APSIM.Core/IStructureDependency.html",
+    "title": "IStructureDependency",
+    "section": "",
+    "text": "The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html#overview",
+    "href": "docs/APSIM.Core/IStructureDependency.html#overview",
+    "title": "IStructureDependency",
+    "section": "Overview",
+    "text": "Overview\nThe IStructureDependency interface is a fundamental component of APSIM-NG’s dependency injection system. It provides a standardized mechanism for models to receive an IStructure instance, which grants access to the simulation’s hierarchical model tree. This interface is essential for models that need to dynamically locate and interact with other components in the simulation, such as finding child functions, accessing sibling models, or navigating the parent-child relationships within the plant model structure.\nModels implementing this interface receive the Structure property automatically populated by the APSIM.Core framework during initialization, eliminating the need for manual dependency wiring and enabling clean, maintainable code.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructureDependency.html#see-also",
+    "href": "docs/APSIM.Core/IStructureDependency.html#see-also",
+    "title": "IStructureDependency",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IStructureDependency.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructureDependency"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html",
+    "href": "docs/APSIM.Core/IFunction.html",
+    "title": "IFunction Interface",
+    "section": "",
+    "text": "The IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#overview",
+    "href": "docs/APSIM.Core/IFunction.html#overview",
+    "title": "IFunction Interface",
+    "section": "Overview",
+    "text": "Overview\nThe IFunction interface serves as the foundational abstraction layer for all computational functions in APSIM-NG, enabling modular and interchangeable calculation components within the simulation system. This interface establishes a uniform protocol for value retrieval that supports diverse mathematical operations, from simple constants to complex environmental response functions. By implementing this interface, functions can be dynamically linked and exchanged within model configurations, supporting flexible model construction and parameterization.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#model-variables",
+    "href": "docs/APSIM.Core/IFunction.html#model-variables",
+    "title": "IFunction Interface",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable Properties\n\nNo configurable properties are available for this interface.\n\nRead-Only Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue()\ndouble\nThe calculated output value of the function",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IFunction.html#see-also",
+    "href": "docs/APSIM.Core/IFunction.html#see-also",
+    "title": "IFunction Interface",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IFunction Interface"
+    ]
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
+  },
+  {
+    "objectID": "about.html#what-this-site-includes",
+    "href": "about.html#what-this-site-includes",
+    "title": "About",
+    "section": "What This Site Includes",
+    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
+  },
+  {
+    "objectID": "about.html#not-official-documentation",
+    "href": "about.html#not-official-documentation",
+    "title": "About",
+    "section": "Not Official Documentation",
+    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
+  },
+  {
+    "objectID": "about.html#license-and-attribution",
+    "href": "about.html#license-and-attribution",
+    "title": "About",
+    "section": "⚖️ License and Attribution",
+    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
+  },
+  {
+    "objectID": "about.html#acknowledgment",
+    "href": "about.html#acknowledgment",
+    "title": "About",
+    "section": "🙏 Acknowledgment",
+    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
+  },
+  {
+    "objectID": "disclaimer.html",
+    "href": "disclaimer.html",
+    "title": "Disclaimer",
+    "section": "",
+    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html",
+    "href": "docs/APSIM.Core/IStructure.html",
+    "title": "IStructure",
+    "section": "",
+    "text": "The IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#overview",
+    "href": "docs/APSIM.Core/IStructure.html#overview",
+    "title": "IStructure",
+    "section": "Overview",
+    "text": "Overview\nThe IStructure interface is the backbone of APSIM-NG’s component architecture, providing a comprehensive set of methods for navigating and manipulating the hierarchical model tree. This interface abstracts the complexity of the model tree structure, offering intuitive methods for finding child models, parent models, siblings, and models in scope. It also provides powerful locator functionality for accessing model properties and variables using path-based notation, similar to file system navigation.\nModels receive an IStructure instance through dependency injection (via IStructureDependency), which grants them the ability to dynamically discover and interact with other components without hard-coded dependencies. This design enables flexible model composition, where complex behaviors emerge from simple, loosely-coupled components working together through the structure system.\nThe interface supports both direct tree navigation (parent-child-sibling relationships) and scope-based discovery (finding models according to APSIM-NG’s scoping rules), making it suitable for both simple component access and complex cross-model interactions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#model-variables",
+    "href": "docs/APSIM.Core/IStructure.html#model-variables",
+    "title": "IStructure",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFileName\nstring\nThe file name associated with the structure.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nName\nstring\nThe name of the current model node.\n\n\nFullNameAndPath\nstring\nThe complete path from root to the current node.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
+    "objectID": "docs/APSIM.Core/IStructure.html#see-also",
+    "href": "docs/APSIM.Core/IStructure.html#see-also",
+    "title": "IStructure",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IStructure.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "APSIM.Core",
+      "IStructure"
+    ]
+  },
+  {
     "objectID": "docs/Models/Clock.html",
     "href": "docs/Models/Clock.html",
     "title": "Clock",
@@ -4305,292 +4642,59 @@
     ]
   },
   {
-    "objectID": "docs/APSIM.Core/IStructure.html",
-    "href": "docs/APSIM.Core/IStructure.html",
-    "title": "IStructure",
+    "objectID": "docs/Models/Core/IModel.html",
+    "href": "docs/Models/Core/IModel.html",
+    "title": "IModel",
     "section": "",
-    "text": "The IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.",
+    "text": "The IModel interface defines the fundamental contract that all models in APSIM NG must implement. It establishes the core properties and methods required for model hierarchy management, lifecycle coordination, and integration within the simulation framework.",
     "crumbs": [
       "Home",
       "Docs",
-      "APSIM.Core",
-      "IStructure"
+      "Models",
+      "Core",
+      "IModel"
     ]
   },
   {
-    "objectID": "docs/APSIM.Core/IStructure.html#overview",
-    "href": "docs/APSIM.Core/IStructure.html#overview",
-    "title": "IStructure",
+    "objectID": "docs/Models/Core/IModel.html#overview",
+    "href": "docs/Models/Core/IModel.html#overview",
+    "title": "IModel",
     "section": "Overview",
-    "text": "Overview\nThe IStructure interface is the backbone of APSIM-NG’s component architecture, providing a comprehensive set of methods for navigating and manipulating the hierarchical model tree. This interface abstracts the complexity of the model tree structure, offering intuitive methods for finding child models, parent models, siblings, and models in scope. It also provides powerful locator functionality for accessing model properties and variables using path-based notation, similar to file system navigation.\nModels receive an IStructure instance through dependency injection (via IStructureDependency), which grants them the ability to dynamically discover and interact with other components without hard-coded dependencies. This design enables flexible model composition, where complex behaviors emerge from simple, loosely-coupled components working together through the structure system.\nThe interface supports both direct tree navigation (parent-child-sibling relationships) and scope-based discovery (finding models according to APSIM-NG’s scoping rules), making it suitable for both simple component access and complex cross-model interactions.",
+    "text": "Overview\nThe IModel interface serves as the foundational abstraction for all simulation components in APSIM NG, defining the essential structure that enables modular model construction and hierarchical organization. Every model in the system—from simple functions to complex crop models—implements this interface, ensuring consistent behavior across the entire simulation framework.\nKey responsibilities defined by this interface include:\n\nHierarchical organization: Models maintain parent-child relationships, forming a tree structure that represents the simulation\nIdentity and naming: Each model has a unique name within its scope and a full path from the simulation root\nState management: Models can be enabled/disabled, hidden from the user interface, or marked as read-only\nLifecycle hooks: Methods for initialization and pre-simulation setup allow models to prepare themselves for execution\nResource management: Models can reference external resources through the resource name system\n\nThis interface is the cornerstone of APSIM NG’s component-based architecture, allowing researchers to build sophisticated agricultural simulations by composing specialized models in flexible hierarchical arrangements.",
     "crumbs": [
       "Home",
       "Docs",
-      "APSIM.Core",
-      "IStructure"
+      "Models",
+      "Core",
+      "IModel"
     ]
   },
   {
-    "objectID": "docs/APSIM.Core/IStructure.html#model-variables",
-    "href": "docs/APSIM.Core/IStructure.html#model-variables",
-    "title": "IStructure",
+    "objectID": "docs/Models/Core/IModel.html#model-variables",
+    "href": "docs/Models/Core/IModel.html#model-variables",
+    "title": "IModel",
     "section": "Model Variables",
-    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFileName\nstring\nThe file name associated with the structure.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nName\nstring\nThe name of the current model node.\n\n\nFullNameAndPath\nstring\nThe complete path from root to the current node.",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nName\nstring\nThe name of the model component. Must be unique among siblings in the model hierarchy.\n\n\nResourceName\nstring\nOptional name for external resource references and documentation purposes.\n\n\nParent\nIModel\nReference to the parent model in the hierarchy. Can be null for root models.\n\n\nChildren\nList\nCollection of child models. Always initialized (never null), but may be empty.\n\n\nIsHidden\nbool\nFlag indicating whether the model should be hidden from the user interface.\n\n\nEnabled\nbool\nFlag controlling whether the model participates in simulation execution. Disabled models are skipped.\n\n\nReadOnly\nbool\nFlag preventing modification of the model’s structure and parameters.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nNode\nNode\nThe associated node structure that manages the model’s position in the tree hierarchy.\n\n\nFullPath\nstring\nComplete hierarchical path from the simulation root to this model (e.g., .Simulations.Simulation.Field.Wheat).",
     "crumbs": [
       "Home",
       "Docs",
-      "APSIM.Core",
-      "IStructure"
+      "Models",
+      "Core",
+      "IModel"
     ]
   },
   {
-    "objectID": "docs/APSIM.Core/IStructure.html#see-also",
-    "href": "docs/APSIM.Core/IStructure.html#see-also",
-    "title": "IStructure",
+    "objectID": "docs/Models/Core/IModel.html#see-also",
+    "href": "docs/Models/Core/IModel.html#see-also",
+    "title": "IModel",
     "section": "See Also",
-    "text": "See Also\n\nSource code: IStructure.cs on GitHub",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IStructure"
-    ]
-  },
-  {
-    "objectID": "disclaimer.html",
-    "href": "disclaimer.html",
-    "title": "Disclaimer",
-    "section": "",
-    "text": "This is not the official APSIM documentation. It is a personal collection of documentation and notes compiled while working with APSIM Next Generation. For official resources, please refer to the APSIM Documentation, Model Validation, and the APSIM GitHub repository.\nThe content here is generated and curated from various sources, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\n⚠️ This documentation is not official, may contain errors, and is not guaranteed to be complete or accurate. It is intended as a learning resource for myself and others interested in APSIM NG.\nUse this material at your own risk. I take no responsibility for any loss, damage, or misinterpretation resulting from the use of this material. Always consult official documentation or domain experts before relying on the information for research or production use.\nI will continue to update this as I work with APSIM NG. Contributions and corrections are welcome via GitHub pull requests or issues."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Welcome to my personal documentation site for APSIM Next Generation.\nThis site is a collection of notes, technical documentation, tips, and examples while working with APSIM NG. It is aimed at helping me (and hopefully others) understand and use APSIM NG more effectively in research and application."
-  },
-  {
-    "objectID": "about.html#what-this-site-includes",
-    "href": "about.html#what-this-site-includes",
-    "title": "About",
-    "section": "What This Site Includes",
-    "text": "What This Site Includes\nThis repository serves as a knowledge base for my learning journey, experiments, and problem-solving with APSIM NG. It includes:\n\n📘 Documentation — In-depth explanations and configuration guides\n🌾 Tips and Tricks — Short how-tos and troubleshooting solutions\n🧪 Tutorials — Step-by-step walkthroughs for specific tasks\n🔧 Scripts — Useful R snippets for simulations\n\nWhether you’re just starting with APSIM NG or looking for solutions to specific modelling challenges, I hope these notes are helpful."
-  },
-  {
-    "objectID": "about.html#not-official-documentation",
-    "href": "about.html#not-official-documentation",
-    "title": "About",
-    "section": "Not Official Documentation",
-    "text": "Not Official Documentation\n\nThis site is not the official APSIM documentation.\n\nThe official resources are available here:\n\n📘 APSIM Documentation (legacy)\n🔬 Model Validation\n🧪 APSIM GitHub Repository"
-  },
-  {
-    "objectID": "about.html#license-and-attribution",
-    "href": "about.html#license-and-attribution",
-    "title": "About",
-    "section": "⚖️ License and Attribution",
-    "text": "⚖️ License and Attribution\nThis documentation includes content derived from:\n\nThe source code of APSIM Next Generation\n\nThe official APSIM Website\n\nOfficial documentation and personal communications with APSIM developers\n\nIt is provided under the General Use Licence Agreement for Agricultural Production Systems Simulator (APSIM).\n\nThis is an independent learning resource compiled and maintained by myself. It is not an official publication of the APSIM Initiative and may contain personal interpretations or errors.\nWhile I contribute to APSIM NG development, this site reflects my personal understanding and is intended as a resource to support learning and exploration."
-  },
-  {
-    "objectID": "about.html#acknowledgment",
-    "href": "about.html#acknowledgment",
-    "title": "About",
-    "section": "🙏 Acknowledgment",
-    "text": "🙏 Acknowledgment\nAcknowledgment is made to the APSIM Initiative which takes responsibility for quality assurance and a structured innovation programme for APSIM’s modelling software, which is provided free for research and development use. See www.apsim.info for details."
-  },
-  {
-    "objectID": "docs/APSIM.Core/IFunction.html",
-    "href": "docs/APSIM.Core/IFunction.html",
-    "title": "IFunction Interface",
-    "section": "",
-    "text": "The IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IFunction Interface"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IFunction.html#overview",
-    "href": "docs/APSIM.Core/IFunction.html#overview",
-    "title": "IFunction Interface",
-    "section": "Overview",
-    "text": "Overview\nThe IFunction interface serves as the foundational abstraction layer for all computational functions in APSIM-NG, enabling modular and interchangeable calculation components within the simulation system. This interface establishes a uniform protocol for value retrieval that supports diverse mathematical operations, from simple constants to complex environmental response functions. By implementing this interface, functions can be dynamically linked and exchanged within model configurations, supporting flexible model construction and parameterization.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IFunction Interface"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IFunction.html#model-variables",
-    "href": "docs/APSIM.Core/IFunction.html#model-variables",
-    "title": "IFunction Interface",
-    "section": "Model Variables",
-    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable Properties\n\nNo configurable properties are available for this interface.\n\nRead-Only Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue()\ndouble\nThe calculated output value of the function",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IFunction Interface"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IFunction.html#see-also",
-    "href": "docs/APSIM.Core/IFunction.html#see-also",
-    "title": "IFunction Interface",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: IFunction.cs on GitHub",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IFunction Interface"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IStructureDependency.html",
-    "href": "docs/APSIM.Core/IStructureDependency.html",
-    "title": "IStructureDependency",
-    "section": "",
-    "text": "The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IStructureDependency"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IStructureDependency.html#overview",
-    "href": "docs/APSIM.Core/IStructureDependency.html#overview",
-    "title": "IStructureDependency",
-    "section": "Overview",
-    "text": "Overview\nThe IStructureDependency interface is a fundamental component of APSIM-NG’s dependency injection system. It provides a standardized mechanism for models to receive an IStructure instance, which grants access to the simulation’s hierarchical model tree. This interface is essential for models that need to dynamically locate and interact with other components in the simulation, such as finding child functions, accessing sibling models, or navigating the parent-child relationships within the plant model structure.\nModels implementing this interface receive the Structure property automatically populated by the APSIM.Core framework during initialization, eliminating the need for manual dependency wiring and enabling clean, maintainable code.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IStructureDependency"
-    ]
-  },
-  {
-    "objectID": "docs/APSIM.Core/IStructureDependency.html#see-also",
-    "href": "docs/APSIM.Core/IStructureDependency.html#see-also",
-    "title": "IStructureDependency",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: IStructureDependency.cs on GitHub",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "APSIM.Core",
-      "IStructureDependency"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html",
-    "href": "docs/Models/Connections.html",
-    "title": "Connections Between Models",
-    "section": "",
-    "text": "In APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
+    "text": "See Also\n\nSource code: IModel.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#overview",
-    "href": "docs/Models/Connections.html#overview",
-    "title": "Connections Between Models",
-    "section": "Overview",
-    "text": "Overview\nIn biological or physical terms, a Link represents a relationship or dependency between two parts of the simulation.\nFor example, a Leaf model depends on information from the Phenology model to know when new leaves should appear, or from the Plant model to understand the overall plant state.\nThese relationships are automatically established by APSIM NG when the simulation runs, ensuring that models can share data consistently.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#purpose-of-links",
-    "href": "docs/Models/Connections.html#purpose-of-links",
-    "title": "Connections Between Models",
-    "section": "Purpose of Links",
-    "text": "Purpose of Links\nLinks serve several key purposes in APSIM NG:\n\nIntegration of biological processes — e.g., linking photosynthesis with canopy development.\n\nRe-use of common models — e.g., several organs may link to the same Thermal Time module.\n\nHierarchical organization — e.g., a Plant contains Leaf, Stem, and Root components that interact through internal connections.\n\nParameter sharing — e.g., a Structure model accessing FinalLeafNumber from a function defined elsewhere.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#types-of-connections",
-    "href": "docs/Models/Connections.html#types-of-connections",
-    "title": "Connections Between Models",
-    "section": "Types of Connections",
-    "text": "Types of Connections\nDifferent kinds of connections define how APSIM NG searches for and establishes relationships between models.\nThese can be understood as different biological or structural scopes:\n\n\n\n\n\n\n\n\n\nConnection Type\nDescription\nScientific Analogy\nTypical Use\n\n\n\n\nFirst Available\nSearches upward or outward in the model hierarchy until a matching model is found.\nA plant organ seeking information from its parent plant system.\nMost common; used for high-level interactions such as organ ↔︎ plant communication.\n\n\nChild Connection\nConnects directly to a component located within the same model.\nAn internal process within the same organ (e.g., leaf temperature model within Leaf).\nUsed for tightly coupled sub-processes or response functions.\n\n\nNamed Connection\nConnects to a model explicitly identified by name.\nTargeted reference to a specific process or dataset.\nUsed when multiple similar models exist (e.g., several temperature response functions).\n\n\n\n\nThese types correspond to APSIM’s internal connection logic (e.g., By first appearance, Child, By name), but are presented here in biological terms for clarity.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
-    "href": "docs/Models/Connections.html#example-connections-in-a-plant-structure-model",
-    "title": "Connections Between Models",
-    "section": "Example: Connections in a Plant Structure Model",
-    "text": "Example: Connections in a Plant Structure Model\nBelow is connections used in the Structure model.\n\n\n\n\n\n\n\n\n\nConnected Component\nConnection Type\nRole in the Model\nDescription\n\n\n\n\nPlant\nFirst Available\nBroader plant context\nProvides structural and lifecycle information for the plant.\n\n\nPhenology\nFirst Available\nDevelopmental driver\nSupplies current growth stage and timing of key events.\n\n\nLeaf\nFirst Available\nOrgan-level interaction\nProvides information on leaf area, appearance, and expansion.\n\n\nThermalTime\nChild Connection\nInternal driver\nCalculates accumulated temperature used for leaf and stem development.\n\n\nPhyllochron\nChild Connection\nInternal driver\nDefines the thermal interval between successive leaf appearances.\n\n\nFinalLeafNumber\nChild Connection\nGenotypic parameter\nDetermines the maximum number of leaves for this genotype.\n\n\nHeightModel\nChild Connection\nStructural process\nComputes plant height as a function of temperature and development.\n\n\nBranchingRate\nChild Connection\nGrowth process\nDetermines the rate of new branch initiation.\n\n\nBranchMortality\nChild Connection\nSenescence process\nDetermines the rate at which branches die or are lost.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#conceptual-view",
-    "href": "docs/Models/Connections.html#conceptual-view",
-    "title": "Connections Between Models",
-    "section": "Conceptual View",
-    "text": "Conceptual View\nIn a simulation, these connections can be visualized as information pathways:\nPlant\n├── Phenology\n├── Structure\n│ ├── ThermalTime\n│ ├── Phyllochron\n│ ├── FinalLeafNumber\n│ └── HeightModel\n└── Leaf\nEach arrow represents a Link, enabling data flow from one model to another — ensuring biological realism and modular consistency.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#why-this-matters",
-    "href": "docs/Models/Connections.html#why-this-matters",
-    "title": "Connections Between Models",
-    "section": "Why This Matters",
-    "text": "Why This Matters\nUnderstanding Links helps scientists interpret model behavior correctly:\n\nWhen a model outputs or responds to a variable, that information may originate from another connected model.\n\nAdding or removing sub-models (e.g., replacing one ThermalTime with another) changes biological relationships.\n\nProper configuration of Links ensures that all processes are working in harmony — avoiding missing dependencies or duplicated effects.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Connections.html#see-also",
-    "href": "docs/Models/Connections.html#see-also",
-    "title": "Connections Between Models",
-    "section": "See Also",
-    "text": "See Also\n\nStructure Model",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Connections Between Models"
+      "Core",
+      "IModel"
     ]
   },
   {
@@ -6705,6 +6809,70 @@
     ]
   },
   {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html",
+    "title": "IPhaseWithSetableCompletionDate",
+    "section": "",
+    "text": "The IPhaseWithSetableCompletionDate interface extends phenological phases by allowing external specification of a fixed completion date. This enables users to override the phase’s normal progression logic and force completion on a specific calendar date.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithSetableCompletionDate"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#overview",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#overview",
+    "title": "IPhaseWithSetableCompletionDate",
+    "section": "Overview",
+    "text": "Overview\nThe IPhaseWithSetableCompletionDate interface provides a mechanism for externally controlling when a phenological phase completes, bypassing the phase’s normal environmental or developmental progression logic.\nThe interface is intentionally minimal, adding only a single property to enable this date-based override functionality. Phases implementing this interface maintain their normal progression logic but check the DateToProgress property first—if set, the date override takes precedence over environmental calculations.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithSetableCompletionDate"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#model-variables",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#model-variables",
+    "title": "IPhaseWithSetableCompletionDate",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDateToProgress\nstring\nCalendar date on which the phase should complete, formatted as “d-MMM” (e.g., “15-Oct”, “1-Apr”). When set, this overrides the phase’s normal progression logic. When empty or null, the phase progresses normally based on environmental drivers.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this interface.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithSetableCompletionDate"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#see-also",
+    "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html#see-also",
+    "title": "IPhaseWithSetableCompletionDate",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IPhaseWithSetableCompletionDate.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Phenology",
+      "Phases",
+      "IPhaseWithSetableCompletionDate"
+    ]
+  },
+  {
     "objectID": "docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
     "href": "docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
     "title": "LeafAppearancePhase",
@@ -7207,22 +7375,6 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#events",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#events",
-    "title": "ZadokPMFWheat",
-    "section": "Events",
-    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Scales",
-      "ZadokPMFWheat"
-    ]
-  },
-  {
     "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#processes-and-algorithms",
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#processes-and-algorithms",
     "title": "ZadokPMFWheat",
@@ -7243,39 +7395,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#user-interface",
     "title": "ZadokPMFWheat",
     "section": "User Interface",
-    "text": "User Interface\nZadokPMFWheat can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for ZadokPMFWheat in the Filter Box.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Scales",
-      "ZadokPMFWheat"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#practical-example",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#practical-example",
-    "title": "ZadokPMFWheat",
-    "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is available for this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Phenology",
-      "Scales",
-      "ZadokPMFWheat"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#see-also",
-    "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#see-also",
-    "title": "ZadokPMFWheat",
-    "section": "See Also",
-    "text": "See Also\n\nSource code: ZadokPMFWheat.cs on GitHub",
+    "text": "User Interface\nZadokPMFWheat can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select “Add Model…”, and search for ZadokPMFWheat in the Filter Box.\n\nSource code: ZadokPMFWheat.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
