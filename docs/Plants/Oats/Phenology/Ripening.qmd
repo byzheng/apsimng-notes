@@ -1,0 +1,40 @@
+---
+title: "Ripening"
+---
+
+The Ripening phase represents the period from physiological maturity to harvest ripeness in oats.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: Maturity
+- **End**: HarvestRipe
+- **IsEmerged**: true
+
+## Description
+
+The Ripening phase occurs after physiological maturity when grains continue to dry down and harden, approaching the ideal moisture content for harvest. During this phase, the grain transitions from the "dough" stage to a hard, dry state suitable for mechanical harvesting.
+
+## Thermal Time Target
+
+The target thermal time for this phase is:
+
+$$
+\text{Target} = 100 \text{°Cd}
+$$
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation.
+
+## Parameters
+
+- **Target**: 100.0°Cd
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)

@@ -1,0 +1,50 @@
+---
+title: "Thermal Time"
+---
+
+Thermal time (also called growing degree days) is the primary driver of phenological development in the oat model.
+
+## Calculation Method
+
+Daily thermal time is calculated using [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
+
+## Temperature Response
+
+The thermal time response to temperature follows a three-cardinal-temperature model:
+
+| Temperature (°C) | Thermal Time (°Cd) |
+|------------------|-------------------|
+| 0                | 0                 |
+| 30               | 30                |
+| 40               | 0                 |
+
+This creates a response curve where:
+
+- **Below 0°C**: No thermal time accumulation (development ceases)
+- **0-30°C**: Linear increase (1°C = 1°Cd)
+- **30-40°C**: Linear decrease from 30 to 0
+- **Above 40°C**: No thermal time accumulation (heat stress inhibits development)
+
+## Sub-Daily Interpolation
+
+Rather than using simple daily mean temperature, the model uses three-hourly air temperature interpolation to capture the effects of diurnal temperature variation. This is particularly important when temperatures cross critical thresholds (0°C or 40°C) during the day.
+
+The three-hour interpolation provides more accurate thermal time estimates, especially under:
+
+- Large diurnal temperature ranges
+- Conditions where daily minimum or maximum temperatures exceed optimum thresholds
+- Cool climates where temperatures frequently cross 0°C
+
+## Usage
+
+Thermal time is used by most phenological phases as the progression driver. It determines:
+
+- Emergence timing (accumulated from germination)
+- Leaf appearance rate (via phyllochron)
+- Phase transitions (vegetative, reproductive, grain filling)
+- Final grain fill duration
+
+## See Also
+
+* [SubDailyInterpolation Function](/docs/Models/Functions/SubDailyInterpolation.qmd)
+* [ThreeHourAirTemperature Function](/docs/Models/Functions/ThreeHourAirTemperature.qmd)

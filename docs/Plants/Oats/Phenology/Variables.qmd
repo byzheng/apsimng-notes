@@ -1,0 +1,148 @@
+---
+title: "Phenology Variables"
+---
+
+The oat phenology model outputs a range of variables that track developmental progress and can be reported or used by other models.
+
+## Stage and Phase Variables
+
+### CurrentStageName
+
+**Type**: string
+
+The name of the current phenological stage (e.g., "Emergence", "TerminalSpikelet", "Flowering", "HarvestRipe").
+
+### CurrentPhaseName
+
+**Type**: string
+
+The name of the current phenological phase (e.g., "Germinating", "Vegetative", "GrainFilling").
+
+### Stage
+
+**Type**: double
+
+A decimal stage number representing phenological development. This provides a continuous measure of development that increases monotonically through the crop's life cycle.
+
+### FractionInCurrentPhase
+
+**Type**: double (0-1)
+
+The proportion of the current phase that has been completed, where 0 represents the start of the phase and 1 represents completion.
+
+## Time Variables
+
+### DaysAfterSowing
+
+**Type**: double
+
+Number of days since the crop was sown.
+
+### ThermalTime
+
+**Type**: double (°Cd)
+
+Daily thermal time accumulation, calculated using sub-daily temperature interpolation.
+
+## Vernalisation Variables
+
+### Vrn1
+
+**Type**: double (0-1)
+
+The expression level of the Vrn1 gene, representing vernalisation accumulation. Values range from 0 (no vernalisation) to 1 (fully vernalised).
+
+### Vrn4
+
+**Type**: double (0 to VernLag)
+
+The vernalisation conditioning accumulation. This tracks the lag phase before vernalisation responses become apparent.
+
+### DailyVernalisation
+
+**Type**: double
+
+The daily increment in vernalisation, calculated as:
+
+$$
+\text{DailyVernalisation} = \Delta\text{HaunStage} \times \text{TempResponseProfile}
+$$
+
+## Photoperiod Variables
+
+### Photoperiod
+
+**Type**: double (hours)
+
+Day length in hours, calculated from latitude, day of year, and twilight angle (6 degrees).
+
+### PerceivedPhotoPeriod
+
+**Type**: double (hours)
+
+The photoperiod perceived by the plant. This is 0 before emergence (when the apex is below ground) and equals Photoperiod after emergence.
+
+## Leaf Number Variables
+
+### MinimumLeafNumber
+
+**Type**: double
+
+The base number of leaves produced under full vernalisation and long photoperiod (7 leaves for standard parameterisation).
+
+### VernalLeaves
+
+**Type**: double
+
+Additional leaves produced due to vernalisation effects. This decreases as Vrn1 accumulates.
+
+### PhotoLeaves
+
+**Type**: double
+
+Additional leaves produced due to short photoperiod effects. This decreases as day length increases.
+
+### HaunStageTerminalSpikelet
+
+**Type**: double
+
+The target Haun Stage at which terminal spikelet forms, calculated as:
+
+$$
+\text{HSTS} = \text{MinimumLeafNumber} + \text{VernalLeaves} + \text{PhotoLeaves}
+$$
+
+## Sensitivity Parameters
+
+### VrnSensitivity
+
+**Type**: double (leaves)
+
+The maximum number of additional leaves that can be produced in an unvernalised plant (0 for vernalisation-insensitive varieties).
+
+### PpSensitivity
+
+**Type**: double (leaves)
+
+The reduction in leaf number when photoperiod increases from 8h to 16h (3 leaves for standard parameterisation).
+
+### VernLag
+
+**Type**: double
+
+The amount of vernalisation required before vernalisation responses become evident (1.0 for standard parameterisation).
+
+## Usage
+
+These variables can be:
+
+- Reported to output files for analysis
+- Referenced by other models (e.g., Structure, Leaf, Grain)
+- Used in Manager scripts for conditional logic
+- Displayed in the user interface for monitoring crop development
+
+## See Also
+
+* [Phenology Model Documentation](/docs/Models/PMF/Phenology/Phenology.qmd)
+* [Haun Stage](HaunStage.qmd)
+* [Thermal Time](ThermalTime.qmd)

@@ -1,0 +1,32 @@
+---
+title: "Germinating"
+---
+
+The Germinating phase represents the period from sowing to germination in oat development.
+
+## Phase Type
+
+[GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd)
+
+## Timing
+
+- **Start**: Sowing
+- **End**: Germination  
+- **IsEmerged**: false
+
+## Description
+
+Germination occurs on the day after sowing when soil conditions are suitable. For the oat model, germination will occur when:
+
+- Soil water content at the sowing depth exceeds the lower limit (LL15), OR
+- Soil temperature at sowing depth is greater than or equal to the minimum soil temperature (0°C for the standard oat parameterisation)
+
+This phase does not accumulate thermal time - it simply checks environmental conditions to determine when germination can proceed.
+
+## Parameters
+
+- **MinSoilTemperature**: 0.0°C
+
+## See Also
+
+* [GerminatingPhase Documentation](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd)

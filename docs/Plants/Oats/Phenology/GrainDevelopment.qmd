@@ -1,0 +1,40 @@
+---
+title: "GrainDevelopment"
+---
+
+The GrainDevelopment phase represents the early period of grain development following flowering in oats.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: Flowering
+- **End**: StartGrainFill
+- **IsEmerged**: true
+
+## Description
+
+The GrainDevelopment phase is a short period immediately after flowering during which fertilised ovules begin to develop into grains. This phase represents the lag phase before active grain filling begins.
+
+## Thermal Time Target
+
+The target thermal time for this phase is a fixed value:
+
+$$
+\text{Target} = 20 \text{°Cd}
+$$
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation.
+
+## Parameters
+
+- **Target**: 20.0°Cd
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)

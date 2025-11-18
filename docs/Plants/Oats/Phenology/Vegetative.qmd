@@ -1,0 +1,59 @@
+---
+title: "Vegetative"
+---
+
+The Vegetative phase represents the period from emergence to terminal spikelet formation in oat development.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: Emergence
+- **End**: TerminalSpikelet
+- **IsEmerged**: true
+
+## Description
+
+The Vegetative phase is the main vegetative growth period where the plant produces leaves and tillers. The duration of this phase is determined by a target Haun Stage for the occurrence of terminal spikelet and the rate of leaf appearance.
+
+This phase exhibits both vernalisation and photoperiod sensitivities. The Haun Stage target for terminal spikelet decreases as vernalisation is accumulated and as photoperiod extends, capturing the effect of these responses on the duration of the Vegetative phase.
+
+## Thermal Time Target
+
+The target thermal time for the Vegetative phase is calculated as:
+
+$$
+\text{Target} = \text{MeanPhyllochron} \times \text{HaunStageTerminalSpikelet}
+$$
+
+Where:
+
+- **MeanPhyllochron**: Average phyllochron value (thermal time between successive leaf appearances)
+- **HaunStageTerminalSpikelet**: Target Haun Stage at which terminal spikelet forms
+
+The HaunStageTerminalSpikelet is calculated from:
+
+$$
+\text{HaunStageTerminalSpikelet} = \text{MinLeafNumber} + \text{VernalLeaves} + \text{PhotoLeaves}
+$$
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation.
+
+## Vernalisation Response
+
+For vernalisation-sensitive varieties (winter types), exposure to cool temperatures during this phase reduces the thermal time duration by decreasing the number of leaves that need to be produced (VernalLeaves decreases as Vrn1 accumulates).
+
+## Photoperiod Response
+
+Photoperiod-sensitive varieties respond to day length during this phase. Short photoperiods increase the number of leaves to be produced (PhotoLeaves), extending the phase duration, while long photoperiods decrease leaf number and shorten the phase.
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)
+* [Haun Stage](HaunStage.qmd)
+* [Phyllochron](Phyllochron.qmd)

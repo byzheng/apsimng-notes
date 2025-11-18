@@ -1,0 +1,42 @@
+---
+title: "GrainFilling"
+---
+
+The GrainFilling phase represents the main period of grain filling in oats.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: StartGrainFill
+- **End**: EndGrainFill
+- **IsEmerged**: true
+
+## Description
+
+The GrainFilling phase is the main period during which grains accumulate dry matter. This is typically the longest reproductive phase and is critical for determining final grain weight and yield. During this phase, assimilates from current photosynthesis and remobilised reserves from vegetative organs are transported to the developing grains.
+
+## Thermal Time Target
+
+The target thermal time for this phase is:
+
+$$
+\text{Target} = 650 \text{°Cd}
+$$
+
+This represents the thermal time required for grains to reach their maximum dry weight under non-limiting conditions.
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation. The phase duration can be significantly affected by environmental stresses (e.g., heat, drought) which may accelerate grain filling and reduce the final grain weight.
+
+## Parameters
+
+- **Target**: 650.0°Cd
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)

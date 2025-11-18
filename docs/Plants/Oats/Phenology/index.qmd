@@ -1,0 +1,99 @@
+---
+title: "Phenology"
+---
+
+The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of oat plants through sequential growth phases.
+
+## Overview
+
+Oat crops exhibit a range of developmental responses to environment that are strongly influenced by genotype characteristics. Temperature affects development by increasing development rates and decreasing phase durations as temperatures increase. These effects are captured by thermal time. However, oat crops also exhibit vernalisation and photoperiod sensitivities in their Vegetative phase and further photoperiod sensitivity in the EarlyReproductive phase.
+
+The APSIM oat phenology model draws on the Kirby Framework to capture vernalisation and photoperiod responses. This framework assumes that the timing of anthesis results from the timing of flag leaf appearance and an additional thermal time passage from there to anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number which sets a target, and leaf appearance rate, which sets the rate of progress toward this target.
+
+Final Leaf Number (FLN) is modelled as the sum of three components:
+
+$$
+\text{FLN} = \text{MinLeafNumber} + \text{VernalLeaves} + \text{PhotoLeaves}
+$$
+
+Where:
+
+- **MinLeafNumber** is the number of leaves that an oat crop will produce when vernalisation is satisfied early in the crop's duration (before 2nd true leaf) and it is grown in a long photoperiod
+- **VernalLeaves** are the number of leaves added due to vernalisation effects (zero for insensitive varieties)
+- **PhotoLeaves** are the number of leaves added as a result of short day exposure (zero for insensitive varieties)
+
+## Thermal Time
+
+Daily [Thermal Time](ThermalTime.qmd) is based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperatures (0°C, 30°C, 40°C) using [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method. The temperature response is linear from 0 to 30°C, with development ceasing above 40°C.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. Photoperiod responses are seen as a reduction in the length of a phase for a photoperiod-sensitive genotype in response to a longer photoperiod.
+
+## Vernalisation
+
+Vernalisation responses are based on those described by Brown et al. (2013). Vernalisation is assumed to be related to the expression of the Vrn1 gene, which accumulates daily. For vernalisation-sensitive varieties (winter types), exposure to cool temperatures or short photoperiods during the Vegetative phase will reduce the thermal time duration of the vegetative phase.
+
+Daily vernalisation is calculated as:
+
+$$
+\text{DailyVernalisation} = \Delta\text{HaunStage} \times \text{TempResponseProfile}
+$$
+
+The temperature response profile declines exponentially from a maximum at 1°C to zero at 0°C and at 20°C.
+
+## Phyllochron
+
+The [Phyllochron](Phyllochron.qmd) is the interval between the appearance of successive leaves on the main stem of oats. It is determined by base phyllochron, leaf stage factor, and photoperiod effect.
+
+The [Haun Stage](HaunStage.qmd) is defined as the number of leaf tips that have appeared on an oat plant since emergence. It is estimated from daily thermal time and phyllochron.
+
+## Stages and Phases
+
+The oat model's outputs of phase names (Phenology.CurrentPhase.Name), stage names (Phenology.CurrentStageName), and decimal stage (Phenology.Stage) follow a sequential development pattern.
+
+The stages are:
+
+| Stage | Name                | Description                                      |
+|-------|---------------------|--------------------------------------------------|
+| 1     | Sowing              | Seeds are planted in the soil                    |
+| 2     | Germination         | Seeds absorb water and begin to sprout           |
+| 3     | Emergence           | Seedlings break through the soil surface         |
+| 4     | TerminalSpikelet    | Terminal spikelet is formed in the shoot apex    |
+| 5     | FlagLeaf            | The last leaf (flag leaf) ligule appears         |
+| 6     | Flowering           | Flowering; pollen is released                    |
+| 7     | StartGrainFill      | Grain filling begins                             |
+| 8     | EndGrainFill        | Grain filling is completed                       |
+| 9     | Maturity            | Physiological maturity                           |
+| 10    | HarvestRipe         | Grains are mature and ready for harvest          |
+
+Phases are used to represent the development between two stages. The phases are:
+
+| Order | Name                                       | From              | To                |
+|-------|--------------------------------------------|-------------------|-------------------|
+| 1     | [Germinating](Germinating.qmd)             | Sowing            | Germination       |
+| 2     | [Emerging](Emerging.qmd)                   | Germination       | Emergence         |
+| 3     | [Vegetative](Vegetative.qmd)               | Emergence         | TerminalSpikelet  |
+| 4     | [StemElongation](StemElongation.qmd)       | TerminalSpikelet  | FlagLeaf          |
+| 5     | [EarlyReproductive](EarlyReproductive.qmd) | FlagLeaf          | Flowering         |
+| 6     | [GrainDevelopment](GrainDevelopment.qmd)   | Flowering         | StartGrainFill    |
+| 7     | [GrainFilling](GrainFilling.qmd)           | StartGrainFill    | EndGrainFill      |
+| 8     | [Maturing](Maturing.qmd)                   | EndGrainFill      | Maturity          |
+| 9     | [Ripening](Ripening.qmd)                   | Maturity          | HarvestRipe       |
+| 10    | [ReadyForHarvesting](ReadyForHarvesting.qmd)| HarvestRipe      | Unused            |
+
+## Phenology Variables
+
+Key phenology [Variables](Variables.qmd) include:
+
+- **Stage**: Current developmental stage (decimal)
+- **CurrentPhaseName**: Name of the current phase
+- **CurrentStageName**: Name of the current stage
+- **DaysAfterSowing**: Number of days since sowing
+- **Vrn1**: Vernalisation gene expression level (0-1)
+- **Vrn4**: Vernalisation conditioning accumulation
+- **FractionInCurrentPhase**: Progress through the current phase (0-1)
+
+## See Also
+
+* [Phenology Model Documentation](/docs/Models/PMF/Phenology/Phenology.qmd)

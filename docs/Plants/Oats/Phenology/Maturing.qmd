@@ -1,0 +1,40 @@
+---
+title: "Maturing"
+---
+
+The Maturing phase represents the transition from grain filling completion to physiological maturity in oats.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: EndGrainFill
+- **End**: Maturity
+- **IsEmerged**: true
+
+## Description
+
+The Maturing phase is a short period following the end of grain filling during which grains lose moisture and approach physiological maturity. At this stage, grain dry matter accumulation has ceased, but the grain moisture content continues to decline.
+
+## Thermal Time Target
+
+The target thermal time for this phase is:
+
+$$
+\text{Target} = 30 \text{°Cd}
+$$
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation.
+
+## Parameters
+
+- **Target**: 30.0°Cd
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)

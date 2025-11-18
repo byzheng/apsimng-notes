@@ -1,0 +1,29 @@
+---
+title: "ReadyForHarvesting"
+---
+
+The ReadyForHarvesting phase represents the final stage when oat crop is ready for harvest.
+
+## Phase Type
+
+EndPhase
+
+## Timing
+
+- **Start**: HarvestRipe
+- **End**: Unused
+- **IsEmerged**: true
+
+## Description
+
+The ReadyForHarvesting phase begins when the crop reaches harvest ripeness. This is the final phase in the oat phenology model. The crop remains in this phase until it is harvested or the simulation ends.
+
+During this phase, the crop is considered fully mature and suitable for harvest. No further development occurs, though the crop may still respond to environmental conditions (e.g., senescence under drought).
+
+## Progression
+
+This phase does not have a target thermal time for completion. The crop remains in this phase indefinitely until external management actions (harvest) are triggered.
+
+## See Also
+
+* [Thermal Time](ThermalTime.qmd)

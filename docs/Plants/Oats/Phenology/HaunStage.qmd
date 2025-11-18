@@ -1,0 +1,68 @@
+---
+title: "Haun Stage"
+---
+
+Haun Stage is a measure of leaf development in oats, defined as the number of leaf tips that have appeared since emergence.
+
+## Definition
+
+The Haun Stage scale provides a continuous measure of leaf development:
+
+- At emergence: Haun Stage = 0
+- When first leaf tip is visible: Haun Stage = 1
+- When second leaf tip appears: Haun Stage = 2
+- And so on...
+
+The Haun Stage can take fractional values between integer leaf numbers, representing partial emergence of the next leaf.
+
+## Calculation
+
+Haun Stage is calculated from:
+
+$$
+\text{HaunStage}_{t+1} = \text{HaunStage}_t + \frac{\Delta\text{ThermalTime}}{\text{Phyllochron}}
+$$
+
+Where:
+
+- **ΔThermalTime**: Daily thermal time accumulation (°Cd)
+- **Phyllochron**: Thermal time interval between successive leaf appearances (°Cd)
+
+## Delta Haun Stage
+
+The daily increment in Haun Stage (DeltaHaunStage) is used in the vernalisation calculation:
+
+$$
+\Delta\text{HaunStage} = \frac{\Delta\text{ThermalTime}}{\text{Phyllochron}}
+$$
+
+This represents the rate of leaf appearance and is used to drive vernalisation accumulation.
+
+## Haun Stage at Terminal Spikelet
+
+The target Haun Stage for terminal spikelet formation (HaunStageTerminalSpikelet) determines when the vegetative phase ends. This value is calculated from:
+
+$$
+\text{HSTS} = \text{MinLeafNumber} + \text{VernalLeaves} + \text{PhotoLeaves}
+$$
+
+Where:
+
+- **MinLeafNumber**: Base leaf number (7 for standard oat parameterisation)
+- **VernalLeaves**: Additional leaves due to lack of vernalisation (decreases as Vrn1 increases)
+- **PhotoLeaves**: Additional leaves due to short photoperiod (decreases as day length increases)
+
+## Usage
+
+Haun Stage is used to:
+
+- Track vegetative development
+- Determine the timing of terminal spikelet formation
+- Drive vernalisation accumulation
+- Coordinate leaf appearance with other developmental processes
+
+## See Also
+
+* [Phyllochron](Phyllochron.qmd)
+* [Thermal Time](ThermalTime.qmd)
+* [Vegetative Phase](Vegetative.qmd)

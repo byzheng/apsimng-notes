@@ -1,0 +1,47 @@
+---
+title: "StemElongation"
+---
+
+The StemElongation phase represents the period from terminal spikelet formation to flag leaf appearance in oat development.
+
+## Phase Type
+
+[LeafAppearancePhase](/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.qmd)
+
+## Timing
+
+- **Start**: TerminalSpikelet
+- **End**: FlagLeaf
+- **IsEmerged**: true
+
+## Description
+
+The StemElongation phase occurs after the terminal spikelet is formed and the final leaf number is fixed. During this phase, leaves continue to appear at a rate determined by thermal time and phyllochron until the flag leaf ligule appears, marking the completion of this phase.
+
+The stem elongates during this period as the developing spike is pushed upward within the pseudostem.
+
+## Phase Completion
+
+The phase completes when the leaf number (measured as expanded leaf number plus the proportion of the next expanding leaf) reaches the final leaf number that was fixed at terminal spikelet.
+
+$$
+\text{LeafNumber} = \text{ExpandedCohortNo} + \text{NextExpandingLeafProportion}
+$$
+
+When LeafNumber ≥ FinalLeafNumber, the flag leaf has appeared and the phase is complete.
+
+## Progression
+
+The phase progresses based on:
+
+- **ThermalTime**: Daily thermal time accumulation drives leaf appearance
+- **FinalLeafNumber**: Fixed at the start of this phase (Terminal Spikelet)
+- **LeafNumber**: Current leaf number, updated as leaves appear
+- **FullyExpandedLeafNo**: Number of fully expanded leaves
+- **InitialisedLeafNumber**: Number of initiated leaves
+
+## See Also
+
+* [LeafAppearancePhase Documentation](/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.qmd)
+* [Thermal Time](ThermalTime.qmd)
+* [Phyllochron](Phyllochron.qmd)

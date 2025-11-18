@@ -1,0 +1,44 @@
+---
+title: "Phyllochron"
+---
+
+The phyllochron is the thermal time interval between the appearance of successive leaf tips on the main stem of oats.
+
+## Definition
+
+Phyllochron represents the thermal time (in °Cd) required for one new leaf to appear on the main stem. It is a key parameter that determines:
+
+- The rate of leaf appearance during vegetative growth
+- The duration of the vegetative phase
+- The timing of terminal spikelet formation
+- The duration of the stem elongation phase
+
+## Calculation
+
+The phyllochron varies with development stage and is influenced by both genotype and environment. In the oat model, the phyllochron is calculated by the Structure model and can vary based on:
+
+1. **Base Phyllochron**: The fundamental genotype-specific phyllochron value
+2. **Leaf Stage Effects**: Phyllochron may change with Haun Stage as described by Jamieson et al. (1995)
+3. **Photoperiod Effects**: Some varieties show photoperiod sensitivity in phyllochron
+
+## Mean Phyllochron
+
+The MeanPhyllochron is the average phyllochron value used to calculate phase durations:
+
+$$
+\text{VegetativeTarget} = \text{MeanPhyllochron} \times \text{HaunStageTerminalSpikelet}
+$$
+
+## Usage in Phases
+
+Phyllochron is used in:
+
+- **Vegetative Phase**: Determines the thermal time required to reach terminal spikelet based on target leaf number
+- **Stem Elongation Phase**: Controls the rate of leaf appearance until flag leaf
+- **Early Reproductive Phase**: Influences the duration from flag leaf to flowering
+
+## See Also
+
+* [Haun Stage](HaunStage.qmd)
+* [Vegetative Phase](Vegetative.qmd)
+* [Stem Elongation Phase](StemElongation.qmd)

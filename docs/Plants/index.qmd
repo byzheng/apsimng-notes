@@ -14,7 +14,7 @@ This section contains the documentation for `Plants` models in APSIM Next Genera
 For each plant, the documentation is organised as the original model structure defined in the `JSON` file.
 
 ```{r list-plants, echo=FALSE, results='asis'}
-# List subdirectories under Plants/
+# List subdirectories under Plants
 plant_dirs <- list.dirs(path = here::here("docs/Plants"), full.names = FALSE, recursive = FALSE)
 plant_dirs <- plant_dirs[grepl("^[A-Z]", plant_dirs)]
 

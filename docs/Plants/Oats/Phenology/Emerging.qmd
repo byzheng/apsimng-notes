@@ -1,0 +1,53 @@
+---
+title: "Emerging"
+---
+
+The Emerging phase represents the period from germination to emergence in oat development.
+
+## Phase Type
+
+[EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd)
+
+## Timing
+
+- **Start**: Germination
+- **End**: Emergence
+- **IsEmerged**: false
+
+## Description
+
+The Emerging phase simulates the time required for the shoot to grow from the seed depth to the soil surface. This phase progresses based on thermal time accumulation, with the target thermal time requirement calculated from sowing depth.
+
+## Thermal Time Target
+
+The target thermal time for emergence is calculated as:
+
+$$
+\text{Target} = \text{ShootLag} + (\text{SowingDepth} \times \text{ShootRate})
+$$
+
+Where:
+
+- **ShootLag**: 40°Cd (base thermal time requirement)
+- **SowingDepth**: Depth at which seeds were sown (mm)
+- **ShootRate**: 4°Cd per mm of sowing depth
+
+For example, if seeds are sown at 50mm depth:
+
+$$
+\text{Target} = 40 + (50 \times 4) = 240 \text{°Cd}
+$$
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation. The phase completes when accumulated thermal time reaches the target value.
+
+## Parameters
+
+- **ShootLag**: 40.0°Cd
+- **ShootRate**: 4.0°Cd/mm
+
+## See Also
+
+* [EmergingPhase Documentation](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)

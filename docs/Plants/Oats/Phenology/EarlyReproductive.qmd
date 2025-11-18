@@ -1,0 +1,60 @@
+---
+title: "EarlyReproductive"
+---
+
+The EarlyReproductive phase represents the period from flag leaf appearance to flowering in oat development.
+
+## Phase Type
+
+[GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+
+## Timing
+
+- **Start**: FlagLeaf
+- **End**: Flowering
+- **IsEmerged**: true
+
+## Description
+
+The EarlyReproductive phase spans from the appearance of the flag leaf ligule to flowering (anthesis). During this period, the spike continues to develop and emerges from the boot (flag leaf sheath). This phase shows sensitivity to photoperiod, with longer photoperiods shortening the phase duration.
+
+## Thermal Time Target
+
+The target thermal time for the EarlyReproductive phase is calculated as:
+
+$$
+\text{Target} = \text{Phyllochron} \times (\text{LongDayBase} + \text{PhotoPeriodResponse} \times \text{PpSensitivity})
+$$
+
+Where:
+
+- **Phyllochron**: Base phyllochron value
+- **LongDayBase**: 3.0 phyllochrons (duration under long photoperiod, 16h)
+- **PpSensitivity**: 3.0 phyllochrons (additional duration under short photoperiod, 8h)
+- **PhotoPeriodResponse**: Linear interpolation from 1.0 at 11h to 0.0 at 16h
+
+## Photoperiod Response
+
+The photoperiod response is calculated using linear interpolation:
+
+- At 11 hours photoperiod or less: PhotoPeriodResponse = 1.0 (maximum delay)
+- At 16 hours photoperiod or more: PhotoPeriodResponse = 0.0 (no delay)
+- Between 11-16 hours: Linear interpolation
+
+For example:
+- Under 8h photoperiod: Target = Phyllochron × (3.0 + 1.0 × 3.0) = 6.0 phyllochrons
+- Under 16h photoperiod: Target = Phyllochron × (3.0 + 0.0 × 3.0) = 3.0 phyllochrons
+
+## Progression
+
+The phase progresses based on daily [ThermalTime](ThermalTime.qmd) accumulation.
+
+## Parameters
+
+- **EarlyReproductiveLongDayBase**: 3.0 phyllochrons
+- **EarlyReproductivePpSensitivity**: 3.0 phyllochrons
+
+## See Also
+
+* [GenericPhase Documentation](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd)
+* [Thermal Time](ThermalTime.qmd)
