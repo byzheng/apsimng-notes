@@ -1,6 +1,6 @@
 ---
 title: "Thermal Time"
-output: html_document
+format: html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Ripening"
-output: html_document
+format: html
 ---
 
 

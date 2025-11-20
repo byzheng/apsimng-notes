@@ -1,6 +1,6 @@
 ---
 title: "Nutrient Constrained Allocation"
-output: html_document
+format: html
 ---
 
 

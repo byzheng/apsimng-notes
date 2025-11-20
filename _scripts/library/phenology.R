@@ -22,3 +22,37 @@ plot_cardinal_temperature <- function(x, y) {
         ) +
         ggplot2::theme_minimal()
 }
+
+
+
+plot_3_hour_interpolation <- function(tmin = 10, tmax = 30) {
+    # Define 3-hour periods (1 to 8)
+    periods <- 1:8
+
+    # Calculate temperature range
+    range <- tmax - tmin
+
+    # Compute TRF and corresponding sub-daily temperatures
+    TRF <- 0.92105 + 0.1140 * periods - 0.0703 * periods^2 + 0.0053 * periods^3
+    T_subdaily <- tmin + TRF * range
+
+    # Create a data frame for plotting
+    df <- data.frame(
+        Hour = periods, # center of each 3-hour period
+        Temperature = T_subdaily
+    )
+
+    # Plot
+    ggplot(df, aes(x = Hour, y = Temperature)) +
+        geom_line(color = "steelblue", size = 1.2) +
+        geom_point(size = 3, color = "steelblue") +
+        scale_x_continuous(breaks = seq(0, 24, by = 3)) +
+        labs(
+            title = "Sub-daily Air Temperature Interpolation",
+            x = "Period",
+            y = "Temperature (°C)"
+        ) +
+        scale_x_continuous(breaks = 1:8) +
+        theme_bw()
+
+}

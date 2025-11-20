@@ -1,6 +1,6 @@
 ---
 title: "AddFunction"
-output: html_document
+format: html
 ---
 
 The AddFunction is a utility function that returns the **sum of values** from all of its child functions.

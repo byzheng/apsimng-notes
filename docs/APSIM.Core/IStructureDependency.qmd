@@ -1,6 +1,6 @@
 ---
 title: "IStructureDependency"
-output: html_document
+format: html
 ---
 
 The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.

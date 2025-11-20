@@ -1,6 +1,6 @@
 ---
 title: "BudDevelopment"
-output: html_document
+format: html
 ---
 
 

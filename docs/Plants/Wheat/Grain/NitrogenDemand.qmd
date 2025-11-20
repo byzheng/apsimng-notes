@@ -1,6 +1,6 @@
 ---
 title: "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)"
-output: html_document
+format: html
 ---
 
 

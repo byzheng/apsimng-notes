@@ -1,6 +1,6 @@
 ---
 title: "ILeaf"
-output: html_document
+format: html
 ---
 
 The ILeaf interface defines the required properties and methods for organ **Leaf**.

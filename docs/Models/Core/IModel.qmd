@@ -1,6 +1,6 @@
 ---
 title: "IModel"
-output: html_document
+format: html
 ---
 
 The `IModel` interface defines the fundamental contract that all models in APSIM NG must implement. It establishes the core properties and methods required for model hierarchy management, lifecycle coordination, and integration within the simulation framework.

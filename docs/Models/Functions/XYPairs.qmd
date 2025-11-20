@@ -1,6 +1,6 @@
 ---
 title: "XYPairs Function"
-output: html_document
+format: html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "FinalLeafNumber"
-output: html_document
+format: html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "Relative Allocation"
-output: html_document
+format: html
 ---
 
 

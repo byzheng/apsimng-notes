@@ -1,6 +1,6 @@
 ---
 title: "CO2 for Wheat"
-output: html_document
+format: html
 ---
 
 

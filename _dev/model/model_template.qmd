@@ -1,6 +1,6 @@
 ---
 title: "<functionname>"
-output: html_document
+format: html
 ---
 
 

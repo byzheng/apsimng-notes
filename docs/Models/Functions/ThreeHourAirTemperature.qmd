@@ -1,6 +1,6 @@
 ---
 title: "ThreeHourAirTemperature"
-output: html_document
+format: html
 ---
 
 

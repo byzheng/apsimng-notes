@@ -1,6 +1,6 @@
 ---
 title: "Clock"
-output: html_document
+format: html
 ---
 
 The APSIM Clock is a central component of the APSIM simulation framework, responsible for managing the simulation time and orchestrating the sequence of events that occur during a simulation. It defines the start and end dates of the simulation and raises various events at specific times to allow different models to perform their calculations.

@@ -1,6 +1,6 @@
 ---
 title: "Frost and Heat Combined Stress"
-output: html_document
+format: html
 ---
 
 The low temperature stresses (frost) can cause damage to wheat crops, particularly during sensitive growth stages such as flowering. Frost stress can lead to reduced grain yield and quality by affecting the development of reproductive organs and impairing physiological processes. The frost stress damage is simulated based on minimum air temperature and crop development stage in the [FrostHeatDamageFunction](/docs/Models/Functions/FrostHeatDamageFunctions.qmd).

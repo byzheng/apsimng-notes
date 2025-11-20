@@ -1,6 +1,6 @@
 ---
 title: "Photoperiod Effects on Leaf Appearance for Wheat in Australia"
-output: html_document
+format: html
 sidebar: false
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "LeafAppearancePhase"
-output: html_document
+format: html
 ---
 
 The `LeafAppearancePhase` represents a developmental phase in a plant's life cycle. The Final leaf number is fixed at the start of this phase. The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.

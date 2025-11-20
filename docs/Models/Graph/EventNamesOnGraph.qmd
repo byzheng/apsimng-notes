@@ -1,6 +1,6 @@
 ---
 title: "Show Event Names on Graph"
-output: html_document
+format: html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "SpikeletsDifferentiating"
-output: html_document
+format: html
 ---
 
 

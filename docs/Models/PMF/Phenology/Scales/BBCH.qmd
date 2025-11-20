@@ -1,6 +1,6 @@
 ---
 title: "BBCH"
-output: html_document
+format: html
 ---
 
 A phenological staging system that converts APSIM-NG's internal growth stages into standardized BBCH (Biologische Bundesanstalt, Bundessortenamt und CHemische Industrie) growth stages for cereals [@meier_growth_2001], providing internationally recognized developmental benchmarks for agricultural research and management.

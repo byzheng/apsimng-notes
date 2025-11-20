@@ -1,6 +1,6 @@
 ---
 title: "ZadokPMFWheat"
-output: html_document
+format: html
 ---
 
 

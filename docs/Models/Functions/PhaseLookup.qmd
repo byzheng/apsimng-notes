@@ -1,6 +1,6 @@
 ---
 title: "PhaseLookup"
-output: html_document
+format: html
 ---
 
 PhaseLookup selects a value based on the current growth phase of the crop. It allows users to define different function values for different stages of development (e.g., vegetative, flowering, grain filling), and outputs the value corresponding to the current phase.

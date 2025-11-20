@@ -1,6 +1,6 @@
 ---
 title: "MultiplyFunction"
-output: html_document
+format: html
 ---
 
 The `MultiplyFunction` is a utility function that returns the **product of values** from all of its child functions.

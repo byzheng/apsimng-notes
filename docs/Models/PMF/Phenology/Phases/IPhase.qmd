@@ -1,6 +1,6 @@
 ---
 title: "IPhase"
-output: html_document
+format: html
 ---
 
 The `IPhase` interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.

@@ -1,6 +1,6 @@
 ---
 title: "Variables"
-output: html_document
+format: html
 ---
 
 In addition to reportable variables defined in all sub-models of [phenology](index.qmd), the phenology model reports several other variables that provide insights into the development of the wheat crop.

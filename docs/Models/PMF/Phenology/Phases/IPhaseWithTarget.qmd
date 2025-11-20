@@ -1,6 +1,6 @@
 ---
 title: "IPhaseWithTarget"
-output: html_document
+format: html
 ---
 
 The `IPhaseWithTarget` interface extends the `IPhase` interface to define phenological phases that progress toward a specific target value. It provides standardized properties for tracking both the target threshold and the accumulated progress through the phase.

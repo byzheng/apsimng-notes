@@ -1,6 +1,6 @@
 ---
 title: "EndPhase"
-output: html_document
+format: html
 ---
 
 `EndPhase` is the final phase in a crop's phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.

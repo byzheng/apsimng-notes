@@ -1,6 +1,6 @@
 ---
 title: "CAMP"
-output: html_document
+format: html
 ---
 
 

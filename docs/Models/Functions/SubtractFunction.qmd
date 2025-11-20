@@ -1,6 +1,6 @@
 ---
 title: "SubtractFunction"
-output: html_document
+format: html
 ---
 
 The `SubtractFunction` is a utility function that returns the difference of values from its child functions.

@@ -1,6 +1,6 @@
 ---
 title: "SimpleLeafAppearancePhase"
-output: html_document
+format: html
 ---
 
 The `SimpleLeafAppearancePhase` represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number. 

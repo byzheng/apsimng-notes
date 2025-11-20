@@ -1,6 +1,6 @@
 ---
 title: "CO2"
-output: html_document
+format: html
 ---
 
 CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.

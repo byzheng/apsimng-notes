@@ -1,6 +1,6 @@
 ---
 title: "BiomassRemovalEvents"
-output: html_document
+format: html
 ---
 
 ```{r setup, echo = FALSE}

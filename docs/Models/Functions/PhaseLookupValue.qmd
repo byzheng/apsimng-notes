@@ -1,6 +1,6 @@
 ---
 title: "PhaseLookupValue"
-output: html_document
+format: html
 ---
 
 PhaseLookupValue defines a value or function that applies only within a specified phase range in a crop's development. It is used as a child of `PhaseLookup` to provide values that change according to phenological stages.

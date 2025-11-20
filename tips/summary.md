@@ -1,6 +1,6 @@
 ---
 title: "Writing Debug Info to Summary"
-output: html_document
+format: html
 sidebar: false
 date: "2025-06-06"
 ---

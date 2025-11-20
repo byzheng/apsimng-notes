@@ -1,8 +1,10 @@
 ---
 title: "SimpleLeaf"
-output: html_document
+format: html
 draft: true
 ---
+
+
 
 The `SimpleLeaf` organ model simulates leaf development, growth, and function in APSIM NG without distinguishing individual leaf cohorts by age or position in the canopy. It provides core functions of intercepting radiation, producing biomass through photosynthesis, determining transpiration demand, and calculating growth, senescence, and detachment of leaves.
 

@@ -2,7 +2,7 @@
 title: "Setting CO₂ Concentration"
 date: "2025-06-06"
 sidebar: false
-output: html_document
+format: html
 ---
 
 In APSIM Next Gen, the default CO₂ concentration is **350 ppm** if not explicitly set.  

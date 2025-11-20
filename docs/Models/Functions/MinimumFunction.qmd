@@ -1,6 +1,6 @@
 ---
 title: "MinimumFunction"
-output: html_document
+format: html
 ---
 
 The `MinimumFunction` is a utility function that returns the **minimum value** from all of its child functions.

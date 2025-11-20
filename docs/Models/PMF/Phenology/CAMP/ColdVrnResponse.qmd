@@ -1,6 +1,6 @@
 ---
 title: "ColdVrnResponse"
-output: html_document
+format: html
 ---
 
 The `ColdVrnResponse` function models the upregulation of the *Vrn1* gene in response to cold temperatures. This function is an extension of the base *Vrn1* expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in @brown_integration_2013. It is part of the vernalisation module used in the phenology model within APSIM NG.

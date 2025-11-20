@@ -1,6 +1,6 @@
 ---
 title: "AccumulateFunction"
-output: html_document
+format: html
 ---
 
 AccumulateFunction collects the output of one or more child functions between defined growth stages of a crop. It is commonly used to sum variables like thermal time, biomass, or nutrient supply during a crop phase (e.g., between emergence and flowering). It supports resetting and adjusting the accumulated value based on crop events like harvest, cut, or graze.

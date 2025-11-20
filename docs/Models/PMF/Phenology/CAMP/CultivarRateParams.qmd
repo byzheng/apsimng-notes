@@ -1,6 +1,6 @@
 ---
 title: "CultivarRateParams"
-output: html_document
+format: html
 ---
 
 A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.

@@ -1,6 +1,6 @@
 ---
 title: "Connections Between Models"
-output: html_document
+format: html
 ---
 
 In APSIM Next Generation, models interact through a structured system of **connections**, allowing one model to access information or functionality provided by another.  

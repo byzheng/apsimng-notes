@@ -1,6 +1,6 @@
 ---
 title: "Events"
-output: html_document
+format: html
 ---
 
 This page lists all the events that can be triggered in APSIM NG. Events are used to signal when certain actions should be performed within the simulation, allowing for a structured and organized approach to model execution.

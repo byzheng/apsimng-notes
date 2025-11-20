@@ -1,6 +1,6 @@
 ---
 title: "LeavesInitiating"
-output: html_document
+format: html
 draft: false
 ---
 

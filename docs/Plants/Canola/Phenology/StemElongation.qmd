@@ -1,6 +1,6 @@
 ---
 title: "StemElongation"
-output: html_document
+format: html
 ---
 
 

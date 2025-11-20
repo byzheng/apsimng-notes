@@ -1,6 +1,6 @@
 ---
 title: "Emerging"
-output: html_document
+format: html
 ---
 
 

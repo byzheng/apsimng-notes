@@ -1,6 +1,6 @@
 ---
 title: "Constant"
-output: html_document
+format: html
 ---
 
 The Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM-NG.

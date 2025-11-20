@@ -1,6 +1,6 @@
 ---
 title: "DivideFunction"
-output: html_document
+format: html
 ---
 
 The DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).

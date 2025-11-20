@@ -1,6 +1,6 @@
 ---
 title: "FLNParameterEnvironment"
-output: html_document
+format: html
 ---
 
 A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.

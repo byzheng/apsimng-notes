@@ -1,6 +1,6 @@
 ---
 title: "<Component Name>"
-output: html_document
+format: html
 ---
 
 <Short Description: one to three sentences explaining the component in plain language.>

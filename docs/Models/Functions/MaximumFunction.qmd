@@ -1,6 +1,6 @@
 ---
 title: "MaximumFunction"
-output: html_document
+format: html
 ---
 
 The `MaximumFunction` is a utility function that returns the **maximum value** from all of its child functions.

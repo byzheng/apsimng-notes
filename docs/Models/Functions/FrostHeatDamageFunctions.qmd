@@ -1,6 +1,6 @@
 ---
 title: "FrostHeatDamageFunctions"
-output: html_document
+format: html
 ---
 
 

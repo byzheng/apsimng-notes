@@ -1,6 +1,6 @@
 ---
 title: "Heading"
-output: html_document
+format: html
 ---
 
 

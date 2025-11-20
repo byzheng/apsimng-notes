@@ -1,6 +1,6 @@
 ---
 title: "Canola Example Simulation 1"
-output: html_document
+format: html
 ---
 
 

@@ -1,6 +1,6 @@
 ---
 title: "SubDailyInterpolation"
-output: html_document
+format: html
 ---
 
 A function that interpolates daily minimum and maximum values to sub-daily time steps, applies a response function to each interpolated value, and aggregates the results to produce a daily average or sum.

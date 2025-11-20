@@ -1,6 +1,6 @@
 ---
 title: "Daily Nitrogen Demand for Storage Organs"
-output: html_document
+format: html
 ---
 
 

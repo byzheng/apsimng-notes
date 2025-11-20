@@ -1,6 +1,6 @@
 ---
 title: "VernalisationPhase"
-output: html_document
+format: html
 ---
 
 The `VernalisationPhase` defines a phenological development phase that is completed when vernalisation requirements are fulfilled. It integrates gene expression signals into crop phenology progression, making it essential for modeling genotypic and environmental responses affecting vernalisation.

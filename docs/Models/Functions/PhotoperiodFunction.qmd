@@ -1,6 +1,6 @@
 ---
 title: "Photoperiod"
-output: html_document
+format: html
 ---
 
 The **Photoperiod** function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.

@@ -1,6 +1,6 @@
 ---
 title: "Germinating"
-output: html_document
+format: html
 ---
 
 The **Germinating** is a phenological phase in [Wheat](/docs/Plants/Wheat) used to represent the development period from **Sowing** to **Germination**. It determines whether the seed has germinated based on soil temperature and soil water.

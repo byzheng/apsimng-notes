@@ -1,6 +1,6 @@
 ---
 title: "IPhaseWithSetableCompletionDate"
-output: html_document
+format: html
 ---
 
 The `IPhaseWithSetableCompletionDate` interface extends phenological phases by allowing external specification of a fixed completion date. This enables users to override the phase's normal progression logic and force completion on a specific calendar date.

@@ -1,6 +1,6 @@
 ---
 title: "Phenology"
-output: html_document
+format: html
 ---
 
 

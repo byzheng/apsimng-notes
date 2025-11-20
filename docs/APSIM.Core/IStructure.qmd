@@ -1,6 +1,6 @@
 ---
 title: "IStructure"
-output: html_document
+format: html
 ---
 
 The IStructure interface provides the core navigation and manipulation system for APSIM-NG's hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.

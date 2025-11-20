@@ -1,6 +1,6 @@
 ---
 title: "GerminatingPhase"
-output: html_document
+format: html
 ---
 
 The `GerminatingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.
