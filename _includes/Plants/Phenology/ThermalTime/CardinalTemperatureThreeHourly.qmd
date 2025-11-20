@@ -1,0 +1,159 @@
+
+Thermal time (also called growing degree days) is the primary driver of phenological development in the [`r params$plant`](/docs/Plants/`r params$plant`/index.qmd) model. It determines the rate of developmental progress through crop's phases and is used by organs to determine potential growth rates.
+
+
+## Overview
+
+* **Biological role:** Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.
+
+* **Placement in crop system:** Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.
+
+* **Importance for agronomy or breeding:** Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.
+
+* **Environmental sensitivities:** 
+  - **Temperature**: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve
+  - **Diurnal temperature variation**: Captured through [sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) to account for temperature fluctuations throughout the day with [three-hourly interpolation method](/docs/Models/Functions/ThreeHourAirTemperature.qmd)
+
+
+## Component Interaction Map
+
+* **Inputs:** 
+    - Daily maximum air temperature (from Weather)
+    - Daily minimum air temperature (from Weather)
+
+* **Outputs:**
+    - Daily thermal time (°Cd) - used by all phenology phases
+
+* **Interactions:**
+    - Phenology phases use thermal time as progression metric
+    - Organs use thermal time for growth rate calculations
+
+
+
+## Methodology (Biological Perspective)
+
+* **Key biological assumptions:**
+
+    - Plant development rate increases linearly with temperature between base (0°C) and optimum (30°C) temperatures
+    - Development ceases below the base temperature (0°C) and above a maximum temperature (40°C)
+    - Development rate declines linearly between optimum and maximum temperatures
+    - Diurnal temperature variation affects development - captured through [sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) rather than simple daily mean temperature
+    - The same thermal time response applies across all developmental phases (no phase-specific temperature responses)
+
+* **Mathematical representation:**
+
+The daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with [three-hourly intervals](/docs/Models/Functions/ThreeHourAirTemperature.qmd).
+
+
+The thermal time response to air temperature ($T$) follows a three-cardinal-temperature model:
+
+$$
+TT(T) = \begin{cases}
+0 & \text{if } T \leq 0°C \\
+T & \text{if } 0°C < T \leq 30°C \\
+30 - \frac{30}{10}(T - 30) & \text{if } 30°C < T \leq 40°C \\
+0 & \text{if } T > 40°C
+\end{cases}
+$$
+
+Where $TT(T)$ is the thermal time (°Cd) at temperature $T$ (°C).
+
+This creates a piecewise linear response:
+- Below 0°C: No thermal time accumulation (development ceases at freezing)
+- 0-30°C: Linear increase at 1°Cd per 1°C (optimal development range)
+- 30-40°C: Linear decrease from 30°Cd to 0°Cd (supra-optimal stress)
+- Above 40°C: No thermal time accumulation (heat stress inhibits development)
+
+
+```{r plot-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
+library(ggplot2)
+
+
+x <- c(0, 30, 40)
+y <- c(0, 30, 0)
+
+plot_cardinal_temperature(x, y)
+```
+
+
+Daily thermal time is calculated using sub-daily interpolation with three-hourly air temperature values. Air temperature is interpolated from daily maximum and minimum using the ThreeHourAirTemperature method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:
+
+$$
+TT_{\text{daily}} = \frac{1}{8} \sum_{i=1}^{8} TT(T_i)
+$$
+
+where $T_i$ represents the interpolated temperature at each three-hour interval.
+
+This approach is more accurate than using daily mean temperature, especially when temperatures cross critical thresholds (0°C or 40°C) during the day.
+
+## Temperature Response Curve
+
+| Temperature (°C) | Thermal Time (°Cd) |
+|------------------|-------------------|
+| 0                | 0                 |
+| 30               | 30                |
+| 40               | 0                 |
+
+The response is linear between these cardinal points.
+
+## Advantages of Sub-Daily Interpolation
+
+The three-hour interpolation provides more accurate thermal time estimates, especially under:
+
+- **Large diurnal temperature ranges**: When daily maximum exceeds 30°C but minimum is below, the simple mean would overestimate thermal time
+- **Temperature threshold crossing**: When temperatures cross 0°C or 40°C during the day, accounting for the duration at different temperatures improves accuracy
+- **Cool climates**: Where temperatures frequently fluctuate around the base temperature (0°C)
+- **Hot climates**: Where daytime temperatures may exceed the optimum (30°C) but nighttime temperatures remain favorable
+
+## Application in Phenology
+
+Thermal time is used by most phenological phases as the progression driver. It determines:
+
+- **Emergence timing**: Accumulated from germination, modified by sowing depth
+- **Leaf appearance rate**: Via phyllochron calculations in the Structure component
+- **Phase transitions**: Progress through vegetative, reproductive, and grain filling phases
+- **Final grain fill duration**: Determines grain maturity timing
+
+Each phase accumulates thermal time daily and completes when accumulated thermal time reaches the phase-specific target.
+
+## Cultivar-Specific Parameters
+
+The thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all oat genotypes. However, cultivar differences are expressed through:
+
+- Phase-specific thermal time targets (e.g., emergence target, grain filling duration)
+- Vernalisation and photoperiod responses that modify effective thermal time requirements
+- Phyllochron values that determine leaf appearance rates per unit thermal time
+
+## Practical Example
+
+For a day with:
+- Maximum temperature: 25°C
+- Minimum temperature: 10°C
+
+Using simple daily mean: $(25 + 10) / 2 = 17.5$°C → 17.5°Cd
+
+Using sub-daily interpolation with the three-cardinal model, temperatures throughout the day remain in the 0-30°C range, so the thermal time would also be approximately 17.5°Cd, as all interpolated values fall in the linear response zone.
+
+However, for an extreme day with:
+- Maximum temperature: 38°C
+- Minimum temperature: 15°C
+
+Simple daily mean: $(38 + 15) / 2 = 26.5$°C → 26.5°Cd
+
+Sub-daily interpolation accounts for the portion of the day when temperature exceeds 30°C (entering the declining response zone), yielding a lower thermal time (approximately 22-24°Cd depending on the temperature curve shape), which more accurately represents the heat stress period.
+
+## Known Limitations
+
+* The model assumes the same temperature response curve for all developmental phases - in reality, different phases may have slightly different optimal temperatures
+* The cardinal temperatures (0°C, 30°C, 40°C) are fixed and do not vary with genotype, though some oat varieties may have different temperature sensitivities
+* Vernalisation and photoperiod effects are handled separately rather than being integrated into the thermal time calculation
+* The model does not account for temperature acclimation - the response curve remains constant throughout the season
+* Extreme temperature events (frost, heat shock) are not distinguished from gradual temperature changes
+* Night temperature effects on respiration and development are not explicitly separated from daytime effects
+
+## See Also
+
+* [SubDailyInterpolation Function](/docs/Models/Functions/SubDailyInterpolation.qmd)
+* [ThreeHourAirTemperature Function](/docs/Models/Functions/ThreeHourAirTemperature.qmd)
+* [Phenology Overview](index.qmd)
+* [Phyllochron](Phyllochron.qmd)
