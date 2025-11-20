@@ -1,5 +1,6 @@
 ---
 title: "Structure"
+draft: true
 ---
 
 The Structure model simulates morphological development of plants to coordinate leaf and branch appearance patterns within the Plant Modelling Framework (PMF). It provides temporal control over organ initiation and development, informing other components when and how many leaves and branches appear while estimating plant height progression throughout the growing season.

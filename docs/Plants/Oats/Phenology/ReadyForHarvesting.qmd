@@ -1,5 +1,6 @@
 ---
-title: "ReadyForHarvesting"
+title: "Ready For Harvesting"
+draft: true
 ---
 
 The ReadyForHarvesting phase represents the final stage when oat crop is ready for harvest.

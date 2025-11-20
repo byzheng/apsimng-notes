@@ -1,5 +1,6 @@
 ---
 title: "Germinating"
+draft: true
 ---
 
 The Germinating phase represents the period from sowing to germination in oat development.

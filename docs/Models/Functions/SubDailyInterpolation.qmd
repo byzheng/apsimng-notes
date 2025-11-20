@@ -3,90 +3,204 @@ title: "SubDailyInterpolation"
 output: html_document
 ---
 
-
-`SubDailyInterpolation` is a function module that enables fine-resolution simulation of temperature-driven biological responses by computing sub-daily (e.g., hourly) air temperatures. It does so by interpolating daily minimum and maximum temperatures using a chosen method (e.g., [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)) or [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd), and applying a temperature response function to each sub-daily point, aggregating the result as a sum or average. This allows temperature-dependent processes such as growth, phenology, or respiration to respond more realistically to daily temperature cycles.
+A function that interpolates daily minimum and maximum values to sub-daily time steps, applies a response function to each interpolated value, and aggregates the results to produce a daily average or sum.
 
 ## Overview
 
-The `SubDailyInterpolation` model enables simulation of plant and environmental processes that require sub-daily temperature information. It operates by:
+SubDailyInterpolation is a temporal interpolation function that enhances the accuracy of daily calculations by accounting for sub-daily variation in environmental variables, most commonly air temperature. In agricultural systems, using only daily maximum and minimum values to represent diurnal patterns can introduce significant errors, particularly for non-linear responses such as thermal time accumulation near temperature thresholds.
 
-1. Interpolating sub-daily air temperatures using a child model that implements `IInterpolationMethod` (e.g., [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd) or [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)).
-2. Applying a child `IIndexedFunction` response function to each of the sub-daily temperature values.
-3. Aggregating the responses using either the average or the sum, depending on the selected `AgregationMethod` (Average or Sum).
+This function operates in three sequential steps:
 
-This approach is especially valuable in contexts where biological rates (e.g., enzymatic activity or stress responses) are non-linear with respect to temperature.
+1. **Interpolation**: A child InterpolationMethod generates sub-daily values from daily minimum and maximum inputs (e.g., from weather data).
+2. **Response Transformation**: Each interpolated value is passed through a child Response function, which can apply non-linear transformations such as temperature response curves with base and optimal thresholds.
+3. **Aggregation**: The transformed sub-daily values are either averaged or summed to produce the final daily value, depending on the specified aggregation method.
 
-## Inputs
+SubDailyInterpolation is particularly critical for thermal time calculations, where temperature effects on crop development are highly non-linear. Using sub-daily temperature resolution prevents underestimation or overestimation that occurs when applying response functions to daily mean temperatures.
 
-The following inputs are required for `SubDailyInterpolation` to operate:
+## Model Structure
 
-- `MetData`: A model implementing `IWeather`, typically the `Weather` module, which supplies daily `Tmin` and `Tmax`.
-- `InterpolationMethod`: A child model that implements `IInterpolationMethod` and provides sub-daily temperature estimates (e.g., [HourlySinPpAdjusted](HourlySinPpAdjusted.qmd) or [ThreeHourAirTemperature](ThreeHourAirTemperature.qmd)).
-- `Response`: A child model implementing `IIndexedFunction`, which calculates a biological or physical response for each sub-daily temperature.
-- `agregationMethod`: A user-configurable enum determining whether the output is the `Average` or the `Sum` of the sub-daily responses.
+{{< include /includes/_model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
-The function operates in two stages each day:
+## Connections to Other Components
 
-1. Interpolation of Sub-daily Temperatures  
-    The selected `InterpolationMethod` model returns a list of sub-daily temperatures:  
-$$
-T_1, T_2, \dots, T_n
-$$
+{{< include /includes/_connections-intro.md >}}
 
-2. Application of Temperature Response Function  
-    The response function $f(T)$ is applied to each temperature:  
-$$
-R_i = f(T_i) \quad \text{for } i = 1 \dots n
-$$
+| Component | Connection Type | Description |
+|-----------|-----------------|-------------|
+| InterpolationMethod | [IInterpolationMethod](/docs/Models/Interfaces/IInterpolationMethod.qmd) (Child, ByName) | Generates sub-daily values from daily minimum and maximum inputs. Common implementations include ThreeHourAirTemperature and other temporal interpolation methods. |
+| Response | [IIndexedFunction](/docs/Models/Core/IIndexedFunction.qmd) (Child, ByName) | Applies a transformation to each sub-daily interpolated value. Typically an XYPairs function defining temperature response curves with base, optimum, and maximum thresholds. |
+| MetData | [IWeather](/docs/Models/Interfaces/IWeather.qmd) (Link) | Provides daily weather data including minimum and maximum values for the variable being interpolated (usually air temperature). |
 
-3. Aggregation  
-    Depending on the selected `agregationMethod`, the result is:  
-- Average:
-$$
-R = \frac{1}{n} \sum_{i=1}^n R_i
-$$
-- Sum:
-$$
-R = \sum_{i=1}^n R_i
-$$
+## Model Variables
 
-The result $R$ becomes the output of the `SubDailyInterpolation` function for that day.
-
-## Events
-
-**Events Listened For**
-
-| Event | Purpose |
-|-------|---------|
-| [DoDailyInitialisation](/docs/Models/Events.html#DoDailyInitialisation) | Triggers the interpolation and response function application each day. |
-
-**Events Raised To**
-
-> No events are raised by this function.
-
-## Properties
+{{< include /includes/_model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
 | Property | Type | Description |
 |----------|------|-------------|
-| agregationMethod | enum (Average, Sum) | Method used to aggregate sub-daily response values. |
+| agregationMethod | AgregationMethod (enum) | Method used to aggregate sub-daily response values. Options are: **Average** (returns mean of sub-daily values) or **Sum** (returns total of sub-daily values). Default is typically Average for thermal time calculations. |
 
 **Read-Only Reportable Properties**
 
-> No read-only properties are available for this function.
+| Property | Type | Description |
+|----------|------|-------------|
+| Value | double | The final aggregated daily value after interpolation, response transformation, and aggregation. This is the primary output used by parent models. |
+| SubDailyInput | List\<double\> | The raw sub-daily interpolated values before response transformation. Useful for diagnostics and validation. |
+| SubDailyResponse | List\<double\> | The transformed sub-daily values after applying the Response function. Useful for understanding the contribution of each time step to the final aggregated value. |
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+
+| Event | Purpose |
+|-------|---------|
+| [DoDailyInitialisation](/docs/Models/Events.html#DoDailyInitialisation) | Triggers the sub-daily interpolation and response calculation at the start of each simulation day. This ensures sub-daily values are ready before other daily processes execute. |
+
+**Events Raised**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### Sub-Daily Interpolation and Aggregation
+
+At the start of each simulation day (triggered by the DoDailyInitialisation event), SubDailyInterpolation performs the following sequence:
+
+#### 1. Interpolation
+
+The child InterpolationMethod (e.g., ThreeHourAirTemperature) generates a series of sub-daily values from the daily minimum and maximum inputs:
+
+$$
+T_{i} = f_{\text{interpolate}}(T_{\min}, T_{\max}, t_i)
+$$
+
+where:
+- $T_i$ = interpolated value at sub-daily time step $i$
+- $T_{\min}$ = daily minimum value (from weather data)
+- $T_{\max}$ = daily maximum value (from weather data)
+- $t_i$ = time of day for sub-daily step $i$
+- $f_{\text{interpolate}}$ = interpolation function (e.g., sinusoidal curve fitting diurnal temperature pattern)
+
+For ThreeHourAirTemperature, this produces 8 values at 3-hour intervals (0:00, 3:00, 6:00, ..., 21:00).
+
+#### 2. Response Transformation
+
+Each interpolated value is passed through the child Response function, which applies a transformation (typically a temperature response curve):
+
+$$
+R_i = f_{\text{response}}(T_i)
+$$
+
+where:
+- $R_i$ = response value at sub-daily time step $i$
+- $f_{\text{response}}$ = response function (e.g., XYPairs defining piecewise linear or non-linear response)
+
+For thermal time calculations, the response function typically implements a piecewise curve:
+
+$$
+f_{\text{response}}(T) = \begin{cases} 
+0 & \text{if } T < T_{\text{base}} \\
+T - T_{\text{base}} & \text{if } T_{\text{base}} \le T \le T_{\text{opt}} \\
+T_{\text{opt}} - T_{\text{base}} - \frac{(T - T_{\text{opt}})(T_{\text{opt}} - T_{\text{base}})}{T_{\text{max}} - T_{\text{opt}}} & \text{if } T_{\text{opt}} < T \le T_{\text{max}} \\
+0 & \text{if } T > T_{\text{max}}
+\end{cases}
+$$
+
+where $T_{\text{base}}$, $T_{\text{opt}}$, and $T_{\text{max}}$ are cardinal temperatures defining the crop's temperature response.
+
+#### 3. Aggregation
+
+The transformed sub-daily values are aggregated according to the specified agregationMethod:
+
+**Average Method** (typical for thermal time):
+$$
+V_{\text{daily}} = \frac{1}{n} \sum_{i=1}^{n} R_i
+$$
+
+**Sum Method** (used when accumulating total effects):
+$$
+V_{\text{daily}} = \sum_{i=1}^{n} R_i
+$$
+
+where:
+- $V_{\text{daily}}$ = final daily aggregated value
+- $n$ = number of sub-daily time steps
+- $R_i$ = response value at time step $i$
+
+### Biological Significance
+
+The sub-daily approach is essential for accurate thermal time calculation because:
+
+1. **Non-linear Response**: Temperature effects on development are non-linear with distinct base, optimum, and maximum thresholds. Applying these thresholds to daily mean temperature produces different results than averaging the responses to sub-daily temperatures.
+
+2. **Threshold Effects**: When daily mean temperature falls within the optimal range but sub-daily temperatures exceed or fall below cardinal thresholds, using only the mean temperature misses important inhibitory effects.
+
+3. **Diurnal Asymmetry**: The timing and duration of exposure to different temperature ranges during the day affects developmental responses. Sub-daily resolution captures these temporal patterns.
+
+4. **Accuracy at Temperature Extremes**: When daily temperature ranges span multiple thermal response zones (base to optimal to supra-optimal), sub-daily interpolation provides substantially more accurate thermal time estimates than using daily averages.
+
+For example, with a daily minimum of 5°C and maximum of 35°C (mean 20°C), and cardinal temperatures of base=0°C, optimum=30°C, maximum=40°C, applying the response to the mean temperature produces a different thermal time value than averaging the responses to the actual diurnal temperature curve.
 
 ## User Interface
 
-`SubDailyInterpolation` can be added as a child of a function node in the model tree (e.g., `[Phenology]`).  
-Right-click the parent node, select "Add Model...", and search for `SubDailyInterpolation` in the Filter Box.
+SubDailyInterpolation can be added as a child node under components that require daily aggregated values from sub-daily calculations (commonly under ThermalTime or other phenology-related functions). Right-click the parent node, select "Add Model...", and search for "SubDailyInterpolation" in the Filter Box.
+
+**Required Child Components:**
+
+1. **InterpolationMethod**: Must add an interpolation method (e.g., ThreeHourAirTemperature) with the name "InterpolationMethod" as the function expects a child with this specific name.
+
+2. **Response**: Must add a response function (typically XYPairs) with the name "Response" to define the transformation applied to each interpolated value.
+
+**Configuration:**
+
+- Set the `agregationMethod` property to either "Average" or "Sum" depending on whether you want the mean or total of sub-daily responses.
 
 ## Practical Example
 
-> No practical example is provided for this function.
+### Example: Thermal Time Calculation for Oats
+
+In oat phenology, thermal time drives developmental progress through growth stages. Using SubDailyInterpolation with three-hour temperature intervals and a piecewise thermal response provides accurate thermal time accumulation:
+
+**Configuration:**
+- agregationMethod: Average
+- InterpolationMethod: ThreeHourAirTemperature
+- Response: XYPairs with coordinates (0,0), (30,30), (40,0)
+  - Base temperature: 0°C
+  - Optimum temperature: 30°C  
+  - Maximum temperature: 40°C
+
+**Calculation on a Day with Tmin=5°C, Tmax=35°C:**
+
+1. ThreeHourAirTemperature interpolates to 8 values: [5.0, 7.2, 15.8, 26.4, 32.8, 34.2, 28.6, 14.2]°C
+
+2. Response function applied to each:
+   - $R(5.0) = 5.0$°C
+   - $R(7.2) = 7.2$°C
+   - $R(15.8) = 15.8$°C
+   - $R(26.4) = 26.4$°C
+   - $R(32.8) = 30.0 - \frac{(32.8-30)(30)}{10} = 21.6$°C
+   - $R(34.2) = 30.0 - \frac{(34.2-30)(30)}{10} = 17.4$°C
+   - $R(28.6) = 28.6$°C
+   - $R(14.2) = 14.2$°C
+
+3. Average = $(5.0 + 7.2 + 15.8 + 26.4 + 21.6 + 17.4 + 28.6 + 14.2) / 8 = 17.0$°C·d
+
+Compare this to the naive approach using daily mean temperature (20°C), which would yield 20.0°C·d—a 17.6% overestimation of thermal time for this particular day.
+
+Over the course of a growing season, these daily differences accumulate, potentially shifting predicted phenological events (flowering, maturity) by several days or more, which can have significant implications for crop management decisions.
 
 ## See Also
 
-- Source code: [SubDailyInterpolation.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/SubDailyInterpolation.cs)
+* **Source code:** [SubDailyInterpolation.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/SubDailyInterpolation.cs)
+* **Related:** [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) - Common interpolation method for sub-daily temperature
+* **Related:** [XYPairs](/docs/Models/Functions/XYPairs.qmd) - Typically used as the Response function to define temperature response curves
+* **Related:** [IInterpolationMethod](/docs/Models/Interfaces/IInterpolationMethod.qmd) - Interface implemented by interpolation methods
+* **Related:** [ThermalTime](/docs/Plants/Oats/Phenology/ThermalTime.qmd) - Example use case in oat phenology

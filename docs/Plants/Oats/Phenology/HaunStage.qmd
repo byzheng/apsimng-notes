@@ -1,5 +1,6 @@
 ---
 title: "Haun Stage"
+draft: true
 ---
 
 Haun Stage is a measure of leaf development in oats, defined as the number of leaf tips that have appeared since emergence.

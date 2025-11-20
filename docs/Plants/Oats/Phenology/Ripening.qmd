@@ -1,5 +1,6 @@
 ---
 title: "Ripening"
+draft: true
 ---
 
 The Ripening phase represents the period from physiological maturity to harvest ripeness in oats.

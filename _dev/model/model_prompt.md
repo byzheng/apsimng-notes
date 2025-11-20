@@ -1,6 +1,6 @@
 --For a new model --
 
-ModelName: <ModelName>
+ModelName: SubDailyInterpolation
 
 Task:
 

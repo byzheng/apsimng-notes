@@ -1,5 +1,6 @@
 ---
 title: "Maturing"
+draft: true
 ---
 
 The Maturing phase represents the transition from grain filling completion to physiological maturity in oats.

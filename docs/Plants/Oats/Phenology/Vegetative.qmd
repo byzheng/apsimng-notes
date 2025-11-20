@@ -1,5 +1,6 @@
 ---
 title: "Vegetative"
+draft: true
 ---
 
 The Vegetative phase represents the period from emergence to terminal spikelet formation in oat development.

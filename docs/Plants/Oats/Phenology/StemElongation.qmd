@@ -1,5 +1,6 @@
 ---
-title: "StemElongation"
+title: "Stem Elongation"
+draft: true
 ---
 
 The StemElongation phase represents the period from terminal spikelet formation to flag leaf appearance in oat development.

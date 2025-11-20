@@ -1,5 +1,6 @@
 ---
 title: "Phyllochron"
+draft: true
 ---
 
 The phyllochron is the thermal time interval between the appearance of successive leaf tips on the main stem of oats.

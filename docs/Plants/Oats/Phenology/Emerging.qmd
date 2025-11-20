@@ -1,5 +1,6 @@
 ---
 title: "Emerging"
+draft: true
 ---
 
 The Emerging phase represents the period from germination to emergence in oat development.

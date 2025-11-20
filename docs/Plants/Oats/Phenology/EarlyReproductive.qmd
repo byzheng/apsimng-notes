@@ -1,5 +1,6 @@
 ---
-title: "EarlyReproductive"
+title: "Early Reproductive"
+draft: true
 ---
 
 The EarlyReproductive phase represents the period from flag leaf appearance to flowering in oat development.
