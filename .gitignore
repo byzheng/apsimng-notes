@@ -19,3 +19,4 @@ _freeze
 _tmp_*
 /.luarc.json
 _apsimx
+**/*.quarto_ipynb

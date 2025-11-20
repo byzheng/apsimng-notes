@@ -1,0 +1,281 @@
+---
+title: "SimpleLeaf"
+output: html_document
+---
+
+The `SimpleLeaf` organ model simulates leaf development, growth, and function in APSIM NG without distinguishing individual leaf cohorts by age or position in the canopy. It provides core functions of intercepting radiation, producing biomass through photosynthesis, determining transpiration demand, and calculating growth, senescence, and detachment of leaves.
+
+## Overview
+
+The `SimpleLeaf` model is a simplified leaf organ that treats the entire leaf canopy as a single homogeneous unit. Unlike more complex leaf models that track individual leaf cohorts, SimpleLeaf aggregates all leaf tissue into live and dead biomass pools. This approach is computationally efficient and suitable for crops where detailed tracking of individual leaves is not required.
+
+The model integrates with the MicroClimate model to calculate radiation interception and transpiration demand. It passes canopy properties (cover, LAI, height) to MicroClimate, which uses the Beer-Lambert equation for light interception and the Penman-Monteith equation for potential evapotranspiration. These values are returned to SimpleLeaf for calculating photosynthesis and water demand.
+
+SimpleLeaf can define the canopy using either:
+
+- A function describing leaf area index (LAI), or
+- A function describing canopy cover directly
+
+From either function, the model can derive the other property using the Beer-Lambert equation with a specified extinction coefficient. The fractional growth rate (FRGR) function captures the effect of growth rate on transpiration and is passed to the MicroClimate model.
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [ICanopy](/docs/Models/Interfaces/ICanopy.qmd)
+* [IHasWaterDemand](/docs/Models/Interfaces/IHasWaterDemand.qmd)
+* [IOrgan](/docs/Models/PMF/Interfaces/IOrgan.qmd)
+* [IArbitration](/docs/Models/PMF/Interfaces/IArbitration.qmd)
+* [IOrganDamage](/docs/Models/PMF/Interfaces/IOrganDamage.qmd)
+* [IHasDamageableBiomass](/docs/Models/PMF/Interfaces/IHasDamageableBiomass.qmd)
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+| Component | Model | Connection Type | Description |
+|-----------|-------|-----------------|-------------|
+| MetData | IWeather | **Link** | Provides daily weather data for photosynthesis and environmental responses. |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | **Link** | Parent plant model that coordinates organ development and resource allocation. |
+| SurfaceOrganicMatter | ISurfaceOrganicMatter | **Link** | Receives detached leaf material. |
+| FRGR | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Relative growth rate factor affecting transpiration. |
+| StomatalConductanceCO2Modifier | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | CO2 effect on stomatal conductance. |
+| Photosynthesis | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Daily photosynthesis calculation. |
+| HeightFunction | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Canopy height. |
+| LAIDead | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Dead leaf area index. |
+| CarbonConcentration | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Carbon concentration in tissue. |
+| WaterDemand | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Water demand calculation. |
+| Cover | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Canopy cover function. |
+| Area | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Leaf area index function. |
+| ExtinctionCoefficient | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Light extinction coefficient for Beer-Lambert equation. |
+| BaseHeight | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Height of canopy base. |
+| Wideness | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child (Optional)** | Width of individual plant. |
+| BiomassRemovalModel | BiomassRemoval | **Child** | Handles grazing, cutting, and harvest operations. |
+| SenescenceRate | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Daily senescence rate (fraction per day). |
+| DetachmentRate | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Daily detachment rate (fraction per day). |
+| NRetranslocationFactor | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Nitrogen retranslocation factor. |
+| NReallocationFactor | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Nitrogen reallocation factor. |
+| DMRetranslocationFactor | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Dry matter retranslocation factor. |
+| DMReallocationFactor | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Dry matter reallocation factor. |
+| DMDemands | NutrientDemandFunctions | **Child** | Dry matter demand functions. |
+| NDemands | NutrientDemandFunctions | **Child** | Nitrogen demand functions. |
+| InitialWt | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Initial biomass dry matter weight (g/m²). |
+| MaximumNConc | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Maximum nitrogen concentration (g/g). |
+| MinimumNConc | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Minimum nitrogen concentration (g/g). |
+| CriticalNConc | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Critical nitrogen concentration (g/g). |
+| MaintenanceRespiration | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Proportion of biomass respired daily. |
+| DMConversionEfficiency | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Dry matter conversion efficiency. |
+| RemobilisationCost | [IFunction](/docs/APSIM.Core/IFunction.qmd) | **Child** | Cost for remobilisation. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Albedo` | double | Albedo (reflectance) of the canopy. |
+| `Gsmax350` | double | Maximum stomatal conductance at CO₂ concentration of 350 ppm (m/s). |
+| `R50` | double | Radiation level at which stomatal conductance is half the maximum value (W/m²). |
+| `LeafInitialisationStage` | string | Phenological stage at which leaves are initialized (default: "Emergence"). |
+| `KDead` | double | Extinction coefficient for dead leaf material. |
+| `LAI` | double | Leaf area index (m²/m²). |
+| `Height` | double | Canopy height (mm). |
+| `BaseHeight` | double | Height of canopy base (mm). |
+| `Width` | double | Width of individual plant (mm). |
+| `FRGR` | double | Fractional growth rate. |
+| `PotentialEP` | double | Potential evapotranspiration set by MicroClimate (mm). |
+| `WaterDemand` | double | Actual water demand (mm). |
+| `WaterAllocation` | double | Water allocated to the leaf (mm). |
+| `LAIDead` | double | Dead leaf area index (m²/m²). |
+| `LAIRemoved` | double | Live leaf area removed by biomass removal (m²/m²). |
+| `LAIDeadRemoved` | double | Dead leaf area removed by biomass removal (m²/m²). |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `Live` | Biomass | Live leaf biomass (structural and metabolic components). |
+| `Dead` | Biomass | Dead leaf biomass. |
+| `Total` | Biomass | Total leaf biomass (live + dead). |
+| `Allocated` | Biomass | Biomass allocated during current timestep (actual growth). |
+| `Senesced` | Biomass | Biomass senesced (transferred from live to dead). |
+| `Detached` | Biomass | Biomass detached (sent to surface organic matter). |
+| `Removed` | Biomass | Biomass removed from system (harvested, grazed). |
+| `DMSupply` | BiomassSupplyType | Dry matter supply available for allocation. |
+| `NSupply` | BiomassSupplyType | Nitrogen supply available for allocation. |
+| `DMDemand` | BiomassPoolType | Dry matter demand for growth. |
+| `NDemand` | BiomassPoolType | Nitrogen demand for growth. |
+| `DMPotentialAllocation` | BiomassPoolType | Potential dry matter allocation. |
+| `MaintenanceRespiration` | double | Daily maintenance respiration loss (g/m²/d). |
+| `GrowthRespiration` | double | Growth respiration (g/m²/d). |
+| `NFixationCost` | double | Nitrogen fixation cost (always 0 for leaves). |
+| `MaxNConc` | double | Maximum nitrogen concentration (g/g). |
+| `MinNConc` | double | Minimum nitrogen concentration (g/g). |
+| `CritNConc` | double | Critical nitrogen concentration (g/g). |
+| `Wt` | double | Total dry matter weight (g/m²). |
+| `N` | double | Total nitrogen amount (g/m²). |
+| `NConc` | double | Total nitrogen concentration (g/g). |
+| `Transpiration` | double | Actual transpiration (equals WaterAllocation, mm). |
+| `Depth` | double | Canopy depth (Height - BaseHeight, mm). |
+| `CanopyType` | string | Type of canopy (from parent plant PlantType). |
+| `LAITotal` | double | Total LAI (live + dead, m²/m²). |
+| `Fw` | double | Water stress factor (WaterAllocation / PotentialEP). |
+| `Fn` | double | Nitrogen stress factor. |
+| `FNmetabolic` | double | Metabolic nitrogen stress factor. |
+| `CoverTotal` | double | Total canopy cover (green + dead, 0-1). |
+| `CoverGreen` | double | Green canopy cover (0-1). |
+| `CoverGreenRemoved` | double | Green cover removed by biomass removal (0-1). |
+| `CoverDead` | double | Dead leaf cover (0-1). |
+| `CoverDeadRemoved` | double | Dead cover removed by biomass removal (0-1). |
+| `RadiationIntercepted` | double | Daily radiation intercepted by green leaves (MJ/m²/d). |
+| `RadiationInterceptedByDead` | double | Daily radiation intercepted by dead leaves (MJ/m²/d). |
+| `Gsmax` | double | Maximum stomatal conductance adjusted for CO₂ (m/s). |
+| `IsAboveGround` | bool | Always true for leaves. |
+| `LightProfile` | CanopyEnergyBalanceInterceptionlayerType[] | Light profile through canopy layers (set by MicroClimate). |
+| `Material` | IEnumerable<DamageableBiomass> | Damageable biomass pools for damage simulation. |
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+
+> No events are listened by this model.
+
+**Events Raised to**
+
+> No events are raised by this model.
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+### Canopy Development and Light Interception
+
+The canopy can be defined using either LAI or cover functions. When LAI is specified, canopy cover is calculated using the Beer-Lambert equation:
+
+$$
+\text{Cover}_{\text{green}} = 1 - e^{-k \times \text{LAI}}
+$$
+
+where $k$ is the extinction coefficient. Conversely, if cover is specified, LAI can be derived by inverting this equation:
+
+$$
+\text{LAI} = \frac{-\ln(1 - \text{Cover}_{\text{green}})}{k}
+$$
+
+Total cover accounts for both green and dead leaf material:
+
+$$
+\text{Cover}_{\text{total}} = 1 - (1 - \text{Cover}_{\text{green}}) \times (1 - \text{Cover}_{\text{dead}})
+$$
+
+where dead cover is calculated similarly using KDead as the extinction coefficient.
+
+### Photosynthesis and Biomass Production
+
+Daily photosynthesis is calculated by a child function that typically uses the intercepted radiation. The model receives radiation interception values from MicroClimate based on the canopy structure and light profile through the canopy.
+
+Gross photosynthesis is converted to net biomass production after accounting for:
+
+- **Maintenance respiration**: A daily fraction of live biomass is respired
+- **Growth respiration**: Conversion efficiency from photosynthate to structural biomass
+
+$$
+\text{Net Growth} = \text{Photosynthesis} - \text{Maintenance Respiration} - \text{Growth Respiration}
+$$
+
+### Water Demand and Transpiration
+
+Water demand is calculated either by a specified function or based on potential evapotranspiration from MicroClimate. The Penman-Monteith equation is used within MicroClimate, incorporating:
+
+- Canopy conductance (Gsmax adjusted for CO₂)
+- Radiation interception
+- Vapor pressure deficit
+- Wind speed
+
+The maximum stomatal conductance is adjusted for atmospheric CO₂ concentration:
+
+$$
+G_{smax} = G_{smax350} \times \text{CO}_2\text{Modifier}
+$$
+
+Water stress is quantified by the factor:
+
+$$
+F_w = \frac{\text{WaterAllocation}}{\text{PotentialEP}}
+$$
+
+### Nitrogen Dynamics
+
+Nitrogen concentration in leaves is bounded by minimum, critical, and maximum concentrations. Nitrogen stress factors are calculated as:
+
+$$
+F_n = \frac{\text{NConc} - \text{MinNConc}}{\text{CritNConc} - \text{MinNConc}}
+$$
+
+Nitrogen demand is determined by the NDemands function, which typically considers:
+
+- Structural N demand for new growth
+- Metabolic N demand for photosynthetic function
+- Luxury N uptake when N is non-limiting
+
+### Senescence and Detachment
+
+Senescence transfers biomass from the live pool to the dead pool:
+
+$$
+\text{Senesced} = \text{Live} \times \text{SenescenceRate}
+$$
+
+Detachment removes dead material and sends it to surface organic matter:
+
+$$
+\text{Detached} = \text{Dead} \times \text{DetachmentRate}
+$$
+
+During senescence, nitrogen can be retranslocated to other organs:
+
+$$
+\text{N}_{\text{retranslocated}} = \text{Senesced}_N \times \text{NRetranslocationFactor}
+$$
+
+Similarly, during reallocation events (e.g., grain filling):
+
+$$
+\text{N}_{\text{reallocated}} = \text{Live}_N \times \text{NReallocationFactor}
+$$
+
+### Biomass Removal
+
+The BiomassRemoval child model handles defoliation events (grazing, cutting, harvest). It can remove fractions of both live and dead biomass, updating LAI and cover accordingly. The amount removed is tracked separately for live and dead material.
+
+### Initialization
+
+Leaves are initialized at the phenological stage specified by LeafInitialisationStage (default "Emergence"). Initial biomass is set according to the InitialWt function.
+
+## User Interface
+
+SimpleLeaf can be added as a child of a [Plant](/docs/Models/PMF/Plant.qmd) node in the model tree. Right-click the Plant node, select "Add Model...", and search for SimpleLeaf in the Filter Box.
+
+The model requires numerous child functions to define its behavior. At minimum, you must specify:
+
+- Photosynthesis function
+- Height function  
+- Either LAI function or Cover function (with extinction coefficient)
+- Senescence and detachment rate functions
+- N concentration functions (minimum, critical, maximum)
+- DM and N demand functions
+
+## Practical Example
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [SimpleLeaf.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Organs/SimpleLeaf.cs)
+* **Related Organs:** [Leaf](/docs/Models/PMF/Organs/Leaf.qmd)
+* **Interfaces:** [ICanopy](/docs/Models/Interfaces/ICanopy.qmd), [IOrgan](/docs/Models/PMF/Interfaces/IOrgan.qmd)
