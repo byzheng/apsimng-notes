@@ -1,10 +1,11 @@
 ---
 title: "Thermal Time"
 draft: true
+format: html
 params:
-    cardinal_x: [0, 30, 40]
-    cardinal_y: [0, 30, 0]
     plant: Oats
+    response.x: [0, 30, 40]
+    response.y: [0, 30, 0]
 ---
 
 {{< include /_includes/Plants/Phenology/ThermalTime/CardinalTemperatureThreeHourly.qmd >}}

@@ -1,7 +1,3 @@
-# load all functions in library
-
-a <- list.files("_scripts/library", full.names = TRUE) |>
-    lapply(source)
 
 setup_qmd <- function() {
     suppressPackageStartupMessages({

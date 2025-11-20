@@ -43,16 +43,15 @@ plot_3_hour_interpolation <- function(tmin = 10, tmax = 30) {
     )
 
     # Plot
-    ggplot(df, aes(x = Hour, y = Temperature)) +
-        geom_line(color = "steelblue", size = 1.2) +
-        geom_point(size = 3, color = "steelblue") +
-        scale_x_continuous(breaks = seq(0, 24, by = 3)) +
-        labs(
+    ggplot2::ggplot(df, ggplot2::aes(x = Hour, y = Temperature)) +
+        ggplot2::geom_line(color = "steelblue", size = 1.2) +
+        ggplot2::geom_point(size = 3, color = "steelblue") +
+        ggplot2::labs(
             title = "Sub-daily Air Temperature Interpolation",
             x = "Period",
             y = "Temperature (°C)"
         ) +
-        scale_x_continuous(breaks = 1:8) +
-        theme_bw()
+        ggplot2::scale_x_continuous(breaks = 1:8) +
+        ggplot2::theme_bw()
 
 }

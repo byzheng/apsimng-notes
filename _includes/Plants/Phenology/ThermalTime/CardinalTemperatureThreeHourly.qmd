@@ -1,3 +1,35 @@
+<!--
+This file provides the shared Thermal Time documentation used by multiple plant models based on following methodology
+
+* [Three hourly interpolation](/docs/Models/Functions/ThreeHourAirTemperature.qmd) of air temperature from daily max/min
+* A response curve defined by three cardinal temperatures: base (0°C), optimum (30°C), maximum (40°C)
+* [Sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) to calculate daily thermal time accumulation
+
+Inputs (passed from parent QMD via params):
+- plant: The plant model using this thermal time calculation (e.g., Oats, Wheat)
+- response.x : air temperatures (°C)
+- response.y : corresponding thermal time values (°Cd)
+
+Usage in parent QMD:
+
+1. Add parameters in YAML front matter:
+      params:
+        plant: Oats
+        response.x: [0, 30, 40]
+        response.y: [0, 30, 0]
+
+2. Include this shared documentation file using include shortcode        
+
+-->
+
+```{r setup, echo = FALSE}
+setup_qmd()
+
+response_x <- params$response.x
+response_y <- params$response.y
+stopifnot(length(response_x) == length(response_y))
+is_three_cardinal <- length(response_x) == 3
+```
 
 Thermal time (also called growing degree days) is the primary driver of phenological development in the [`r params$plant`](/docs/Plants/`r params$plant`/index.qmd) model. It determines the rate of developmental progress through crop's phases and is used by organs to determine potential growth rates.
 
@@ -24,18 +56,15 @@ Thermal time (also called growing degree days) is the primary driver of phenolog
 * **Outputs:**
     - Daily thermal time (°Cd) - used by all phenology phases
 
-* **Interactions:**
-    - Phenology phases use thermal time as progression metric
-    - Organs use thermal time for growth rate calculations
-
 
 
 ## Methodology (Biological Perspective)
 
 * **Key biological assumptions:**
 
-    - Plant development rate increases linearly with temperature between base (0°C) and optimum (30°C) temperatures
-    - Development ceases below the base temperature (0°C) and above a maximum temperature (40°C)
+
+    - Plant development rate increases linearly with temperature between base (`r response_x[1]`°C) and optimum (`r response_x[2]`°C) temperatures
+    - Development ceases below the base temperature (`r response_x[1]`°C) and above a maximum temperature (`r response_x[3]`°C)
     - Development rate declines linearly between optimum and maximum temperatures
     - Diurnal temperature variation affects development - captured through [sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) rather than simple daily mean temperature
     - The same thermal time response applies across all developmental phases (no phase-specific temperature responses)
@@ -44,6 +73,11 @@ Thermal time (also called growing degree days) is the primary driver of phenolog
 
 The daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with [three-hourly intervals](/docs/Models/Functions/ThreeHourAirTemperature.qmd).
 
+```{r fig-three-hourly-temperature, fig.cap="Three-Hourly Air Temperature Interpolation"}
+
+plot_3_hour_interpolation()
+
+```
 
 The thermal time response to air temperature ($T$) follows a three-cardinal-temperature model:
 
