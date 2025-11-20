@@ -12,7 +12,7 @@ The class design emphasizes modularity and reusability, allowing researchers to 
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * IModel - Core model interface defining essential model contracts
 * INodeModel - Node-based model interface for hierarchical tree structures  
@@ -21,7 +21,7 @@ The class design emphasizes modularity and reusability, allowing researchers to 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable Properties**
 

@@ -17,7 +17,7 @@ The interface supports both direct tree navigation (parent-child-sibling relatio
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 

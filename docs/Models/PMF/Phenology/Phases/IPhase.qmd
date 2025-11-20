@@ -21,13 +21,13 @@ The Phenology model orchestrates phases by calling `DoTimeStep()` each simulatio
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [IModel](/docs/Models/Core/IModel.qmd)
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 

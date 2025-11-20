@@ -22,7 +22,7 @@ This interface is the cornerstone of APSIM NG's component-based architecture, al
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 

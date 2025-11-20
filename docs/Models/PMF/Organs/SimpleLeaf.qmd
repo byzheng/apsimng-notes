@@ -23,7 +23,7 @@ From either function, the model can derive the other property using the Beer-Lam
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [ICanopy](/docs/Models/Interfaces/ICanopy.qmd)
@@ -35,7 +35,7 @@ From either function, the model can derive the other property using the Beer-Lam
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Model | Connection Type | Description |
 |-----------|-------|-----------------|-------------|
@@ -73,7 +73,7 @@ From either function, the model can derive the other property using the Beer-Lam
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -142,7 +142,7 @@ From either function, the model can derive the other property using the Beer-Lam
 
 ## Events 
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -154,7 +154,7 @@ From either function, the model can derive the other property using the Beer-Lam
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### Canopy Development and Light Interception
 

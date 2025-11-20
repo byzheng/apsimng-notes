@@ -19,14 +19,14 @@ SubDailyInterpolation is particularly critical for thermal time calculations, wh
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Connection Type | Description |
 |-----------|-----------------|-------------|
@@ -36,7 +36,7 @@ SubDailyInterpolation is particularly critical for thermal time calculations, wh
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -54,7 +54,7 @@ SubDailyInterpolation is particularly critical for thermal time calculations, wh
 
 ## Events 
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -68,7 +68,7 @@ SubDailyInterpolation is particularly critical for thermal time calculations, wh
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### Sub-Daily Interpolation and Aggregation
 

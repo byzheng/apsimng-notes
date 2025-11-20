@@ -11,7 +11,7 @@ The DivideFunction divides the value of the first child function by the product 
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/APSIM.Core/IFunction.qmd)
@@ -19,7 +19,7 @@ The DivideFunction divides the value of the first child function by the product 
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Connection Type | Description |
 |-----------|-----------------|-------------|
@@ -27,7 +27,7 @@ The DivideFunction divides the value of the first child function by the product 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -41,7 +41,7 @@ The DivideFunction divides the value of the first child function by the product 
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### Division Algorithm
 

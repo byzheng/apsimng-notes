@@ -11,7 +11,7 @@ The AddFunction is used to sum up multiple values for a mathematical equation. I
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/APSIM.Core/IFunction.qmd)
@@ -19,7 +19,7 @@ The AddFunction is used to sum up multiple values for a mathematical equation. I
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Connection Type | Description |
 |-----------|-----------------|-------------|
@@ -27,7 +27,7 @@ The AddFunction is used to sum up multiple values for a mathematical equation. I
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -42,14 +42,14 @@ The AddFunction is used to sum up multiple values for a mathematical equation. I
 
 ## Events 
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 
 > No events are listened or raisedby this function.
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 
 The AddFunction implements a simple summation algorithm that iterates through all child functions and accumulates their values:

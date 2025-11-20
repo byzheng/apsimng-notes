@@ -19,7 +19,7 @@ The phase progresses using thermal time accumulation, typically calculated from 
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
@@ -28,7 +28,7 @@ The phase progresses using thermal time accumulation, typically calculated from 
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
@@ -38,7 +38,7 @@ The phase progresses using thermal time accumulation, typically calculated from 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -60,7 +60,7 @@ The phase progresses using thermal time accumulation, typically calculated from 
 
 ## Events 
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -77,7 +77,7 @@ These are signals or notifications that the `EmergingPhase` listens for from oth
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 
 ### Emergence Triggers

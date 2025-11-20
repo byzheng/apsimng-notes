@@ -16,13 +16,13 @@ The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to des
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
@@ -33,7 +33,7 @@ The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to des
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -52,7 +52,7 @@ The Zadoks scale [@zadoks_decimal_1974] is a numerical system (0-99) used to des
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### Early Vegetative Development (Zadok 00-19)
 

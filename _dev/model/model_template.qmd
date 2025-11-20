@@ -13,7 +13,7 @@ format: html
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 <List all parent classes>
 
@@ -24,7 +24,7 @@ format: html
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 
 <A table to describe all connections to other models>
@@ -37,7 +37,7 @@ format: html
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 
 **Configurable and Reportable Properties**
@@ -66,7 +66,7 @@ format: html
 
 ## Events 
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 <show the events listened by this function>
@@ -94,7 +94,7 @@ These are signals or notifications that the function listens for from other part
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 
 <Use subsections to describe each process or methods>

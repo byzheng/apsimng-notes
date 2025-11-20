@@ -13,13 +13,13 @@ The BBCH system divides crop development into 10 principal growth stages (0-9), 
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 
 | Component     | Model         | Connection Type | Description                                          |
@@ -31,7 +31,7 @@ The BBCH system divides crop development into 10 principal growth stages (0-9), 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -46,7 +46,7 @@ The BBCH system divides crop development into 10 principal growth stages (0-9), 
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 
 

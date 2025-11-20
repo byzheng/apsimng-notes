@@ -13,7 +13,7 @@ The interface tracks the number of leaf cohorts, the number of leaves that have 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 
 **Configurable and Reportable Properties**
@@ -34,7 +34,7 @@ The interface tracks the number of leaf cohorts, the number of leaves that have 
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### DoThin
 

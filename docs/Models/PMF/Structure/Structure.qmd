@@ -14,13 +14,13 @@ The model's approach combines mechanistic representation of developmental proces
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd): fundamental base class for all simulation components
 
 ## Connections to Other Components
 
-{{< include /includes/_connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component | Model | Connection Type | Description                                          |
 |----------------------|-------|-----------------|------------------------------------------------------|
@@ -36,7 +36,7 @@ The model's approach combines mechanistic representation of developmental proces
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable Properties**
 
@@ -71,7 +71,7 @@ The model's approach combines mechanistic representation of developmental proces
 
 ## Events
 
-{{< include /includes/_events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -97,7 +97,7 @@ The model's approach combines mechanistic representation of developmental proces
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### At cohort initialisation stage
 

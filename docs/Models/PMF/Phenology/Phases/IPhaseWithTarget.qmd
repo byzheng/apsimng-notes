@@ -22,13 +22,13 @@ By standardizing these properties, the interface enables consistent implementati
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 

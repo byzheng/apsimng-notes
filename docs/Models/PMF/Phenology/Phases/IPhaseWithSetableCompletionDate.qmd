@@ -14,7 +14,7 @@ The interface is intentionally minimal, adding only a single property to enable 
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 

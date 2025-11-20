@@ -13,14 +13,14 @@ In APSIM-NG, Constant is widely used as a basic building block within more compl
 
 ## Model Structure
 
-{{< include /includes/_model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -37,7 +37,7 @@ In APSIM-NG, Constant is widely used as a basic building block within more compl
 
 ## Processes and Algorithms
 
-{{< include /includes/_processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 
 This function always returns the same value, specified by the user in the FixedValue property. It does not depend on any conditions or crop stages.

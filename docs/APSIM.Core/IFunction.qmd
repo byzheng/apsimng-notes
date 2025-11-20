@@ -11,7 +11,7 @@ The IFunction interface serves as the foundational abstraction layer for all com
 
 ## Model Variables
 
-{{< include /includes/_model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable Properties**
 
