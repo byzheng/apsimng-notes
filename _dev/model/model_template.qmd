@@ -1,0 +1,121 @@
+---
+title: "<functionname>"
+output: html_document
+---
+
+
+<a short description of the function, its purpose, and how it fits into the APSIM NG framework.>
+
+
+## Overview
+
+<A longer description of the function, its purpose, and how it fits into the APSIM NG framework.>
+
+## Model Structure
+
+{{< include /includes/_model-structure-intro.md >}}
+
+<List all parent classes>
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/Models/Core/IFunction.qmd)
+* [IStructureDependency](/docs/Models/Core/IStructureDependency.qmd)
+
+
+## Connections to Other Components
+
+{{< include /includes/_connections-intro.md >}}
+
+
+<A table to describe all connections to other models>
+
+| Component | Connection Type | Description                                          |
+|-----------|-----------------|------------------------------------------------------|
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Provides structural and lifecycle information for the plant. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Supplies current growth stage and timing of key events. |
+| ThermalTime | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Calculates accumulated temperature used for leaf and stem development. |
+
+## Model Variables
+
+{{< include /includes/_model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+<A table below to list all public and read only properties>
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| OutputValueType   | string  | The type of variable for sub-daily values as air temperature                      |
+
+<if no public properties, show the message below>
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+<A table below to list all public and read only properties>
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| OutputValueType   | string  | The type of variable for sub-daily values as air temperature                      |
+
+<if no public properties, show the message below>
+> No read-only properties are available for this function.
+
+
+## Events 
+
+{{< include /includes/_events-intro.md >}}
+
+**Events Listened For**
+<show the events listened by this function>
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Calculate $\text{TRF}_p$ at starting of simulation |
+
+<if no event listened, show the message below>
+> No events are listened by this function.
+
+**Events Raised to**
+<show the events raised by this function>
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Calculate $\text{TRF}_p$ at starting of simulation |
+
+
+<if no event raised, show the message below>
+
+> No events are raised by this function.
+
+
+## Processes and Algorithms
+
+{{< include /includes/_processes-intro.md >}}
+
+
+<Use subsections to describe each process or methods>
+
+
+## User Interface
+
+<FunctionName> can be added as a child of a <ParentFunctionName> node in the model tree. Right-click the parent node, select "Add Model...", and search for <FunctionName> in the Filter Box.
+
+
+## Practical Example
+
+<Provide a case study or example of this function>
+<Generate R script chunk to demonstrate the function with figure if applicable with echo=FALSE, message=FALSE, warning=FALSE>
+
+<if not applicable, show the message below>
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [<FunctionName>.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/<FunctionPath-in-apsimx-source-codes>.cs)
+
+
+

@@ -1,0 +1,65 @@
+---
+title: "<Component Name>"
+output: html_document
+---
+
+<Short Description: one to three sentences explaining the component in plain language.>
+
+## Overview
+
+* **Biological role:** <Explain what the component represents in the plant>
+* **Placement in crop system:** <Explain how this component fits into the overall crop model>
+* **Importance for agronomy or breeding:** <Explain why it matters>
+* **Environmental sensitivities:** <List key environmental factors affecting this component, e.g., temperature, photoperiod, water, N>
+
+## Component Interaction Map
+
+* **Inputs:** <List inputs from other modules or environmental drivers>
+* **Outputs:** <List outputs that feed other modules>
+* **Interactions:** <Brief description of interactions with other plant components>
+
+Example (text-based diagram):
+
+```
+Phenology → LeafGrowth → LightInterception → Biomass → Grain
+```
+
+## Methodology (Biological Perspective)
+
+* **Key biological assumptions:**
+
+<List assumptions about processes, development stages, etc.>
+
+* **Mathematical representation:**
+  $$ <Equation 1> $$ <Explain equation in plain language>
+
+  $$ <Equation 2> $$ <Explanation in plain language>
+
+
+
+## Cultivar-Specific Parameters
+
+| Name                                      | Description                                    | Default Value |
+| ----------------------------------------- | ---------------------------------------------- | ------------- |
+| [Phenology].Emerging.ShootLag.FixedValue  | Lag before coleoptile starts to elongate (°Cd) | 40.0          |
+| [Phenology].Emerging.ShootRate.FixedValue | Rate of shoot elongation (°Cd/mm)              | 1.5           |
+| ...                                       | ...                                            | ...           |
+
+
+## Practical Example
+
+<Provide a short workflow or example demonstrating parameter use. Optionally include R snippet.>
+
+Example R code chunk:
+
+```
+# Example: setting phenology parameters for a cultivar
+Phenology$Emerging$ShootLag$FixedValue <- 40
+Phenology$Emerging$ShootRate$FixedValue <- 1.5
+```
+
+## Known Limitations
+
+* <List assumptions and limitations of this component>
+* <Mention scenarios where the model may be less accurate>
+* <Highlight simplifications in APSIM NG compared to real biology>
