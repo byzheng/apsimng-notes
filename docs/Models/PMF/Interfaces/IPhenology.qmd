@@ -1,0 +1,40 @@
+---
+title: "IPhenology"
+format: html
+---
+
+An interface that defines the contract for phenology models in APSIM NG, providing access to plant developmental stage information and growth phase tracking.
+
+## Overview
+
+The IPhenology interface serves as the foundational contract for all phenology models in the Plant Modelling Framework (PMF) [@brown_integration_2013]. It provides a standardized way to access critical developmental information about a plant's growth stage, including the current phenological phase, numeric stage values, and emergence status. This interface ensures that different phenology implementations can be used interchangeably while maintaining consistent access to essential developmental data.
+
+Phenology models implementing this interface track plant development through discrete growth phases (such as emergence, vegetative growth, reproductive development, and maturity), allowing other plant components to respond appropriately to developmental changes. The interface supports both continuous stage numbers and the widely-used Zadok scale for crop development staging.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [IModel](/docs/Models/Core/Model.qmd)
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Stage   | double  | A one-based stage number representing the current developmental stage. Can be set to initialize or adjust the phenological state.                      |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| CurrentPhase   | [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)  | The current phenological phase object, providing detailed information about the active growth stage.                      |
+| Zadok   | double  | The current Zadok growth stage number, a decimal scale commonly used in cereal crop management (e.g., 10 = emergence, 30 = stem elongation, 65 = anthesis).                      |
+| Emerged   | bool  | Indicates whether the crop has emerged from the soil. Returns `true` after emergence, `false` before.                      |
+
+## See Also
+
+* **Source code:** [IPhenology.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Interfaces/IPhenology.cs)
