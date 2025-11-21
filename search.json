@@ -2809,271 +2809,330 @@
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/index.html",
-    "href": "docs/Models/PMF/Arbitrator/index.html",
-    "title": "Arbitrator",
+    "objectID": "docs/Models/PMF/Interfaces/IIndexedFunction.html",
+    "href": "docs/Models/PMF/Interfaces/IIndexedFunction.html",
+    "title": "IIndexedFunction",
     "section": "",
-    "text": "The Arbitrator is a core component of the plant module, responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "An interface for functions that accept an index value as input and return a computed output value, enabling direct parameterized evaluation without requiring child model dependencies.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
-      "Arbitrator"
+      "Interfaces",
+      "IIndexedFunction"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
-    "title": "Nutrient Constrained Allocation",
-    "section": "",
-    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Role in APSIM Simulation Pipeline",
-    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Inputs and Assumptions",
-    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Step-by-Step Process",
-    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Practical Example",
-    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Scientific Rationale",
-    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Extensibility",
-    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Outputs and Implications",
-    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
-    "title": "Nutrient Constrained Allocation",
-    "section": "Potential bugs and Limitations",
-    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
-    "title": "Nutrient Constrained Allocation",
-    "section": "References",
-    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Nutrient Constrained Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Management/FertiliserType.html",
-    "href": "docs/Models/Management/FertiliserType.html",
-    "title": "FertiliserType",
-    "section": "",
-    "text": "The FertiliserType function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Management",
-      "FertiliserType"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Management/FertiliserType.html#overview",
-    "href": "docs/Models/Management/FertiliserType.html#overview",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/PMF/Interfaces/IIndexedFunction.html#overview",
+    "href": "docs/Models/PMF/Interfaces/IIndexedFunction.html#overview",
+    "title": "IIndexedFunction",
     "section": "Overview",
-    "text": "Overview\nFertiliserType is a submodel of the Fertiliser model. It provides a detailed configuration of the fertiliser’s composition by defining up to six solutes, each with a specified name and mass fraction. Additionally, it includes a threshold fraction to determine when the remainder of the fertiliser is released. This model allows researchers and users to represent a wide variety of fertiliser types used in agricultural systems and tailor nutrient release behavior to specific scenarios. Pre-defined fertiliser types are stored in a resource file named Fertiliser.json.",
+    "text": "Overview\nIIndexedFunction is a fundamental interface in APSIM Next Generation that extends IModel to provide indexed function evaluation capabilities. Unlike the standard IFunction interface which retrieves values from child models in the simulation tree, IIndexedFunction allows functions to accept a direct numerical input parameter (the index) and return a computed value based on that input.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Interfaces",
+      "IIndexedFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Interfaces/IIndexedFunction.html#model-structure",
+    "href": "docs/Models/PMF/Interfaces/IIndexedFunction.html#model-structure",
+    "title": "IIndexedFunction",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nIModel",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Interfaces",
+      "IIndexedFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Interfaces/IIndexedFunction.html#see-also",
+    "href": "docs/Models/PMF/Interfaces/IIndexedFunction.html#see-also",
+    "title": "IIndexedFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IIndexedFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Interfaces",
+      "IIndexedFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
+    "title": "Relative Allocation",
+    "section": "",
+    "text": "The RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
+    "title": "Relative Allocation",
+    "section": "Biological Motivation",
+    "text": "Biological Motivation\nPlants must allocate available assimilates or nutrients among organs in a coordinated way. The RelativeAllocation method mimics this by:\n\nPrioritizing structural and metabolic demands (essential growth),\nThen allocating any residual supply to storage pools (non-essential, luxury uptake).\n\nThis reflects physiological prioritization in plant growth.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
+    "title": "Relative Allocation",
+    "section": "Allocation Logic",
+    "text": "Allocation Logic\nThe allocation occurs in two sequential passes:\n\nFirst Pass – Structural and Metabolic Allocation\nSecond Pass – Storage (Luxury) Allocation",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
+    "title": "Relative Allocation",
+    "section": "First Pass – Structural and Metabolic Allocation",
+    "text": "First Pass – Structural and Metabolic Allocation\n\nObjective\nDistribute available supply to fulfill structural and metabolic demands proportionally.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{total}}\\): Total supply available (e.g. Dry biomass or nitrogen).\n\\(D_s^{(i)}\\): Structural demand of organ \\(i\\)\n\\(D_m^{(i)}\\): Metabolic demand of organ \\(i\\)\n\\(D_{s,\\text{total}} = \\sum_i D_s^{(i)}\\): Total structural demand across all organs.\n\\(D_{m,\\text{total}} = \\sum_i D_m^{(i)}\\): Total metabolic demand across all organs.\n\nWe define the structural fraction of supply as:\n\\[\nf_s = \\frac{D_{s,\\text{total}}}{D_{s,\\text{total}} + D_{m,\\text{total}}}\n\\]\nThen, for each organ \\(i\\):\n\nStructural allocation:\n\n\\[\nA_s^{(i)} = \\min\\left(R_s^{(i)}, S_{\\text{total}} \\cdot f_s \\cdot \\frac{D_s^{(i)}}{D_{s,\\text{total}}} \\right)\n\\]\n\nMetabolic allocation:\n\n\\[\nA_m^{(i)} = \\min\\left(R_m^{(i)}, S_{\\text{total}} \\cdot (1 - f_s) \\cdot \\frac{D_m^{(i)}}{D_{m,\\text{total}}} \\right)\n\\]\nwhere \\(R_s^{(i)}\\) and \\(R_m^{(i)}\\) are the remaining unmet demand for structural and metabolic pools, respectively.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
+    "title": "Relative Allocation",
+    "section": "Second Pass – Storage (Luxury) Allocation",
+    "text": "Second Pass – Storage (Luxury) Allocation\n\nObjective\nAllocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{rem}}\\): Remaining supply after first pass\n\\(D_t^{(i)}\\): Storage demand of organ \\(i\\)\n\\(D_{t,\\text{total}} = \\sum_i D_t^{(i)}\\): Total storage demand across all organs\n\nThen, for each organ \\(i\\):\n\\[\nA_t^{(i)} = \\min\\left(R_t^{(i)}, S_{\\text{rem}} \\cdot \\frac{D_t^{(i)}}{D_{t,\\text{total}}} \\right)\n\\]\nwhere \\(R_t^{(i)}\\) is the remaining unmet storage demand for organ \\(i\\).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
+    "title": "Relative Allocation",
+    "section": "Final Accounting",
+    "text": "Final Accounting\nAfter both passes, the module tracks:\n\nTotal allocation: Sum of structural, metabolic, and storage allocations across all organs.\nNot allocated: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).\n\n\\[\nS_{\\text{not\\_allocated}} = S_{\\text{total}} - \\sum_i \\left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \\right)\n\\]\nThis is useful for diagnostics, such as reporting sink limitations.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
+    "title": "Relative Allocation",
+    "section": "Key Features",
+    "text": "Key Features\n\nPrioritizes essential growth (structural and metabolic) over luxury (storage).\nProportional to each organ’s share of total demand.\nApplies generically to both biomass and nutrients.\nUses a two-pass method to avoid allocating luxury growth when essential needs are unmet.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
+    "title": "Relative Allocation",
+    "section": "Practical Example",
+    "text": "Practical Example\nAssume:\n\nLeaf has a structural demand of 50 units and a metabolic demand of 20 units.\nStem has a structural demand of 60 units and a metabolic demand of 60 units.\nTotal supply is 120 units.\n\nThen:\n\nTotal structural demand = 50 (leaf) + 60 (stem) = 110 units\nTotal metabolic demand = 20 (leaf) + 60 (stem) = 80 units\nStructural fraction:\n\\(f_s = \\frac{110}{110 + 80} = 0.579\\)\nFirst pass allocates:\n\nStructural: \\(120 \\times 0.579 = 69.48\\) units, distributed as:\n\nLeaf: \\(69.48 \\times \\frac{50}{110} = 31.58\\) units\nStem: \\(69.48 \\times \\frac{60}{110} = 37.90\\) units\n\nMetabolic: \\(120 \\times 0.421 = 50.52\\) units, distributed as:\n\nLeaf: \\(50.52 \\times \\frac{20}{80} = 12.63\\) units\nStem: \\(50.52 \\times \\frac{60}{80} = 37.89\\) units\n\n\nSecond pass allocates any leftover proportionally to storage demands.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
+    "title": "Relative Allocation",
+    "section": "Applications",
+    "text": "Applications\n\nBiomass partitioning after photosynthesis, reallocation, and retranslocation.\nNitrogen allocation after uptake, reallocation, and retranslocation.\nAny generic resource arbitration among competing sinks.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
+    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
+    "title": "Relative Allocation",
+    "section": "References",
+    "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Relative Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/index.html",
+    "href": "docs/Models/Management/index.html",
+    "title": "Management",
+    "section": "",
+    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliserType\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html",
+    "title": "BiomassRemovalEvents",
+    "section": "",
+    "text": "The BiomassRemovalEvents function is used to trigger biomass removal events (such as Cutting, Grazing, Pruning, Harvesting, or EndCrop). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#inputs",
-    "href": "docs/Models/Management/FertiliserType.html#inputs",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#overview",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#overview",
+    "title": "BiomassRemovalEvents",
+    "section": "Overview",
+    "text": "Overview\nBiomassRemovalEvents facilitates biomass removal in simulations without requiring a manager script. It is linked to a crop model and specifies the type of biomass removal event to apply (e.g., Cutting, Grazing). It also defines removal dates and the fractions of biomass to be removed from each plant organ. The function optionally resets the plant’s phenology to a specified stage after removal. This model allows event-based crop management to be incorporated into the simulation workflow through either predefined schedules or external triggers.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "BiomassRemovalEvents"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#inputs",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#inputs",
+    "title": "BiomassRemovalEvents",
     "section": "Inputs",
-    "text": "Inputs\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A user-defined description of the fertiliser type.\nFractionWhenRemainderReleased: A numeric threshold indicating when the remaining portion of the fertiliser is released (e.g., 0.995).\nSolute1Name to Solute6Name: The names of up to six solutes in the fertiliser.\nSolute1Fraction to Solute6Fraction: The corresponding fractions (by mass) of each solute in the fertiliser.",
+    "text": "Inputs\n\nNameOfPlantToRemoveFrom: Name of the crop from which biomass will be removed.\nRemovalType: Type of removal event (e.g., Cutting, Grazing, Pruning, Harvesting, EndCrop).\nStageToSet: Phenological stage to set after the biomass removal (optional).\nRemovalDates: A list of dates (dd/mm/yyyy or dd-mmm) to trigger biomass removal events.\nBiomassRemovalFractions: A list specifying fractions of live and dead biomass to remove or send to residue for each organ.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#methodology",
-    "href": "docs/Models/Management/FertiliserType.html#methodology",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#methodology",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#methodology",
+    "title": "BiomassRemovalEvents",
     "section": "Methodology",
-    "text": "Methodology\nFertiliserType acts as a container for the fertiliser composition. When a fertiliser is applied in a simulation, the associated solutes are released into the soil according to the specified fractions. The FractionWhenRemainderReleased controls when the final residual portion of fertiliser is applied, which is useful for simulating slow-release or staged-release fertilisers.\nEach solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation.\nBelow is a simplified summary of fertiliser types pre-defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nRelease\nSolute1Name\nSolute1Fraction\nSolute2Name\nSolute2Fraction\nSolute3Name\nSolute3Fraction\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\n1\nCa\n1.00\n\n\n\n\n\n\nCalciteFine\nfinely ground Agricultural Lime\n1\nCa\n0.40\n\n\n\n\n\n\nDolomite\nfinely ground dolomite\n1\nCa\n0.22\n\n\n\n\n\n\nNO3N\nN as nitrate\n1\nNO3\n1.00\n\n\n\n\n\n\nNH4N\nN as ammonium\n1\nNH4\n1.00\n\n\n\n\n\n\nNH4NO3N\nammonium nitrate\n1\nNO3\n0.50\nNH4\n0.50\n\n\n\n\nDAP\ndi-ammonium phosphate\n1\nNH4\n0.18\n\n\n\n\n\n\nMAP\nmono-ammonium phosphate\n1\nNH4\n0.11\n\n\n\n\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\n1\nNO3\n0.25\nNH4\n0.25\nUrea\n0.5\n\n\nUreaN\nN as urea\n1\nUrea\n1.00\n\n\n\n\n\n\nUreaNO3\nN as urea\n1\nNO3\n0.50\nUrea\n0.50\n\n\n\n\nUreaGranular\nUrea fertiliser\n1\nUrea\n0.46\n\n\n\n\n\n\nNH4SO4N\nammonium sulphate\n1\nNH4\n1.00\n\n\n\n\n\n\nRockP\nRock phosphorus\n1\nRockP\n0.80\nLabileP\n0.20\n\n\n\n\nBandedP\nBanded phosphorus\n1\nBandedP\n1.00\n\n\n\n\n\n\nBroadcastP\nBroadcast phosphorus\n1\nLabileP\n1.00",
+    "text": "Methodology\nOn each simulation day, BiomassRemovalEvents checks if the current date matches any of the specified RemovalDates. If a match is found, or if a relevant phenology event occurs (e.g., PhenologyDefoliate), the Remove() method is triggered.\nThis method does the following:\n\nValidates the link to the specified crop.\nRaises an event corresponding to the RemovalType (e.g., OnCutting, OnHarvesting).\nApplies biomass removal to each plant organ using the defined fractions.\nIf StageToSet is specified, updates the plant’s phenology stage accordingly.\n\nValidation ensures that all biomass fractions are numbers between 0 and 1. Any invalid input results in an exception.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#events",
-    "href": "docs/Models/Management/FertiliserType.html#events",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#events",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#events",
+    "title": "BiomassRemovalEvents",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nDoManagement\nTriggers removal on matching dates\n\n\nPhenologyDefoliate\nTriggers removal if RemovalType matches the event type\n\n\nPhenologyPrune\nTriggers removal if RemovalType is Pruning\n\n\nPhenologyHarvest\nTriggers removal if RemovalType is Harvesting\n\n\n\nEvents Raised to\n\n\n\nEvent\nPurpose\n\n\n\n\nCutting\nRaised when RemovalType is Cutting\n\n\nGrazing\nRaised when RemovalType is Grazing\n\n\nPruning\nRaised when RemovalType is Pruning\n\n\nHarvesting\nRaised when RemovalType is Harvesting\n\n\nEndCrop\nRaised when RemovalType is EndCrop",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#properties",
-    "href": "docs/Models/Management/FertiliserType.html#properties",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#properties",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#properties",
+    "title": "BiomassRemovalEvents",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDescription\nstring\nA description of the fertiliser type\n\n\nFractionWhenRemainderReleased\ndouble\nThreshold for full fertiliser release (e.g., 0.995)\n\n\nSolute1Name\nstring\nName of the first solute component\n\n\nSolute1Fraction\ndouble\nFraction of the fertiliser that is solute 1\n\n\nSolute2Name\nstring\nName of the second solute component\n\n\nSolute2Fraction\ndouble\nFraction of the fertiliser that is solute 2\n\n\nSolute3Name\nstring\nName of the third solute component\n\n\nSolute3Fraction\ndouble\nFraction of the fertiliser that is solute 3\n\n\nSolute4Name\nstring\nName of the fourth solute component\n\n\nSolute4Fraction\ndouble\nFraction of the fertiliser that is solute 4\n\n\nSolute5Name\nstring\nName of the fifth solute component\n\n\nSolute5Fraction\ndouble\nFraction of the fertiliser that is solute 5\n\n\nSolute6Name\nstring\nName of the sixth solute component\n\n\nSolute6Fraction\ndouble\nFraction of the fertiliser that is solute 6\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nNameOfPlantToRemoveFrom\nstring\nName of the crop to remove biomass from\n\n\nRemovalType\nenum\nType of removal (Cutting, Grazing, Pruning, Harvesting, EndCrop)\n\n\nStageToSet\nstring\nCrop stage to set after removal\n\n\nRemovalDates\nstring[]\nList of dates when removal occurs\n\n\nBiomassRemovalFractions\nlist\nBiomass fractions to remove for each organ\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#user-interface",
-    "href": "docs/Models/Management/FertiliserType.html#user-interface",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#user-interface",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#user-interface",
+    "title": "BiomassRemovalEvents",
     "section": "User Interface",
-    "text": "User Interface\n\nNo user interface is available for this function.",
+    "text": "User Interface\nBiomassRemovalEvents can be added as a child of a Zone or Folder node in the model tree. Right-click the parent node, select “Add Model…”, and search for BiomassRemovalEvents in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#practical-example",
-    "href": "docs/Models/Management/FertiliserType.html#practical-example",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#practical-example",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#practical-example",
+    "title": "BiomassRemovalEvents",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -3081,21 +3140,21 @@
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
-    "objectID": "docs/Models/Management/FertiliserType.html#see-also",
-    "href": "docs/Models/Management/FertiliserType.html#see-also",
-    "title": "FertiliserType",
+    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#see-also",
+    "href": "docs/Models/Management/BiomassRemovalEvents.html#see-also",
+    "title": "BiomassRemovalEvents",
     "section": "See Also",
-    "text": "See Also\n\nSource code: FertiliserType.cs on GitHub",
+    "text": "See Also\n\nSource code: BiomassRemovalEvents.cs on GitHub\nExample Simulation: BiomassRemovalTests.apsimx",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "FertiliserType"
+      "BiomassRemovalEvents"
     ]
   },
   {
@@ -3166,6 +3225,76 @@
       "Models",
       "Interfaces",
       "ILeaf"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/DailyMetDataFromFile.html",
+    "href": "docs/Models/Interfaces/DailyMetDataFromFile.html",
+    "title": "DailyMetDataFromFile",
+    "section": "",
+    "text": "The DailyMetDataFromFile class is a data structure that encapsulates a complete set of daily meteorological observations. It serves as a container for weather data read from weather files and provides structured access to individual meteorological variables.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "DailyMetDataFromFile"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/DailyMetDataFromFile.html#overview",
+    "href": "docs/Models/Interfaces/DailyMetDataFromFile.html#overview",
+    "title": "DailyMetDataFromFile",
+    "section": "Overview",
+    "text": "Overview\nDailyMetDataFromFile is a serializable class that extends the Model base class and stores all meteorological variables for a single day. This class is used throughout APSIM NG to pass weather data between components and is particularly important for accessing weather information from adjacent days (yesterday and tomorrow) through the IWeather interface.\nThe class provides a standardized format for daily weather data, ensuring consistency across different weather data sources and simplifying the process of reading and storing meteorological observations. It includes both commonly used standard variables (temperature, rainfall, radiation) and less common variables (diffuse fraction, air pressure) that may be required by specialized models.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "DailyMetDataFromFile"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/DailyMetDataFromFile.html#model-structure",
+    "href": "docs/Models/Interfaces/DailyMetDataFromFile.html#model-structure",
+    "title": "DailyMetDataFromFile",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "DailyMetDataFromFile"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/DailyMetDataFromFile.html#model-variables",
+    "href": "docs/Models/Interfaces/DailyMetDataFromFile.html#model-variables",
+    "title": "DailyMetDataFromFile",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\n\nProperty\nType\nUnits\nDescription\n\n\n\n\nMaxT\ndouble\n°C\nDaily maximum air temperature\n\n\nMinT\ndouble\n°C\nDaily minimum air temperature\n\n\nPanEvap\ndouble\nmm\nDaily pan evaporation (Class A pan equivalent)\n\n\nRain\ndouble\nmm\nDaily rainfall\n\n\nRadn\ndouble\nMJ/m²/day\nDaily solar radiation (total incoming shortwave radiation)\n\n\nVP\ndouble\nhPa\nVapor pressure of the air\n\n\nWind\ndouble\nm/s\nWind speed (default is zero if not specified in weather file)\n\n\nRainfallHours\ndouble\nhours\nDuration of rainfall event (used for erosion calculations)\n\n\nAirPressure\ndouble\nhPa\nAtmospheric air pressure (default is 1010 hPa if not specified)\n\n\nDiffuseFraction\ndouble\n0-1\nFraction of solar radiation that is diffuse\n\n\nDayLength\ndouble\nhours\nDuration of daylight\n\n\nCO2\ndouble\nppm\nAtmospheric CO₂ concentration (default is 350 ppm if not specified)\n\n\nRaw\nobject[]\n-\nRaw data array from the weather file for accessing non-standard variables",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "DailyMetDataFromFile"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/DailyMetDataFromFile.html#see-also",
+    "href": "docs/Models/Interfaces/DailyMetDataFromFile.html#see-also",
+    "title": "DailyMetDataFromFile",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IWeather.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "DailyMetDataFromFile"
     ]
   },
   {
@@ -5610,7 +5739,7 @@
     "href": "docs/Models/Functions/SubDailyInterpolation.html#connections-to-other-components",
     "title": "SubDailyInterpolation",
     "section": "Connections to Other Components",
-    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nConnection Type\nDescription\n\n\n\n\nInterpolationMethod\nIInterpolationMethod (Child, ByName)\nGenerates sub-daily values from daily minimum and maximum inputs. Common implementations include ThreeHourAirTemperature and other temporal interpolation methods.\n\n\nResponse\nIIndexedFunction (Child, ByName)\nApplies a transformation to each sub-daily interpolated value. Typically an XYPairs function defining temperature response curves with base, optimum, and maximum thresholds.\n\n\nMetData\nIWeather (Link)\nProvides daily weather data including minimum and maximum values for the variable being interpolated (usually air temperature).",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nInterpolationMethod\nIInterpolationMethod\nChild, ByName\nGenerates sub-daily values from daily minimum and maximum inputs. Common implementations include ThreeHourAirTemperature and other temporal interpolation methods.\n\n\nResponse\nIIndexedFunction\nChild, ByName\nApplies a transformation to each sub-daily interpolated value. Typically an XYPairs function defining temperature response curves with base, optimum, and maximum thresholds.\n\n\nMetData\nIWeather\nFirst Available\nProvides daily weather data including minimum and maximum values for the variable being interpolated (usually air temperature).",
     "crumbs": [
       "Home",
       "Docs",
@@ -5732,11 +5861,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#inputs",
-    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#inputs",
+    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#model-structure",
+    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#model-structure",
     "title": "ThreeHourAirTemperature",
-    "section": "Inputs",
-    "text": "Inputs\n\nMetData: A IWeather model for maximum air minimum and maximum temperature from weather data, i.e. a Weather model is required in the simulation to provide daily maximum and minimum temperatures.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIInterpolationMethod",
     "crumbs": [
       "Home",
       "Docs",
@@ -5746,11 +5875,25 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#methodology",
-    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#methodology",
+    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#connections-to-other-components",
+    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#connections-to-other-components",
     "title": "ThreeHourAirTemperature",
-    "section": "Methodology",
-    "text": "Methodology\nThe 24-hour day is divided into 8 equal 3-hour periods. For each period \\(p \\in \\{1, 2, \\dots, 8\\}\\), a temperature range factor \\(\\text{TRF}_p\\) is calculated as:\n\\[\n\\text{TRF}_p = 0.92105 + 0.1140p - 0.0703p^2 + 0.0053p^3\n\\]\nThese factors represent the proportion of the daily diurnal range \\((T_\\text{max} - T_\\text{min})\\) added to the daily minimum temperature to estimate sub-daily temperatures.\nFor each 3-hour interval \\(p\\), the temperature \\(T_p\\) is computed as:\n\\[\nT_p = T_\\text{min} + \\text{TRF}_p \\cdot (T_\\text{max} - T_\\text{min})\n\\]\nWhere:\n\n\\(T_\\text{min}\\): Minimum air temperature for the day\n\n\\(T_\\text{max}\\): Maximum air temperature for the day\n\n\\(\\text{TRF}_p\\): Temperature range factor for period \\(p\\)",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nMetData\nIWeather\nFirst Available\nProvides daily maximum and minimum air temperatures from weather data.\n\n\nSubDailyInterpolation\nSubDailyInterpolation\nParent\nParent model that utilizes this interpolation method.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "ThreeHourAirTemperature"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#model-variables",
+    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#model-variables",
+    "title": "ThreeHourAirTemperature",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nOutputValueType\nstring\nThe type of variable for sub-daily values as air temperature\n\n\nSubDailyValues\ndouble[]\nArray of interpolated 3-hourly air temperature values for the day.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5764,7 +5907,7 @@
     "href": "docs/Models/Functions/ThreeHourAirTemperature.html#events",
     "title": "ThreeHourAirTemperature",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nCalculate \\(\\text{TRF}_p\\) at starting of simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nCalculate \\(\\text{TRF}_p\\) at starting of simulation",
     "crumbs": [
       "Home",
       "Docs",
@@ -5774,11 +5917,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#properties",
-    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#properties",
+    "objectID": "docs/Models/Functions/ThreeHourAirTemperature.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/ThreeHourAirTemperature.html#processes-and-algorithms",
     "title": "ThreeHourAirTemperature",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nOutputValueType\nstring\nThe type of variable for sub-daily values as air temperature",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nSub-Daily Temperature Interpolation\nThe 24-hour day is divided into 8 equal 3-hour periods. For each period \\(p \\in \\{1, 2, \\dots, 8\\}\\), a temperature range factor \\(\\text{TRF}_p\\) is calculated as:\n\\[\n\\text{TRF}_p = 0.92105 + 0.1140p - 0.0703p^2 + 0.0053p^3\n\\]\nThese factors represent the proportion of the daily diurnal range \\((T_\\text{max} - T_\\text{min})\\) added to the daily minimum temperature to estimate sub-daily temperatures.\nFor each 3-hour interval \\(p\\), the temperature \\(T_p\\) is computed as:\n\\[\nT_p = T_\\text{min} + \\text{TRF}_p \\cdot (T_\\text{max} - T_\\text{min})\n\\]\nWhere:\n\n\\(T_\\text{min}\\): Minimum air temperature for the day\n\n\\(T_\\text{max}\\): Maximum air temperature for the day\n\n\\(\\text{TRF}_p\\): Temperature range factor for period \\(p\\)",
     "crumbs": [
       "Home",
       "Docs",
@@ -5792,7 +5935,7 @@
     "href": "docs/Models/Functions/ThreeHourAirTemperature.html#user-interface",
     "title": "ThreeHourAirTemperature",
     "section": "User Interface",
-    "text": "User Interface\nThreeHourAirTemperature can be added as a child of a SubDailyInterpolation node in the model tree. Right-click the parent node, select “Add Model…”, and search for ThreeHourAirTemperature in the Filter Box.",
+    "text": "User Interface\nThreeHourAirTemperature only can be added as a child of a SubDailyInterpolation node in the model tree. Right-click the parent node, select “Add Model…”, and search for ThreeHourAirTemperature in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5856,107 +5999,233 @@
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Interfaces/IInterpolationMethod.html",
+    "href": "docs/Models/Interfaces/IInterpolationMethod.html",
+    "title": "IInterpolationMethod",
     "section": "",
-    "text": "The BiomassRemovalEvents function is used to trigger biomass removal events (such as Cutting, Grazing, Pruning, Harvesting, or EndCrop). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.",
+    "text": "The IInterpolationMethod interface defines a contract for models that perform sub-daily interpolation of environmental variables from daily values.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
-      "Management",
-      "BiomassRemovalEvents"
+      "Interfaces",
+      "IInterpolationMethod"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#overview",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#overview",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Interfaces/IInterpolationMethod.html#overview",
+    "href": "docs/Models/Interfaces/IInterpolationMethod.html#overview",
+    "title": "IInterpolationMethod",
     "section": "Overview",
-    "text": "Overview\nBiomassRemovalEvents facilitates biomass removal in simulations without requiring a manager script. It is linked to a crop model and specifies the type of biomass removal event to apply (e.g., Cutting, Grazing). It also defines removal dates and the fractions of biomass to be removed from each plant organ. The function optionally resets the plant’s phenology to a specified stage after removal. This model allows event-based crop management to be incorporated into the simulation workflow through either predefined schedules or external triggers.",
+    "text": "Overview\nIInterpolationMethod is a core interface in APSIM NG that standardizes how models interpolate daily environmental data into sub-daily values. This is essential for simulating biological processes that respond to diurnal patterns of environmental conditions such as temperature, radiation, or humidity. By implementing this interface, models can provide consistent sub-daily estimates that can be used by various plant, soil, and atmospheric components within the simulation framework.\nThe interface is designed to be flexible, allowing different interpolation algorithms to be implemented while maintaining a consistent structure for accessing sub-daily values throughout the simulation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IInterpolationMethod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IInterpolationMethod.html#model-variables",
+    "href": "docs/Models/Interfaces/IInterpolationMethod.html#model-variables",
+    "title": "IInterpolationMethod",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nOutputValueType\nstring\nSpecifies the type of variable being interpolated (e.g., “air temperature”, “solar radiation”). This property helps identify what environmental variable the interpolation method produces.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IInterpolationMethod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IInterpolationMethod.html#see-also",
+    "href": "docs/Models/Interfaces/IInterpolationMethod.html#see-also",
+    "title": "IInterpolationMethod",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IInterpolationMethod.cs on GitHub\nImplementations:\n\nThreeHourAirTemperature - 3-hourly air temperature interpolation",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IInterpolationMethod"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IWeather.html",
+    "href": "docs/Models/Interfaces/IWeather.html",
+    "title": "IWeather",
+    "section": "",
+    "text": "The IWeather interface provides access to meteorological data required for agricultural system simulations in APSIM NG. It serves as the primary gateway for models to obtain daily weather observations and calculated atmospheric variables.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IWeather"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IWeather.html#overview",
+    "href": "docs/Models/Interfaces/IWeather.html#overview",
+    "title": "IWeather",
+    "section": "Overview",
+    "text": "Overview\nThe IWeather interface standardizes how weather data is accessed throughout the APSIM NG framework. It provides a consistent API for retrieving observed meteorological variables (temperature, rainfall, solar radiation, etc.) and derived atmospheric properties (vapor pressure deficit, day length, etc.). This interface is typically implemented by the Weather model, which reads data from weather files and makes it available to all simulation components that require meteorological information.\nWeather data drives many fundamental processes in agricultural simulations, including:\n\nPhotosynthesis and plant growth (via solar radiation and temperature)\nWater balance calculations (via rainfall and evaporation)\nPhenological development (via temperature and day length)\nSoil temperature dynamics\nPest and disease development",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IWeather"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IWeather.html#model-variables",
+    "href": "docs/Models/Interfaces/IWeather.html#model-variables",
+    "title": "IWeather",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nRead-Only Reportable Properties\n\n\n\nProperty\nType\nUnits\nDescription\n\n\n\n\nStartDate\nDateTime\n-\nStart date of the weather data file\n\n\nEndDate\nDateTime\n-\nEnd date of the weather data file\n\n\nMaxT\ndouble\n°C\nDaily maximum air temperature\n\n\nMinT\ndouble\n°C\nDaily minimum air temperature\n\n\nMeanT\ndouble\n°C\nDaily mean air temperature, calculated as \\((T_{max} + T_{min}) / 2\\)\n\n\nVPD\ndouble\nhPa\nDaily mean vapor pressure deficit\n\n\nRain\ndouble\nmm\nDaily rainfall\n\n\nPanEvap\ndouble\nmm\nDaily pan evaporation (Class A pan equivalent)\n\n\nRadn\ndouble\nMJ/m²/day\nDaily solar radiation\n\n\nVP\ndouble\nhPa\nVapor pressure of the air\n\n\nWind\ndouble\nm/s\nWind speed\n\n\nCO2\ndouble\nppm\nAtmospheric CO₂ concentration\n\n\nAirPressure\ndouble\nhPa\nAtmospheric air pressure\n\n\nDiffuseFraction\ndouble\n0-1\nFraction of solar radiation that is diffuse\n\n\nLatitude\ndouble\ndegrees\nLatitude of the weather station\n\n\nLongitude\ndouble\ndegrees\nLongitude of the weather station\n\n\nTav\ndouble\n°C\nAverage annual temperature\n\n\nAmp\ndouble\n°C\nAverage monthly temperature amplitude\n\n\nFileName\nstring\n-\nPath to the weather data file\n\n\nTomorrowsMetData\nDailyMetDataFromFile\n-\nWeather data for the next day\n\n\nYesterdaysMetData\nDailyMetDataFromFile\n-\nWeather data for the previous day\n\n\n\nConfigurable Properties\nThe following properties can be both read and set:\n\n\n\nProperty\nType\nUnits\nDescription\n\n\n\n\nMaxT\ndouble\n°C\nDaily maximum air temperature\n\n\nMinT\ndouble\n°C\nDaily minimum air temperature\n\n\nRain\ndouble\nmm\nDaily rainfall\n\n\nPanEvap\ndouble\nmm\nDaily pan evaporation\n\n\nRadn\ndouble\nMJ/m²/day\nDaily solar radiation\n\n\nVP\ndouble\nhPa\nVapor pressure\n\n\nWind\ndouble\nm/s\nWind speed\n\n\nCO2\ndouble\nppm\nAtmospheric CO₂ concentration\n\n\nAirPressure\ndouble\nhPa\nAtmospheric air pressure\n\n\nDiffuseFraction\ndouble\n0-1\nDiffuse radiation fraction",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IWeather"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IWeather.html#methods",
+    "href": "docs/Models/Interfaces/IWeather.html#methods",
+    "title": "IWeather",
+    "section": "Methods",
+    "text": "Methods\nThe IWeather interface defines the following methods for calculating solar position and day length:\nCalculateDayLength(double Twilight)\nCalculates the duration of daylight in hours, optionally including twilight period. The twilight parameter defines the solar angle below the horizon (in degrees) at which twilight begins/ends. Common values:\n\n0° = sunrise to sunset (geometric day length)\n-6° = civil twilight\n-12° = nautical twilight\n-18° = astronomical twilight\n\nCalculateSunRise()\nReturns the time of sunrise in decimal hours (e.g., 6.5 = 6:30 AM).\nCalculateSunSet()\nReturns the time of sunset in decimal hours (e.g., 18.75 = 6:45 PM).",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IWeather"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Interfaces/IWeather.html#see-also",
+    "href": "docs/Models/Interfaces/IWeather.html#see-also",
+    "title": "IWeather",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: IWeather.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Interfaces",
+      "IWeather"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html",
+    "href": "docs/Models/Management/FertiliserType.html",
+    "title": "FertiliserType",
+    "section": "",
+    "text": "The FertiliserType function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#inputs",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#inputs",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#overview",
+    "href": "docs/Models/Management/FertiliserType.html#overview",
+    "title": "FertiliserType",
+    "section": "Overview",
+    "text": "Overview\nFertiliserType is a submodel of the Fertiliser model. It provides a detailed configuration of the fertiliser’s composition by defining up to six solutes, each with a specified name and mass fraction. Additionally, it includes a threshold fraction to determine when the remainder of the fertiliser is released. This model allows researchers and users to represent a wide variety of fertiliser types used in agricultural systems and tailor nutrient release behavior to specific scenarios. Pre-defined fertiliser types are stored in a resource file named Fertiliser.json.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Management",
+      "FertiliserType"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Management/FertiliserType.html#inputs",
+    "href": "docs/Models/Management/FertiliserType.html#inputs",
+    "title": "FertiliserType",
     "section": "Inputs",
-    "text": "Inputs\n\nNameOfPlantToRemoveFrom: Name of the crop from which biomass will be removed.\nRemovalType: Type of removal event (e.g., Cutting, Grazing, Pruning, Harvesting, EndCrop).\nStageToSet: Phenological stage to set after the biomass removal (optional).\nRemovalDates: A list of dates (dd/mm/yyyy or dd-mmm) to trigger biomass removal events.\nBiomassRemovalFractions: A list specifying fractions of live and dead biomass to remove or send to residue for each organ.",
+    "text": "Inputs\n\nName: Identifier used within the simulation to refer to this fertiliser.\nDescription: A user-defined description of the fertiliser type.\nFractionWhenRemainderReleased: A numeric threshold indicating when the remaining portion of the fertiliser is released (e.g., 0.995).\nSolute1Name to Solute6Name: The names of up to six solutes in the fertiliser.\nSolute1Fraction to Solute6Fraction: The corresponding fractions (by mass) of each solute in the fertiliser.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#methodology",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#methodology",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#methodology",
+    "href": "docs/Models/Management/FertiliserType.html#methodology",
+    "title": "FertiliserType",
     "section": "Methodology",
-    "text": "Methodology\nOn each simulation day, BiomassRemovalEvents checks if the current date matches any of the specified RemovalDates. If a match is found, or if a relevant phenology event occurs (e.g., PhenologyDefoliate), the Remove() method is triggered.\nThis method does the following:\n\nValidates the link to the specified crop.\nRaises an event corresponding to the RemovalType (e.g., OnCutting, OnHarvesting).\nApplies biomass removal to each plant organ using the defined fractions.\nIf StageToSet is specified, updates the plant’s phenology stage accordingly.\n\nValidation ensures that all biomass fractions are numbers between 0 and 1. Any invalid input results in an exception.",
+    "text": "Methodology\nFertiliserType acts as a container for the fertiliser composition. When a fertiliser is applied in a simulation, the associated solutes are released into the soil according to the specified fractions. The FractionWhenRemainderReleased controls when the final residual portion of fertiliser is applied, which is useful for simulating slow-release or staged-release fertilisers.\nEach solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation.\nBelow is a simplified summary of fertiliser types pre-defined in APSIM NG:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nDescription\nRelease\nSolute1Name\nSolute1Fraction\nSolute2Name\nSolute2Fraction\nSolute3Name\nSolute3Fraction\n\n\n\n\nCalciteCA\nCa as finely ground Agricultural Lime\n1\nCa\n1.00\n\n\n\n\n\n\nCalciteFine\nfinely ground Agricultural Lime\n1\nCa\n0.40\n\n\n\n\n\n\nDolomite\nfinely ground dolomite\n1\nCa\n0.22\n\n\n\n\n\n\nNO3N\nN as nitrate\n1\nNO3\n1.00\n\n\n\n\n\n\nNH4N\nN as ammonium\n1\nNH4\n1.00\n\n\n\n\n\n\nNH4NO3N\nammonium nitrate\n1\nNO3\n0.50\nNH4\n0.50\n\n\n\n\nDAP\ndi-ammonium phosphate\n1\nNH4\n0.18\n\n\n\n\n\n\nMAP\nmono-ammonium phosphate\n1\nNH4\n0.11\n\n\n\n\n\n\nUAN_N\nN as Urea-AmmoniumNitrate\n1\nNO3\n0.25\nNH4\n0.25\nUrea\n0.5\n\n\nUreaN\nN as urea\n1\nUrea\n1.00\n\n\n\n\n\n\nUreaNO3\nN as urea\n1\nNO3\n0.50\nUrea\n0.50\n\n\n\n\nUreaGranular\nUrea fertiliser\n1\nUrea\n0.46\n\n\n\n\n\n\nNH4SO4N\nammonium sulphate\n1\nNH4\n1.00\n\n\n\n\n\n\nRockP\nRock phosphorus\n1\nRockP\n0.80\nLabileP\n0.20\n\n\n\n\nBandedP\nBanded phosphorus\n1\nBandedP\n1.00\n\n\n\n\n\n\nBroadcastP\nBroadcast phosphorus\n1\nLabileP\n1.00",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#events",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#events",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#events",
+    "href": "docs/Models/Management/FertiliserType.html#events",
+    "title": "FertiliserType",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nDoManagement\nTriggers removal on matching dates\n\n\nPhenologyDefoliate\nTriggers removal if RemovalType matches the event type\n\n\nPhenologyPrune\nTriggers removal if RemovalType is Pruning\n\n\nPhenologyHarvest\nTriggers removal if RemovalType is Harvesting\n\n\n\nEvents Raised to\n\n\n\nEvent\nPurpose\n\n\n\n\nCutting\nRaised when RemovalType is Cutting\n\n\nGrazing\nRaised when RemovalType is Grazing\n\n\nPruning\nRaised when RemovalType is Pruning\n\n\nHarvesting\nRaised when RemovalType is Harvesting\n\n\nEndCrop\nRaised when RemovalType is EndCrop",
+    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#properties",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#properties",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#properties",
+    "href": "docs/Models/Management/FertiliserType.html#properties",
+    "title": "FertiliserType",
     "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nNameOfPlantToRemoveFrom\nstring\nName of the crop to remove biomass from\n\n\nRemovalType\nenum\nType of removal (Cutting, Grazing, Pruning, Harvesting, EndCrop)\n\n\nStageToSet\nstring\nCrop stage to set after removal\n\n\nRemovalDates\nstring[]\nList of dates when removal occurs\n\n\nBiomassRemovalFractions\nlist\nBiomass fractions to remove for each organ\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDescription\nstring\nA description of the fertiliser type\n\n\nFractionWhenRemainderReleased\ndouble\nThreshold for full fertiliser release (e.g., 0.995)\n\n\nSolute1Name\nstring\nName of the first solute component\n\n\nSolute1Fraction\ndouble\nFraction of the fertiliser that is solute 1\n\n\nSolute2Name\nstring\nName of the second solute component\n\n\nSolute2Fraction\ndouble\nFraction of the fertiliser that is solute 2\n\n\nSolute3Name\nstring\nName of the third solute component\n\n\nSolute3Fraction\ndouble\nFraction of the fertiliser that is solute 3\n\n\nSolute4Name\nstring\nName of the fourth solute component\n\n\nSolute4Fraction\ndouble\nFraction of the fertiliser that is solute 4\n\n\nSolute5Name\nstring\nName of the fifth solute component\n\n\nSolute5Fraction\ndouble\nFraction of the fertiliser that is solute 5\n\n\nSolute6Name\nstring\nName of the sixth solute component\n\n\nSolute6Fraction\ndouble\nFraction of the fertiliser that is solute 6\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#user-interface",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#user-interface",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#user-interface",
+    "href": "docs/Models/Management/FertiliserType.html#user-interface",
+    "title": "FertiliserType",
     "section": "User Interface",
-    "text": "User Interface\nBiomassRemovalEvents can be added as a child of a Zone or Folder node in the model tree. Right-click the parent node, select “Add Model…”, and search for BiomassRemovalEvents in the Filter Box.",
+    "text": "User Interface\n\nNo user interface is available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#practical-example",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#practical-example",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#practical-example",
+    "href": "docs/Models/Management/FertiliserType.html#practical-example",
+    "title": "FertiliserType",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -5964,184 +6233,185 @@
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/BiomassRemovalEvents.html#see-also",
-    "href": "docs/Models/Management/BiomassRemovalEvents.html#see-also",
-    "title": "BiomassRemovalEvents",
+    "objectID": "docs/Models/Management/FertiliserType.html#see-also",
+    "href": "docs/Models/Management/FertiliserType.html#see-also",
+    "title": "FertiliserType",
     "section": "See Also",
-    "text": "See Also\n\nSource code: BiomassRemovalEvents.cs on GitHub\nExample Simulation: BiomassRemovalTests.apsimx",
+    "text": "See Also\n\nSource code: FertiliserType.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Management",
-      "BiomassRemovalEvents"
+      "FertiliserType"
     ]
   },
   {
-    "objectID": "docs/Models/Management/index.html",
-    "href": "docs/Models/Management/index.html",
-    "title": "Management",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
+    "title": "Nutrient Constrained Allocation",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliserType\n\n\n\n\n\n\n\n\n\nNo matching items",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Management"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
-    "title": "Relative Allocation",
-    "section": "",
-    "text": "The RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator.",
+    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#biological-motivation",
-    "title": "Relative Allocation",
-    "section": "Biological Motivation",
-    "text": "Biological Motivation\nPlants must allocate available assimilates or nutrients among organs in a coordinated way. The RelativeAllocation method mimics this by:\n\nPrioritizing structural and metabolic demands (essential growth),\nThen allocating any residual supply to storage pools (non-essential, luxury uptake).\n\nThis reflects physiological prioritization in plant growth.",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#role-in-apsim-simulation-pipeline",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Role in APSIM Simulation Pipeline",
+    "text": "Role in APSIM Simulation Pipeline\nThe NutrientConstrainedAllocationMethod is invoked after biomass has been distributed to organs (e.g., by RelativeAllocation) but before final biomass commitment. Its purpose is to:\n\nCheck whether each organ has received enough nitrogen to support its allocated biomass (i.e. satisfy the minimum concentration).\nScale biomass down proportionally if nitrogen is insufficient.\nTrack how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable DM.NutrientLimitation captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. [Wheat].Arbitrator.DM.NutrientLimitation).",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#allocation-logic",
-    "title": "Relative Allocation",
-    "section": "Allocation Logic",
-    "text": "Allocation Logic\nThe allocation occurs in two sequential passes:\n\nFirst Pass – Structural and Metabolic Allocation\nSecond Pass – Storage (Luxury) Allocation",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#inputs-and-assumptions",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Inputs and Assumptions",
+    "text": "Inputs and Assumptions\n\nOrgans (IArbitration[]): A list of organs participating in allocation (e.g., leaf, stem, root, grain).\nBiomassArbitrationType (DM): Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.\nNutrientArbitrationType (N): Contains nitrogen demand and allocation for each organ.\n\nKey Assumptions:\n\nEach organ has a defined minimum nitrogen concentration (MinNConc), below which it cannot support biomass.\nNitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#first-pass-structural-and-metabolic-allocation",
-    "title": "Relative Allocation",
-    "section": "First Pass – Structural and Metabolic Allocation",
-    "text": "First Pass – Structural and Metabolic Allocation\n\nObjective\nDistribute available supply to fulfill structural and metabolic demands proportionally.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{total}}\\): Total supply available (e.g. Dry biomass or nitrogen).\n\\(D_s^{(i)}\\): Structural demand of organ \\(i\\)\n\\(D_m^{(i)}\\): Metabolic demand of organ \\(i\\)\n\\(D_{s,\\text{total}} = \\sum_i D_s^{(i)}\\): Total structural demand across all organs.\n\\(D_{m,\\text{total}} = \\sum_i D_m^{(i)}\\): Total metabolic demand across all organs.\n\nWe define the structural fraction of supply as:\n\\[\nf_s = \\frac{D_{s,\\text{total}}}{D_{s,\\text{total}} + D_{m,\\text{total}}}\n\\]\nThen, for each organ \\(i\\):\n\nStructural allocation:\n\n\\[\nA_s^{(i)} = \\min\\left(R_s^{(i)}, S_{\\text{total}} \\cdot f_s \\cdot \\frac{D_s^{(i)}}{D_{s,\\text{total}}} \\right)\n\\]\n\nMetabolic allocation:\n\n\\[\nA_m^{(i)} = \\min\\left(R_m^{(i)}, S_{\\text{total}} \\cdot (1 - f_s) \\cdot \\frac{D_m^{(i)}}{D_{m,\\text{total}}} \\right)\n\\]\nwhere \\(R_s^{(i)}\\) and \\(R_m^{(i)}\\) are the remaining unmet demand for structural and metabolic pools, respectively.",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#step-by-step-process",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Step-by-Step Process",
+    "text": "Step-by-Step Process\n\nCalculate Total N Allocation per Organ\n\nFor each organ i, sum all nitrogen allocations:\n\\[\nN_{\\text{TotalAllocation},i} = N_{\\text{StructuralAllocation},i} + N_{\\text{MetabolicAllocation},i} + N_{\\text{StorageAllocation},i}\n\\]\nThis value represents the nitrogen available to support DM growth.\n\nCalculate N-Constrained Growth Capacity\n\nDetermine the maximum biomass (N.ConstrainedGrowth[i]) that each organ can support based on its nitrogen allocation:\nThis logic checks:\n\nIf total nitrogen allocation meets or exceeds demand, growth is unconstrained.\nIf no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.\nOtherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:\n\n\\[\nN_\\text{ConstrainedGrowth}[i] = \\frac{N_\\text{TotalAllocation}[i]}{\\text{Organs}[i]_\\text{MinNConc}}\n\\]\nwhere:\n\n\\(N_\\text{TotalAllocation}[i]\\) is the total nitrogen allocated to organ \\(i\\)\n\\(\\text{Organs}[i]_\\text{MinNConc}\\) is the minimum nitrogen concentration required for organ \\(i\\)\n\nThis yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.\n\nScale Biomass Allocation Proportionally\n\nThe total biomass previously allocated (structural + metabolic + storage) is compared to ConstrainedGrowth[i].\nIf total allocation exceeds the constrained limit, all organs are scaled proportionally:\nLet:\nLet \\(DM_{total}[i]\\) be the total biomass allocated to organ \\(i\\):\n\\[\nDM_{total}[i] = DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i]\n\\]\nCalculate the proportion of each component:\n\\[\nP_{structural}[i] = \\frac{DM_{structural}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{metabolic}[i] = \\frac{DM_{metabolic}[i]}{DM_{total}[i]}\n\\]\n\\[\nP_{storage}[i] = \\frac{DM_{storage}[i]}{DM_{total}[i]}\n\\]\nScale each component by the N-constrained growth:\n\\[\nDM_{structural}[i] = \\min\\left(DM_{structural}[i], N_{constrained}[i] \\times P_{structural}[i]\\right)\n\\]\n\\[\nDM_{metabolic}[i] = \\min\\left(DM_{metabolic}[i], N_{constrained}[i] \\times P_{metabolic}[i]\\right)\n\\]\n\\[\nDM_{storage}[i] = \\min\\left(DM_{storage}[i], N_{constrained}[i] \\times P_{storage}[i]\\right)\n\\]\nThis ensures:\n\nNo component exceeds the N-limited capacity.\nRatios between structural, metabolic, and storage biomass are preserved.\n\n\nUpdate Final Biomass and Stress Report\n\nAfter applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:\n\\[\nDM_\\text{Allocated} = \\sum_{i=1}^{n} \\left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \\right)\n\\]\n\\[\nDM_\\text{NutrientLimitation} = DM_\\text{PreNStressAllocation} - DM_\\text{Allocated}\n\\]\nWhere:\n\n\\(DM_\\text{Allocated}\\) is the total biomass realized after N constraints.\n\\(DM_\\text{PreNStressAllocation}\\) is the total biomass allocated before applying N constraints.\n\\(DM_\\text{NutrientLimitation}\\) is the biomass lost due to insufficient nitrogen.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#second-pass-storage-luxury-allocation",
-    "title": "Relative Allocation",
-    "section": "Second Pass – Storage (Luxury) Allocation",
-    "text": "Second Pass – Storage (Luxury) Allocation\n\nObjective\nAllocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.\n\n\nDefinitions\nLet:\n\n\\(S_{\\text{rem}}\\): Remaining supply after first pass\n\\(D_t^{(i)}\\): Storage demand of organ \\(i\\)\n\\(D_{t,\\text{total}} = \\sum_i D_t^{(i)}\\): Total storage demand across all organs\n\nThen, for each organ \\(i\\):\n\\[\nA_t^{(i)} = \\min\\left(R_t^{(i)}, S_{\\text{rem}} \\cdot \\frac{D_t^{(i)}}{D_{t,\\text{total}}} \\right)\n\\]\nwhere \\(R_t^{(i)}\\) is the remaining unmet storage demand for organ \\(i\\).",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Relative Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#final-accounting",
-    "title": "Relative Allocation",
-    "section": "Final Accounting",
-    "text": "Final Accounting\nAfter both passes, the module tracks:\n\nTotal allocation: Sum of structural, metabolic, and storage allocations across all organs.\nNot allocated: Any supply that remains unallocated due to demand being fully satisfied or due to zero total demand (e.g., at early stages).\n\n\\[\nS_{\\text{not\\_allocated}} = S_{\\text{total}} - \\sum_i \\left( A_s^{(i)} + A_m^{(i)} + A_t^{(i)} \\right)\n\\]\nThis is useful for diagnostics, such as reporting sink limitations.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Relative Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#key-features",
-    "title": "Relative Allocation",
-    "section": "Key Features",
-    "text": "Key Features\n\nPrioritizes essential growth (structural and metabolic) over luxury (storage).\nProportional to each organ’s share of total demand.\nApplies generically to both biomass and nutrients.\nUses a two-pass method to avoid allocating luxury growth when essential needs are unmet.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "PMF",
-      "Arbitrator",
-      "Relative Allocation"
-    ]
-  },
-  {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#practical-example",
-    "title": "Relative Allocation",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#practical-example",
+    "title": "Nutrient Constrained Allocation",
     "section": "Practical Example",
-    "text": "Practical Example\nAssume:\n\nLeaf has a structural demand of 50 units and a metabolic demand of 20 units.\nStem has a structural demand of 60 units and a metabolic demand of 60 units.\nTotal supply is 120 units.\n\nThen:\n\nTotal structural demand = 50 (leaf) + 60 (stem) = 110 units\nTotal metabolic demand = 20 (leaf) + 60 (stem) = 80 units\nStructural fraction:\n\\(f_s = \\frac{110}{110 + 80} = 0.579\\)\nFirst pass allocates:\n\nStructural: \\(120 \\times 0.579 = 69.48\\) units, distributed as:\n\nLeaf: \\(69.48 \\times \\frac{50}{110} = 31.58\\) units\nStem: \\(69.48 \\times \\frac{60}{110} = 37.90\\) units\n\nMetabolic: \\(120 \\times 0.421 = 50.52\\) units, distributed as:\n\nLeaf: \\(50.52 \\times \\frac{20}{80} = 12.63\\) units\nStem: \\(50.52 \\times \\frac{60}{80} = 37.89\\) units\n\n\nSecond pass allocates any leftover proportionally to storage demands.",
+    "text": "Practical Example\nA leaf organ receives:\n\nNitrogen allocated: 0.3 g\nMinimum N concentration: 0.03 g/g DM\nMaximum supportable biomass: 0.3 / 0.03 = 10 g\nIf initial biomass allocated was 12 g:\nFinal biomass is scaled to 10 g\nAll sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#applications",
-    "title": "Relative Allocation",
-    "section": "Applications",
-    "text": "Applications\n\nBiomass partitioning after photosynthesis, reallocation, and retranslocation.\nNitrogen allocation after uptake, reallocation, and retranslocation.\nAny generic resource arbitration among competing sinks.",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#scientific-rationale",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Scientific Rationale",
+    "text": "Scientific Rationale\n\nNitrogen is a key building block for proteins, nucleic acids, and enzymes.\nWithout sufficient N, plants cannot construct tissue even if photosynthate is available.\nThis constraint ensures simulations realistically capture nutrient stress.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
     ]
   },
   {
-    "objectID": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
-    "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html#references",
-    "title": "Relative Allocation",
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#extensibility",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Extensibility",
+    "text": "Extensibility\nWhile this method currently constrains biomass based only on nitrogen:\n\nIt is designed to be extended for other nutrients (e.g., phosphorus, potassium).\nAdditional constraints could be implemented by combining multiple nutrient-limited growth values.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#outputs-and-implications",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Outputs and Implications",
+    "text": "Outputs and Implications\n\nDM.Allocated: Actual biomass realized under nutrient constraints.\nDM.NutrientLimitation: Biomass lost due to insufficient nitrogen.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#potential-bugs-and-limitations",
+    "title": "Nutrient Constrained Allocation",
+    "section": "Potential bugs and Limitations",
+    "text": "Potential bugs and Limitations\nThe current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator",
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html#references",
+    "title": "Nutrient Constrained Allocation",
     "section": "References",
-    "text": "References\n\nAPSIM Next Generation Source Code: github.com/APSIMInitiative/ApsimX\nAPSIM NG Source Code: RelativeAllocation.cs",
+    "text": "References\n\nAPSIM NG Documentation\nAPSIM NG Source Code: NutrientConstrainedAllocationMethod.cs",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "PMF",
       "Arbitrator",
-      "Relative Allocation"
+      "Nutrient Constrained Allocation"
+    ]
+  },
+  {
+    "objectID": "docs/Models/PMF/Arbitrator/index.html",
+    "href": "docs/Models/PMF/Arbitrator/index.html",
+    "title": "Arbitrator",
+    "section": "",
+    "text": "The Arbitrator is a core component of the plant module, responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Arbitrator"
     ]
   },
   {
