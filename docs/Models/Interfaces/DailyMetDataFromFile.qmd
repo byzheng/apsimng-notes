@@ -1,0 +1,44 @@
+---
+title: "DailyMetDataFromFile"
+format: html
+---
+
+The DailyMetDataFromFile class is a data structure that encapsulates a complete set of daily meteorological observations. It serves as a container for weather data read from weather files and provides structured access to individual meteorological variables.
+
+## Overview
+
+DailyMetDataFromFile is a serializable class that extends the Model base class and stores all meteorological variables for a single day. This class is used throughout APSIM NG to pass weather data between components and is particularly important for accessing weather information from adjacent days (yesterday and tomorrow) through the IWeather interface.
+
+The class provides a standardized format for daily weather data, ensuring consistency across different weather data sources and simplifying the process of reading and storing meteorological observations. It includes both commonly used standard variables (temperature, rainfall, radiation) and less common variables (diffuse fraction, air pressure) that may be required by specialized models.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Units | Description |
+|----------|------|-------|-------------|
+| MaxT | double | °C | Daily maximum air temperature |
+| MinT | double | °C | Daily minimum air temperature |
+| PanEvap | double | mm | Daily pan evaporation (Class A pan equivalent) |
+| Rain | double | mm | Daily rainfall |
+| Radn | double | MJ/m²/day | Daily solar radiation (total incoming shortwave radiation) |
+| VP | double | hPa | Vapor pressure of the air |
+| Wind | double | m/s | Wind speed (default is zero if not specified in weather file) |
+| RainfallHours | double | hours | Duration of rainfall event (used for erosion calculations) |
+| AirPressure | double | hPa | Atmospheric air pressure (default is 1010 hPa if not specified) |
+| DiffuseFraction | double | 0-1 | Fraction of solar radiation that is diffuse |
+| DayLength | double | hours | Duration of daylight |
+| CO2 | double | ppm | Atmospheric CO₂ concentration (default is 350 ppm if not specified) |
+| Raw | object[] | - | Raw data array from the weather file for accessing non-standard variables |
+
+## See Also
+
+* **Source code:** [IWeather.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/IWeather.cs)

@@ -1,0 +1,91 @@
+---
+title: "IWeather"
+format: html
+---
+
+The IWeather interface provides access to meteorological data required for agricultural system simulations in APSIM NG. It serves as the primary gateway for models to obtain daily weather observations and calculated atmospheric variables.
+
+## Overview
+
+The IWeather interface standardizes how weather data is accessed throughout the APSIM NG framework. It provides a consistent API for retrieving observed meteorological variables (temperature, rainfall, solar radiation, etc.) and derived atmospheric properties (vapor pressure deficit, day length, etc.). This interface is typically implemented by the Weather model, which reads data from weather files and makes it available to all simulation components that require meteorological information.
+
+Weather data drives many fundamental processes in agricultural simulations, including:
+
+- Photosynthesis and plant growth (via solar radiation and temperature)
+- Water balance calculations (via rainfall and evaporation)
+- Phenological development (via temperature and day length)
+- Soil temperature dynamics
+- Pest and disease development
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Units | Description |
+|----------|------|-------|-------------|
+| StartDate | DateTime | - | Start date of the weather data file |
+| EndDate | DateTime | - | End date of the weather data file |
+| MaxT | double | °C | Daily maximum air temperature |
+| MinT | double | °C | Daily minimum air temperature |
+| MeanT | double | °C | Daily mean air temperature, calculated as $(T_{max} + T_{min}) / 2$ |
+| VPD | double | hPa | Daily mean vapor pressure deficit |
+| Rain | double | mm | Daily rainfall |
+| PanEvap | double | mm | Daily pan evaporation (Class A pan equivalent) |
+| Radn | double | MJ/m²/day | Daily solar radiation |
+| VP | double | hPa | Vapor pressure of the air |
+| Wind | double | m/s | Wind speed |
+| CO2 | double | ppm | Atmospheric CO₂ concentration |
+| AirPressure | double | hPa | Atmospheric air pressure |
+| DiffuseFraction | double | 0-1 | Fraction of solar radiation that is diffuse |
+| Latitude | double | degrees | Latitude of the weather station |
+| Longitude | double | degrees | Longitude of the weather station |
+| Tav | double | °C | Average annual temperature |
+| Amp | double | °C | Average monthly temperature amplitude |
+| FileName | string | - | Path to the weather data file |
+| TomorrowsMetData | [DailyMetDataFromFile](DailyMetDataFromFile.qmd) | - | Weather data for the next day |
+| YesterdaysMetData | [DailyMetDataFromFile](DailyMetDataFromFile.qmd) | - | Weather data for the previous day |
+
+**Configurable Properties**
+
+The following properties can be both read and set:
+
+| Property | Type | Units | Description |
+|----------|------|-------|-------------|
+| MaxT | double | °C | Daily maximum air temperature |
+| MinT | double | °C | Daily minimum air temperature |
+| Rain | double | mm | Daily rainfall |
+| PanEvap | double | mm | Daily pan evaporation |
+| Radn | double | MJ/m²/day | Daily solar radiation |
+| VP | double | hPa | Vapor pressure |
+| Wind | double | m/s | Wind speed |
+| CO2 | double | ppm | Atmospheric CO₂ concentration |
+| AirPressure | double | hPa | Atmospheric air pressure |
+| DiffuseFraction | double | 0-1 | Diffuse radiation fraction |
+
+## Methods
+
+The IWeather interface defines the following methods for calculating solar position and day length:
+
+**CalculateDayLength(double Twilight)**
+
+Calculates the duration of daylight in hours, optionally including twilight period. The twilight parameter defines the solar angle below the horizon (in degrees) at which twilight begins/ends. Common values:
+
+- 0° = sunrise to sunset (geometric day length)
+- -6° = civil twilight
+- -12° = nautical twilight
+- -18° = astronomical twilight
+
+**CalculateSunRise()**
+
+Returns the time of sunrise in decimal hours (e.g., 6.5 = 6:30 AM).
+
+**CalculateSunSet()**
+
+Returns the time of sunset in decimal hours (e.g., 18.75 = 6:45 PM).
+
+## See Also
+
+* **Source code:** [IWeather.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/IWeather.cs)
