@@ -24,7 +24,7 @@ Example (text-based diagram):
 Phenology → LeafGrowth → LightInterception → Biomass → Grain
 ```
 
-## Methodology (Biological Perspective)
+## Methodology
 
 * **Key biological assumptions:**
 

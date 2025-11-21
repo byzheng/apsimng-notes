@@ -1,58 +1,13 @@
 ---
 title: "Thermal Time"
 format: html
+params:
+    plant: Canola
+    response.x: [2, 30, 35]
+    response.y: [0, 28, 0]
+    three_cardinal: true
 ---
 
-
-```{r setup, echo = FALSE}
-setup_qmd()
-```
-
-Daily thermal time for wheat based on [SubDailyInterpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) with three cardinal temperature and [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) interpolation method.
-
-## Overview
-
-The **Thermal Time** function in canola model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method ([ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd)), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily  thermal time used in phenological and growth calculations.
+{{< include /_includes/Plants/Phenology/ThermalTime/CardinalTemperatureThreeHourly.qmd >}}
 
 
-* `InterpolationMethod`: [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.
-* `Response`: Three cardinal temperature using [XYPairs](/docs/Models/Functions/XYPairs.qmd) to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation [@whish_vernalisation_2020; @robertson_simulation_2016].
-
-| Cardinal Point | Description                | Value (°C) |
-|:--------------:|:--------------------------|:----------:|
-| Base           | Minimum for growth         | 2          |
-| Optimum        | Maximum rate of growth     | 30         |
-| Maximum        | Growth ceases above this   | 35         |
-
-```{r plot-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
-library(ggplot2)
-
-
-x <- c(2, 30, 35)
-y <- c(0, 28, 0)
-x_out <- seq(-5, 40)
-df <- data.frame(Temperature = x_out, 
-                    Response = weaana::interpolationFunction(x, y, values = x_out))
-
-
-ggplot(df, aes(x = Temperature, y = Response)) +
-    geom_line(color = "darkorange", size = 1.2) +
-    geom_vline(xintercept = x, linetype = "dashed", color = "grey50") +
-    annotate("text", x = x[1], y = max(df$Response) - 1, label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
-    annotate("text", x = x[2] - 3, y = max(df$Response) - 1, label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
-    annotate("text", x = x[3], y = max(df$Response) - 1, label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
-    labs(
-        x = "Temperature (°C)",
-        y = "Thermal Response"
-    ) +
-    theme_minimal()
-
-```
-
-## Cultivar-Specific Parameters
-
-> In general, we do not modify the thermal time function for different cultivars. 
-
-## Practical Example
-
-> No practical example is provided for the thermal time function.
