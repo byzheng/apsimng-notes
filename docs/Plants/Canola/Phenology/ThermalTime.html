@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Thermal Time – APSIM NG Notes</title>
+<title>Docs - Plants - Canola - Phenology - Thermal Time – APSIM NG Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -1207,6 +1227,7 @@ Usage in parent QMD:
         response.x: [0, 30, 40]
         response.y: [0, 30, 0]
         three_cardinal: false
+        reference: ""
 
 2. Include this shared documentation file using include shortcode        
 
@@ -1270,7 +1291,7 @@ Figure&nbsp;1: Three-Hourly Air Temperature Interpolation with daily minimum of 
 <li>The same thermal time response applies across all developmental phases (no phase-specific temperature responses)</li>
 </ul>
 <p><strong>Mathematical representation:</strong></p>
-<p>At <strong>each</strong> three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:</p>
+<p>At <strong>each</strong> three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve <span class="citation" data-cites="whish_vernalisation_2020 robertson_simulation_2016">(<a href="#ref-whish_vernalisation_2020" role="doc-biblioref">Whish et al. 2020</a>; <a href="#ref-robertson_simulation_2016" role="doc-biblioref">Robertson and Lilley 2016</a>)</span> through linear interpolation between points:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1393,9 +1414,17 @@ Figure&nbsp;2: Three-Hourly Air Temperature and Corresponding Thermal Time Value
 </ul>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-robertson_simulation_2016" class="csl-entry" role="listitem">
+Robertson, M. J., and J. M. Lilley. 2016. <span>“Simulation of Growth, Development and Yield of Canola (Brassica Napus) in APSIM.”</span> <em>Crop and Pasture Science</em>. <a href="http://dx.doi.org/10.1071/CP15267">http://dx.doi.org/10.1071/CP15267</a>.
+</div>
+<div id="ref-whish_vernalisation_2020" class="csl-entry" role="listitem">
+Whish, J. P. M., J. M. Lilley, M. J. Morrison, B. Cocks, and M. Bullock. 2020. <span>“Vernalisation in Australian Spring Canola Explains Variable Flowering Responses.”</span> <em>Field Crops Research</em> 258 (November): 107968. <a href="https://doi.org/10.1016/j.fcr.2020.107968">https://doi.org/10.1016/j.fcr.2020.107968</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

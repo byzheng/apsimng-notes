@@ -64,3 +64,17 @@ h4 {
 .intro-text a {
     color: inherit
 }
+
+
+#quarto-sidebar {
+    display: none !important;
+}
+
+button.quarto-btn-toggle {
+    visibility: hidden !important;
+}
+
+#title-block-header {
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+}
