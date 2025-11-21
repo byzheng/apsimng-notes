@@ -674,6 +674,12 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
  <span class="menu-text">IIndexedFunction</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../docs/Models/PMF/Interfaces/IPhenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhenology</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
@@ -1163,13 +1169,14 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
-  <li><a href="#public-methods" id="toc-public-methods" class="nav-link" data-scroll-target="#public-methods">Public Methods</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
+  <li><a href="#public-methods" id="toc-public-methods" class="nav-link" data-scroll-target="#public-methods">Public Methods</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
-  <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#phases" id="toc-phases" class="nav-link" data-scroll-target="#phases">Phases</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Models/PMF/Phenology/Phenology.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -1196,183 +1203,93 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>The <code>Phenology</code> model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).</p>
+<p>The Phenology model simulates the developmental progression of a plant through a series of defined growth stages and phases. It provides the central mechanism for managing crop stage transitions and coordinates developmental timing across all plant organs and processes in APSIM Next Generation.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>In APSIM NG, the <code>Phenology</code> model manages the simulation of plant development by organizing the crop lifecycle into distinct phases. Each phase corresponds to a physiological process or stage in the crop’s development (e.g., emergence, flowering, maturity). The transition between phases is typically governed by progression to completion. In general, the progression is influenced by factors such as thermal time, photoperiod, and vernalisation.</p>
-<p>This model tracks the current phase, calculates progression based on progression to completion in current phase, and allows transitions to be triggered either naturally (via progression to completion) or manually (via <code>SetToStage</code>). The phenology model plays a pivotal role in coordinating developmental processes with other sub-models like canopy, roots, and biomass.</p>
+<p>In APSIM NG, the Phenology model manages plant development by organizing the crop lifecycle into distinct sequential phases. Each phase represents a physiological developmental period (e.g., germination, emergence, vegetative growth, flowering, grain filling, maturity). The model tracks developmental progress through phases, triggers stage-specific events, and maintains accumulated thermal time from sowing and emergence.</p>
+<ul>
+<li>A <strong>phase</strong> is a period of development with specific environmental responses (e.g., “Vegetative” phase may respond to photoperiod)</li>
+<li>A <strong>stage</strong> is a discrete developmental milestone that marks transitions between phases (e.g., “Emergence”, “Flowering”)</li>
+</ul>
+<p>Phase transitions are driven by environmental factors including:</p>
+<ul>
+<li><strong>Thermal time</strong> (accumulated temperature above base threshold)</li>
+<li><strong>Photoperiod</strong> (daylength sensitivity for certain phases)</li>
+<li><strong>Vernalization</strong> (cold temperature requirement for certain crops)</li>
+<li><strong>Specific dates</strong> (calendar-based completion for management scenarios)</li>
+</ul>
+<p>The Phenology model acts as the master clock for plant development, coordinating timing signals with other components such as leaf expansion, stem elongation, grain development, and senescence processes. This temporal coordination ensures that developmental events occur in biologically realistic sequences and at appropriate rates given environmental conditions.</p>
 </section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
-<p>The <code>Phenology</code> model requires:</p>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
+<p>The Phenology model inherits from the following classes:</p>
 <ul>
-<li><strong>ThermalTime</strong>: A child function representing accumulated heat units.</li>
-<li><strong>Phase list</strong>: A sequence of <code>IPhase</code> child components, each representing a growth phase. The phase order in the model tree determines the progression sequence.</li>
-<li><strong>Sowing Event</strong>: Triggers initialization of phenological stages in the event of <a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a>.</li>
-</ul>
-</section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The phenology progression is triggered by several events, primarily the <code>DoPhenology</code> event which is called at each day.</p>
-<p><a href="../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a>:</p>
-<ul>
-<li>Initializes the phenology model</li>
-<li>Obtains the list of phases</li>
-<li>Resets state variables.</li>
-</ul>
-<p><a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a>:</p>
-<ul>
-<li>Resets state variable</li>
-<li>Initialise phenology development using the first phase</li>
-</ul>
-<p><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a>:</p>
-<p>This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from Plant model.</p>
-<p>At each timestep, the <code>Phenology</code> model:</p>
-<ul>
-<li>Check whether <code>ThermalTime</code> is available and more than 0. Throw an error if not.</li>
-<li>Increments progress in the current phase using a <code>DoTimeStep</code> method.</li>
-<li>Emits events when a phase ends or begins (e.g., <code>PhaseChanged</code>, <code>PlantEmerged</code>).</li>
-<li>Handles special phase transitions like <code>GotoPhase</code> that may jump between stages.</li>
-<li>Updates accumulated thermal time and phenological stage number (<code>Stage</code>).</li>
-<li>Manages rewinding or fast-forwarding when the stage is reset.</li>
-</ul>
-<p><a href="../../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a>:</p>
-<ul>
-<li>Set the end stage as the final phase (maturity) when harvesting occurs.</li>
-</ul>
-<p><a href="../../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a>:</p>
-<ul>
-<li>Clears internal state when the simulation ends, ensuring no residual data persists.</li>
-</ul>
-<p><a href="../../../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a>:</p>
-<ul>
-<li>Reset daily tracking flags for new day.</li>
+<li><a href="../../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
+<li><a href="../../../../docs/Models/PMF/Interfaces/IPhenology.html" class="model-link">IPhenology</a></li>
+<li><a href="../../../../docs/APSIM.Core/IStructureDependency.html" class="model-link">IStructureDependency</a></li>
 </ul>
 </section>
-<section id="public-methods" class="level2">
-<h2 class="anchored" data-anchor-id="public-methods">Public Methods</h2>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Method</th>
+<th>Component</th>
+<th>Model</th>
+<th>Connection Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="#settostage" class="model-link"><code>SetToStage(newStage)</code></a></td>
-<td>Moves the crop to a specific development stage (e.g.&nbsp;flowering).</td>
-</tr>
-</tbody>
-</table>
-<section id="settostage" class="level3">
-<h3 class="anchored" data-anchor-id="settostage"><code>SetToStage(newStage)</code></h3>
-<p>Sets the crop’s development (phenological) stage to a specified point, either moving forward or backward through its growth cycle. This method is used internally and in management scripts to simulate events like harvest, defoliation, or skipping to flowering.</p>
-<section id="summary" class="level4">
-<h4 class="anchored" data-anchor-id="summary">Summary</h4>
-<p>This function is used to <strong>manually set the crop to a particular stage of development</strong> — for example, jumping directly to flowering, or rewinding after a grazing event. It ensures that internal growth stages, thermal time, and event signals stay biologically and numerically consistent.</p>
-</section>
-<section id="key-use-cases" class="level4">
-<h4 class="anchored" data-anchor-id="key-use-cases">Key Use Cases</h4>
-<ul>
-<li>After <strong>grazing or cutting</strong> (e.g., regrowth after defoliation)</li>
-<li>During <strong>management overrides</strong> (e.g., skipping to flowering)</li>
-<li>At <strong>harvest</strong> (to force crop to final stage)</li>
-<li>In <strong>GotoPhase</strong> logic to jump stages dynamically</li>
-</ul>
-</section>
-<section id="behavior" class="level4">
-<h4 class="anchored" data-anchor-id="behavior">Behavior</h4>
-<ul>
-<li><p><strong>Rewind (go backward)</strong></p>
-<p>If the target stage is <em>earlier</em> than the current stage:</p>
-<ul>
-<li>Resets earlier phases</li>
-<li>Subtracts relevant thermal time</li>
-<li>Only specific phase types can be rewound (others will cause an error)</li>
-</ul></li>
-<li><p><strong>Fast-forward (go forward)</strong></p>
-<p>If the target stage is <em>later</em> than the current stage:</p>
-<ul>
-<li>Skips forward through phases</li>
-<li>Adds appropriate thermal time</li>
-<li>Raises relevant events like <code>PlantEmerged</code> and <code>PhaseChanged</code></li>
-</ul></li>
-</ul>
-</section>
-</section>
-</section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened For</strong></p>
-<p>These are signals or notifications that the function listens for from other parts of the simulation:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
-<td>Initializes phenology and clears state</td>
+<td>Plant</td>
+<td><a href="../../../../docs/Models/PMF/Plant.html" class="model-link">Plant</a></td>
+<td>Link, First Available</td>
+<td>Provides structural and lifecycle information for the plant.</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a></td>
-<td>Resets phenology and starts at sowing stage</td>
+<td>ThermalTime</td>
+<td><a href="../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>Child, By Name</td>
+<td>Calculates accumulated temperature used for phase progression.</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a></td>
-<td>Core timestep to update phenological development</td>
+<td>ZadokPMFWheat</td>
+<td>ZadokPMFWheat</td>
+<td>Link, Optional</td>
+<td>Provides Zadok stage number for wheat crops.</td>
 </tr>
 <tr class="even">
-<td><a href="../../../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a></td>
-<td>Clears temporary stage-tracking flags for new day</td>
+<td>Age</td>
+<td>Age</td>
+<td>Child, By Name, Optional</td>
+<td>Tracks plant age in years for perennial species.</td>
 </tr>
 <tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a></td>
-<td>Sets phenology directly to final phase (maturity)</td>
-</tr>
-<tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a></td>
-<td>Clears internal state when simulation ends</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Events Raised to</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Event</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#PhaseChanged" class="model-link"><code>PhaseChanged</code></a></td>
-<td>Indicates a new phase has started</td>
-</tr>
-<tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PlantEmerged" class="model-link"><code>PlantEmerged</code></a></td>
-<td>Signals that the emergence phase has been completed</td>
-</tr>
-<tr class="odd">
-<td><a href="../../../../docs/Models/Events.html#StageWasReset" class="model-link"><code>StageWasReset</code></a></td>
-<td>Signals a manual reset of stage via <code>SetToStage()</code></td>
-</tr>
-<tr class="even">
-<td><a href="../../../../docs/Models/Events.html#PostPhenology" class="model-link"><code>PostPhenology</code></a></td>
-<td>Raised after daily phenological timestep completes</td>
+<td>Structure</td>
+<td><a href="../../../../docs/APSIM.Core/IStructure.html" class="model-link">IStructure</a></td>
+<td>Field</td>
+<td>Provides access to plant structural information and child components.</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
 <p><strong>Configurable and Reportable Properties</strong></p>
 <blockquote class="blockquote">
-<p>No configurable properties are available for this function.</p>
+<p>No configurable properties are available for this model.</p>
 </blockquote>
 <p><strong>Read-Only Reportable Properties</strong></p>
 <table class="caption-top table">
@@ -1391,23 +1308,23 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <tbody>
 <tr class="odd">
 <td><code>StageNames</code></td>
-<td>List</td>
-<td>List of stage names in phenology</td>
+<td>List&lt;string&gt;</td>
+<td>List of stage names in phenology progression</td>
 </tr>
 <tr class="even">
 <td><code>StageCodes</code></td>
-<td>List</td>
-<td>List of numerical stage codes</td>
+<td>List&lt;int&gt;</td>
+<td>List of numerical stage codes corresponding to each stage</td>
 </tr>
 <tr class="odd">
 <td><code>AccumulatedTT</code></td>
 <td>double</td>
-<td>Thermal time accumulated since sowing</td>
+<td>Thermal time accumulated since sowing (°Cd)</td>
 </tr>
 <tr class="even">
 <td><code>AccumulatedEmergedTT</code></td>
 <td>double</td>
-<td>Thermal time accumulated since emergence</td>
+<td>Thermal time accumulated since emergence (°Cd)</td>
 </tr>
 <tr class="odd">
 <td><code>Emerged</code></td>
@@ -1417,42 +1334,310 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <tr class="even">
 <td><code>Stage</code></td>
 <td>double</td>
-<td>One-based stage number</td>
+<td>One-based stage number with fractional completion</td>
 </tr>
 <tr class="odd">
 <td><code>CurrentPhaseName</code></td>
 <td>string</td>
-<td>Name of the current phase</td>
+<td>Name of the current phenological phase</td>
 </tr>
 <tr class="even">
 <td><code>CurrentStageName</code></td>
 <td>string</td>
-<td>Name of the current stage</td>
+<td>Name of the current stage (only on first day of stage)</td>
 </tr>
 <tr class="odd">
 <td><code>FractionInCurrentPhase</code></td>
 <td>double</td>
-<td>Proportion completed in current phase</td>
+<td>Proportion completed in current phase (0 to 1)</td>
 </tr>
 <tr class="even">
 <td><code>CurrentPhase</code></td>
-<td>object</td>
-<td>The current phase object</td>
+<td>IPhase</td>
+<td>The current phase object providing access to phase-specific properties</td>
 </tr>
 <tr class="odd">
 <td><code>Zadok</code></td>
 <td>double</td>
-<td>Current Zadok stage number. Return 0 if child function <code>zadok</code> is missing</td>
+<td>Current Zadok stage number for wheat (0 if not applicable)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<div class="intro-text">
+<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
+</div>
+<p><strong>Events Listened For</strong></p>
+<p>These are signals or notifications that the Phenology model listens for from other parts of the simulation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
+<td>Initializes phenology, refreshes phase list, and clears state variables</td>
 </tr>
 <tr class="even">
-<td><code>currentPhaseNumberIncrementedByPhaseTimeStep</code></td>
-<td>bool</td>
-<td>True if phase increments stage number by phase time step</td>
+<td><a href="../../../../docs/Models/Events.html#PlantSowing" class="model-link">PlantSowing</a></td>
+<td>Resets phenology and initializes the first phase at sowing</td>
 </tr>
 <tr class="odd">
-<td><code>PlantIsAlive</code></td>
-<td>bool</td>
-<td>True if the parent plant is alive</td>
+<td><a href="../../../../docs/Models/Events.html#DoPhenology" class="model-link">DoPhenology</a></td>
+<td>Core daily timestep to update phenological development and manage phase transitions</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../docs/Models/Events.html#StartOfDay" class="model-link">StartOfDay</a></td>
+<td>Clears temporary stage-tracking flags for new day</td>
+</tr>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a></td>
+<td>Sets phenology directly to final phase (maturity)</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../docs/Models/Events.html#PlantEnding" class="model-link">PlantEnding</a></td>
+<td>Clears internal state when plant lifecycle ends</td>
+</tr>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events.html#Pruning" class="model-link">Pruning</a></td>
+<td>Event handler for pruning events (currently no action)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Events Raised</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events.html#PhaseChanged" class="model-link"><code>PhaseChanged</code></a></td>
+<td>Indicates a new phase has started, providing the stage name</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../docs/Models/Events.html#PlantEmerged" class="model-link"><code>PlantEmerged</code></a></td>
+<td>Signals that the emergence phase has been completed</td>
+</tr>
+<tr class="odd">
+<td><a href="../../../../docs/Models/Events.html#StageWasReset" class="model-link"><code>StageWasReset</code></a></td>
+<td>Signals a manual reset of stage via <code>SetToStage()</code>, providing the new stage number</td>
+</tr>
+<tr class="even">
+<td><a href="../../../../docs/Models/Events.html#PostPhenology" class="model-link"><code>PostPhenology</code></a></td>
+<td>Raised after daily phenological timestep completes, allowing dependent processes to respond</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="initialization-and-setup" class="level3">
+<h3 class="anchored" data-anchor-id="initialization-and-setup">Initialization and Setup</h3>
+<p>At the <strong>Commencing</strong> event, the Phenology model:</p>
+<ol type="1">
+<li>Refreshes the list of phases from child components</li>
+<li>Clears all state variables including stage number, accumulated thermal time, and phase tracking</li>
+</ol>
+<p>At <strong>PlantSowing</strong>, the model:</p>
+<ol type="1">
+<li>Clears state variables and resets to initial conditions</li>
+<li>Marks the first stage (start of first phase) as having been passed today</li>
+<li>Initializes the current phase index to 0</li>
+</ol>
+</section>
+<section id="daily-phenological-development" class="level3">
+<h3 class="anchored" data-anchor-id="daily-phenological-development">Daily Phenological Development</h3>
+<p>The core phenological progression occurs during the <strong>DoPhenology</strong> event. This process only executes when the plant is alive. The algorithm proceeds as follows:</p>
+<section id="step-1-validate-thermal-time" class="level4">
+<h4 class="anchored" data-anchor-id="step-1-validate-thermal-time">Step 1: Validate Thermal Time</h4>
+<p>The model first checks that thermal time is available and positive. If thermal time is negative, an error is raised as this indicates an issue with the ThermalTime function configuration.</p>
+</section>
+<section id="step-2-progress-through-current-phase" class="level4">
+<h4 class="anchored" data-anchor-id="step-2-progress-through-current-phase">Step 2: Progress Through Current Phase</h4>
+<p>The current phase’s <code>DoTimeStep</code> method is called, which:</p>
+<ul>
+<li>Calculates phase-specific developmental progress based on environmental conditions</li>
+<li>Returns <code>true</code> if the phase is complete and should transition to the next phase</li>
+<li>Provides a proportion of the day to use for thermal time accumulation</li>
+</ul>
+</section>
+<section id="step-3-handle-phase-transitions" class="level4">
+<h4 class="anchored" data-anchor-id="step-3-handle-phase-transitions">Step 3: Handle Phase Transitions</h4>
+<p>When a phase completes:</p>
+<ol type="1">
+<li>The completed stage name is added to the list of stages passed today</li>
+<li>The phase index increments to move to the next phase (unless already incremented by a GotoPhase)</li>
+<li>If the plant has just emerged, the <code>PlantEmerged</code> event is raised</li>
+<li>The <code>PhaseChanged</code> event is raised with the new stage name</li>
+<li>If the new phase is a <code>GotoPhase</code>, it immediately executes its stage-setting logic</li>
+<li>The new phase’s <code>DoTimeStep</code> is called to check if it also completes on the same day</li>
+</ol>
+<p>This process repeats until a phase does not complete within the same timestep.</p>
+</section>
+<section id="step-4-update-accumulated-thermal-time" class="level4">
+<h4 class="anchored" data-anchor-id="step-4-update-accumulated-thermal-time">Step 4: Update Accumulated Thermal Time</h4>
+<p>Unless the stage was manually set via <code>SetToStage</code> today:</p>
+<ul>
+<li>Total accumulated thermal time increases by today’s thermal time value</li>
+<li>If the plant has emerged, emerged thermal time also increases</li>
+</ul>
+</section>
+<section id="step-5-raise-post-phenology-event" class="level4">
+<h4 class="anchored" data-anchor-id="step-5-raise-post-phenology-event">Step 5: Raise Post-Phenology Event</h4>
+<p>After all phenological calculations are complete, the <code>PostPhenology</code> event is raised, allowing other components to respond to the updated developmental state.</p>
+</section>
+</section>
+<section id="stage-manipulation" class="level3">
+<h3 class="anchored" data-anchor-id="stage-manipulation">Stage Manipulation</h3>
+<section id="settostage-method" class="level4">
+<h4 class="anchored" data-anchor-id="settostage-method">SetToStage Method</h4>
+<p>The <code>SetToStage</code> method allows manual control of phenological development, either moving forward or backward through stages. This is used for management actions (harvest, cutting) or special phase logic (GotoPhase).</p>
+<p>The method accepts either a stage name (string) or stage number (double) and performs different operations depending on direction:</p>
+<p><strong>Rewinding (Moving to Earlier Stage):</strong></p>
+<p>When setting to an earlier stage:</p>
+<ol type="1">
+<li>Identifies all phases between the current and target stages</li>
+<li>Validates that each phase can be rewound (only specific phase types support rewinding)</li>
+<li>For each phase being rewound:
+<ul>
+<li>Subtracts the phase’s accumulated thermal time from total and emerged thermal time</li>
+<li>Calls the phase’s <code>ResetPhase</code> method to clear internal state</li>
+</ul></li>
+<li>Ensures accumulated thermal time values remain non-negative</li>
+</ol>
+<p><strong>Fast-Forwarding (Moving to Later Stage):</strong></p>
+<p>When setting to a later stage:</p>
+<ol type="1">
+<li>Identifies all phases between current and target stages</li>
+<li>For each phase to skip:
+<ul>
+<li>Adds the stage name to stages passed today</li>
+<li>If the phase has a target, adds the remaining thermal time to reach the target</li>
+<li>Raises <code>PlantEmerged</code> event if crossing emergence</li>
+<li>Raises <code>PhaseChanged</code> event for each stage transition</li>
+</ul></li>
+<li>Sets the target phase’s progress to the appropriate fraction</li>
+</ol>
+<p><strong>Fractional Stage Setting:</strong></p>
+<p>When setting to a fractional stage (e.g., 3.5), the model:</p>
+<ul>
+<li>Moves to the phase corresponding to the integer part (phase 3)</li>
+<li>Sets progress within that phase to the fractional part (50% through phase 3)</li>
+</ul>
+<p>The <code>StageWasReset</code> event is raised at the conclusion to signal that a manual stage change occurred.</p>
+</section>
+</section>
+<section id="phase-completion-by-date" class="level3">
+<h3 class="anchored" data-anchor-id="phase-completion-by-date">Phase Completion by Date</h3>
+<p>For phases that implement <code>IPhaseWithSetableCompletionDate</code>, the model can force completion on a specific calendar date rather than using the phase’s normal progression mechanism. This is managed through:</p>
+<ol type="1">
+<li><code>SetPhaseCompletionDate(completionDate, phaseName)</code>: Sets the target date for a named phase</li>
+<li><code>FractionComplete()</code>: Calculates fractional progress based on days elapsed vs total days to completion date</li>
+<li><code>checkIfCompletionDate()</code>: Determines if today matches the completion date</li>
+</ol>
+<p>This mechanism is particularly useful for:</p>
+<ul>
+<li>Matching observed phenological dates in calibration</li>
+<li>Management overrides for specific calendar-based events</li>
+<li>Ensuring germination occurs before a set emergence date</li>
+</ul>
+</section>
+<section id="utility-methods" class="level3">
+<h3 class="anchored" data-anchor-id="utility-methods">Utility Methods</h3>
+<p>The Phenology model provides several utility methods for querying developmental state:</p>
+<ul>
+<li><strong><code>OnStartDayOf(stageName)</code></strong>: Returns <code>true</code> if today is the first day of the specified stage</li>
+<li><strong><code>InPhase(phaseName)</code></strong>: Returns <code>true</code> if currently in the named phase</li>
+<li><strong><code>Between(start, end)</code></strong>: Returns <code>true</code> if current phase is between start and end stages (inclusive)</li>
+<li><strong><code>Beyond(start)</code></strong>: Returns <code>true</code> if current phase is at or past the specified start stage</li>
+<li><strong><code>PhaseStartingWith(start)</code></strong>: Returns the phase object that begins with the specified stage name</li>
+<li><strong><code>IndexFromPhaseName(name)</code></strong>: Returns the array index of a phase by name</li>
+<li><strong><code>StartStagePhaseIndex(stageName)</code></strong>: Returns the index of the phase starting with the specified stage</li>
+<li><strong><code>EndStagePhaseIndex(stageName)</code></strong>: Returns the index of the phase ending with the specified stage</li>
+</ul>
+</section>
+</section>
+<section id="public-methods" class="level2">
+<h2 class="anchored" data-anchor-id="public-methods">Public Methods</h2>
+<p>The Phenology model exposes several public methods for interacting with phenological development:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>SetToStage(string newStage)</code></td>
+<td>Moves the crop to a specific development stage by name (e.g., “Flowering”)</td>
+</tr>
+<tr class="even">
+<td><code>SetToStage(double newStage)</code></td>
+<td>Moves the crop to a specific development stage by number (e.g., 3.5)</td>
+</tr>
+<tr class="odd">
+<td><code>SetToEndStage()</code></td>
+<td>Sets phenology to the final stage (typically used at harvest)</td>
+</tr>
+<tr class="even">
+<td><code>SetAge(double newAge)</code></td>
+<td>Sets the age in years for perennial crops (if Age component present)</td>
+</tr>
+<tr class="odd">
+<td><code>OnStartDayOf(string stageName)</code></td>
+<td>Returns true if today is the first day of the specified stage</td>
+</tr>
+<tr class="even">
+<td><code>InPhase(string phaseName)</code></td>
+<td>Returns true if currently in the named phase</td>
+</tr>
+<tr class="odd">
+<td><code>Between(string start, string end)</code></td>
+<td>Returns true if between two stages (inclusive)</td>
+</tr>
+<tr class="even">
+<td><code>Beyond(string start)</code></td>
+<td>Returns true if at or past the specified start stage</td>
+</tr>
+<tr class="odd">
+<td><code>PhaseStartingWith(string start)</code></td>
+<td>Returns the phase object beginning with specified stage</td>
+</tr>
+<tr class="even">
+<td><code>IndexFromPhaseName(string name)</code></td>
+<td>Returns array index of a phase by name</td>
+</tr>
+<tr class="odd">
+<td><code>StartStagePhaseIndex(string stageName)</code></td>
+<td>Returns index of phase starting with specified stage</td>
+</tr>
+<tr class="even">
+<td><code>EndStagePhaseIndex(string stageName)</code></td>
+<td>Returns index of phase ending with specified stage</td>
+</tr>
+<tr class="odd">
+<td><code>SetPhaseCompletionDate(string completionDate, string phaseName)</code></td>
+<td>Forces a phase to complete on a specific calendar date</td>
+</tr>
+<tr class="even">
+<td><code>GetPhaseTable()</code></td>
+<td>Returns a DataTable listing all phases with their start/end stages</td>
 </tr>
 </tbody>
 </table>
@@ -1460,12 +1645,76 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
 <p><code>Phenology</code> can be added as a child of a <code>Plant</code> node in the APSIM NG model tree. Right-click the plant node, select “Add Model…”, and search for <code>Phenology</code> in the Filter Box.</p>
+<section id="required-child-components" class="level3">
+<h3 class="anchored" data-anchor-id="required-child-components">Required Child Components</h3>
+<p>The Phenology model requires the following child components:</p>
+<ul>
+<li><strong>ThermalTime</strong>: An <code>IFunction</code> that calculates daily thermal time accumulation. This is referenced by name and must be present.</li>
+<li><strong>Phase sequence</strong>: A series of phase components (implementing <code>IPhase</code>) that define the developmental progression. Phases must be added in sequential order.</li>
+</ul>
 </section>
-<section id="practical-example" class="level2">
-<h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is available for this function.</p>
-</blockquote>
+<section id="optional-child-components" class="level3">
+<h3 class="anchored" data-anchor-id="optional-child-components">Optional Child Components</h3>
+<ul>
+<li><strong>ZadokPMFWheat</strong>: Provides Zadok stage numbering for wheat crops</li>
+<li><strong>Age</strong>: Tracks plant age for perennial species</li>
+</ul>
+</section>
+</section>
+<section id="phases" class="level2">
+<h2 class="anchored" data-anchor-id="phases">Phases</h2>
+<p>A list of available phenology phases that can be added as children to the Phenology model:</p>
+<div class="cell" data-layout-align="center">
+<div id="tbl-phases" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-layout-align="center">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Phenology Phases Available
+</figcaption>
+<div aria-describedby="tbl-phases-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Phase</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="model-link">EmergingPhase</a></td>
+<td style="text-align: left;">The <code>EmergingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, res</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/EndPhase.html" class="model-link">EndPhase</a></td>
+<td style="text-align: left;"><code>EndPhase</code> is the final phase in a crop’s phenological development</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="model-link">GenericPhase</a></td>
+<td style="text-align: left;">The <code>GenericPhase</code> is a phenological phase used within a plant’s developmental sequence</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="model-link">GerminatingPhase</a></td>
+<td style="text-align: left;">The <code>GerminatingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline,</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="model-link">LeafAppearancePhase</a></td>
+<td style="text-align: left;">The <code>LeafAppearancePhase</code> represents a developmental phase in a plant’s life cycle</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="model-link">SimpleLeafAppearancePhase</a></td>
+<td style="text-align: left;">The <code>SimpleLeafAppearancePhase</code> represents a phenological phase where the duration of the phase is d</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="../../../../docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="model-link">VernalisationPhase</a></td>
+<td style="text-align: left;">The <code>VernalisationPhase</code> defines a phenological development phase that is completed when vernalisati</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
