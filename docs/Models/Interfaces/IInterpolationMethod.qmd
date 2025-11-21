@@ -1,0 +1,30 @@
+---
+title: "IInterpolationMethod"
+format: html
+---
+
+
+The `IInterpolationMethod` interface defines a contract for models that perform sub-daily interpolation of environmental variables from daily values.
+
+## Overview
+
+`IInterpolationMethod` is a core interface in APSIM NG that standardizes how models interpolate daily environmental data into sub-daily values. This is essential for simulating biological processes that respond to diurnal patterns of environmental conditions such as temperature, radiation, or humidity. By implementing this interface, models can provide consistent sub-daily estimates that can be used by various plant, soil, and atmospheric components within the simulation framework.
+
+The interface is designed to be flexible, allowing different interpolation algorithms to be implemented while maintaining a consistent structure for accessing sub-daily values throughout the simulation.
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `OutputValueType`   | string  | Specifies the type of variable being interpolated (e.g., "air temperature", "solar radiation"). This property helps identify what environmental variable the interpolation method produces. |
+
+## See Also
+
+* **Source code:** [IInterpolationMethod.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/IInterpolationMethod.cs)
+* **Implementations:**
+  * [ThreeHourAirTemperature](/docs/Models/Functions/ThreeHourAirTemperature.qmd) - 3-hourly air temperature interpolation
