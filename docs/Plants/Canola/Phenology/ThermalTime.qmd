@@ -6,6 +6,7 @@ params:
     response.x: [2, 30, 35]
     response.y: [0, 28, 0]
     three_cardinal: true
+    reference: "[@whish_vernalisation_2020; @robertson_simulation_2016]"
 ---
 
 {{< include /_includes/Plants/Phenology/ThermalTime/CardinalTemperatureThreeHourly.qmd >}}

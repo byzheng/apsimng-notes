@@ -18,6 +18,7 @@ Usage in parent QMD:
         response.x: [0, 30, 40]
         response.y: [0, 30, 0]
         three_cardinal: false
+        reference: ""
 
 2. Include this shared documentation file using include shortcode        
 
@@ -30,7 +31,14 @@ response_x <- params$response.x
 response_y <- params$response.y
 stopifnot(length(response_x) == length(response_y))
 is_three_cardinal <- length(response_x) == 3
+reference <- if (is.null(params$reference)) {
+    params$reference
+} else {
+    ""
+}
 ```
+
+
 
 Thermal time (also called growing degree days) is the primary driver of phenological development in the [`r params$plant`](/docs/Plants/`r params$plant`/index.qmd) model. It determines the rate of developmental progress through crop's phases and is used by organs to determine potential growth rates.
 
@@ -96,7 +104,7 @@ TODO: Thermal time response must be defined by exactly three cardinal temperatur
 
 **Mathematical representation:**
 
-At **each** three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:
+At **each** three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve `r params$reference` through linear interpolation between points:
 
 
 ```{r plot-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
