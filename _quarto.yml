@@ -6,6 +6,7 @@ project:
     - "*.md"
 filters:
   - _filters/link-style.lua
+  - _filters/hierarchical-title.lua
 
 bibliography: references.bib
 execute:
