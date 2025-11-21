@@ -1,7 +1,7 @@
---For a new model --
 
-ModelName: Phenology
-TargetFile: Models/Phenology/Phenology
+
+ModelName: IPhenology
+TargetFile: Models/PMF/Interfaces/IPhenology
 
 Task:
 
