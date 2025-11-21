@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -132,6 +112,35 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../styles.css">
 </head>
@@ -1148,8 +1157,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#component-interaction-map" id="toc-component-interaction-map" class="nav-link" data-scroll-target="#component-interaction-map">Component Interaction Map</a></li>
+  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
   <li><a href="#cultivar-specific-parameters" id="toc-cultivar-specific-parameters" class="nav-link" data-scroll-target="#cultivar-specific-parameters">Cultivar-Specific Parameters</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
+  <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
   </ul>
 <div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/docs/Plants/Canola/Phenology/ThermalTime.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1175,40 +1187,90 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
-<p>Daily thermal time for wheat based on <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">SubDailyInterpolation</a> with three cardinal temperature and <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> interpolation method.</p>
+<!--
+This file provides the shared Thermal Time documentation used by multiple plant models based on following methodology
+
+* [Three hourly interpolation](/docs/Models/Functions/ThreeHourAirTemperature.qmd) of air temperature from daily max/min
+* A response curve defined by three cardinal temperatures: base (0°C), optimum (30°C), maximum (40°C)
+* [Sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) to calculate daily thermal time accumulation
+
+Inputs (passed from parent QMD via params):
+- plant: The plant model using this thermal time calculation (e.g., Oats, Wheat)
+- response.x : air temperatures (°C)
+- response.y : corresponding thermal time values (°Cd)
+
+Usage in parent QMD:
+
+1. Add parameters in YAML front matter:
+      params:
+        plant: Oats
+        response.x: [0, 30, 40]
+        response.y: [0, 30, 0]
+        three_cardinal: false
+
+2. Include this shared documentation file using include shortcode        
+
+-->
+<p>Thermal time (also called growing degree days) is the primary driver of phenological development in the <a href="../../../../docs/Plants/Canola/index.html" class="crop-link">Canola</a> model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <strong>Thermal Time</strong> function in canola model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (<a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a>), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.</p>
 <ul>
-<li><code>InterpolationMethod</code>: <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature</a> is used for sub-daily interpolation, i.e.&nbsp;3-hourly temperature estimates.</li>
-<li><code>Response</code>: Three cardinal temperature using <a href="../../../../docs/Models/Functions/XYPairs.html" class="model-link">XYPairs</a> to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation <span class="citation" data-cites="whish_vernalisation_2020 robertson_simulation_2016">(<a href="#ref-whish_vernalisation_2020" role="doc-biblioref">Whish et al. 2020</a>; <a href="#ref-robertson_simulation_2016" role="doc-biblioref">Robertson and Lilley 2016</a>)</span>.</li>
+<li><p><strong>Biological role:</strong> Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.</p></li>
+<li><p><strong>Placement in crop system:</strong> Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.</p></li>
+<li><p><strong>Importance for agronomy or breeding:</strong> Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.</p></li>
+<li><p><strong>Environmental sensitivities:</strong></p>
+<ul>
+<li><strong>Temperature</strong>: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve</li>
+<li><strong>Diurnal temperature variation</strong>: Captured through <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">sub-daily interpolation</a> to account for temperature fluctuations throughout the day with <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">three-hourly interpolation method</a></li>
+</ul></li>
 </ul>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th style="text-align: center;">Cardinal Point</th>
-<th style="text-align: left;">Description</th>
-<th style="text-align: center;">Value (°C)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">Base</td>
-<td style="text-align: left;">Minimum for growth</td>
-<td style="text-align: center;">2</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Optimum</td>
-<td style="text-align: left;">Maximum rate of growth</td>
-<td style="text-align: center;">30</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Maximum</td>
-<td style="text-align: left;">Growth ceases above this</td>
-<td style="text-align: center;">35</td>
-</tr>
-</tbody>
-</table>
+</section>
+<section id="component-interaction-map" class="level2">
+<h2 class="anchored" data-anchor-id="component-interaction-map">Component Interaction Map</h2>
+<ul>
+<li><strong>Inputs:</strong>
+<ul>
+<li>Daily maximum air temperature (from Weather)</li>
+<li>Daily minimum air temperature (from Weather)</li>
+</ul></li>
+<li><strong>Outputs:</strong>
+<ul>
+<li>Daily thermal time (°Cd) - used by all phenology phases</li>
+</ul></li>
+</ul>
+</section>
+<section id="methodology" class="level2">
+<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
+<section id="interpolation-of-sub-daily-temperature" class="level3">
+<h3 class="anchored" data-anchor-id="interpolation-of-sub-daily-temperature">Interpolation of sub-daily temperature</h3>
+<p>The daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">three-hourly intervals</a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-three-hourly-temperature" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-three-hourly-temperature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ThermalTime_files/figure-html/fig-three-hourly-temperature-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-three-hourly-temperature-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Three-Hourly Air Temperature Interpolation with daily minimum of 10°C and maximum of 30°C
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="three-hourly-thermal-time" class="level3">
+<h3 class="anchored" data-anchor-id="three-hourly-thermal-time">Three-hourly Thermal Time</h3>
+<p><strong>Key biological assumptions</strong></p>
+<ul>
+<li>Plant development rate increases linearly with temperature between base (2°C) and optimum (30°C) temperatures</li>
+<li>Development ceases below the base temperature (2°C) and above a maximum temperature (35°C)</li>
+<li>Development rate declines linearly between optimum and maximum temperatures</li>
+<li>Diurnal temperature variation affects development - captured through <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">sub-daily interpolation</a> rather than simple daily mean temperature</li>
+<li>The same thermal time response applies across all developmental phases (no phase-specific temperature responses)</li>
+</ul>
+<p><strong>Mathematical representation:</strong></p>
+<p>At <strong>each</strong> three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1219,31 +1281,121 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </div>
 </div>
 </div>
+<p>The thermal time response to air temperature (<span class="math inline">\(T\)</span>) follows a three-cardinal-temperature model (2°C (base), 30°C (optimum), and 35°C (maximum)):</p>
+<p><span class="math display">\[
+TT_{i} = \begin{cases}
+0 &amp; \text{if } T \leq 2°C \\
+T &amp; \text{if } 2°C &lt; T \leq 30°C \\
+28 - \frac{28}{35 - 30}(T - 30) &amp; \text{if } 30°C &lt; T \leq 35°C \\
+0 &amp; \text{if } T &gt; 35°C
+\end{cases}
+\]</span></p>
+<p>Where <span class="math inline">\(TT_{i}\)</span> is the thermal time (°Cd) at temperature <span class="math inline">\(T\)</span> (°C).</p>
+</section>
+<section id="daily-thermal-time" class="level3">
+<h3 class="anchored" data-anchor-id="daily-thermal-time">Daily Thermal Time</h3>
+<p>Daily thermal time is calculated using <a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">sub-daily interpolation</a> with three-hourly thermal time values. Air temperature is interpolated from daily maximum and minimum using the <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">three-hourly air temperature interpolation</a> method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:</p>
+<p><span class="math display">\[
+TT_{\text{daily}} = \frac{1}{8} \sum_{i=1}^{8} TT_{t}(T_{i})
+\]</span></p>
+<p>where <span class="math inline">\(T_i\)</span> represents the interpolated temperature at each three-hour interval.</p>
+</section>
 </section>
 <section id="cultivar-specific-parameters" class="level2">
 <h2 class="anchored" data-anchor-id="cultivar-specific-parameters">Cultivar-Specific Parameters</h2>
-<blockquote class="blockquote">
-<p>In general, we do not modify the thermal time function for different cultivars.</p>
-</blockquote>
+<p>The thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all Canola genotypes.</p>
 </section>
 <section id="practical-example" class="level2">
 <h2 class="anchored" data-anchor-id="practical-example">Practical Example</h2>
-<blockquote class="blockquote">
-<p>No practical example is provided for the thermal time function.</p>
-</blockquote>
-
+<p>For a day with:</p>
+<ul>
+<li>Maximum temperature: 35°C</li>
+<li>Minimum temperature: 10°C</li>
+</ul>
+<p>Three hourly air temperatures are interpolated using <a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">three-hourly interpolation</a>. Then three hourly thermal time values are calculated using the defined temperature response curve.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">3-Hour Period</th>
+<th style="text-align: right;">Temperature (°C)</th>
+<th style="text-align: right;">Thermal Time (°Cd)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">34.3</td>
+<td style="text-align: right;">4.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">32.8</td>
+<td style="text-align: right;">12.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">29.3</td>
+<td style="text-align: right;">27.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">22.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">19.9</td>
+<td style="text-align: right;">17.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">15.5</td>
+<td style="text-align: right;">13.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">12.3</td>
+<td style="text-align: right;">10.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">11.2</td>
+<td style="text-align: right;">9.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Finally, the daily thermal time is the average of the eight three-hourly thermal time values (i.e.&nbsp;14.7 °Cd).</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-thermal-time-example" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-thermal-time-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="ThermalTime_files/figure-html/fig-thermal-time-example-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-thermal-time-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Three-Hourly Air Temperature and Corresponding Thermal Time Values. The black horizontal line indicates the daily thermal time.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="see-also" class="level2">
+<h2 class="anchored" data-anchor-id="see-also">See Also</h2>
+<ul>
+<li><a href="../../../../docs/Models/Functions/SubDailyInterpolation.html" class="model-link">SubDailyInterpolation Function</a></li>
+<li><a href="../../../../docs/Models/Functions/ThreeHourAirTemperature.html" class="model-link">ThreeHourAirTemperature Function</a></li>
+<li><a href="../../../../docs/Plants/Canola/Phenology/index.html" class="crop-link">Phenology Overview</a></li>
+</ul>
 
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-robertson_simulation_2016" class="csl-entry" role="listitem">
-Robertson, M. J., and J. M. Lilley. 2016. <span>“Simulation of Growth, Development and Yield of Canola (Brassica Napus) in APSIM.”</span> <em>Crop and Pasture Science</em>. <a href="http://dx.doi.org/10.1071/CP15267">http://dx.doi.org/10.1071/CP15267</a>.
-</div>
-<div id="ref-whish_vernalisation_2020" class="csl-entry" role="listitem">
-Whish, J. P. M., J. M. Lilley, M. J. Morrison, B. Cocks, and M. Bullock. 2020. <span>“Vernalisation in Australian Spring Canola Explains Variable Flowering Responses.”</span> <em>Field Crops Research</em> 258 (November): 107968. <a href="https://doi.org/10.1016/j.fcr.2020.107968">https://doi.org/10.1016/j.fcr.2020.107968</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

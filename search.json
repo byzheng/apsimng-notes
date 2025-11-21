@@ -260,7 +260,7 @@
     "href": "docs/Plants/Wheat/Phenology/ThermalTime.html",
     "title": "Thermal Time",
     "section": "",
-    "text": "Daily thermal time for wheat based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
+    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Wheat model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
     "crumbs": [
       "Home",
       "Docs",
@@ -275,7 +275,37 @@
     "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#overview",
     "title": "Thermal Time",
     "section": "Overview",
-    "text": "Overview\nThe Thermal Time function in wheat model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (ThreeHourAirTemperature), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.\n\nInterpolationMethod: ThreeHourAirTemperature is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.\nResponse: Three cardinal temperature using XYPairs to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation.\n\n\n\n\nCardinal Point\nDescription\nValue (°C)\n\n\n\n\nBase\nMinimum for growth\n0\n\n\nOptimum\nMaximum rate of growth\n26\n\n\nMaximum\nGrowth ceases above this\n37\n\n\n\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures",
+    "text": "Overview\n\nBiological role: Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.\nPlacement in crop system: Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.\nImportance for agronomy or breeding: Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.\nEnvironmental sensitivities:\n\nTemperature: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve\nDiurnal temperature variation: Captured through sub-daily interpolation to account for temperature fluctuations throughout the day with three-hourly interpolation method",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Wheat/Phenology/ThermalTime.html#component-interaction-map",
+    "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#component-interaction-map",
+    "title": "Thermal Time",
+    "section": "Component Interaction Map",
+    "text": "Component Interaction Map\n\nInputs:\n\nDaily maximum air temperature (from Weather)\nDaily minimum air temperature (from Weather)\n\nOutputs:\n\nDaily thermal time (°Cd) - used by all phenology phases",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Wheat/Phenology/ThermalTime.html#methodology",
+    "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#methodology",
+    "title": "Thermal Time",
+    "section": "Methodology",
+    "text": "Methodology\n\nInterpolation of sub-daily temperature\nThe daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with three-hourly intervals.\n\n\n\n\n\n\n\n\nFigure 1: Three-Hourly Air Temperature Interpolation with daily minimum of 10°C and maximum of 30°C\n\n\n\n\n\n\n\nThree-hourly Thermal Time\nKey biological assumptions\n\nPlant development rate increases linearly with temperature between base (0°C) and optimum (26°C) temperatures\nDevelopment ceases below the base temperature (0°C) and above a maximum temperature (37°C)\nDevelopment rate declines linearly between optimum and maximum temperatures\nDiurnal temperature variation affects development - captured through sub-daily interpolation rather than simple daily mean temperature\nThe same thermal time response applies across all developmental phases (no phase-specific temperature responses)\n\nMathematical representation:\nAt each three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures\n\n\n\n\nThe thermal time response to air temperature (\\(T\\)) follows a three-cardinal-temperature model (0°C (base), 26°C (optimum), and 37°C (maximum)):\n\\[\nTT_{i} = \\begin{cases}\n0 & \\text{if } T \\leq 0°C \\\\\nT & \\text{if } 0°C &lt; T \\leq 26°C \\\\\n26 - \\frac{26}{37 - 26}(T - 26) & \\text{if } 26°C &lt; T \\leq 37°C \\\\\n0 & \\text{if } T &gt; 37°C\n\\end{cases}\n\\]\nWhere \\(TT_{i}\\) is the thermal time (°Cd) at temperature \\(T\\) (°C).\n\n\nDaily Thermal Time\nDaily thermal time is calculated using sub-daily interpolation with three-hourly thermal time values. Air temperature is interpolated from daily maximum and minimum using the three-hourly air temperature interpolation method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:\n\\[\nTT_{\\text{daily}} = \\frac{1}{8} \\sum_{i=1}^{8} TT_{t}(T_{i})\n\\]\nwhere \\(T_i\\) represents the interpolated temperature at each three-hour interval.",
     "crumbs": [
       "Home",
       "Docs",
@@ -290,7 +320,7 @@
     "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#cultivar-specific-parameters",
     "title": "Thermal Time",
     "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nIn general, we do not modify the thermal time function for different cultivars.",
+    "text": "Cultivar-Specific Parameters\nThe thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all Wheat genotypes.",
     "crumbs": [
       "Home",
       "Docs",
@@ -305,7 +335,7 @@
     "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#practical-example",
     "title": "Thermal Time",
     "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "text": "Practical Example\nFor a day with:\n\nMaximum temperature: 35°C\nMinimum temperature: 10°C\n\nThree hourly air temperatures are interpolated using three-hourly interpolation. Then three hourly thermal time values are calculated using the defined temperature response curve.\n\n\n\n\n\n3-Hour Period\nTemperature (°C)\nThermal Time (°Cd)\n\n\n\n\n1\n34.3\n6.5\n\n\n2\n32.8\n10.0\n\n\n3\n29.3\n18.1\n\n\n4\n24.8\n24.8\n\n\n5\n19.9\n19.9\n\n\n6\n15.5\n15.5\n\n\n7\n12.3\n12.3\n\n\n8\n11.2\n11.2\n\n\n\n\n\nFinally, the daily thermal time is the average of the eight three-hourly thermal time values (i.e. 14.8 °Cd).\n\n\n\n\n\n\n\n\nFigure 2: Three-Hourly Air Temperature and Corresponding Thermal Time Values. The black horizontal line indicates the daily thermal time.",
     "crumbs": [
       "Home",
       "Docs",
@@ -316,11 +346,11 @@
     ]
   },
   {
-    "objectID": "docs/Plants/Wheat/Phenology/ThermalTime.html#simulation-example",
-    "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#simulation-example",
+    "objectID": "docs/Plants/Wheat/Phenology/ThermalTime.html#see-also",
+    "href": "docs/Plants/Wheat/Phenology/ThermalTime.html#see-also",
     "title": "Thermal Time",
-    "section": "Simulation Example",
-    "text": "Simulation Example\nWe demonstrate daily thermal time using example simulations for wheat. These simulations illustrate how daily thermal time is calculated based on daily minimum and maximum temperatures, which are key drivers of crop development.\nThe output variable Wheat.Phenology.ThermalTime reports the daily thermal time values. These values represent the crop’s physiological response to temperature, and are used to model development processes such as leaf appearance, stem elongation, and flowering.\nIn the example below, we plot thermal time against days after sowing (Wheat.DaysAfterSowing) to visualize how thermal time accumulates across the season. The used cultivar is Sunlamb, and the sowing date is 1 May. The figure overlays thermal time accumulation with daily temperature conditions to provide context for interpreting crop development.\n\n\n\n\n\n\n\n\nFigure 1: Thermal Time Simulation for Wheat Example 1. The blue and red lines represent daily minimum and maximum temperatures, respectively. The black line and symbols represent the thermal time accumulation for the cultivar ‘Sunlamb’ on the sowing date ‘1-May’.\n\n\n\n\n\nThis plot provides insight into how daily thermal time values fluctuate in response to daily temperatures and how these values accumulate to drive crop development.",
+    "section": "See Also",
+    "text": "See Also\n\nSubDailyInterpolation Function\nThreeHourAirTemperature Function\nPhenology Overview",
     "crumbs": [
       "Home",
       "Docs",
@@ -877,6 +907,111 @@
       "Docs",
       "Plants",
       "Oats"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html",
+    "title": "Thermal Time",
+    "section": "",
+    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Oats model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#overview",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#overview",
+    "title": "Thermal Time",
+    "section": "Overview",
+    "text": "Overview\n\nBiological role: Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.\nPlacement in crop system: Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.\nImportance for agronomy or breeding: Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.\nEnvironmental sensitivities:\n\nTemperature: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve\nDiurnal temperature variation: Captured through sub-daily interpolation to account for temperature fluctuations throughout the day with three-hourly interpolation method",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#component-interaction-map",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#component-interaction-map",
+    "title": "Thermal Time",
+    "section": "Component Interaction Map",
+    "text": "Component Interaction Map\n\nInputs:\n\nDaily maximum air temperature (from Weather)\nDaily minimum air temperature (from Weather)\n\nOutputs:\n\nDaily thermal time (°Cd) - used by all phenology phases",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#methodology",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#methodology",
+    "title": "Thermal Time",
+    "section": "Methodology",
+    "text": "Methodology\n\nInterpolation of sub-daily temperature\nThe daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with three-hourly intervals.\n\n\n\n\n\n\n\n\nFigure 1: Three-Hourly Air Temperature Interpolation with daily minimum of 10°C and maximum of 30°C\n\n\n\n\n\n\n\nThree-hourly Thermal Time\nKey biological assumptions\n\nPlant development rate increases linearly with temperature between base (0°C) and optimum (30°C) temperatures\nDevelopment ceases below the base temperature (0°C) and above a maximum temperature (40°C)\nDevelopment rate declines linearly between optimum and maximum temperatures\nDiurnal temperature variation affects development - captured through sub-daily interpolation rather than simple daily mean temperature\nThe same thermal time response applies across all developmental phases (no phase-specific temperature responses)\n\nMathematical representation:\nAt each three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures\n\n\n\n\nThe thermal time response to air temperature (\\(T\\)) follows a three-cardinal-temperature model (0°C (base), 30°C (optimum), and 40°C (maximum)):\n\\[\nTT_{i} = \\begin{cases}\n0 & \\text{if } T \\leq 0°C \\\\\nT & \\text{if } 0°C &lt; T \\leq 30°C \\\\\n30 - \\frac{30}{40 - 30}(T - 30) & \\text{if } 30°C &lt; T \\leq 40°C \\\\\n0 & \\text{if } T &gt; 40°C\n\\end{cases}\n\\]\nWhere \\(TT_{i}\\) is the thermal time (°Cd) at temperature \\(T\\) (°C).\n\n\nDaily Thermal Time\nDaily thermal time is calculated using sub-daily interpolation with three-hourly thermal time values. Air temperature is interpolated from daily maximum and minimum using the three-hourly air temperature interpolation method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:\n\\[\nTT_{\\text{daily}} = \\frac{1}{8} \\sum_{i=1}^{8} TT_{t}(T_{i})\n\\]\nwhere \\(T_i\\) represents the interpolated temperature at each three-hour interval.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "title": "Thermal Time",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nThe thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all Oats genotypes.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#practical-example",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#practical-example",
+    "title": "Thermal Time",
+    "section": "Practical Example",
+    "text": "Practical Example\nFor a day with:\n\nMaximum temperature: 35°C\nMinimum temperature: 10°C\n\nThree hourly air temperatures are interpolated using three-hourly interpolation. Then three hourly thermal time values are calculated using the defined temperature response curve.\n\n\n\n\n\n3-Hour Period\nTemperature (°C)\nThermal Time (°Cd)\n\n\n\n\n1\n34.3\n17.2\n\n\n2\n32.8\n21.7\n\n\n3\n29.3\n29.3\n\n\n4\n24.8\n24.8\n\n\n5\n19.9\n19.9\n\n\n6\n15.5\n15.5\n\n\n7\n12.3\n12.3\n\n\n8\n11.2\n11.2\n\n\n\n\n\nFinally, the daily thermal time is the average of the eight three-hourly thermal time values (i.e. 19 °Cd).\n\n\n\n\n\n\n\n\nFigure 2: Three-Hourly Air Temperature and Corresponding Thermal Time Values. The black horizontal line indicates the daily thermal time.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Oats/Phenology/ThermalTime.html#see-also",
+    "href": "docs/Plants/Oats/Phenology/ThermalTime.html#see-also",
+    "title": "Thermal Time",
+    "section": "See Also",
+    "text": "See Also\n\nSubDailyInterpolation Function\nThreeHourAirTemperature Function\nPhenology Overview",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Oats",
+      "Phenology",
+      "Thermal Time"
     ]
   },
   {
@@ -7925,7 +8060,7 @@
     "href": "docs/Plants/Canola/Phenology/ThermalTime.html",
     "title": "Thermal Time",
     "section": "",
-    "text": "Daily thermal time for wheat based on SubDailyInterpolation with three cardinal temperature and ThreeHourAirTemperature interpolation method.",
+    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Canola model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7940,7 +8075,37 @@
     "href": "docs/Plants/Canola/Phenology/ThermalTime.html#overview",
     "title": "Thermal Time",
     "section": "Overview",
-    "text": "Overview\nThe Thermal Time function in canola model calculates the daily thermal time. This is crucial for crop development and organ growth. The model uses a sub-daily interpolation method to estimate air temperatures at three hourly interpolation method (ThreeHourAirTemperature), then applies a three cardinal temperature function to each interpolated temperature. These values are averaged to give a daily thermal time used in phenological and growth calculations.\n\nInterpolationMethod: ThreeHourAirTemperature is used for sub-daily interpolation, i.e. 3-hourly temperature estimates.\nResponse: Three cardinal temperature using XYPairs to define the temperature response function. This function determines how effective the temperature is for thermal time accumulation (Whish et al. 2020; Robertson and Lilley 2016).\n\n\n\n\nCardinal Point\nDescription\nValue (°C)\n\n\n\n\nBase\nMinimum for growth\n2\n\n\nOptimum\nMaximum rate of growth\n30\n\n\nMaximum\nGrowth ceases above this\n35\n\n\n\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures",
+    "text": "Overview\n\nBiological role: Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.\nPlacement in crop system: Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.\nImportance for agronomy or breeding: Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.\nEnvironmental sensitivities:\n\nTemperature: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve\nDiurnal temperature variation: Captured through sub-daily interpolation to account for temperature fluctuations throughout the day with three-hourly interpolation method",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Phenology/ThermalTime.html#component-interaction-map",
+    "href": "docs/Plants/Canola/Phenology/ThermalTime.html#component-interaction-map",
+    "title": "Thermal Time",
+    "section": "Component Interaction Map",
+    "text": "Component Interaction Map\n\nInputs:\n\nDaily maximum air temperature (from Weather)\nDaily minimum air temperature (from Weather)\n\nOutputs:\n\nDaily thermal time (°Cd) - used by all phenology phases",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Phenology/ThermalTime.html#methodology",
+    "href": "docs/Plants/Canola/Phenology/ThermalTime.html#methodology",
+    "title": "Thermal Time",
+    "section": "Methodology",
+    "text": "Methodology\n\nInterpolation of sub-daily temperature\nThe daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with three-hourly intervals.\n\n\n\n\n\n\n\n\nFigure 1: Three-Hourly Air Temperature Interpolation with daily minimum of 10°C and maximum of 30°C\n\n\n\n\n\n\n\nThree-hourly Thermal Time\nKey biological assumptions\n\nPlant development rate increases linearly with temperature between base (2°C) and optimum (30°C) temperatures\nDevelopment ceases below the base temperature (2°C) and above a maximum temperature (35°C)\nDevelopment rate declines linearly between optimum and maximum temperatures\nDiurnal temperature variation affects development - captured through sub-daily interpolation rather than simple daily mean temperature\nThe same thermal time response applies across all developmental phases (no phase-specific temperature responses)\n\nMathematical representation:\nAt each three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures\n\n\n\n\nThe thermal time response to air temperature (\\(T\\)) follows a three-cardinal-temperature model (2°C (base), 30°C (optimum), and 35°C (maximum)):\n\\[\nTT_{i} = \\begin{cases}\n0 & \\text{if } T \\leq 2°C \\\\\nT & \\text{if } 2°C &lt; T \\leq 30°C \\\\\n28 - \\frac{28}{35 - 30}(T - 30) & \\text{if } 30°C &lt; T \\leq 35°C \\\\\n0 & \\text{if } T &gt; 35°C\n\\end{cases}\n\\]\nWhere \\(TT_{i}\\) is the thermal time (°Cd) at temperature \\(T\\) (°C).\n\n\nDaily Thermal Time\nDaily thermal time is calculated using sub-daily interpolation with three-hourly thermal time values. Air temperature is interpolated from daily maximum and minimum using the three-hourly air temperature interpolation method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:\n\\[\nTT_{\\text{daily}} = \\frac{1}{8} \\sum_{i=1}^{8} TT_{t}(T_{i})\n\\]\nwhere \\(T_i\\) represents the interpolated temperature at each three-hour interval.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7955,7 +8120,7 @@
     "href": "docs/Plants/Canola/Phenology/ThermalTime.html#cultivar-specific-parameters",
     "title": "Thermal Time",
     "section": "Cultivar-Specific Parameters",
-    "text": "Cultivar-Specific Parameters\n\nIn general, we do not modify the thermal time function for different cultivars.",
+    "text": "Cultivar-Specific Parameters\nThe thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all Canola genotypes.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7970,7 +8135,22 @@
     "href": "docs/Plants/Canola/Phenology/ThermalTime.html#practical-example",
     "title": "Thermal Time",
     "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is provided for the thermal time function.",
+    "text": "Practical Example\nFor a day with:\n\nMaximum temperature: 35°C\nMinimum temperature: 10°C\n\nThree hourly air temperatures are interpolated using three-hourly interpolation. Then three hourly thermal time values are calculated using the defined temperature response curve.\n\n\n\n\n\n3-Hour Period\nTemperature (°C)\nThermal Time (°Cd)\n\n\n\n\n1\n34.3\n4.2\n\n\n2\n32.8\n12.6\n\n\n3\n29.3\n27.3\n\n\n4\n24.8\n22.8\n\n\n5\n19.9\n17.9\n\n\n6\n15.5\n13.5\n\n\n7\n12.3\n10.3\n\n\n8\n11.2\n9.2\n\n\n\n\n\nFinally, the daily thermal time is the average of the eight three-hourly thermal time values (i.e. 14.7 °Cd).\n\n\n\n\n\n\n\n\nFigure 2: Three-Hourly Air Temperature and Corresponding Thermal Time Values. The black horizontal line indicates the daily thermal time.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Phenology/ThermalTime.html#see-also",
+    "href": "docs/Plants/Canola/Phenology/ThermalTime.html#see-also",
+    "title": "Thermal Time",
+    "section": "See Also",
+    "text": "See Also\n\nSubDailyInterpolation Function\nThreeHourAirTemperature Function\nPhenology Overview",
     "crumbs": [
       "Home",
       "Docs",
