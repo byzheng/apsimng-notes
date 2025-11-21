@@ -4,164 +4,362 @@ format: html
 ---
 
 
-
-The `Phenology` model simulates the developmental progression of a plant through a series of defined growth stages based on progression to completion. It provides a central mechanism for managing crop stage transitions in APSIM Next Generation (APSIM NG).
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+The Phenology model simulates the developmental progression of a plant through a series of defined growth stages and phases. It provides the central mechanism for managing crop stage transitions and coordinates developmental timing across all plant organs and processes in APSIM Next Generation.
 
 ## Overview
 
-In APSIM NG, the `Phenology` model manages the simulation of plant development by organizing the crop lifecycle into distinct phases. Each phase corresponds to a physiological process or stage in the crop's development (e.g., emergence, flowering, maturity). The transition between phases is typically governed by progression to completion. In general, the progression is influenced by factors such as thermal time, photoperiod, and vernalisation.
+In APSIM NG, the Phenology model manages plant development by organizing the crop lifecycle into distinct sequential phases. Each phase represents a physiological developmental period (e.g., germination, emergence, vegetative growth, flowering, grain filling, maturity). The model tracks developmental progress through phases, triggers stage-specific events, and maintains accumulated thermal time from sowing and emergence.
 
-This model tracks the current phase, calculates progression based on progression to completion in current phase, and allows transitions to be triggered either naturally (via progression to completion) or manually (via `SetToStage`). The phenology model plays a pivotal role in coordinating developmental processes with other sub-models like canopy, roots, and biomass.
+- A **phase** is a period of development with specific environmental responses (e.g., "Vegetative" phase may respond to photoperiod)
+- A **stage** is a discrete developmental milestone that marks transitions between phases (e.g., "Emergence", "Flowering")
 
-## Inputs
+Phase transitions are driven by environmental factors including:
 
-The `Phenology` model requires:
+- **Thermal time** (accumulated temperature above base threshold)
+- **Photoperiod** (daylength sensitivity for certain phases)
+- **Vernalization** (cold temperature requirement for certain crops)
+- **Specific dates** (calendar-based completion for management scenarios)
 
-- **ThermalTime**: A child function representing accumulated heat units.
-- **Phase list**: A sequence of `IPhase` child components, each representing a growth phase. The phase order in the model tree determines the progression sequence.
-- **Sowing Event**: Triggers initialization of phenological stages in the event of [PlantSowing](/docs/Models/Events.qmd#PlantSowing).
+The Phenology model acts as the master clock for plant development, coordinating timing signals with other components such as leaf expansion, stem elongation, grain development, and senescence processes. This temporal coordination ensures that developmental events occur in biologically realistic sequences and at appropriate rates given environmental conditions.
 
-## Methodology
+## Model Structure
 
-The phenology progression is triggered by several events, primarily the `DoPhenology` event which is called at each day.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-[Commencing](/docs/Models/Events.html#Commencing):
+The Phenology model inherits from the following classes:
 
-* Initializes the phenology model
-* Obtains the list of phases
-* Resets state variables.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhenology](/docs/Models/PMF/Interfaces/IPhenology.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-[PlantSowing](/docs/Models/Events.html#PlantSowing):
+## Connections to Other Components
 
-* Resets state variable
-* Initialise phenology development using the first phase
+{{< include /_includes/Models/connections-intro.md >}}
 
-[DoPhenology](/docs/Models/Events.html#DoPhenology):
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Link, First Available | Provides structural and lifecycle information for the plant. |
+| ThermalTime | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Calculates accumulated temperature used for phase progression. |
+| ZadokPMFWheat | ZadokPMFWheat | Link, Optional | Provides Zadok stage number for wheat crops. |
+| Age | Age | Child, By Name, Optional | Tracks plant age in years for perennial species. |
+| Structure | [IStructure](/docs/APSIM.Core/IStructure.qmd) | Field | Provides access to plant structural information and child components. |
 
-This is the core event that updates the phenological development at daily timestamp. The phenology development is only proceeded when plant is alive from Plant model.
+## Model Variables
 
-
-At each timestep, the `Phenology` model:
-
-* Check whether `ThermalTime` is available and more than 0. Throw an error if not.
-* Increments progress in the current phase using a `DoTimeStep` method.
-* Emits events when a phase ends or begins (e.g., `PhaseChanged`, `PlantEmerged`).
-* Handles special phase transitions like `GotoPhase` that may jump between stages.
-* Updates accumulated thermal time and phenological stage number (`Stage`).
-* Manages rewinding or fast-forwarding when the stage is reset.
-
-[Harvesting](/docs/Models/Events.html#Harvesting):
-
-* Set the end stage as the final phase (maturity) when harvesting occurs.
-
-[PlantEnding](/docs/Models/Events.html#PlantEnding):
-
-* Clears internal state when the simulation ends, ensuring no residual data persists.
-
-[StartOfDay](/docs/Models/Events.html#StartOfDay):
-
-* Reset daily tracking flags for new day.
-
-
-## Public Methods
-
-| Method                         | Description                                                             |
-|--------------------------------|-------------------------------------------------------------------------|
-| [`SetToStage(newStage)`](#settostage)        | Moves the crop to a specific development stage (e.g. flowering).         |
-
-
-### `SetToStage(newStage)` {#settostage}
-
-
-Sets the crop’s development (phenological) stage to a specified point, either moving forward or backward through its growth cycle. This method is used internally and in management scripts to simulate events like harvest, defoliation, or skipping to flowering.
-
-#### Summary
-
-This function is used to **manually set the crop to a particular stage of development** — for example, jumping directly to flowering, or rewinding after a grazing event. It ensures that internal growth stages, thermal time, and event signals stay biologically and numerically consistent.
-
-
-#### Key Use Cases
-
-- After **grazing or cutting** (e.g., regrowth after defoliation)
-- During **management overrides** (e.g., skipping to flowering)
-- At **harvest** (to force crop to final stage)
-- In **GotoPhase** logic to jump stages dynamically
-
-
-#### Behavior
-
-- **Rewind (go backward)**  
-
-    If the target stage is *earlier* than the current stage:
-    - Resets earlier phases
-    - Subtracts relevant thermal time
-    - Only specific phase types can be rewound (others will cause an error)
-
-- **Fast-forward (go forward)**  
-
-    If the target stage is *later* than the current stage:
-    - Skips forward through phases
-    - Adds appropriate thermal time
-    - Raises relevant events like `PlantEmerged` and `PhaseChanged`
-
-
-
-## Events
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)     | Initializes phenology and clears state                                    |
-| [PlantSowing](/docs/Models/Events.html#PlantSowing)   | Resets phenology and starts at sowing stage                              |
-| [DoPhenology](/docs/Models/Events.html#DoPhenology)   | Core timestep to update phenological development                         |
-| [StartOfDay](/docs/Models/Events.html#StartOfDay)     | Clears temporary stage-tracking flags for new day                        |
-| [Harvesting](/docs/Models/Events.html#Harvesting)     | Sets phenology directly to final phase (maturity)                        |
-| [PlantEnding](/docs/Models/Events.html#PlantEnding)   | Clears internal state when simulation ends                               |
-
-**Events Raised to**
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [`PhaseChanged`](/docs/Models/Events.html#PhaseChanged) | Indicates a new phase has started                                                   |
-| [`PlantEmerged`](/docs/Models/Events.html#PlantEmerged) | Signals that the emergence phase has been completed                                 |
-| [`StageWasReset`](/docs/Models/Events.html#StageWasReset) | Signals a manual reset of stage via `SetToStage()`                                  |
-| [`PostPhenology`](/docs/Models/Events.html#PostPhenology) | Raised after daily phenological timestep completes                                  |
-
-## Properties
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
-> No configurable properties are available for this function.
+> No configurable properties are available for this model.
 
 **Read-Only Reportable Properties**
 
 | Property             | Type    | Description                                                                 |
 |----------------------|---------|-----------------------------------------------------------------------------|
-| `StageNames`                    | List      | List of stage names in phenology                                   |
-| `StageCodes`                    | List      | List of numerical stage codes                                      |
-| `AccumulatedTT`                 | double    | Thermal time accumulated since sowing                              |
-| `AccumulatedEmergedTT`          | double    | Thermal time accumulated since emergence                           |
+| `StageNames`                    | List&lt;string&gt;      | List of stage names in phenology progression                                   |
+| `StageCodes`                    | List&lt;int&gt;      | List of numerical stage codes corresponding to each stage                                      |
+| `AccumulatedTT`                 | double    | Thermal time accumulated since sowing (°Cd)                              |
+| `AccumulatedEmergedTT`          | double    | Thermal time accumulated since emergence (°Cd)                           |
 | `Emerged`                       | bool      | Whether the plant has emerged from soil surface                    |
-| `Stage`                         | double    | One-based stage number                                             |
-| `CurrentPhaseName`              | string    | Name of the current phase                                          |
-| `CurrentStageName`              | string    | Name of the current stage                                          |
-| `FractionInCurrentPhase`        | double    | Proportion completed in current phase                              |
-| `CurrentPhase`                  | object    | The current phase object                                           |
-| `Zadok`                         | double    | Current Zadok stage number. Return 0 if child function `zadok` is missing |
-| `currentPhaseNumberIncrementedByPhaseTimeStep` | bool | True if phase increments stage number by phase time step           |
-| `PlantIsAlive`                  | bool      | True if the parent plant is alive                                  |
+| `Stage`                         | double    | One-based stage number with fractional completion                                             |
+| `CurrentPhaseName`              | string    | Name of the current phenological phase                                          |
+| `CurrentStageName`              | string    | Name of the current stage (only on first day of stage)                                          |
+| `FractionInCurrentPhase`        | double    | Proportion completed in current phase (0 to 1)                              |
+| `CurrentPhase`                  | IPhase    | The current phase object providing access to phase-specific properties                                           |
+| `Zadok`                         | double    | Current Zadok stage number for wheat (0 if not applicable)                                                        |
+
+## Events
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the Phenology model listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)     | Initializes phenology, refreshes phase list, and clears state variables                                    |
+| [PlantSowing](/docs/Models/Events.html#PlantSowing)   | Resets phenology and initializes the first phase at sowing                              |
+| [DoPhenology](/docs/Models/Events.html#DoPhenology)   | Core daily timestep to update phenological development and manage phase transitions                         |
+| [StartOfDay](/docs/Models/Events.html#StartOfDay)     | Clears temporary stage-tracking flags for new day                        |
+| [Harvesting](/docs/Models/Events.html#Harvesting)     | Sets phenology directly to final phase (maturity)                        |
+| [PlantEnding](/docs/Models/Events.html#PlantEnding)   | Clears internal state when plant lifecycle ends                               |
+| [Pruning](/docs/Models/Events.html#Pruning)           | Event handler for pruning events (currently no action)                   |
+
+**Events Raised**
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [`PhaseChanged`](/docs/Models/Events.html#PhaseChanged) | Indicates a new phase has started, providing the stage name                                                   |
+| [`PlantEmerged`](/docs/Models/Events.html#PlantEmerged) | Signals that the emergence phase has been completed                                 |
+| [`StageWasReset`](/docs/Models/Events.html#StageWasReset) | Signals a manual reset of stage via `SetToStage()`, providing the new stage number                                  |
+| [`PostPhenology`](/docs/Models/Events.html#PostPhenology) | Raised after daily phenological timestep completes, allowing dependent processes to respond                                  |
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Initialization and Setup
+
+At the **Commencing** event, the Phenology model:
+
+1. Refreshes the list of phases from child components
+2. Clears all state variables including stage number, accumulated thermal time, and phase tracking
+
+At **PlantSowing**, the model:
+
+1. Clears state variables and resets to initial conditions
+2. Marks the first stage (start of first phase) as having been passed today
+3. Initializes the current phase index to 0
+
+### Daily Phenological Development
+
+The core phenological progression occurs during the **DoPhenology** event. This process only executes when the plant is alive. The algorithm proceeds as follows:
+
+#### Step 1: Validate Thermal Time
+
+The model first checks that thermal time is available and positive. If thermal time is negative, an error is raised as this indicates an issue with the ThermalTime function configuration.
+
+#### Step 2: Progress Through Current Phase
+
+The current phase's `DoTimeStep` method is called, which:
+
+- Calculates phase-specific developmental progress based on environmental conditions
+- Returns `true` if the phase is complete and should transition to the next phase
+- Provides a proportion of the day to use for thermal time accumulation
+
+#### Step 3: Handle Phase Transitions
+
+When a phase completes:
+
+1. The completed stage name is added to the list of stages passed today
+2. The phase index increments to move to the next phase (unless already incremented by a GotoPhase)
+3. If the plant has just emerged, the `PlantEmerged` event is raised
+4. The `PhaseChanged` event is raised with the new stage name
+5. If the new phase is a `GotoPhase`, it immediately executes its stage-setting logic
+6. The new phase's `DoTimeStep` is called to check if it also completes on the same day
+
+This process repeats until a phase does not complete within the same timestep.
+
+#### Step 4: Update Accumulated Thermal Time
+
+Unless the stage was manually set via `SetToStage` today:
+
+- Total accumulated thermal time increases by today's thermal time value
+- If the plant has emerged, emerged thermal time also increases
+
+
+#### Step 5: Raise Post-Phenology Event
+
+After all phenological calculations are complete, the `PostPhenology` event is raised, allowing other components to respond to the updated developmental state.
+
+### Stage Manipulation
+
+#### SetToStage Method
+
+The `SetToStage` method allows manual control of phenological development, either moving forward or backward through stages. This is used for management actions (harvest, cutting) or special phase logic (GotoPhase).
+
+The method accepts either a stage name (string) or stage number (double) and performs different operations depending on direction:
+
+**Rewinding (Moving to Earlier Stage):**
+
+When setting to an earlier stage:
+
+1. Identifies all phases between the current and target stages
+2. Validates that each phase can be rewound (only specific phase types support rewinding)
+3. For each phase being rewound:
+   - Subtracts the phase's accumulated thermal time from total and emerged thermal time
+   - Calls the phase's `ResetPhase` method to clear internal state
+4. Ensures accumulated thermal time values remain non-negative
+
+**Fast-Forwarding (Moving to Later Stage):**
+
+When setting to a later stage:
+
+1. Identifies all phases between current and target stages
+2. For each phase to skip:
+   - Adds the stage name to stages passed today
+   - If the phase has a target, adds the remaining thermal time to reach the target
+   - Raises `PlantEmerged` event if crossing emergence
+   - Raises `PhaseChanged` event for each stage transition
+3. Sets the target phase's progress to the appropriate fraction
+
+**Fractional Stage Setting:**
+
+When setting to a fractional stage (e.g., 3.5), the model:
+
+- Moves to the phase corresponding to the integer part (phase 3)
+- Sets progress within that phase to the fractional part (50% through phase 3)
+
+The `StageWasReset` event is raised at the conclusion to signal that a manual stage change occurred.
+
+### Phase Completion by Date
+
+For phases that implement `IPhaseWithSetableCompletionDate`, the model can force completion on a specific calendar date rather than using the phase's normal progression mechanism. This is managed through:
+
+1. `SetPhaseCompletionDate(completionDate, phaseName)`: Sets the target date for a named phase
+2. `FractionComplete()`: Calculates fractional progress based on days elapsed vs total days to completion date
+3. `checkIfCompletionDate()`: Determines if today matches the completion date
+
+This mechanism is particularly useful for:
+
+- Matching observed phenological dates in calibration
+- Management overrides for specific calendar-based events
+- Ensuring germination occurs before a set emergence date
+
+### Utility Methods
+
+The Phenology model provides several utility methods for querying developmental state:
+
+- **`OnStartDayOf(stageName)`**: Returns `true` if today is the first day of the specified stage
+- **`InPhase(phaseName)`**: Returns `true` if currently in the named phase
+- **`Between(start, end)`**: Returns `true` if current phase is between start and end stages (inclusive)
+- **`Beyond(start)`**: Returns `true` if current phase is at or past the specified start stage
+- **`PhaseStartingWith(start)`**: Returns the phase object that begins with the specified stage name
+- **`IndexFromPhaseName(name)`**: Returns the array index of a phase by name
+- **`StartStagePhaseIndex(stageName)`**: Returns the index of the phase starting with the specified stage
+- **`EndStagePhaseIndex(stageName)`**: Returns the index of the phase ending with the specified stage
+
+
+## Public Methods
+
+The Phenology model exposes several public methods for interacting with phenological development:
+
+| Method                         | Description                                                             |
+|--------------------------------|-------------------------------------------------------------------------|
+| `SetToStage(string newStage)` | Moves the crop to a specific development stage by name (e.g., "Flowering") |
+| `SetToStage(double newStage)` | Moves the crop to a specific development stage by number (e.g., 3.5) |
+| `SetToEndStage()` | Sets phenology to the final stage (typically used at harvest) |
+| `SetAge(double newAge)` | Sets the age in years for perennial crops (if Age component present) |
+| `OnStartDayOf(string stageName)` | Returns true if today is the first day of the specified stage |
+| `InPhase(string phaseName)` | Returns true if currently in the named phase |
+| `Between(string start, string end)` | Returns true if between two stages (inclusive) |
+| `Beyond(string start)` | Returns true if at or past the specified start stage |
+| `PhaseStartingWith(string start)` | Returns the phase object beginning with specified stage |
+| `IndexFromPhaseName(string name)` | Returns array index of a phase by name |
+| `StartStagePhaseIndex(string stageName)` | Returns index of phase starting with specified stage |
+| `EndStagePhaseIndex(string stageName)` | Returns index of phase ending with specified stage |
+| `SetPhaseCompletionDate(string completionDate, string phaseName)` | Forces a phase to complete on a specific calendar date |
+| `GetPhaseTable()` | Returns a DataTable listing all phases with their start/end stages |
+
 
 
 ## User Interface
 
 `Phenology` can be added as a child of a `Plant` node in the APSIM NG model tree. Right-click the plant node, select "Add Model...", and search for `Phenology` in the Filter Box.
 
-## Practical Example
+### Required Child Components
 
-> No practical example is available for this function.
+The Phenology model requires the following child components:
+
+- **ThermalTime**: An `IFunction` that calculates daily thermal time accumulation. This is referenced by name and must be present.
+- **Phase sequence**: A series of phase components (implementing `IPhase`) that define the developmental progression. Phases must be added in sequential order.
+
+### Optional Child Components
+
+- **ZadokPMFWheat**: Provides Zadok stage numbering for wheat crops
+- **Age**: Tracks plant age for perennial species
+
+## Phases
+
+A list of available phenology phases that can be added as children to the Phenology model:
+
+```{r tbl-phases}
+# Get the directory containing the Phenology.qmd file
+phenology_dir <- "docs/Models/PMF/Phenology/Phases" |> here::here()
+
+# List all .qmd files in the same directory
+phase_files <- list.files(phenology_dir, pattern = "\\.qmd$", full.names = FALSE)
+
+# Remove Phenology.qmd from the list to get only phase files
+phase_files <- phase_files[phase_files != "Phenology.qmd"]
+
+# Create a data frame with phase information
+phases_df <- data.frame(
+  Phase = tools::file_path_sans_ext(phase_files),
+  File = phase_files,
+  stringsAsFactors = FALSE
+)
+
+# Display as a table
+# Get the directory containing the Phenology.qmd file
+phenology_dir <- "docs/Models/PMF/Phenology/Phases" |> here::here()
+
+# List all .qmd files in the same directory, excluding those starting with "IPhase" or "index"
+phase_files <- list.files(phenology_dir, pattern = "\\.qmd$", full.names = TRUE)
+phase_files <- phase_files[!grepl("^(IPhase|index)", basename(phase_files), ignore.case = TRUE)]
+# Function to extract description from YAML frontmatter or first paragraph
+get_description <- function(file_path) {
+  if (!file.exists(file_path)) return("Description not available")
+  
+  lines <- readLines(file_path, warn = FALSE)
+  
+  # Try to find description in YAML frontmatter
+  yaml_start <- which(lines == "---")[1]
+  yaml_end <- which(lines == "---")[2]
+  
+  if (!is.na(yaml_start) && !is.na(yaml_end)) {
+    yaml_lines <- lines[(yaml_start + 1):(yaml_end - 1)]
+    desc_line <- grep("^description:", yaml_lines, value = TRUE)
+    if (length(desc_line) > 0) {
+      desc <- sub("^description:\\s*[\"']?", "", desc_line[1])
+      desc <- sub("[\"']?\\s*$", "", desc)
+      return(desc)
+    }
+  }
+  
+  # Look for content between YAML header and ## Overview
+  content_start <- ifelse(is.na(yaml_end), 1, yaml_end + 1)
+  overview_line <- grep("^##\\s+Overview", lines)
+  
+  if (length(overview_line) > 0) {
+    # Extract content between YAML end and Overview section
+    content_lines <- lines[content_start:(overview_line[1] - 1)]
+    content_lines <- content_lines[nzchar(trimws(content_lines))]
+    content_lines <- content_lines[!grepl("^```", content_lines)]
+    
+    if (length(content_lines) > 0) {
+      # Combine and take first sentence or 100 characters
+      full_text <- paste(content_lines, collapse = " ")
+      first_sentence <- strsplit(full_text, "\\. ")[[1]][1]
+      return(substr(first_sentence, 1, 100))
+    }
+  }
+  
+  # Fallback: extract first non-empty paragraph after YAML
+  content_lines <- lines[content_start:length(lines)]
+  content_lines <- content_lines[nzchar(trimws(content_lines))]
+  content_lines <- content_lines[!grepl("^```", content_lines)]
+  content_lines <- content_lines[!grepl("^#", content_lines)]
+  
+  if (length(content_lines) > 0) {
+    first_para <- content_lines[1]
+    first_sentence <- strsplit(first_para, "\\. ")[[1]][1]
+    return(substr(first_sentence, 1, 100))
+  }
+  
+  return("Description not available")
+}
+
+# Create a data frame with phase information
+phases_df <- data.frame(
+  Phase = tools::file_path_sans_ext(basename(phase_files)),
+  Description = sapply(phase_files, get_description, USE.NAMES = FALSE),
+  File = basename(phase_files),
+  stringsAsFactors = FALSE
+)
+
+# Create markdown links for the phase names
+phases_df$Phase <- paste0("[", phases_df$Phase, "](/docs/Models/PMF/Phenology/Phases/", 
+                         tools::file_path_sans_ext(phases_df$File), ".qmd)")
+
+knitr::kable(phases_df[, c("Phase", "Description")], 
+             caption = "Phenology Phases Available",
+             col.names = c("Phase", "Description"))
+```
 
 ## See Also
 
