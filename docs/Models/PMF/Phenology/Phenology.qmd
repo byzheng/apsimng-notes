@@ -325,7 +325,7 @@ get_description <- function(file_path) {
       # Combine and take first sentence or 100 characters
       full_text <- paste(content_lines, collapse = " ")
       first_sentence <- strsplit(full_text, "\\. ")[[1]][1]
-      return(substr(first_sentence, 1, 100))
+      return(paste0(substr(first_sentence, 1, 100), " ..."))
     }
   }
   
@@ -338,7 +338,7 @@ get_description <- function(file_path) {
   if (length(content_lines) > 0) {
     first_para <- content_lines[1]
     first_sentence <- strsplit(first_para, "\\. ")[[1]][1]
-    return(substr(first_sentence, 1, 100))
+    return(paste0(substr(first_sentence, 1, 100), " ..."))
   }
   
   return("Description not available")
