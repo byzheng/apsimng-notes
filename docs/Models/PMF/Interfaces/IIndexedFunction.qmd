@@ -1,0 +1,21 @@
+---
+title: "IIndexedFunction"
+format: html
+---
+
+An interface for functions that accept an index value as input and return a computed output value, enabling direct parameterized evaluation without requiring child model dependencies.
+
+## Overview
+
+IIndexedFunction is a fundamental interface in APSIM Next Generation that extends IModel to provide indexed function evaluation capabilities. Unlike the standard IFunction interface which retrieves values from child models in the simulation tree, IIndexedFunction allows functions to accept a direct numerical input parameter (the index) and return a computed value based on that input.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [IModel](/docs/Models/Core/IModel.qmd)
+
+
+## See Also
+
+* **Source code:** [IIndexedFunction.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Interfaces/IIndexedFunction.cs)

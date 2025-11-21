@@ -31,9 +31,9 @@ format: html
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
-| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | First Available | Provides structural and lifecycle information for the plant. |
-| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | First Available | Supplies current growth stage and timing of key events. |
-| ThermalTime | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child | Calculates accumulated temperature used for leaf and stem development. |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Link, First Available | Provides structural and lifecycle information for the plant. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link, First Available | Supplies current growth stage and timing of key events. |
+| ThermalTime | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Calculates accumulated temperature used for leaf and stem development. |
 
 ## Model Variables
 

@@ -28,11 +28,11 @@ SubDailyInterpolation is particularly critical for thermal time calculations, wh
 
 {{< include /_includes/Models/connections-intro.md >}}
 
-| Component | Connection Type | Description |
-|-----------|-----------------|-------------|
-| InterpolationMethod | [IInterpolationMethod](/docs/Models/Interfaces/IInterpolationMethod.qmd) (Child, ByName) | Generates sub-daily values from daily minimum and maximum inputs. Common implementations include ThreeHourAirTemperature and other temporal interpolation methods. |
-| Response | [IIndexedFunction](/docs/Models/Core/IIndexedFunction.qmd) (Child, ByName) | Applies a transformation to each sub-daily interpolated value. Typically an XYPairs function defining temperature response curves with base, optimum, and maximum thresholds. |
-| MetData | [IWeather](/docs/Models/Interfaces/IWeather.qmd) (Link) | Provides daily weather data including minimum and maximum values for the variable being interpolated (usually air temperature). |
+| Component | Model | Connection Type | Description |
+|-----------|-------|-----------------|-------------|
+| InterpolationMethod | [IInterpolationMethod](/docs/Models/Interfaces/IInterpolationMethod.qmd) | Child, ByName | Generates sub-daily values from daily minimum and maximum inputs. Common implementations include ThreeHourAirTemperature and other temporal interpolation methods. |
+| Response | [IIndexedFunction](/docs/Models/PMF/Interfaces/IIndexedFunction.qmd) | Child, ByName | Applies a transformation to each sub-daily interpolated value. Typically an XYPairs function defining temperature response curves with base, optimum, and maximum thresholds. |
+| MetData | [IWeather](/docs/Models/Interfaces/IWeather.qmd) | First Available | Provides daily weather data including minimum and maximum values for the variable being interpolated (usually air temperature). |
 
 ## Model Variables
 
