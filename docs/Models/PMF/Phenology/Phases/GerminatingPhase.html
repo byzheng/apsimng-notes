@@ -56,7 +56,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
+  "show-item-context": true,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,6 +98,7 @@ cookieconsent.run({
 });
 </script> 
   
+<script src="../../../../../_scripts/js/fuzzy-search.js"></script>
 <style>
 div.callout-needs-improvement.callout {
   border-left-color: #FFCC00;
@@ -1198,6 +1199,9 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
+<div class="quarto-include-in-search-index" style="display:none;">
+Docs Models PMF Phenology Phases GerminatingPhase
+</div>
 <p>The <code>GerminatingPhase</code> represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g.&nbsp;soil moisture, temperature, or a user-specified germination date.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>

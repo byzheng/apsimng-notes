@@ -56,7 +56,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
+  "show-item-context": true,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,6 +98,7 @@ cookieconsent.run({
 });
 </script> 
   
+<script src="../../../../_scripts/js/fuzzy-search.js"></script>
 <style>
 div.callout-needs-improvement.callout {
   border-left-color: #FFCC00;
@@ -1231,6 +1232,9 @@ window.Quarto = {
 </header>
 
 
+<div class="quarto-include-in-search-index" style="display:none;">
+Docs Models PMF Arbitrator Relative Allocation
+</div>
 <p>The <code>RelativeAllocation</code> module implements a <strong>proportional allocation strategy</strong> to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles <strong>partitioning of dry matter (DM)</strong> and <strong>nutrients</strong> (e.g.&nbsp;nitrogen) based on each organ’s demand.</p>
 <p>This method is part of the broader plant allocation system and is invoked by arbitrator components such as <code>BiomassTypeArbitrator</code>.</p>
 <section id="biological-motivation" class="level2">

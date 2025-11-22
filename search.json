@@ -109,7 +109,7 @@
     "href": "docs/index.html",
     "title": "Docs",
     "section": "",
-    "text": "Note\n\n\n\n⚠️ This is not the official APSIM documentation. For official information, refer to APSIM Official Website\n\n\n\n\n🧩 Models\nTechnical notes on APSIM NG core models (e.g., soil, management, utilities).\nExplore Model →\n\n\n🌿 Plants\nDocumentation for plant models, including phenology, grain filling, and stress responses.\nView Plants →\n\n\n\n\n🧠 Symbols\nMathematical symbols used across APSIM NG documentation, grouped by function.\nView Symbols →\n\n\n🔤 Abbreviations\nCommon abbreviations and acronyms used in APSIM NG.\nView Abbreviations →\n\n\n\nThese are personal documentation notes for APSIM Next Generation, compiled from various sources and personal experience, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\nThese notes may contain errors, be incomplete, or reflect outdated information. See the full disclaimer.\nI will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via GitHub pull requests or issues.\n\n\n\n\n\n\nNote\n\n\n\nThis documentation is updated to this commit: b9f9abca67191765f8a2de01e7cf0ce1c3f4a615 on 8 July 2025.",
+    "text": "Docs Docs\n\n\n\n\n\n\n\nNote\n\n\n\n⚠️ This is not the official APSIM documentation. For official information, refer to APSIM Official Website\n\n\n\n\n🧩 Models\nTechnical notes on APSIM NG core models (e.g., soil, management, utilities).\nExplore Model →\n\n\n🌿 Plants\nDocumentation for plant models, including phenology, grain filling, and stress responses.\nView Plants →\n\n\n\n\n🧠 Symbols\nMathematical symbols used across APSIM NG documentation, grouped by function.\nView Symbols →\n\n\n🔤 Abbreviations\nCommon abbreviations and acronyms used in APSIM NG.\nView Abbreviations →\n\n\n\nThese are personal documentation notes for APSIM Next Generation, compiled from various sources and personal experience, including:\n\nAPSIM Official Website\nAPSIM User Documentation\n\nModel Validation Docs\n\nAPSIM GitHub Repository\nPersonal communication with APSIM developers\nMy own interpretation and understanding\nLarge language models (e.g., GitHub Copilot, ChatGPT)\n\nThese notes may contain errors, be incomplete, or reflect outdated information. See the full disclaimer.\nI will continue updating this documentation as I work with APSIM Next Generation. Contributions are welcome via GitHub pull requests or issues.\n\n\n\n\n\n\nNote\n\n\n\nThis documentation is updated to this commit: b9f9abca67191765f8a2de01e7cf0ce1c3f4a615 on 8 July 2025.",
     "crumbs": [
       "Home",
       "Docs"
@@ -120,7 +120,7 @@
     "href": "docs/Plants/index.html",
     "title": "Plants",
     "section": "",
-    "text": "This section contains the documentation for Plants models in APSIM Next Generation. The Plants models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each plant, the documentation is organised as the original model structure defined in the JSON file.\n\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Chickpea →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Oats →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete",
+    "text": "Docs Plants Plants\n\nThis section contains the documentation for Plants models in APSIM Next Generation. The Plants models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each plant, the documentation is organised as the original model structure defined in the JSON file.\n\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Chickpea →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Oats →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete",
     "crumbs": [
       "Home",
       "Docs",
@@ -132,7 +132,7 @@
     "href": "docs/Plants/Wheat/Traits/index.html",
     "title": "Traits",
     "section": "",
-    "text": "Here is a summary of the traits described in multiple components.\n\nCO2: Response of wheat to elevated atmospheric CO2 concentration.\nFrost and Heat Combined Stress: Frost and heat stresses impact on wheat development and yield.",
+    "text": "Docs Plants Wheat Traits Traits\n\nHere is a summary of the traits described in multiple components.\n\nCO2: Response of wheat to elevated atmospheric CO2 concentration.\nFrost and Heat Combined Stress: Frost and heat stresses impact on wheat development and yield.",
     "crumbs": [
       "Home",
       "Docs",
@@ -146,7 +146,7 @@
     "href": "docs/Plants/Wheat/Traits/FrostHeat.html",
     "title": "Frost and Heat Combined Stress",
     "section": "",
-    "text": "The low temperature stresses (frost) can cause damage to wheat crops, particularly during sensitive growth stages such as flowering. Frost stress can lead to reduced grain yield and quality by affecting the development of reproductive organs and impairing physiological processes. The frost stress damage is simulated based on minimum air temperature and crop development stage in the FrostHeatDamageFunction.",
+    "text": "Docs Plants Wheat Traits Frost and Heat Combined Stress\nThe low temperature stresses (frost) can cause damage to wheat crops, particularly during sensitive growth stages such as flowering. Frost stress can lead to reduced grain yield and quality by affecting the development of reproductive organs and impairing physiological processes. The frost stress damage is simulated based on minimum air temperature and crop development stage in the FrostHeatDamageFunction.",
     "crumbs": [
       "Home",
       "Docs",
@@ -172,11 +172,25 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Wheat/Spike/index.html",
+    "href": "docs/Plants/Wheat/Spike/index.html",
+    "title": "Spike",
+    "section": "",
+    "text": "Docs Plants Wheat Spike Spike",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Spike"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Wheat/Phenology/index.html",
     "href": "docs/Plants/Wheat/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "The Phenology model in APSIM NG simulates the development of wheat plants.",
+    "text": "Docs Plants Wheat Phenology Phenology\nThe Phenology model in APSIM NG simulates the development of wheat plants.",
     "crumbs": [
       "Home",
       "Docs",
@@ -260,7 +274,7 @@
     "href": "docs/Plants/Wheat/Phenology/ThermalTime.html",
     "title": "Thermal Time",
     "section": "",
-    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Wheat model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
+    "text": "Docs Plants Wheat Phenology Thermal Time\nThermal time (also called growing degree days) is the primary driver of phenological development in the Wheat model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
     "crumbs": [
       "Home",
       "Docs",
@@ -365,7 +379,7 @@
     "href": "docs/Plants/Wheat/Phenology/SpikeletsDifferentiating.html",
     "title": "SpikeletsDifferentiating",
     "section": "",
-    "text": "The SpikeletsDifferentiating phase in Wheat represents the developmental period from DoubleRidge to MaximumSpikeletPrimordia. It is influenced by vernalisation expression after double ridge.",
+    "text": "Docs Plants Wheat Phenology SpikeletsDifferentiating\nThe SpikeletsDifferentiating phase in Wheat represents the developmental period from DoubleRidge to MaximumSpikeletPrimordia. It is influenced by vernalisation expression after double ridge.",
     "crumbs": [
       "Home",
       "Docs",
@@ -440,7 +454,7 @@
     "href": "docs/Plants/Wheat/Phenology/Phyllochron.html",
     "title": "Phyllochron",
     "section": "",
-    "text": "Phyllochron is a model that estimates how quickly new leaves appear on a wheat plant after it emerges from the soil. This timing is important because it influences later growth stages and ultimately affects crop yield and development.",
+    "text": "Docs Plants Wheat Phenology Phyllochron\nPhyllochron is a model that estimates how quickly new leaves appear on a wheat plant after it emerges from the soil. This timing is important because it influences later growth stages and ultimately affects crop yield and development.",
     "crumbs": [
       "Home",
       "Docs",
@@ -545,7 +559,7 @@
     "href": "docs/Plants/Wheat/Phenology/Heading.html",
     "title": "Heading",
     "section": "",
-    "text": "The Heading phase represents the developmental stage between FlagLeafAppearance and HeadEmergence in wheat crops. It models the progression of time and environmental responses that lead to the visible emergence of the crop’s head.",
+    "text": "Docs Plants Wheat Phenology Heading\nThe Heading phase represents the developmental stage between FlagLeafAppearance and HeadEmergence in wheat crops. It models the progression of time and environmental responses that lead to the visible emergence of the crop’s head.",
     "crumbs": [
       "Home",
       "Docs",
@@ -620,7 +634,7 @@
     "href": "docs/Plants/Wheat/Phenology/GrainRipening.html",
     "title": "GrainRipening",
     "section": "",
-    "text": "The GrainRipening phase in Wheat represents the developmental period from EndGrainFill to HarvestRipe. It is influenced by thermal time only.",
+    "text": "Docs Plants Wheat Phenology GrainRipening\nThe GrainRipening phase in Wheat represents the developmental period from EndGrainFill to HarvestRipe. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -680,7 +694,7 @@
     "href": "docs/Plants/Wheat/Phenology/GrainExpanding.html",
     "title": "GrainExpanding",
     "section": "",
-    "text": "The GrainExpanding phase in Wheat represents the developmental period from Anthesis to MaximumGrainLength. It is influenced by thermal time only.",
+    "text": "Docs Plants Wheat Phenology GrainExpanding\nThe GrainExpanding phase in Wheat represents the developmental period from Anthesis to MaximumGrainLength. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -740,7 +754,7 @@
     "href": "docs/Plants/Wheat/Phenology/Flowering.html",
     "title": "Flowering",
     "section": "",
-    "text": "The Flowering phase in Wheat represents the developmental period from HeadEmergence to Anthesis. It is influenced by thermal time only.",
+    "text": "Docs Plants Wheat Phenology Flowering\nThe Flowering phase in Wheat represents the developmental period from HeadEmergence to Anthesis. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -796,11 +810,25 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Wheat/Leaf/index.html",
+    "href": "docs/Plants/Wheat/Leaf/index.html",
+    "title": "Leaf",
+    "section": "",
+    "text": "Docs Plants Wheat Leaf Leaf",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Leaf"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Wheat/Grain/NitrogenDemand.html",
     "href": "docs/Plants/Wheat/Grain/NitrogenDemand.html",
     "title": "Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)",
     "section": "",
-    "text": "The wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
+    "text": "Docs Plants Wheat Grain Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)\nThe wheat nitrogen filling rate or nitrogen demand of grain is calculated during the grain filling period, specifically between the phenological stages of Anthesis and EndGrainFill. During this period, grain is the only organ that requires nitrogen for development as other organs (e.g., leaves, stems and roots) have already completed their growth and are not actively accumulating nitrogen for grain development.\nWheat grain nitrogen demand is only for structural nitrogen, which is not the same as other organs including metabolic and storage nitrogen (e.g., leaves, stems, and roots).",
     "crumbs": [
       "Home",
       "Docs",
@@ -875,7 +903,7 @@
     "href": "docs/Plants/Oats/index.html",
     "title": "Oats",
     "section": "",
-    "text": "The APSIM Oats model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as oats, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Docs Plants Oats Oats\nThe APSIM Oats model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as oats, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
@@ -914,7 +942,7 @@
     "href": "docs/Plants/Oats/Phenology/ThermalTime.html",
     "title": "Thermal Time",
     "section": "",
-    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Oats model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
+    "text": "Docs Plants Oats Phenology Thermal Time\nThermal time (also called growing degree days) is the primary driver of phenological development in the Oats model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1019,7 +1047,7 @@
     "href": "docs/Plants/Chickpea/index.html",
     "title": "Chickpea",
     "section": "",
-    "text": "The APSIM Chickpea model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as chickpea, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Docs Plants Chickpea Chickpea\nThe APSIM Chickpea model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as chickpea, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1058,7 +1086,7 @@
     "href": "docs/Plants/Canola/index.html",
     "title": "Canola",
     "section": "",
-    "text": "The Canola (Brassica napus) model in APSIM Next Generation simulates the growth and development of canola crops. It is designed to capture the key physiological processes that influence canola yield, including phenology, biomass accumulation, and stress responses.\nThe APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Docs Plants Canola Canola\nThe Canola (Brassica napus) model in APSIM Next Generation simulates the growth and development of canola crops. It is designed to capture the key physiological processes that influence canola yield, including phenology, biomass accumulation, and stress responses.\nThe APSIM Canola model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as canola, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1110,7 +1138,7 @@
     "href": "docs/Plants/Canola/Phenology/Vegetative.html",
     "title": "Vegetative",
     "section": "",
-    "text": "The Vegetative phase in Canola represents the developmental period from Emergence to FloralInitiation. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology Vegetative\nThe Vegetative phase in Canola represents the developmental period from Emergence to FloralInitiation. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1170,7 +1198,7 @@
     "href": "docs/Plants/Canola/Phenology/StemElongation.html",
     "title": "StemElongation",
     "section": "",
-    "text": "The StemElongation phase in Canola represents the developmental period from GreenBud to StartFlowering. It is influenced by thermal time only and the target is influenced by photoperiod.",
+    "text": "Docs Plants Canola Phenology StemElongation\nThe StemElongation phase in Canola represents the developmental period from GreenBud to StartFlowering. It is influenced by thermal time only and the target is influenced by photoperiod.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1230,7 +1258,7 @@
     "href": "docs/Plants/Canola/Phenology/ReadyForHarvesting.html",
     "title": "ReadyForHarvesting",
     "section": "",
-    "text": "The ReadyForHarvesting phase in Canola represents the last phase after HarvestRipe.",
+    "text": "Docs Plants Canola Phenology ReadyForHarvesting\nThe ReadyForHarvesting phase in Canola represents the last phase after HarvestRipe.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1290,7 +1318,7 @@
     "href": "docs/Plants/Canola/Phenology/Maturing.html",
     "title": "Maturing",
     "section": "",
-    "text": "The Maturing phase in Canola represents the developmental period from EndGrainFill to Maturity. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology Maturing\nThe Maturing phase in Canola represents the developmental period from EndGrainFill to Maturity. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1350,7 +1378,7 @@
     "href": "docs/Plants/Canola/Phenology/Germinating.html",
     "title": "Germinating",
     "section": "",
-    "text": "The Germinating is a phenological phase in Canola used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
+    "text": "Docs Plants Canola Phenology Germinating\nThe Germinating is a phenological phase in Canola used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1410,7 +1438,7 @@
     "href": "docs/Plants/Canola/Phenology/EarlyPodDevelopment.html",
     "title": "EarlyPodDevelopment",
     "section": "",
-    "text": "The EarlyPodDevelopment phase in Canola represents the developmental period from StartPodDevelopment to StartGrainFilling. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology EarlyPodDevelopment\nThe EarlyPodDevelopment phase in Canola represents the developmental period from StartPodDevelopment to StartGrainFilling. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1470,7 +1498,7 @@
     "href": "docs/Plants/Canola/Phenology/EarlyFlowering.html",
     "title": "EarlyFlowering",
     "section": "",
-    "text": "The EarlyFlowering phase in Canola represents the developmental period from StartFlowering to StartPodDevelopment. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology EarlyFlowering\nThe EarlyFlowering phase in Canola represents the developmental period from StartFlowering to StartPodDevelopment. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1526,11 +1554,33 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Canola/Leaf/index.html",
+    "href": "docs/Plants/Canola/Leaf/index.html",
+    "title": "Leaf",
+    "section": "",
+    "text": "Docs Plants Canola Leaf Leaf"
+  },
+  {
+    "objectID": "docs/Plants/Canola/Leaf/FinalLeafNumber.html",
+    "href": "docs/Plants/Canola/Leaf/FinalLeafNumber.html",
+    "title": "FinalLeafNumber",
+    "section": "",
+    "text": "Docs Plants Canola Leaf FinalLeafNumber",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Leaf",
+      "FinalLeafNumber"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Barley/index.html",
     "href": "docs/Plants/Barley/index.html",
     "title": "Barley",
     "section": "",
-    "text": "The APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Docs Plants Barley Barley\nThe APSIM Barley model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as barley, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1569,7 +1619,7 @@
     "href": "docs/Models/Variables.html",
     "title": "Model Variables",
     "section": "",
-    "text": "Model variables describe the quantities used by APSIM Next Generation to represent the state, structure, or behaviour of each model component.\nThey can represent measurable properties (e.g., leaf area, soil water content) or control parameters (e.g., growth rate factors).\nThis page explains how variables are classified and used throughout the APSIM framework.",
+    "text": "Docs Models Model Variables\nModel variables describe the quantities used by APSIM Next Generation to represent the state, structure, or behaviour of each model component.\nThey can represent measurable properties (e.g., leaf area, soil water content) or control parameters (e.g., growth rate factors).\nThis page explains how variables are classified and used throughout the APSIM framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1608,7 +1658,7 @@
     "href": "docs/Models/Traits/CO2/index.html",
     "title": "CO2",
     "section": "",
-    "text": "CO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script.",
+    "text": "Docs Models Traits CO2 CO2\nCO2 is a key factor in plant growth and development, influencing various physiological processes. In APSIM NG, CO2 effects can be modeled to simulate its impact on radiation use efficiency (RUE), stomatal conductance, and critical nitrogen concentration.\nThe default CO2 concentration in APSIM NG is set to 350 ppm, but it can be adjusted to simulate different atmospheric conditions with manager script.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1664,7 +1714,7 @@
     "href": "docs/Models/PMF/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "Phenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\nPhenology is the main model to simulate the developmental progression of a plant through a series of defined growth stages based on progression to completion.\nPhases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\nCAMP is the Cereal Anthesis Molecular Phenology (CAMP) model which is based on the Kirby Framework, and assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis.",
+    "text": "Docs Models PMF Phenology Phenology\n\nPhenology is the component responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\nPhenology is the main model to simulate the developmental progression of a plant through a series of defined growth stages based on progression to completion.\nPhases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\nCAMP is the Cereal Anthesis Molecular Phenology (CAMP) model which is based on the Kirby Framework, and assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1678,7 +1728,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/BBCH.html",
     "title": "BBCH",
     "section": "",
-    "text": "A phenological staging system that converts APSIM-NG’s internal growth stages into standardized BBCH (Biologische Bundesanstalt, Bundessortenamt und CHemische Industrie) growth stages for cereals (Meier 2001), providing internationally recognized developmental benchmarks for agricultural research and management.",
+    "text": "Docs Models PMF Phenology Scales BBCH\nA phenological staging system that converts APSIM-NG’s internal growth stages into standardized BBCH (Biologische Bundesanstalt, Bundessortenamt und CHemische Industrie) growth stages for cereals (Meier 2001), providing internationally recognized developmental benchmarks for agricultural research and management.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1806,7 +1856,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/index.html",
     "title": "Phases",
     "section": "",
-    "text": "Phases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nIPhase\n\n\n\n\n\n\n\n\n\nIPhaseWithSetableCompletionDate\n\n\n\n\n\n\n\n\n\nIPhaseWithTarget\n\n\n\n\n\n\n\n\n\nLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nSimpleLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nVernalisationPhase\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models PMF Phenology Phases Phases\n\nPhases are the individual growth stages that define the plant’s lifecycle, such as emergence, flowering, and maturity. Each phase has specific characteristics and requirements for progression.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nEmergingPhase\n\n\n\n\n\n\n\n\n\nEndPhase\n\n\n\n\n\n\n\n\n\nGenericPhase\n\n\n\n\n\n\n\n\n\nGerminatingPhase\n\n\n\n\n\n\n\n\n\nIPhase\n\n\n\n\n\n\n\n\n\nIPhaseWithSetableCompletionDate\n\n\n\n\n\n\n\n\n\nIPhaseWithTarget\n\n\n\n\n\n\n\n\n\nLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nSimpleLeafAppearancePhase\n\n\n\n\n\n\n\n\n\nVernalisationPhase\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -1821,7 +1871,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html",
     "title": "SimpleLeafAppearancePhase",
     "section": "",
-    "text": "The SimpleLeafAppearancePhase represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number.",
+    "text": "Docs Models PMF Phenology Phases SimpleLeafAppearancePhase\nThe SimpleLeafAppearancePhase represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number.",
     "crumbs": [
       "Home",
       "Docs",
@@ -1965,7 +2015,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html",
     "title": "IPhaseWithTarget",
     "section": "",
-    "text": "The IPhaseWithTarget interface extends the IPhase interface to define phenological phases that progress toward a specific target value. It provides standardized properties for tracking both the target threshold and the accumulated progress through the phase.",
+    "text": "Docs Models PMF Phenology Phases IPhaseWithTarget\nThe IPhaseWithTarget interface extends the IPhase interface to define phenological phases that progress toward a specific target value. It provides standardized properties for tracking both the target threshold and the accumulated progress through the phase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2045,7 +2095,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/IPhase.html",
     "title": "IPhase",
     "section": "",
-    "text": "The IPhase interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.",
+    "text": "Docs Models PMF Phenology Phases IPhase\nThe IPhase interface defines the contract for a single developmental phase within the APSIM NG phenology module. It establishes the standard methods and properties that every phenological phase model must implement to enable modular, interchangeable phase components within the crop development system.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2125,7 +2175,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/GenericPhase.html",
     "title": "GenericPhase",
     "section": "",
-    "text": "The GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.",
+    "text": "Docs Models PMF Phenology Phases GenericPhase\nThe GenericPhase is a phenological phase used within a plant’s developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2221,7 +2271,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/EmergingPhase.html",
     "title": "EmergingPhase",
     "section": "",
-    "text": "The EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges from the soil and completes the phase once those criteria are satisfied. Typically, it spans from the Germinated stage to the Emergence stage, and its completion is determined by either thermal time accumulation or a user-specified emergence date.",
+    "text": "Docs Models PMF Phenology Phases EmergingPhase\nThe EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from germination to emergence. It defines the conditions under which a seed emerges from the soil and completes the phase once those criteria are satisfied. Typically, it spans from the Germinated stage to the Emergence stage, and its completion is determined by either thermal time accumulation or a user-specified emergence date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2381,7 +2431,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html",
     "title": "FinalLeafNumberSet",
     "section": "",
-    "text": "The FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
+    "text": "Docs Models PMF Phenology CAMP FinalLeafNumberSet\nThe FinalLeafNumberSet model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2525,7 +2575,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html",
     "title": "CultivarRateParams",
     "section": "",
-    "text": "A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.",
+    "text": "Docs Models PMF Phenology CAMP CultivarRateParams\nA data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2669,7 +2719,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html",
     "title": "CalcCAMPVrnRates",
     "section": "",
-    "text": "A helper function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.",
+    "text": "Docs Models PMF Phenology CAMP CalcCAMPVrnRates\nA helper function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2813,7 +2863,7 @@
     "href": "docs/Models/PMF/Interfaces/IPhenology.html",
     "title": "IPhenology",
     "section": "",
-    "text": "An interface that defines the contract for phenology models in APSIM NG, providing access to plant developmental stage information and growth phase tracking.",
+    "text": "Docs Models PMF Interfaces IPhenology\nAn interface that defines the contract for phenology models in APSIM NG, providing access to plant developmental stage information and growth phase tracking.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2888,7 +2938,7 @@
     "href": "docs/Models/PMF/Arbitrator/index.html",
     "title": "Arbitrator",
     "section": "",
-    "text": "The Arbitrator is a core component of the plant module, responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models PMF Arbitrator Arbitrator\n\nThe Arbitrator is a core component of the plant module, responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nNutrient Constrained Allocation\n\n\n\n\n\n\n\n\n\nRelative Allocation\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -2902,7 +2952,7 @@
     "href": "docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html",
     "title": "Nutrient Constrained Allocation",
     "section": "",
-    "text": "In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
+    "text": "Docs Models PMF Arbitrator Nutrient Constrained Allocation\nIn APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to nutrient constraints, primarily nitrogen (N), which depends on nitrogen supply.\nThe NutrientConstrainedAllocationMethod model is responsible for scaling biomass allocations to organs based on the amount of nitrogen allocated to those organs. This ensures that growth is biologically feasible given available N and minimum nitrogen concentration.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3052,7 +3102,7 @@
     "href": "docs/Models/Management/FertiliserType.html",
     "title": "FertiliserType",
     "section": "",
-    "text": "The FertiliserType function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.",
+    "text": "Docs Models Management FertiliserType\nThe FertiliserType function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3178,7 +3228,7 @@
     "href": "docs/Models/Interfaces/IWeather.html",
     "title": "IWeather",
     "section": "",
-    "text": "The IWeather interface provides access to meteorological data required for agricultural system simulations in APSIM NG. It serves as the primary gateway for models to obtain daily weather observations and calculated atmospheric variables.",
+    "text": "Docs Models Interfaces IWeather\nThe IWeather interface provides access to meteorological data required for agricultural system simulations in APSIM NG. It serves as the primary gateway for models to obtain daily weather observations and calculated atmospheric variables.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3248,7 +3298,7 @@
     "href": "docs/Models/Interfaces/IInterpolationMethod.html",
     "title": "IInterpolationMethod",
     "section": "",
-    "text": "The IInterpolationMethod interface defines a contract for models that perform sub-daily interpolation of environmental variables from daily values.",
+    "text": "Docs Models Interfaces IInterpolationMethod\nThe IInterpolationMethod interface defines a contract for models that perform sub-daily interpolation of environmental variables from daily values.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3304,7 +3354,7 @@
     "href": "docs/Models/Graph/index.html",
     "title": "Graph",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models Graph Graph\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nShow Event Names on Graph\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -3317,7 +3367,7 @@
     "href": "docs/Models/Functions/index.html",
     "title": "Functions",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models Functions Functions\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -3330,7 +3380,7 @@
     "href": "docs/Models/Functions/ThreeHourAirTemperature.html",
     "title": "ThreeHourAirTemperature",
     "section": "",
-    "text": "The ThreeHourAirTemperature function provides 3-hourly estimates of air temperature by interpolating between daily maximum and minimum temperatures using a sinusoidal method.",
+    "text": "Docs Models Functions ThreeHourAirTemperature\nThe ThreeHourAirTemperature function provides 3-hourly estimates of air temperature by interpolating between daily maximum and minimum temperatures using a sinusoidal method.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3470,7 +3520,7 @@
     "href": "docs/Models/Functions/SubDailyInterpolation.html",
     "title": "SubDailyInterpolation",
     "section": "",
-    "text": "A function that interpolates daily minimum and maximum values to sub-daily time steps, applies a response function to each interpolated value, and aggregates the results to produce a daily average or sum.",
+    "text": "Docs Models Functions SubDailyInterpolation\nA function that interpolates daily minimum and maximum values to sub-daily time steps, applies a response function to each interpolated value, and aggregates the results to produce a daily average or sum.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3610,7 +3660,7 @@
     "href": "docs/Models/Functions/PhaseLookupValue.html",
     "title": "PhaseLookupValue",
     "section": "",
-    "text": "PhaseLookupValue defines a value or function that applies only within a specified phase range in a crop’s development. It is used as a child of PhaseLookup to provide values that change according to phenological stages.",
+    "text": "Docs Models Functions PhaseLookupValue\nPhaseLookupValue defines a value or function that applies only within a specified phase range in a crop’s development. It is used as a child of PhaseLookup to provide values that change according to phenological stages.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3736,7 +3786,7 @@
     "href": "docs/Models/Functions/MultiplyFunction.html",
     "title": "MultiplyFunction",
     "section": "",
-    "text": "The MultiplyFunction is a utility function that returns the product of values from all of its child functions.",
+    "text": "Docs Models Functions MultiplyFunction\nThe MultiplyFunction is a utility function that returns the product of values from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3834,7 +3884,7 @@
     "href": "docs/Models/Functions/MaximumFunction.html",
     "title": "MaximumFunction",
     "section": "",
-    "text": "The MaximumFunction is a utility function that returns the maximum value from all of its child functions.",
+    "text": "Docs Models Functions MaximumFunction\nThe MaximumFunction is a utility function that returns the maximum value from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3932,7 +3982,7 @@
     "href": "docs/Models/Functions/FrostHeatDamageFunctions.html",
     "title": "FrostHeatDamageFunctions",
     "section": "",
-    "text": "This FrostHeatDamageFunctions function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.",
+    "text": "Docs Models Functions FrostHeatDamageFunctions\nThis FrostHeatDamageFunctions function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4058,7 +4108,7 @@
     "href": "docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html",
     "title": "Daily Nitrogen Demand for Storage Organs",
     "section": "",
-    "text": "The StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.",
+    "text": "Docs Models Functions DemandFunctions Daily Nitrogen Demand for Storage Organs\nThe StorageNDemandFunction calculates the nitrogen (N) demand for storage in a plant organ, aiming to bring the organ’s N content up to its maximum nitrogen concentration.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4178,7 +4228,7 @@
     "href": "docs/Models/Functions/AddFunction.html",
     "title": "AddFunction",
     "section": "",
-    "text": "The AddFunction is a utility function that returns the sum of values from all of its child functions.",
+    "text": "Docs Models Functions AddFunction\nThe AddFunction is a utility function that returns the sum of values from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4318,7 +4368,7 @@
     "href": "docs/Models/Events.html",
     "title": "Events",
     "section": "",
-    "text": "This page lists all the events that can be triggered in APSIM NG. Events are used to signal when certain actions should be performed within the simulation, allowing for a structured and organized approach to model execution.\nEvents are listed according the model that triggers them.",
+    "text": "Docs Models Events\nThis page lists all the events that can be triggered in APSIM NG. Events are used to signal when certain actions should be performed within the simulation, allowing for a structured and organized approach to model execution.\nEvents are listed according the model that triggers them.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4409,7 +4459,7 @@
     "href": "docs/Models/Core/Model.html",
     "title": "Model Base Class",
     "section": "",
-    "text": "The Model base class serves as the fundamental foundation for all simulation components within APSIM-NG, providing essential structure management, hierarchy organization, and lifecycle coordination. It establishes the core framework that enables modular construction of complex agricultural simulation models through standardized component interactions and data flow patterns.",
+    "text": "Docs Models Core Model Base Class\nThe Model base class serves as the fundamental foundation for all simulation components within APSIM-NG, providing essential structure management, hierarchy organization, and lifecycle coordination. It establishes the core framework that enables modular construction of complex agricultural simulation models through standardized component interactions and data flow patterns.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4479,7 +4529,7 @@
     "href": "docs/Models/Connections.html",
     "title": "Connections Between Models",
     "section": "",
-    "text": "In APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
+    "text": "Docs Models Connections Between Models\nIn APSIM Next Generation, models interact through a structured system of connections, allowing one model to access information or functionality provided by another.\nThese connections are established through Links (i.e. [Link] in the source code), which define how models communicate and exchange biological or physical information within a simulation.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4583,7 +4633,7 @@
     "href": "docs/APSIM.Core/IStructureDependency.html",
     "title": "IStructureDependency",
     "section": "",
-    "text": "The IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.",
+    "text": "Docs APSIM.Core IStructureDependency\nThe IStructureDependency interface defines a contract for models that require access to the APSIM-NG structure system, enabling them to navigate and interact with the model tree hierarchy.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4622,7 +4672,7 @@
     "href": "docs/APSIM.Core/IFunction.html",
     "title": "IFunction Interface",
     "section": "",
-    "text": "The IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.",
+    "text": "Docs APSIM.Core IFunction Interface\nThe IFunction interface defines the fundamental contract for all mathematical and computational functions. It provides a standardized method for calculating values that drive biological processes, environmental responses, and system dynamics throughout the simulation framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4716,7 +4766,7 @@
     "href": "docs/APSIM.Core/IStructure.html",
     "title": "IStructure",
     "section": "",
-    "text": "The IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.",
+    "text": "Docs APSIM.Core IStructure\nThe IStructure interface provides the core navigation and manipulation system for APSIM-NG’s hierarchical model tree, enabling models to discover, access, and modify components throughout the simulation structure.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4768,7 +4818,7 @@
     "href": "docs/Models/Clock.html",
     "title": "Clock",
     "section": "",
-    "text": "The APSIM Clock is a central component of the APSIM simulation framework, responsible for managing the simulation time and orchestrating the sequence of events that occur during a simulation. It defines the start and end dates of the simulation and raises various events at specific times to allow different models to perform their calculations.",
+    "text": "Docs Models Clock\nThe APSIM Clock is a central component of the APSIM simulation framework, responsible for managing the simulation time and orchestrating the sequence of events that occur during a simulation. It defines the start and end dates of the simulation and raises various events at specific times to allow different models to perform their calculations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4885,7 +4935,7 @@
     "href": "docs/Models/Core/IModel.html",
     "title": "IModel",
     "section": "",
-    "text": "The IModel interface defines the fundamental contract that all models in APSIM NG must implement. It establishes the core properties and methods required for model hierarchy management, lifecycle coordination, and integration within the simulation framework.",
+    "text": "Docs Models Core IModel\nThe IModel interface defines the fundamental contract that all models in APSIM NG must implement. It establishes the core properties and methods required for model hierarchy management, lifecycle coordination, and integration within the simulation framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4941,7 +4991,7 @@
     "href": "docs/Models/Core/Zone.html",
     "title": "Zone",
     "section": "",
-    "text": "Zone is a core model that defines a spatial area within a field.",
+    "text": "Docs Models Core Zone\n\nZone is a core model that defines a spatial area within a field.",
     "crumbs": [
       "Home",
       "Docs",
@@ -4955,7 +5005,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html",
     "title": "AccumulateFunction",
     "section": "",
-    "text": "AccumulateFunction collects the output of one or more child functions between defined growth stages of a crop. It is commonly used to sum variables like thermal time, biomass, or nutrient supply during a crop phase (e.g., between emergence and flowering). It supports resetting and adjusting the accumulated value based on crop events like harvest, cut, or graze.",
+    "text": "Docs Models Functions AccumulateFunction\nAccumulateFunction collects the output of one or more child functions between defined growth stages of a crop. It is commonly used to sum variables like thermal time, biomass, or nutrient supply during a crop phase (e.g., between emergence and flowering). It supports resetting and adjusting the accumulated value based on crop events like harvest, cut, or graze.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5081,7 +5131,7 @@
     "href": "docs/Models/Functions/Constant.html",
     "title": "Constant",
     "section": "",
-    "text": "The Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM-NG.",
+    "text": "Docs Models Functions Constant\nThe Constant function returns a fixed value throughout the simulation. It is often used to supply a constant input (e.g., temperature threshold, fixed growth rate, photoperiod sensitivity) to other models in APSIM-NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5179,7 +5229,7 @@
     "href": "docs/Models/Functions/DivideFunction.html",
     "title": "DivideFunction",
     "section": "",
-    "text": "The DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).",
+    "text": "Docs Models Functions DivideFunction\nThe DivideFunction is a utility function that divides the value of its first child (the numerator) by the product of its subsequent children (the denominators).",
     "crumbs": [
       "Home",
       "Docs",
@@ -5305,7 +5355,7 @@
     "href": "docs/Models/Functions/HourlySinPpAdjusted.html",
     "title": "HourlySinPpAdjusted",
     "section": "",
-    "text": "The HourlySinPpAdjusted function provides hourly estimates of air temperature by interpolating between daily maximum and minimum temperatures using a sinusoidal method during sunlight hours and an exponential decline during nighttime hours (Goudriaan and Van Laar 1994).",
+    "text": "Docs Models Functions HourlySinPpAdjusted\nThe HourlySinPpAdjusted function provides hourly estimates of air temperature by interpolating between daily maximum and minimum temperatures using a sinusoidal method during sunlight hours and an exponential decline during nighttime hours (Goudriaan and Van Laar 1994).",
     "crumbs": [
       "Home",
       "Docs",
@@ -5431,7 +5481,7 @@
     "href": "docs/Models/Functions/MinimumFunction.html",
     "title": "MinimumFunction",
     "section": "",
-    "text": "The MinimumFunction is a utility function that returns the minimum value from all of its child functions.",
+    "text": "Docs Models Functions MinimumFunction\nThe MinimumFunction is a utility function that returns the minimum value from all of its child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5529,7 +5579,7 @@
     "href": "docs/Models/Functions/PhaseLookup.html",
     "title": "PhaseLookup",
     "section": "",
-    "text": "PhaseLookup selects a value based on the current growth phase of the crop. It allows users to define different function values for different stages of development (e.g., vegetative, flowering, grain filling), and outputs the value corresponding to the current phase.",
+    "text": "Docs Models Functions PhaseLookup\nPhaseLookup selects a value based on the current growth phase of the crop. It allows users to define different function values for different stages of development (e.g., vegetative, flowering, grain filling), and outputs the value corresponding to the current phase.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5655,7 +5705,7 @@
     "href": "docs/Models/Functions/PhotoperiodFunction.html",
     "title": "Photoperiod",
     "section": "",
-    "text": "The Photoperiod function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.",
+    "text": "Docs Models Functions Photoperiod\nThe Photoperiod function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5767,7 +5817,7 @@
     "href": "docs/Models/Functions/SubtractFunction.html",
     "title": "SubtractFunction",
     "section": "",
-    "text": "The SubtractFunction is a utility function that returns the difference of values from its child functions.",
+    "text": "Docs Models Functions SubtractFunction\nThe SubtractFunction is a utility function that returns the difference of values from its child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5865,7 +5915,7 @@
     "href": "docs/Models/Functions/XYPairs.html",
     "title": "XYPairs Function",
     "section": "",
-    "text": "Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
+    "text": "Docs Models Functions XYPairs Function\nReturns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5991,7 +6041,7 @@
     "href": "docs/Models/Graph/EventNamesOnGraph.html",
     "title": "Show Event Names on Graph",
     "section": "",
-    "text": "Model EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph",
+    "text": "Docs Models Graph Show Event Names on Graph\n\nModel EventNamesOnGraph is designed to add event names (e.g. growth stages) to a Graph Series in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop’s growth cycle, such as sowing, flowering, and harvest.\nTo display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:\n\nCreate a new model Graph in the simulation tree.\nAdd a new model Series to the Graph and configure it as your desired output (e.g., x axis as Wheat.Phenology.DaysAfterSowing; y axis as Wheat.Grain.Wt).\nAdd a new model EventNamesOnGraph to the Series and select the column name to plot, e.g. Wheat.Phenology.CurrentStageName.\n\n\n\n\nExample output showing event names on a graph",
     "crumbs": [
       "Home",
       "Docs",
@@ -6005,7 +6055,7 @@
     "href": "docs/Models/Interfaces/DailyMetDataFromFile.html",
     "title": "DailyMetDataFromFile",
     "section": "",
-    "text": "The DailyMetDataFromFile class is a data structure that encapsulates a complete set of daily meteorological observations. It serves as a container for weather data read from weather files and provides structured access to individual meteorological variables.",
+    "text": "Docs Models Interfaces DailyMetDataFromFile\nThe DailyMetDataFromFile class is a data structure that encapsulates a complete set of daily meteorological observations. It serves as a container for weather data read from weather files and provides structured access to individual meteorological variables.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6075,7 +6125,7 @@
     "href": "docs/Models/Interfaces/ILeaf.html",
     "title": "ILeaf",
     "section": "",
-    "text": "The ILeaf interface defines the required properties and methods for organ Leaf.",
+    "text": "Docs Models Interfaces ILeaf\nThe ILeaf interface defines the required properties and methods for organ Leaf.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6145,7 +6195,7 @@
     "href": "docs/Models/Management/BiomassRemovalEvents.html",
     "title": "BiomassRemovalEvents",
     "section": "",
-    "text": "The BiomassRemovalEvents function is used to trigger biomass removal events (such as Cutting, Grazing, Pruning, Harvesting, or EndCrop). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.",
+    "text": "Docs Models Management BiomassRemovalEvents\nThe BiomassRemovalEvents function is used to trigger biomass removal events (such as Cutting, Grazing, Pruning, Harvesting, or EndCrop). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6271,7 +6321,7 @@
     "href": "docs/Models/Management/index.html",
     "title": "Management",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliserType\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models Management Management\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nBiomassRemovalEvents\n\n\n\n\n\n\n\n\n\nFertiliserType\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -6284,7 +6334,7 @@
     "href": "docs/Models/PMF/Arbitrator/RelativeAllocation.html",
     "title": "Relative Allocation",
     "section": "",
-    "text": "The RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator.",
+    "text": "Docs Models PMF Arbitrator Relative Allocation\nThe RelativeAllocation module implements a proportional allocation strategy to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles partitioning of dry matter (DM) and nutrients (e.g. nitrogen) based on each organ’s demand.\nThis method is part of the broader plant allocation system and is invoked by arbitrator components such as BiomassTypeArbitrator.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6434,7 +6484,7 @@
     "href": "docs/Models/PMF/Interfaces/IIndexedFunction.html",
     "title": "IIndexedFunction",
     "section": "",
-    "text": "An interface for functions that accept an index value as input and return a computed output value, enabling direct parameterized evaluation without requiring child model dependencies.",
+    "text": "Docs Models PMF Interfaces IIndexedFunction\nAn interface for functions that accept an index value as input and return a computed output value, enabling direct parameterized evaluation without requiring child model dependencies.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6490,11 +6540,26 @@
     ]
   },
   {
+    "objectID": "docs/Models/PMF/Organs/Leaf.html",
+    "href": "docs/Models/PMF/Organs/Leaf.html",
+    "title": "Leaf",
+    "section": "",
+    "text": "Docs Models PMF Organs Leaf",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "PMF",
+      "Organs",
+      "Leaf"
+    ]
+  },
+  {
     "objectID": "docs/Models/PMF/Phenology/CAMP/CAMP.html",
     "href": "docs/Models/PMF/Phenology/CAMP/CAMP.html",
     "title": "CAMP",
     "section": "",
-    "text": "Cereal Anthesis Molecular Phenology (CAMP) model (Brown et al. 2013) is based on the Kirby (1988)’s Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).",
+    "text": "Docs Models PMF Phenology CAMP CAMP\nCereal Anthesis Molecular Phenology (CAMP) model (Brown et al. 2013) is based on the Kirby (1988)’s Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).",
     "crumbs": [
       "Home",
       "Docs",
@@ -6638,7 +6703,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html",
     "title": "ColdVrnResponse",
     "section": "",
-    "text": "The ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
+    "text": "Docs Models PMF Phenology CAMP ColdVrnResponse\nThe ColdVrnResponse function models the upregulation of the Vrn1 gene in response to cold temperatures. This function is an extension of the base Vrn1 expression and represents how cold temperatures enhance vernalisation responses in cereal crops, as described in Brown et al. (2013). It is part of the vernalisation module used in the phenology model within APSIM NG.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6782,7 +6847,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html",
     "title": "FLNParameterEnvironment",
     "section": "",
-    "text": "A model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
+    "text": "Docs Models PMF Phenology CAMP FLNParameterEnvironment\nA model that captures the controlled environmental conditions under which Final Leaf Number (FLN) observations were made. It is used to parameterize developmental responses under varying vernalisation and photoperiod conditions in APSIM NG phenology simulations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6926,7 +6991,7 @@
     "href": "docs/Models/PMF/Phenology/CAMP/index.html",
     "title": "CAMP",
     "section": "",
-    "text": "Cereal Anthesis Molecular Phenology (CAMP) model (Brown et al. 2013) is based on the Kirby (1988)’s Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a cultivar specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).\nMaster model, CAMP, is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.\nThe table below lists the submodels that are required by CAMP:\n\n\n\nTitle\nDescription\n\n\n\n\nFinalLeafNumberSet\nStore the final leaf number parameters estimated for a cultivar under controlled environments\n\n\nFLNParameterEnvironment\nCapture the controlled environment conditions to observe final leaf number\n\n\nCultivarRateParams\nStores vernalisation rate parameters for a specific cultivar\n\n\nColdVrnResponse\nModels the upregulation of the Vrn1 gene in response to cold temperatures\n\n\nCalcCAMPVrnRates\nCalculates vernalization expression for the given cultivar and environmental conditions\n\n\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Peter D. Jamieson, Ian R. Brooking, Derrick J. Moot, and Neil I. Huth. 2013. “Integration of Molecular and Physiological Models to Explain Time of Anthesis in Wheat.” Annals of Botany 112 (9): 1683–703. https://doi.org/10.1093/aob/mct224.\n\n\nJamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. “Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.” European Journal of Agronomy 8 (3–4): 161–79. https://doi.org/16/S1161-0301(98)00020-3.\n\n\nKirby, E. J. M. 1988. “Analysis of Leaf, Stem and Ear Growth in Wheat from Terminal Spikelet Stage to Anthesis.” Field Crops Research 18 (2): 127–40. https://doi.org/10.1016/0378-4290(88)90004-4.",
+    "text": "Docs Models PMF Phenology CAMP CAMP\n\nCereal Anthesis Molecular Phenology (CAMP) model (Brown et al. 2013) is based on the Kirby (1988)’s Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a cultivar specific Phyllochron which changes with Haun stage as described by (Jamieson et al. 1998).\nMaster model, CAMP, is the main entry point for the Cereal Anthesis Molecular Phenology model in APSIM NG. Others are the submodels required by CAMP.\nThe table below lists the submodels that are required by CAMP:\n\n\n\nTitle\nDescription\n\n\n\n\nFinalLeafNumberSet\nStore the final leaf number parameters estimated for a cultivar under controlled environments\n\n\nFLNParameterEnvironment\nCapture the controlled environment conditions to observe final leaf number\n\n\nCultivarRateParams\nStores vernalisation rate parameters for a specific cultivar\n\n\nColdVrnResponse\nModels the upregulation of the Vrn1 gene in response to cold temperatures\n\n\nCalcCAMPVrnRates\nCalculates vernalization expression for the given cultivar and environmental conditions\n\n\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Peter D. Jamieson, Ian R. Brooking, Derrick J. Moot, and Neil I. Huth. 2013. “Integration of Molecular and Physiological Models to Explain Time of Anthesis in Wheat.” Annals of Botany 112 (9): 1683–703. https://doi.org/10.1093/aob/mct224.\n\n\nJamieson, P. D., M. A. Semenov, I. R. Brooking, and G. S. Francis. 1998. “Sirius: A Mechanistic Model of Wheat Response to Environmental Variation.” European Journal of Agronomy 8 (3–4): 161–79. https://doi.org/16/S1161-0301(98)00020-3.\n\n\nKirby, E. J. M. 1988. “Analysis of Leaf, Stem and Ear Growth in Wheat from Terminal Spikelet Stage to Anthesis.” Field Crops Research 18 (2): 127–40. https://doi.org/10.1016/0378-4290(88)90004-4.",
     "crumbs": [
       "Home",
       "Docs",
@@ -6941,7 +7006,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/EndPhase.html",
     "title": "EndPhase",
     "section": "",
-    "text": "EndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
+    "text": "Docs Models PMF Phenology Phases EndPhase\nEndPhase is the final phase in a crop’s phenological development. Once this phase is reached, the crop remains in this state indefinitely until it is harvested or removed.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7085,7 +7150,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/GerminatingPhase.html",
     "title": "GerminatingPhase",
     "section": "",
-    "text": "The GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.",
+    "text": "Docs Models PMF Phenology Phases GerminatingPhase\nThe GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7181,7 +7246,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html",
     "title": "IPhaseWithSetableCompletionDate",
     "section": "",
-    "text": "The IPhaseWithSetableCompletionDate interface extends phenological phases by allowing external specification of a fixed completion date. This enables users to override the phase’s normal progression logic and force completion on a specific calendar date.",
+    "text": "Docs Models PMF Phenology Phases IPhaseWithSetableCompletionDate\nThe IPhaseWithSetableCompletionDate interface extends phenological phases by allowing external specification of a fixed completion date. This enables users to override the phase’s normal progression logic and force completion on a specific calendar date.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7245,7 +7310,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html",
     "title": "LeafAppearancePhase",
     "section": "",
-    "text": "The LeafAppearancePhase represents a developmental phase in a plant’s life cycle. The Final leaf number is fixed at the start of this phase. The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
+    "text": "Docs Models PMF Phenology Phases LeafAppearancePhase\nThe LeafAppearancePhase represents a developmental phase in a plant’s life cycle. The Final leaf number is fixed at the start of this phase. The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7389,7 +7454,7 @@
     "href": "docs/Models/PMF/Phenology/Phases/VernalisationPhase.html",
     "title": "VernalisationPhase",
     "section": "",
-    "text": "The VernalisationPhase defines a phenological development phase that is completed when vernalisation requirements are fulfilled. It integrates gene expression signals into crop phenology progression, making it essential for modeling genotypic and environmental responses affecting vernalisation.",
+    "text": "Docs Models PMF Phenology Phases VernalisationPhase\nThe VernalisationPhase defines a phenological development phase that is completed when vernalisation requirements are fulfilled. It integrates gene expression signals into crop phenology progression, making it essential for modeling genotypic and environmental responses affecting vernalisation.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7517,7 +7582,7 @@
     "href": "docs/Models/PMF/Phenology/Phenology.html",
     "title": "Phenology",
     "section": "",
-    "text": "The Phenology model simulates the developmental progression of a plant through a series of defined growth stages and phases. It provides the central mechanism for managing crop stage transitions and coordinates developmental timing across all plant organs and processes in APSIM Next Generation.",
+    "text": "Docs Models PMF Phenology Phenology\nThe Phenology model simulates the developmental progression of a plant through a series of defined growth stages and phases. It provides the central mechanism for managing crop stage transitions and coordinates developmental timing across all plant organs and processes in APSIM Next Generation.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7682,7 +7747,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html",
     "title": "ZadokPMFWheat",
     "section": "",
-    "text": "The ZadokPMFWheat model calculates Zadoks growth stage values (Zadoks, Chang, and Konzak 1974) for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.",
+    "text": "Docs Models PMF Phenology Scales ZadokPMFWheat\nThe ZadokPMFWheat model calculates Zadoks growth stage values (Zadoks, Chang, and Konzak 1974) for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7794,7 +7859,7 @@
     "href": "docs/Models/PMF/Plant.html",
     "title": "Plant Model",
     "section": "",
-    "text": "The Plant model serves as the central coordinating entity within the Plant Modelling Framework (PMF) (Brown et al. 2014). It provides a dynamic composition system that enables runtime assembly of organ and process submodels to construct complete crop models for species such as wheat, maize, and sorghum without requiring additional programming.",
+    "text": "Docs Models PMF Plant Model\nThe Plant model serves as the central coordinating entity within the Plant Modelling Framework (PMF) (Brown et al. 2014). It provides a dynamic composition system that enables runtime assembly of organ and process submodels to construct complete crop models for species such as wheat, maize, and sorghum without requiring additional programming.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7920,7 +7985,7 @@
     "href": "docs/Models/PMF/index.html",
     "title": "PMF",
     "section": "",
-    "text": "Plant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014).\n\nArbitrator\nArbitrator is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\nPhenology\nPhenology is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
+    "text": "Docs Models PMF PMF\n\nPlant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014).\n\nArbitrator\nArbitrator is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\nPhenology\nPhenology is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
     "crumbs": [
       "Home",
       "Docs",
@@ -7933,7 +7998,7 @@
     "href": "docs/Models/Traits/index.html",
     "title": "Traits",
     "section": "",
-    "text": "Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models Traits Traits\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nCO2\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -7946,7 +8011,7 @@
     "href": "docs/Models/index.html",
     "title": "Models",
     "section": "",
-    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations.",
+    "text": "Docs Models Models",
     "crumbs": [
       "Home",
       "Docs",
@@ -7957,8 +8022,8 @@
     "objectID": "docs/Models/index.html#functions",
     "href": "docs/Models/index.html#functions",
     "title": "Models",
-    "section": "",
-    "text": "Functions or Models are basic building blocks of crop models in APSIM Next Generations.",
+    "section": "Functions",
+    "text": "Functions\nFunctions or Models are basic building blocks of crop models in APSIM Next Generations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8030,7 +8095,7 @@
     "href": "docs/Plants/Canola/Examples/canola_example1.html",
     "title": "Canola Example Simulation 1",
     "section": "",
-    "text": "This example demonstrates a Canola simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on canola growth and development.",
+    "text": "Docs Plants Canola Examples Canola Example Simulation 1\nThis example demonstrates a Canola simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on canola growth and development.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8056,11 +8121,26 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Canola/Leaf/NodeNumber.html",
+    "href": "docs/Plants/Canola/Leaf/NodeNumber.html",
+    "title": "NodeNumber",
+    "section": "",
+    "text": "Docs Plants Canola Leaf NodeNumber",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Leaf",
+      "NodeNumber"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Canola/Phenology/BudDevelopment.html",
     "href": "docs/Plants/Canola/Phenology/BudDevelopment.html",
     "title": "BudDevelopment",
     "section": "",
-    "text": "The BudDevelopment phase in Canola represents the developmental period from FloralInitiation to GreenBud. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology BudDevelopment\nThe BudDevelopment phase in Canola represents the developmental period from FloralInitiation to GreenBud. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8120,7 +8200,7 @@
     "href": "docs/Plants/Canola/Phenology/EarlyGrainFilling.html",
     "title": "EarlyGrainFilling",
     "section": "",
-    "text": "The EarlyGrainFilling phase in Canola represents the developmental period from StartGrainFilling to EndFlowering. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology EarlyGrainFilling\nThe EarlyGrainFilling phase in Canola represents the developmental period from StartGrainFilling to EndFlowering. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8180,7 +8260,7 @@
     "href": "docs/Plants/Canola/Phenology/Emerging.html",
     "title": "Emerging",
     "section": "",
-    "text": "The Emerging phase in Canola represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
+    "text": "Docs Plants Canola Phenology Emerging\nThe Emerging phase in Canola represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8240,7 +8320,7 @@
     "href": "docs/Plants/Canola/Phenology/LateGrainFilling.html",
     "title": "LateGrainFilling",
     "section": "",
-    "text": "The LateGrainFilling phase in Canola represents the developmental period from EndPodDevelopment to EndGrainFill. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology LateGrainFilling\nThe LateGrainFilling phase in Canola represents the developmental period from EndPodDevelopment to EndGrainFill. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8300,7 +8380,7 @@
     "href": "docs/Plants/Canola/Phenology/MidGrainFilling.html",
     "title": "MidGrainFilling",
     "section": "",
-    "text": "The MidGrainFilling phase in Canola represents the developmental period from EndFlowering to EndPodDevelopment. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology MidGrainFilling\nThe MidGrainFilling phase in Canola represents the developmental period from EndFlowering to EndPodDevelopment. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8360,7 +8440,7 @@
     "href": "docs/Plants/Canola/Phenology/Ripening.html",
     "title": "Ripening",
     "section": "",
-    "text": "The Ripening phase in Canola represents the developmental period from Maturity to HarvestRipe. It is influenced by thermal time only.",
+    "text": "Docs Plants Canola Phenology Ripening\nThe Ripening phase in Canola represents the developmental period from Maturity to HarvestRipe. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8420,7 +8500,7 @@
     "href": "docs/Plants/Canola/Phenology/ThermalTime.html",
     "title": "Thermal Time",
     "section": "",
-    "text": "Thermal time (also called growing degree days) is the primary driver of phenological development in the Canola model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
+    "text": "Docs Plants Canola Phenology Thermal Time\nThermal time (also called growing degree days) is the primary driver of phenological development in the Canola model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8525,7 +8605,7 @@
     "href": "docs/Plants/Canola/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "The Phenology model in APSIM NG simulates the development of canola plants.",
+    "text": "Docs Plants Canola Phenology Phenology\nThe Phenology model in APSIM NG simulates the development of canola plants.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8581,7 +8661,7 @@
     "href": "docs/Plants/Chickpea/Phenology/index.html",
     "title": "Phenology",
     "section": "",
-    "text": "The Phenology model in APSIM NG simulates the development of chickpea plants.",
+    "text": "Docs Plants Chickpea Phenology Phenology\n\nThe Phenology model in APSIM NG simulates the development of chickpea plants.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8595,7 +8675,7 @@
     "href": "docs/Plants/Wheat/Examples/wheat_example1.html",
     "title": "Wheat Example Simulation 1",
     "section": "",
-    "text": "This example demonstrates a wheat simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on wheat growth and development.",
+    "text": "Docs Plants Wheat Examples Wheat Example Simulation 1\nThis example demonstrates a wheat simulation using APSIM Next Generation (APSIM NG) at two contrasting locations in Australia, two different cultivars, and two different sowing dates. The simulation is designed to illustrate the impact of these variables on wheat growth and development.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8625,7 +8705,7 @@
     "href": "docs/Plants/Wheat/Grain/index.html",
     "title": "Grain",
     "section": "",
-    "text": "Grain Nitrogen Demand",
+    "text": "Docs Plants Wheat Grain Grain",
     "crumbs": [
       "Home",
       "Docs",
@@ -8638,8 +8718,8 @@
     "objectID": "docs/Plants/Wheat/Grain/index.html#nitrogen",
     "href": "docs/Plants/Wheat/Grain/index.html#nitrogen",
     "title": "Grain",
-    "section": "",
-    "text": "Grain Nitrogen Demand",
+    "section": "Nitrogen",
+    "text": "Nitrogen\n\nGrain Nitrogen Demand",
     "crumbs": [
       "Home",
       "Docs",
@@ -8653,7 +8733,7 @@
     "href": "docs/Plants/Wheat/Phenology/Emerging.html",
     "title": "Emerging",
     "section": "",
-    "text": "The Emerging phase in Wheat represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
+    "text": "Docs Plants Wheat Phenology Emerging\nThe Emerging phase in Wheat represents the developmental period from Germination to Emergence. It is influenced by sowing depth, a lag period before coleoptile elongation, and the elongation rate of the shoot.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8713,7 +8793,7 @@
     "href": "docs/Plants/Wheat/Phenology/Germinating.html",
     "title": "Germinating",
     "section": "",
-    "text": "The Germinating is a phenological phase in Wheat used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
+    "text": "Docs Plants Wheat Phenology Germinating\nThe Germinating is a phenological phase in Wheat used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8773,7 +8853,7 @@
     "href": "docs/Plants/Wheat/Phenology/GrainFilling.html",
     "title": "GrainFilling",
     "section": "",
-    "text": "The GrainFilling phase in Wheat represents the developmental period from MaximumGrainLength to EndGrainFill. It is influenced by thermal time only.",
+    "text": "Docs Plants Wheat Phenology GrainFilling\nThe GrainFilling phase in Wheat represents the developmental period from MaximumGrainLength to EndGrainFill. It is influenced by thermal time only.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8833,7 +8913,7 @@
     "href": "docs/Plants/Wheat/Phenology/HaunStage.html",
     "title": "Haun Stage",
     "section": "",
-    "text": "Haun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
+    "text": "Docs Plants Wheat Phenology Haun Stage\nHaun Stage is defined as the number of leaf tips that have appeared on a cereal plant since emergence. It estimates from daily thermal time and phyllochron.",
     "crumbs": [
       "Home",
       "Docs",
@@ -8923,7 +9003,7 @@
     "href": "docs/Plants/Wheat/Phenology/LeavesInitiating.html",
     "title": "LeavesInitiating",
     "section": "",
-    "text": "The LeavesInitiating phase in the Wheat model represents the developmental period from Emergence to DoubleRidge, driven by the expression of the Vrn1, Vrn2, and Vrn3 genes. This phase concludes when vernalisation is saturated, as predicted by the Cereal Anthesis Molecular Phenology (CAMP) model.",
+    "text": "Docs Plants Wheat Phenology LeavesInitiating\nThe LeavesInitiating phase in the Wheat model represents the developmental period from Emergence to DoubleRidge, driven by the expression of the Vrn1, Vrn2, and Vrn3 genes. This phase concludes when vernalisation is saturated, as predicted by the Cereal Anthesis Molecular Phenology (CAMP) model.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9013,7 +9093,7 @@
     "href": "docs/Plants/Wheat/Phenology/ReadyForHarvesting.html",
     "title": "ReadyForHarvesting",
     "section": "",
-    "text": "The ReadyForHarvesting phase in Wheat represents the last phase after HarvestRipe.",
+    "text": "Docs Plants Wheat Phenology ReadyForHarvesting\nThe ReadyForHarvesting phase in Wheat represents the last phase after HarvestRipe.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9073,7 +9153,7 @@
     "href": "docs/Plants/Wheat/Phenology/StemElongating.html",
     "title": "StemElongating",
     "section": "",
-    "text": "The StemElongating phase in Wheat represents the developmental period from MaximumSpikeletPrimordia to FlagLeafAppearance. The Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
+    "text": "Docs Plants Wheat Phenology StemElongating\nThe StemElongating phase in Wheat represents the developmental period from MaximumSpikeletPrimordia to FlagLeafAppearance. The Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9148,7 +9228,7 @@
     "href": "docs/Plants/Wheat/Phenology/Variables.html",
     "title": "Variables",
     "section": "",
-    "text": "In addition to reportable variables defined in all sub-models of phenology, the phenology model reports several other variables that provide insights into the development of the wheat crop.",
+    "text": "Docs Plants Wheat Phenology Variables\nIn addition to reportable variables defined in all sub-models of phenology, the phenology model reports several other variables that provide insights into the development of the wheat crop.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9174,11 +9254,39 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Wheat/Root/index.html",
+    "href": "docs/Plants/Wheat/Root/index.html",
+    "title": "Root",
+    "section": "",
+    "text": "Docs Plants Wheat Root Root",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Root"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Wheat/Stem/index.html",
+    "href": "docs/Plants/Wheat/Stem/index.html",
+    "title": "Stem",
+    "section": "",
+    "text": "Docs Plants Wheat Stem Stem",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Wheat",
+      "Stem"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Wheat/Traits/co2-wheat.html",
     "href": "docs/Plants/Wheat/Traits/co2-wheat.html",
     "title": "CO2 for Wheat",
     "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
+    "text": "Docs Plants Wheat Traits CO2 for Wheat",
     "crumbs": [
       "Home",
       "Docs",
@@ -9192,8 +9300,8 @@
     "objectID": "docs/Plants/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
     "href": "docs/Plants/Wheat/Traits/co2-wheat.html#radiation-use-efficiency",
     "title": "CO2 for Wheat",
-    "section": "",
-    "text": "For C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
+    "section": "Radiation Use Efficiency",
+    "text": "Radiation Use Efficiency\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9238,7 +9346,7 @@
     "href": "docs/Plants/Wheat/index.html",
     "title": "Wheat",
     "section": "",
-    "text": "The APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
+    "text": "Docs Plants Wheat Wheat\nThe APSIM Wheat model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014) by Brown, H.E., Huth, N.I. and Holzworth, D.P., which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as wheat, by integrating components like photosynthesis and leaf development without additional coding.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9303,7 +9411,7 @@
     "href": "docs/abbreviations.html",
     "title": "Glossary of Abbreviations",
     "section": "",
-    "text": "This glossary provides definitions for common abbreviations used throughout the APSIM NG documentation.\nIt helps ensure clarity and consistency for all readers and contributors.",
+    "text": "Docs Glossary of Abbreviations\nThis glossary provides definitions for common abbreviations used throughout the APSIM NG documentation.\nIt helps ensure clarity and consistency for all readers and contributors.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9351,7 +9459,7 @@
     "href": "docs/symbols.html",
     "title": "Symbol Glossary",
     "section": "",
-    "text": "This document provides a centralized glossary of mathematical symbols used throughout the APSIM NG documentation.\nTo ensure clarity and avoid confusion between similarly named concepts (e.g. Phyllochron and Photoperiod), we adopt a consistent convention of using two-letter symbols wherever possible.\nSymbols are grouped by functional categories such as Phenology, Climate, Soil Water, and General Simulation Variables to reflect their use across the APSIM NG framework.",
+    "text": "Docs Symbol Glossary\nThis document provides a centralized glossary of mathematical symbols used throughout the APSIM NG documentation.\nTo ensure clarity and avoid confusion between similarly named concepts (e.g. Phyllochron and Photoperiod), we adopt a consistent convention of using two-letter symbols wherever possible.\nSymbols are grouped by functional categories such as Phenology, Climate, Soil Water, and General Simulation Variables to reflect their use across the APSIM NG framework.",
     "crumbs": [
       "Home",
       "Docs",
@@ -9467,7 +9575,7 @@
     "href": "docs/Plants/Canola/Phenology/Photoperiod.html",
     "title": "Photoperiod",
     "section": "",
-    "text": "The daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
+    "text": "Docs Plants Canola Phenology Photoperiod\n\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
     "crumbs": [
       "Home",
       "Docs",

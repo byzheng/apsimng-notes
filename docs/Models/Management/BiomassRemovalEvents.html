@@ -56,7 +56,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
+  "show-item-context": true,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,6 +98,7 @@ cookieconsent.run({
 });
 </script> 
   
+<script src="../../../_scripts/js/fuzzy-search.js"></script>
 <style>
 div.callout-needs-improvement.callout {
   border-left-color: #FFCC00;
@@ -1201,6 +1202,9 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </header>
 
 
+<div class="quarto-include-in-search-index" style="display:none;">
+Docs Models Management BiomassRemovalEvents
+</div>
 <p>The <code>BiomassRemovalEvents</code> function is used to trigger biomass removal events (such as <a href="../../../docs/Models/Events.html#Cutting" class="model-link">Cutting</a>, <a href="../../../docs/Models/Events.html#Grazing" class="model-link">Grazing</a>, <a href="../../../docs/Models/Events.html#Pruning" class="model-link">Pruning</a>, <a href="../../../docs/Models/Events.html#Harvesting" class="model-link">Harvesting</a>, or <a href="../../../docs/Models/Events.html#EndCrop" class="model-link">EndCrop</a>). It allows users to specify removal events using fixed dates or link these events to phenological stages, providing flexibility for simulating various crop management scenarios.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>

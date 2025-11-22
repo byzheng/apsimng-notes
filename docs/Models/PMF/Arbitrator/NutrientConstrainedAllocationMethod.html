@@ -56,7 +56,7 @@ ul.task-list li input[type="checkbox"] {
     "/",
     "s"
   ],
-  "show-item-context": false,
+  "show-item-context": true,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -98,6 +98,7 @@ cookieconsent.run({
 });
 </script> 
   
+<script src="../../../../_scripts/js/fuzzy-search.js"></script>
 <style>
 div.callout-needs-improvement.callout {
   border-left-color: #FFCC00;
@@ -1231,6 +1232,9 @@ window.Quarto = {
 </header>
 
 
+<div class="quarto-include-in-search-index" style="display:none;">
+Docs Models PMF Arbitrator Nutrient Constrained Allocation
+</div>
 <p>In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to <strong>nutrient constraints</strong>, primarily nitrogen (N), which depends on nitrogen supply.</p>
 <p>The <code>NutrientConstrainedAllocationMethod</code> model is responsible for <strong>scaling biomass allocations to organs</strong> based on the amount of nitrogen allocated to those organs. This ensures that growth is <strong>biologically feasible</strong> given available N and minimum nitrogen concentration.</p>
 <section id="role-in-apsim-simulation-pipeline" class="level2">
