@@ -3,6 +3,11 @@ title: "MultiplyFunction"
 format: html
 ---
 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 The `MultiplyFunction` is a utility function that returns the **product of values** from all of its child functions.
 
 
@@ -10,22 +15,31 @@ The `MultiplyFunction` is a utility function that returns the **product of value
 
 The `MultiplyFunction` is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.
 
+A key performance feature of this function is that it returns zero as soon as any child function returns zero, which can improve computational efficiency. To maximize performance, child functions that are more likely to return zero should be placed at the top of the list of children.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+This function inherits from the following parent classes:
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
 
-## Events 
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Children | Any number of child functions whose values will be multiplied together. |
 
 
-**Events Listened For**
+## Model Variables
 
-> No events are listened for by this function.
-
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-
-## Properties
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 
 **Configurable and Reportable Properties**
@@ -34,12 +48,51 @@ The `MultiplyFunction` is used to multiply multiple values for a mathematical eq
 
 **Read-Only Reportable Properties**
 
-> No read-only reportable properties are available for this function.
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
+
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Multiplication Calculation
+
+The function calculates the product of all child function values using the following algorithm:
+
+$$
+V = \prod_{i=1}^{n} F_i
+$$
+
+where:
+
+- $V$ is the final value returned by the MultiplyFunction
+- $F_i$ is the value of the $i$-th child function
+- $n$ is the total number of child functions
+
+**Performance Optimization:** The calculation short-circuits when any child function returns zero, immediately returning 0.0 without evaluating remaining child functions. This optimization means that ordering child functions strategically (with those most likely to be zero at the top) can significantly improve computational efficiency.
 
 
 ## User Interface
 
-`MultiplyFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `MultiplyFunction` in the Filter Box. A symbol for the `MultiplyFunction` is displayed in the user interface to represent the function.
+`MultiplyFunction` can be added as a child of any node in the model tree. Right-click the parent node, select "Add Model...", and search for `MultiplyFunction` in the Filter Box. A symbol for the `MultiplyFunction` is displayed in the user interface to represent the function.
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MultiplyFunction.png){ width=64px }
 
@@ -53,7 +106,6 @@ TT = ShootLag + (SowingDepth \times ShootRate)
 $$
 
 The `MultiplyFunction` is used to multiply these two values to get the total target thermal time in the equation above.
-
 
 
 ## See Also

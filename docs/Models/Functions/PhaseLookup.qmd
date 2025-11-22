@@ -3,7 +3,13 @@ title: "PhaseLookup"
 format: html
 ---
 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 PhaseLookup selects a value based on the current growth phase of the crop. It allows users to define different function values for different stages of development (e.g., vegetative, flowering, grain filling), and outputs the value corresponding to the current phase.
+
 
 ## Overview
 
@@ -11,47 +17,31 @@ This function is used to dynamically select a value during simulation depending 
 
 For example, you may want thermal time accumulation, stress response, or nutrient demand to behave differently in vegetative versus reproductive phases. `PhaseLookup` works like a switch that returns the appropriate value based on which phase the crop is currently in.
 
-## Inputs
+## Model Structure
 
-- Child models: One or more [PhaseLookupValue](PhaseLookupValue.qmd) models, each associated with a specific phase or phase range.
-- Crop phenology information (from the simulation environment).
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-Each `PhaseLookupValue` defines:
-- Start phase name
-- End phase name
-- A value or function to return during that phase range
+This function inherits from the following parent classes:
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-The `PhaseLookup` function evaluates all its children, which must be `PhaseLookupValue` models. For each child:
 
-1. Check if the crop is currently between the defined `Start` and `End` stages.
-2. If yes, return the value from the first matching child and stop checking further.
-3. If no phase matches any of the child `PhaseLookupValue` models, return 0 by default.
+## Connections to Other Components
 
-The pseudocode logic is:
+{{< include /_includes/Models/connections-intro.md >}}
 
-$$
-\text{Value} = 
-\begin{cases}
-\text{PhaseLookupValue}_i & \text{if crop is in phase } i \\
-0 & \text{if no match}
-\end{cases}
-$$
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| PhaseLookupValue | [PhaseLookupValue](/docs/Models/Functions/PhaseLookupValue.qmd) | Children | One or more child models, each defining a value for a specific phase range. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link (via children) | Provides current growth stage information to determine which phase is active. |
 
-This allows different values or functions to be "active" only in the relevant phases of the crop's life cycle.
 
-## Events
+## Model Variables
 
-**Events Listened For**
+{{< include /_includes/Models/model-variables-intro.md >}}
 
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
 
 **Configurable and Reportable Properties**
 
@@ -59,12 +49,50 @@ This allows different values or functions to be "active" only in the relevant ph
 
 **Read-Only Reportable Properties**
 
-> No read-only properties are available for this function.
+
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
+
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Phase-Based Value Selection
+
+The `PhaseLookup` function evaluates all its child `PhaseLookupValue` models in sequence. For each child:
+
+1. Check if the crop is currently between the child's defined `Start` and `End` stages.
+2. If yes, return the value from the first matching child and stop checking further.
+3. If no phase matches any of the child `PhaseLookupValue` models, return 0 by default.
+
+The logic can be expressed as:
+
+$$
+V = 
+\begin{cases}
+V_i & \text{if crop is in phase range } i \\
+0 & \text{if no match}
+\end{cases}
+$$
+
+where $V$ is the returned value and $V_i$ is the value from the $i$-th `PhaseLookupValue` child.
+
+**Key Behavior:** The function returns the value from the **first** matching child and stops evaluation. This means the order of child `PhaseLookupValue` models matters if there are overlapping phase ranges.
+
+Each `PhaseLookupValue` child defines:
+- **Start phase name:** The beginning of the active phase range
+- **End phase name:** The end of the active phase range
+- **A value or function:** What to return during that phase range (defined as a child of the `PhaseLookupValue`)
+
 
 ## User Interface
 
-
-`PhaseLookup` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `PhaseLookup` in the Filter Box. A symbol for the `PhaseLookup` is displayed in the user interface to represent the function.
+`PhaseLookup` can be added as a child of any node in the model tree. Right-click the parent node, select "Add Model...", and search for `PhaseLookup` in the Filter Box. A symbol for the `PhaseLookup` is displayed in the user interface to represent the function.
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/PhaseLookup.png){ width=64px }
 
@@ -78,9 +106,10 @@ In a crop model, you may want a function to return a higher value during vegetat
   - One active from `Emergence` to `FloralInitiation`, returning a value of 1.0
   - Another from `FloralInitiation` to `Maturity`, returning a value of 0.5
 
-This setup allows the model to adjust behavior based on phase without writing additional logic elsewhere.
+This setup allows the model to adjust behavior based on phase without writing additional logic elsewhere. For instance, this could be used to model radiation use efficiency that decreases after floral initiation, or nitrogen demand that varies between growth stages.
 
 
 ## See Also
 
+* **Related Models:** [PhaseLookupValue](/docs/Models/Functions/PhaseLookupValue.qmd)
 * **Source code:** [PhaseLookup.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhaseLookup.cs)

@@ -3,23 +3,40 @@ title: "MinimumFunction"
 format: html
 ---
 
-The `MinimumFunction` is a utility function that returns the **minimum value** from all of its child functions.
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `MinimumFunction` is a utility function that returns the **minimum value** from all of its child functions, making it essential for identifying limiting factors in agricultural models.
+
 
 ## Overview
 
-The `MinimumFunction` is used to determine the smallest value among multiple child functions. It evaluates each child and returns the minimum result. This is useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models.
+The `MinimumFunction` is used to determine the smallest value among multiple child functions. It evaluates each child function and returns the minimum result. This is particularly useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models, such as identifying which resource (water, nitrogen, temperature) is most constraining to growth.
 
-## Events
+## Model Structure
 
-**Events Listened For**
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-> No events are listened for by this function.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-**Events Raised**
 
-> No events are raised by this function.
+## Connections to Other Components
 
-## Properties
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Children | Any number of child functions whose values will be compared. |
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
 
 **Configurable and Reportable Properties**
 
@@ -27,25 +44,74 @@ The `MinimumFunction` is used to determine the smallest value among multiple chi
 
 **Read-Only Reportable Properties**
 
-> No read-only reportable properties are available for this function.
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
+
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Minimum Value Calculation
+
+The `MinimumFunction` evaluates all of its child functions and returns the smallest value. The algorithm iterates through each child function, comparing their returned values:
+
+$$
+Value_{min} = \min(F_1, F_2, F_3, \ldots, F_n)
+$$
+
+where $F_i$ represents the value returned by the $i$-th child function, and $n$ is the total number of child functions.
+
+The implementation initializes the return value to a very large number (999,999,999) and then compares each child function's value, retaining the minimum:
+
+$$
+Value_{return} = \begin{cases}
+999999999 & \text{initially} \\
+\min(Value_{return}, F_i) & \text{for each child } i
+\end{cases}
+$$
+
+This approach ensures that even if all child functions return large values, the smallest among them is selected. If no child functions are present, the function returns the initial large value.
 
 ## User Interface
 
-`MinimumFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `MinimumFunction` in the Filter Box. A symbol for the `MinimumFunction` is displayed in the user interface to represent the function.
+`MinimumFunction` can be added as a child of any parent node that accepts functions in the model tree. Right-click the parent node, select "Add Model...", and search for `MinimumFunction` in the Filter Box.
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MinimumFunction.png){ width=64px }
 
 ## Practical Example
 
-Suppose you want to determine the minimum soil water available from several soil layers, or the most limiting nutrient for plant growth. You can use the `MinimumFunction` to select the lowest value among all relevant child functions.
+The `MinimumFunction` is commonly used to identify limiting factors in crop growth models. For example, you might want to determine which environmental factor most limits photosynthesis or growth:
 
-For example, if you have three child functions representing different constraints:
+**Example 1: Temperature Stress**
+
+If you have functions calculating stress factors for different temperature thresholds, the `MinimumFunction` identifies the most limiting constraint:
 
 $$
-LimitingFactor = \min(Value_1, Value_2, Value_3)
+TemperatureStress = \min(StressLow, StressHigh, StressOptimal)
 $$
 
-The `MinimumFunction` will return the smallest of these values.
+**Example 2: Water and Nitrogen Co-limitation**
+
+In resource-limited growth scenarios, the `MinimumFunction` can determine which resource is most constraining:
+
+$$
+GrowthLimitation = \min(WaterStress, NitrogenStress, PhosphorusStress)
+$$
+
+The returned value (ranging from 0 to 1) indicates the severity of the most limiting factor, where values closer to 0 represent greater limitation.
+
+**Example 3: Soil Layer Constraints**
+
+When evaluating soil water availability across multiple layers, the `MinimumFunction` can identify the layer with the least available water:
+
+$$
+MinimumWater = \min(Layer_1Water, Layer_2Water, Layer_3Water)
+$$
+
+This helps identify which soil horizon presents the greatest constraint to root water uptake.
 
 ## See Also
 

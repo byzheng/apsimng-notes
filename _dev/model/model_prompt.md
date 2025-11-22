@@ -1,7 +1,8 @@
 
 
-ModelName: IPhenology
-TargetFile: Models/PMF/Interfaces/IPhenology
+ModelName: XYPairs
+TargetFile: Models/Functions/XYPairs
+
 
 Task:
 
@@ -17,6 +18,7 @@ File Handling:
 - If <ModelName>.qmd already exists:
     - Update it with new content from <ModelName>.cs following the template.
     - Preserve as much existing text as possible.
+    - Use the new layout in the template.
 - For interfaces or classes with no actual functions, skip the "Processes and Algorithms" section.
 
 Instructions for Documentation:

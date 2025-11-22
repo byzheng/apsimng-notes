@@ -3,7 +3,13 @@ title: "PhaseLookupValue"
 format: html
 ---
 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 PhaseLookupValue defines a value or function that applies only within a specified phase range in a crop's development. It is used as a child of `PhaseLookup` to provide values that change according to phenological stages.
+
 
 ## Overview
 
@@ -11,48 +17,32 @@ This function enables conditional logic based on crop development stage. When th
 
 In APSIM NG, `PhaseLookupValue` is typically used under [PhaseLookup](PhaseLookup.qmd) to define phase-specific values for key processes like growth rates, stress responses, or developmental signals.
 
-## Inputs
+## Model Structure
 
-- Start: The name of the crop stage where this value becomes active.
-- End: The name of the crop stage where this value becomes inactive.
-- Child function: The first child model (e.g., constant, multiplier) providing the value when active. If multiple children are present, only the first is used.
-- Phenology: The current phenological state of the crop (linked internally).
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Methodology
+This function inherits from the following parent classes:
 
-When simulation begins, `PhaseLookupValue` maps the `Start` and `End` crop stage names to internal indices.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-Each day during the simulation:
 
-1. It checks whether the current crop stage falls between the defined start and end stages.
-2. If yes, it evaluates the first child function and returns that value.
-3. If no, it returns 0.0.
+## Connections to Other Components
 
-Mathematically:
+{{< include /_includes/Models/connections-intro.md >}}
 
-$$
-\text{Value} = 
-\begin{cases}
-\text{ChildFunction}(), & \text{if in phase} \\
-0, & \text{otherwise}
-\end{cases}
-$$
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link | Provides current phenological stage information to determine if the crop is within the specified phase range. |
+| Child Function | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, First Available | Any function model that provides the value to return when the phase is active. Only the first child is used. |
+| PhaseLookup | [PhaseLookup](/docs/Models/Functions/PhaseLookup.qmd) | Parent (typical) | Parent function that evaluates multiple PhaseLookupValue children to select the appropriate value based on current phase. |
 
-This allows you to define rules or responses that are only active during specific crop phases.
 
-## Events
+## Model Variables
 
-**Events Listened For**
+{{< include /_includes/Models/model-variables-intro.md >}}
 
-| Event       | Purpose                                                                |
-|-------------|------------------------------------------------------------------------|
-| Commencing  | Convert stage names to internal indices at the beginning of simulation |
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
 
 **Configurable and Reportable Properties**
 
@@ -67,6 +57,64 @@ This allows you to define rules or responses that are only active during specifi
 |-----------|---------|-------------------------------------------------|
 | InPhase   | boolean | `true` if current crop stage is within range    |
 
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+| Event       | Purpose                                                                |
+|-------------|------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)  | Convert stage names to internal indices at the beginning of simulation |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Phase Range Initialization
+
+At the beginning of the simulation (triggered by the `Commencing` event), the function converts the user-specified `Start` and `End` stage names into internal phenology indices:
+
+- `startStageIndex` = index corresponding to the `Start` stage name
+- `endStageIndex` = index corresponding to the `End` stage name
+
+This conversion is performed once at initialization and cached for efficient evaluation during the simulation.
+
+### Value Calculation
+
+During each simulation time step, the function evaluates whether the current phenological stage falls within the specified range and returns the appropriate value:
+
+$$
+V = 
+\begin{cases}
+F_{\text{child}}(i), & \text{if } S_{\text{start}} \leq S_{\text{current}} \leq S_{\text{end}} \\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+where:
+
+- $V$ is the returned value
+- $F_{\text{child}}(i)$ is the value of the first child function (with optional array index $i$)
+- $S_{\text{start}}$ is the start stage index
+- $S_{\text{current}}$ is the current phenological stage index
+- $S_{\text{end}}$ is the end stage index
+
+**Important notes:**
+
+- If `Start` or `End` stage names are not set (empty strings), the function throws an exception.
+- Only the **first** child function is evaluated, even if multiple children are present.
+- The function returns 0.0 if no child functions are defined or if the current stage is outside the specified range.
+- The phenology check uses the `Between()` method which includes both start and end stages (inclusive range).
+
+
 ## User Interface
 
 `PhaseLookupValue` is used as a child of a [PhaseLookup](PhaseLookup.qmd) node. To use it:
@@ -74,7 +122,7 @@ This allows you to define rules or responses that are only active during specifi
 1. Right-click on the `PhaseLookup` in the model tree.
 2. Select "Add Model...".
 3. Choose "PhaseLookupValue".
-4. Set `Start` and `End` crop stages, and add a child function such as `Constant` or `MultiplyFunction`.
+4. Set `Start` and `End` crop stages in the property view, and add a child function such as `Constant` or `MultiplyFunction`.
 
 
 ## Practical Example
@@ -89,8 +137,10 @@ Suppose you want to return a value of 1.0 during the vegetative phase and 0.5 du
   - Start = "FloralInitiation", End = "Maturity"  
   - Child = Constant (0.5)
 
-Together, under a parent `PhaseLookup`, these values define different behavior for the crop across development.
+Together, under a parent `PhaseLookup`, these values define different behavior for the crop across development. This approach could be used to model radiation use efficiency that decreases after floral initiation, or to adjust partitioning coefficients that change with developmental stage.
+
 
 ## See Also
 
+* **Related Models:** [PhaseLookup](/docs/Models/Functions/PhaseLookup.qmd), [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd)
 * **Source code:** [PhaseLookupValue.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhaseLookupValue.cs)

@@ -1,39 +1,97 @@
 ---
-title: "Photoperiod"
+title: "PhotoperiodFunction"
 format: html
 ---
 
-The **Photoperiod** function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The **PhotoperiodFunction** calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.
+
 
 ## Overview
 
-The Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes.
+The Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes. If a variable called `ClimateControl.PhotoPeriod` is found in the simulation, it will be used instead of the calculated value.
 
-## Inputs
+## Model Structure
 
-| Input         | Type    | Description                                                                 |
-|---------------|---------|-----------------------------------------------------------------------------|
-| `Twilight`    | double  | The sun angle (in degrees) below the horizon to define the start/end of daylight. |
-| `MetData`     | IWeather| Weather data provider, supplies latitude and other meteorological information. |
-| `Clock`       | IClock  | Provides the current day of year for the calculation.                        |
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
-The function calculates day length using the latitude and the twilight angle. The calculation is performed according to the weather data providers.
 
-**Controlled Envronment**
+## Connections to Other Components
 
-Use the specified day length from the controlled environment.
+{{< include /_includes/Models/connections-intro.md >}}
 
-**Specified Day Length in the Weather File**
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Weather | [IWeather](/docs/Models/Interfaces/IWeather.qmd) | Link | Provides latitude and meteorological information for day length calculation. |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Supplies the current day of year for the calculation. |
 
-Use the actual day length from the weather file.
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Twilight           | double  | The sun angle (in degrees) below the horizon for defining daylight.         |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| DayLength          | double  | The calculated duration of daylight (hours) for the current day and location. |
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [DoWeather](/docs/Models/Events.html#DoWeather)   | Triggers calculation of day length for the current day. |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Day Length Calculation
+
+The function calculates day length using three possible sources, with the following priority:
+
+**Controlled Environment**
+
+If the simulation includes a `ClimateControl.PhotoPeriod` variable, this specified day length value is used directly, overriding all other calculations.
+
+**Specified Day Length in Weather File**
+
+If the weather file contains actual day length data, these values are used directly.
 
 **Calculated Day Length**
 
-The day length is calculated using the following astronomical formula, which estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle:
+When no predetermined photoperiod is available, the day length is calculated using an astronomical formula. This calculation estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle.
+
+The calculation uses the following approach:
 
 Let:
+
 - $D$ = day of year
 - $\phi$ = latitude (degrees)
 - $\theta$ = twilight sun angle (degrees below the horizon; e.g., $-6$ for civil twilight)
@@ -59,39 +117,17 @@ $$
 
 This formula accounts for the Earth's tilt and the observer's latitude, providing an accurate estimate of daylight hours for any day and location.
 
+The calculation is performed on the `DoWeather` event, ensuring the photoperiod is updated daily based on the current date and location.
 
-## Events 
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [DoWeather](/docs/Models/Events.html#DoWeather)   | Triggers calculation of day length for the current day. |
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `Twilight`           | double  | The sun angle (in degrees) below the horizon for defining daylight.         |
-
-**Read-Only Reportable Properties**
-
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `DayLength`          | double  | The calculated duration of daylight (hours) for the current day and location. |
 
 ## User Interface
 
-`PhotoperiodFunction` can be added as a child of a parent function node (e.g., a model requiring day length) in the model tree. Right-click the parent node, select "Add Model...", and search for `PhotoperiodFunction` in the Filter Box.
+PhotoperiodFunction can be added as a child of a parent function node (e.g., a model requiring day length) in the model tree. Right-click the parent node, select "Add Model...", and search for PhotoperiodFunction in the Filter Box.
 
 ## Practical Example
 
 > No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [PhotoperiodFunction.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhotoperiodFunction.cs)

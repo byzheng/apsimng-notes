@@ -1,77 +1,97 @@
 ---
-title: "XYPairs Function"
+title: "XYPairs"
 format: html
 ---
 
 
-```{r setup, echo = FALSE}
+```{r setup, echo=FALSE}
 setup_qmd()
 ```
-
 
 Returns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.
 
 ## Overview
 
-`XYPairs` is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.
+`XYPairs` is a fundamental function in APSIM NG that defines response curves by specifying a series of X and Y coordinate pairs. For a given input X value, it returns a linearly interpolated Y value based on the defined XY matrix. If the input X value falls outside the defined range, the function returns the Y value at the nearest boundary point (either the first or last Y value). 
 
+This function is particularly useful for modeling empirical relationships where measured data is available, such as temperature response curves, biomass partitioning coefficients, or developmental rate functions in agricultural models. It provides a flexible way to represent non-linear relationships without requiring specific mathematical formulations.
 
-## Inputs
+## Model Structure
 
-- `X`: An array of X values defining the input domain.
-- `Y`: An array of Y values corresponding to each X value. Must be the same length as `X`.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/Models/Core/IFunction.qmd)
+* [IIndexedFunction](/docs/APSIM.Core/IFunction.qmd)
 
-The `XYPairs` function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value ($dX$), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).
+## Connections to Other Components
 
-The interpolation follows this equation between points $(x_i, y_i)$ and $(x_{i+1}, y_{i+1})$:
+{{< include /_includes/Models/connections-intro.md >}}
 
-$$
-Y = y_i + \frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)
-$$
+`XYPairs` is typically used as a child function within other model components. It does not directly link to other models but receives its input X value from the parent model that calls it. The function can be used anywhere an `IFunction` or `IIndexedFunction` interface is expected.
 
-## Events
+## Model Variables
 
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
 | Property | Type      | Description                       |
 |----------|-----------|-----------------------------------|
-| `X`      | double[]  | The list of X values              |
-| `Y`      | double[]  | The list of Y values              |
+| X        | double[]  | Array of X values defining the input domain. These values should be in ascending order. |
+| Y        | double[]  | Array of Y values corresponding to each X value. Must be the same length as X. |
 
 **Read-Only Reportable Properties**
 
 > No read-only properties are available for this function.
 
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Linear Interpolation
+
+The `XYPairs` function performs linear interpolation between user-defined X and Y value pairs. When the function is called with an input X value ($dX$), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value.
+
+The interpolation follows this equation between two consecutive points $(x_i, y_i)$ and $(x_{i+1}, y_{i+1})$:
+
+$$
+Y = y_i + \frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)
+$$
+
+where:
+- $dX$ is the input X value
+- $x_i$ and $x_{i+1}$ are the two consecutive X values in the array that bracket $dX$
+- $y_i$ and $y_{i+1}$ are the corresponding Y values
+
+### Boundary Behavior
+
+If the input X value falls outside the defined X range:
+- For $dX < x_1$ (below the minimum), the function returns $y_1$ (the first Y value)
+- For $dX > x_n$ (above the maximum), the function returns $y_n$ (the last Y value)
+
+This behavior ensures the function always returns a valid value and is particularly useful for extrapolation scenarios where the model operates at the limits of the defined response curve.
+
 ## User Interface
 
-`XYPairs` can be added as a child of any functional models in the model tree. Right-click the parent node, select "Add Model...", and search for `XYPairs` in the Filter Box.
+`XYPairs` can be added as a child of any model that requires a function in the model tree. Right-click the parent node, select "Add Model...", and search for `XYPairs` in the Filter Box.
 
 ## Practical Example
 
-Suppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:
+Suppose you want to define a thermal time response curve for a developmental process that increases linearly with temperature up to an optimal value, then decreases. This might represent enzyme activity or photosynthetic rate as a function of temperature.
 
-- `X = [0, 26, 34]`
-- `Y = [0, 26, 0]`
+Set:
 
-This means:
-- For thermal time (`X`) less than 0, the response (`Y`) is 0.
-- From 0 to 26, the response increases linearly from 0 to 26.
-- From 26 to 34, the response decreases linearly from 26 to 0.
-- For thermal time greater than 34, the response remains 0.
+- `X = [0, 26, 34]` (Temperature in °C)
+- `Y = [0, 26, 0]` (Thermal time accumulation in °Cd)
 
-```{r plot-xypairs, fig.height = 4, fig.cap="Example of XYPairs Function"}
+This configuration means:
+- For temperatures below 0°C, thermal time accumulation is 0 (development ceases)
+- From 0 to 26°C, thermal time increases linearly from 0 to 26°Cd per day
+- From 26 to 34°C, thermal time decreases linearly from 26 to 0°Cd per day
+- For temperatures above 34°C, thermal time accumulation is 0 (heat stress stops development)
+
+```{r plot-xypairs, echo=FALSE, message=FALSE, warning=FALSE, fig.height=4, fig.cap="Example of XYPairs function showing thermal time accumulation as a function of temperature"}
 # Define X and Y values
 X <- c(0, 26, 34)
 Y <- c(0, 26, 0)
@@ -94,6 +114,7 @@ ggplot(df, aes(x = x, y = y)) +
     labs(x = "Temperature (°C)", y = "Thermal time (°Cd)") +
     theme_minimal()
 ```
+
 ## See Also
 
 * **Source code:** [XYPairs.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/XYPairs.cs)

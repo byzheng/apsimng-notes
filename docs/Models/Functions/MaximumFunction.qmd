@@ -3,23 +3,40 @@ title: "MaximumFunction"
 format: html
 ---
 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 The `MaximumFunction` is a utility function that returns the **maximum value** from all of its child functions.
+
 
 ## Overview
 
 The `MaximumFunction` is used to determine the largest value among multiple child functions. It evaluates each child and returns the maximum result. This is useful when you need to select the most permissive factor or the highest value among several parameters in plant or soil models.
 
-## Events
+The function works by iterating through all child functions and using `Math.Max()` to track the largest value encountered. It initializes with a very small value (-999999999) and progressively updates to the maximum found among all children.
 
-**Events Listened For**
+## Model Structure
 
-> No events are listened for by this function.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-**Events Raised**
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
-> No events are raised by this function.
 
-## Properties
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Children | Any number of child functions whose values are compared. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -27,11 +44,38 @@ The `MaximumFunction` is used to determine the largest value among multiple chil
 
 **Read-Only Reportable Properties**
 
-> No read-only reportable properties are available for this function.
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double  | The sum of values from all child functions.                      |
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Maximum Value Calculation
+
+The `MaximumFunction` evaluates all child functions and returns the maximum value. The algorithm is:
+
+1. Initialize return value to a very small number (-999999999)
+2. Iterate through all child functions
+3. For each child, compare its value with the current maximum
+4. Update the maximum if the child's value is larger
+5. Return the final maximum value
+
+Mathematically, this can be expressed as:
+
+$$
+Value_{max} = \max_{i=1}^{n}(f_i)
+$$
+
+where $f_i$ represents the value of the $i$-th child function, and $n$ is the total number of child functions.
+
 
 ## User Interface
 
-`MaximumFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", then searching for `MaximumFunction` in the Filter Box. A symbol for the `MaximumFunction` is displayed in the user interface to represent the function.
+`MaximumFunction` can be added as a child of any parent node in the model tree. Right-click the parent node, select "Add Model...", and search for `MaximumFunction` in the Filter Box.
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/MaximumFunction.png){ width=64px }
 
