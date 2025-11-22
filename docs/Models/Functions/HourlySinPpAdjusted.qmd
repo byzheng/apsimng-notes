@@ -23,30 +23,70 @@ This model estimates hourly air temperature (`Ta`) from daily minimum (`Tmin`) a
 
 If a **Controlled Environment (CE)** module is linked, the model will use **actual hourly air temperatures** provided by CE instead of calculating them.
 
-## Inputs
+## Model Structure
 
-- **MetData** (Required): 
-    A `IWeather` model for maximum air minimum and maximum temperature from weather data, i.e. a `Weather` model is required in the simulation to provide daily maximum and minimum temperatures.
-- **CE** (`ControlledEnvironment`, optional):  
-    If present, overrides the interpolated sub-daily values using provided hourly temperature data (`SubDailyTemperature`). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-- **Daylength (d)**:  
-    Computed internally via `MetData.CalculateDayLength(-6)` to define the daylight duration (based on -6° sun angle, commonly used in agriculture to define twilight start and end).
-
-- **Sunrise (Hsrise) and Sunset (Hsset)**:  
-    Calculated using `MetData.CalculateSunRise()` and `MetData.CalculateSunSet()`. Used to define the time range for each temperature estimation period (A–D).
-
-- **TmaxB / TminA**:  
-    Tmax from the previous day and Tmin from the next day, used to estimate temperatures across midnight and sunset transitions.
-
-- **P**:  
-    Shape factor constant (set to 1.5) to determine the shift of maximum temperature from solar noon.
-
-- **TC**:  
-    Time constant (set to 4.0) controlling the exponential cooling rate during the night.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IInterpolationMethod](/docs/Models/Core/IInterpolationMethod.qmd)
 
 
-## Methodology
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| MetData | [IWeather](/docs/Models/Core/IWeather.qmd) | Link | Provides daily minimum and maximum temperatures, and calculates day length, sunrise, and sunset times. |
+| CE | [ControlledEnvironment](/docs/Models/Climate/ControlledEnvironment.qmd) | Link, Optional | If present, overrides the interpolated sub-daily values using provided hourly temperature data (`SubDailyTemperature`). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+
+**Configurable and Reportable Properties**
+
+| Parameter             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Daylength (d)   | double  | Computed internally via `MetData.CalculateDayLength(-6)` to define the daylight duration (based on -6° sun angle, commonly used in agriculture to define twilight start and end).                      |
+| Sunrise (Hsrise) | double | Calculated using `MetData.CalculateSunRise()`. Used to define the time range for each temperature estimation period (A–D). |
+| Sunset (Hsset) | double | Calculated using `MetData.CalculateSunSet()`. Used to define the time range for each temperature estimation period (A–D). |
+| TmaxB | double | Tmax from the previous day, used to estimate temperatures across midnight transitions. |
+| TminA | double | Tmin from the next day, used to estimate temperatures across sunset transitions. |
+| P | double | Shape factor constant (set to 1.5) to determine the shift of maximum temperature from solar noon. |
+| TC | double | Time constant (set to 4.0) controlling the exponential cooling rate during the night. |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `OutputValueType`   | string  | The type of variable for sub-daily values as `air temperature`                      |
+| `Tsset` | double | Temperature at the most recent sunset (°C) |
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Nothing to calculate at the start of the simulation |
+
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
 
 Hourly estimates of air temperature (Ta) are interpolated from daily maximum (Tmax), minimum (Tmin) temperatures and daylength (d) using the method of [@goudriaan_climatic_1994]. The calculation divides the 24-hour day into four periods based on sunrise and sunset:
 
@@ -120,38 +160,6 @@ $$
 This methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.
 
 > If $T_{minA}$ or $T_{maxB}$ are not provided, the model will use the current day's minimum or maximum temperatures, e.g. in the beginning or ending of simulation without weather data.
-
-## Events 
-
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)   | Nothing to calculate at the start of the simulation |
-
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-
-## Properties
-
-
-**Configurable and Reportable Properties**
-
-> No configurable properties are available for this function.
-
-**Read-Only Reportable Properties**
-
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `OutputValueType`   | string  | The type of variable for sub-daily values as `air temperature`                      |
-
-
 
 ## User Interface
 
