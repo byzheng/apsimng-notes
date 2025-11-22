@@ -7,20 +7,36 @@ format: html
 setup_qmd()
 ```
 
-
-A helper function in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for a given genotype, using observed final leaf number (FLN) data and controlled environment parameters. It forms a core part of the CAMP (Cereal Apical Meristem Phenology) model and supports simulation of genotype-specific developmental responses to photoperiod and vernalisation cues.
+A model component in APSIM Next Generation that calculates vernalisation (Vrn) expression rate parameters for crop genotypes using observed final leaf number (FLN) data from controlled environment studies. This model is a critical component of the CAMP (Cereal Apical Meristem Phenology) framework, enabling simulation of genotype-specific developmental responses to photoperiod and vernalisation.
 
 ## Overview
 
-`CalcCAMPVrnRates` is used to derive the coefficients that govern how vernalisation and photoperiod affect the expression rates of vernalisation genes in the CAMP model. It operates on FLN observations from controlled environment studies with defined photoperiod and temperature treatments. The outputs are rate parameters that quantify the rate and phase transitions of Vrn expression in different photothermal regimes, enabling genotype-specific simulation of phenological development.
+`CalcCAMPVrnRates` derives the coefficients that govern how vernalisation and photoperiod affect the expression rates of vernalisation genes (Vrn1, Vrn2, and Vrn3) in the CAMP phenology model. It uses FLN observations from controlled environment experiments with defined photoperiod and temperature treatments to calculate rate parameters that quantify the progression and phase transitions of Vrn expression in different photothermal environments.
 
-This function is critical for enabling APSIM NG to simulate genotype-by-environment interactions in crop phenology, particularly for cereal crops where vernalisation and photoperiod sensitivity genes such as Vrn1, Vrn2, and Vrn3 play a pivotal role.
+This component enables APSIM NG to simulate genotype-by-environment interactions in crop phenology, particularly for cereal crops where vernalisation and photoperiod sensitivity genes control key developmental transitions from vegetative to reproductive growth.
 
+## Model Structure
 
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Inputs
+* [Model](/docs/Models/Core/Model.qmd)
 
-This function requires the following inputs:
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| CAMP | [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) | Link, Ancestor | Parent phenology model providing helper methods and constants. |
+| basePhyllochron | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Calculates the base phyllochron (thermal time per leaf). |
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Input Requirements
+
+This model requires the following inputs:
 
 - `FinalLeafNumberSet FLNset`: A dataset containing FLN values under different photoperiod and vernalisation treatments:
   - `LV` – Long photoperiod with vernalisation
@@ -33,19 +49,17 @@ This function requires the following inputs:
   - `TreatmentPp_L`: Long-day photoperiod (hours)
   - `TtEmerge`: Thermal time from sowing to emergence (°Cd)
 
-In addition, it links to:
-
 - `basePhyllochron`: A child model function that returns the phyllochron (thermal time per leaf)
-- `camp`: The ancestor [CAMP](CAMP.qmd) model, which provides helper methods and constants
+- `camp`: The ancestor [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) model, which provides helper methods and constants
 
-## Methodology
+### Calculation Method
 
-The `CalcCAMPVrnRates` function estimates [vernalisation rate parameters](CultivarRateParams.qmd) using:
+The `CalcCAMPVrnRates` model estimates [vernalisation rate parameters](CultivarRateParams.qmd) using:
 
 - `FLNset`: a set of [final leaf number parameters](FinalLeafNumberSet.qmd)
 - `EnvData`: [controlled environment data](FLNParameterEnvironment.qmd) used to measure final leaf number
 
-The function performs the following steps:
+The calculation performs the following steps:
 
 1. [Convert Emergence Duration from Thermal Time to Phyllochrons](#emergence-duration)  
 2. [Base phyllochron duration of vernalisation treatment](#vern-phyllochron)  
@@ -438,30 +452,11 @@ Where:
 
 This factor quantifies the enhancement in Vrn1 expression due to cold during vernalisation.
 
-
-## Events
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-> No configurable properties are available for this function.
-
-**Read-Only Reportable Properties**
-
-> No read-only properties are available for this function.
-
 ## User Interface
 
-> Not typically user-configurable through the UI. It is populated by the `CalcCAMPVrnRates` function based on genotype-specific FLN observations.
+`CalcCAMPVrnRates` can be added as a child of a [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) node in the model tree. Right-click the CAMP node, select "Add Model...", and search for `CalcCAMPVrnRates` in the Filter Box.
+
+The model is not typically user-configurable through the UI. It is called programmatically by the CAMP model to calculate vernalisation rate parameters based on genotype-specific FLN observations and controlled environment data.
 
 ## Practical Example
 

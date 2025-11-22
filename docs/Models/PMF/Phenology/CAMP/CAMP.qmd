@@ -3,20 +3,25 @@ title: "CAMP"
 format: html
 ---
 
+```{r setup, echo = FALSE}
+setup_qmd()
+```
 
-Cereal Anthesis Molecular Phenology (CAMP) model [@brown_integration_2013] is based on the @kirby_analysis_1988's Framework which assumes the timing of anthesis is a result of the timing of flag leaf and an additional thermal time passage from there to heading then anthesis. It also assumes the timing of flag leaf is a result of the Final Leaf Number (which sets a target) and leaf appearance rate (which sets the rate of progress toward the target). Leaf appearance rate is a function of Thermal time and a genotype specific Phyllochron which changes with Haun stage as described by [@jamieson_sirius:_1998].
+The Cereal Apical Meristem Phenology (CAMP) model is a mechanistic framework for simulating the developmental progression of temperate cereals from germination through to reproductive initiation. CAMP integrates molecular-level vernalisation gene expression (Vrn1, Vrn2, Vrn3) with phyllochron-based leaf appearance to predict final leaf number and flowering time in response to temperature and photoperiod.
 
 ## Overview
 
+The CAMP model [@brown_integration_2013] is based on @kirby_analysis_1988's framework, which assumes that the timing of anthesis results from the timing of flag leaf appearance plus an additional thermal time period from flag leaf to heading and anthesis. The timing of flag leaf appearance is determined by the Final Leaf Number (FLN), which sets a developmental target, and the leaf appearance rate, which determines the rate of progress toward that target. Leaf appearance rate is a function of thermal time and a genotype-specific phyllochron that varies with Haun stage as described by @jamieson_sirius:_1998.
 
-The CAMP models vernalisation gene expression in wheat and other temperate cereals. It simulates molecular responses to temperature and photoperiod signals that regulate flowering transitions, including upregulation of Vrn1, Vrn2, and Vrn3 [@brown_integration_2013]. These genes regulate the timing of key developmental transitions, particularly the completion of vernalisation and initiation of the reproductive phase.
+The CAMP model simulates molecular responses to temperature and photoperiod signals that regulate flowering transitions, including upregulation of Vrn1, Vrn2, and Vrn3 genes. These genes regulate the timing of key developmental transitions, particularly the completion of vernalisation and initiation of the reproductive phase.
 
-Progress through the vernalising phase is determined by the apparent expression of Vrn1 and Vrn2 genes. Vrn1 is the gene that orchestrates cold temperature responses in development. To complete the vernalising stage, Vrn1 expression must first reach a threshold of at least 1.0. In warm temperatures (above 18 °C), Vrn1 is expressed at a genotype-dependent base rate. This base rate is lower for vernalisation-sensitive genotypes, which develop slower under warm conditions. However, exposure to cold temperatures accelerates Vrn1 expression, causing vernalisation-sensitive varieties to reach this stage at a lower Haun stage.
+Progress through the vernalising phase is determined by the apparent expression of Vrn1 and Vrn2 genes: Vrn1 is the gene that orchestrates cold temperature responses in development. To complete the vernalising stage, Vrn1 expression must first reach a threshold of at least 1.0. In warm temperatures (above 18 °C), Vrn1 is expressed at a genotype-dependent base rate. This base rate is lower for vernalisation-sensitive genotypes, which develop slower under warm conditions. However, exposure to cold temperatures accelerates Vrn1 expression, causing vernalisation-sensitive varieties to reach this stage at a lower Haun stage.
 
 Vrn2 is upregulated by longer photoperiods and acts as a repressor of Vrn3, which is essential for progression to spikelet initiation. Vrn1 in turn represses Vrn2. Thus, higher photoperiod-induced Vrn2 expression raises the Vrn1 target above 1.0, extending the vernalisation phase. Conversely, shorter days reduce the Vrn1 target, a phenomenon known as *short-day vernalisation*. Vrn3 may also contribute to the acceleration of Vrn1 expression during vernalisation, a process represented by a composite parameter VrnX in the CAMP model.
 
-The CAMP model integrates molecular and physiological representations to better capture genotype × environment × management (G×E×M) interactions and to provide a mechanistic bridge between genetic parameters and field-level crop behavior. All gene expressions are derived daily based on haun stage increment, temperature, and photoperiod.
+The CAMP model integrates molecular and physiological representations to better capture genotype × environment × management (G×E×M) interactions and to provide a mechanistic bridge between genetic parameters and field-level crop behavior. All gene expressions are derived daily based on Haun stage increment, temperature, and photoperiod.
 
+### Genetic Control of Phenology
 
 Three groups of genes are involved in cereal phenology:
 
@@ -24,7 +29,7 @@ Three groups of genes are involved in cereal phenology:
 2. **Photoperiod sensitivity genes (PPD)**: These genes regulate flowering time based on day length.
 3. **Earliness per se genes (EPS)**: These genes control the rate of development independently of environmental cues.
 
-Four treatments are used to represent the major gene effects on phenology [@bloomfield_vernalisation_2023; @zheng_quantification_2013] including
+Four treatments are used to represent the major gene effects on phenology [@bloomfield_vernalisation_2023; @zheng_quantification_2013]:
 
 | Treatment | Description | VRN | PPD | EPS |
 |-----------|-------------|-----|-----|-----|
@@ -35,23 +40,92 @@ Four treatments are used to represent the major gene effects on phenology [@bloo
 
 Vernalisation genes are activated by exposure to low temperatures following seed germination.
 
+## Model Structure
 
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Inputs
+* [Model](/docs/Models/Core/Model.qmd)
+* [IVrnExpression](/docs/APSIM.Core/IVrnExpression.qmd)
 
-| Input                    | Type          | Description                                                               |
-|--------------------------|---------------|---------------------------------------------------------------------------|
-| `tt`                     | `IFunction`   | Daily thermal time (°Cd)                                                  |
-| `ColdVrnResponse`        | `IFunction`   | Function for cold temperature response driving Vrn1 expression            |
-| `PpResponse`             | `IFunction`   | Relative photoperiod function (scaled between 0–1)                        |
-| `haunStage`              | `IFunction`   | Daily Haun Stage value                                                    |
-| `basePhyllochron`        | `IFunction`   | Phyllochron used for growth rate before emergence                         |
-| `deltaHaunStage`         | `IFunction`   | Haun stage increment post-emergence                                       |
-| `FLNparams`              | `FinalLeafNumberSet` | Cultivar-specific final leaf number parameters                     |
-| `EnvData`                | `FLNParameterEnvironment` | Environmental inputs for parameterisation                        |
-| `calcCAMPVrnRates`       | `CalcCAMPVrnRates` | Submodule that calculates cultivar-specific rate parameters        |
+## Connections to Other Components
 
-## Methodology
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link, Ancestor | Parent phenology model coordinating developmental phases. |
+| tt | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Daily thermal time (°Cd). |
+| ColdVrnResponse | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Cold temperature response driving Vrn1 expression. |
+| PpResponse | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Relative photoperiod function (scaled 0–1). |
+| haunStage | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Daily Haun Stage value. |
+| basePhyllochron | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Phyllochron for pre-emergence growth. |
+| deltaHaunStage | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Link, Child By Name | Haun stage increment post-emergence. |
+| calcCAMPVrnRates | [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) | Link, Child By Name | Calculates cultivar-specific rate parameters. |
+| FLNparams | [FinalLeafNumberSet](/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.qmd) | Link, Child By Name | Cultivar-specific final leaf number parameters. |
+| EnvData | [FLNParameterEnvironment](/docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.qmd) | Link, Child By Name | Environmental inputs for parameterisation. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this model.
+
+**Read-Only Reportable Properties**
+
+| Property         | Type    | Description                                                                 |
+|------------------|---------|-----------------------------------------------------------------------------|
+| `IsGerminated`   | bool    | True if seed is imbibed                                                     |
+| `IsEmerged`      | bool    | True if seed has emerged                                                    |
+| `IsVernalised`   | bool    | True if vernalisation threshold reached ($Vrn ≥ 1.0$)                        |
+| `IsReproductive` | bool    | True if reproductive threshold reached ($Vrn ≥ 2.0$)                         |
+| `BaseVrn`        | double  | Baseline upregulated Vrn1 expression                                        |
+| `Cold`           | double  | Cold-induced Vrn1 expression                                                |
+| `Vrn1`           | double  | Methalated Vrn1 expression (persisting)                                     |
+| `Vrn2`           | double  | Long-day induced repressor of flowering                                     |
+| `Vrn3`           | double  | Photoperiod-dependent promoter of flowering                                |
+| `Vrn`            | double  | Net vernalisation signal (Vrn1 + Vrn3 + BaseVrn - Vrn2)                     |
+| `FLN`            | double  | Final leaf number                                                           |
+| `TSHS`           | double  | Terminal spikelet Haun stage                                                |
+| `VSHS`           | double  | Vernalisation saturation Haun stage                                        |
+| `RelPp`          | double  | Relative photoperiod between 0 (short) and 1 (long)                         |
+| `RelCold`        | double  | Cold effectiveness from `ColdVrnResponse`                                   |
+| `PpVrn3Fact`     | double  | Photoperiod factor for Vrn3 expression                                     |
+| `MaxVrn`         | double  | Maximum potential Vrn expression                                           |
+| `MaxVrn2`        | double  | Maximum potential Vrn2 expression                                          |
+| `dVrn`           | double  | Daily delta vernalisation                                                  |
+| `dBaseVrn`       | double  | Daily delta base Vrn                                                       |
+| `dCold`          | double  | Daily delta cold-induced Vrn1                                              |
+| `dVrn1`          | double  | Daily delta methalated Vrn1                                                |
+| `dVrn3`          | double  | Daily delta Vrn3                                                           |
+| `dMaxVrn`        | double  | Daily delta maximum Vrn                                                    |
+| `dHS`            | double  | Daily delta Haun stage                                                     |
+
+## Events
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the model listens for from other parts of the simulation:
+
+| Event            | Purpose                                                                 |
+|------------------|-------------------------------------------------------------------------|
+| [SeedImbibed](/docs/Models/Events.qmd#SeedImbibed)    | Triggers start of imbibition and gene expression                        |
+| [PlantEmerged](/docs/Models/Events.qmd#PlantEmerged)   | Activates photoperiod sensitivity and post-emergence expression         |
+| [PlantSowing](/docs/Models/Events.qmd#PlantSowing)    | Resets all gene expression and loads cultivar-specific parameters       |
+| [PrePhenology](/docs/Models/Events.qmd#PrePhenology)   | Main daily update loop for gene expression and state transitions        |
+
+**Events Raised to**
+
+> No events are raised by this model.
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Parameterisation
 
 Genotype-specific rates of gene expression in CAMP are defined by [FLNparams](FinalLeafNumberSet.qmd), which includes:
 
@@ -92,7 +166,6 @@ In each day before phenology calculations, the CAMP model updates the expression
 - **Vrn1** is expressed at a base rate under warm conditions, increasing under colder temperatures. The total expression includes both base and cold-driven components. Once Vrn1 expression exceeds the threshold of 1.0, the plant is considered vernalised.
 - **Vrn2** is upregulated by long photoperiods. It inhibits Vrn3 expression and must be repressed (via increased Vrn1) before reproductive development can proceed.
 - **Vrn3** is upregulated after vernalisation is complete and is necessary for terminal spikelet initiation. Its expression accelerates phenological progression.
-- **VrnX** captures the net effect of photoperiod (via Vrn2 and Vrn3) on vernalisation duration.
 
 The following steps are performed on event `PrePhenology`:
 
@@ -321,60 +394,19 @@ $$
 FLN = 2.85 + 1.1 \times HS_{TS}
 $$
 
-
-
-## Events
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event            | Purpose                                                                 |
-|------------------|-------------------------------------------------------------------------|
-| `SeedImbibed`    | Triggers start of imbibition and gene expression                        |
-| `PlantEmerged`   | Activates photoperiod sensitivity and post-emergence expression         |
-| `PlantSowing`    | Resets all gene expression and loads cultivar-specific parameters       |
-| `PrePhenology`   | Main daily update loop for gene expression and state transitions        |
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-> No configurable properties are available for this function.
-
-**Read-Only Reportable Properties**
-
-| Property         | Type    | Description                                                                 |
-|------------------|---------|-----------------------------------------------------------------------------|
-| `IsGerminated`   | bool    | True if seed is imbibed                                                     |
-| `IsEmerged`      | bool    | True if seed has emerged                                                    |
-| `IsVernalised`   | bool    | True if vernalisation threshold reached ($Vrn ≥ 1.0$)                        |
-| `IsReproductive` | bool    | True if reproductive threshold reached ($Vrn ≥ 2.0$)                         |
-| `BaseVrn`        | double  | Baseline upregulated Vrn1 expression                                        |
-| `Cold`           | double  | Cold-induced Vrn1 expression                                                |
-| `Vrn1`           | double  | Methalated Vrn1 expression (persisting)                                     |
-| `Vrn2`           | double  | Long-day induced repressor of flowering                                     |
-| `Vrn3`           | double  | Photoperiod-dependent promoter of flowering                                |
-| `Vrn`            | double  | Net vernalisation signal (Vrn1 + Vrn3 + BaseVrn - Vrn2)                     |
-| `FLN`            | double  | Final leaf number                                                           |
-| `TSHS`           | double  | Terminal spikelet Haun stage                                                |
-| `VSHS`           | double  | Vernalisation saturation Haun stage                                        |
-| `RelPp`          | double  | Relative photoperiod between 0 (short) and 1 (long)                         |
-| `RelCold`        | double  | Cold effectiveness from `ColdVrnResponse`                                   |
-
 ## User Interface
 
-`CAMP` can be added as a child of a `Phenology` node in the model tree. Right-click the parent node, select "Add Model...", and search for `CAMP` in the Filter Box.
+`CAMP` can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for `CAMP` in the Filter Box.
 
 ## Practical Example
 
-> No practical example is available for this function.
+> No practical example is available for this model.
 
 ## See Also
 
 * **Source code:** [CAMP.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phen/CAMP.cs)
-* **Related function:** [CalcCAMPVrnRates.cs](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phen/CalcCAMPVrnRates.cs)
+* **Related models:** 
+  * [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd)
+  * [FinalLeafNumberSet](/docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.qmd)
+  * [FLNParameterEnvironment](/docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.qmd)
+  * [CultivarRateParams](/docs/Models/PMF/Phenology/CAMP/CultivarRateParams.qmd)

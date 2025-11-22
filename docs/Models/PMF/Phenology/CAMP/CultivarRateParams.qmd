@@ -3,21 +3,42 @@ title: "CultivarRateParams"
 format: html
 ---
 
-A data model that stores vernalisation rate parameters for a specific cultivar. These parameters are used within APSIM NG’s CAMP model to simulate the temperature and photoperiod sensitivity of flowering development in cereals such as wheat and barley.
+```{r setup, echo = FALSE}
+setup_qmd()
+```
+
+A data structure that stores cultivar-specific vernalisation rate parameters in APSIM Next Generation. These parameters define how vernalisation genes (Vrn1, Vrn2, Vrn3) respond to temperature and photoperiod cues during cereal development, enabling genotype-specific simulation of flowering time.
 
 ## Overview
 
-The `CultivarRateParams` class defines a set of vernalisation-related parameters tailored to a single genotype or cultivar. These values quantify the rates and thresholds for vernalisation gene expression (e.g., Vrn1, Vrn2, and Vrn3) under different photothermal conditions.
+The `CultivarRateParams` class is a parameter container that holds vernalisation-related coefficients for a specific genotype or cultivar. These values quantify the rates and thresholds for vernalisation gene expression under different photothermal conditions, including baseline expression rates, cold-induced upregulation, and photoperiod sensitivity.
 
-It is not a computational function itself but a container of parameters used by other modules like `CalcCAMPVrnRates` to describe how vernalisation proceeds under varying temperatures and daylengths. It supports detailed phenological simulations in APSIM NG’s [CAMP](CAMP.qmd) framework.
+This class is not a computational model itself but serves as a data structure populated by the [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) function based on controlled environment final leaf number (FLN) observations. The parameters are then used by the [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) model to simulate genotype × environment interactions that influence flowering time in cereals such as wheat and barley.
 
-## Inputs
+## Model Structure
 
-This model is not user-configurable directly through the UI and does not require inputs at runtime. Instead, it is populated by the `CalcCAMPVrnRates` function based on controlled environment FLN observations.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
 
-`CultivarRateParams` provides the following fields, which represent physiological and regulatory coefficients used to simulate flowering development:
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+This data structure is used by:
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| CAMP | [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) | Used by | Main phenology model that uses these parameters to simulate vernalisation. |
+| CalcCAMPVrnRates | [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) | Populated by | Calculates and populates these parameters from FLN data. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+The following parameters represent physiological and regulatory coefficients used to simulate flowering development:
 
 - `BaseDVrnVeg` ($\Delta V_{\text{base, veg}}$): Baseline rate of vernalisation gene expression (Vrn1) in the vegetative phase at high temperatures (e.g., >20°C).
 - `MaxDVrnVeg` ($\Delta V_{\text{max, veg}}$): Maximum upregulation of Vrn1 under cold conditions (e.g., 0°C).
@@ -30,20 +51,6 @@ This model is not user-configurable directly through the UI and does not require
 - `ColdVrn1Fact` ($C_{\text{Vrn1}}$): Factor by which cold temperatures increase the rate of Vrn1 expression compared to the baseline.
 
 These parameters are essential for simulating genotype × environment interactions that influence time to floral initiation and flowering in cereal crops.
-
-## Events
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
 
 | Property               | Type    | Description                                                                 |
 |------------------------|---------|-----------------------------------------------------------------------------|
@@ -59,15 +66,15 @@ These parameters are essential for simulating genotype × environment interactio
 
 **Read-Only Reportable Properties**
 
-> No read-only properties are available for this function.
+> No read-only properties are available for this model.
 
 ## User Interface
 
-> Not typically user-configurable through the UI. It is populated by the `CalcCAMPVrnRates` function based on genotype-specific FLN observations.
+This data structure is not directly user-configurable through the UI. It is populated automatically by the [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) function based on genotype-specific FLN observations and controlled environment data.
 
 ## Practical Example
 
-> No practical example is available for this function.
+> No practical example is available for this model.
 
 ## See Also
 

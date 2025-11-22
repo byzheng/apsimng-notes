@@ -8,31 +8,52 @@ format: html
 setup_qmd()
 ```
 
-The `FinalLeafNumberSet` model stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations help quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific modelling of phenology in APSIM NG.
+A data structure in APSIM Next Generation that stores final leaf number (FLN) observations or estimates for a genotype under controlled environmental conditions. These observations quantify the effects of vernalisation and photoperiod treatments on leaf development, supporting genotype-specific parameterisation of phenology models.
 
 ## Overview
 
-`FinalLeafNumberSet` defines the final leaf number (FLN) under four treatments in the controlled environments [@bloomfield_vernalisation_2023]:
+`FinalLeafNumberSet` defines the final leaf number (FLN) under four treatments in controlled environments [@bloomfield_vernalisation_2023]:
 
-* **LV**: fully vernalised long photoperiod
-* **SV**: fully vernalised short photoperiod
-* **SN**: un-vernalised short photoperiod
-* **LN**: un-vernalised long photoperiod
+* **LV**: fully vernalised, long photoperiod (>16h)
+* **SV**: fully vernalised, short photoperiod (<8h)
+* **SN**: un-vernalised, short photoperiod (<8h)
+* **LN**: un-vernalised, long photoperiod (>16h)
 
-This model is typically used within the [CAMP](CAMP.qmd)  framework to parameterise genotype responses.
+These four treatments represent the combinations of vernalisation (present/absent) and photoperiod (long/short) that define the phenotypic plasticity of leaf number in response to environmental cues. The data structure is used within the [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) framework to parameterise genotype-specific responses and calculate vernalisation rate parameters via [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd).
 
-## Inputs
+## Model Structure
 
-This model does not accept dynamic inputs during simulation, but rather defines fixed parameters:
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-- **MinLN**: Base final leaf number under full vernalisation and long photoperiod.
-- **PpLN**: Increase in FLN when grown under short photoperiod (e.g. 8h) after full vernalisation.
-- **VrnLN**: Increase in FLN due to lack of vernalisation when grown under short photoperiod.
-- **VxPLN**: Modification to FLN due to photoperiod interaction under unvernalised conditions.
+* [Model](/docs/Models/Core/Model.qmd)
 
-These values are typically derived from controlled environment experiments.
+## Connections to Other Components
 
-## Methodology
+{{< include /_includes/Models/connections-intro.md >}}
+
+This data structure is used by:
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| CAMP | [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) | Parent | Phenology model that uses FLN data for parameterisation. |
+| CalcCAMPVrnRates | [CalcCAMPVrnRates](/docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.qmd) | Used by | Calculates vernalisation rate parameters from FLN data. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+This model defines four fixed parameters that are typically derived from controlled environment experiments:
+
+| Property    | Type   | Description                                                                 |
+|-------------|--------|-----------------------------------------------------------------------------|
+| MinLN       | double | Final Leaf Number under full vernalisation and long photoperiod (>16h)      |
+| PpLN        | double | Increase in FLN under short photoperiod (<8h) following full vernalisation  |
+| VrnLN       | double | Increase in FLN when un-vernalised and grown under short photoperiod        |
+| VxPLN       | double | Change in FLN from photoperiod effect under un-vernalised, long-day growth  |
+
+### Calculated Properties
 
 The model exposes computed FLN values based on defined treatment combinations:
 
@@ -53,7 +74,9 @@ $$ \text{LN} = \text{MinLN} + \text{VrnLN} + \text{VxPLN} $$
 
 These equations represent the phenotypic plasticity of FLN in response to vernalisation and photoperiod interactions.
 
-Reversely, the model parameters can be derived from the final leaf number (FLN) values observed in the controlled environment experiments:
+### Reverse Calculation
+
+Conversely, the model parameters can be derived from the final leaf number (FLN) values observed in controlled environment experiments:
 
 - **MinLN**:  
 
@@ -71,30 +94,11 @@ $$ \text{VrnLN} = \text{SN} - \text{SV} $$
 
 $$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
 
-
-
-## Events 
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-| Property    | Type   | Description                                                                 |
-|-------------|--------|-----------------------------------------------------------------------------|
-| MinLN       | double | Final Leaf Number under full vernalisation and long photoperiod (>16h)      |
-| PpLN        | double | Increase in FLN under short photoperiod (<8h) following full vernalisation  |
-| VrnLN       | double | Increase in FLN when un-vernalised and grown under short photoperiod        |
-| VxPLN       | double | Change in FLN from photoperiod effect under un-vernalised, long-day growth  |
+These reverse equations allow researchers to translate controlled environment observations into model parameters that can be used for simulation.
 
 **Read-Only Reportable Properties**
+
+The model provides the following calculated (read-only) properties representing FLN under the four treatment combinations:
 
 | Property    | Type   | Description                                                                 |
 |-------------|--------|-----------------------------------------------------------------------------|
@@ -105,7 +109,9 @@ $$ \text{VxPLN} = \text{LN} - \text{LV} - \left(\text{SN} - \text{SV}\right) $$
 
 ## User Interface
 
-`FinalLeafNumberSet` can be added as a child of a `CAMP` node in the model tree. Right-click the `CAMP` node, select "Add Model...", and search for `FinalLeafNumberSet` in the Filter Box.
+`FinalLeafNumberSet` can be added as a child of a [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) node in the model tree. Right-click the CAMP node, select "Add Model...", and search for `FinalLeafNumberSet` in the Filter Box.
+
+Parameters (MinLN, PpLN, VrnLN, VxPLN) are typically configured based on controlled environment experiments or cultivar characterisation studies.
 
 ## Practical Example
 
