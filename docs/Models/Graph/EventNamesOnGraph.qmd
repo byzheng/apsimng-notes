@@ -1,16 +1,104 @@
 ---
-title: "Show Event Names on Graph"
+title: "EventNamesOnGraph"
 format: html
 ---
 
 
-Model `EventNamesOnGraph` is designed to add event names (e.g. growth stages) to a `Graph` `Series` in APSIM NG. This is particularly useful for visualizing the timing of key events in a crop's growth cycle, such as sowing, flowering, and harvest.
+```{r setup, echo=FALSE}
+setup_qmd()
+```
 
+A graphical annotation model that displays event names (such as phenological growth stages) as vertical reference lines with labels on graph series in APSIM NG.
+
+
+
+
+## Overview
+
+`EventNamesOnGraph` is designed to add event names (e.g., growth stages) as text annotations to a `Graph` `Series` in APSIM NG. This model is particularly useful for visualizing the timing of key events in a crop's growth cycle, such as sowing, emergence, flowering, and harvest. It creates vertical dotted lines at the time points when events occur and labels them with the event names, helping researchers identify critical developmental stages in relation to other simulated variables.
+
+The model reads event data from a specified column in the simulation output and automatically places annotations at corresponding x-axis positions on the graph.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [ICachableGraphable](/docs/Models/Core/ICachableGraphable.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
+
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Series | Series | Parent | The parent series that defines the data table and x-axis variable for annotation placement. |
+| DataStore | IDataStore | Link | Provides access to simulation output data for reading event names and timing. |
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| ColumnName   | string  | The name of the column containing event names to display on the graph (e.g., `Wheat.Phenology.CurrentStageName`).                      |
+| SimulationName   | string  | The name of the simulation to plot. If specified, only data from this simulation will be used for annotations.                      |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this model.
+
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Annotation Generation
+
+The model implements the `GetAnnotations()` method which performs the following steps:
+
+1. **Data Retrieval**: Obtains the data view from the parent series definition, using the specified simulation name if provided.
+
+2. **Column Identification**: Locates the phenology stage column in the data table by searching for column names that contain the specified `ColumnName` value.
+
+3. **X-Axis Value Extraction**: Extracts x-axis values from the data table, handling different data types (DateTime, int, or double) as appropriate.
+
+4. **Annotation Creation**: For each event name in the data:
+   - Creates a vertical dotted line (`LineAnnotation`) spanning the full height of the graph (from `double.MinValue` to `double.MaxValue`)
+   - Creates a text label (`TextAnnotation`) at the bottom of the graph, rotated 270 degrees for vertical display
+   - Skips empty or "?" values to avoid cluttering the graph
+
+The annotations are color-coded in black and positioned at the x-axis values corresponding to when each event occurred in the simulation.
+
+
+## User Interface
+
+`EventNamesOnGraph` can be added as a child of a `Series` node in the model tree. Right-click the `Series` node, select "Add Model...", and search for `EventNamesOnGraph` in the Filter Box.
+
+After adding the model:
+- Set the **ColumnName** property to the column containing event names (e.g., `Wheat.Phenology.CurrentStageName`)
+- Optionally set the **SimulationName** to filter data from a specific simulation
+
+
+## Practical Example
 
 To display event names (such as growth stages) on a graph, follow these steps after running your APSIM simulation:
 
 * Create a new model `Graph` in the simulation tree.
-* Add a new model `Series` to the `Graph` and configure it as your desired output (e.g., x axis as `Wheat.Phenology.DaysAfterSowing`; y axis as `Wheat.Grain.Wt`).
-* Add a new model `EventNamesOnGraph` to the `Series` and select the column name to plot, e.g. `Wheat.Phenology.CurrentStageName`.
+* Add a new model `Series` to the `Graph` and configure it as your desired output (e.g., x-axis as `Wheat.Phenology.DaysAfterSowing`; y-axis as `Wheat.Grain.Wt`).
+* Add a new model `EventNamesOnGraph` to the `Series` and select the column name to plot, e.g., `Wheat.Phenology.CurrentStageName`.
 
 ![Example output showing event names on a graph](EventNamesOnGraph-example.png)
+
+## See Also
+
+* **Source code:** [EventNamesOnGraph.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Graph/EventNamesOnGraph.cs)
