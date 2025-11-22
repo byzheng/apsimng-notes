@@ -58,6 +58,9 @@ format:
     css: styles.css
     toc: true
     toc-depth: 2
+    include-in-header: 
+      - text: |
+          <script src="/_scripts/js/fuzzy-search.js"></script>
     filters:
       - custom-callout
 
