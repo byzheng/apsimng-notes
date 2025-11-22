@@ -1,6 +1,7 @@
 ---
 title: "<Component Name>"
 format: html
+draft: true
 ---
 
 
