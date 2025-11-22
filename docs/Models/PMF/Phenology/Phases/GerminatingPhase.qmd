@@ -3,7 +3,11 @@ title: "GerminatingPhase"
 format: html
 ---
 
-The `GerminatingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers, e.g. soil moisture, temperature, or a user-specified germination date.
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `GerminatingPhase` represents a phenological sub-phase within a plant's developmental timeline, responsible for simulating the transition from sowing to germination. It defines the conditions under which a seed germinates and completes the phase once those criteria are satisfied. Typically, it spans from the Sowing stage to the Germinated stage, and its completion is determined by either environmental triggers (soil moisture and temperature) or a user-specified germination date.
 
 ## Overview
 
@@ -11,38 +15,56 @@ The `GerminatingPhase` models the transition from sowing to germination in the c
 
 - Soil water at the sowing depth exceeds the lower limit (LL15),
 - Soil temperature at the sowing depth is greater than or equal to the **minimum soil temperature** (as defined by the `MinSoilTemperature` child function),
-- A specific **germination date** is provided via the `GerminationDate` property.
+- A specific **germination date** is provided via the `DateToProgress` property.
 
 Once any of these conditions is satisfied, the seed is considered germinated, the `SeedImbibed` event is raised, and the simulation advances to the next phenological phase.
 
-### Germination Triggers
+## Model Structure
 
-Germination occurs in one of two ways:
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-1. **User-defined germination date**  
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
 
-If `GerminationDate` is specified, germination occurs exactly on that date, regardless of soil moisture or temperature.
+## Connections to Other Components
 
-2. **Environmental conditions at sowing depth**  
+{{< include /_includes/Models/connections-intro.md >}}
 
-If no date is defined, germination is triggered when:
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| SoilPhysical | [IPhysical](/docs/Models/Soils/IPhysical.qmd) | Link, First Available | Provides soil physical properties including layer thickness and lower limit (LL15) values. |
+| WaterBalance | [ISoilWater](/docs/Models/Soils/ISoilWater.qmd) | Link, First Available | Supplies current soil water content for each layer. |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Link, First Available | Provides sowing depth information from the plant's sowing data. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link, First Available | Manages phenological stage transitions and timing. |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
+| SoilTemperature | [ISoilTemperature](/docs/Models/Soils/ISoilTemperature.qmd) | Link, First Available | Supplies soil temperature at each layer. |
+| MinSoilTemperature | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Defines minimum soil temperature threshold required for germination. |
 
-- **Soil water content** exceeds the lower limit (LL15) for the sowing layer:  
+## Model Variables
 
-`SWmm[layer] > LL15mm[layer]`
+{{< include /_includes/Models/model-variables-intro.md >}}
 
-- **Soil temperature** at sowing depth exceeds the minimum required value:  
+**Configurable and Reportable Properties**
 
-`SoilTemperature[layer] >= MinSoilTemperature.Value()`
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `Start`              | string  | Phenological stage at which this phase begins (e.g., `Sowing`).              |
+| `End`                | string  | Phenological stage that marks completion of the phase (e.g., `Germinated`).  |
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e., this phase is happening above ground). Default is `false`. |
 
-- The current day is **not** the sowing day.  
+**Read-Only Reportable Properties**
 
-
-**Sowing Depth**: The sowing layer is determined using the value of `plant.SowingData.Depth`, which maps to the appropriate soil layer index.
-
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `ProgressThroughPhase` | double | Accumulated units of thermal time as progress through phase. Set to 1 when germination occurs. |
+| `Target` | double | Thermal time target to end this phase. Always 1 for this phase. |
+| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Returns 1 when germination has occurred. |
+| `DateToProgress` | string | Data to progress. If set by external model, phase will ignore its mechanism and wait for the specified date to progress. |
 
 ## Events 
 
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -53,7 +75,7 @@ These are signals or notifications that the `GerminatingPhase` listens for from 
 | [PlantSowing](/docs/Models/Events.html#PlantSowing)  | Indicates when the plant is sown, allowing the phase to determine the soil layer depth where seeds are placed. This is essential for checking soil conditions relevant to germination. |
 
 
-**Events Raised to**
+**Events Raised**
 
 These are signals that the `GerminatingPhase` sends out to notify other components when actions occur:
 
@@ -61,31 +83,66 @@ These are signals that the `GerminatingPhase` sends out to notify other componen
 |----------------|-----------------------------------------------------------------------------------------|
 | [SeedImbibed](/docs/Models/Events.html#SeedImbibed)  | Raised when germination occurs, signaling other models or processes to begin their activities related to the germinated seed. |
 
+## Processes and Algorithms
 
-## Properties
+{{< include /_includes/Models/processes-intro.md >}}
 
+### Germination Triggers
 
-**Configurable and Reportable Properties**
+Germination occurs in one of two ways:
 
-| Property             | Type    | Description                                                                 | Required   |
-|----------------------|---------|-----------------------------------------------------------------------------|-------------|
-| `Start`              | string  | Phenological stage at which this phase begins (e.g. `Sowing`).              | Yes          |
-| `End`                | string  | Phenological stage that marks completion of the phase (e.g. `Germinated`).  | Yes          |
-| `MinSoilTemperature` | double  | Minimum soil temperature required for germination (default is 0°C).         | Yes          |
-| `GerminationDate`    | string  | Optional fixed calendar date to override environmental conditions.          | No         |
+1. **User-defined germination date**  
 
-| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | No         |
+   If `DateToProgress` is specified, germination occurs exactly on that date, regardless of soil moisture or temperature. The phase completion is determined by:
 
+   $$
+   \text{proceedToNextPhase} = \text{Phenology.checkIfCompletionDate}(\text{startDate}, \text{Today}, \text{DateToProgress})
+   $$
 
-**Read-Only Reportable Properties**
+2. **Environmental conditions at sowing depth**  
 
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete. Always returns 0 as germination has occurred in next day of sowing. |
+   If no date is defined, germination is triggered when all of the following conditions are met:
 
-## Usage
+   - The current day is **not** the sowing day:
+   
+   $$
+   \text{!phenology.OnStartDayOf("Sowing")}
+   $$
 
-A `GerminatingPhase` can be used to represent the germination process of a plant, which is primarily influenced by soil moisture and temperature conditions.
+   - **Soil water content** exceeds the lower limit (LL15) for the sowing layer:  
+
+   $$
+   \text{SWmm}[\text{SowLayer}] > \text{LL15mm}[\text{SowLayer}]
+   $$
+
+   - **Soil temperature** at sowing depth meets or exceeds the minimum required value:  
+
+   $$
+   \text{SoilTemperature}[\text{SowLayer}] \geq \text{MinSoilTemperature.Value()}
+   $$
+
+**Sowing Depth Determination**: The sowing layer is determined using the value of `plant.SowingData.Depth`, which maps to the appropriate soil layer index through the `SoilUtilities.LayerIndexOfDepth` function.
+
+### Phase Progress
+
+When germination conditions are met:
+- The `SeedImbibed` event is raised
+- `ProgressThroughPhase` is set to 1
+- `propOfDayToUse` is set to 1 (indicating the full day is used)
+- The phase proceeds to the next phenological stage
+
+### Phase Reset
+
+The `ResetPhase()` method resets all phase tracking variables to their initial states:
+- `DateToProgress` is cleared
+- `startDate` is set to minimum value
+- `ProgressThroughPhase` is reset to 0
+- `fractionCompleteYesterday` is reset to 0
+
+## User Interface
+
+`GerminatingPhase` can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for `GerminatingPhase` in the Filter Box.
+
 
 ## See Also
 

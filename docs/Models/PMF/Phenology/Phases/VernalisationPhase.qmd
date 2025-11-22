@@ -3,61 +3,68 @@ title: "VernalisationPhase"
 format: html
 ---
 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 The `VernalisationPhase` defines a phenological development phase that is completed when vernalisation requirements are fulfilled. It integrates gene expression signals into crop phenology progression, making it essential for modeling genotypic and environmental responses affecting vernalisation.
+
+
+
 
 ## Overview
 
-The `VernalisationPhase` utilises [Cereal Anthesis Molecular Phenology](../CAMP/index.qmd) (CAMP) model [@brown_integration_2013] to proceed the phase development. The phase completes when vernalisation saturation is achieved. This function is crucial in modeling winter crops, such as wheat and barley, that require cold exposure to proceed in development. It translates gene expression signals (via the CAMP interface) into phenological progress.
+The `VernalisationPhase` utilises the [Cereal Anthesis Molecular Phenology](../CAMP/index.qmd) (CAMP) model [@brown_integration_2013] to control phase development. The phase completes when vernalisation saturation is achieved, as determined by the CAMP gene expression interface. This phase is crucial for modeling winter crops, such as wheat and barley, that require exposure to cold temperatures (vernalisation) before they can proceed to reproductive development.
+
+Vernalisation is a biological process where plants require a period of cold exposure to become competent to flower. This phase translates complex gene expression signals from the CAMP model into phenological progress, allowing APSIM NG to accurately simulate the interaction between genotype, temperature, and photoperiod in determining flowering time in winter cereals.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
+* [IPhaseWithTarget](/docs/Models/PMF/Phenology/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
 
 
-## Inputs
+## Connections to Other Components
 
-| Input Name                    | Type     | Description                                                                 |
-|------------------------------|----------|-----------------------------------------------------------------------------|
-| Start                        | string   | Name of the phenological stage that starts this phase                      |
-| End                          | string   | Name of the phenological stage that ends this phase                        |
-| IsEmerged                    | bool     | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                |
-| CAMP                         | IVrnExpression | Link to CAMP gene expression interface providing vernalisation signals |
-
-## Methodology
+{{< include /_includes/Models/connections-intro.md >}}
 
 
-Vernalisation progress is computed using [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd) model, summing gene expression components and scaling by a saturation threshold:
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| CAMP | [IVrnExpression](/docs/Models/PMF/Phenology/CAMP/IVrnExpression.qmd) | Link | Provides vernalisation gene expression signals (Vrn1, Vrn2, Vrn3, BaseVrn, MaxVrn) |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides the current simulation date and time |
 
-The $\text{target}$ of this phase is defined as:
-$$
-\text{Target} = 1 + Vrn2
-$$
+## Model Variables
 
-Where:
-
-- $Vrn2$ is the photoperiod-induced repressor of flowering.
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 
-The relative vernalisation expression $R_{\text{Vrn}}$ is calculated as:
+**Configurable and Reportable Properties**
 
-$$
-R_{\text{Vrn}} = \min\left(\frac{Vrn_{\text{base}} + Vrn1 + Vrn3}{\text{Target}},\ Vrn_{\text{max}} \right)
-$$
+| Property     | Type    | Description                                                        |
+|--------------|---------|--------------------------------------------------------------------|
+| Start        | string  | Name of the phenological stage that initiates this phase          |
+| End          | string  | Name of the phenological stage that ends this phase               |
+| IsEmerged    | bool    | Whether the phase assumes the crop is emerged (default: true)     |
+| Target       | double  | Target vernalisation saturation threshold (default: 1.0)          |
 
-Where:
+**Read-Only Reportable Properties**
 
-- $Vrn_{\text{base}}$ is the baseline vernalisation expression,
-- $Vrn1$ is the cold-induced vernalisation expression,
-- $Vrn3$ is the photoperiod-dependent promoter of flowering,
-- $Vrn_{\text{max}}$ is the maximum vernalisation expression.
-
-
-At emergence, $R_{\text{Vrn},\ emergence}$ is recorded which assumes as the first day of this phase. Progress through the phase ($F_{\text{complete}}$) is:
-
-$$
-F_{\text{complete}} = \min\left(1,\ \frac{R_{\text{Vrn}} - R_{\text{Vrn},\ emergence}}{1 - R_{\text{Vrn},\ emergence}} \right)
-$$
-
-The phase ends when `IsVernalised` is `true` in the [CAMP](/docs/Models/PMF/Phenology/CAMP/index.qmd), indicating the crop has fulfilled its vernalisation requirement.
+| Property               | Type    | Description                                                             |
+|------------------------|---------|-------------------------------------------------------------------------|
+| FractionComplete       | double  | Proportion (0–1) of progress through this phase                        |
+| ProgressThroughPhase   | double  | Accumulated units of progress through this phase (0–1)                 |
+| DateToProgress         | string  | Optional external completion date. If set, the phase ignores its normal mechanism and waits for this date |
 
 
-## Events
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -71,28 +78,87 @@ These are signals or notifications that the function listens for from other part
 
 > No events are raised by this function.
 
-| Property     | Type    | Description                                                        |
-|--------------|---------|--------------------------------------------------------------------|
-| Start        | string  | Name of the crop stage that initiates this phase                  |
-| End          | string  | Name of the crop stage that ends this phase                       |
-| IsEmerged    | bool    | Whether the phase assumes the crop is emerged (default = `true`)  |
+## Processes and Algorithms
 
-**Read-Only Reportable Properties**
+{{< include /_includes/Models/processes-intro.md >}}
 
-| Property               | Type    | Description                                                             |
-|------------------------|---------|-------------------------------------------------------------------------|
-| FractionComplete       | double  | Proportion (0–1) of progress through this phase                        |
-| ProgressThroughPhase   | double  | Alias for `FractionComplete` (used internally)                         |
-| Target                 | double  | Target vernalisation saturation = $1 + \text{Vrn2}$                    |
+
+### Vernalisation Target Calculation
+
+The vernalisation target represents the threshold level of gene expression required for the phase to complete. It is calculated using the Vrn2 gene expression from the CAMP model:
+
+$$
+\text{Target}_{\text{Vrn}} = 1 + Vrn2
+$$
+
+where $Vrn2$ is the photoperiod-induced repressor of flowering. Higher $Vrn2$ expression increases the vernalisation requirement, meaning the crop needs more cold exposure to satisfy vernalisation.
+
+### Relative Vernalisation Expression
+
+On each timestep, the model calculates the current relative vernalisation expression $R_{\text{Vrn}}$ by combining multiple gene expression components from the CAMP model:
+
+$$
+R_{\text{Vrn}} = \min\left(\frac{Vrn_{\text{base}} + Vrn1 + Vrn3}{\text{Target}_{\text{Vrn}}},\ Vrn_{\text{max}} \right)
+$$
+
+where:
+
+- $Vrn_{\text{base}}$ is the baseline (constitutive) vernalisation gene expression
+- $Vrn1$ is the cold-induced vernalisation gene expression that accumulates during exposure to cold temperatures
+- $Vrn3$ is a photoperiod-dependent promoter of flowering
+- $Vrn_{\text{max}}$ is the maximum possible vernalisation expression (an upper limit)
+
+The minimum function ensures that relative vernalisation cannot exceed the maximum value, even if gene expression would otherwise suggest higher levels.
+
+### Phase Initialization
+
+When the phase first becomes active, the model records the current relative vernalisation expression as the baseline:
+
+$$
+R_{\text{Vrn},\ \text{emergence}} = R_{\text{Vrn}}
+$$
+
+This baseline represents the vernalisation state at the start of the phase (typically at emergence). Any vernalisation that occurred before emergence is accounted for in this initial value, but further progress during the phase is measured relative to this starting point.
+
+### Progress Calculation
+
+Progress through the phase is calculated as the fraction of the remaining vernalisation requirement that has been satisfied:
+
+$$
+P = \min\left(1,\ \frac{R_{\text{Vrn}} - R_{\text{Vrn},\ \text{emergence}}}{1 - R_{\text{Vrn},\ \text{emergence}}} \right)
+$$
+
+where $P$ is the progress through the phase (ranging from 0 to 1).
+
+This formulation ensures that:
+- Progress starts at 0 when the phase begins
+- Progress reaches 1.0 when vernalisation is complete
+- The denominator $(1 - R_{\text{Vrn},\ \text{emergence}})$ represents the remaining vernalisation requirement at the start of the phase
+
+### Phase Completion
+
+The phase is considered complete when the CAMP model sets its `IsVernalised` flag to `true`. This occurs when the accumulated vernalisation gene expression has reached the threshold required for the specific genotype and environmental conditions.
+
+The completion criterion integrates:
+- Cold accumulation (via Vrn1)
+- Photoperiod effects (via Vrn2 and Vrn3)
+- Genotype-specific vernalisation requirements (via CAMP parameters)
+
+### External Date Override
+
+If an external model sets the `DateToProgress` property, the phase will ignore its normal gene expression-based progression mechanism and instead complete on the specified date. This allows for simplified control of phase timing when detailed vernalisation modeling is not required.
 
 ## User Interface
 
-`VernalisationPhase` is added as a child of a `Phenology` node to simulate development that depends on cold exposure.
+`VernalisationPhase` is added as a child of a `Phenology` node to simulate development that depends on cold exposure. 
 
-1. Right-click the `Phenology` node.
-2. Select "Add Model...".
-3. Search for and select "VernalisationPhase".
-4. Configure `Start`, `End`, and link the CAMP component that simulates gene activity.
+To add this phase:
+
+1. Right-click the `Phenology` node in the model tree
+2. Select "Add Model..."
+3. Search for and select "VernalisationPhase" in the Filter Box
+4. Configure the `Start` and `End` stage names
+5. Ensure a CAMP component is available to provide gene expression signals
 
 ## Practical Example
 

@@ -4,53 +4,120 @@ format: html
 ---
 
 
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
 The `GenericPhase` is a phenological phase used within a plant's developmental sequence. It simulates a growth phase that progresses in proportion to accumulated thermal time and completes once a specified target thermal time (in °Cd) is reached.
+
+
+
 
 ## Overview
 
 The `GenericPhase` advances development using daily thermal time accumulation. The phase begins at a defined start stage and is considered complete once the cumulative thermal time equals or exceeds a specified target value.
 
 * Daily progression is configured from property `Progression` (in general it is daily thermal time, e.g. `[Phenology].ThermalTime`).
-* The target thermal time is configured via the property `Target` (in Cd).
+* The target thermal time is configured via the property `Target` (in °Cd).
 * The progress through this phase is tracked by the `FractionComplete` property, which returns a value between 0 and 1.
 * The phase transitions to the next stage once `FractionComplete` reaches 1.
 
-If the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day's progress is passed to this phase. 
+If the previous phase finishes mid-day (i.e., progress overshoots the target), the unused fraction of the day's progress is passed to this phase. This ensures continuity in phenological development across phase boundaries.
 
-## Events
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/APSIM.Core/IPhase.qmd)
+* [IPhaseWithTarget](/docs/APSIM.Core/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/APSIM.Core/IPhaseWithSetableCompletionDate.qmd)
+
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Target | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Defines the target thermal time (°Cd) required to complete this phase. |
+| Progression | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Calculates daily progression through the phase (typically daily thermal time). |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides current simulation date for tracking phase duration. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property       | Type        | Description                                                           |
+|:-------------- |:-----------|:----------------------------------------------------------------------|
+| `Start`        | string      | Phenological stage at which this phase begins.                        |
+| `End`          | string      | Phenological stage that marks completion of the phase.                |
+| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e., this phase is happening above ground). Default is `true`. |
+
+**Read-Only Reportable Properties**
+
+| Property                   | Type    | Description                                                                |
+|:-------------------------- |:------- |:-------------------------------------------------------------------------- |
+| `Target`                   | double  | Thermal time target (°Cd) required to end this phase.                     |
+| `FractionComplete`         | double  | Fraction (0–1) indicating how much of the phase is complete.               |
+| `ProgressionForTimeStep`   | double  | The amount of progression made during the current time step (e.g., day).    |
+| `ProgressThroughPhase`     | double  | Accumulated units of progress through this phase between zero and target.  |
+| `DateToProgress`           | string  | Optional date string for external control of phase completion. If set by external model, phase will wait for the specified date to progress. |
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
+These are signals or notifications that the function listens for from other parts of the simulation:
 
 | Event          | Purpose                                                                                  |
 |----------------|------------------------------------------------------------------------------------------|
 | [Commencing](/docs/Models/Events.html#Commencing)   | Reset progress at the start of simulations                                               |
 
 
+**Events Raised to**
 
-## Properties
+> No events are raised by this function.
 
-**Configurable and Reportable Properties**
 
-| Property       | Type        | Description                                                           | Required   |
-|:-------------- |:-----------|:----------------------------------------------------------------------|:----------|
-| `Start`        | string      | Phenological stage at which this phase begins.                        | Yes        |
-| `End`          | string      | Phenological stage that marks completion of the phase.                | Yes        |
-| `Target`       | IFunction   | The target value for phase completion (e.g., required thermal time).  | Yes        |
-| `Progression`  | IFunction   | The daily progression towards the target (e.g., daily thermal time).  | Yes        |
-| `IsEmerged`    | bool        | Boolean flag indicating whether the crop has emerged above the soil surface (i.e. this phase is happening above ground).                | Yes         |
+## Processes and Algorithms
 
-**Read-Only Reportable Properties**
+{{< include /_includes/Models/processes-intro.md >}}
 
-| Property                   | Type    | Description                                                                |
-|:-------------------------- |:------- |:-------------------------------------------------------------------------- |
-| `FractionComplete`         | double  | Fraction (0–1) indicating how much of the phase is complete.               |
-| `ProgressionForTimeStep`   | double  | The amount of progression made during the current time step (e.g. day).    |
-| `ProgressThroughPhase`     | double  | Accumulated units of progress through this phase between zero and target.  |
 
-## Usage
+### Daily Time Step Calculation
 
-A `GenericPhase` can be used to represent phases such as "Grain Filling" which are mainly impacted by temperature without interactions with vernalisation and photoperiod.
+The `DoTimeStep` method is the core algorithm that advances the phase on each simulation time step:
+
+1. **Date-based progression check**: If `DateToProgress` is set (by an external model), the phase waits until that date before completing, ignoring thermal time accumulation.
+
+2. **Normal thermal time progression**:
+    - Calculate daily progression by multiplying the Progression value by the proportion of day to use
+    - Add this daily progression to the accumulated progress through the phase
+    - If accumulated progress exceeds the target:
+      - The phase is marked complete
+      - Calculate how much of the day was unused based on the overshoot
+      - Cap the progress at the target value
+      - Pass the unused portion to the next phase
+
+3. **Fraction complete calculation**: Divide the accumulated progress by the target to get completion percentage (0-1)
+
+
+## User Interface
+
+`GenericPhase` can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for `GenericPhase` in the Filter Box.
+
+The phase requires two child functions to be configured:
+- `Target`: An IFunction defining the thermal time requirement
+- `Progression`: An IFunction defining daily progression (typically thermal time)
+
 
 ## See Also
 

@@ -3,29 +3,67 @@ title: "SimpleLeafAppearancePhase"
 format: html
 ---
 
-The `SimpleLeafAppearancePhase` represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number. 
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `SimpleLeafAppearancePhase` represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number.
+
+
 
 
 ## Overview
 
-`SimpleLeafAppearancePhase` models a phenological phase that progresses based on final leaf number. It is a simplified approach to leaf appearance, where the phase completes when the number of leaves reaches final leaf number. This phase is useful for crops where leaf appearance is a key developmental milestone.
+`SimpleLeafAppearancePhase` models a phenological phase that progresses based on leaf appearance rate and final leaf number. It is a simplified approach to tracking phenological development in crops, where the phase completes when the current number of leaves reaches the target leaf number. This phase is particularly useful for crops where leaf appearance is a key developmental milestone, such as cereals and grasses.
 
-## Inputs
+The phase progresses from a specified `Start` stage to a specified `End` stage. The duration is controlled by the difference between the target leaf number and the current leaf number. Once initialized, the target for completion is fixed based on the initial leaf count, meaning subsequent changes to the final leaf number do not affect when this phase will complete.
 
-- `Start`: Name of the phenological stage where the phase begins (string).
-- `End`: Name of the phenological stage where the phase ends (string).
-- `IsEmerged`: Boolean value indicating whether the phase starts after emergence.
-- `TargetLeafNumber`: A child `IFunction` that provides the target leaf number for the phase.
-- `CurrentLeafNumber`: A child `IFunction` that returns the current number of leaves.
+## Model Structure
 
-## Methodology
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-The `SimpleLeafAppearancePhase` progresses from the `Start` to the `End` stage based on the number of leaves that have appeared. On the first day, it stores the current number of leaves as `LeafNoAtStart` and computes the `TargetLeafForCompletion` by subtracting this from the final target leaf number, i.e. further changes of Final Leaf Number (i.e. `TargetLeafNumber`) will not impact the completion criteria.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
 
-If the leaf number reaches the target leaf number, the phase is considered complete and the model proceeds to the next phase. 
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| TargetLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Provides the target final leaf number for the phase. |
+| CurrentLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Returns the current number of leaves that have appeared. |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides the current simulation date and time. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Start                | string  | Name of the phenological stage where this phase starts                      |
+| End                  | string  | Name of the phenological stage where this phase ends                        |
+| IsEmerged            | bool    | Whether the phase starts after emergence (default: true)                    |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| ProgressThroughPhase | double  | Accumulated units of progress through this phase (leaves appeared since start) |
+| FractionComplete     | double  | The fraction of the phase that has been completed (0 to 1)                  |
+| DateToProgress       | string  | Optional external completion date. If set, the phase ignores its normal mechanism and waits for this date |
 
 
 ## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -39,21 +77,60 @@ These are signals or notifications that the function listens for from other part
 
 > No events are raised by this function.
 
-## Properties
+## Processes and Algorithms
 
-**Configurable and Reportable Properties**
+{{< include /_includes/Models/processes-intro.md >}}
 
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| Start                | string  | Name of the phenological stage where this phase starts                      |
-| End                  | string  | Name of the phenological stage where this phase ends                        |
-| IsEmerged            | bool    | Whether the phase starts after emergence                                    |
 
-**Read-Only Reportable Properties**
+### Phase Initialization
 
-| Property             | Type    | Description                                                                 |
-|----------------------|---------|-----------------------------------------------------------------------------|
-| FractionComplete     | double  | The fraction of the phase that has been completed                          |
+When the phase first becomes active (i.e., on the first timestep after entering this phase), the model records the current leaf number as the baseline:
+
+$$
+L_{\text{start}} = L_{\text{current}}
+$$
+
+where $L_{\text{start}}$ is the leaf number at the start of the phase and $L_{\text{current}}$ is the current leaf number provided by the `CurrentLeafNumber` function.
+
+The target number of leaves required to complete the phase is then calculated as:
+
+$$
+L_{\text{target}} = L_{\text{final}} - L_{\text{start}}
+$$
+
+where $L_{\text{final}}$ is the final target leaf number provided by the `TargetLeafNumber` function.
+
+This initialization ensures that the phase completion target is locked in at the start of the phase. Any subsequent changes to the final leaf number will not affect the completion criteria for this phase.
+
+### Daily Progress Calculation
+
+On each timestep, the model calculates the progress through the phase as:
+
+$$
+P = L_{\text{current}} - L_{\text{start}}
+$$
+
+where $P$ is the progress through the phase (in leaves).
+
+The fraction complete is then calculated as:
+
+$$
+F = \frac{P}{L_{\text{target}}}
+$$
+
+where $F$ is the fraction of the phase completed (ranging from 0 to 1).
+
+### Phase Completion
+
+The phase is considered complete when the fraction complete reaches or exceeds 1.0 (i.e., when $F \geq 1$). At this point:
+
+- The model sets the proportion of the day used to a very small value (0.00001), assuming most of the day's thermal time was used to reach the final leaf
+- The phase signals that it is ready to proceed to the next phase
+- The phenology model advances to the next phase specified by the `End` property
+
+### External Date Override
+
+If an external model sets the `DateToProgress` property, the phase will ignore its normal leaf-based progression mechanism and instead complete on the specified date. This allows for external control of phase timing when needed for specific experimental or management scenarios.
 
 ## User Interface
 

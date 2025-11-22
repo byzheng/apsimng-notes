@@ -3,81 +3,163 @@ title: "LeafAppearancePhase"
 format: html
 ---
 
-The `LeafAppearancePhase` represents a developmental phase in a plant's life cycle. The Final leaf number is fixed at the start of this phase. The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `LeafAppearancePhase` represents a developmental phase in a plant's life cycle where leaf appearance continues until the final main-stem leaf has finished expansion. This phase is critical for cereal crops as it determines the timing of reproductive development and final canopy size.
 
 ## Overview
 
-The `LeafAppearancePhase` is a phenological stage within the APSIM Next Generation framework that models the interval from a specified start stage to an end stage. The Final leaf number is fixed at the start of this phase (e.g. terminal spikelet). The remaining leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+The `LeafAppearancePhase` is a phenological stage within the APSIM Next Generation framework that models the interval from a specified start stage (typically terminal spikelet initiation) to an end stage (flag leaf fully expanded). The final leaf number is fixed at the start of this phase, and the remaining leaves continue to appear at a rate determined by thermal time and phyllochron until the flag leaf ligule appears and this phase is completed.
 
-## Inputs
+This phase is biologically important because:
+- It determines the duration of vegetative growth after reproductive initiation
+- It influences the number of fertile tillers and final grain number
+- It affects canopy development and light interception capacity
+- It provides a link between environmental conditions and crop development rate
 
-The following input functions are required by `LeafAppearancePhase`:
+- It affects canopy development and light interception capacity
+- It provides a link between environmental conditions and crop development rate
 
-- `FinalLeafNumber` — Total number of leaves the plant will develop.
-- `LeafNumber` — The current number of leaves that have appeared on the plant.
-- `FullyExpandedLeafNo` — The number of leaves that have fully expanded.
-- `InitialisedLeafNumber` — The number of leaf primordia that have been initiated.
+## Model Structure
 
-The following configuration parameters can be set:
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-- `Start` — Name of the phenological stage at which this phase begins.
-- `End` — Name of the phenological stage at which this phase ends.
-- `IsEmerged` — Boolean flag indicating whether this phase begins post-emergence. Default is `true`.
+* [Model](/docs/Models/Core/Model.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
 
-## Methodology
+## Connections to Other Components
 
-The `LeafAppearancePhase` calculates the fraction of the phase completed ($F$) using:
+{{< include /_includes/Models/connections-intro.md >}}
 
-$$
-F = \frac{LN_i - LN_0}{FLN - LN_0}
-$$
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| FinalLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Provides the total number of leaves the plant will develop. This is typically determined by photoperiod and vernalization responses. |
+| LeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Supplies the current number of leaves that have appeared on the main stem. |
+| FullyExpandedLeafNo | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Provides the number of leaves that have fully expanded. |
+| InitialisedLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Supplies the number of leaf primordia that have been initiated. |
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
 
-Where:
+## Model Variables
 
-- $LN_i$ is the current leaf number at day $i$,
-- $LN_0$ is the leaf number at the start of the phase,
-- $FLN$ is the final leaf number.
-
-
-When all initialised leaf primordia have fully expanded, the phase is considered complete and moves to the next phase.
-
-## Events 
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)   | Resets the phase state variables at the start of the simulation |
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
 | Property             | Type    | Description                                                                 |
 |----------------------|---------|-----------------------------------------------------------------------------|
-| Start                | string  | Phenological stage at which this phase begins                               |
-| End                  | string  | Phenological stage at which this phase ends                                 |
-| IsEmerged            | bool    | Indicates whether the phase occurs after emergence                          |
+| `Start`              | string  | Phenological stage at which this phase begins (e.g., `TerminalSpikelet`).   |
+| `End`                | string  | Phenological stage at which this phase ends (e.g., `FlagLeaf`).             |
+| `IsEmerged`          | bool    | Boolean flag indicating whether the crop has emerged above the soil surface. Default is `true`. |
 
 **Read-Only Reportable Properties**
 
 | Property             | Type    | Description                                                                 |
 |----------------------|---------|-----------------------------------------------------------------------------|
-| FractionComplete     | double  | Fractional completion of the phase, ranging from 0 to 1                      |
+| `FractionComplete`   | double  | Fraction (0–1) indicating how much of the phase is complete based on leaf appearance progress. |
+| `ProgressThroughPhase` | double | Accumulated progress through this phase, measured as the number of leaves appeared since phase start. |
+| `DateToProgress`     | string  | If set by external model, phase will ignore its mechanism and wait for the specified date to progress. |
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the `LeafAppearancePhase` listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Resets the phase state variables at the start of the simulation. |
+
+**Events Raised**
+
+> No events are raised by this phase.
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Phase Initialization
+
+When the phase is first entered (detected by `startDate == DateTime.MinValue`), the following initialization occurs:
+
+1. **Record initial leaf number**: The current leaf number is stored as the baseline:
+
+$$
+LN_0 = \text{LeafNumber.Value()}
+$$
+
+2. **Calculate target progress**: The number of leaves that need to appear during this phase:
+
+$$
+\text{Target} = FLN - LN_0
+$$
+
+where $FLN$ is the final leaf number determined at phase start.
+
+3. **Record start date**: The current date is stored to track phase duration.
+
+### Daily Progress Calculation
+
+Each day, the phase progress is updated based on leaf appearance:
+
+$$
+\text{ProgressThroughPhase} = LN_i - LN_0
+$$
+
+where $LN_i$ is the current leaf number.
+
+The fraction of the phase completed is calculated as:
+
+$$
+F = \frac{LN_i - LN_0}{FLN - LN_0} = \frac{\text{ProgressThroughPhase}}{\text{Target}}
+$$
+
+### Phase Completion Criteria
+
+The phase is considered complete when all initiated leaf primordia have fully expanded:
+
+$$
+\text{FullyExpandedLeafNo} \geq \text{InitialisedLeafNumber}
+$$
+
+When this condition is met:
+- The phase proceeds to the next phenological stage
+- `propOfDayToUse` is set to a small value (0.00001), assuming most thermal time is used to reach final leaf expansion
+
+### User-Defined Completion Date
+
+If `DateToProgress` is specified by an external model, the phase ignores the leaf-based mechanism and completes on the specified date:
+
+$$
+\text{proceedToNextPhase} = \text{Phenology.checkIfCompletionDate}(\text{startDate}, \text{Today}, \text{DateToProgress})
+$$
+
+### Phase Reset
+
+The `ResetPhase()` method resets all tracking variables to their initial states:
+- `leafNoAtStart` = 0
+- `fractionCompleteYesterday` = 0
+- `target` = 0
+- `startDate` = DateTime.MinValue
+- `DateToProgress` = ""
 
 ## User Interface
 
-`LeafAppearancePhase` can be added as a child of a `Phenology` node in the model tree. Right-click the `Phenology` node, select "Add Model...", and search for `LeafAppearancePhase` in the Filter Box.
+`LeafAppearancePhase` can be added as a child of a [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) node in the model tree. Right-click the Phenology node, select "Add Model...", and search for `LeafAppearancePhase` in the Filter Box.
+
+The phase requires four child functions to be configured:
+- `FinalLeafNumber` - defines total leaf number
+- `LeafNumber` - tracks current leaf appearance
+- `FullyExpandedLeafNo` - monitors leaf expansion
+- `InitialisedLeafNumber` - tracks leaf initiation
 
 ## Practical Example
 
-> No practical example is available for this function.
+> No practical example is currently available for this phase. The leaf appearance phase is typically configured as part of the standard phenology sequence in cereal crop models and uses cultivar-specific parameters for phyllochron and final leaf number determination.
 
 ## See Also
 
