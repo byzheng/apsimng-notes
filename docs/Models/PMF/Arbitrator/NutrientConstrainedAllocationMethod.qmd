@@ -1,15 +1,23 @@
 ---
-title: "Nutrient Constrained Allocation"
+title: "NutrientConstrainedAllocationMethod"
 format: html
 ---
 
 
-In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslacation. However, this potential growth must be adjusted according to **nutrient constraints**, primarily nitrogen (N), which depends on nitrogen supply. 
+```{r setup, echo=FALSE}
+setup_qmd()
+```
 
-The `NutrientConstrainedAllocationMethod` model is responsible for **scaling biomass allocations to organs** based on the amount of nitrogen allocated to those organs. This ensures that growth is **biologically feasible** given available N and minimum nitrogen concentration.
+The `NutrientConstrainedAllocationMethod` is responsible for **scaling biomass allocations to organs** based on the amount of nitrogen allocated to those organs. This ensures that growth is **biologically feasible** given available N and minimum nitrogen concentration requirements.
 
 
-## Role in APSIM Simulation Pipeline
+## Overview
+
+In APSIM Next Generation (APSIM NG), plant biomass growth is computed based on potential dry matter (DM) production from photosynthesis, reallocation, and retranslocation. However, this potential growth must be adjusted according to **nutrient constraints**, primarily nitrogen (N), which depends on nitrogen supply. 
+
+The `NutrientConstrainedAllocationMethod` model determines nutrient limitations to dry matter allocations by checking whether each organ has received enough nitrogen to support its allocated biomass and scales biomass down proportionally if nitrogen is insufficient.
+
+### Role in APSIM Simulation Pipeline
 
 The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been distributed to organs (e.g., by `RelativeAllocation`) but *before* final biomass commitment. Its purpose is to:
 
@@ -17,7 +25,34 @@ The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been di
 - Scale biomass down proportionally if nitrogen is insufficient.
 - Track how much biomass was reduced due to nitrogen limitations (i.e. the difference between allocated and actual biomass). The reporting variable `DM.NutrientLimitation` captures this reduction, which is crucial for understanding crop performance under nutrient stress (e.g. `[Wheat].Arbitrator.DM.NutrientLimitation`).
 
-## Inputs and Assumptions
+### Scientific Rationale
+
+Nitrogen is a key building block for proteins, nucleic acids, and enzymes. Without sufficient N, plants cannot construct tissue even if photosynthate is available. This constraint ensures simulations realistically capture nutrient stress.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IAllocationMethod](/docs/Models/PMF/Arbitrator/IAllocationMethod.qmd)
+
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Arbitrator | [IArbitrator](/docs/Models/PMF/Arbitrator/IArbitrator.qmd) | Link, Ancestor By Name | Provides nitrogen allocation information for organs. |
+
+
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Inputs and Assumptions
 
 - **Organs (`IArbitration[]`)**: A list of organs participating in allocation (e.g., leaf, stem, root, grain).
 - **`BiomassArbitrationType` (DM)**: Contains the dry matter allocations (structural, metabolic, storage) from the prior allocation step.
@@ -28,12 +63,9 @@ The `NutrientConstrainedAllocationMethod` is invoked *after* biomass has been di
 - Each organ has a defined **minimum nitrogen concentration** (`MinNConc`), below which it cannot support biomass.
 - Nitrogen allocated to an organ must meet this minimum to validate the associated DM allocation.
 
+### Step 1: Calculate Total N Allocation per Organ
 
-## Step-by-Step Process
-
-1. Calculate Total N Allocation per Organ
-
-For each organ `i`, sum all nitrogen allocations:
+For each organ $i$, sum all nitrogen allocations:
 
 $$
 N_{\text{TotalAllocation},i} = N_{\text{StructuralAllocation},i} + N_{\text{MetabolicAllocation},i} + N_{\text{StorageAllocation},i}
@@ -41,36 +73,30 @@ $$
 
 This value represents the nitrogen available to support DM growth.
 
-2. Calculate N-Constrained Growth Capacity
+### Step 2: Calculate N-Constrained Growth Capacity
 
 Determine the maximum biomass (`N.ConstrainedGrowth[i]`) that each organ can support based on its nitrogen allocation:
 
-
-This logic checks:
-
-- If total nitrogen allocation meets or exceeds demand, growth is unconstrained.
+- If total nitrogen allocation meets or exceeds demand, growth is unconstrained (assigned a very high value: 100,000,000).
 - If no nitrogen is allocated or the organ has no minimum N concentration, growth is zero.
-- Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ. The constrained growth for each organ is calculated as:
+- Otherwise, it computes the maximum biomass based on the minimum nitrogen concentration required by the organ:
 
 $$
-N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{Organs}[i]_\text{MinNConc}}
+N_\text{ConstrainedGrowth}[i] = \frac{N_\text{TotalAllocation}[i]}{\text{MinNConc}[i]}
 $$
 
 where:
 
 - $N_\text{TotalAllocation}[i]$ is the total nitrogen allocated to organ $i$
-- $\text{Organs}[i]_\text{MinNConc}$ is the minimum nitrogen concentration required for organ $i$
-
+- $\text{MinNConc}[i]$ is the minimum nitrogen concentration required for organ $i$
 
 This yields a per-organ limit on biomass, ensuring growth is feasible under nitrogen constraints. This is the most common case where nitrogen limits growth.
 
-3. Scale Biomass Allocation Proportionally
+### Step 3: Scale Biomass Allocation Proportionally
 
 The total biomass previously allocated (structural + metabolic + storage) is compared to `ConstrainedGrowth[i]`.
 
-If total allocation exceeds the constrained limit, all organs are scaled proportionally:
-
-Let:
+If total allocation exceeds the constrained limit, all biomass components are scaled proportionally:
 
 Let $DM_{total}[i]$ be the total biomass allocated to organ $i$:
 
@@ -112,9 +138,9 @@ This ensures:
 * Ratios between structural, metabolic, and storage biomass are preserved.
 
 
-4. Update Final Biomass and Stress Report
+### Step 4: Update Final Biomass and Nutrient Limitation
 
-After applying constraints, updating the final biomass allocation and calculating the nutrient limitation is done as follows:
+After applying constraints, the final biomass allocation and the nutrient limitation are calculated as follows:
 
 $$
 DM_\text{Allocated} = \sum_{i=1}^{n} \left( DM_{structural}[i] + DM_{metabolic}[i] + DM_{storage}[i] \right)
@@ -130,43 +156,37 @@ Where:
 - $DM_\text{PreNStressAllocation}$ is the total biomass allocated before applying N constraints.
 - $DM_\text{NutrientLimitation}$ is the biomass lost due to insufficient nitrogen.
 
+
+## User Interface
+
+`NutrientConstrainedAllocationMethod` can be added as a child of a `BiomassTypeArbitrator` node in the model tree. Right-click the parent node, select "Add Model...", and search for `NutrientConstrainedAllocationMethod` in the Filter Box.
+
+
 ## Practical Example
+
+### Example Calculation
 
 A leaf organ receives:
 
 * Nitrogen allocated: 0.3 g
 * Minimum N concentration: 0.03 g/g DM
- * Maximum supportable biomass: 0.3 / 0.03 = 10 g
+* Maximum supportable biomass: $0.3 / 0.03 = 10$ g
 * If initial biomass allocated was 12 g:
-* Final biomass is scaled to 10 g
-* All sub-pools (structural, metabolic, storage) are reduced by 10 / 12 = 0.833
+  * Final biomass is scaled to 10 g
+  * All sub-pools (structural, metabolic, storage) are reduced by $10 / 12 = 0.833$
 
-## Scientific Rationale
-
-* Nitrogen is a key building block for proteins, nucleic acids, and enzymes. 
-* Without sufficient N, plants cannot construct tissue even if photosynthate is available.
-* This constraint ensures simulations realistically capture nutrient stress.
-
-## Extensibility
+### Extensibility and Limitations
 
 While this method currently constrains biomass based only on nitrogen:
 
 * It is designed to be extended for other nutrients (e.g., phosphorus, potassium).
 * Additional constraints could be implemented by combining multiple nutrient-limited growth values.
 
-## Outputs and Implications
-
-* DM.Allocated: Actual biomass realized under nutrient constraints.
-* DM.NutrientLimitation: Biomass lost due to insufficient nitrogen.
-
-
-## Potential bugs and Limitations
+**Current Limitations:**
 
 The current implementation assumes all organs have a defined minimum N concentration. The biomass is dropped if nitrogen uptake cannot meet the minimum concentration. This assumption is reasonable for photosynthesis, but may not be reasonable for reallocation and retranslocation. These unallocated biomass should return to original organs.
 
 
+## See Also
 
-## References
-
-- [APSIM NG Documentation](https://apsimnextgeneration.netlify.app/)
-- APSIM NG Source Code: [NutrientConstrainedAllocationMethod.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs)
+* **Source code:** [NutrientConstrainedAllocationMethod.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/Methods/NutrientConstrainedAllocationMethod.cs)

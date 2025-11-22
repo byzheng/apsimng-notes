@@ -1,46 +1,72 @@
 ---
-title: "Relative Allocation"
+title: "RelativeAllocation"
 format: html
 ---
 
 
-The `RelativeAllocation` module implements a **proportional allocation strategy** to distribute available biomass or nutrient supply among plant organs. This strategy is a general-purpose mechanism that underpins how APSIM handles **partitioning of dry matter (DM)** and **nutrients** (e.g. nitrogen) based on each organ’s demand.
+```{r setup, echo=FALSE}
+setup_qmd()
+```
 
-This method is part of the broader plant allocation system and is invoked by arbitrator components such as `BiomassTypeArbitrator`.
+The `RelativeAllocation` module implements a **proportional allocation strategy** to distribute available biomass or nutrient supply among plant organs based on each organ's demand relative to total demand.
 
 
-## Biological Motivation
+## Overview
+
+The `RelativeAllocation` method is a general-purpose mechanism that underpins how APSIM handles **partitioning of dry matter (DM)** and **nutrients** (e.g. nitrogen) among competing plant organs. This method is part of the broader plant allocation system and is invoked by arbitrator components such as `BiomassTypeArbitrator`.
+
+Arbitration is performed in two passes for each of the supply sources. On the first pass, biomass or nutrient supply is allocated to structural and metabolic pools of each organ based on their demand relative to the demand from all organs. On the second pass, any remaining supply is allocated to non-structural (storage) pools based on the organ's relative demand.
+
+### Biological Motivation
 
 Plants must allocate available assimilates or nutrients among organs in a coordinated way. The `RelativeAllocation` method mimics this by:
 
 - Prioritizing **structural and metabolic demands** (essential growth),
 - Then allocating any **residual supply to storage pools** (non-essential, luxury uptake).
 
-This reflects physiological prioritization in plant growth.
+This reflects physiological prioritization in plant growth where essential structural and metabolic needs are met before luxury storage.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IArbitrationMethod](/docs/Models/PMF/Arbitrator/IArbitrationMethod.qmd)
 
 
-## Allocation Logic
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| BiomassTypeArbitrator | [BiomassTypeArbitrator](/docs/Models/PMF/Arbitrator/BiomassTypeArbitrator.qmd) | Valid Parent | Parent arbitrator that invokes this allocation method. |
+| IArbitrator | [IArbitrator](/docs/Models/PMF/Arbitrator/IArbitrator.qmd) | Valid Parent | Alternative parent arbitrator interface. |
+
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
 
 The allocation occurs in **two sequential passes**:
 
-* First Pass – Structural and Metabolic Allocation
-* Second Pass – Storage (Luxury) Allocation
+1. **First Pass** – Structural and Metabolic Allocation
+2. **Second Pass** – Storage (Luxury) Allocation
 
-## First Pass – Structural and Metabolic Allocation
+### First Pass: Structural and Metabolic Allocation
 
-### Objective
+**Objective:** Distribute available supply to fulfill structural and metabolic demands proportionally.
 
-Distribute available supply to fulfill structural and metabolic demands proportionally.
-
-### Definitions
+**Definitions:**
 
 Let:
 
-- $S_{\text{total}}$: Total supply available (e.g. Dry biomass or nitrogen).
+- $S_{\text{total}}$: Total supply available (e.g. dry biomass or nitrogen)
 - $D_s^{(i)}$: Structural demand of organ $i$
 - $D_m^{(i)}$: Metabolic demand of organ $i$
-- $D_{s,\text{total}} = \sum_i D_s^{(i)}$: Total structural demand across all organs.
-- $D_{m,\text{total}} = \sum_i D_m^{(i)}$: Total metabolic demand across all organs.
+- $D_{s,\text{total}} = \sum_i D_s^{(i)}$: Total structural demand across all organs
+- $D_{m,\text{total}} = \sum_i D_m^{(i)}$: Total metabolic demand across all organs
 
 We define the **structural fraction** of supply as:
 
@@ -65,13 +91,11 @@ $$
 where $R_s^{(i)}$ and $R_m^{(i)}$ are the **remaining unmet demand** for structural and metabolic pools, respectively.
 
 
+### Second Pass: Storage (Luxury) Allocation
 
-## Second Pass – Storage (Luxury) Allocation
+**Objective:** Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.
 
-### Objective
-Allocate any remaining supply to storage pools (non-essential or luxury growth) based on proportional demand.
-
-### Definitions
+**Definitions:**
 
 Let:
 
@@ -88,7 +112,7 @@ $$
 where $R_t^{(i)}$ is the remaining unmet storage demand for organ $i$.
 
 
-## Final Accounting
+### Final Accounting
 
 After both passes, the module tracks:
 
@@ -101,12 +125,18 @@ $$
 
 This is useful for diagnostics, such as reporting **sink limitations**.
 
-## Key Features
+### Key Features
 
-- Prioritizes essential growth (structural and metabolic) over luxury (storage).
-- Proportional to each organ’s share of total demand.
-- Applies generically to both **biomass and nutrients**.
-- Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet.
+- Prioritizes essential growth (structural and metabolic) over luxury (storage)
+- Proportional to each organ's share of total demand
+- Applies generically to both **biomass and nutrients**
+- Uses a two-pass method to avoid allocating luxury growth when essential needs are unmet
+
+
+## User Interface
+
+`RelativeAllocation` can be added as a child of a `BiomassTypeArbitrator` or `IArbitrator` node in the model tree. Right-click the parent node, select "Add Model...", and search for `RelativeAllocation` in the Filter Box.
+
 
 ## Practical Example
 
@@ -134,17 +164,13 @@ Then:
 
 - Second pass allocates any leftover proportionally to storage demands.
 
+### Applications
 
-## Applications
-
-- Biomass partitioning after photosynthesis, reallocation, and retranslocation.
-- Nitrogen allocation after uptake, reallocation, and retranslocation.
-- Any generic resource arbitration among competing sinks.
-
+- Biomass partitioning after photosynthesis, reallocation, and retranslocation
+- Nitrogen allocation after uptake, reallocation, and retranslocation
+- Any generic resource arbitration among competing sinks
 
 
-## References
+## See Also
 
-- APSIM Next Generation Source Code: [github.com/APSIMInitiative/ApsimX](https://github.com/APSIMInitiative/ApsimX)
-- APSIM NG Source Code: [RelativeAllocation.cs](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs)
-
+* **Source code:** [RelativeAllocation.cs on GitHub](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/RelativeAllocation.cs)
