@@ -3,23 +3,120 @@ title: "FrostHeatDamageFunctions"
 format: html
 ---
 
-
 ```{r setup, echo = FALSE}
 setup_qmd()
 ```
 
-This `FrostHeatDamageFunctions` function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.
+FrostHeatDamageFunctions calculates daily and cumulative yield reduction caused by frost and heat stress during crop development. The function combines temperature-driven potential damage (piecewise linear response to minimum/maximum temperature) with growth-stage sensitivity to predict fractional yield loss from extreme temperature events. It was developed for wheat and canola through the GRDC Frost and Heat Management Analytics (FAHMA) project.
 
 ## Overview
 
+Extreme temperature events—both frost and heat—can significantly reduce crop yields, particularly when they occur during sensitive developmental stages such as flowering. The FrostHeatDamageFunctions model quantifies this impact by:
 
-The `FrostHeatDamageFunctions` function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations. Multiple frost and heat events during the sensitive period have multiplicative effects on yield reduction rather than additive effects.
+1. **Assessing potential damage** based on how extreme the temperature is relative to crop-specific thresholds
+2. **Adjusting for developmental sensitivity** recognizing that crops are more vulnerable at certain growth stages (e.g., anthesis)
+3. **Tracking cumulative effects** as multiple stress events have multiplicative rather than additive impacts on yield
 
+This function operates independently of the main yield prediction algorithms, calculating damage ratios (0–1, where 0 = no damage, 1 = complete yield loss) that can be applied to potential yield estimates. The model runs daily during the crop lifecycle, continuously monitoring temperature conditions and growth stage progression.
+
+**Key Applications:**
+- Predicting frost-induced yield losses in wheat and canola
+- Assessing heat stress impacts during reproductive development
+- Evaluating combined frost and heat risks across growing seasons
+- Supporting agronomic decisions about variety selection and sowing dates
+
+**Biological Basis:**
+Frost damage primarily affects reproductive organs through ice crystal formation, cell membrane disruption, and metabolic dysfunction. Heat stress impairs pollen viability, disrupts photosynthesis, and accelerates senescence. Both stresses cause proportionally greater damage when they coincide with critical developmental windows, particularly around flowering when reproductive structures are most vulnerable.
+
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+FrostHeatDamageFunctions inherits from the following base classes and interfaces:
+
+* [Model](/docs/Models/Core/Model.qmd) - Base class for all APSIM models
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd) - Enables discovery of child components
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description |
+|-----------|-------|-----------------|-------------|
+| Weather | [Weather](/docs/Models/Interfaces/IWeather.qmd) | Link | Provides daily minimum and maximum temperatures for damage calculations |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Link (Parent) | Must be added as child of a Plant model; accesses phenology and grain organ |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Child of Plant | Provides current growth stage for sensitivity calculations |
+| Grain | ReproductiveOrgan | Child of Plant | Provides grain weight for final yield adjustment |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+The following properties must be configured when adding this function to a crop model:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| CropType | Enum | Crop to simulate: Wheat or Canola (sets default parameters) |
+| FrostLowTT | double | Lower temperature threshold for frost damage (°C) |
+| FrostMaxReductionRatio | double | Maximum yield reduction at or below lower frost threshold (0–1) |
+| FrostUpTT | double | Upper temperature threshold for frost damage (°C) |
+| FrostMinReductionRatio | double | Minimum yield reduction at or above upper frost threshold (0–1) |
+| FrostStartSensitiveGS | double | Growth stage when frost-sensitive period begins |
+| FrostStartMostSensitiveGS | double | Growth stage when maximum frost sensitivity begins |
+| FrostEndMostSensitiveGS | double | Growth stage when maximum frost sensitivity ends |
+| FrostEndSensitiveGS | double | Growth stage when frost-sensitive period ends |
+| HeatLowTT | double | Lower temperature threshold for heat damage (°C) |
+| HeatMinReductionRatio | double | Minimum yield reduction at or below lower heat threshold (0–1) |
+| HeatUpTT | double | Upper temperature threshold for heat damage (°C) |
+| HeatMaxReductionRatio | double | Maximum yield reduction at or above upper heat threshold (0–1) |
+| HeatStartSensitiveGS | double | Growth stage when heat-sensitive period begins |
+| HeatStartMostSensitiveGS | double | Growth stage when maximum heat sensitivity begins |
+| HeatEndMostSensitiveGS | double | Growth stage when maximum heat sensitivity ends |
+| HeatEndSensitiveGS | double | Growth stage when heat-sensitive period ends |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| FrostPotentialReductionRatio | double | Daily potential yield reduction by frost based on temperature |
+| FrostSensitivity | double | Daily sensitivity of yield to frost based on growth stage (0–1) |
+| FrostReductionRatio | double | Daily actual yield reduction ratio by frost stress |
+| HeatPotentialReductionRatio | double | Daily potential yield reduction by heat based on temperature |
+| HeatSensitivity | double | Daily sensitivity of yield to heat based on growth stage (0–1) |
+| HeatReductionRatio | double | Daily actual yield reduction ratio by heat stress |
+| FrostHeatReductionRatio | double | Daily combined yield reduction ratio from frost and heat |
+| CumulativeFrostReductionRatio | double | Cumulative yield reduction from all frost events |
+| CumulativeHeatReductionRatio | double | Cumulative yield reduction from all heat events |
+| CumulativeFrostHeatReductionRatio | double | Cumulative yield reduction from combined frost and heat |
+| FrostEventNumber | double | Number of frost events during sensitive period |
+| HeatEventNumber | double | Number of heat events during sensitive period |
+| FrostHeatYield | double | Frost- and heat-limited yield (g/m²) |
+| FrostSensitivePeriodStartDAS | double | Start of frost sensitive period (days after sowing) |
+| FrostSensitivePeriodEndDAS | double | End of frost sensitive period (days after sowing) |
+| HeatSensitivePeriodStartDAS | double | Start of heat sensitive period (days after sowing) |
+| HeatSensitivePeriodEndDAS | double | End of heat sensitive period (days after sowing) |
 
 ## Inputs
 
+### Required Inputs
 
-The following inputs are required for the `FrostHeatDamageFunctions` function with default values for wheat and canola crops:
+**Crop Selection:**
+- **CropType**: Select either Wheat or Canola. This automatically loads crop-specific default parameters optimized for each crop.
+
+**Environmental Data (from Weather model):**
+- Daily minimum temperature (°C) - for frost damage assessment
+- Daily maximum temperature (°C) - for heat damage assessment
+
+**Crop Development Data (from Plant model):**
+- Current growth stage - determines sensitivity at each developmental phase
+- Grain weight - used to calculate final frost- and heat-limited yield
+
+### Cultivar-Specific Parameters
+
+The following parameters define frost and heat damage responses. Default values are provided for wheat and canola based on field data calibration:
 
 ### Frost parameters
 
@@ -146,119 +243,135 @@ for (crop in names(params)) {
 
 ```
 
-## Methodology
+**Parameter Interpretation:**
+- **Reduction ratio**: 0 = no yield loss, 1 = complete yield loss
+- **Sensitivity**: 0 = no sensitivity (no damage regardless of temperature), 1 = maximum sensitivity (full potential damage occurs)
+- **Growth stages (GS)**: Decimal scale tracking crop development (e.g., 8.0 ≈ anthesis for wheat)
 
-All internal and output variables are reset at sowing and then updated daily during crop growth until harvest at event [DoManagementCalculations](/docs/Models/Events.html#ManagementCalculations).
+## Processes and Algorithms
 
-### Daily reduction calculations
+{{< include /_includes/Models/processes-intro.md >}}
 
-The daily frost ($R_{frost}$) and heat ($R_{heat}$) reductions are calculated by multiplying the potential reduction ratio (based on temperature) and the sensitivity (based on growth stage) for each stress.
+The FrostHeatDamageFunctions model operates through four main processes executed daily during crop growth:
 
-$$
-R_{frost} = P_{frost}(T_{min}) \times S_{frost}(GS)
-$$
+### Initialization at Sowing
 
-where:
+At the [Sowing](/docs/Models/Events.qmd#Sowing) event, all internal variables are reset to initial values:
 
-- $P_{frost}(T_{min})$ is the potential reduction ratio from the frost potential reduction function above given the daily minimum temperature ($T_{min}$).
-- $S_{frost}(GS)$ is the sensitivity from the frost sensitivity function above given the current crop growth stage (GS).
+- Potential and actual reduction ratios set to 0
+- Cumulative reduction ratios set to 0
+- Event counters reset to 0
+- Overall remaining yield fractions set to 1 (no damage)
+- Sensitive period timing markers set to -1 (not yet entered)
 
-$$
-R_{heat} = P_{heat}(T_{max}) \times S_{heat}(GS)
-$$
+### Temperature-Based Potential Damage Calculation
 
-where:
+Each day, potential yield reduction from frost and heat is calculated using piecewise linear functions of temperature.
 
-- $P_{heat}(T_{max})$ is the potential reduction ratio from the heat potential reduction function above given the daily maximum temperature ($T_{max}$).
-- $S_{heat}(GS)$ is the sensitivity from the heat sensitivity function above given the current crop growth stage (GS).
-
-The total daily reduction ratio from both stresses is then calculated as:
-
-$$
-R_{frost\_heat} = 1 - (1 - R_{frost}) \times (1 - R_{heat})
-$$
-
-
-The cummulative frost reduction from sowing to today (t) is calculated as:
+**Frost Potential Reduction** (based on daily minimum temperature $T_{min}$):
 
 $$
-R_{frost,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{frost} (i))
-$$
-
-The cumulative heat reduction from sowing to today (t) is calculated as:
-
-$$
-R_{heat,\ cum} (t) = 1 - \prod_{i=1}^{t} (1 - R_{heat} (i))
-$$
-
-The cumulative frost and heat reduction from sowing to today (t) is calculated as:
-$$
-R_{frost\_heat,\ cum} (t) = 1 - R_{frost,\ cum} (t)  \times R_{heat,\ cum} (t)
-$$
-
-Finally the frost- and heat-limited yield (Y_{frost\_heat}) at harvest is calculated as:
-
-$$
-Y_{frost\_heat} = Y \times (1 - R_{frost\_heat,\ cum})
+P_{frost}(T_{min}) = \begin{cases}
+R_{max,frost} & \text{if } T_{min} \leq T_{low,frost} \\
+R_{max,frost} + \frac{(T_{min} - T_{low,frost}) \cdot (R_{min,frost} - R_{max,frost})}{T_{up,frost} - T_{low,frost}} & \text{if } T_{low,frost} < T_{min} < T_{up,frost} \\
+R_{min,frost} & \text{if } T_{min} \geq T_{up,frost}
+\end{cases}
 $$
 
 where:
+- $T_{low,frost}$ = `FrostLowTT` (lower temperature threshold)
+- $T_{up,frost}$ = `FrostUpTT` (upper temperature threshold)
+- $R_{max,frost}$ = `FrostMaxReductionRatio` (maximum reduction)
+- $R_{min,frost}$ = `FrostMinReductionRatio` (minimum reduction)
 
-- $Y$ is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.
+**Heat Potential Reduction** (based on daily maximum temperature $T_{max}$):
 
-## Events 
+$$
+P_{heat}(T_{max}) = \begin{cases}
+R_{min,heat} & \text{if } T_{max} \leq T_{low,heat} \\
+R_{min,heat} + \frac{(T_{max} - T_{low,heat}) \cdot (R_{max,heat} - R_{min,heat})}{T_{up,heat} - T_{low,heat}} & \text{if } T_{low,heat} < T_{max} < T_{up,heat} \\
+R_{max,heat} & \text{if } T_{max} \geq T_{up,heat}
+\end{cases}
+$$
 
+### Growth Stage Sensitivity Calculation
 
-**Events Listened For**
+Sensitivity to damage varies with crop development stage. The function uses a trapezoidal shape with four growth stage thresholds:
 
-These are signals or notifications that the function listens for from other parts of the simulation:
+**Frost Sensitivity** (based on current growth stage $GS$):
 
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Sowing](/docs/Models/Events.html#Sowing)   | Initialize internal variables for frost and heat damage functions |
-| [DoManagementCalculations](/docs/Models/Events.html#ManagementCalculations)   | Perform the actual calculations for frost and heat damage functions |
+$$
+S_{frost}(GS) = \begin{cases}
+0 & \text{if } GS \leq GS_{start,frost} \\
+\frac{GS - GS_{start,frost}}{GS_{peak\_start,frost} - GS_{start,frost}} & \text{if } GS_{start,frost} < GS < GS_{peak\_start,frost} \\
+1 & \text{if } GS_{peak\_start,frost} \leq GS \leq GS_{peak\_end,frost} \\
+\frac{GS_{end,frost} - GS}{GS_{end,frost} - GS_{peak\_end,frost}} & \text{if } GS_{peak\_end,frost} < GS < GS_{end,frost} \\
+0 & \text{if } GS \geq GS_{end,frost}
+\end{cases}
+$$
 
+The same trapezoidal structure applies to heat sensitivity with heat-specific thresholds.
 
+### Daily and Cumulative Damage Integration
 
-**Events Raised to**
+**Daily actual reduction** is the product of potential reduction and sensitivity:
 
-> No events are raised by this function.
+$$
+R_{frost,daily} = P_{frost}(T_{min}) \times S_{frost}(GS)
+$$
 
+$$
+R_{heat,daily} = P_{heat}(T_{max}) \times S_{heat}(GS)
+$$
 
-## Properties
+**Combined daily reduction** accounts for both stresses:
 
+$$
+R_{combined,daily} = 1 - (1 - R_{frost,daily}) \times (1 - R_{heat,daily})
+$$
 
-**Configurable and Reportable Properties**
+**Cumulative reduction** uses multiplicative accumulation to day $t$:
 
-> No configurable properties are available for this function.
+$$
+R_{frost,cum}(t) = 1 - \prod_{i=1}^{t} (1 - R_{frost,daily}(i))
+$$
+
+$$
+R_{heat,cum}(t) = 1 - \prod_{i=1}^{t} (1 - R_{heat,daily}(i))
+$$
+
+$$
+R_{combined,cum}(t) = 1 - (1 - R_{frost,cum}(t)) \times (1 - R_{heat,cum}(t))
+$$
+
+**Final frost- and heat-limited yield**:
+
+$$
+Y_{frost\_heat} = Y_{potential} \times (1 - R_{combined,cum})
+$$
+
+where $Y_{potential}$ is the grain weight simulated by the crop model without considering frost/heat damage.
+s.
 
 **Read-Only Reportable Properties**
 
-| Property | Type | Description                                                                                  |
-|--------|---:|--------------------------------------------------------------------------------------------------|
-| `FrostPotentialReductionRatio` | double | Daily potential yield reduction ratio by a frost event. |
-| `FrostSensitivity` | double | Daily sensitivity of yield reduction to growth stage when the frost event occurs. |
-| `FrostReductionRatio` | double | Daily actual yield reduction ratio by frost stress. |
-| `HeatPotentialReductionRatio` | double | Daily potential yield reduction ratio by a heat event. |
-| `HeatSensitivity` | double | Daily sensitivity of yield reduction to growth stage when the heat event occurs. |
-| `HeatReductionRatio` | double | Daily actual yield reduction ratio by heat stress. |
-| `FrostHeatReductionRatio` | double | Daily actual yield reduction ratio by combined frost and heat stress. |
-| `CumulativeFrostReductionRatio` | double | Cumulative actual yield reduction ratio induced by frost stress. |
-| `CumulativeHeatReductionRatio` | double | Cumulative actual yield reduction ratio induced by heat stress. |
-| `FrostEventNumber` | double | Number of frost events during the sensitive period. |
-| `HeatEventNumber` | double | Number of heat events during the sensitive period. |
-| `CumulativeFrostHeatReductionRatio` | double | Cumulative actual yield reduction ratio induced by both frost and heat stress. |
-| `FrostHeatYield` | double | Frost- and heat-limited yield (units: g/m²). |
-| `FrostSensitivePeriodStartDAS` | double | Start of frost sensitive period in days after sowing (units: days). |
-| `FrostSensitivePeriodEndDAS` | double | End of frost sensitive period in days after sowing (units: days). |
-| `HeatSensitivePeriodStartDAS` | double | Start of heat sensitive period in days after sowing (units: days). |
-| `HeatSensitivePeriodEndDAS` | double | End of heat sensitive period in days after sowing (units: days). |
-
-
+All calculated daily and cumulative variables listed in the **Model Variables** section can be reported for analysis, including:
+- Daily potential reductions, sensitivities, and actual reductions
+- Cumulative reduction ratios and event counts
+- Sensitive period timing
+- Final frost- and heat-limited yield
 
 ## User Interface
 
-`FrostHeatDamageFunctions` can be added as a child of a Crop Model in the model tree.
+FrostHeatDamageFunctions must be added as a child of a Plant model (Wheat or Canola) in the simulation tree:
+
+1. Right-click on the Plant model node
+2. Select "Add Model..."
+3. Search for "FrostHeatDamageFunctions"
+4. After adding, configure the `CropType` property to match your crop
+5. Optionally adjust parameters if using a cultivar different from the defaults
+
+**Important:** This function must be a direct child of the Plant model it is parameterized for. It will raise an error if linked to a different plant.
 
 ## Practical Example
 
