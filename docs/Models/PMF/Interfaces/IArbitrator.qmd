@@ -1,0 +1,37 @@
+---
+title: "IArbitrator"
+format: html
+draft: true
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+An interface that defines the contract for biomass arbitration components in APSIM NG, providing access to dry matter (DM) and nitrogen (N) arbitration data along with total carbon fixation supply from photosynthesis.
+
+
+
+
+## Overview
+
+The `IArbitrator` interface serves as a contract for arbitrator components within the Plant Modeling Framework (PMF) of APSIM NG. It provides a standardized way to access biomass arbitration information, specifically the allocation and distribution of dry matter (DM) and nitrogen (N) among plant organs. The interface exposes both DM and N arbitration types along with the total carbon fixation supply available from photosynthesis, which forms the basis for biomass allocation decisions in plant growth simulations.
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| DM   | BiomassArbitrationType  | The dry matter arbitration data class containing allocation information for structural, storage, and metabolic pools.                      |
+| N   | BiomassArbitrationType  | The nitrogen arbitration data class containing allocation information for structural, storage, and metabolic pools.                      |
+| TotalDMFixationSupply   | double  | The total biomass available from photosynthesis (g DM m⁻²).                      |
+
+
+## See Also
+
+* **Source code:** [IArbitration.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Interfaces/IArbitration.cs)

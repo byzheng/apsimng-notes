@@ -34,8 +34,7 @@ Nitrogen is a key building block for proteins, nucleic acids, and enzymes. Witho
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IAllocationMethod](/docs/Models/PMF/Arbitrator/IAllocationMethod.qmd)
-
+* IAllocationMethod
 
 ## Connections to Other Components
 
@@ -43,7 +42,7 @@ Nitrogen is a key building block for proteins, nucleic acids, and enzymes. Witho
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
-| Arbitrator | [IArbitrator](/docs/Models/PMF/Arbitrator/IArbitrator.qmd) | Link, Ancestor By Name | Provides nitrogen allocation information for organs. |
+| Arbitrator | [IArbitrator](/docs/Models/PMF/Interfaces/IArbitrator.qmd) | Link, Ancestor By Name | Provides nitrogen allocation information for organs. |
 
 
 

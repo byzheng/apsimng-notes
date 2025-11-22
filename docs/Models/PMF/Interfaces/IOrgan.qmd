@@ -1,0 +1,45 @@
+---
+title: "IOrgan"
+format: html
+draft: true
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `IOrgan` interface defines the fundamental contract for all plant organs in APSIM Next Generation, establishing standard behaviors for biomass harvest and respiration calculations.
+
+
+
+
+## Overview
+
+`IOrgan` is a core interface in the Plant Modelling Framework (PMF) that ensures all plant organs—whether roots, stems, leaves, or reproductive structures—implement essential physiological processes consistently. By implementing this interface, organ models provide standardized methods for simulating harvest events and calculating maintenance respiration, which are critical components of whole-plant carbon balance and yield determination.
+
+This interface allows APSIM NG to treat different organ types uniformly when performing plant-level operations such as cutting, grazing, or harvesting, while also enabling accurate tracking of respiratory carbon losses. The simplicity of this interface reflects its role as a foundational contract, with more specialized organ behaviors defined in derived interfaces such as `IArbitration` or `IDamageZone`.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [IModel](/docs/Models/Core/IModel.qmd)
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| MaintenanceRespiration   | double  | The amount of carbon respired to maintain existing biomass (g/m²/day)                      |
+
+
+> No configurable properties are defined by this interface. Implementing classes define their own parameters for biomass dynamics and respiration calculations.
+
+## See Also
+
+* **Source code:** [IOrgan.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Interfaces/IOrgan.cs)

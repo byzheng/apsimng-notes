@@ -1,0 +1,27 @@
+---
+title: "IArbitrationMethod"
+format: html
+draft: true
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `IArbitrationMethod` interface defines the contract for algorithms that allocate biomass (dry matter or nutrients) among competing plant organs in APSIM Next Generation.
+
+
+
+
+## Overview
+
+`IArbitrationMethod` is a critical interface in the Plant Modelling Framework (PMF) that enables flexible strategies for partitioning available biomass among plant organs. In any given day, a plant has various sources of biomass supply (photosynthesis, nutrient uptake, retranslocation from senescing tissues) and multiple organs competing for these resources (leaves, stems, roots, reproductive structures). The arbitration method determines how to allocate limited resources when supply cannot meet total demand.
+
+Different allocation strategies reflect different biological assumptions about how plants prioritize growth. For instance, structural demands for maintaining cell walls might receive priority over storage pools, or younger organs might receive resources before older ones. APSIM NG implements this flexibility by allowing different arbitration methods to be selected or implemented, each with its own allocation logic.
+
+This interface serves as the foundation for various allocation algorithms including relative allocation (proportional to demand), priority allocation (sequential by organ), and Q-priority methods that incorporate nutrient concentrations to constrain growth.
+
+## See Also
+
+* **Source code:** [IArbitrationMethod.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Arbitrator/IArbitrationMethod.cs)

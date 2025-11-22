@@ -33,18 +33,6 @@ This reflects physiological prioritization in plant growth where essential struc
 * [Model](/docs/Models/Core/Model.qmd)
 * [IArbitrationMethod](/docs/Models/PMF/Arbitrator/IArbitrationMethod.qmd)
 
-
-## Connections to Other Components
-
-{{< include /_includes/Models/connections-intro.md >}}
-
-| Component | Model | Connection Type | Description                                          |
-|-----------|-------|-----------------|------------------------------------------------------|
-| BiomassTypeArbitrator | [BiomassTypeArbitrator](/docs/Models/PMF/Arbitrator/BiomassTypeArbitrator.qmd) | Valid Parent | Parent arbitrator that invokes this allocation method. |
-| IArbitrator | [IArbitrator](/docs/Models/PMF/Arbitrator/IArbitrator.qmd) | Valid Parent | Alternative parent arbitrator interface. |
-
-
-
 ## Processes and Algorithms
 
 {{< include /_includes/Models/processes-intro.md >}}

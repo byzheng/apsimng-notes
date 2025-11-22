@@ -214,5 +214,3 @@ These depth calculations are fundamental for:
 ## See Also
 
 * **Source code:** [ILayerStructure.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/Data/ILayerStructure.cs)
-* **Implementing classes:** [Physical](/docs/Models/Soils/Physical.qmd), [IPhysical](/docs/Models/Soils/IPhysical.qmd)
-* **Related concepts:** Soil horizons, vertical discretization, numerical modeling

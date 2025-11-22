@@ -24,7 +24,7 @@ The model reads event data from a specified column in the simulation output and 
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [ICachableGraphable](/docs/Models/Core/ICachableGraphable.qmd)
+* ICachableGraphable
 * [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
 

@@ -27,7 +27,7 @@ The `FertiliserType` model defines the composition of a specific fertiliser prod
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
-| Fertiliser | [Fertiliser](/docs/Models/Management/Fertiliser.qmd) | Parent | Parent model that manages fertiliser applications using this type. |
+| Fertiliser | Fertiliser | Parent | Parent model that manages fertiliser applications using this type. |
 
 ## Model Variables
 

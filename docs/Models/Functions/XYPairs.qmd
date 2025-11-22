@@ -21,8 +21,8 @@ This function is particularly useful for modeling empirical relationships where 
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IFunction](/docs/Models/Core/IFunction.qmd)
-* [IIndexedFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+* [IIndexedFunction](/docs/Models/PMF/Interfaces/IIndexedFunction.qmd)
 
 ## Connections to Other Components
 

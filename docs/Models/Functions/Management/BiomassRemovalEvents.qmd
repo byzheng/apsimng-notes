@@ -30,7 +30,7 @@ For each removal event, users can specify what fraction of live and dead biomass
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IStructureDependency](/docs/Models/Core/IStructureDependency.qmd)
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd)
 
 
 ## Connections to Other Components
