@@ -3,113 +3,186 @@ title: "AccumulateFunction"
 format: html
 ---
 
-AccumulateFunction collects the output of one or more child functions between defined growth stages of a crop. It is commonly used to sum variables like thermal time, biomass, or nutrient supply during a crop phase (e.g., between emergence and flowering). It supports resetting and adjusting the accumulated value based on crop events like harvest, cut, or graze.
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+AccumulateFunction sums the daily values from one or more child functions over a defined period between crop growth stages. It is commonly used to accumulate thermal time, biomass production, nutrient uptake, or water use during specific crop phases (e.g., from emergence to flowering). The function can reset at specified stages and adjust for management events such as harvest, cutting, grazing, or pruning.
 
 ## Overview
 
-This function is used to accumulate values from one or more child functions across a specific range of crop development stages. It is particularly useful for tracking the total input of a variable (e.g., thermal time or growth factor) over a defined period in the crop lifecycle.
+AccumulateFunction tracks cumulative values that are essential for understanding crop development and resource use over time. It operates by evaluating child functions daily and adding their outputs to a running total, but only during a user-specified window of crop development.
 
-In APSIM NG, this function fits within a crop model to monitor cumulative values that influence or indicate plant performance. The accumulation starts at a given phenological stage (e.g., Emergence) and stops at another (e.g., Flowering or FlagLeaf). AccumulateFunction can also respond to crop management events (e.g., grazing, cutting) by reducing its value.
+This function is particularly valuable for:
+- Calculating total thermal time accumulated during a growth phase
+- Tracking cumulative biomass or nutrient demand
+- Monitoring water or radiation use efficiency over developmental periods
+- Simulating the impact of management practices (cutting, grazing) on accumulated reserves
 
-## Inputs
+In APSIM Next Generation, AccumulateFunction integrates with the crop phenology system to ensure accumulation occurs only between relevant developmental stages. It responds to crop lifecycle events, making it flexible for diverse cropping systems and management scenarios.
 
-- StartStageName (Required): The crop stage when accumulation starts (e.g., "Emergence")
-- EndStageName (Required): The crop stage when accumulation ends (e.g., "FlagLeafAppearance")
-- ResetStageName (optional): A stage at which the accumulated value resets
-- FractionRemovedOnCut (optional): Proportion of accumulated value removed when the crop is cut
-- FractionRemovedOnHarvest (optional): Proportion removed during harvest
-- FractionRemovedOnGraze (optional): Proportion removed when grazed
-- FractionRemovedOnPrune (optional): Proportion removed when pruned
-- Child functions (required): One or more child functions whose values are summed daily
+## Model Structure
 
-## Methodology
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-Each day after phenology estimation in Event [PostPhenology](/docs/Models/Events.qmd#PostPhenology), if the current crop development stage is between the start and end stage, the AccumulateFunction performs the following steps:
+* [Model](/docs/Models/Core/Model.qmd) - Base class for all APSIM models
+* [IFunction](/docs/APSIM.Core/IFunction.qmd) - Provides the `Value()` method to return accumulated value
+* [IStructureDependency](/docs/APSIM.Core/IStructureDependency.qmd) - Enables discovery of child functions in the model tree
 
-1. Evaluate each child function to get its current value.
-2. Sum the values of all child functions:
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description |
+|-----------|-------|-----------------|-------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link | Provides current growth stage indices to determine when accumulation occurs |
+| Child Functions | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Children | One or more functions whose daily values are summed |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| StartStageName | string | Crop development stage name to begin accumulation (e.g., "Emergence") |
+| EndStageName | string | Crop development stage name to end accumulation (e.g., "Flowering") |
+| ResetStageName | string | Optional stage name to reset accumulated value to zero |
+| FractionRemovedOnCut | double | Fraction of accumulated value removed when crop is cut (0-1) |
+| FractionRemovedOnHarvest | double | Fraction of accumulated value removed at harvest (0-1) |
+| FractionRemovedOnGraze | double | Fraction of accumulated value removed when grazed (0-1) |
+| FractionRemovedOnPrune | double | Fraction of accumulated value removed when pruned (0-1) |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Value | double | Current accumulated value (sum of all daily increments within the accumulation period) |
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Initialization
+
+At the start of simulation ([Commencing](/docs/Models/Events.qmd#Commencing) event):
+1. Accumulated value is set to zero
+2. Start and end stage indices are determined from the phenology model based on `StartStageName` and `EndStageName`
+
+### Daily Accumulation
+
+Each day after phenology calculations ([PostPhenology](/docs/Models/Events.qmd#PostPhenology) event), the function checks if the current crop stage is between the start and end stages. If so:
+
+1. Each child function is evaluated to obtain its current daily value
+2. All child function values are summed:
    $$
-   \text{DailyIncrement} = \sum_{i=1}^n \text{ChildFunction}_i
+   \Delta V_{\text{day}} = \sum_{i=1}^{n} f_i(t)
    $$
-3. Add the daily increment to the running total:
+   where $f_i(t)$ is the value of child function $i$ on day $t$, and $n$ is the number of child functions.
+
+3. The daily increment is added to the running total:
    $$
-   \text{AccumulatedValue}_{t} = \text{AccumulatedValue}_{t-1} + \text{DailyIncrement}
+   V_{\text{accumulated}}(t) = V_{\text{accumulated}}(t-1) + \Delta V_{\text{day}}
    $$
 
-If a stage is reached that matches `ResetStageName` in event [PhaseChanged](/docs/Models/Events.qmd#PhaseChanged), the accumulated value is set to zero:
-$$
-\text{AccumulatedValue} = 0 \quad \text{when Stage = ResetStageName}
-$$
+Accumulation only occurs when the crop is within the specified phenological window.
 
-If a following event,
+### Stage-Based Reset
 
-* [Cutting](/docs/Models/Events.qmd#Cutting)
-* [PostHarvesting](/docs/Models/Events.qmd#Harvesting)
-* [Grazing](/docs/Models/Events.qmd#Grazing)
-* [Pruning](/docs/Models/Events.qmd#Pruning)
-
-occurs, the function reduces the accumulated value:
+When a phenology stage change occurs ([PhaseChanged](/docs/Models/Events.qmd#PhaseChanged) event), if the new stage matches `ResetStageName`, the accumulated value resets:
 $$
-\text{AccumulatedValue} = \text{AccumulatedValue} \times (1 - \text{FractionRemoved})
+V_{\text{accumulated}} = 0 \quad \text{when stage = ResetStageName}
 $$
 
-This allows realistic simulation of loss in growth or reserves due to agronomic practices.
+This allows restarting accumulation at key developmental transitions.
 
-At event [PlantEnding](/docs/Models/Events.qmd#PlantEnding), the accumulated value is reset to zero, indicating the end of the crop cycle:
+### Management Event Adjustments
+
+The function responds to crop management events by reducing the accumulated value according to specified fractions:
+
+**Cutting** ([Cutting](/docs/Models/Events.qmd#Cutting) event):
+$$
+V_{\text{accumulated}} = V_{\text{accumulated}} \times (1 - \text{FractionRemovedOnCut})
+$$
+
+**Harvesting** ([PostHarvesting](/docs/Models/Events.qmd#PostHarvesting) event):
+$$
+V_{\text{accumulated}} = V_{\text{accumulated}} \times (1 - \text{FractionRemovedOnHarvest})
+$$
+
+**Grazing** ([Grazing](/docs/Models/Events.qmd#Grazing) event):
+$$
+V_{\text{accumulated}} = V_{\text{accumulated}} \times (1 - \text{FractionRemovedOnGraze})
+$$
+
+**Pruning** ([Pruning](/docs/Models/Events.qmd#Pruning) event):
+$$
+V_{\text{accumulated}} = V_{\text{accumulated}} \times (1 - \text{FractionRemovedOnPrune})
+$$
+
+### Crop Cycle End
+
+At the end of the crop cycle ([PlantEnding](/docs/Models/Events.qmd#PlantEnding) event), the accumulated value is reset to zero, preparing for a new crop cycle.
 
 ## Events
 
 **Events Listened For**
 
-These are signals or notifications that the function listens for from other parts of the simulation:
+AccumulateFunction listens to the following simulation events:
 
-| Event           | Purpose                                                           |
-|-----------------|-------------------------------------------------------------------|
-| Commencing      | Initializes accumulation and determines start/end phase indices   |
-| PostPhenology   | Daily update of accumulated value during the simulation           |
-| PhaseChanged    | Resets value if specified stage is reached                        |
-| Cutting         | Applies `FractionRemovedOnCut` to reduce value                    |
-| PostHarvesting  | Applies `FractionRemovedOnHarvest` to reduce value                |
-| Grazing         | Applies `FractionRemovedOnGraze` to reduce value                  |
-| Pruning         | Applies `FractionRemovedOnPrune` to reduce value                  |
-| PlantEnding     | Resets accumulated value at end of crop cycle                     |
+| Event | Purpose |
+|-------|---------|
+| [Commencing](/docs/Models/Events.qmd#Commencing) | Initializes accumulated value to zero and determines stage indices for accumulation window |
+| [PostPhenology](/docs/Models/Events.qmd#PostPhenology) | Daily evaluation and summation of child functions if within accumulation window |
+| [PhaseChanged](/docs/Models/Events.qmd#PhaseChanged) | Resets accumulated value to zero if current stage matches `ResetStageName` |
+| [Cutting](/docs/Models/Events.qmd#Cutting) | Reduces accumulated value by `FractionRemovedOnCut` |
+| [PostHarvesting](/docs/Models/Events.qmd#PostHarvesting) | Reduces accumulated value by `FractionRemovedOnHarvest` |
+| [Grazing](/docs/Models/Events.qmd#Grazing) | Reduces accumulated value by `FractionRemovedOnGraze` |
+| [Pruning](/docs/Models/Events.qmd#Pruning) | Reduces accumulated value by `FractionRemovedOnPrune` |
+| [PlantEnding](/docs/Models/Events.qmd#PlantEnding) | Resets accumulated value to zero at end of crop cycle |
 
-**Events Raised to**
+**Events Raised**
 
 > No events are raised by this function.
 
-## Properties
-
-**Configurable and Reportable Properties**
-
-| Property                  | Type    | Description                                               |
-|---------------------------|---------|-----------------------------------------------------------|
-| StartStageName            | string  | Crop stage name to begin accumulation                    |
-| EndStageName              | string  | Crop stage name to end accumulation                      |
-| ResetStageName            | string  | Crop stage name to reset accumulation                    |
-| FractionRemovedOnCut      | double  | Fraction of value to remove on cutting                   |
-| FractionRemovedOnHarvest  | double  | Fraction of value to remove on harvesting                 |
-| FractionRemovedOnGraze    | double  | Fraction of value to remove on grazing                     |
-| FractionRemovedOnPrune    | double  | Fraction of value to remove on pruning                     |
-
-
-**Read-Only Reportable Properties**
-
-> No read-only reportable properties are available for this function.
-
-
-
 ## User Interface
 
-`AccumulateFunction` can be added into the model tree by right-clicking on a parent node and selecting "Add Model...", and then search `AccumulateFunction` in the Filter Box. A symbol for the `AccumulateFunction` is displayed in the user interface to represent the function.
+AccumulateFunction can be added to the model tree by right-clicking on a parent node (typically within a crop Plant model) and selecting "Add Model...". Search for "AccumulateFunction" in the Filter Box. The function is represented by the following icon in the user interface:
 
 ![](https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/AccumulateFunction.png){ width=64px }
 
+After adding AccumulateFunction, you must:
+1. Configure `StartStageName` and `EndStageName` to define the accumulation window
+2. Add one or more child functions that will be summed daily
+3. Optionally set management response fractions and reset stage
 
 ## Practical Example
 
-> No practical example is available for this function.
+### Example 1: Accumulating Thermal Time
+
+A common use case is to track cumulative thermal time between emergence and flowering to predict when a crop reaches maturity:
+
+**Configuration:**
+- **StartStageName**: "Emergence"
+- **EndStageName**: "Flowering"
+- **Child Function**: A thermal time calculation function (e.g., daily growing degree days)
+
+The AccumulateFunction will sum daily thermal time values, and the accumulated total can be reported or used by other components to determine crop development progress.
+
+### Example 2: Tracking Biomass with Grazing
+
+For a grazed pasture, you might accumulate biomass production but remove a portion during grazing events:
+
+**Configuration:**
+- **StartStageName**: "Emergence"
+- **EndStageName**: "EndOfSeason"
+- **FractionRemovedOnGraze**: 0.6 (60% of accumulated biomass removed during grazing)
+- **Child Function**: Daily biomass production function
+
+This simulates realistic pasture growth and utilization patterns under grazing management.
 
 ## See Also
 
 * **Source code:** [AccumulateFunction.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/AccumulateFunction.cs)
+* [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) - Controls crop developmental stages
