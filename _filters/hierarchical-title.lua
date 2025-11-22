@@ -54,9 +54,42 @@ function Meta(meta)
             if #title_parts > 0 then
                 local page_title = table.concat(title_parts, " - ")
                 meta["pagetitle"] = pandoc.Str(page_title)
+                
+                -- Set breadcrumbs for search results display
+                -- Remove the last element (current page title) to show only the path
+                local breadcrumb_parts = {}
+                for i = 1, #title_parts - 1 do
+                    table.insert(breadcrumb_parts, pandoc.Str(title_parts[i]))
+                end
+                
+                if #breadcrumb_parts > 0 then
+                    meta["breadcrumbs"] = pandoc.List(breadcrumb_parts)
+                end
+                
+                -- Add breadcrumb context for search indexing (in hidden text)
+                local breadcrumb_text = table.concat(title_parts, " ")
+                meta["search-breadcrumb"] = pandoc.Str(breadcrumb_text)
             end
         end
     end
 
     return meta
+end
+
+-- Add breadcrumb to document body for search indexing
+function Pandoc(doc)
+    local breadcrumb = doc.meta["search-breadcrumb"]
+    
+    if breadcrumb then
+        -- Create a hidden div with breadcrumb for search indexing
+        local hidden_div = pandoc.Div(
+            {pandoc.Plain(pandoc.Str(pandoc.utils.stringify(breadcrumb)))},
+            pandoc.Attr("", {"quarto-include-in-search-index"}, {{"style", "display:none;"}})
+        )
+        
+        -- Insert at the beginning of the document
+        table.insert(doc.blocks, 1, hidden_div)
+    end
+    
+    return doc
 end

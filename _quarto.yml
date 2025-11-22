@@ -26,6 +26,8 @@ website:
   site-url: https://apsimng-notes.bangyou.me
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]
+  search:
+    show-item-context: true
   sidebar:
     style: "docked"
     contents: docs
@@ -58,6 +60,9 @@ format:
     css: styles.css
     toc: true
     toc-depth: 2
+    include-in-header: 
+      - text: |
+          <script src="/_scripts/js/fuzzy-search.js"></script>
     filters:
       - custom-callout
 
