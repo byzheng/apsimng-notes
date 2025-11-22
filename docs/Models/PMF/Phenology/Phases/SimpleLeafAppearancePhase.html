@@ -113,6 +113,35 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 }
 </style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../../../../styles.css">
 </head>
@@ -417,7 +446,24 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Daily Nitrogen Demand for Storage Organs</span></a>
+ <span class="menu-text">StorageNDemandFunction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../docs/Models/Functions/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BiomassRemovalEvents</span></a>
   </div>
 </li>
       </ul>
@@ -428,15 +474,15 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Show Event Names on Graph</span></a>
+ <span class="menu-text">EventNamesOnGraph</span></a>
   </div>
 </li>
       </ul>
@@ -445,11 +491,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Management</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
@@ -468,11 +514,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">PMF</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth3 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Plant.html" class="sidebar-item-text sidebar-link">
@@ -483,21 +529,21 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Arbitrator</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nutrient Constrained Allocation</span></a>
+ <span class="menu-text">NutrientConstrainedAllocationMethod</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Relative Allocation</span></a>
+ <span class="menu-text">RelativeAllocation</span></a>
   </div>
 </li>
       </ul>
@@ -506,11 +552,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth4 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth4 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
@@ -521,11 +567,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">CAMP</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth5 ">  
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
@@ -568,11 +614,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phases</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth5 show">  
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth5 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
@@ -637,13 +683,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
  <span class="menu-text">Scales</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth5 ">  
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth5 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Phenology/Scales/BBCH.html" class="sidebar-item-text sidebar-link">
@@ -662,13 +708,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
  <span class="menu-text">Interfaces</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/PMF/Interfaces/IIndexedFunction.html" class="sidebar-item-text sidebar-link">
@@ -685,30 +731,24 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false">
- <span class="menu-text">Organs</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth4 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../../../../docs/Models/PMF/Organs/Leaf.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Leaf</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
- <span class="menu-text">Structure</span></a>
+ <span class="menu-text">Organs</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth4 ">  
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">Structure</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
       </ul>
   </li>
       </ul>
@@ -717,11 +757,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
@@ -732,13 +772,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
  <span class="menu-text">Interfaces</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Models/Interfaces/DailyMetDataFromFile.html" class="sidebar-item-text sidebar-link">
@@ -771,11 +811,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Plants</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Barley/index.html" class="sidebar-item-text sidebar-link">
@@ -786,20 +826,20 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Canola/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Canola</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth3 ">  
-          <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false">
- <span class="menu-text">Examples</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false">
+ <span class="menu-text">Examples</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
@@ -810,13 +850,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false">
  <span class="menu-text">Leaf</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
@@ -835,11 +875,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
@@ -938,11 +978,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Chickpea/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Chickpea</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Chickpea/Phenology/index.html" class="sidebar-item-text sidebar-link">
@@ -955,22 +995,22 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Oats/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Oats</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-27" class="collapse list-unstyled sidebar-section depth3 ">  
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Wheat/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Wheat</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-28" class="collapse list-unstyled sidebar-section depth3 ">  
+      <ul id="quarto-sidebar-section-29" class="collapse list-unstyled sidebar-section depth3 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Wheat/Leaf/index.html" class="sidebar-item-text sidebar-link">
@@ -997,13 +1037,13 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false">
  <span class="menu-text">Examples</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-29" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-30" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
@@ -1016,11 +1056,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Wheat/Grain/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Grain</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-30" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-31" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Wheat/Grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
@@ -1033,11 +1073,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Phenology</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-31" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-32" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
@@ -1134,11 +1174,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
       <div class="sidebar-item-container"> 
             <a href="../../../../../docs/Plants/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Traits</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-33" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-32" class="collapse list-unstyled sidebar-section depth4 ">  
+      <ul id="quarto-sidebar-section-33" class="collapse list-unstyled sidebar-section depth4 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../../../docs/Plants/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
@@ -1170,10 +1210,11 @@ div.callout-needs-improvement.callout-style-default .callout-icon::before, div.c
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
   <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
@@ -1208,48 +1249,63 @@ Docs Models PMF Phenology Phases SimpleLeafAppearancePhase
 <p>The <code>SimpleLeafAppearancePhase</code> represents a phenological phase where the duration of the phase is determined by the number of new leaves appearing to match final leaf number.</p>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p><code>SimpleLeafAppearancePhase</code> models a phenological phase that progresses based on final leaf number. It is a simplified approach to leaf appearance, where the phase completes when the number of leaves reaches final leaf number. This phase is useful for crops where leaf appearance is a key developmental milestone.</p>
+<p><code>SimpleLeafAppearancePhase</code> models a phenological phase that progresses based on leaf appearance rate and final leaf number. It is a simplified approach to tracking phenological development in crops, where the phase completes when the current number of leaves reaches the target leaf number. This phase is particularly useful for crops where leaf appearance is a key developmental milestone, such as cereals and grasses.</p>
+<p>The phase progresses from a specified <code>Start</code> stage to a specified <code>End</code> stage. The duration is controlled by the difference between the target leaf number and the current leaf number. Once initialized, the target for completion is fixed based on the initial leaf count, meaning subsequent changes to the final leaf number do not affect when this phase will complete.</p>
 </section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
 <ul>
-<li><code>Start</code>: Name of the phenological stage where the phase begins (string).</li>
-<li><code>End</code>: Name of the phenological stage where the phase ends (string).</li>
-<li><code>IsEmerged</code>: Boolean value indicating whether the phase starts after emergence.</li>
-<li><code>TargetLeafNumber</code>: A child <code>IFunction</code> that provides the target leaf number for the phase.</li>
-<li><code>CurrentLeafNumber</code>: A child <code>IFunction</code> that returns the current number of leaves.</li>
+<li><a href="../../../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
+<li><a href="../../../../../docs/Models/PMF/Phenology/IPhase.qmd" class="broken-link">IPhase</a></li>
+<li><a href="../../../../../docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd" class="broken-link">IPhaseWithSetableCompletionDate</a></li>
 </ul>
 </section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The <code>SimpleLeafAppearancePhase</code> progresses from the <code>Start</code> to the <code>End</code> stage based on the number of leaves that have appeared. On the first day, it stores the current number of leaves as <code>LeafNoAtStart</code> and computes the <code>TargetLeafForCompletion</code> by subtracting this from the final target leaf number, i.e.&nbsp;further changes of Final Leaf Number (i.e.&nbsp;<code>TargetLeafNumber</code>) will not impact the completion criteria.</p>
-<p>If the leaf number reaches the target leaf number, the phase is considered complete and the model proceeds to the next phase.</p>
-</section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened For</strong></p>
-<p>These are signals or notifications that the function listens for from other parts of the simulation:</p>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
 <table class="caption-top table">
 <thead>
 <tr class="header">
-<th>Event</th>
-<th>Purpose</th>
+<th>Component</th>
+<th>Model</th>
+<th>Connection Type</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="../../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
-<td>Reset the internal state before the simulation starts</td>
+<td>TargetLeafNumber</td>
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>Child, By Name</td>
+<td>Provides the target final leaf number for the phase.</td>
+</tr>
+<tr class="even">
+<td>CurrentLeafNumber</td>
+<td><a href="../../../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></td>
+<td>Child, By Name</td>
+<td>Returns the current number of leaves that have appeared.</td>
+</tr>
+<tr class="odd">
+<td>Clock</td>
+<td><a href="../../../../../docs/Models/Core/IClock.qmd" class="broken-link">IClock</a></td>
+<td>Link</td>
+<td>Provides the current simulation date and time.</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
 </section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
 <p><strong>Configurable and Reportable Properties</strong></p>
 <table class="caption-top table">
 <colgroup>
@@ -1278,7 +1334,7 @@ Docs Models PMF Phenology Phases SimpleLeafAppearancePhase
 <tr class="odd">
 <td>IsEmerged</td>
 <td>bool</td>
-<td>Whether the phase starts after emergence</td>
+<td>Whether the phase starts after emergence (default: true)</td>
 </tr>
 </tbody>
 </table>
@@ -1298,12 +1354,94 @@ Docs Models PMF Phenology Phases SimpleLeafAppearancePhase
 </thead>
 <tbody>
 <tr class="odd">
+<td>ProgressThroughPhase</td>
+<td>double</td>
+<td>Accumulated units of progress through this phase (leaves appeared since start)</td>
+</tr>
+<tr class="even">
 <td>FractionComplete</td>
 <td>double</td>
-<td>The fraction of the phase that has been completed</td>
+<td>The fraction of the phase that has been completed (0 to 1)</td>
+</tr>
+<tr class="odd">
+<td>DateToProgress</td>
+<td>string</td>
+<td>Optional external completion date. If set, the phase ignores its normal mechanism and waits for this date</td>
 </tr>
 </tbody>
 </table>
+</section>
+<section id="events" class="level2">
+<h2 class="anchored" data-anchor-id="events">Events</h2>
+<div class="intro-text">
+<p>This section describes the <strong>events</strong> associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are <strong>listened for</strong> by this component to trigger its processes, while others are <strong>raised</strong> to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the <a href="../../../../../docs/models/Events.qmd" class="broken-link">Events Overview</a>.</p>
+</div>
+<p><strong>Events Listened For</strong></p>
+<p>These are signals or notifications that the function listens for from other parts of the simulation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="../../../../../docs/Models/Events.html#Commencing" class="model-link">Commencing</a></td>
+<td>Reset the internal state before the simulation starts</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Events Raised to</strong></p>
+<blockquote class="blockquote">
+<p>No events are raised by this function.</p>
+</blockquote>
+</section>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="phase-initialization" class="level3">
+<h3 class="anchored" data-anchor-id="phase-initialization">Phase Initialization</h3>
+<p>When the phase first becomes active (i.e., on the first timestep after entering this phase), the model records the current leaf number as the baseline:</p>
+<p><span class="math display">\[
+L_{\text{start}} = L_{\text{current}}
+\]</span></p>
+<p>where <span class="math inline">\(L_{\text{start}}\)</span> is the leaf number at the start of the phase and <span class="math inline">\(L_{\text{current}}\)</span> is the current leaf number provided by the <code>CurrentLeafNumber</code> function.</p>
+<p>The target number of leaves required to complete the phase is then calculated as:</p>
+<p><span class="math display">\[
+L_{\text{target}} = L_{\text{final}} - L_{\text{start}}
+\]</span></p>
+<p>where <span class="math inline">\(L_{\text{final}}\)</span> is the final target leaf number provided by the <code>TargetLeafNumber</code> function.</p>
+<p>This initialization ensures that the phase completion target is locked in at the start of the phase. Any subsequent changes to the final leaf number will not affect the completion criteria for this phase.</p>
+</section>
+<section id="daily-progress-calculation" class="level3">
+<h3 class="anchored" data-anchor-id="daily-progress-calculation">Daily Progress Calculation</h3>
+<p>On each timestep, the model calculates the progress through the phase as:</p>
+<p><span class="math display">\[
+P = L_{\text{current}} - L_{\text{start}}
+\]</span></p>
+<p>where <span class="math inline">\(P\)</span> is the progress through the phase (in leaves).</p>
+<p>The fraction complete is then calculated as:</p>
+<p><span class="math display">\[
+F = \frac{P}{L_{\text{target}}}
+\]</span></p>
+<p>where <span class="math inline">\(F\)</span> is the fraction of the phase completed (ranging from 0 to 1).</p>
+</section>
+<section id="phase-completion" class="level3">
+<h3 class="anchored" data-anchor-id="phase-completion">Phase Completion</h3>
+<p>The phase is considered complete when the fraction complete reaches or exceeds 1.0 (i.e., when <span class="math inline">\(F \geq 1\)</span>). At this point:</p>
+<ul>
+<li>The model sets the proportion of the day used to a very small value (0.00001), assuming most of the day’s thermal time was used to reach the final leaf</li>
+<li>The phase signals that it is ready to proceed to the next phase</li>
+<li>The phenology model advances to the next phase specified by the <code>End</code> property</li>
+</ul>
+</section>
+<section id="external-date-override" class="level3">
+<h3 class="anchored" data-anchor-id="external-date-override">External Date Override</h3>
+<p>If an external model sets the <code>DateToProgress</code> property, the phase will ignore its normal leaf-based progression mechanism and instead complete on the specified date. This allows for external control of phase timing when needed for specific experimental or management scenarios.</p>
+</section>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
