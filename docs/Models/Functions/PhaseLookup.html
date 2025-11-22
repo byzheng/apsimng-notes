@@ -407,7 +407,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Photoperiod</span></a>
+ <span class="menu-text">PhotoperiodFunction</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -431,7 +431,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../../docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">XYPairs Function</span></a>
+ <span class="menu-text">XYPairs</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
@@ -1199,10 +1199,10 @@ window.Quarto = {
    
   <ul class="collapse">
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#inputs" id="toc-inputs" class="nav-link" data-scroll-target="#inputs">Inputs</a></li>
-  <li><a href="#methodology" id="toc-methodology" class="nav-link" data-scroll-target="#methodology">Methodology</a></li>
-  <li><a href="#events" id="toc-events" class="nav-link" data-scroll-target="#events">Events</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
+  <li><a href="#model-structure" id="toc-model-structure" class="nav-link" data-scroll-target="#model-structure">Model Structure</a></li>
+  <li><a href="#connections-to-other-components" id="toc-connections-to-other-components" class="nav-link" data-scroll-target="#connections-to-other-components">Connections to Other Components</a></li>
+  <li><a href="#model-variables" id="toc-model-variables" class="nav-link" data-scroll-target="#model-variables">Model Variables</a></li>
+  <li><a href="#processes-and-algorithms" id="toc-processes-and-algorithms" class="nav-link" data-scroll-target="#processes-and-algorithms">Processes and Algorithms</a></li>
   <li><a href="#user-interface" id="toc-user-interface" class="nav-link" data-scroll-target="#user-interface">User Interface</a></li>
   <li><a href="#practical-example" id="toc-practical-example" class="nav-link" data-scroll-target="#practical-example">Practical Example</a></li>
   <li><a href="#see-also" id="toc-see-also" class="nav-link" data-scroll-target="#see-also">See Also</a></li>
@@ -1240,57 +1240,111 @@ Docs Models Functions PhaseLookup
 <p>This function is used to dynamically select a value during simulation depending on which growth phase the crop is currently in. It is typically used when a biological response or parameter changes depending on the stage of development.</p>
 <p>For example, you may want thermal time accumulation, stress response, or nutrient demand to behave differently in vegetative versus reproductive phases. <code>PhaseLookup</code> works like a switch that returns the appropriate value based on which phase the crop is currently in.</p>
 </section>
-<section id="inputs" class="level2">
-<h2 class="anchored" data-anchor-id="inputs">Inputs</h2>
+<section id="model-structure" class="level2">
+<h2 class="anchored" data-anchor-id="model-structure">Model Structure</h2>
+<div class="intro-text">
+<p>This section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.</p>
+</div>
+<p>This model inherits structural and functional behaviour from the following core APSIM components:</p>
+<p>This function inherits from the following parent classes:</p>
 <ul>
-<li>Child models: One or more <a href="../../../docs/Models/Functions/PhaseLookupValue.html" class="model-link">PhaseLookupValue</a> models, each associated with a specific phase or phase range.</li>
-<li>Crop phenology information (from the simulation environment).</li>
+<li><a href="../../../docs/Models/Core/Model.html" class="model-link">Model</a></li>
+<li><a href="../../../docs/APSIM.Core/IFunction.html" class="model-link">IFunction</a></li>
+<li><a href="../../../docs/APSIM.Core/IStructureDependency.html" class="model-link">IStructureDependency</a></li>
 </ul>
-<p>Each <code>PhaseLookupValue</code> defines: - Start phase name - End phase name - A value or function to return during that phase range</p>
 </section>
-<section id="methodology" class="level2">
-<h2 class="anchored" data-anchor-id="methodology">Methodology</h2>
-<p>The <code>PhaseLookup</code> function evaluates all its children, which must be <code>PhaseLookupValue</code> models. For each child:</p>
-<ol type="1">
-<li>Check if the crop is currently between the defined <code>Start</code> and <code>End</code> stages.</li>
-<li>If yes, return the value from the first matching child and stop checking further.</li>
-<li>If no phase matches any of the child <code>PhaseLookupValue</code> models, return 0 by default.</li>
-</ol>
-<p>The pseudocode logic is:</p>
-<p><span class="math display">\[
-\text{Value} =
-\begin{cases}
-\text{PhaseLookupValue}_i &amp; \text{if crop is in phase } i \\
-0 &amp; \text{if no match}
-\end{cases}
-\]</span></p>
-<p>This allows different values or functions to be “active” only in the relevant phases of the crop’s life cycle.</p>
+<section id="connections-to-other-components" class="level2">
+<h2 class="anchored" data-anchor-id="connections-to-other-components">Connections to Other Components</h2>
+<div class="intro-text">
+<p>This section describes how the model interacts with other components in the APSIM Next Generation framework.<br>
+These connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the <a href="../../../docs/Models/Connections.html" class="model-link">Connections Overview</a>.</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Component</th>
+<th>Model</th>
+<th>Connection Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PhaseLookupValue</td>
+<td><a href="../../../docs/Models/Functions/PhaseLookupValue.html" class="model-link">PhaseLookupValue</a></td>
+<td>Children</td>
+<td>One or more child models, each defining a value for a specific phase range.</td>
+</tr>
+<tr class="even">
+<td>Phenology</td>
+<td><a href="../../../docs/Models/PMF/Phenology/Phenology.html" class="model-link">Phenology</a></td>
+<td>Link (via children)</td>
+<td>Provides current growth stage information to determine which phase is active.</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="events" class="level2">
-<h2 class="anchored" data-anchor-id="events">Events</h2>
-<p><strong>Events Listened For</strong></p>
-<blockquote class="blockquote">
-<p>No events are listened by this function.</p>
-</blockquote>
-<p><strong>Events Raised to</strong></p>
-<blockquote class="blockquote">
-<p>No events are raised by this function.</p>
-</blockquote>
-</section>
-<section id="properties" class="level2">
-<h2 class="anchored" data-anchor-id="properties">Properties</h2>
+<section id="model-variables" class="level2">
+<h2 class="anchored" data-anchor-id="model-variables">Model Variables</h2>
+<div class="intro-text">
+<p>This section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the <a href="../../../docs/Models/Variables.html" class="model-link">Model Variables Overview</a>.</p>
+</div>
 <p><strong>Configurable and Reportable Properties</strong></p>
 <blockquote class="blockquote">
 <p>No configurable properties are available for this function.</p>
 </blockquote>
 <p><strong>Read-Only Reportable Properties</strong></p>
-<blockquote class="blockquote">
-<p>No read-only properties are available for this function.</p>
-</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 8%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Value</td>
+<td>double</td>
+<td>The sum of values from all child functions.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="processes-and-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="processes-and-algorithms">Processes and Algorithms</h2>
+<div class="intro-text">
+<p>This section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.</p>
+</div>
+<section id="phase-based-value-selection" class="level3">
+<h3 class="anchored" data-anchor-id="phase-based-value-selection">Phase-Based Value Selection</h3>
+<p>The <code>PhaseLookup</code> function evaluates all its child <code>PhaseLookupValue</code> models in sequence. For each child:</p>
+<ol type="1">
+<li>Check if the crop is currently between the child’s defined <code>Start</code> and <code>End</code> stages.</li>
+<li>If yes, return the value from the first matching child and stop checking further.</li>
+<li>If no phase matches any of the child <code>PhaseLookupValue</code> models, return 0 by default.</li>
+</ol>
+<p>The logic can be expressed as:</p>
+<p><span class="math display">\[
+V =
+\begin{cases}
+V_i &amp; \text{if crop is in phase range } i \\
+0 &amp; \text{if no match}
+\end{cases}
+\]</span></p>
+<p>where <span class="math inline">\(V\)</span> is the returned value and <span class="math inline">\(V_i\)</span> is the value from the <span class="math inline">\(i\)</span>-th <code>PhaseLookupValue</code> child.</p>
+<p><strong>Key Behavior:</strong> The function returns the value from the <strong>first</strong> matching child and stops evaluation. This means the order of child <code>PhaseLookupValue</code> models matters if there are overlapping phase ranges.</p>
+<p>Each <code>PhaseLookupValue</code> child defines: - <strong>Start phase name:</strong> The beginning of the active phase range - <strong>End phase name:</strong> The end of the active phase range - <strong>A value or function:</strong> What to return during that phase range (defined as a child of the <code>PhaseLookupValue</code>)</p>
+</section>
 </section>
 <section id="user-interface" class="level2">
 <h2 class="anchored" data-anchor-id="user-interface">User Interface</h2>
-<p><code>PhaseLookup</code> can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search <code>PhaseLookup</code> in the Filter Box. A symbol for the <code>PhaseLookup</code> is displayed in the user interface to represent the function.</p>
+<p><code>PhaseLookup</code> can be added as a child of any node in the model tree. Right-click the parent node, select “Add Model…”, and search for <code>PhaseLookup</code> in the Filter Box. A symbol for the <code>PhaseLookup</code> is displayed in the user interface to represent the function.</p>
 <p><img src="https://github.com/APSIMInitiative/ApsimX/raw/master/ApsimNG/Resources/TreeViewImages/PhaseLookup.png" class="img-fluid" width="64"></p>
 </section>
 <section id="practical-example" class="level2">
@@ -1304,11 +1358,12 @@ Docs Models Functions PhaseLookup
 <li>Another from <code>FloralInitiation</code> to <code>Maturity</code>, returning a value of 0.5</li>
 </ul></li>
 </ul>
-<p>This setup allows the model to adjust behavior based on phase without writing additional logic elsewhere.</p>
+<p>This setup allows the model to adjust behavior based on phase without writing additional logic elsewhere. For instance, this could be used to model radiation use efficiency that decreases after floral initiation, or nitrogen demand that varies between growth stages.</p>
 </section>
 <section id="see-also" class="level2">
 <h2 class="anchored" data-anchor-id="see-also">See Also</h2>
 <ul>
+<li><strong>Related Models:</strong> <a href="../../../docs/Models/Functions/PhaseLookupValue.html" class="model-link">PhaseLookupValue</a></li>
 <li><strong>Source code:</strong> <a href="http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/PhaseLookup.cs" class="external-link">PhaseLookup.cs on GitHub</a></li>
 </ul>
 

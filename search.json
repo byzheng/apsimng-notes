@@ -3367,7 +3367,7 @@
     "href": "docs/Models/Functions/index.html",
     "title": "Functions",
     "section": "",
-    "text": "Docs Models Functions Functions\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiod\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs Function\n\n\n\n\n\n\n\n\n\nNo matching items",
+    "text": "Docs Models Functions Functions\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nDescription\n\n\n\n\n\n\n\n\nAccumulateFunction\n\n\n\n\n\n\n\n\n\nAddFunction\n\n\n\n\n\n\n\n\n\nConstant\n\n\n\n\n\n\n\n\n\nDaily Nitrogen Demand for Storage Organs\n\n\n\n\n\n\n\n\n\nDivideFunction\n\n\n\n\n\n\n\n\n\nFrostHeatDamageFunctions\n\n\n\n\n\n\n\n\n\nHourlySinPpAdjusted\n\n\n\n\n\n\n\n\n\nMaximumFunction\n\n\n\n\n\n\n\n\n\nMinimumFunction\n\n\n\n\n\n\n\n\n\nMultiplyFunction\n\n\n\n\n\n\n\n\n\nPhaseLookup\n\n\n\n\n\n\n\n\n\nPhaseLookupValue\n\n\n\n\n\n\n\n\n\nPhotoperiodFunction\n\n\n\n\n\n\n\n\n\nSubDailyInterpolation\n\n\n\n\n\n\n\n\n\nSubtractFunction\n\n\n\n\n\n\n\n\n\nThreeHourAirTemperature\n\n\n\n\n\n\n\n\n\nXYPairs\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Home",
       "Docs",
@@ -3684,11 +3684,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookupValue.html#inputs",
-    "href": "docs/Models/Functions/PhaseLookupValue.html#inputs",
+    "objectID": "docs/Models/Functions/PhaseLookupValue.html#model-structure",
+    "href": "docs/Models/Functions/PhaseLookupValue.html#model-structure",
     "title": "PhaseLookupValue",
-    "section": "Inputs",
-    "text": "Inputs\n\nStart: The name of the crop stage where this value becomes active.\nEnd: The name of the crop stage where this value becomes inactive.\nChild function: The first child model (e.g., constant, multiplier) providing the value when active. If multiple children are present, only the first is used.\nPhenology: The current phenological state of the crop (linked internally).",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\nThis function inherits from the following parent classes:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -3698,11 +3698,25 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookupValue.html#methodology",
-    "href": "docs/Models/Functions/PhaseLookupValue.html#methodology",
+    "objectID": "docs/Models/Functions/PhaseLookupValue.html#connections-to-other-components",
+    "href": "docs/Models/Functions/PhaseLookupValue.html#connections-to-other-components",
     "title": "PhaseLookupValue",
-    "section": "Methodology",
-    "text": "Methodology\nWhen simulation begins, PhaseLookupValue maps the Start and End crop stage names to internal indices.\nEach day during the simulation:\n\nIt checks whether the current crop stage falls between the defined start and end stages.\nIf yes, it evaluates the first child function and returns that value.\nIf no, it returns 0.0.\n\nMathematically:\n\\[\n\\text{Value} =\n\\begin{cases}\n\\text{ChildFunction}(), & \\text{if in phase} \\\\\n0, & \\text{otherwise}\n\\end{cases}\n\\]\nThis allows you to define rules or responses that are only active during specific crop phases.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nPhenology\nPhenology\nLink\nProvides current phenological stage information to determine if the crop is within the specified phase range.\n\n\nChild Function\nIFunction\nChild, First Available\nAny function model that provides the value to return when the phase is active. Only the first child is used.\n\n\nPhaseLookup\nPhaseLookup\nParent (typical)\nParent function that evaluates multiple PhaseLookupValue children to select the appropriate value based on current phase.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "PhaseLookupValue"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhaseLookupValue.html#model-variables",
+    "href": "docs/Models/Functions/PhaseLookupValue.html#model-variables",
+    "title": "PhaseLookupValue",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nName of the stage when activation begins\n\n\nEnd\nstring\nName of the stage when activation ends\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nInPhase\nboolean\ntrue if current crop stage is within range",
     "crumbs": [
       "Home",
       "Docs",
@@ -3716,7 +3730,7 @@
     "href": "docs/Models/Functions/PhaseLookupValue.html#events",
     "title": "PhaseLookupValue",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\n\n\n\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nConvert stage names to internal indices at the beginning of simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nConvert stage names to internal indices at the beginning of simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3726,11 +3740,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookupValue.html#properties",
-    "href": "docs/Models/Functions/PhaseLookupValue.html#properties",
+    "objectID": "docs/Models/Functions/PhaseLookupValue.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/PhaseLookupValue.html#processes-and-algorithms",
     "title": "PhaseLookupValue",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStart\nstring\nName of the stage when activation begins\n\n\nEnd\nstring\nName of the stage when activation ends\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nInPhase\nboolean\ntrue if current crop stage is within range",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nPhase Range Initialization\nAt the beginning of the simulation (triggered by the Commencing event), the function converts the user-specified Start and End stage names into internal phenology indices:\n\nstartStageIndex = index corresponding to the Start stage name\nendStageIndex = index corresponding to the End stage name\n\nThis conversion is performed once at initialization and cached for efficient evaluation during the simulation.\n\n\nValue Calculation\nDuring each simulation time step, the function evaluates whether the current phenological stage falls within the specified range and returns the appropriate value:\n\\[\nV =\n\\begin{cases}\nF_{\\text{child}}(i), & \\text{if } S_{\\text{start}} \\leq S_{\\text{current}} \\leq S_{\\text{end}} \\\\\n0, & \\text{otherwise}\n\\end{cases}\n\\]\nwhere:\n\n\\(V\\) is the returned value\n\\(F_{\\text{child}}(i)\\) is the value of the first child function (with optional array index \\(i\\))\n\\(S_{\\text{start}}\\) is the start stage index\n\\(S_{\\text{current}}\\) is the current phenological stage index\n\\(S_{\\text{end}}\\) is the end stage index\n\nImportant notes:\n\nIf Start or End stage names are not set (empty strings), the function throws an exception.\nOnly the first child function is evaluated, even if multiple children are present.\nThe function returns 0.0 if no child functions are defined or if the current stage is outside the specified range.\nThe phenology check uses the Between() method which includes both start and end stages (inclusive range).",
     "crumbs": [
       "Home",
       "Docs",
@@ -3744,7 +3758,7 @@
     "href": "docs/Models/Functions/PhaseLookupValue.html#user-interface",
     "title": "PhaseLookupValue",
     "section": "User Interface",
-    "text": "User Interface\nPhaseLookupValue is used as a child of a PhaseLookup node. To use it:\n\nRight-click on the PhaseLookup in the model tree.\nSelect “Add Model…”.\nChoose “PhaseLookupValue”.\nSet Start and End crop stages, and add a child function such as Constant or MultiplyFunction.",
+    "text": "User Interface\nPhaseLookupValue is used as a child of a PhaseLookup node. To use it:\n\nRight-click on the PhaseLookup in the model tree.\nSelect “Add Model…”.\nChoose “PhaseLookupValue”.\nSet Start and End crop stages in the property view, and add a child function such as Constant or MultiplyFunction.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3758,7 +3772,7 @@
     "href": "docs/Models/Functions/PhaseLookupValue.html#practical-example",
     "title": "PhaseLookupValue",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose you want to return a value of 1.0 during the vegetative phase and 0.5 during grain filling:\n\nFirst PhaseLookupValue:\n\nStart = “Emergence”, End = “FloralInitiation”\n\nChild = Constant (1.0)\n\nSecond PhaseLookupValue:\n\nStart = “FloralInitiation”, End = “Maturity”\n\nChild = Constant (0.5)\n\n\nTogether, under a parent PhaseLookup, these values define different behavior for the crop across development.",
+    "text": "Practical Example\nSuppose you want to return a value of 1.0 during the vegetative phase and 0.5 during grain filling:\n\nFirst PhaseLookupValue:\n\nStart = “Emergence”, End = “FloralInitiation”\n\nChild = Constant (1.0)\n\nSecond PhaseLookupValue:\n\nStart = “FloralInitiation”, End = “Maturity”\n\nChild = Constant (0.5)\n\n\nTogether, under a parent PhaseLookup, these values define different behavior for the crop across development. This approach could be used to model radiation use efficiency that decreases after floral initiation, or to adjust partitioning coefficients that change with developmental stage.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3772,7 +3786,7 @@
     "href": "docs/Models/Functions/PhaseLookupValue.html#see-also",
     "title": "PhaseLookupValue",
     "section": "See Also",
-    "text": "See Also\n\nSource code: PhaseLookupValue.cs on GitHub",
+    "text": "See Also\n\nRelated Models: PhaseLookup, Phenology\nSource code: PhaseLookupValue.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -3800,7 +3814,49 @@
     "href": "docs/Models/Functions/MultiplyFunction.html#overview",
     "title": "MultiplyFunction",
     "section": "Overview",
-    "text": "Overview\nThe MultiplyFunction is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.",
+    "text": "Overview\nThe MultiplyFunction is used to multiply multiple values for a mathematical equation. It calculates the product values of all children functions and returns the total product. This is useful when you need to combine multiple traits or parameters into a single value for further calculations in plant growth models.\nA key performance feature of this function is that it returns zero as soon as any child function returns zero, which can improve computational efficiency. To maximize performance, child functions that are more likely to return zero should be placed at the top of the list of children.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#model-structure",
+    "href": "docs/Models/Functions/MultiplyFunction.html#model-structure",
+    "title": "MultiplyFunction",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\nThis function inherits from the following parent classes:\n\nModel\nIFunction\nIStructureDependency",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/MultiplyFunction.html#connections-to-other-components",
+    "title": "MultiplyFunction",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nChildren\nAny number of child functions whose values will be multiplied together.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MultiplyFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#model-variables",
+    "href": "docs/Models/Functions/MultiplyFunction.html#model-variables",
+    "title": "MultiplyFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3814,7 +3870,7 @@
     "href": "docs/Models/Functions/MultiplyFunction.html#events",
     "title": "MultiplyFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3824,11 +3880,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MultiplyFunction.html#properties",
-    "href": "docs/Models/Functions/MultiplyFunction.html#properties",
+    "objectID": "docs/Models/Functions/MultiplyFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/MultiplyFunction.html#processes-and-algorithms",
     "title": "MultiplyFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nMultiplication Calculation\nThe function calculates the product of all child function values using the following algorithm:\n\\[\nV = \\prod_{i=1}^{n} F_i\n\\]\nwhere:\n\n\\(V\\) is the final value returned by the MultiplyFunction\n\\(F_i\\) is the value of the \\(i\\)-th child function\n\\(n\\) is the total number of child functions\n\nPerformance Optimization: The calculation short-circuits when any child function returns zero, immediately returning 0.0 without evaluating remaining child functions. This optimization means that ordering child functions strategically (with those most likely to be zero at the top) can significantly improve computational efficiency.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3842,7 +3898,7 @@
     "href": "docs/Models/Functions/MultiplyFunction.html#user-interface",
     "title": "MultiplyFunction",
     "section": "User Interface",
-    "text": "User Interface\nMultiplyFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search MultiplyFunction in the Filter Box. A symbol for the MultiplyFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nMultiplyFunction can be added as a child of any node in the model tree. Right-click the parent node, select “Add Model…”, and search for MultiplyFunction in the Filter Box. A symbol for the MultiplyFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3898,7 +3954,7 @@
     "href": "docs/Models/Functions/MaximumFunction.html#overview",
     "title": "MaximumFunction",
     "section": "Overview",
-    "text": "Overview\nThe MaximumFunction is used to determine the largest value among multiple child functions. It evaluates each child and returns the maximum result. This is useful when you need to select the most permissive factor or the highest value among several parameters in plant or soil models.",
+    "text": "Overview\nThe MaximumFunction is used to determine the largest value among multiple child functions. It evaluates each child and returns the maximum result. This is useful when you need to select the most permissive factor or the highest value among several parameters in plant or soil models.\nThe function works by iterating through all child functions and using Math.Max() to track the largest value encountered. It initializes with a very small value (-999999999) and progressively updates to the maximum found among all children.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3908,11 +3964,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MaximumFunction.html#events",
-    "href": "docs/Models/Functions/MaximumFunction.html#events",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#model-structure",
+    "href": "docs/Models/Functions/MaximumFunction.html#model-structure",
     "title": "MaximumFunction",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised\n\nNo events are raised by this function.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -3922,11 +3978,39 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MaximumFunction.html#properties",
-    "href": "docs/Models/Functions/MaximumFunction.html#properties",
+    "objectID": "docs/Models/Functions/MaximumFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/MaximumFunction.html#connections-to-other-components",
     "title": "MaximumFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nChildren\nAny number of child functions whose values are compared.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MaximumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MaximumFunction.html#model-variables",
+    "href": "docs/Models/Functions/MaximumFunction.html#model-variables",
+    "title": "MaximumFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MaximumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MaximumFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/MaximumFunction.html#processes-and-algorithms",
+    "title": "MaximumFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nMaximum Value Calculation\nThe MaximumFunction evaluates all child functions and returns the maximum value. The algorithm is:\n\nInitialize return value to a very small number (-999999999)\nIterate through all child functions\nFor each child, compare its value with the current maximum\nUpdate the maximum if the child’s value is larger\nReturn the final maximum value\n\nMathematically, this can be expressed as:\n\\[\nValue_{max} = \\max_{i=1}^{n}(f_i)\n\\]\nwhere \\(f_i\\) represents the value of the \\(i\\)-th child function, and \\(n\\) is the total number of child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3940,7 +4024,7 @@
     "href": "docs/Models/Functions/MaximumFunction.html#user-interface",
     "title": "MaximumFunction",
     "section": "User Interface",
-    "text": "User Interface\nMaximumFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for MaximumFunction in the Filter Box. A symbol for the MaximumFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nMaximumFunction can be added as a child of any parent node in the model tree. Right-click the parent node, select “Add Model…”, and search for MaximumFunction in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3982,7 +4066,7 @@
     "href": "docs/Models/Functions/FrostHeatDamageFunctions.html",
     "title": "FrostHeatDamageFunctions",
     "section": "",
-    "text": "Docs Models Functions FrostHeatDamageFunctions\nThis FrostHeatDamageFunctions function computes daily and cumulative damage ratios (0–1) for frost and heat by combining a temperature‑driven potential yield reduction (piecewise linear between lower/upper thresholds with a maximum reduction) and a growth‑stage sensitivity factor (piecewise linear). The result represents the expected fractional yield loss from extreme temperature events.",
+    "text": "Docs Models Functions FrostHeatDamageFunctions\nFrostHeatDamageFunctions calculates daily and cumulative yield reduction caused by frost and heat stress during crop development. The function combines temperature-driven potential damage (piecewise linear response to minimum/maximum temperature) with growth-stage sensitivity to predict fractional yield loss from extreme temperature events. It was developed for wheat and canola through the GRDC Frost and Heat Management Analytics (FAHMA) project.",
     "crumbs": [
       "Home",
       "Docs",
@@ -3996,7 +4080,49 @@
     "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#overview",
     "title": "FrostHeatDamageFunctions",
     "section": "Overview",
-    "text": "Overview\nThe FrostHeatDamageFunctions function is developed to account for the effects of frost and heat stresses on yield reduction, which runs at the daily step separating with yield estimation. The damage function is the product of the potential yield reduction induced by extreme(i.e.frost and heat) events and the sensitivity of the yield reduction to the growth stage when the events occur.The potential ratio of yield reduction induced by a frost or heat event is a piece-wise linear function of daily minimum or maximum air temperature, respectively.The potential ratio of yield reduction ranges from 0 to 1 indicating mild to severe yield reduction induced by an extreme event. The function is described with three parameters including the lower and upper temperature thresholds and the maximum yield reduction. The sensitivity of yield reduction to the growth stage is a piece-wise linear function of the growth stage simulated by APSIM. The sensitivity ranges from 0 to 1 indicating the least to most sensitivity of yield reduction.The function has four parameters: the lower and upper growth stage thresholds of the sensitive period to frost or heat stress, and the lower and upper growth stage thresholds of the most sensitive period around flowering when sensitivity equals 1. The same function of sensitivity applies to both frost and heat stress but with different parameterizations. Multiple frost and heat events during the sensitive period have multiplicative effects on yield reduction rather than additive effects.",
+    "text": "Overview\nExtreme temperature events—both frost and heat—can significantly reduce crop yields, particularly when they occur during sensitive developmental stages such as flowering. The FrostHeatDamageFunctions model quantifies this impact by:\n\nAssessing potential damage based on how extreme the temperature is relative to crop-specific thresholds\nAdjusting for developmental sensitivity recognizing that crops are more vulnerable at certain growth stages (e.g., anthesis)\nTracking cumulative effects as multiple stress events have multiplicative rather than additive impacts on yield\n\nThis function operates independently of the main yield prediction algorithms, calculating damage ratios (0–1, where 0 = no damage, 1 = complete yield loss) that can be applied to potential yield estimates. The model runs daily during the crop lifecycle, continuously monitoring temperature conditions and growth stage progression.\nKey Applications: - Predicting frost-induced yield losses in wheat and canola - Assessing heat stress impacts during reproductive development - Evaluating combined frost and heat risks across growing seasons - Supporting agronomic decisions about variety selection and sowing dates\nBiological Basis: Frost damage primarily affects reproductive organs through ice crystal formation, cell membrane disruption, and metabolic dysfunction. Heat stress impairs pollen viability, disrupts photosynthesis, and accelerates senescence. Both stresses cause proportionally greater damage when they coincide with critical developmental windows, particularly around flowering when reproductive structures are most vulnerable.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "FrostHeatDamageFunctions"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-structure",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-structure",
+    "title": "FrostHeatDamageFunctions",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\nFrostHeatDamageFunctions inherits from the following base classes and interfaces:\n\nModel - Base class for all APSIM models\nIStructureDependency - Enables discovery of child components",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "FrostHeatDamageFunctions"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#connections-to-other-components",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#connections-to-other-components",
+    "title": "FrostHeatDamageFunctions",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nWeather\nWeather\nLink\nProvides daily minimum and maximum temperatures for damage calculations\n\n\nPlant\nPlant\nLink (Parent)\nMust be added as child of a Plant model; accesses phenology and grain organ\n\n\nPhenology\nPhenology\nChild of Plant\nProvides current growth stage for sensitivity calculations\n\n\nGrain\nReproductiveOrgan\nChild of Plant\nProvides grain weight for final yield adjustment",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "FrostHeatDamageFunctions"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-variables",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#model-variables",
+    "title": "FrostHeatDamageFunctions",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\nThe following properties must be configured when adding this function to a crop model:\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nCropType\nEnum\nCrop to simulate: Wheat or Canola (sets default parameters)\n\n\nFrostLowTT\ndouble\nLower temperature threshold for frost damage (°C)\n\n\nFrostMaxReductionRatio\ndouble\nMaximum yield reduction at or below lower frost threshold (0–1)\n\n\nFrostUpTT\ndouble\nUpper temperature threshold for frost damage (°C)\n\n\nFrostMinReductionRatio\ndouble\nMinimum yield reduction at or above upper frost threshold (0–1)\n\n\nFrostStartSensitiveGS\ndouble\nGrowth stage when frost-sensitive period begins\n\n\nFrostStartMostSensitiveGS\ndouble\nGrowth stage when maximum frost sensitivity begins\n\n\nFrostEndMostSensitiveGS\ndouble\nGrowth stage when maximum frost sensitivity ends\n\n\nFrostEndSensitiveGS\ndouble\nGrowth stage when frost-sensitive period ends\n\n\nHeatLowTT\ndouble\nLower temperature threshold for heat damage (°C)\n\n\nHeatMinReductionRatio\ndouble\nMinimum yield reduction at or below lower heat threshold (0–1)\n\n\nHeatUpTT\ndouble\nUpper temperature threshold for heat damage (°C)\n\n\nHeatMaxReductionRatio\ndouble\nMaximum yield reduction at or above upper heat threshold (0–1)\n\n\nHeatStartSensitiveGS\ndouble\nGrowth stage when heat-sensitive period begins\n\n\nHeatStartMostSensitiveGS\ndouble\nGrowth stage when maximum heat sensitivity begins\n\n\nHeatEndMostSensitiveGS\ndouble\nGrowth stage when maximum heat sensitivity ends\n\n\nHeatEndSensitiveGS\ndouble\nGrowth stage when heat-sensitive period ends\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFrostPotentialReductionRatio\ndouble\nDaily potential yield reduction by frost based on temperature\n\n\nFrostSensitivity\ndouble\nDaily sensitivity of yield to frost based on growth stage (0–1)\n\n\nFrostReductionRatio\ndouble\nDaily actual yield reduction ratio by frost stress\n\n\nHeatPotentialReductionRatio\ndouble\nDaily potential yield reduction by heat based on temperature\n\n\nHeatSensitivity\ndouble\nDaily sensitivity of yield to heat based on growth stage (0–1)\n\n\nHeatReductionRatio\ndouble\nDaily actual yield reduction ratio by heat stress\n\n\nFrostHeatReductionRatio\ndouble\nDaily combined yield reduction ratio from frost and heat\n\n\nCumulativeFrostReductionRatio\ndouble\nCumulative yield reduction from all frost events\n\n\nCumulativeHeatReductionRatio\ndouble\nCumulative yield reduction from all heat events\n\n\nCumulativeFrostHeatReductionRatio\ndouble\nCumulative yield reduction from combined frost and heat\n\n\nFrostEventNumber\ndouble\nNumber of frost events during sensitive period\n\n\nHeatEventNumber\ndouble\nNumber of heat events during sensitive period\n\n\nFrostHeatYield\ndouble\nFrost- and heat-limited yield (g/m²)\n\n\nFrostSensitivePeriodStartDAS\ndouble\nStart of frost sensitive period (days after sowing)\n\n\nFrostSensitivePeriodEndDAS\ndouble\nEnd of frost sensitive period (days after sowing)\n\n\nHeatSensitivePeriodStartDAS\ndouble\nStart of heat sensitive period (days after sowing)\n\n\nHeatSensitivePeriodEndDAS\ndouble\nEnd of heat sensitive period (days after sowing)",
     "crumbs": [
       "Home",
       "Docs",
@@ -4010,7 +4136,7 @@
     "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#inputs",
     "title": "FrostHeatDamageFunctions",
     "section": "Inputs",
-    "text": "Inputs\nThe following inputs are required for the FrostHeatDamageFunctions function with default values for wheat and canola crops:\n\nFrost parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nFrostLowTT\nLower temperature threshold for frost damage (°C)\n-4.00\n-4.11\n\n\nFrostMaxReductionRatio\nYield reduction ratio at the lower threshold (0–1, max reduction)\n0.40\n0.31\n\n\nFrostUpTT\nUpper temperature threshold for frost damage (°C)\n1.00\n-0.75\n\n\nFrostMinReductionRatio\nYield reduction ratio at the upper threshold (0–1, min reduction)\n0.00\n0.00\n\n\nFrostStartSensitiveGS\nStart of the frost-sensitive growth stage period (GS units)\n6.49\n7.22\n\n\nFrostStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n8.00\n7.33\n\n\nFrostEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n9.50\n8.06\n\n\nFrostEndSensitiveGS\nEnd of the frost-sensitive growth stage period (GS units)\n9.50\n8.18\n\n\n\n\n\nHeat parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nHeatLowTT\nLower temperature threshold for heat damage (°C)\n30.35\n27.45\n\n\nHeatMinReductionRatio\nYield reduction ratio at the lower threshold (0–1, min reduction)\n0.00\n0.00\n\n\nHeatUpTT\nUpper temperature threshold for heat damage (°C)\n34.00\n38.84\n\n\nHeatMaxReductionRatio\nYield reduction ratio at the upper threshold (0–1, max reduction)\n0.20\n0.58\n\n\nHeatStartSensitiveGS\nStart of the heat-sensitive growth stage period (GS units)\n7.28\n5.58\n\n\nHeatStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n7.48\n6.26\n\n\nHeatEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n8.97\n9.20\n\n\nHeatEndSensitiveGS\nEnd of the heat-sensitive growth stage period (GS units)\n9.09\n9.43\n\n\n\n\nReduction ratio from 0 to 1 indicates no to full yield reduction,\nSensitivity from 0 to 1 indicates no to full sensitivity to frost/heat damage.\n\nThe figures below illustrate the temperature response and growth stage sensitivity functions for frost and heat damage for both wheat and canola crops using the default parameters.",
+    "text": "Inputs\n\nRequired Inputs\nCrop Selection: - CropType: Select either Wheat or Canola. This automatically loads crop-specific default parameters optimized for each crop.\nEnvironmental Data (from Weather model): - Daily minimum temperature (°C) - for frost damage assessment - Daily maximum temperature (°C) - for heat damage assessment\nCrop Development Data (from Plant model): - Current growth stage - determines sensitivity at each developmental phase - Grain weight - used to calculate final frost- and heat-limited yield\n\n\nCultivar-Specific Parameters\nThe following parameters define frost and heat damage responses. Default values are provided for wheat and canola based on field data calibration:\n\n\nFrost parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nFrostLowTT\nLower temperature threshold for frost damage (°C)\n-4.00\n-4.11\n\n\nFrostMaxReductionRatio\nYield reduction ratio at the lower threshold (0–1, max reduction)\n0.40\n0.31\n\n\nFrostUpTT\nUpper temperature threshold for frost damage (°C)\n1.00\n-0.75\n\n\nFrostMinReductionRatio\nYield reduction ratio at the upper threshold (0–1, min reduction)\n0.00\n0.00\n\n\nFrostStartSensitiveGS\nStart of the frost-sensitive growth stage period (GS units)\n6.49\n7.22\n\n\nFrostStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n8.00\n7.33\n\n\nFrostEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n9.50\n8.06\n\n\nFrostEndSensitiveGS\nEnd of the frost-sensitive growth stage period (GS units)\n9.50\n8.18\n\n\n\n\n\nHeat parameters\n\n\n\n\n\n\n\n\n\nParameter (property)\nDescription\nWheat\nCanola\n\n\n\n\nHeatLowTT\nLower temperature threshold for heat damage (°C)\n30.35\n27.45\n\n\nHeatMinReductionRatio\nYield reduction ratio at the lower threshold (0–1, min reduction)\n0.00\n0.00\n\n\nHeatUpTT\nUpper temperature threshold for heat damage (°C)\n34.00\n38.84\n\n\nHeatMaxReductionRatio\nYield reduction ratio at the upper threshold (0–1, max reduction)\n0.20\n0.58\n\n\nHeatStartSensitiveGS\nStart of the heat-sensitive growth stage period (GS units)\n7.28\n5.58\n\n\nHeatStartMostSensitiveGS\nStart of the most-sensitive period (sensitivity = 1) (GS units)\n7.48\n6.26\n\n\nHeatEndMostSensitiveGS\nEnd of the most-sensitive period (sensitivity = 1) (GS units)\n8.97\n9.20\n\n\nHeatEndSensitiveGS\nEnd of the heat-sensitive growth stage period (GS units)\n9.09\n9.43\n\n\n\n\nReduction ratio from 0 to 1 indicates no to full yield reduction,\nSensitivity from 0 to 1 indicates no to full sensitivity to frost/heat damage.\n\nThe figures below illustrate the temperature response and growth stage sensitivity functions for frost and heat damage for both wheat and canola crops using the default parameters.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nParameter Interpretation: - Reduction ratio: 0 = no yield loss, 1 = complete yield loss - Sensitivity: 0 = no sensitivity (no damage regardless of temperature), 1 = maximum sensitivity (full potential damage occurs) - Growth stages (GS): Decimal scale tracking crop development (e.g., 8.0 ≈ anthesis for wheat)",
     "crumbs": [
       "Home",
       "Docs",
@@ -4020,39 +4146,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#methodology",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#methodology",
+    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#processes-and-algorithms",
     "title": "FrostHeatDamageFunctions",
-    "section": "Methodology",
-    "text": "Methodology\nAll internal and output variables are reset at sowing and then updated daily during crop growth until harvest at event DoManagementCalculations.\n\nDaily reduction calculations\nThe daily frost (\\(R_{frost}\\)) and heat (\\(R_{heat}\\)) reductions are calculated by multiplying the potential reduction ratio (based on temperature) and the sensitivity (based on growth stage) for each stress.\n\\[\nR_{frost} = P_{frost}(T_{min}) \\times S_{frost}(GS)\n\\]\nwhere:\n\n\\(P_{frost}(T_{min})\\) is the potential reduction ratio from the frost potential reduction function above given the daily minimum temperature (\\(T_{min}\\)).\n\\(S_{frost}(GS)\\) is the sensitivity from the frost sensitivity function above given the current crop growth stage (GS).\n\n\\[\nR_{heat} = P_{heat}(T_{max}) \\times S_{heat}(GS)\n\\]\nwhere:\n\n\\(P_{heat}(T_{max})\\) is the potential reduction ratio from the heat potential reduction function above given the daily maximum temperature (\\(T_{max}\\)).\n\\(S_{heat}(GS)\\) is the sensitivity from the heat sensitivity function above given the current crop growth stage (GS).\n\nThe total daily reduction ratio from both stresses is then calculated as:\n\\[\nR_{frost\\_heat} = 1 - (1 - R_{frost}) \\times (1 - R_{heat})\n\\]\nThe cummulative frost reduction from sowing to today (t) is calculated as:\n\\[\nR_{frost,\\ cum} (t) = 1 - \\prod_{i=1}^{t} (1 - R_{frost} (i))\n\\]\nThe cumulative heat reduction from sowing to today (t) is calculated as:\n\\[\nR_{heat,\\ cum} (t) = 1 - \\prod_{i=1}^{t} (1 - R_{heat} (i))\n\\]\nThe cumulative frost and heat reduction from sowing to today (t) is calculated as: \\[\nR_{frost\\_heat,\\ cum} (t) = 1 - R_{frost,\\ cum} (t)  \\times R_{heat,\\ cum} (t)\n\\]\nFinally the frost- and heat-limited yield (Y_{frost_heat}) at harvest is calculated as:\n\\[\nY_{frost\\_heat} = Y \\times (1 - R_{frost\\_heat,\\ cum})\n\\]\nwhere:\n\n\\(Y\\) is the potential yield (g/m²) estimated by the crop model without considering frost and heat damage.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "FrostHeatDamageFunctions"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#events",
-    "title": "FrostHeatDamageFunctions",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nSowing\nInitialize internal variables for frost and heat damage functions\n\n\nDoManagementCalculations\nPerform the actual calculations for frost and heat damage functions\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "FrostHeatDamageFunctions"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/FrostHeatDamageFunctions.html#properties",
-    "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#properties",
-    "title": "FrostHeatDamageFunctions",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nFrostPotentialReductionRatio\ndouble\nDaily potential yield reduction ratio by a frost event.\n\n\nFrostSensitivity\ndouble\nDaily sensitivity of yield reduction to growth stage when the frost event occurs.\n\n\nFrostReductionRatio\ndouble\nDaily actual yield reduction ratio by frost stress.\n\n\nHeatPotentialReductionRatio\ndouble\nDaily potential yield reduction ratio by a heat event.\n\n\nHeatSensitivity\ndouble\nDaily sensitivity of yield reduction to growth stage when the heat event occurs.\n\n\nHeatReductionRatio\ndouble\nDaily actual yield reduction ratio by heat stress.\n\n\nFrostHeatReductionRatio\ndouble\nDaily actual yield reduction ratio by combined frost and heat stress.\n\n\nCumulativeFrostReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by frost stress.\n\n\nCumulativeHeatReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by heat stress.\n\n\nFrostEventNumber\ndouble\nNumber of frost events during the sensitive period.\n\n\nHeatEventNumber\ndouble\nNumber of heat events during the sensitive period.\n\n\nCumulativeFrostHeatReductionRatio\ndouble\nCumulative actual yield reduction ratio induced by both frost and heat stress.\n\n\nFrostHeatYield\ndouble\nFrost- and heat-limited yield (units: g/m²).\n\n\nFrostSensitivePeriodStartDAS\ndouble\nStart of frost sensitive period in days after sowing (units: days).\n\n\nFrostSensitivePeriodEndDAS\ndouble\nEnd of frost sensitive period in days after sowing (units: days).\n\n\nHeatSensitivePeriodStartDAS\ndouble\nStart of heat sensitive period in days after sowing (units: days).\n\n\nHeatSensitivePeriodEndDAS\ndouble\nEnd of heat sensitive period in days after sowing (units: days).",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\nThe FrostHeatDamageFunctions model operates through four main processes executed daily during crop growth:\n\nInitialization at Sowing\nAt the Sowing event, all internal variables are reset to initial values:\n\nPotential and actual reduction ratios set to 0\nCumulative reduction ratios set to 0\nEvent counters reset to 0\nOverall remaining yield fractions set to 1 (no damage)\nSensitive period timing markers set to -1 (not yet entered)\n\n\n\nTemperature-Based Potential Damage Calculation\nEach day, potential yield reduction from frost and heat is calculated using piecewise linear functions of temperature.\nFrost Potential Reduction (based on daily minimum temperature \\(T_{min}\\)):\n\\[\nP_{frost}(T_{min}) = \\begin{cases}\nR_{max,frost} & \\text{if } T_{min} \\leq T_{low,frost} \\\\\nR_{max,frost} + \\frac{(T_{min} - T_{low,frost}) \\cdot (R_{min,frost} - R_{max,frost})}{T_{up,frost} - T_{low,frost}} & \\text{if } T_{low,frost} &lt; T_{min} &lt; T_{up,frost} \\\\\nR_{min,frost} & \\text{if } T_{min} \\geq T_{up,frost}\n\\end{cases}\n\\]\nwhere: - \\(T_{low,frost}\\) = FrostLowTT (lower temperature threshold) - \\(T_{up,frost}\\) = FrostUpTT (upper temperature threshold) - \\(R_{max,frost}\\) = FrostMaxReductionRatio (maximum reduction) - \\(R_{min,frost}\\) = FrostMinReductionRatio (minimum reduction)\nHeat Potential Reduction (based on daily maximum temperature \\(T_{max}\\)):\n\\[\nP_{heat}(T_{max}) = \\begin{cases}\nR_{min,heat} & \\text{if } T_{max} \\leq T_{low,heat} \\\\\nR_{min,heat} + \\frac{(T_{max} - T_{low,heat}) \\cdot (R_{max,heat} - R_{min,heat})}{T_{up,heat} - T_{low,heat}} & \\text{if } T_{low,heat} &lt; T_{max} &lt; T_{up,heat} \\\\\nR_{max,heat} & \\text{if } T_{max} \\geq T_{up,heat}\n\\end{cases}\n\\]\n\n\nGrowth Stage Sensitivity Calculation\nSensitivity to damage varies with crop development stage. The function uses a trapezoidal shape with four growth stage thresholds:\nFrost Sensitivity (based on current growth stage \\(GS\\)):\n\\[\nS_{frost}(GS) = \\begin{cases}\n0 & \\text{if } GS \\leq GS_{start,frost} \\\\\n\\frac{GS - GS_{start,frost}}{GS_{peak\\_start,frost} - GS_{start,frost}} & \\text{if } GS_{start,frost} &lt; GS &lt; GS_{peak\\_start,frost} \\\\\n1 & \\text{if } GS_{peak\\_start,frost} \\leq GS \\leq GS_{peak\\_end,frost} \\\\\n\\frac{GS_{end,frost} - GS}{GS_{end,frost} - GS_{peak\\_end,frost}} & \\text{if } GS_{peak\\_end,frost} &lt; GS &lt; GS_{end,frost} \\\\\n0 & \\text{if } GS \\geq GS_{end,frost}\n\\end{cases}\n\\]\nThe same trapezoidal structure applies to heat sensitivity with heat-specific thresholds.\n\n\nDaily and Cumulative Damage Integration\nDaily actual reduction is the product of potential reduction and sensitivity:\n\\[\nR_{frost,daily} = P_{frost}(T_{min}) \\times S_{frost}(GS)\n\\]\n\\[\nR_{heat,daily} = P_{heat}(T_{max}) \\times S_{heat}(GS)\n\\]\nCombined daily reduction accounts for both stresses:\n\\[\nR_{combined,daily} = 1 - (1 - R_{frost,daily}) \\times (1 - R_{heat,daily})\n\\]\nCumulative reduction uses multiplicative accumulation to day \\(t\\):\n\\[\nR_{frost,cum}(t) = 1 - \\prod_{i=1}^{t} (1 - R_{frost,daily}(i))\n\\]\n\\[\nR_{heat,cum}(t) = 1 - \\prod_{i=1}^{t} (1 - R_{heat,daily}(i))\n\\]\n\\[\nR_{combined,cum}(t) = 1 - (1 - R_{frost,cum}(t)) \\times (1 - R_{heat,cum}(t))\n\\]\nFinal frost- and heat-limited yield:\n\\[\nY_{frost\\_heat} = Y_{potential} \\times (1 - R_{combined,cum})\n\\]\nwhere \\(Y_{potential}\\) is the grain weight simulated by the crop model without considering frost/heat damage. s.\nRead-Only Reportable Properties\nAll calculated daily and cumulative variables listed in the Model Variables section can be reported for analysis, including: - Daily potential reductions, sensitivities, and actual reductions - Cumulative reduction ratios and event counts - Sensitive period timing - Final frost- and heat-limited yield",
     "crumbs": [
       "Home",
       "Docs",
@@ -4066,7 +4164,7 @@
     "href": "docs/Models/Functions/FrostHeatDamageFunctions.html#user-interface",
     "title": "FrostHeatDamageFunctions",
     "section": "User Interface",
-    "text": "User Interface\nFrostHeatDamageFunctions can be added as a child of a Crop Model in the model tree.",
+    "text": "User Interface\nFrostHeatDamageFunctions must be added as a child of a Plant model (Wheat or Canola) in the simulation tree:\n\nRight-click on the Plant model node\nSelect “Add Model…”\nSearch for “FrostHeatDamageFunctions”\nAfter adding, configure the CropType property to match your crop\nOptionally adjust parameters if using a cultivar different from the defaults\n\nImportant: This function must be a direct child of the Plant model it is parameterized for. It will raise an error if linked to a different plant.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5005,7 +5103,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html",
     "title": "AccumulateFunction",
     "section": "",
-    "text": "Docs Models Functions AccumulateFunction\nAccumulateFunction collects the output of one or more child functions between defined growth stages of a crop. It is commonly used to sum variables like thermal time, biomass, or nutrient supply during a crop phase (e.g., between emergence and flowering). It supports resetting and adjusting the accumulated value based on crop events like harvest, cut, or graze.",
+    "text": "Docs Models Functions AccumulateFunction\nAccumulateFunction sums the daily values from one or more child functions over a defined period between crop growth stages. It is commonly used to accumulate thermal time, biomass production, nutrient uptake, or water use during specific crop phases (e.g., from emergence to flowering). The function can reset at specified stages and adjust for management events such as harvest, cutting, grazing, or pruning.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5019,7 +5117,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html#overview",
     "title": "AccumulateFunction",
     "section": "Overview",
-    "text": "Overview\nThis function is used to accumulate values from one or more child functions across a specific range of crop development stages. It is particularly useful for tracking the total input of a variable (e.g., thermal time or growth factor) over a defined period in the crop lifecycle.\nIn APSIM NG, this function fits within a crop model to monitor cumulative values that influence or indicate plant performance. The accumulation starts at a given phenological stage (e.g., Emergence) and stops at another (e.g., Flowering or FlagLeaf). AccumulateFunction can also respond to crop management events (e.g., grazing, cutting) by reducing its value.",
+    "text": "Overview\nAccumulateFunction tracks cumulative values that are essential for understanding crop development and resource use over time. It operates by evaluating child functions daily and adding their outputs to a running total, but only during a user-specified window of crop development.\nThis function is particularly valuable for: - Calculating total thermal time accumulated during a growth phase - Tracking cumulative biomass or nutrient demand - Monitoring water or radiation use efficiency over developmental periods - Simulating the impact of management practices (cutting, grazing) on accumulated reserves\nIn APSIM Next Generation, AccumulateFunction integrates with the crop phenology system to ensure accumulation occurs only between relevant developmental stages. It responds to crop lifecycle events, making it flexible for diverse cropping systems and management scenarios.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5029,11 +5127,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AccumulateFunction.html#inputs",
-    "href": "docs/Models/Functions/AccumulateFunction.html#inputs",
+    "objectID": "docs/Models/Functions/AccumulateFunction.html#model-structure",
+    "href": "docs/Models/Functions/AccumulateFunction.html#model-structure",
     "title": "AccumulateFunction",
-    "section": "Inputs",
-    "text": "Inputs\n\nStartStageName (Required): The crop stage when accumulation starts (e.g., “Emergence”)\nEndStageName (Required): The crop stage when accumulation ends (e.g., “FlagLeafAppearance”)\nResetStageName (optional): A stage at which the accumulated value resets\nFractionRemovedOnCut (optional): Proportion of accumulated value removed when the crop is cut\nFractionRemovedOnHarvest (optional): Proportion removed during harvest\nFractionRemovedOnGraze (optional): Proportion removed when grazed\nFractionRemovedOnPrune (optional): Proportion removed when pruned\nChild functions (required): One or more child functions whose values are summed daily",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel - Base class for all APSIM models\nIFunction - Provides the Value() method to return accumulated value\nIStructureDependency - Enables discovery of child functions in the model tree",
     "crumbs": [
       "Home",
       "Docs",
@@ -5043,11 +5141,39 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/AccumulateFunction.html#methodology",
-    "href": "docs/Models/Functions/AccumulateFunction.html#methodology",
+    "objectID": "docs/Models/Functions/AccumulateFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/AccumulateFunction.html#connections-to-other-components",
     "title": "AccumulateFunction",
-    "section": "Methodology",
-    "text": "Methodology\nEach day after phenology estimation in Event PostPhenology, if the current crop development stage is between the start and end stage, the AccumulateFunction performs the following steps:\n\nEvaluate each child function to get its current value.\nSum the values of all child functions: \\[\n\\text{DailyIncrement} = \\sum_{i=1}^n \\text{ChildFunction}_i\n\\]\nAdd the daily increment to the running total: \\[\n\\text{AccumulatedValue}_{t} = \\text{AccumulatedValue}_{t-1} + \\text{DailyIncrement}\n\\]\n\nIf a stage is reached that matches ResetStageName in event PhaseChanged, the accumulated value is set to zero: \\[\n\\text{AccumulatedValue} = 0 \\quad \\text{when Stage = ResetStageName}\n\\]\nIf a following event,\n\nCutting\nPostHarvesting\nGrazing\nPruning\n\noccurs, the function reduces the accumulated value: \\[\n\\text{AccumulatedValue} = \\text{AccumulatedValue} \\times (1 - \\text{FractionRemoved})\n\\]\nThis allows realistic simulation of loss in growth or reserves due to agronomic practices.\nAt event PlantEnding, the accumulated value is reset to zero, indicating the end of the crop cycle:",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nPhenology\nPhenology\nLink\nProvides current growth stage indices to determine when accumulation occurs\n\n\nChild Functions\nIFunction\nChildren\nOne or more functions whose daily values are summed",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AccumulateFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AccumulateFunction.html#model-variables",
+    "href": "docs/Models/Functions/AccumulateFunction.html#model-variables",
+    "title": "AccumulateFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStartStageName\nstring\nCrop development stage name to begin accumulation (e.g., “Emergence”)\n\n\nEndStageName\nstring\nCrop development stage name to end accumulation (e.g., “Flowering”)\n\n\nResetStageName\nstring\nOptional stage name to reset accumulated value to zero\n\n\nFractionRemovedOnCut\ndouble\nFraction of accumulated value removed when crop is cut (0-1)\n\n\nFractionRemovedOnHarvest\ndouble\nFraction of accumulated value removed at harvest (0-1)\n\n\nFractionRemovedOnGraze\ndouble\nFraction of accumulated value removed when grazed (0-1)\n\n\nFractionRemovedOnPrune\ndouble\nFraction of accumulated value removed when pruned (0-1)\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nCurrent accumulated value (sum of all daily increments within the accumulation period)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "AccumulateFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/AccumulateFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/AccumulateFunction.html#processes-and-algorithms",
+    "title": "AccumulateFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nInitialization\nAt the start of simulation (Commencing event): 1. Accumulated value is set to zero 2. Start and end stage indices are determined from the phenology model based on StartStageName and EndStageName\n\n\nDaily Accumulation\nEach day after phenology calculations (PostPhenology event), the function checks if the current crop stage is between the start and end stages. If so:\n\nEach child function is evaluated to obtain its current daily value\nAll child function values are summed: \\[\n\\Delta V_{\\text{day}} = \\sum_{i=1}^{n} f_i(t)\n\\] where \\(f_i(t)\\) is the value of child function \\(i\\) on day \\(t\\), and \\(n\\) is the number of child functions.\nThe daily increment is added to the running total: \\[\nV_{\\text{accumulated}}(t) = V_{\\text{accumulated}}(t-1) + \\Delta V_{\\text{day}}\n\\]\n\nAccumulation only occurs when the crop is within the specified phenological window.\n\n\nStage-Based Reset\nWhen a phenology stage change occurs (PhaseChanged event), if the new stage matches ResetStageName, the accumulated value resets: \\[\nV_{\\text{accumulated}} = 0 \\quad \\text{when stage = ResetStageName}\n\\]\nThis allows restarting accumulation at key developmental transitions.\n\n\nManagement Event Adjustments\nThe function responds to crop management events by reducing the accumulated value according to specified fractions:\nCutting (Cutting event): \\[\nV_{\\text{accumulated}} = V_{\\text{accumulated}} \\times (1 - \\text{FractionRemovedOnCut})\n\\]\nHarvesting (PostHarvesting event): \\[\nV_{\\text{accumulated}} = V_{\\text{accumulated}} \\times (1 - \\text{FractionRemovedOnHarvest})\n\\]\nGrazing (Grazing event): \\[\nV_{\\text{accumulated}} = V_{\\text{accumulated}} \\times (1 - \\text{FractionRemovedOnGraze})\n\\]\nPruning (Pruning event): \\[\nV_{\\text{accumulated}} = V_{\\text{accumulated}} \\times (1 - \\text{FractionRemovedOnPrune})\n\\]\n\n\nCrop Cycle End\nAt the end of the crop cycle (PlantEnding event), the accumulated value is reset to zero, preparing for a new crop cycle.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5061,21 +5187,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html#events",
     "title": "AccumulateFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\n\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nInitializes accumulation and determines start/end phase indices\n\n\nPostPhenology\nDaily update of accumulated value during the simulation\n\n\nPhaseChanged\nResets value if specified stage is reached\n\n\nCutting\nApplies FractionRemovedOnCut to reduce value\n\n\nPostHarvesting\nApplies FractionRemovedOnHarvest to reduce value\n\n\nGrazing\nApplies FractionRemovedOnGraze to reduce value\n\n\nPruning\nApplies FractionRemovedOnPrune to reduce value\n\n\nPlantEnding\nResets accumulated value at end of crop cycle\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
-    "crumbs": [
-      "Home",
-      "Docs",
-      "Models",
-      "Functions",
-      "AccumulateFunction"
-    ]
-  },
-  {
-    "objectID": "docs/Models/Functions/AccumulateFunction.html#properties",
-    "href": "docs/Models/Functions/AccumulateFunction.html#properties",
-    "title": "AccumulateFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nStartStageName\nstring\nCrop stage name to begin accumulation\n\n\nEndStageName\nstring\nCrop stage name to end accumulation\n\n\nResetStageName\nstring\nCrop stage name to reset accumulation\n\n\nFractionRemovedOnCut\ndouble\nFraction of value to remove on cutting\n\n\nFractionRemovedOnHarvest\ndouble\nFraction of value to remove on harvesting\n\n\nFractionRemovedOnGraze\ndouble\nFraction of value to remove on grazing\n\n\nFractionRemovedOnPrune\ndouble\nFraction of value to remove on pruning\n\n\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "text": "Events\nEvents Listened For\nAccumulateFunction listens to the following simulation events:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nInitializes accumulated value to zero and determines stage indices for accumulation window\n\n\nPostPhenology\nDaily evaluation and summation of child functions if within accumulation window\n\n\nPhaseChanged\nResets accumulated value to zero if current stage matches ResetStageName\n\n\nCutting\nReduces accumulated value by FractionRemovedOnCut\n\n\nPostHarvesting\nReduces accumulated value by FractionRemovedOnHarvest\n\n\nGrazing\nReduces accumulated value by FractionRemovedOnGraze\n\n\nPruning\nReduces accumulated value by FractionRemovedOnPrune\n\n\nPlantEnding\nResets accumulated value to zero at end of crop cycle\n\n\n\nEvents Raised\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5089,7 +5201,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html#user-interface",
     "title": "AccumulateFunction",
     "section": "User Interface",
-    "text": "User Interface\nAccumulateFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search AccumulateFunction in the Filter Box. A symbol for the AccumulateFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nAccumulateFunction can be added to the model tree by right-clicking on a parent node (typically within a crop Plant model) and selecting “Add Model…”. Search for “AccumulateFunction” in the Filter Box. The function is represented by the following icon in the user interface:\n\nAfter adding AccumulateFunction, you must: 1. Configure StartStageName and EndStageName to define the accumulation window 2. Add one or more child functions that will be summed daily 3. Optionally set management response fractions and reset stage",
     "crumbs": [
       "Home",
       "Docs",
@@ -5103,7 +5215,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html#practical-example",
     "title": "AccumulateFunction",
     "section": "Practical Example",
-    "text": "Practical Example\n\nNo practical example is available for this function.",
+    "text": "Practical Example\n\nExample 1: Accumulating Thermal Time\nA common use case is to track cumulative thermal time between emergence and flowering to predict when a crop reaches maturity:\nConfiguration: - StartStageName: “Emergence” - EndStageName: “Flowering” - Child Function: A thermal time calculation function (e.g., daily growing degree days)\nThe AccumulateFunction will sum daily thermal time values, and the accumulated total can be reported or used by other components to determine crop development progress.\n\n\nExample 2: Tracking Biomass with Grazing\nFor a grazed pasture, you might accumulate biomass production but remove a portion during grazing events:\nConfiguration: - StartStageName: “Emergence” - EndStageName: “EndOfSeason” - FractionRemovedOnGraze: 0.6 (60% of accumulated biomass removed during grazing) - Child Function: Daily biomass production function\nThis simulates realistic pasture growth and utilization patterns under grazing management.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5117,7 +5229,7 @@
     "href": "docs/Models/Functions/AccumulateFunction.html#see-also",
     "title": "AccumulateFunction",
     "section": "See Also",
-    "text": "See Also\n\nSource code: AccumulateFunction.cs on GitHub",
+    "text": "See Also\n\nSource code: AccumulateFunction.cs on GitHub\nPhenology - Controls crop developmental stages",
     "crumbs": [
       "Home",
       "Docs",
@@ -5379,11 +5491,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#inputs",
-    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#inputs",
+    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#model-structure",
+    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#model-structure",
     "title": "HourlySinPpAdjusted",
-    "section": "Inputs",
-    "text": "Inputs\n\nMetData (Required): A IWeather model for maximum air minimum and maximum temperature from weather data, i.e. a Weather model is required in the simulation to provide daily maximum and minimum temperatures.\nCE (ControlledEnvironment, optional):\nIf present, overrides the interpolated sub-daily values using provided hourly temperature data (SubDailyTemperature). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available.\nDaylength (d):\nComputed internally via MetData.CalculateDayLength(-6) to define the daylight duration (based on -6° sun angle, commonly used in agriculture to define twilight start and end).\nSunrise (Hsrise) and Sunset (Hsset):\nCalculated using MetData.CalculateSunRise() and MetData.CalculateSunSet(). Used to define the time range for each temperature estimation period (A–D).\nTmaxB / TminA:\nTmax from the previous day and Tmin from the next day, used to estimate temperatures across midnight and sunset transitions.\nP:\nShape factor constant (set to 1.5) to determine the shift of maximum temperature from solar noon.\nTC:\nTime constant (set to 4.0) controlling the exponential cooling rate during the night.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIInterpolationMethod",
     "crumbs": [
       "Home",
       "Docs",
@@ -5393,11 +5505,25 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#methodology",
-    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#methodology",
+    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#connections-to-other-components",
+    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#connections-to-other-components",
     "title": "HourlySinPpAdjusted",
-    "section": "Methodology",
-    "text": "Methodology\nHourly estimates of air temperature (Ta) are interpolated from daily maximum (Tmax), minimum (Tmin) temperatures and daylength (d) using the method of (Goudriaan and Van Laar 1994). The calculation divides the 24-hour day into four periods based on sunrise and sunset:\n\nPeriod A: Midnight to Sunrise (Th &lt; Hsrise)\n\nTemperature is modeled as an exponential decline from the temperature at the previous day’s sunset (\\(Tsset\\)) down to the minimum temperature (Tmin) at sunrise. The hour of sunrise is denoted as \\(H_{srise}\\), and sunset as \\(H_{sset}\\). The temperature \\(T_a\\) at hour \\(Th\\) in this period is given by:\n\\[\nT_a = \\frac{T_{min} - T_{sset} \\cdot e^{-\\frac{n}{TC}} + (T_{sset} - T_{min}) \\cdot e^{-\\frac{(Th + 24 - H_{sset})}{TC}}}{1 - e^{-\\frac{n}{TC}}}\n\\]\nwhere\n\\[\nT_{sset} = T_{min} + (T_{maxB} - T_{min}) \\cdot \\sin\\left(\\frac{\\pi d}{d + 2P}\\right)\n\\]\nand\n\\[\nn = 24 - d\n\\]\nHere, \\(T_{maxB}\\) is the previous day’s maximum temperature, \\(P\\) and \\(TC\\) are constants (1.5 and 4.0 respectively).\n\nPeriod B: Sunrise to Tmax ( \\(H_{srise} \\leq Th &lt; 12 + P\\) )\n\nDuring sunlight hours, the temperature follows a sinusoidal curve rising from \\(T_{min}\\) at sunrise to \\(T_{max}\\) at hour \\(12 + P\\):\n\\[\nT_a = T_{min} + (T_{max} - T_{min}) \\cdot \\sin\\left(\\frac{\\pi (Th - H_{srise})}{d + 2P}\\right)\n\\]\n\nPeriod C: Tmax to Sunset ( \\(12 + P \\leq Th &lt; H_{sset}\\) )\n\nThe temperature follows a sinusoidal decline from \\(T_{max}\\) to the next day’s minimum temperature \\(T_{minA}\\):\n\\[\nT_a = T_{minA} + (T_{max} - T_{minA}) \\cdot \\sin\\left(\\frac{\\pi (Th - H_{srise})}{d + 2P}\\right)\n\\]\n\nPeriod D: Sunset to Midnight ( \\(Th \\geq H_{sset}\\) )\n\nAfter sunset, temperature exponentially declines from the temperature at sunset \\(T_{sset}\\) to the minimum temperature at sunrise. The temperature is computed as:\n\\[\nT_{sset} = T_{minA} + (T_{max} - T_{minA}) \\cdot \\sin\\left(\\frac{\\pi d}{d + 2P}\\right)\n\\]\n\\[\nT_a = \\frac{T_{minA} - T_{sset} \\cdot e^{-\\frac{n}{TC}} + (T_{sset} - T_{minA}) \\cdot e^{-\\frac{(Th - H_{sset})}{TC}}}{1 - e^{-\\frac{n}{TC}}}\n\\]\n\n\n\n\n\n\n\n\nSymbol\nDescription\nTypical Value / Units\n\n\n\n\nConstants\n\n\n\n\n\\(P\\)\nShape factor for Tmax shift\n1.5\n\n\n\\(TC\\)\nExponential cooling time constant\n4.0\n\n\nVariables\n\n\n\n\n\\(T_{min}\\)\nDaily minimum temperature\n°C\n\n\n\\(T_{max}\\)\nDaily maximum temperature\n°C\n\n\n\\(T_{minA}\\)\nNext day minimum temperature\n°C\n\n\n\\(T_{maxB}\\)\nPrevious day maximum temperature\n°C\n\n\n\\(d\\)\nDay length\nhours\n\n\n\\(H_{srise}\\)\nHour of sunrise\nhours (0–24)\n\n\n\\(H_{sset}\\)\nHour of sunset\nhours (0–24)\n\n\n\\(Th\\)\nCurrent hour\nhours (0–23)\n\n\n\\(n\\)\nNight length (\\(n = 24 - d\\))\nhours\n\n\n\nThis methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.\n\nIf \\(T_{minA}\\) or \\(T_{maxB}\\) are not provided, the model will use the current day’s minimum or maximum temperatures, e.g. in the beginning or ending of simulation without weather data.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nMetData\nIWeather\nLink\nProvides daily minimum and maximum temperatures, and calculates day length, sunrise, and sunset times.\n\n\nCE\nControlledEnvironment\nLink, Optional\nIf present, overrides the interpolated sub-daily values using provided hourly temperature data (SubDailyTemperature). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "HourlySinPpAdjusted"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#model-variables",
+    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#model-variables",
+    "title": "HourlySinPpAdjusted",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nParameter\nType\nDescription\n\n\n\n\nDaylength (d)\ndouble\nComputed internally via MetData.CalculateDayLength(-6) to define the daylight duration (based on -6° sun angle, commonly used in agriculture to define twilight start and end).\n\n\nSunrise (Hsrise)\ndouble\nCalculated using MetData.CalculateSunRise(). Used to define the time range for each temperature estimation period (A–D).\n\n\nSunset (Hsset)\ndouble\nCalculated using MetData.CalculateSunSet(). Used to define the time range for each temperature estimation period (A–D).\n\n\nTmaxB\ndouble\nTmax from the previous day, used to estimate temperatures across midnight transitions.\n\n\nTminA\ndouble\nTmin from the next day, used to estimate temperatures across sunset transitions.\n\n\nP\ndouble\nShape factor constant (set to 1.5) to determine the shift of maximum temperature from solar noon.\n\n\nTC\ndouble\nTime constant (set to 4.0) controlling the exponential cooling rate during the night.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nOutputValueType\nstring\nThe type of variable for sub-daily values as air temperature\n\n\nTsset\ndouble\nTemperature at the most recent sunset (°C)",
     "crumbs": [
       "Home",
       "Docs",
@@ -5411,7 +5537,7 @@
     "href": "docs/Models/Functions/HourlySinPpAdjusted.html#events",
     "title": "HourlySinPpAdjusted",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nNothing to calculate at the start of the simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nCommencing\nNothing to calculate at the start of the simulation\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5421,11 +5547,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#properties",
-    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#properties",
+    "objectID": "docs/Models/Functions/HourlySinPpAdjusted.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/HourlySinPpAdjusted.html#processes-and-algorithms",
     "title": "HourlySinPpAdjusted",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nOutputValueType\nstring\nThe type of variable for sub-daily values as air temperature",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\nHourly estimates of air temperature (Ta) are interpolated from daily maximum (Tmax), minimum (Tmin) temperatures and daylength (d) using the method of (Goudriaan and Van Laar 1994). The calculation divides the 24-hour day into four periods based on sunrise and sunset:\n\nPeriod A: Midnight to Sunrise (Th &lt; Hsrise)\n\nTemperature is modeled as an exponential decline from the temperature at the previous day’s sunset (\\(Tsset\\)) down to the minimum temperature (Tmin) at sunrise. The hour of sunrise is denoted as \\(H_{srise}\\), and sunset as \\(H_{sset}\\). The temperature \\(T_a\\) at hour \\(Th\\) in this period is given by:\n\\[\nT_a = \\frac{T_{min} - T_{sset} \\cdot e^{-\\frac{n}{TC}} + (T_{sset} - T_{min}) \\cdot e^{-\\frac{(Th + 24 - H_{sset})}{TC}}}{1 - e^{-\\frac{n}{TC}}}\n\\]\nwhere\n\\[\nT_{sset} = T_{min} + (T_{maxB} - T_{min}) \\cdot \\sin\\left(\\frac{\\pi d}{d + 2P}\\right)\n\\]\nand\n\\[\nn = 24 - d\n\\]\nHere, \\(T_{maxB}\\) is the previous day’s maximum temperature, \\(P\\) and \\(TC\\) are constants (1.5 and 4.0 respectively).\n\nPeriod B: Sunrise to Tmax ( \\(H_{srise} \\leq Th &lt; 12 + P\\) )\n\nDuring sunlight hours, the temperature follows a sinusoidal curve rising from \\(T_{min}\\) at sunrise to \\(T_{max}\\) at hour \\(12 + P\\):\n\\[\nT_a = T_{min} + (T_{max} - T_{min}) \\cdot \\sin\\left(\\frac{\\pi (Th - H_{srise})}{d + 2P}\\right)\n\\]\n\nPeriod C: Tmax to Sunset ( \\(12 + P \\leq Th &lt; H_{sset}\\) )\n\nThe temperature follows a sinusoidal decline from \\(T_{max}\\) to the next day’s minimum temperature \\(T_{minA}\\):\n\\[\nT_a = T_{minA} + (T_{max} - T_{minA}) \\cdot \\sin\\left(\\frac{\\pi (Th - H_{srise})}{d + 2P}\\right)\n\\]\n\nPeriod D: Sunset to Midnight ( \\(Th \\geq H_{sset}\\) )\n\nAfter sunset, temperature exponentially declines from the temperature at sunset \\(T_{sset}\\) to the minimum temperature at sunrise. The temperature is computed as:\n\\[\nT_{sset} = T_{minA} + (T_{max} - T_{minA}) \\cdot \\sin\\left(\\frac{\\pi d}{d + 2P}\\right)\n\\]\n\\[\nT_a = \\frac{T_{minA} - T_{sset} \\cdot e^{-\\frac{n}{TC}} + (T_{sset} - T_{minA}) \\cdot e^{-\\frac{(Th - H_{sset})}{TC}}}{1 - e^{-\\frac{n}{TC}}}\n\\]\n\n\n\n\n\n\n\n\nSymbol\nDescription\nTypical Value / Units\n\n\n\n\nConstants\n\n\n\n\n\\(P\\)\nShape factor for Tmax shift\n1.5\n\n\n\\(TC\\)\nExponential cooling time constant\n4.0\n\n\nVariables\n\n\n\n\n\\(T_{min}\\)\nDaily minimum temperature\n°C\n\n\n\\(T_{max}\\)\nDaily maximum temperature\n°C\n\n\n\\(T_{minA}\\)\nNext day minimum temperature\n°C\n\n\n\\(T_{maxB}\\)\nPrevious day maximum temperature\n°C\n\n\n\\(d\\)\nDay length\nhours\n\n\n\\(H_{srise}\\)\nHour of sunrise\nhours (0–24)\n\n\n\\(H_{sset}\\)\nHour of sunset\nhours (0–24)\n\n\n\\(Th\\)\nCurrent hour\nhours (0–23)\n\n\n\\(n\\)\nNight length (\\(n = 24 - d\\))\nhours\n\n\n\nThis methodology ensures a realistic diurnal temperature profile by combining sinusoidal interpolation during daylight and exponential decay at night, adjusted for actual daylength and temperature extremes.\n\nIf \\(T_{minA}\\) or \\(T_{maxB}\\) are not provided, the model will use the current day’s minimum or maximum temperatures, e.g. in the beginning or ending of simulation without weather data.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5481,7 +5607,7 @@
     "href": "docs/Models/Functions/MinimumFunction.html",
     "title": "MinimumFunction",
     "section": "",
-    "text": "Docs Models Functions MinimumFunction\nThe MinimumFunction is a utility function that returns the minimum value from all of its child functions.",
+    "text": "Docs Models Functions MinimumFunction\nThe MinimumFunction is a utility function that returns the minimum value from all of its child functions, making it essential for identifying limiting factors in agricultural models.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5495,7 +5621,7 @@
     "href": "docs/Models/Functions/MinimumFunction.html#overview",
     "title": "MinimumFunction",
     "section": "Overview",
-    "text": "Overview\nThe MinimumFunction is used to determine the smallest value among multiple child functions. It evaluates each child and returns the minimum result. This is useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models.",
+    "text": "Overview\nThe MinimumFunction is used to determine the smallest value among multiple child functions. It evaluates each child function and returns the minimum result. This is particularly useful when you need to select the limiting factor or the lowest value among several parameters in plant or soil models, such as identifying which resource (water, nitrogen, temperature) is most constraining to growth.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5505,11 +5631,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MinimumFunction.html#events",
-    "href": "docs/Models/Functions/MinimumFunction.html#events",
+    "objectID": "docs/Models/Functions/MinimumFunction.html#model-structure",
+    "href": "docs/Models/Functions/MinimumFunction.html#model-structure",
     "title": "MinimumFunction",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised\n\nNo events are raised by this function.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -5519,11 +5645,39 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/MinimumFunction.html#properties",
-    "href": "docs/Models/Functions/MinimumFunction.html#properties",
+    "objectID": "docs/Models/Functions/MinimumFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/MinimumFunction.html#connections-to-other-components",
     "title": "MinimumFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nChildren\nAny number of child functions whose values will be compared.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#model-variables",
+    "href": "docs/Models/Functions/MinimumFunction.html#model-variables",
+    "title": "MinimumFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "MinimumFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/MinimumFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/MinimumFunction.html#processes-and-algorithms",
+    "title": "MinimumFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nMinimum Value Calculation\nThe MinimumFunction evaluates all of its child functions and returns the smallest value. The algorithm iterates through each child function, comparing their returned values:\n\\[\nValue_{min} = \\min(F_1, F_2, F_3, \\ldots, F_n)\n\\]\nwhere \\(F_i\\) represents the value returned by the \\(i\\)-th child function, and \\(n\\) is the total number of child functions.\nThe implementation initializes the return value to a very large number (999,999,999) and then compares each child function’s value, retaining the minimum:\n\\[\nValue_{return} = \\begin{cases}\n999999999 & \\text{initially} \\\\\n\\min(Value_{return}, F_i) & \\text{for each child } i\n\\end{cases}\n\\]\nThis approach ensures that even if all child functions return large values, the smallest among them is selected. If no child functions are present, the function returns the initial large value.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5537,7 +5691,7 @@
     "href": "docs/Models/Functions/MinimumFunction.html#user-interface",
     "title": "MinimumFunction",
     "section": "User Interface",
-    "text": "User Interface\nMinimumFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, then searching for MinimumFunction in the Filter Box. A symbol for the MinimumFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nMinimumFunction can be added as a child of any parent node that accepts functions in the model tree. Right-click the parent node, select “Add Model…”, and search for MinimumFunction in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5551,7 +5705,7 @@
     "href": "docs/Models/Functions/MinimumFunction.html#practical-example",
     "title": "MinimumFunction",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose you want to determine the minimum soil water available from several soil layers, or the most limiting nutrient for plant growth. You can use the MinimumFunction to select the lowest value among all relevant child functions.\nFor example, if you have three child functions representing different constraints:\n\\[\nLimitingFactor = \\min(Value_1, Value_2, Value_3)\n\\]\nThe MinimumFunction will return the smallest of these values.",
+    "text": "Practical Example\nThe MinimumFunction is commonly used to identify limiting factors in crop growth models. For example, you might want to determine which environmental factor most limits photosynthesis or growth:\nExample 1: Temperature Stress\nIf you have functions calculating stress factors for different temperature thresholds, the MinimumFunction identifies the most limiting constraint:\n\\[\nTemperatureStress = \\min(StressLow, StressHigh, StressOptimal)\n\\]\nExample 2: Water and Nitrogen Co-limitation\nIn resource-limited growth scenarios, the MinimumFunction can determine which resource is most constraining:\n\\[\nGrowthLimitation = \\min(WaterStress, NitrogenStress, PhosphorusStress)\n\\]\nThe returned value (ranging from 0 to 1) indicates the severity of the most limiting factor, where values closer to 0 represent greater limitation.\nExample 3: Soil Layer Constraints\nWhen evaluating soil water availability across multiple layers, the MinimumFunction can identify the layer with the least available water:\n\\[\nMinimumWater = \\min(Layer_1Water, Layer_2Water, Layer_3Water)\n\\]\nThis helps identify which soil horizon presents the greatest constraint to root water uptake.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5603,11 +5757,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookup.html#inputs",
-    "href": "docs/Models/Functions/PhaseLookup.html#inputs",
+    "objectID": "docs/Models/Functions/PhaseLookup.html#model-structure",
+    "href": "docs/Models/Functions/PhaseLookup.html#model-structure",
     "title": "PhaseLookup",
-    "section": "Inputs",
-    "text": "Inputs\n\nChild models: One or more PhaseLookupValue models, each associated with a specific phase or phase range.\nCrop phenology information (from the simulation environment).\n\nEach PhaseLookupValue defines: - Start phase name - End phase name - A value or function to return during that phase range",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\nThis function inherits from the following parent classes:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -5617,11 +5771,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookup.html#methodology",
-    "href": "docs/Models/Functions/PhaseLookup.html#methodology",
+    "objectID": "docs/Models/Functions/PhaseLookup.html#connections-to-other-components",
+    "href": "docs/Models/Functions/PhaseLookup.html#connections-to-other-components",
     "title": "PhaseLookup",
-    "section": "Methodology",
-    "text": "Methodology\nThe PhaseLookup function evaluates all its children, which must be PhaseLookupValue models. For each child:\n\nCheck if the crop is currently between the defined Start and End stages.\nIf yes, return the value from the first matching child and stop checking further.\nIf no phase matches any of the child PhaseLookupValue models, return 0 by default.\n\nThe pseudocode logic is:\n\\[\n\\text{Value} =\n\\begin{cases}\n\\text{PhaseLookupValue}_i & \\text{if crop is in phase } i \\\\\n0 & \\text{if no match}\n\\end{cases}\n\\]\nThis allows different values or functions to be “active” only in the relevant phases of the crop’s life cycle.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nPhaseLookupValue\nPhaseLookupValue\nChildren\nOne or more child models, each defining a value for a specific phase range.\n\n\nPhenology\nPhenology\nLink (via children)\nProvides current growth stage information to determine which phase is active.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5631,11 +5785,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookup.html#events",
-    "href": "docs/Models/Functions/PhaseLookup.html#events",
+    "objectID": "docs/Models/Functions/PhaseLookup.html#model-variables",
+    "href": "docs/Models/Functions/PhaseLookup.html#model-variables",
     "title": "PhaseLookup",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5645,11 +5799,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhaseLookup.html#properties",
-    "href": "docs/Models/Functions/PhaseLookup.html#properties",
+    "objectID": "docs/Models/Functions/PhaseLookup.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/PhaseLookup.html#processes-and-algorithms",
     "title": "PhaseLookup",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nPhase-Based Value Selection\nThe PhaseLookup function evaluates all its child PhaseLookupValue models in sequence. For each child:\n\nCheck if the crop is currently between the child’s defined Start and End stages.\nIf yes, return the value from the first matching child and stop checking further.\nIf no phase matches any of the child PhaseLookupValue models, return 0 by default.\n\nThe logic can be expressed as:\n\\[\nV =\n\\begin{cases}\nV_i & \\text{if crop is in phase range } i \\\\\n0 & \\text{if no match}\n\\end{cases}\n\\]\nwhere \\(V\\) is the returned value and \\(V_i\\) is the value from the \\(i\\)-th PhaseLookupValue child.\nKey Behavior: The function returns the value from the first matching child and stops evaluation. This means the order of child PhaseLookupValue models matters if there are overlapping phase ranges.\nEach PhaseLookupValue child defines: - Start phase name: The beginning of the active phase range - End phase name: The end of the active phase range - A value or function: What to return during that phase range (defined as a child of the PhaseLookupValue)",
     "crumbs": [
       "Home",
       "Docs",
@@ -5663,7 +5817,7 @@
     "href": "docs/Models/Functions/PhaseLookup.html#user-interface",
     "title": "PhaseLookup",
     "section": "User Interface",
-    "text": "User Interface\nPhaseLookup can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search PhaseLookup in the Filter Box. A symbol for the PhaseLookup is displayed in the user interface to represent the function.",
+    "text": "User Interface\nPhaseLookup can be added as a child of any node in the model tree. Right-click the parent node, select “Add Model…”, and search for PhaseLookup in the Filter Box. A symbol for the PhaseLookup is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5677,7 +5831,7 @@
     "href": "docs/Models/Functions/PhaseLookup.html#practical-example",
     "title": "PhaseLookup",
     "section": "Practical Example",
-    "text": "Practical Example\nIn a crop model, you may want a function to return a higher value during vegetative growth and a lower value during reproductive stages. You would use:\n\nPhaseLookup as the parent function.\nTwo children of type PhaseLookupValue:\n\nOne active from Emergence to FloralInitiation, returning a value of 1.0\nAnother from FloralInitiation to Maturity, returning a value of 0.5\n\n\nThis setup allows the model to adjust behavior based on phase without writing additional logic elsewhere.",
+    "text": "Practical Example\nIn a crop model, you may want a function to return a higher value during vegetative growth and a lower value during reproductive stages. You would use:\n\nPhaseLookup as the parent function.\nTwo children of type PhaseLookupValue:\n\nOne active from Emergence to FloralInitiation, returning a value of 1.0\nAnother from FloralInitiation to Maturity, returning a value of 0.5\n\n\nThis setup allows the model to adjust behavior based on phase without writing additional logic elsewhere. For instance, this could be used to model radiation use efficiency that decreases after floral initiation, or nitrogen demand that varies between growth stages.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5691,7 +5845,7 @@
     "href": "docs/Models/Functions/PhaseLookup.html#see-also",
     "title": "PhaseLookup",
     "section": "See Also",
-    "text": "See Also\n\nSource code: PhaseLookup.cs on GitHub",
+    "text": "See Also\n\nRelated Models: PhaseLookupValue\nSource code: PhaseLookup.cs on GitHub",
     "crumbs": [
       "Home",
       "Docs",
@@ -5703,91 +5857,105 @@
   {
     "objectID": "docs/Models/Functions/PhotoperiodFunction.html",
     "href": "docs/Models/Functions/PhotoperiodFunction.html",
-    "title": "Photoperiod",
+    "title": "PhotoperiodFunction",
     "section": "",
-    "text": "Docs Models Functions Photoperiod\nThe Photoperiod function calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.",
+    "text": "Docs Models Functions PhotoperiodFunction\nThe PhotoperiodFunction calculates the duration of daylight (photoperiod) in hours for a given day and location. It is essential for simulating plant development processes that depend on day length within the APSIM NG framework.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
     "objectID": "docs/Models/Functions/PhotoperiodFunction.html#overview",
     "href": "docs/Models/Functions/PhotoperiodFunction.html#overview",
-    "title": "Photoperiod",
+    "title": "PhotoperiodFunction",
     "section": "Overview",
-    "text": "Overview\nThe Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes.",
+    "text": "Overview\nThe Photoperiod function determines the number of daylight hours based on the latitude (from the weather file) and a specified twilight sun angle threshold. This function is crucial for models where photoperiod sensitivity affects growth, flowering, or other physiological processes. If a variable called ClimateControl.PhotoPeriod is found in the simulation, it will be used instead of the calculated value.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#inputs",
-    "href": "docs/Models/Functions/PhotoperiodFunction.html#inputs",
-    "title": "Photoperiod",
-    "section": "Inputs",
-    "text": "Inputs\n\n\n\n\n\n\n\n\nInput\nType\nDescription\n\n\n\n\nTwilight\ndouble\nThe sun angle (in degrees) below the horizon to define the start/end of daylight.\n\n\nMetData\nIWeather\nWeather data provider, supplies latitude and other meteorological information.\n\n\nClock\nIClock\nProvides the current day of year for the calculation.",
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#model-structure",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#model-structure",
+    "title": "PhotoperiodFunction",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#methodology",
-    "href": "docs/Models/Functions/PhotoperiodFunction.html#methodology",
-    "title": "Photoperiod",
-    "section": "Methodology",
-    "text": "Methodology\nThe function calculates day length using the latitude and the twilight angle. The calculation is performed according to the weather data providers.\nControlled Envronment\nUse the specified day length from the controlled environment.\nSpecified Day Length in the Weather File\nUse the actual day length from the weather file.\nCalculated Day Length\nThe day length is calculated using the following astronomical formula, which estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle:\nLet: - \\(D\\) = day of year - \\(\\phi\\) = latitude (degrees) - \\(\\theta\\) = twilight sun angle (degrees below the horizon; e.g., \\(-6\\) for civil twilight)\n\nConvert angles to radians:\n\n\\(\\phi_{rad} = \\phi \\times \\frac{\\pi}{180}\\)\n\\(\\theta_{rad} = \\theta \\times \\frac{\\pi}{180}\\)\n\nCalculate solar declination:\n\n\\(\\delta = 0.4093 \\times \\sin\\left(0.0172 \\times (D - 79.25)\\right)\\)\n\nCompute intermediate values:\n\n\\(a = \\sin(\\phi_{rad}) \\times \\sin(\\delta)\\)\n\\(b = \\cos(\\phi_{rad}) \\times \\cos(\\delta)\\)\n\\(x = \\frac{\\sin(\\theta_{rad}) - a}{b}\\)\nClamp \\(x\\) to the range \\([-1, 1]\\) to avoid domain errors.\n\nCalculate day length (hours):\n\n\\[\n\\text{DayLength} = 2 \\times \\arccos(x) \\times \\frac{24}{2\\pi}\n\\]\nThis formula accounts for the Earth’s tilt and the observer’s latitude, providing an accurate estimate of daylight hours for any day and location.",
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#connections-to-other-components",
+    "title": "PhotoperiodFunction",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nWeather\nIWeather\nLink\nProvides latitude and meteorological information for day length calculation.\n\n\nClock\nIClock\nLink\nSupplies the current day of year for the calculation.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#model-variables",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#model-variables",
+    "title": "PhotoperiodFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nTwilight\ndouble\nThe sun angle (in degrees) below the horizon for defining daylight.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDayLength\ndouble\nThe calculated duration of daylight (hours) for the current day and location.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "PhotoperiodFunction"
     ]
   },
   {
     "objectID": "docs/Models/Functions/PhotoperiodFunction.html#events",
     "href": "docs/Models/Functions/PhotoperiodFunction.html#events",
-    "title": "Photoperiod",
+    "title": "PhotoperiodFunction",
     "section": "Events",
-    "text": "Events\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nDoWeather\nTriggers calculation of day length for the current day.\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "text": "Events\n\nThis section describes the events associated with this component. Events are signals or notifications that indicate when a particular process occurs within the simulation, or when a component needs to respond to a change in another part of the system. Some events are listened for by this component to trigger its processes, while others are raised to inform other components about changes. For a general overview of how APSIM Next Generation uses events to coordinate processes between components, see the Events Overview.\n\nEvents Listened For\nThese are signals or notifications that the function listens for from other parts of the simulation:\n\n\n\nEvent\nPurpose\n\n\n\n\nDoWeather\nTriggers calculation of day length for the current day.\n\n\n\nEvents Raised to\n\nNo events are raised by this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#properties",
-    "href": "docs/Models/Functions/PhotoperiodFunction.html#properties",
-    "title": "Photoperiod",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nTwilight\ndouble\nThe sun angle (in degrees) below the horizon for defining daylight.\n\n\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nDayLength\ndouble\nThe calculated duration of daylight (hours) for the current day and location.",
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#processes-and-algorithms",
+    "title": "PhotoperiodFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nDay Length Calculation\nThe function calculates day length using three possible sources, with the following priority:\nControlled Environment\nIf the simulation includes a ClimateControl.PhotoPeriod variable, this specified day length value is used directly, overriding all other calculations.\nSpecified Day Length in Weather File\nIf the weather file contains actual day length data, these values are used directly.\nCalculated Day Length\nWhen no predetermined photoperiod is available, the day length is calculated using an astronomical formula. This calculation estimates the duration of daylight (in hours) for a given day of year, latitude, and twilight sun angle.\nThe calculation uses the following approach:\nLet:\n\n\\(D\\) = day of year\n\\(\\phi\\) = latitude (degrees)\n\\(\\theta\\) = twilight sun angle (degrees below the horizon; e.g., \\(-6\\) for civil twilight)\n\n\nConvert angles to radians:\n\n\\(\\phi_{rad} = \\phi \\times \\frac{\\pi}{180}\\)\n\\(\\theta_{rad} = \\theta \\times \\frac{\\pi}{180}\\)\n\nCalculate solar declination:\n\n\\(\\delta = 0.4093 \\times \\sin\\left(0.0172 \\times (D - 79.25)\\right)\\)\n\nCompute intermediate values:\n\n\\(a = \\sin(\\phi_{rad}) \\times \\sin(\\delta)\\)\n\\(b = \\cos(\\phi_{rad}) \\times \\cos(\\delta)\\)\n\\(x = \\frac{\\sin(\\theta_{rad}) - a}{b}\\)\nClamp \\(x\\) to the range \\([-1, 1]\\) to avoid domain errors.\n\nCalculate day length (hours):\n\n\\[\n\\text{DayLength} = 2 \\times \\arccos(x) \\times \\frac{24}{2\\pi}\n\\]\nThis formula accounts for the Earth’s tilt and the observer’s latitude, providing an accurate estimate of daylight hours for any day and location.\nThe calculation is performed on the DoWeather event, ensuring the photoperiod is updated daily based on the current date and location.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
     "objectID": "docs/Models/Functions/PhotoperiodFunction.html#user-interface",
     "href": "docs/Models/Functions/PhotoperiodFunction.html#user-interface",
-    "title": "Photoperiod",
+    "title": "PhotoperiodFunction",
     "section": "User Interface",
     "text": "User Interface\nPhotoperiodFunction can be added as a child of a parent function node (e.g., a model requiring day length) in the model tree. Right-click the parent node, select “Add Model…”, and search for PhotoperiodFunction in the Filter Box.",
     "crumbs": [
@@ -5795,13 +5963,13 @@
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
     ]
   },
   {
     "objectID": "docs/Models/Functions/PhotoperiodFunction.html#practical-example",
     "href": "docs/Models/Functions/PhotoperiodFunction.html#practical-example",
-    "title": "Photoperiod",
+    "title": "PhotoperiodFunction",
     "section": "Practical Example",
     "text": "Practical Example\n\nNo practical example is available for this function.",
     "crumbs": [
@@ -5809,7 +5977,21 @@
       "Docs",
       "Models",
       "Functions",
-      "Photoperiod"
+      "PhotoperiodFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/PhotoperiodFunction.html#see-also",
+    "href": "docs/Models/Functions/PhotoperiodFunction.html#see-also",
+    "title": "PhotoperiodFunction",
+    "section": "See Also",
+    "text": "See Also\n\nSource code: PhotoperiodFunction.cs on GitHub",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "PhotoperiodFunction"
     ]
   },
   {
@@ -5841,11 +6023,11 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/SubtractFunction.html#events",
-    "href": "docs/Models/Functions/SubtractFunction.html#events",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#model-structure",
+    "href": "docs/Models/Functions/SubtractFunction.html#model-structure",
     "title": "SubtractFunction",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened for by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\nThe SubtractFunction inherits from the following classes:\n\nModel\nIFunction\nIStructureDependency",
     "crumbs": [
       "Home",
       "Docs",
@@ -5855,11 +6037,39 @@
     ]
   },
   {
-    "objectID": "docs/Models/Functions/SubtractFunction.html#properties",
-    "href": "docs/Models/Functions/SubtractFunction.html#properties",
+    "objectID": "docs/Models/Functions/SubtractFunction.html#connections-to-other-components",
+    "href": "docs/Models/Functions/SubtractFunction.html#connections-to-other-components",
     "title": "SubtractFunction",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\nNo read-only reportable properties are available for this function.",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\n\n\n\nComponent\nModel\nConnection Type\nDescription\n\n\n\n\nChild Functions\nIFunction\nChildren\nMultiple child functions whose values are used in the subtraction calculation.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "SubtractFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/SubtractFunction.html#model-variables",
+    "href": "docs/Models/Functions/SubtractFunction.html#model-variables",
+    "title": "SubtractFunction",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\nNo configurable properties are available for this function.\n\nRead-Only Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nValue\ndouble\nThe sum of values from all child functions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Models",
+      "Functions",
+      "SubtractFunction"
+    ]
+  },
+  {
+    "objectID": "docs/Models/Functions/SubtractFunction.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/SubtractFunction.html#processes-and-algorithms",
+    "title": "SubtractFunction",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nSubtraction Calculation\nThe SubtractFunction takes the value of the first child function and subtracts the values of all subsequent child functions from it. The calculation follows this pattern:\n\\[\n\\text{Result} = f_1 - f_2 - f_3 - \\ldots - f_n\n\\]\nwhere \\(f_1, f_2, \\ldots, f_n\\) are the values returned by the child functions.\nThe algorithm operates as follows:\n\nIf no child functions are present, the function returns 0.0\nIf only one child function exists, it returns that function’s value\nIf multiple child functions exist, it starts with the first child’s value and sequentially subtracts each subsequent child’s value\n\nThis sequential subtraction ensures that the operation is equivalent to:\n\\[\n\\text{Result} = f_1 - (f_2 + f_3 + \\ldots + f_n)\n\\]",
     "crumbs": [
       "Home",
       "Docs",
@@ -5873,7 +6083,7 @@
     "href": "docs/Models/Functions/SubtractFunction.html#user-interface",
     "title": "SubtractFunction",
     "section": "User Interface",
-    "text": "User Interface\nSubtractFunction can be added into the model tree by right-clicking on a parent node and selecting “Add Model…”, and then search SubtractFunction in the Filter Box. A symbol for the SubtractFunction is displayed in the user interface to represent the function.",
+    "text": "User Interface\nSubtractFunction can be added as a child of any node that accepts function inputs in the model tree. Right-click the parent node, select “Add Model…”, and search for SubtractFunction in the Filter Box. A symbol for the SubtractFunction is displayed in the user interface to represent the function.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5887,7 +6097,7 @@
     "href": "docs/Models/Functions/SubtractFunction.html#practical-example",
     "title": "SubtractFunction",
     "section": "Practical Example",
-    "text": "Practical Example\nThe wheat yield is reduced by frost stress as a ratio of total yield (e.g. FrostDamage). The final yield is calculated by subtracting the frost damage from the total potential yield.\n\\[\nFinalYield = TotalPotentialYield \\times (1 - FrostDamage)\n\\]\nThe SubtractFunction is used to subtract these two values to get the final yield in the equation above.",
+    "text": "Practical Example\nThe wheat yield is reduced by frost stress as a ratio of total yield (e.g. FrostDamage). The final yield is calculated by subtracting the frost damage from the total potential yield.\n\\[\n\\text{FinalYield} = \\text{TotalPotentialYield} \\times (1 - \\text{FrostDamage})\n\\]\nThe SubtractFunction is used to subtract these two values to get the final yield in the equation above.",
     "crumbs": [
       "Home",
       "Docs",
@@ -5913,119 +6123,119 @@
   {
     "objectID": "docs/Models/Functions/XYPairs.html",
     "href": "docs/Models/Functions/XYPairs.html",
-    "title": "XYPairs Function",
+    "title": "XYPairs",
     "section": "",
-    "text": "Docs Models Functions XYPairs Function\nReturns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
+    "text": "Docs Models Functions XYPairs\nReturns the corresponding Y value for a given X value, based on the line shape defined by the specified XY matrix.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
     "objectID": "docs/Models/Functions/XYPairs.html#overview",
     "href": "docs/Models/Functions/XYPairs.html#overview",
-    "title": "XYPairs Function",
+    "title": "XYPairs",
     "section": "Overview",
-    "text": "Overview\nXYPairs is a fundamental function to define response curves by specifying a series of X and Y values. For a given input X, it returns a linearly interpolated value of Y based on the defined XY matrix. If outside the defined X range, it returns the first or last points of Y value at the boundary. This function is particularly useful for modeling relationships where empirical data is available, such as temperature responses or biomass partitioning in agricultural models.",
+    "text": "Overview\nXYPairs is a fundamental function in APSIM NG that defines response curves by specifying a series of X and Y coordinate pairs. For a given input X value, it returns a linearly interpolated Y value based on the defined XY matrix. If the input X value falls outside the defined range, the function returns the Y value at the nearest boundary point (either the first or last Y value).\nThis function is particularly useful for modeling empirical relationships where measured data is available, such as temperature response curves, biomass partitioning coefficients, or developmental rate functions in agricultural models. It provides a flexible way to represent non-linear relationships without requiring specific mathematical formulations.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#inputs",
-    "href": "docs/Models/Functions/XYPairs.html#inputs",
-    "title": "XYPairs Function",
-    "section": "Inputs",
-    "text": "Inputs\n\nX: An array of X values defining the input domain.\nY: An array of Y values corresponding to each X value. Must be the same length as X.",
+    "objectID": "docs/Models/Functions/XYPairs.html#model-structure",
+    "href": "docs/Models/Functions/XYPairs.html#model-structure",
+    "title": "XYPairs",
+    "section": "Model Structure",
+    "text": "Model Structure\n\nThis section describes how this model is positioned within the APSIM framework. It outlines the broader structural and computational components that define its role and interactions in the simulation system.\n\nThis model inherits structural and functional behaviour from the following core APSIM components:\n\nModel\nIFunction\nIIndexedFunction",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#methodology",
-    "href": "docs/Models/Functions/XYPairs.html#methodology",
-    "title": "XYPairs Function",
-    "section": "Methodology",
-    "text": "Methodology\nThe XYPairs function performs linear interpolation between the user-defined X and Y value pairs. When the function is called with a given X value (\\(dX\\)), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value. If outside the defined X range, it returns the Y value at the nearest boundary point (either the first or last Y value).\nThe interpolation follows this equation between points \\((x_i, y_i)\\) and \\((x_{i+1}, y_{i+1})\\):\n\\[\nY = y_i + \\frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)\n\\]",
+    "objectID": "docs/Models/Functions/XYPairs.html#connections-to-other-components",
+    "href": "docs/Models/Functions/XYPairs.html#connections-to-other-components",
+    "title": "XYPairs",
+    "section": "Connections to Other Components",
+    "text": "Connections to Other Components\n\nThis section describes how the model interacts with other components in the APSIM Next Generation framework.\nThese connections allow the model to exchange information—such as environmental conditions, developmental stage, or physiological responses—with other parts of the simulation system. For a general overview of how model components are connected in APSIM, see the Connections Overview.\n\nXYPairs is typically used as a child function within other model components. It does not directly link to other models but receives its input X value from the parent model that calls it. The function can be used anywhere an IFunction or IIndexedFunction interface is expected.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#events",
-    "href": "docs/Models/Functions/XYPairs.html#events",
-    "title": "XYPairs Function",
-    "section": "Events",
-    "text": "Events\nEvents Listened For\n\nNo events are listened by this function.\n\nEvents Raised to\n\nNo events are raised by this function.",
+    "objectID": "docs/Models/Functions/XYPairs.html#model-variables",
+    "href": "docs/Models/Functions/XYPairs.html#model-variables",
+    "title": "XYPairs",
+    "section": "Model Variables",
+    "text": "Model Variables\n\nThis section lists the key variables that describe or control the behaviour of this component. Some variables can be adjusted by the user to modify how the model behaves (configurable), while others are calculated internally and can be viewed as model outputs (reportable). For a general explanation of variable types and how they are used within the APSIM Next Generation framework, see the Model Variables Overview.\n\nConfigurable and Reportable Properties\n\n\n\n\n\n\n\n\nProperty\nType\nDescription\n\n\n\n\nX\ndouble[]\nArray of X values defining the input domain. These values should be in ascending order.\n\n\nY\ndouble[]\nArray of Y values corresponding to each X value. Must be the same length as X.\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
-    "objectID": "docs/Models/Functions/XYPairs.html#properties",
-    "href": "docs/Models/Functions/XYPairs.html#properties",
-    "title": "XYPairs Function",
-    "section": "Properties",
-    "text": "Properties\nConfigurable and Reportable Properties\n\n\n\nProperty\nType\nDescription\n\n\n\n\nX\ndouble[]\nThe list of X values\n\n\nY\ndouble[]\nThe list of Y values\n\n\n\nRead-Only Reportable Properties\n\nNo read-only properties are available for this function.",
+    "objectID": "docs/Models/Functions/XYPairs.html#processes-and-algorithms",
+    "href": "docs/Models/Functions/XYPairs.html#processes-and-algorithms",
+    "title": "XYPairs",
+    "section": "Processes and Algorithms",
+    "text": "Processes and Algorithms\n\nThis section describes the scientific processes and algorithms represented by this component. Each process corresponds to a biological, physical, or chemical mechanism simulated during a model time step. Where appropriate, equations or conceptual summaries are provided to explain how the process operates within the APSIM Next Generation framework.\n\n\nLinear Interpolation\nThe XYPairs function performs linear interpolation between user-defined X and Y value pairs. When the function is called with an input X value (\\(dX\\)), it locates the segment of the curve that contains the input and linearly interpolates to determine the corresponding Y value.\nThe interpolation follows this equation between two consecutive points \\((x_i, y_i)\\) and \\((x_{i+1}, y_{i+1})\\):\n\\[\nY = y_i + \\frac{(dX - x_i)}{(x_{i+1} - x_i)} (y_{i+1} - y_i)\n\\]\nwhere: - \\(dX\\) is the input X value - \\(x_i\\) and \\(x_{i+1}\\) are the two consecutive X values in the array that bracket \\(dX\\) - \\(y_i\\) and \\(y_{i+1}\\) are the corresponding Y values\n\n\nBoundary Behavior\nIf the input X value falls outside the defined X range: - For \\(dX &lt; x_1\\) (below the minimum), the function returns \\(y_1\\) (the first Y value) - For \\(dX &gt; x_n\\) (above the maximum), the function returns \\(y_n\\) (the last Y value)\nThis behavior ensures the function always returns a valid value and is particularly useful for extrapolation scenarios where the model operates at the limits of the defined response curve.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
     "objectID": "docs/Models/Functions/XYPairs.html#user-interface",
     "href": "docs/Models/Functions/XYPairs.html#user-interface",
-    "title": "XYPairs Function",
+    "title": "XYPairs",
     "section": "User Interface",
-    "text": "User Interface\nXYPairs can be added as a child of any functional models in the model tree. Right-click the parent node, select “Add Model…”, and search for XYPairs in the Filter Box.",
+    "text": "User Interface\nXYPairs can be added as a child of any model that requires a function in the model tree. Right-click the parent node, select “Add Model…”, and search for XYPairs in the Filter Box.",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
     "objectID": "docs/Models/Functions/XYPairs.html#practical-example",
     "href": "docs/Models/Functions/XYPairs.html#practical-example",
-    "title": "XYPairs Function",
+    "title": "XYPairs",
     "section": "Practical Example",
-    "text": "Practical Example\nSuppose you want to define a response curve for a process that increases linearly with thermal time up to a maximum, then decreases. Set:\n\nX = [0, 26, 34]\nY = [0, 26, 0]\n\nThis means: - For thermal time (X) less than 0, the response (Y) is 0. - From 0 to 26, the response increases linearly from 0 to 26. - From 26 to 34, the response decreases linearly from 26 to 0. - For thermal time greater than 34, the response remains 0.\n\n\n\n\n\nExample of XYPairs Function",
+    "text": "Practical Example\nSuppose you want to define a thermal time response curve for a developmental process that increases linearly with temperature up to an optimal value, then decreases. This might represent enzyme activity or photosynthetic rate as a function of temperature.\nSet:\n\nX = [0, 26, 34] (Temperature in °C)\nY = [0, 26, 0] (Thermal time accumulation in °Cd)\n\nThis configuration means: - For temperatures below 0°C, thermal time accumulation is 0 (development ceases) - From 0 to 26°C, thermal time increases linearly from 0 to 26°Cd per day - From 26 to 34°C, thermal time decreases linearly from 26 to 0°Cd per day - For temperatures above 34°C, thermal time accumulation is 0 (heat stress stops development)\n\n\n\n\n\nExample of XYPairs function showing thermal time accumulation as a function of temperature",
     "crumbs": [
       "Home",
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
     "objectID": "docs/Models/Functions/XYPairs.html#see-also",
     "href": "docs/Models/Functions/XYPairs.html#see-also",
-    "title": "XYPairs Function",
+    "title": "XYPairs",
     "section": "See Also",
     "text": "See Also\n\nSource code: XYPairs.cs on GitHub",
     "crumbs": [
@@ -6033,7 +6243,7 @@
       "Docs",
       "Models",
       "Functions",
-      "XYPairs Function"
+      "XYPairs"
     ]
   },
   {
