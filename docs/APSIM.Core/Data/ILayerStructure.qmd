@@ -1,0 +1,218 @@
+---
+title: "ILayerStructure"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The ILayerStructure interface defines the fundamental layer-based structure for soil profiles in APSIM NG, providing the thickness of each soil layer that forms the basis for all layered soil properties and processes.
+
+
+## Overview
+
+ILayerStructure is a core interface in APSIM NG that establishes the vertical discretization of the soil profile into distinct layers. This interface is essential for representing the three-dimensional nature of soil properties and processes in a one-dimensional framework, where vertical variation is explicitly modeled while horizontal variation is typically assumed uniform.
+
+The interface defines a single but critical property: layer thickness. This serves as the foundational geometry upon which all other soil properties (physical, chemical, biological) are mapped. By implementing this interface, soil components and related models can consistently access and use the soil's vertical structure for calculations involving water movement, nutrient transport, root growth, and microbial processes.
+
+The layer-based approach allows APSIM NG to represent important vertical gradients in soil properties that significantly affect crop performance, such as:
+
+- Decreasing organic matter with depth
+- Increasing bulk density in subsurface layers
+- Variable water-holding capacity across the profile
+- Differential root distribution and water/nutrient uptake
+- Depth-dependent chemical properties (pH, salinity, nutrient availability)
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this interface directly. Thickness values are set by implementing classes.
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Thickness | double[] | Soil layer thicknesses in millimeters (mm). An array where each element represents the vertical extent of a soil layer, typically starting from the soil surface and progressing downward. For example, `[150, 150, 300, 300]` represents four layers: 0-150 mm, 150-300 mm, 300-600 mm, and 600-900 mm depth. |
+
+
+## User Interface
+
+ILayerStructure is implemented by various soil component classes. The most common way to define soil layer structure is through the Physical node within a Soil component:
+
+1. Locate the **Soil** node in your simulation tree
+2. Expand to find the **Physical** child node
+3. Click on Physical to view the layer structure
+4. Layer thicknesses are typically displayed in the property grid or can be edited in a layer-based data view
+
+The layer structure should be carefully defined based on:
+
+- Soil survey data and horizon descriptions
+- Expected rooting depth of crops being simulated
+- Vertical variation in soil properties
+- Computational efficiency (fewer layers) vs. accuracy (more layers)
+
+Common practices for defining layer thickness:
+
+- Thinner layers (50-150 mm) near the surface where properties change rapidly and most biological activity occurs
+- Gradually increasing thickness with depth (150-300 mm) in the root zone
+- Thicker layers (300-500 mm) below the active root zone
+- Total profile depth typically 1200-2400 mm depending on crop type and soil depth
+
+
+## Practical Example
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+
+# Example layer structures for different scenarios
+scenarios <- list(
+  Fine = data.frame(
+    Scenario = "Fine Resolution",
+    Layer = 1:12,
+    Thickness = c(50, 50, 100, 100, 150, 150, 200, 200, 300, 300, 400, 500)
+  ),
+  Standard = data.frame(
+    Scenario = "Standard",
+    Layer = 1:7,
+    Thickness = c(150, 150, 300, 300, 300, 400, 400)
+  ),
+  Coarse = data.frame(
+    Scenario = "Coarse Resolution",
+    Layer = 1:5,
+    Thickness = c(200, 300, 400, 500, 600)
+  )
+)
+
+# Combine scenarios
+all_scenarios <- bind_rows(scenarios)
+
+# Calculate cumulative depth
+all_scenarios <- all_scenarios %>%
+  group_by(Scenario) %>%
+  mutate(
+    Depth_Top = cumsum(Thickness) - Thickness,
+    Depth_Bottom = cumsum(Thickness),
+    Depth_Mid = (Depth_Top + Depth_Bottom) / 2
+  ) %>%
+  ungroup()
+
+# Factor scenarios for plotting order
+all_scenarios$Scenario <- factor(all_scenarios$Scenario, 
+                                  levels = c("Fine Resolution", "Standard", "Coarse Resolution"))
+
+# Create visualization
+p1 <- ggplot(all_scenarios) +
+  geom_rect(aes(xmin = 0, xmax = Thickness, 
+                ymin = -Depth_Bottom, ymax = -Depth_Top,
+                fill = Scenario),
+            color = "black", alpha = 0.6) +
+  geom_text(aes(x = Thickness/2, y = -Depth_Mid, label = paste0(Thickness, " mm")),
+            size = 3) +
+  facet_wrap(~Scenario, ncol = 3) +
+  scale_fill_brewer(palette = "Set2") +
+  labs(x = "Layer Thickness (mm)", 
+       y = "Depth (mm)",
+       title = "Soil Layer Structure Examples",
+       subtitle = "Different discretization approaches for a 2000+ mm soil profile") +
+  theme_minimal() +
+  theme(legend.position = "none",
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(face = "bold"))
+
+print(p1)
+
+# Create comparative depth distribution plot
+p2 <- ggplot(all_scenarios, aes(x = Scenario, y = -Depth_Mid, size = Thickness)) +
+  geom_point(aes(color = Scenario), alpha = 0.6) +
+  geom_hline(yintercept = c(-300, -600, -1200), 
+             linetype = "dashed", color = "gray50", alpha = 0.5) +
+  scale_size_continuous(range = c(3, 10), name = "Thickness (mm)") +
+  scale_color_brewer(palette = "Set2") +
+  labs(x = "", 
+       y = "Depth (mm)",
+       title = "Layer Midpoint Distribution",
+       subtitle = "Dashed lines indicate common rooting depth boundaries") +
+  annotate("text", x = 3.3, y = -300, label = "Shallow roots", size = 3, hjust = 0) +
+  annotate("text", x = 3.3, y = -600, label = "Medium roots", size = 3, hjust = 0) +
+  annotate("text", x = 3.3, y = -1200, label = "Deep roots", size = 3, hjust = 0) +
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        panel.grid.major.x = element_blank())
+
+print(p2)
+
+# Summary statistics
+summary_table <- all_scenarios %>%
+  group_by(Scenario) %>%
+  summarise(
+    `Number of Layers` = n(),
+    `Total Depth (mm)` = sum(Thickness),
+    `Mean Thickness (mm)` = round(mean(Thickness), 0),
+    `Min Thickness (mm)` = min(Thickness),
+    `Max Thickness (mm)` = max(Thickness)
+  )
+
+knitr::kable(summary_table, caption = "Comparison of Layer Structure Scenarios")
+```
+
+This example demonstrates three different approaches to discretizing a soil profile:
+
+**Fine Resolution**: Uses 12 layers with thinner layers near the surface (50-100 mm) where soil properties and biological processes change rapidly. This approach provides high accuracy for modeling surface processes like infiltration, evaporation, and shallow root water uptake, but increases computational demand.
+
+**Standard**: A balanced approach with 7 layers that captures the major vertical gradients while maintaining computational efficiency. The top two layers (150 mm each) represent the topsoil where most biological activity occurs, followed by progressively thicker layers with depth.
+
+**Coarse Resolution**: Uses only 5 layers for computational efficiency. This might be suitable for deep-rooted crops in relatively uniform soils or for exploratory modeling where detailed vertical resolution is less critical.
+
+The choice of layer structure depends on several factors:
+
+**Resolution considerations:**
+
+- Surface processes (infiltration, evaporation) require finer resolution in top 0-300 mm
+- Root water uptake patterns: match layer boundaries to expected root distribution
+- Soil property variation: use finer layers where properties change rapidly
+- Computational resources: more layers increase simulation time
+
+**Mathematical representation:**
+
+The total soil depth is calculated as:
+
+$$D_{total} = \sum_{i=1}^{n} T_i$$
+
+where $T_i$ is the thickness of layer $i$ and $n$ is the number of layers.
+
+For any layer $i$, the depth range is:
+
+$$D_{top,i} = \sum_{j=1}^{i-1} T_j$$
+
+$$D_{bottom,i} = \sum_{j=1}^{i} T_j$$
+
+$$D_{mid,i} = \frac{D_{top,i} + D_{bottom,i}}{2}$$
+
+These depth calculations are fundamental for:
+
+- Calculating layer volumes for mass balance calculations
+- Determining gravitational potential gradients for water flow
+- Distributing root length density by depth
+- Interpolating or aggregating measured soil data to model layers
+
+**Best practices:**
+
+- Use 50-150 mm layers in the top 300 mm for annual crops
+- Gradually increase layer thickness with depth (1.5-2× previous layer)
+- Extend total depth beyond expected maximum rooting depth
+- Align layer boundaries with major soil horizon changes when possible
+- Consider that layer structure cannot typically be changed during a simulation
+
+## See Also
+
+* **Source code:** [ILayerStructure.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/APSIM.Core/Data/ILayerStructure.cs)
+* **Implementing classes:** [Physical](/docs/Models/Soils/Physical.qmd), [IPhysical](/docs/Models/Soils/IPhysical.qmd)
+* **Related concepts:** Soil horizons, vertical discretization, numerical modeling

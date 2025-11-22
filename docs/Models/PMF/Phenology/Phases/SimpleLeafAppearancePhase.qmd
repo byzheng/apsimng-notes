@@ -24,8 +24,8 @@ The phase progresses from a specified `Start` stage to a specified `End` stage. 
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 
 ## Connections to Other Components
@@ -37,7 +37,7 @@ The phase progresses from a specified `Start` stage to a specified `End` stage. 
 |-----------|-------|-----------------|------------------------------------------------------|
 | TargetLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Provides the target final leaf number for the phase. |
 | CurrentLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Returns the current number of leaves that have appeared. |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides the current simulation date and time. |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link | Provides the current simulation date and time. |
 
 ## Model Variables
 
@@ -135,10 +135,6 @@ If an external model sets the `DateToProgress` property, the phase will ignore i
 ## User Interface
 
 `SimpleLeafAppearancePhase` can be added as a child of a `Phenology` node in the model tree. Right-click the parent node, select "Add Model...", and search for `SimpleLeafAppearancePhase` in the Filter Box.
-
-## Practical Example
-
-> No practical example is available for this function.
 
 ## See Also
 

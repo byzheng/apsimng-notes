@@ -1,0 +1,84 @@
+---
+title: "IVrnExpression"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The IVrnExpression interface defines the contract for models that track vernalisation gene expression in cereal crops. It provides a standardised way to access vernalisation state variables and developmental progression indicators used in phenology models like CAMP.
+
+## Overview
+
+IVrnExpression is a core interface in APSIM Next Generation's Plant Modelling Framework that establishes a standard protocol for monitoring and reporting vernalisation-related gene expression dynamics. Models implementing this interface expose key developmental state variables that track the molecular and physiological progress of cereal crops through vernalisation and reproductive transition phases.
+
+This interface is primarily implemented by the [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) (Cereal Apical Meristem Phenology) model, which uses molecular-level gene expression to simulate developmental transitions in temperate cereals. The interface allows other components within APSIM to query vernalisation status without needing to understand the internal mechanics of gene expression calculations.
+
+The interface supports mechanistic modelling of genotype × environment interactions by providing access to:
+
+- Individual vernalisation gene expression levels (Vrn1, Vrn2, Vrn3)
+- Baseline and maximum expression rates
+- Boolean flags indicating completion of key developmental phases
+
+This abstraction enables flexible coupling between phenology models and other plant components, supporting both detailed mechanistic models and simpler empirical approaches within the same framework.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+As an interface, IVrnExpression does not inherit from other classes but defines a contract that implementing classes must fulfil. The primary implementation is:
+
+* [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) - Cereal Apical Meristem Phenology model
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+This interface enables connections between phenology models and other components that need to access vernalisation status:
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| CAMP | [CAMP](/docs/Models/PMF/Phenology/CAMP/CAMP.qmd) | Implementation | Primary implementation tracking vernalisation gene expression. |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Consumer | Uses vernalisation status to coordinate developmental phases. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this interface.
+
+**Read-Only Reportable Properties**
+
+The following properties must be implemented by any class adopting the IVrnExpression interface:
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| `Name`               | string  | The name identifier for the implementing model                              |
+| `Vrn1`               | double  | Expression level of Vrn1 gene (vernalisation promoter)                      |
+| `Vrn2`               | double  | Expression level of Vrn2 gene (flowering repressor under long days)         |
+| `Vrn3`               | double  | Expression level of Vrn3 gene (photoperiod-dependent flowering promoter)    |
+| `BaseVrn`            | double  | Baseline vernalisation expression accumulating at genotype-specific rate    |
+| `MaxVrn`             | double  | Maximum potential vernalisation expression achievable                       |
+| `IsVernalised`       | bool    | Indicates whether vernalisation saturation has been reached                 |
+
+### Biological Interpretation
+
+**Vrn1**: The Vrn1 gene is the primary coordinator of vernalisation response in cereals. It is upregulated by cold temperatures and, once methalated, provides a persistent "memory" of vernalisation. In the CAMP model, Vrn1 expression must reach a threshold (typically 1.0) for the plant to complete the vernalisation phase. Base expression occurs at warm temperatures, but cold exposure accelerates this process significantly.
+
+**Vrn2**: This gene acts as a flowering repressor that is upregulated under long photoperiods. It effectively raises the threshold that Vrn1 must overcome before vernalisation is complete. Short photoperiods suppress Vrn2 expression, allowing "short-day vernalisation" where plants can complete vernalisation requirements more quickly under short days.
+
+**Vrn3**: A photoperiod-responsive gene that promotes flowering. It is upregulated under long photoperiods and accelerates progress toward reproductive transition. Vrn3 expression increases after Vrn1 has sufficiently suppressed Vrn2, representing the plant's readiness to initiate reproductive development.
+
+**BaseVrn**: Represents the baseline accumulation of vernalisation signal that occurs even under warm temperatures. This parameter varies by genotype - vernalisation-insensitive varieties have higher base rates and can complete development quickly without cold exposure, while vernalisation-sensitive varieties have lower base rates and require cold to accelerate development.
+
+**MaxVrn**: The maximum rate at which vernalisation can accumulate, typically achieved under optimal conditions (cold temperatures during vernalisation, long photoperiods during reproductive transition). This provides an upper bound on developmental rate.
+
+**IsVernalised**: A boolean flag indicating whether the plant has completed vernalisation requirements. This transition occurs when total vernalisation signal (typically $BaseVrn + Vrn1 + Vrn3 - Vrn2$) exceeds a threshold value (typically 1.0). This flag triggers important developmental transitions in phenology models.
+
+## See Also
+
+* **Source code:** [IVrn1Expression.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/CAMP/IVrn1Expression.cs)

@@ -1,0 +1,44 @@
+---
+title: "ISoilTemperature"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The `ISoilTemperature` interface defines the standard contract for soil temperature models in APSIM Next Generation, providing access to soil temperature profiles throughout the soil layers and at the soil surface.
+
+
+
+
+## Overview
+
+`ISoilTemperature` is a core interface that allows different soil temperature models to be implemented and used interchangeably within APSIM NG simulations. This interface ensures that any soil temperature model provides consistent outputs including current temperatures, daily averages, and daily extremes (minimum and maximum) for both soil layers and the soil surface. These temperature values are critical for modeling various soil processes such as organic matter decomposition, nutrient mineralization, soil water dynamics, and root growth.
+
+Soil temperature is influenced by atmospheric conditions (air temperature, solar radiation), soil properties (thermal conductivity, heat capacity, water content), and surface conditions (residue cover, vegetation). The interface abstracts these complexities, allowing models of varying sophistication to provide temperature information to other APSIM components.
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Value   | double[]  | Returns the current soil temperature for each layer (°C)                      |
+| AverageSoilTemperature   | double[]  | Returns the daily average soil temperature for each layer (°C)                      |
+| AverageSoilSurfaceTemperature   | double  | Returns the daily average temperature of the soil surface (°C)                      |
+| MinimumSoilTemperature   | double[]  | Returns the daily minimum soil temperature for each layer (°C)                      |
+| MinimumSoilSurfaceTemperature   | double  | Returns the daily minimum temperature of the soil surface (°C)                      |
+| MaximumSoilTemperature   | double[]  | Returns the daily maximum soil temperature for each layer (°C)                      |
+| MaximumSoilSurfaceTemperature   | double  | Returns the daily maximum temperature of the soil surface (°C)                      |
+
+
+> No configurable properties are defined by this interface. Implementing classes may have their own configurable parameters.
+
+## See Also
+
+* **Source code:** [ISoilTemperature.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/ISoilTemperature.cs)

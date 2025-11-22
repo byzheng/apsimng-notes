@@ -28,7 +28,7 @@ If a **Controlled Environment (CE)** module is linked, the model will use **actu
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IInterpolationMethod](/docs/Models/Core/IInterpolationMethod.qmd)
+* [IInterpolationMethod](/docs/Models/Interfaces/IInterpolationMethod.qmd)
 
 
 ## Connections to Other Components
@@ -37,7 +37,7 @@ If a **Controlled Environment (CE)** module is linked, the model will use **actu
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
-| MetData | [IWeather](/docs/Models/Core/IWeather.qmd) | Link | Provides daily minimum and maximum temperatures, and calculates day length, sunrise, and sunset times. |
+| MetData | [IWeather](/docs/Models/Interfaces/IWeather.qmd) | Link | Provides daily minimum and maximum temperatures, and calculates day length, sunrise, and sunset times. |
 | CE | [ControlledEnvironment](/docs/Models/Climate/ControlledEnvironment.qmd) | Link, Optional | If present, overrides the interpolated sub-daily values using provided hourly temperature data (`SubDailyTemperature`). This is used in controlled environment simulations (e.g., growth chambers) where actual hourly measurements are available. |
 
 ## Model Variables

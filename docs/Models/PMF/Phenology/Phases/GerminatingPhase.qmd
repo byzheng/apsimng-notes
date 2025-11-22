@@ -24,8 +24,8 @@ Once any of these conditions is satisfied, the seed is considered germinated, th
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 ## Connections to Other Components
 
@@ -34,11 +34,11 @@ Once any of these conditions is satisfied, the seed is considered germinated, th
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
 | SoilPhysical | [IPhysical](/docs/Models/Soils/IPhysical.qmd) | Link, First Available | Provides soil physical properties including layer thickness and lower limit (LL15) values. |
-| WaterBalance | [ISoilWater](/docs/Models/Soils/ISoilWater.qmd) | Link, First Available | Supplies current soil water content for each layer. |
+| WaterBalance | [ISoilWater](/docs/Models/Interfaces/ISoilWater.qmd) | Link, First Available | Supplies current soil water content for each layer. |
 | Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Link, First Available | Provides sowing depth information from the plant's sowing data. |
 | Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Link, First Available | Manages phenological stage transitions and timing. |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
-| SoilTemperature | [ISoilTemperature](/docs/Models/Soils/ISoilTemperature.qmd) | Link, First Available | Supplies soil temperature at each layer. |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
+| SoilTemperature | [ISoilTemperature](/docs/Models/Interfaces/ISoilTemperature.qmd) | Link, First Available | Supplies soil temperature at each layer. |
 | MinSoilTemperature | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Defines minimum soil temperature threshold required for germination. |
 
 ## Model Variables

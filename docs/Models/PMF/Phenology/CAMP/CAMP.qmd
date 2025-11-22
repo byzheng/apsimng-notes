@@ -45,7 +45,7 @@ Vernalisation genes are activated by exposure to low temperatures following seed
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IVrnExpression](/docs/APSIM.Core/IVrnExpression.qmd)
+* [IVrnExpression](/docs/Models/PMF/Phenology/CAMP/IVrn1Expression.qmd)
 
 ## Connections to Other Components
 

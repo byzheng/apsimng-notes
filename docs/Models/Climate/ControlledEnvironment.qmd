@@ -1,0 +1,195 @@
+---
+title: "ControlledEnvironment"
+format: html
+draft: true
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+A climate model that provides controlled environment weather data to crop and soil models in APSIM NG simulations, allowing users to manually specify all environmental conditions rather than reading from external weather files.
+
+
+
+
+## Overview
+
+The `ControlledEnvironment` model is a specialized weather data provider designed for controlled environment experiments such as growth chambers, greenhouses, or other situations where environmental conditions are precisely managed and known. Unlike the standard Weather model that reads data from external files, ControlledEnvironment allows users to directly specify all meteorological variables as fixed values or daily inputs. This model is particularly useful for validating crop models against controlled experiments, conducting sensitivity analyses, or simulating idealized environmental conditions.
+
+The model provides all the standard meteorological variables required by APSIM crop and soil models, including temperature (maximum, minimum, and optionally subdaily values), solar radiation, rainfall, vapor pressure, wind speed, CO2 concentration, and atmospheric pressure. Users can define custom day lengths and sunrise times, making it suitable for simulating non-standard photoperiods.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IWeather](/docs/Models/Interfaces/IWeather.qmd)
+
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides simulation start and end dates for the weather data timeline. |
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type      | Units | Description                                                                 |
+|----------------------|-----------|-------|-----------------------------------------------------------------------------|
+| MaxT                 | double    | °C    | Maximum air temperature for the day |
+| MinT                 | double    | °C    | Minimum air temperature for the day |
+| Rain                 | double    | mm    | Daily rainfall |
+| Radn                 | double    | MJ/m²/d | Solar radiation |
+| VP                   | double    | hPa   | Vapor pressure of the air |
+| Wind                 | double    | m/s   | Wind speed |
+| CO2                  | double    | ppm   | CO2 concentration of the air |
+| AirPressure          | double    | hPa   | Atmospheric air pressure (default: 1010 hPa) |
+| PanEvap              | double    | mm    | Pan evaporation (Class A pan) |
+| DiffuseFraction      | double    | 0-1   | Fraction of solar radiation that is diffuse (default: 1) |
+| Latitude             | double    | °     | Latitude of the location |
+| Longitude            | double    | °     | Longitude of the location |
+| DayLength            | double    | h     | Duration of the day in hours |
+| SunRise              | double    | h     | Hour of the day when sunrise occurs |
+| TempLag              | double    | h     | Number of hours after sunrise to switch from MinT to MaxT (default: 0) |
+| ProvidedSubdailyValues | double[] | °C   | Optional array of 24 hourly temperature values; if not set, temperatures are calculated as MaxT during light hours and MinT during dark hours |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type      | Units | Description                                                                 |
+|----------------------|-----------|-------|-----------------------------------------------------------------------------|
+| MeanT                | double    | °C    | Daily mean temperature calculated as the average of subdaily temperature values |
+| SubDailyTemperature  | double[]  | °C    | Array of 24 hourly temperature values (either user-provided or calculated) |
+| VPD                  | double    | hPa   | Vapor pressure deficit calculated from temperature and vapor pressure |
+| Tav                  | double    | °C    | Average temperature calculated as (MinT + MaxT) / 2 |
+| Amp                  | double    | °C    | Temperature amplitude (always returns 0 for controlled environments) |
+| SunSet               | double    | h     | Hour of the day when sunset occurs (calculated as SunRise + DayLength) |
+| StartDate            | DateTime  | -     | Start date of the simulation from the Clock |
+| EndDate              | DateTime  | -     | End date of the simulation from the Clock |
+| FileName             | string    | -     | Returns "Controlled Environment does not read from a file" |
+| YesterdaysMetData    | DailyMetDataFromFile | - | Meteorological data from the previous day |
+| TomorrowsMetData     | DailyMetDataFromFile | - | Meteorological data for the next day (same as yesterday in steady conditions) |
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| DoWeather      | Prepares daily weather data and calculates subdaily temperature values if not explicitly provided |
+
+**Events Raised**
+
+| Event                    | Purpose                                                                                  |
+|--------------------------|------------------------------------------------------------------------------------------|
+| PreparingNewWeatherData  | Invoked immediately before models retrieve weather data, allowing scripts or other models to modify weather variables |
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Subdaily Temperature Calculation
+
+When hourly temperature values are not explicitly provided via `ProvidedSubdailyValues`, the model automatically generates 24 hourly values based on the day/night cycle. The algorithm follows these rules:
+
+1. For hours before or at sunrise plus the temperature lag (`SunRise + TempLag`), temperature is set to `MinT`
+2. For hours after sunset (`SunSet`), temperature is set to `MinT`
+3. For hours between (`SunRise + TempLag`) and sunset, temperature is set to `MaxT`
+
+This creates a step-function temperature profile that transitions from minimum to maximum temperature at a specified time after sunrise, maintaining maximum temperature throughout the photoperiod.
+
+The `TempLag` parameter allows users to simulate delayed warming after sunrise, which can be important for some controlled environment scenarios.
+
+### Vapor Pressure Deficit (VPD) Calculation
+
+VPD is calculated using saturated vapor pressure (SVP) at minimum and maximum temperatures, weighted to reflect the typical diurnal pattern:
+
+$$
+\text{VPD} = 0.66 \times \text{VPD}_{\text{maxt}} + 0.34 \times \text{VPD}_{\text{mint}}
+$$
+
+where:
+
+$$
+\text{VPD}_{\text{maxt}} = \max(0, \text{SVP}(\text{MaxT}) - \text{VP})
+$$
+
+$$
+\text{VPD}_{\text{mint}} = \max(0, \text{SVP}(\text{MinT}) - \text{VP})
+$$
+
+The saturated vapor pressure is calculated using standard meteorological equations implemented in the `MetUtilities.svp()` function. The weighting factor of 0.66 for maximum temperature reflects that plants typically experience higher VPD during warmer parts of the day.
+
+### Weather Data Preparation
+
+On each daily `DoWeather` event, the model:
+
+1. Invokes the `PreparingNewWeatherData` event (if subscribed) to allow external modification
+2. Calculates subdaily temperature values if not explicitly provided
+3. Updates `YesterdaysMetData` and `TomorrowsMetData` with current values
+
+This ensures that all weather data is prepared and available before crop and soil models access it.
+
+
+## User Interface
+
+ControlledEnvironment should be added as a child of a Simulation node in the model tree. Right-click the Simulation node, select "Add Model...", and search for ControlledEnvironment in the Filter Box. Only one weather model (either ControlledEnvironment or Weather) should be present in each simulation.
+
+Once added, all meteorological variables can be configured through the Properties panel. For most applications, you should at minimum specify:
+
+* MaxT and MinT (temperature range)
+* Radn (solar radiation)
+* DayLength (photoperiod)
+* Latitude (affects various physiological calculations)
+
+
+## Practical Example
+
+The ControlledEnvironment model is commonly used to simulate growth chamber experiments where all environmental factors are precisely controlled. For example, you might simulate wheat growth under constant 20/15°C day/night temperatures with a 12-hour photoperiod and 400 ppm CO2.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+# Example: Comparing wheat growth under different controlled temperature regimes
+library(apsimx)
+library(ggplot2)
+
+# This would require a properly configured APSIM simulation
+# with ControlledEnvironment as the weather provider
+# Example code structure (not executable without full setup):
+
+# sim <- read_apsim("WheatControlled.apsimx")
+# sim$Climate$ControlledEnvironment$MaxT <- 25
+# sim$Climate$ControlledEnvironment$MinT <- 15
+# sim$Climate$ControlledEnvironment$DayLength <- 12
+# sim$Climate$ControlledEnvironment$Radn <- 20
+# results <- run_apsim(sim)
+# 
+# ggplot(results, aes(x = Date, y = Biomass)) +
+#   geom_line() +
+#   labs(title = "Wheat Growth Under Controlled Conditions",
+#        x = "Date", y = "Total Biomass (g/m²)")
+```
+
+> The ControlledEnvironment model is particularly valuable for model calibration and validation against growth chamber or greenhouse experiments where environmental conditions are known with high precision.
+
+
+## See Also
+
+* **Related Models:** [Weather](/docs/Models/Climate/Weather.qmd) - Standard weather file reader
+* **Source code:** [ControlledEnvironment.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Climate/ControlledEnvironment.cs)

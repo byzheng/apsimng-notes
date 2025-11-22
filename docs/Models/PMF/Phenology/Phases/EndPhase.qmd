@@ -22,7 +22,7 @@ This phase typically represents physiological maturity, senescence, or the point
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
 
 
 ## Connections to Other Components

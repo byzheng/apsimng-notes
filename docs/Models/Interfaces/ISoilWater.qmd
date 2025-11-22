@@ -1,0 +1,68 @@
+---
+title: "ISoilWater"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The ISoilWater interface defines the communication protocol between the soil water balance model and plant models in APSIM NG, providing access to soil water content, fluxes, and methods for water extraction and management.
+
+
+## Overview
+
+ISoilWater is a critical interface in APSIM NG that enables interaction between the soil water balance system and plant models (crops, pastures, trees). It serves as the standardized communication layer that allows plants to access information about soil water availability and to extract water through their root systems.
+
+The interface exposes key soil water states including volumetric water content (SW), plant-available water (PAW), water potential (PSI), and hydraulic conductivity (K) for each soil layer. It also provides daily water balance components such as evaporation (Es, Eo), runoff, drainage, and lateral flows. Additionally, the interface includes methods for plants to remove water from the soil profile and for management operations like tillage to modify soil water properties.
+
+This interface is essential for simulating crop water use, drought stress, waterlogging effects, irrigation requirements, and water-limited yield potential. By standardizing how different components access and modify soil water, ISoilWater ensures consistent and accurate representation of water dynamics across diverse cropping systems and environmental conditions.
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Units | Description |
+|----------|------|-------|-------------|
+| SW | double[] | mm/mm | Volumetric soil water content for each layer. This is the primary state variable representing the fraction of soil volume occupied by water. Values range from air-dry (~0.02-0.10) to saturation (~0.35-0.50). Can be set externally (e.g., for initialization) or modified by the water balance model. |
+| PoreInteractionIndex | double[] | - | Pore interaction index for each layer, used in unsaturated hydraulic conductivity calculations. Controls the rate of water movement in partially saturated soils. Typical values range from 0.5 to 1.0. |
+| Eo | double | mm | Potential evapotranspiration of the whole soil-plant system. Set externally (typically by MicroClimate or surface organic matter models) to represent atmospheric demand for evapotranspiration. Used by the water balance to partition between soil evaporation and plant transpiration. |
+| PotentialInfiltration | double | mm | Potential infiltration, calculated as rainfall minus canopy and residue interception. Represents the maximum water that could enter the soil surface before considering runoff processes. |
+| PrecipitationInterception | double | mm | Water intercepted by crop canopy and surface residues before reaching the soil. This water typically evaporates without entering the soil water balance. |
+| WaterTable | double | mm | Depth to the water table from the soil surface. Used in groundwater-influenced soil water balance calculations to represent capillary rise and saturation effects. |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Units | Description |
+|----------|------|-------|-------------|
+| Thickness | double[] | mm | Thickness of each soil layer, inherited from the soil layer structure. Defines the vertical discretization of the soil profile. |
+| SWmm | double[] | mm | Total water content in each layer, calculated as $\text{SWmm}_i = \text{SW}_i \times \text{Thickness}_i$. Represents the depth of water in each layer. |
+| PSI | double[] | cm | Soil water potential (suction) for each layer. Negative values indicate suction, with more negative values indicating drier soil. Calculated from water content using water retention curves. Critical for determining water movement direction and plant water stress. Typical range: -10 to -15,000 cm. |
+| K | double[] | cm/h | Hydraulic conductivity for each layer at current water content. Controls the rate of water movement between layers. Decreases dramatically as soil dries below saturation. Typical range: 0.001 to 100 cm/h. |
+| ESW | double[] | mm | Extractable soil water relative to the lower limit at 15 bar (LL15), calculated as $\text{ESW}_i = (\text{SW}_i - \text{LL15}_i) \times \text{Thickness}_i$. Represents plant-available water plus water held below wilting point. |
+| Eos | double | mm | Potential evaporation from the soil surface. The maximum soil evaporation possible given atmospheric demand and soil surface conditions. Calculated by partitioning Eo based on crop cover. |
+| Es | double | mm | Actual soil evaporation realized on the current day. Limited by Eos and available water in surface layers. Typically follows a two-stage drying pattern: constant rate (stage 1) then declining rate (stage 2). |
+| Runoff | double | mm | Surface runoff generated when rainfall intensity or cumulative rainfall exceeds infiltration capacity. Calculated using methods like USDA-SCS curve number or variable runoff-rainfall relationships. |
+| Drainage | double | mm | Water draining from the bottom of the soil profile. Represents deep percolation below the root zone, contributing to groundwater recharge or being lost from the system. |
+| SubsurfaceDrain | double | mm | Water removed through subsurface drainage systems (tile drains). Only applicable when subsurface drainage is configured. |
+| Pond | double | mm | Depth of ponded water on the soil surface. Occurs when rainfall rate exceeds infiltration rate and surface storage capacity. Ponded water infiltrates in subsequent time steps or contributes to runoff. |
+| Salb | double | 0-1 | Bare soil albedo - the fraction of incoming solar radiation reflected from bare soil surface. Affects soil surface temperature and evaporation. Typical values: 0.10-0.20 for dark soils, 0.25-0.35 for light-colored soils. |
+| LateralOutflow | double[] | mm | Water moving laterally out of each soil layer. Used in hillslope or catchment modeling where lateral redistribution is important. Typically zero in field-scale simulations. |
+| LeachNO3 | double | kg/ha | Nitrate-nitrogen (NO₃-N) leached from the deepest soil layer with drainage water. Critical for assessing environmental impacts of nitrogen fertilization. |
+| LeachNH4 | double | kg/ha | Ammonium-nitrogen (NH₄-N) leached from the deepest soil layer. Generally small compared to NO₃ leaching due to NH₄ adsorption to soil particles. |
+| LeachUrea | double | kg/ha | Urea-nitrogen leached from the deepest soil layer. Relevant shortly after urea fertilizer application before hydrolysis to NH₄. |
+| LeachCl | double | kg/ha | Chloride leached from the deepest soil layer. Used as a conservative tracer for water movement and in salinity assessments. |
+| Flow | double[] | mm | Net water flow into (positive) or out of (negative) each layer due to unsaturated flow. Represents water redistribution driven by water potential gradients. Upward flow (positive) occurs with capillary rise; downward flow (negative) occurs with drainage. |
+| Flux | double[] | mm | Gravitational drainage flux leaving each layer. Represents water movement when soil is above drained upper limit (DUL). Always positive or zero. Calculated based on hydraulic conductivity and soil water content. |
+| PAW | double[] | mm/mm | Plant-available water content (volumetric) for each layer, calculated as $\text{PAW}_i = \text{SW}_i - \text{LL15}_i$. Represents the water fraction available for plant extraction. Ranges from 0 (at wilting point) to PAWC (at field capacity). |
+| PAWmm | double[] | mm | Plant-available water in mm for each layer, calculated as $\text{PAWmm}_i = (\text{SW}_i - \text{LL15}_i) \times \text{Thickness}_i$. The absolute amount of water available for plant uptake in each layer. |
+
+
+## See Also
+
+* **Source code:** [ISoilWater.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Interfaces/ISoilWater.cs)

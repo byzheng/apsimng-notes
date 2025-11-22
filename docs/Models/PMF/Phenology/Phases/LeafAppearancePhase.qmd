@@ -27,8 +27,8 @@ This phase is biologically important because:
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 ## Connections to Other Components
 
@@ -40,7 +40,7 @@ This phase is biologically important because:
 | LeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Supplies the current number of leaves that have appeared on the main stem. |
 | FullyExpandedLeafNo | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Provides the number of leaves that have fully expanded. |
 | InitialisedLeafNumber | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Supplies the number of leaf primordia that have been initiated. |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link, First Available | Provides current simulation date and time information. |
 
 ## Model Variables
 

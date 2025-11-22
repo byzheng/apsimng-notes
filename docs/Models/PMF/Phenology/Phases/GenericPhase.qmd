@@ -29,9 +29,9 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/APSIM.Core/IPhase.qmd)
-* [IPhaseWithTarget](/docs/APSIM.Core/IPhaseWithTarget.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/APSIM.Core/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithTarget](/docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 
 ## Connections to Other Components
@@ -43,7 +43,7 @@ If the previous phase finishes mid-day (i.e., progress overshoots the target), t
 |-----------|-------|-----------------|------------------------------------------------------|
 | Target | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Defines the target thermal time (°Cd) required to complete this phase. |
 | Progression | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Calculates daily progression through the phase (typically daily thermal time). |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides current simulation date for tracking phase duration. |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link | Provides current simulation date for tracking phase duration. |
 
 ## Model Variables
 

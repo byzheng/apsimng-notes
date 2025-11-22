@@ -23,7 +23,7 @@ The function implements both `IFunction` and `IIndexedFunction` interfaces and o
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/APSIM.Core/IFunction.qmd)
-* [IIndexedFunction](/docs/APSIM.Core/IIndexedFunction.qmd)
+* [IIndexedFunction](/docs/Models/PMF/Interfaces/IIndexedFunction.qmd)
 
 ## Connections to Other Components
 

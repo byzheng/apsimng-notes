@@ -15,7 +15,7 @@ This function determines the additional nitrogen required for storage after meet
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IFunction](/docs/Models/Core/IFunction.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
 
 ## Connections to Other Components
 

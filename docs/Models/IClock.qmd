@@ -1,0 +1,46 @@
+---
+title: "IClock"
+format: html
+draft: true
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+An interface that defines the time server for APSIM NG simulations, providing access to simulation dates and tracking simulation progress.
+
+
+
+
+## Overview
+
+The `IClock` interface serves as the fundamental time management contract in APSIM NG simulations. It provides essential temporal information that all models can query to determine the current simulation date, the simulation period boundaries, and how far the simulation has progressed. This interface is typically implemented by the `Clock` model, which orchestrates the advancement of time throughout the simulation.
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| Today   | DateTime  | The current simulation date                      |
+| FractionComplete   | double  | A value between 0 and 1 indicating the fraction of the simulation that has been completed                      |
+| StartDate   | DateTime  | The date when the simulation begins                      |
+| EndDate   | DateTime  | The date when the simulation ends                      |
+
+
+**Read-Only Reportable Properties**
+
+> No additional read-only properties are available for this interface.
+
+
+
+
+## See Also
+
+* **Source code:** [IClock.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/IClock.cs)

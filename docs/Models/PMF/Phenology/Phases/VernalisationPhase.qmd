@@ -24,9 +24,9 @@ Vernalisation is a biological process where plants require a period of cold expo
 {{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
-* [IPhase](/docs/Models/PMF/Phenology/IPhase.qmd)
-* [IPhaseWithTarget](/docs/Models/PMF/Phenology/IPhaseWithTarget.qmd)
-* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/IPhaseWithSetableCompletionDate.qmd)
+* [IPhase](/docs/Models/PMF/Phenology/Phases/IPhase.qmd)
+* [IPhaseWithTarget](/docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.qmd)
+* [IPhaseWithSetableCompletionDate](/docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.qmd)
 
 
 ## Connections to Other Components
@@ -36,8 +36,8 @@ Vernalisation is a biological process where plants require a period of cold expo
 
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
-| CAMP | [IVrnExpression](/docs/Models/PMF/Phenology/CAMP/IVrnExpression.qmd) | Link | Provides vernalisation gene expression signals (Vrn1, Vrn2, Vrn3, BaseVrn, MaxVrn) |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Provides the current simulation date and time |
+| CAMP | [IVrnExpression](/docs/Models/PMF/Phenology/CAMP/IVrn1Expression.qmd) | Link | Provides vernalisation gene expression signals (Vrn1, Vrn2, Vrn3, BaseVrn, MaxVrn) |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link | Provides the current simulation date and time |
 
 ## Model Variables
 

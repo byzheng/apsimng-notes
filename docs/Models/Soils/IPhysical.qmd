@@ -1,0 +1,63 @@
+---
+title: "IPhysical"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+The IPhysical interface defines the essential physical properties of soil layers in APSIM NG, including water-holding characteristics, bulk density, particle size distribution, and hydraulic conductivity.
+
+
+## Overview
+
+IPhysical is a fundamental interface in APSIM NG that specifies the physical characteristics of soil layers required for simulating water movement, plant-available water, and soil-plant-atmosphere interactions. This interface extends ILayerStructure, meaning all properties are defined per soil layer.
+
+The interface provides comprehensive soil physical data including water retention parameters (air dry, wilting point, drained upper limit, saturation), hydraulic properties (saturated hydraulic conductivity), soil texture (sand, silt, clay fractions), and structural properties (bulk density, rocks content). These properties are critical for accurately modeling water dynamics, root growth, and nutrient transport in the soil profile.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [ILayerStructure](/docs/APSIM.Core/Data/ILayerStructure.qmd)
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| AirDry | double[] | Air-dry water content (mm/mm or volumetric fraction). The water content at which soil becomes air-dry after prolonged exposure to dry air. This represents the driest condition soil can reach under natural conditions. |
+| BD | double[] | Bulk density (g/cm³). The dry mass of soil per unit volume, indicating soil compaction and affecting water storage capacity and root penetration. Typical values range from 1.0-1.8 g/cm³. |
+| DUL | double[] | Drained upper limit (mm/mm). The volumetric water content of the soil after excess water has drained away under gravity, typically 2-3 days after saturation. Also known as field capacity. |
+| KS | double[] | Saturated hydraulic conductivity (mm/day). The rate at which water moves through saturated soil, controlling drainage and infiltration capacity. Values typically range from 1-1000 mm/day depending on texture. |
+| LL15 | double[] | Lower limit at 15 bar suction (mm/mm). The permanent wilting point - the volumetric water content below which plants cannot extract water. Measured at 1500 kPa suction. |
+| ParticleSizeClay | double[] | Clay fraction (0-1 or %). Particles smaller than 0.002 mm. Clay content strongly influences water retention, cation exchange capacity, and hydraulic conductivity. |
+| ParticleSizeSand | double[] | Sand fraction (0-1 or %). Particles between 0.02-2 mm. Sand content affects soil drainage, aeration, and workability. |
+| ParticleSizeSilt | double[] | Silt fraction (0-1 or %). Particles between 0.002-0.02 mm. Silt influences water retention and soil structure. |
+| Rocks | double[] | Rock fragment content (% by volume). The proportion of the soil volume occupied by particles larger than 2 mm, which reduces the effective soil volume for water storage and root growth. |
+| SAT | double[] | Saturation water content (mm/mm). The volumetric water content when all pore space is filled with water. This is the maximum water storage capacity of the soil. |
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| DULmm | double[] | Drained upper limit in mm of water per layer. Calculated as $\text{DUL}_{mm} = \text{DUL} \times \text{Thickness}$, representing the total water stored at field capacity in each layer. |
+| LL15mm | double[] | Lower limit in mm of water per layer. Calculated as $\text{LL15}_{mm} = \text{LL15} \times \text{Thickness}$, representing the total unavailable water in each layer. |
+| SATmm | double[] | Saturation in mm of water per layer. Calculated as $\text{SAT}_{mm} = \text{SAT} \times \text{Thickness}$, representing the maximum water storage capacity in each layer. |
+| Texture | string[] | Soil texture classification for each layer (e.g., "Clay Loam", "Sandy Loam"). Derived from particle size distribution using standard classification systems like the USDA texture triangle. |
+| ThicknessCumulative | double[] | Cumulative layer thickness from soil surface (mm). For a soil with layers of 150, 150, and 200 mm, this would be [150, 300, 500]. |
+| DepthMidPoints | double[] | Depth to the center of each soil layer (mm). Used for calculating average conditions within each layer. |
+| PAWC | double[] | Plant-available water capacity (mm/mm). Calculated as $\text{PAWC} = \text{DUL} - \text{LL15}$, representing the volumetric fraction of water available for plant uptake. |
+| PAWCmm | double[] | Plant-available water capacity in mm per layer. Calculated as $\text{PAWC}_{mm} = (\text{DUL} - \text{LL15}) \times \text{Thickness}$, representing the total plant-available water in each layer. |
+
+
+## See Also
+
+* **Source code:** [IPhysical.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Soils/IPhysical.cs)

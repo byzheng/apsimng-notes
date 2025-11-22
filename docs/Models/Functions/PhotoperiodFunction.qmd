@@ -30,7 +30,7 @@ The Photoperiod function determines the number of daylight hours based on the la
 | Component | Model | Connection Type | Description                                          |
 |-----------|-------|-----------------|------------------------------------------------------|
 | Weather | [IWeather](/docs/Models/Interfaces/IWeather.qmd) | Link | Provides latitude and meteorological information for day length calculation. |
-| Clock | [IClock](/docs/Models/Core/IClock.qmd) | Link | Supplies the current day of year for the calculation. |
+| Clock | [IClock](/docs/Models/IClock.qmd) | Link | Supplies the current day of year for the calculation. |
 
 
 ## Model Variables
