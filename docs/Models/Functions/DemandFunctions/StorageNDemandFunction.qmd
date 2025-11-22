@@ -1,5 +1,5 @@
 ---
-title: "Daily Nitrogen Demand for Storage Organs"
+title: "StorageNDemandFunction"
 format: html
 ---
 
@@ -8,70 +8,28 @@ The `StorageNDemandFunction` calculates the nitrogen (N) demand for storage in a
 
 ## Overview
 
-This function determines the additional N required for storage after meeting the structural and metabolic N demands. It ensures that the organ's N content does not exceed its maximum nitrogen concentration.
+This function determines the additional nitrogen required for storage after meeting the structural and metabolic N demands. The partitioning of daily N supply to storage N attempts to bring the organ's N content to the maximum concentration, ensuring that the organ's N content does not exceed its maximum nitrogen concentration. This is a critical component of nitrogen allocation within plant organs in the APSIM NG framework.
 
-## Inputs
+## Model Structure
 
-- **maxNConc**: A `IFunction` for maximum nitrogen concentration which the organ can achieve.
-- **nitrogenDemandSwitch**: A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. For example, nitrogen demand of wheat stem is switched on from `Emergence` to `MaximumGrainLength` stages, and switched off afterwards.
-- **parentOrgan**: The organ that implements the `IArbitration` interface, i.e. an organ which `StorageNDemandFunction` attached to, which provides access to the organ's properties such as live weight and current N content.
+{{< include /_includes/Models/model-structure-intro.md >}}
 
-## Methodology
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/Models/Core/IFunction.qmd)
 
-The potential biomass after potential allocation is calculated as biomass at previous day ($DM_{\text{Live}, i-1}$) plus the potential allocation to the organ ($A_{\text{P}, i}$):
-$$
-DM_{\text{Live}, i} = DM_{\text{Live}, i-1} + A_{\text{P}, i}
-$$
+## Connections to Other Components
 
-The maximum nitrogen content (potential) at day $i$ is calculated as 
+{{< include /_includes/Models/connections-intro.md >}}
 
-$$
-N_{\text{Live}, i} = C_{\text{N, max}} \times DM_{\text{Live}, i}
-$$
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| maxNConc | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | Defines the maximum nitrogen concentration which the organ can achieve. |
+| nitrogenDemandSwitch | [IFunction](/docs/APSIM.Core/IFunction.qmd) | Child, By Name | A switch (typically 0 or 1) to modulate N demand based on environmental or physiological conditions. |
+| parentOrgan | IArbitration | Parent | The organ implementing the `IArbitration` interface, providing access to the organ's properties such as live weight, current N content, and potential DM allocation. |
 
+## Model Variables
 
-
-The nitrogen demand for storage is then calculated as the difference between the maximum nitrogen content and the current nitrogen content in the live biomass, adjusted by structural and metabolic demands:
-
-
-$$
-D_{\text{N, Storage}} = N_{\text{Live}, i} - N_{\text{Live}, i-1} - D_{\text{N, Structural}} - D_{\text{N, Metabolic}}
-$$
-
-Where:
-
-* $D_{\text{N, Storage}}$: Nitrogen demand for storage at day $i$.
-* $N_{\text{Live}, i}$: Nitrogen content in the live biomass at day $i$.
-* $N_{\text{Live}, i-1}$: Nitrogen content in the live biomass at the previous day ($i-1$). 
-* $D_{\text{N, Structural}}$: Nitrogen demand for structural functions at day $i$.
-* $D_{\text{N, Metabolic}}$: Nitrogen demand for metabolic functions at day $i$. 
-
-Implementation Details
-
-- The function is part of the `Models.Functions.DemandFunctions` namespace.
-- It implements the `IFunction` interface, allowing it to be used within the APSIM model framework.
-- During simulation commencement, it identifies its parent organ implementing the `IArbitration` interface to access necessary properties.
-
-
-## Events 
-
-
-**Events Listened For**
-
-These are signals or notifications that the function listens for from other parts of the simulation:
-
-| Event          | Purpose                                                                                  |
-|----------------|------------------------------------------------------------------------------------------|
-| [Commencing](/docs/Models/Events.html#Commencing)   | Get parent organ from simulations |
-
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-
-## Properties
-
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -81,17 +39,104 @@ These are signals or notifications that the function listens for from other part
 
 | Property             | Type    | Description                                                                 |
 |----------------------|---------|-----------------------------------------------------------------------------|
-| `Value`   | double  | Storage demands for nitrogen (N) in the organ                      |
+| Value   | double  | Returns the nitrogen demand for storage in the organ (g N/m²).                      |
 
+## Events 
 
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| [Commencing](/docs/Models/Events.html#Commencing)   | Identifies the parent organ implementing the `IArbitration` interface at the start of simulation. |
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Calculation of Storage Nitrogen Demand
+
+The function calculates storage nitrogen demand through the following steps:
+
+**Step 1: Calculate Potential Biomass**
+
+The potential biomass after allocation is the sum of live biomass at the previous day ($DM_{\text{Live}, i-1}$) and the potential dry matter allocation to the organ ($A_{\text{P}, i}$):
+
+$$
+DM_{\text{Potential}, i} = DM_{\text{Live}, i-1} + A_{\text{P,Structural}, i} + A_{\text{P,Metabolic}, i}
+$$
+
+Where $A_{\text{P}, i}$ consists of potential structural and metabolic allocation.
+
+**Step 2: Calculate Maximum Nitrogen Content**
+
+The maximum nitrogen content at day $i$ is based on the maximum N concentration ($C_{\text{N, max}}$):
+
+$$
+N_{\text{Max}, i} = C_{\text{N, max}} \times DM_{\text{Potential}, i}
+$$
+
+**Step 3: Calculate Nitrogen Deficit**
+
+The nitrogen deficit represents the gap between maximum potential N and current N content:
+
+$$
+N_{\text{Deficit}} = \max(0, N_{\text{Max}, i} - N_{\text{Live}, i-1})
+$$
+
+This deficit is then modulated by the nitrogen demand switch:
+
+$$
+N_{\text{Deficit,Adjusted}} = N_{\text{Deficit}} \times \text{nitrogenDemandSwitch}
+$$
+
+**Step 4: Calculate Storage Nitrogen Demand**
+
+The final storage nitrogen demand is the adjusted deficit minus the structural and metabolic demands:
+
+$$
+D_{\text{N, Storage}} = \max(0, N_{\text{Deficit,Adjusted}} - D_{\text{N, Structural}} - D_{\text{N, Metabolic}})
+$$
+
+Where:
+
+* $D_{\text{N, Storage}}$: Nitrogen demand for storage at day $i$ (g N/m²).
+* $N_{\text{Max}, i}$: Maximum nitrogen content based on maximum N concentration at day $i$ (g N/m²).
+* $N_{\text{Live}, i-1}$: Current nitrogen content in the live biomass at the previous day (g N/m²).
+* $D_{\text{N, Structural}}$: Nitrogen demand for structural functions at day $i$ (g N/m²).
+* $D_{\text{N, Metabolic}}$: Nitrogen demand for metabolic functions at day $i$ (g N/m²).
+* $C_{\text{N, max}}$: Maximum nitrogen concentration (g N/g DM).
+* $DM_{\text{Potential}, i}$: Potential dry matter after allocation (g DM/m²).
+
+### Biological Interpretation
+
+Storage nitrogen represents nitrogen that can be remobilized during grain filling or other developmental phases. This function ensures that organs accumulate nitrogen up to their maximum capacity during periods of high nitrogen availability, which can then be utilized during periods of high demand (e.g., grain filling) or low supply. 
+
+For example, in wheat, the stem's nitrogen demand is typically switched on from emergence to maximum grain length stages, and switched off afterwards. During active growth, the stem accumulates storage nitrogen that will be remobilized to support grain filling.
 
 ## User Interface
 
 `StorageNDemandFunction` can be added as a child of a `NutrientDemandFunctions` node in the model tree. Right-click the parent node, select "Add Model...", and search for `StorageNDemandFunction` in the Filter Box.
 
-
-
 ## Practical Example
 
+This function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ's N requirements. 
+
+**Important Considerations:**
+
 - Ensure that `maxNConc` and `nitrogenDemandSwitch` are properly defined within the organ's model to avoid calculation errors.
-- This function is typically used in conjunction with structural and metabolic N demand functions to comprehensively model an organ's N requirements.
+- The `nitrogenDemandSwitch` allows temporal control over when storage N demand is active. For example, it can be configured to turn off storage demand during reproductive phases when nitrogen should be prioritized for grain filling rather than vegetative storage.
+- Storage nitrogen demand is calculated after structural and metabolic demands are met, ensuring priority allocation to essential functions.
+
+> No practical simulation example is available for this function at this time.
+
+## See Also
+
+* **Source code:** [StorageNDemandFunction.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/DemandFunctions/StorageNDemandFunction.cs)
