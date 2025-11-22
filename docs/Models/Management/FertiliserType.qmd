@@ -3,38 +3,72 @@ title: "FertiliserType"
 format: html
 ---
 
-```{r setup, echo = FALSE}
+```{r setup, echo=FALSE}
 setup_qmd()
 ```
 
-
-
-The `FertiliserType` function defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.
+The `FertiliserType` model defines the composition of a specific fertiliser product. It specifies the types and proportions of up to six solutes that are released when fertiliser is applied, allowing users to simulate the nutrient dynamics of complex fertiliser formulations.
 
 
 ## Overview
 
 `FertiliserType` is a submodel of the `Fertiliser` model. It provides a detailed configuration of the fertiliser’s composition by defining up to six solutes, each with a specified name and mass fraction. Additionally, it includes a threshold fraction to determine when the remainder of the fertiliser is released. This model allows researchers and users to represent a wide variety of fertiliser types used in agricultural systems and tailor nutrient release behavior to specific scenarios. Pre-defined fertiliser types are stored in a resource file named [Fertiliser.json](https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json).
 
-## Inputs
+## Model Structure
 
-- `Name`: Identifier used within the simulation to refer to this fertiliser.
-- `Description`: A user-defined description of the fertiliser type.
-- `FractionWhenRemainderReleased`: A numeric threshold indicating when the remaining portion of the fertiliser is released (e.g., 0.995).
-- `Solute1Name` to `Solute6Name`: The names of up to six solutes in the fertiliser.
-- `Solute1Fraction` to `Solute6Fraction`: The corresponding fractions (by mass) of each solute in the fertiliser.
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
 
 
-## Methodology
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Fertiliser | [Fertiliser](/docs/Models/Management/Fertiliser.qmd) | Parent | Parent model that manages fertiliser applications using this type. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable and Reportable Properties**
+
+| Property                    | Type    | Description                                                                 |
+|-----------------------------|---------|-----------------------------------------------------------------------------|
+| Description                 | string  | A description of the fertiliser type                                        |
+| FractionWhenRemainderReleased | double  | Threshold for full fertiliser release (default: 0.995)                         |
+| Solute1Name                 | string  | Name of the first solute component                                          |
+| Solute1Fraction             | double  | Fraction of the fertiliser that is solute 1                                 |
+| Solute2Name                 | string  | Name of the second solute component                                         |
+| Solute2Fraction             | double  | Fraction of the fertiliser that is solute 2                                 |
+| Solute3Name                 | string  | Name of the third solute component                                          |
+| Solute3Fraction             | double  | Fraction of the fertiliser that is solute 3                                 |
+| Solute4Name                 | string  | Name of the fourth solute component                                         |
+| Solute4Fraction             | double  | Fraction of the fertiliser that is solute 4                                 |
+| Solute5Name                 | string  | Name of the fifth solute component                                          |
+| Solute5Fraction             | double  | Fraction of the fertiliser that is solute 5                                 |
+| Solute6Name                 | string  | Name of the sixth solute component                                          |
+| Solute6Fraction             | double  | Fraction of the fertiliser that is solute 6                                 |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+
+## Processes and Algorithms
 
 `FertiliserType` acts as a container for the fertiliser composition. When a fertiliser is applied in a simulation, the associated solutes are released into the soil according to the specified fractions. The `FractionWhenRemainderReleased` controls when the final residual portion of fertiliser is applied, which is useful for simulating slow-release or staged-release fertilisers.
 
-Each solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation.
+Each solute is released in proportion to its defined fraction. Solute names must match those defined in the soil or nutrient models of the simulation. The sum of all solute fractions does not need to equal 1.0, as fertiliser products may contain inert materials.
 
-Below is a simplified summary of fertiliser types pre-defined in APSIM NG:
+### Pre-defined Fertiliser Types
 
+APSIM NG includes a comprehensive library of commonly used fertiliser types. Below is a summary of fertiliser types pre-defined in the system:
 
-```{r read-data}
+```{r read-data, echo=FALSE, message=FALSE, warning=FALSE}
 
 a <- read_apsimx("https://raw.githubusercontent.com/APSIMInitiative/ApsimX/9c3f72cd2b7641de4f72463c427ccf3e5d85b8a3/Models/Resources/Fertiliser.json")
 
@@ -64,44 +98,10 @@ fertilisers |>
 ```
 
 
-## Events
-
-**Events Listened For**
-
-> No events are listened by this function.
-
-**Events Raised to**
-
-> No events are raised by this function.
-
-## Properties
-
-**Configurable and Reportable Properties**
-
-| Property                    | Type    | Description                                                                 |
-|-----------------------------|---------|-----------------------------------------------------------------------------|
-| Description                 | string  | A description of the fertiliser type                                        |
-| FractionWhenRemainderReleased | double  | Threshold for full fertiliser release (e.g., 0.995)                         |
-| Solute1Name                 | string  | Name of the first solute component                                          |
-| Solute1Fraction             | double  | Fraction of the fertiliser that is solute 1                                 |
-| Solute2Name                 | string  | Name of the second solute component                                         |
-| Solute2Fraction             | double  | Fraction of the fertiliser that is solute 2                                 |
-| Solute3Name                 | string  | Name of the third solute component                                          |
-| Solute3Fraction             | double  | Fraction of the fertiliser that is solute 3                                 |
-| Solute4Name                 | string  | Name of the fourth solute component                                         |
-| Solute4Fraction             | double  | Fraction of the fertiliser that is solute 4                                 |
-| Solute5Name                 | string  | Name of the fifth solute component                                          |
-| Solute5Fraction             | double  | Fraction of the fertiliser that is solute 5                                 |
-| Solute6Name                 | string  | Name of the sixth solute component                                          |
-| Solute6Fraction             | double  | Fraction of the fertiliser that is solute 6                                 |
-
-**Read-Only Reportable Properties**
-
-> No read-only properties are available for this function.
-
 ## User Interface
 
-> No user interface is available for this function.
+FertiliserType can be added as a child of a Fertiliser node in the model tree. Right-click the parent Fertiliser node, select "Add Model...", and search for FertiliserType in the Filter Box.
+
 
 ## Practical Example
 

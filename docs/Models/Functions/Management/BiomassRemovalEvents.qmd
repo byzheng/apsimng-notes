@@ -1,0 +1,254 @@
+---
+title: "BiomassRemovalEvents"
+format: html
+---
+
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+A management tool for removing biomass from crops at specified times or in response to events, without requiring custom manager scripts. This model supports various removal types (cutting, grazing, harvesting, pruning) and allows precise control over which plant organs are affected and how much biomass is removed or transferred to residue.
+
+
+## Overview
+
+BiomassRemovalEvents provides a declarative approach to managing biomass removal operations in APSIM NG simulations. Rather than writing manager scripts, users can configure biomass removal actions through a user interface, specifying dates, removal types, and fractions of live and dead biomass to remove from specific plant organs.
+
+The model is designed to simulate common agricultural practices such as:
+
+- **Cutting**: Removing biomass from forage crops or pastures
+- **Grazing**: Simulating animal consumption of plant material
+- **Harvesting**: Removing grain, fruit, or other harvestable organs
+- **Pruning**: Removing branches, shoots, or other structural components
+- **End of Crop**: Complete biomass removal at crop termination
+
+For each removal event, users can specify what fraction of live and dead biomass should be removed entirely versus transferred to the soil surface residue pool. This granular control enables realistic simulation of different management practices and their impacts on nutrient cycling and soil organic matter.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IStructureDependency](/docs/Models/Core/IStructureDependency.qmd)
+
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component | Model | Connection Type | Description                                          |
+|-----------|-------|-----------------|------------------------------------------------------|
+| Clock | [Clock](/docs/Models/Clock.qmd) | Link | Provides current simulation date for scheduled removal events |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | Dynamic Link | The crop from which biomass will be removed |
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | Child of Plant | Optional: allows resetting growth stage after removal |
+| IOrgan | [IOrgan](/docs/Models/PMF/Interfaces/IOrgan.qmd) | Children of Plant | Individual plant organs targeted for biomass removal |
+| Structure | [IStructure](/docs/APSIM.Core/IStructure.qmd) | System-provided | Enables searching for linked components in the model tree |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+
+**Configurable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| NameOfPlantToRemoveFrom | string | Name of the crop plant from which biomass will be removed |
+| RemovalType | BiomassRemovalType | Type of biomass removal event (Cutting, Grazing, Harvesting, Pruning, EndCrop) |
+| StageToSet | string | Optional phenological stage to set after removal (e.g., reset to vegetative growth) |
+| RemovalDates | string[] | List of dates when removal events should occur (format: dd/mm/yyyy or dd-mmm) |
+| BiomassRemovalFractions | List<BiomassRemovalOfPlantOrganType> | Organ-specific removal fractions for live and dead biomass |
+
+**Read-Only Reportable Properties**
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| PlantInstanceToRemoveFrom | Plant | Reference to the linked plant instance |
+
+**Biomass Removal Fractions Structure**
+
+Each organ in the target plant has associated removal fractions:
+
+| Property             | Type    | Description                                                                 |
+|----------------------|---------|-----------------------------------------------------------------------------|
+| PlantName | string | Name of the plant this removal applies to |
+| OrganName | string | Name of the specific organ (e.g., Leaf, Stem, Root) |
+| TypeString | string | The removal type for this configuration |
+| LiveToRemove | double | Fraction (0-1) of live biomass to remove and destroy |
+| DeadToRemove | double | Fraction (0-1) of dead biomass to remove and destroy |
+| LiveToResidue | double | Fraction (0-1) of live biomass to remove and add to surface residue |
+| DeadToResidue | double | Fraction (0-1) of dead biomass to remove and add to surface residue |
+
+
+## Events 
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+These are signals or notifications that the function listens for from other parts of the simulation:
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| DoManagement | Checks if current date matches any scheduled removal dates and triggers removal if matched |
+| PhenologyDefoliate | Responds to defoliation events from phenology, triggering removal if type matches |
+| PhenologyPrune | Responds to pruning events from phenology, triggering removal for Pruning type |
+| PhenologyHarvest | Responds to harvest events from phenology, triggering removal for Harvesting type |
+
+**Events Raised**
+
+| Event          | Purpose                                                                                  |
+|----------------|------------------------------------------------------------------------------------------|
+| Cutting | Raised when a cutting-type biomass removal is performed |
+| Grazing | Raised when a grazing-type biomass removal is performed |
+| Pruning | Raised when a pruning-type biomass removal is performed |
+| Harvesting | Raised when a harvesting-type biomass removal is performed |
+| EndCrop | Raised when an end-of-crop biomass removal is performed |
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+### Biomass Removal Process
+
+The biomass removal process follows these steps:
+
+1. **Validation**: Check that the target plant is properly linked and accessible
+2. **Event Triggering**: Raise the appropriate event (Cutting, Grazing, Pruning, Harvesting, or EndCrop) based on the configured RemovalType
+3. **Organ-Level Processing**: For each organ in the plant:
+   - Retrieve the configured removal fractions for the current removal type
+   - Validate that all fractions are between 0 and 1
+   - Call the organ's `RemoveBiomass()` method with the specified fractions:
+     - `liveToRemove`: fraction of live biomass to remove completely
+     - `deadToRemove`: fraction of dead biomass to remove completely  
+     - `liveToResidue`: fraction of live biomass to transfer to surface residue
+     - `deadToResidue`: fraction of dead biomass to transfer to surface residue
+4. **Phenology Reset** (optional): If a `StageToSet` is specified, reset the plant's phenology to that stage
+
+### Biomass Partitioning
+
+For each organ, the total removal and residue addition is controlled by four fractions that must each be between 0 and 1:
+
+$$
+\text{Live Biomass Removed} = B_{\text{live}} \times f_{\text{live,remove}}
+$$
+
+$$
+\text{Dead Biomass Removed} = B_{\text{dead}} \times f_{\text{dead,remove}}
+$$
+
+$$
+\text{Live Biomass to Residue} = B_{\text{live}} \times f_{\text{live,residue}}
+$$
+
+$$
+\text{Dead Biomass to Residue} = B_{\text{dead}} \times f_{\text{dead,residue}}
+$$
+
+where:
+- $B_{\text{live}}$ and $B_{\text{dead}}$ are the current live and dead biomass in the organ
+- $f_{\text{live,remove}}$ and $f_{\text{dead,remove}}$ are fractions completely removed from the system
+- $f_{\text{live,residue}}$ and $f_{\text{dead,residue}}$ are fractions transferred to soil surface residue
+
+Note that the total of removal and residue fractions can exceed 1.0 for each pool (live or dead), allowing complete removal of an organ's biomass.
+
+### Scheduled and Event-Driven Removal
+
+BiomassRemovalEvents can be triggered in two ways:
+
+1. **Date-based scheduling**: Removal occurs automatically on specified dates in the `RemovalDates` array
+2. **Event-driven**: External models or scripts can call the `Remove()` method to trigger removal programmatically
+3. **Phenology-driven**: Responds to phenological events (defoliate, prune, harvest) from the plant's phenology model
+
+### Dynamic Plant and Organ Linking
+
+The model automatically:
+- Searches for the specified plant in the simulation
+- Discovers all organs within that plant using the Structure interface
+- Creates default removal fraction entries for each organ (initially set to 0)
+- Updates the organ list if the plant structure changes
+- Handles plant replacements (e.g., when using rotation managers)
+
+
+## User Interface
+
+BiomassRemovalEvents can be added as a child of a Zone or Folder node in the model tree. Right-click the parent node, select "Add Model...", and search for BiomassRemovalEvents in the Filter Box.
+
+The user interface presents:
+
+1. **Plant Selection**: Choose the crop to remove biomass from
+2. **Removal Type**: Select from Cutting, Grazing, Harvesting, Pruning, or EndCrop
+3. **Stage Reset**: Optionally specify a phenological stage to reset to after removal
+4. **Removal Dates**: Enter comma-separated dates when automatic removal should occur
+5. **Removal Fractions Grid**: A table showing all plant organs with columns for:
+   - Live fraction to remove (0-1)
+   - Dead fraction to remove (0-1)  
+   - Live fraction to residue (0-1)
+   - Dead fraction to residue (0-1)
+
+
+## Practical Example
+
+### Example 1: Simulating Periodic Grazing of a Pasture
+
+This example demonstrates setting up periodic grazing events for a pasture system where 50% of leaf biomass is removed by animals while 20% is trampled and added to surface residue.
+
+```{r grazing-example, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+# Create a simple wheat simulation with grazing
+library(apsimx)
+
+# This would be configured in the APSIM GUI:
+# - Plant: Wheat
+# - RemovalType: Grazing
+# - RemovalDates: 15-Jun, 15-Jul, 15-Aug
+# - Leaf organ: LiveToRemove = 0.50, LiveToResidue = 0.20
+# - Stem organ: LiveToRemove = 0.30, LiveToResidue = 0.15
+
+# The model automatically triggers grazing events on the specified dates
+# and removes/redistributes biomass according to the configured fractions
+```
+
+### Example 2: Multi-Cut Forage System
+
+For a lucerne (alfalfa) crop with multiple harvest cuts per season:
+
+```{r multi-cut-example, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+# Configuration for lucerne with 4 cuts per season:
+# - Plant: Lucerne
+# - RemovalType: Cutting  
+# - RemovalDates: 15-Oct, 15-Nov, 15-Dec, 15-Jan
+# - StageToSet: Vegetative (resets growth after each cut)
+# - Leaf organ: LiveToRemove = 0.80, LiveToResidue = 0.15
+# - Stem organ: LiveToRemove = 0.70, LiveToResidue = 0.20
+# - Root organ: LiveToRemove = 0.00, LiveToResidue = 0.00 (roots remain)
+
+# After each cutting event, the plant phenology is reset to vegetative stage
+# allowing regrowth to proceed from that point
+```
+
+### Example 3: Grain Harvest with Residue Retention
+
+Harvesting grain while managing straw residue:
+
+```{r harvest-example, echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
+# Configuration for wheat grain harvest:
+# - Plant: Wheat
+# - RemovalType: Harvesting
+# - RemovalDates: 15-Dec
+# - Grain organ: LiveToRemove = 1.00, LiveToResidue = 0.00 (all grain removed)
+# - Leaf organ: LiveToRemove = 0.00, LiveToResidue = 1.00 (all to residue)
+# - Stem organ: LiveToRemove = 0.20, LiveToResidue = 0.80 (80% retained as stubble)
+# - Root organ: LiveToRemove = 0.00, LiveToResidue = 1.00 (roots decompose in situ)
+
+# This configuration removes all grain from the field while retaining most 
+# vegetative material as surface residue to protect soil and provide nutrients
+```
+
+
+## See Also
+
+* **Source code:** [BiomassRemovalEvents.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Management/BiomassRemovalEvents.cs)
