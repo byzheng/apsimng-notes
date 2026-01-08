@@ -1,6 +1,6 @@
 project:
   type: website
-  # pre-render: _scripts/run_apsimx.R
+  pre-render: _scripts/run_apsimx.R
   render:
     - "*.qmd"
     - "*.md"

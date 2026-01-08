@@ -1,0 +1,19 @@
+---
+title: "Phenology"
+---
+
+
+The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of barley plants.
+
+
+## Thermal Time
+
+Daily [Thermal Time](ThermalTime.qmd) is based on [XYPairs](/docs/Models/Functions/XYPairs.qmd) function with base temperature of 4°C and optimum temperature of 26°C.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with 6 degrees twilight. 
+
+## Vernalisation
+
+Barley development is influenced by vernalisation, with [VrnSensitivity](Variables.qmd#vrnsensitivity) determining the reduction in leaf number as vernalisation accumulates. The [DailyVernalisation](Variables.qmd#dailyvernalisation) is calculated based on thermal time and temperature response.

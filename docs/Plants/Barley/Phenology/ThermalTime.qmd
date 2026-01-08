@@ -1,0 +1,11 @@
+---
+title: "Thermal Time"
+format: html
+params:
+    plant: Barley
+    response.x: [0, 26, 37]
+    response.y: [0, 26, 0]
+    three_cardinal: true
+---
+
+{{< include /_includes/Plants/Phenology/ThermalTime/CardinalTemperatureThreeHourly.qmd >}}
