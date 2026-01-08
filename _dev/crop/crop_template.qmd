@@ -18,19 +18,21 @@ setup_qmd()
 * **Importance for agronomy or breeding:** <Explain why it matters>
 * **Environmental sensitivities:** <List key environmental factors affecting this component, e.g., temperature, photoperiod, water, N>
 
-## Component Interaction Map
 
-* **Inputs:** <List inputs from other modules or environmental drivers>
-* **Outputs:** <List outputs that feed other modules>
-* **Interactions:** <Brief description of interactions with other plant components>
+## Cultivar-Specific Parameters
 
-Example (text-based diagram):
 
-```
-Phenology → LeafGrowth → LightInterception → Biomass → Grain
-```
+| Name                                      | Description                                    | Default Value |
+| ----------------------------------------- | ---------------------------------------------- | ------------- |
+| [Phenology].Emerging.ShootLag.FixedValue  | Lag before coleoptile starts to elongate (°Cd) | 40.0          |
+| [Phenology].Emerging.ShootRate.FixedValue | Rate of shoot elongation (°Cd/mm)              | 1.5           |
+| ...                                       | ...                                            | ...           |
 
-## Methodology
+## Output Variables  
+
+
+
+## Processes and Algorithms
 
 * **Key biological assumptions:**
 
@@ -41,15 +43,6 @@ Phenology → LeafGrowth → LightInterception → Biomass → Grain
 
   $$ <Equation 2> $$ <Explanation in plain language>
 
-
-
-## Cultivar-Specific Parameters
-
-| Name                                      | Description                                    | Default Value |
-| ----------------------------------------- | ---------------------------------------------- | ------------- |
-| [Phenology].Emerging.ShootLag.FixedValue  | Lag before coleoptile starts to elongate (°Cd) | 40.0          |
-| [Phenology].Emerging.ShootRate.FixedValue | Rate of shoot elongation (°Cd/mm)              | 1.5           |
-| ...                                       | ...                                            | ...           |
 
 
 ## Practical Example
@@ -64,8 +57,6 @@ Phenology$Emerging$ShootLag$FixedValue <- 40
 Phenology$Emerging$ShootRate$FixedValue <- 1.5
 ```
 
-## Known Limitations
+## See Also
 
-* <List assumptions and limitations of this component>
-* <Mention scenarios where the model may be less accurate>
-* <Highlight simplifications in APSIM NG compared to real biology>
+* [Related Component 1](related_component_1.qmd)
