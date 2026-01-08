@@ -1,0 +1,80 @@
+name: Quarto PR Preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  preview:
+    if: github.event.action != 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.5.0'
+
+      - name: Install R Dependencies
+        uses: r-lib/actions/setup-renv@v2
+        with:
+          cache-version: 1
+
+      - name: Compile APSIMX
+        uses: byzheng/apsimx-actions@main
+
+      - name: Cache Quarto freeze state
+        uses: actions/cache@v3
+        with:
+          path: _freeze
+          key: freeze-preview-${{ github.event.pull_request.number }}-${{ hashFiles('**/*.qmd') }}
+          restore-keys: |
+            freeze-preview-${{ github.event.pull_request.number }}-
+
+      - name: Render docs
+        run: quarto render
+
+      - name: Prepare preview directory
+        run: |
+          mkdir -p preview/pr-${{ github.event.pull_request.number }}
+          cp -r _site/* preview/pr-${{ github.event.pull_request.number }}
+
+      - name: Deploy preview to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: preview
+          destination_dir: preview
+          keep_files: true
+
+      - name: Comment preview URL
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: apsim-preview
+          message: |
+            📘 **APSIM NG Docs Preview**
+            
+            🔗 https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/preview/pr-${{ github.event.pull_request.number }}/
+
+  cleanup:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Remove preview
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          destination_dir: preview/pr-${{ github.event.pull_request.number }}
+          keep_files: false
