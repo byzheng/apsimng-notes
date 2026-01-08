@@ -1615,6 +1615,111 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html",
+    "title": "Thermal Time",
+    "section": "",
+    "text": "Docs Plants Barley Phenology Thermal Time\nThermal time (also called growing degree days) is the primary driver of phenological development in the Barley model. It determines the rate of developmental progress through crop’s phases and is used by organs to determine potential growth rates.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#overview",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#overview",
+    "title": "Thermal Time",
+    "section": "Overview",
+    "text": "Overview\n\nBiological role: Thermal time quantifies the accumulated heat exposure experienced by the crop, translating calendar time into physiological time based on temperature. It represents the effective temperature for plant development above a base temperature.\nPlacement in crop system: Thermal time is calculated daily within the Phenology component and serves as the fundamental progression driver for all phenological phases (Germinating, Emerging, Vegetative, Reproductive, Grain Filling) and many organ growth processes.\nImportance for agronomy or breeding: Thermal time allows prediction of crop development stages under varying temperature regimes, enabling better crop management decisions (sowing dates, irrigation timing, harvest scheduling) and breeding selection for different thermal environments.\nEnvironmental sensitivities:\n\nTemperature: Primary driver - responds to air temperature with three cardinal temperatures defining the response curve\nDiurnal temperature variation: Captured through sub-daily interpolation to account for temperature fluctuations throughout the day with three-hourly interpolation method",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#component-interaction-map",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#component-interaction-map",
+    "title": "Thermal Time",
+    "section": "Component Interaction Map",
+    "text": "Component Interaction Map\n\nInputs:\n\nDaily maximum air temperature (from Weather)\nDaily minimum air temperature (from Weather)\n\nOutputs:\n\nDaily thermal time (°Cd) - used by all phenology phases",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#methodology",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#methodology",
+    "title": "Thermal Time",
+    "section": "Methodology",
+    "text": "Methodology\n\nInterpolation of sub-daily temperature\nThe daily minimum and maximum air temperatures are used to calculate thermal time using sub-daily interpolation with three-hourly intervals.\n\n\n\n\n\n\n\n\nFigure 1: Three-Hourly Air Temperature Interpolation with daily minimum of 10°C and maximum of 30°C\n\n\n\n\n\n\n\nThree-hourly Thermal Time\nKey biological assumptions\n\nPlant development rate increases linearly with temperature between base (0°C) and optimum (26°C) temperatures\nDevelopment ceases below the base temperature (0°C) and above a maximum temperature (37°C)\nDevelopment rate declines linearly between optimum and maximum temperatures\nDiurnal temperature variation affects development - captured through sub-daily interpolation rather than simple daily mean temperature\nThe same thermal time response applies across all developmental phases (no phase-specific temperature responses)\n\nMathematical representation:\nAt each three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve through linear interpolation between points:\n\n\n\n\n\nThermal Time Function with Three Cardinal Temperatures\n\n\n\n\nThe thermal time response to air temperature (\\(T\\)) follows a three-cardinal-temperature model (0°C (base), 26°C (optimum), and 37°C (maximum)):\n\\[\nTT_{i} = \\begin{cases}\n0 & \\text{if } T \\leq 0°C \\\\\nT & \\text{if } 0°C &lt; T \\leq 26°C \\\\\n26 - \\frac{26}{37 - 26}(T - 26) & \\text{if } 26°C &lt; T \\leq 37°C \\\\\n0 & \\text{if } T &gt; 37°C\n\\end{cases}\n\\]\nWhere \\(TT_{i}\\) is the thermal time (°Cd) at temperature \\(T\\) (°C).\n\n\nDaily Thermal Time\nDaily thermal time is calculated using sub-daily interpolation with three-hourly thermal time values. Air temperature is interpolated from daily maximum and minimum using the three-hourly air temperature interpolation method, and the thermal time response is applied at each three-hour interval, then aggregated to give the daily total:\n\\[\nTT_{\\text{daily}} = \\frac{1}{8} \\sum_{i=1}^{8} TT_{t}(T_{i})\n\\]\nwhere \\(T_i\\) represents the interpolated temperature at each three-hour interval.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#cultivar-specific-parameters",
+    "title": "Thermal Time",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nThe thermal time calculation itself has no cultivar-specific parameters - the temperature response is fixed for all Barley genotypes.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#practical-example",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#practical-example",
+    "title": "Thermal Time",
+    "section": "Practical Example",
+    "text": "Practical Example\nFor a day with:\n\nMaximum temperature: 35°C\nMinimum temperature: 10°C\n\nThree hourly air temperatures are interpolated using three-hourly interpolation. Then three hourly thermal time values are calculated using the defined temperature response curve.\n\n\n\n\n\n3-Hour Period\nTemperature (°C)\nThermal Time (°Cd)\n\n\n\n\n1\n34.3\n6.5\n\n\n2\n32.8\n10.0\n\n\n3\n29.3\n18.1\n\n\n4\n24.8\n24.8\n\n\n5\n19.9\n19.9\n\n\n6\n15.5\n15.5\n\n\n7\n12.3\n12.3\n\n\n8\n11.2\n11.2\n\n\n\n\n\nFinally, the daily thermal time is the average of the eight three-hourly thermal time values (i.e. 14.8 °Cd).\n\n\n\n\n\n\n\n\nFigure 2: Three-Hourly Air Temperature and Corresponding Thermal Time Values. The black horizontal line indicates the daily thermal time.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/ThermalTime.html#see-also",
+    "href": "docs/Plants/Barley/Phenology/ThermalTime.html#see-also",
+    "title": "Thermal Time",
+    "section": "See Also",
+    "text": "See Also\n\nSubDailyInterpolation Function\nThreeHourAirTemperature Function\nPhenology Overview",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
     "objectID": "docs/Models/Variables.html",
     "href": "docs/Models/Variables.html",
     "title": "Model Variables",
@@ -2100,7 +2205,7 @@
     "href": "docs/Models/PMF/Phenology/Phenology.html#phases",
     "title": "Phenology",
     "section": "Phases",
-    "text": "Phases\nA list of available phenology phases that can be added as children to the Phenology model:\n\n\n\n\nTable 1: Phenology Phases Available\n\n\n\n\n\n\nPhase\nDescription\n\n\n\n\nEmergingPhase\nThe EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, res …\n\n\nEndPhase\nEndPhase is the final phase in a crop’s phenological development …\n\n\nGenericPhase\nThe GenericPhase is a phenological phase used within a plant’s developmental sequence …\n\n\nGerminatingPhase\nThe GerminatingPhase represents a phenological sub-phase within a plant’s developmental timeline, …\n\n\nLeafAppearancePhase\nThe LeafAppearancePhase represents a developmental phase in a plant’s life cycle …\n\n\nSimpleLeafAppearancePhase\nThe SimpleLeafAppearancePhase represents a phenological phase where the duration of the phase is d …\n\n\nVernalisationPhase\nThe VernalisationPhase defines a phenological development phase that is completed when vernalisati …",
+    "text": "Phases\nA list of available phenology phases that can be added as children to the Phenology model:\n\n\n\n\nTable 1: Phenology Phases Available\n\n\n\n\n\n\nPhase\nDescription\n\n\n\n\nEmergingPhase\nThe EmergingPhase represents a phenological sub-phase within a plant’s developmental timeline, res …\n\n\nEndPhase\nsetup_qmd() EndPhase is the final phase in a crop’s phenological development …\n\n\nGenericPhase\nsetup_qmd() The GenericPhase is a phenological phase used within a plant’s developmental sequence …\n\n\nGerminatingPhase\nsetup_qmd() The GerminatingPhase represents a phenological sub-phase within a plant’s developmenta …\n\n\nLeafAppearancePhase\nsetup_qmd() The LeafAppearancePhase represents a developmental phase in a plant’s life cycle where …\n\n\nSimpleLeafAppearancePhase\nsetup_qmd() The SimpleLeafAppearancePhase represents a phenological phase where the duration of th …\n\n\nVernalisationPhase\nsetup_qmd() The VernalisationPhase defines a phenological development phase that is completed when …",
     "crumbs": [
       "Home",
       "Docs",
@@ -8958,6 +9063,62 @@
       "Home",
       "Docs",
       "Models"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/index.html",
+    "href": "docs/Plants/Barley/Phenology/index.html",
+    "title": "Phenology",
+    "section": "",
+    "text": "Docs Plants Barley Phenology Phenology\nThe Phenology model in APSIM NG simulates the development of barley plants.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/index.html#thermal-time",
+    "href": "docs/Plants/Barley/Phenology/index.html#thermal-time",
+    "title": "Phenology",
+    "section": "Thermal Time",
+    "text": "Thermal Time\nDaily Thermal Time is based on XYPairs function with base temperature of 4°C and optimum temperature of 26°C.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/index.html#photoperiod",
+    "href": "docs/Plants/Barley/Phenology/index.html#photoperiod",
+    "title": "Phenology",
+    "section": "Photoperiod",
+    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with 6 degrees twilight.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Barley/Phenology/index.html#vernalisation",
+    "href": "docs/Plants/Barley/Phenology/index.html#vernalisation",
+    "title": "Phenology",
+    "section": "Vernalisation",
+    "text": "Vernalisation\nBarley development is influenced by vernalisation, with VrnSensitivity determining the reduction in leaf number as vernalisation accumulates. The DailyVernalisation is calculated based on thermal time and temperature response.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Barley",
+      "Phenology"
     ]
   },
   {
