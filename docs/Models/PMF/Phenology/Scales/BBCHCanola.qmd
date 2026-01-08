@@ -1,0 +1,152 @@
+---
+title: "BBCHCanola"
+format: html
+---
+
+A phenological staging system that converts APSIM-NG's internal growth stages into standardized BBCH (Biologische Bundesanstalt, Bundessortenamt und CHemische Industrie) growth stages for [canola](/docs/Plants/Canola/index.qmd) [@meier_growth_2001], providing internationally recognized developmental benchmarks for agricultural research and management.
+
+## Overview
+
+The BBCHCanola implements a comprehensive translation system that converts APSIM-NG's internal phenological phases into the internationally standardized BBCH growth stage codes [@meier_growth_2001] widely used in agricultural research and crop management. This system provides a common language for describing crop development stages across different simulation platforms and field observations, enabling seamless integration between modeling and practical applications.
+
+The BBCH system divides crop development into 10 principal growth stages (0-9), each subdivided into secondary stages, creating a numerical scale from 00 to 99. This model specifically handles canola crops from germination through maturity, incorporating key developmental milestones such as emergence, floral initiation, flowering, pod development, and grain filling.
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+
+| Component     | Model         | Connection Type | Description                                          |
+|:--------------|:--------------|:----------------|:-----------------------------------------------------|
+| Phenology | [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) | **First Available** | Provides current growth phase, stage progression, and fraction completed within phases. |
+| Plant | [Plant](/docs/Models/PMF/Plant.qmd) | **First Available** | Provides plant status (IsAlive) and days after sowing information. |
+
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| Stage | double | Current BBCH growth stage value (0-90 scale) calculated from internal phenological state. |
+| StageDAS | double | Days After Sowing for specific BBCH stage when it first occurs. Example usage is `StageDAS(51)`. |
+
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+
+
+### Reference Table: Phase-Based BBCH Calculations for Canola
+
+The complete mapping of APSIM-NG phases to BBCH calculations for canola:
+
+| APSIM Stage | Growth Phase | BBCH Code | BBCH Calculation | Description |
+|-------------|--------------|-----------|------------------|-------------|
+| 1-2 | Germinating | 0-5 | $5 \times F_{\text{phase}}$ | Germination progress |
+| 2-3 | Emerging | 5-10 | $5 + 5 \times F_{\text{phase}}$ | Emergence from soil surface |
+| 3 | Emergence | 10 | - | Emergence complete |
+| 4 | FloralInitiation | 31 | Linear interpolation | Floral initiation |
+| 5 | GreenBud | 51 | Linear interpolation | Green bud visible |
+| 6 | StartFlowering | 60 | Linear interpolation | Start of flowering |
+| 9 | EndFlowering | 69 | Linear interpolation | End of flowering |
+| 10 | EndPodDevelopment | 79 | Linear interpolation | End of pod development |
+| 11 | EndGrainFill | 87 | Linear interpolation | End of grain filling |
+| 12 | Maturity | 90 | Linear interpolation | Maturity |
+
+where $F_{\text{phase}}$ is the fraction through the current phase. Linear interpolation is used between stages 3-12.
+
+
+
+### Early Vegetative Development (BBCH 0-10)
+
+The BBCHCanola model calculates growth stages based on the current phenological phase, with different calculation methods applied depending on the developmental stage.
+
+**Germination Phase (BBCH 0-5):**
+
+During the Germinating phase, BBCH stage is calculated as:
+
+$$
+\text{BBCH} = 5 \times F_{\text{germ}}
+$$
+
+where $F_{\text{germ}}$ represents the fraction of progress through the germination phase.
+
+**Emergence Phase (BBCH 5-10):**
+
+During the Emerging phase, BBCH stage is calculated as:
+
+$$
+\text{BBCH} = 5 + 5 \times F_{\text{emerg}}
+$$
+
+where $F_{\text{emerg}}$ represents the fraction of progress through the emergence phase.
+
+### Vegetative and Reproductive Development (BBCH 10-90)
+
+For stages from Emergence (Stage 3) through Maturity (Stage 12), the model uses linear interpolation between key phenological milestones specific to canola development:
+
+The mapping between APSIM-NG stages and BBCH codes for canola is:
+
+| APSIM Stage | APSIM Name | BBCH Code | BBCH Description |
+|-------------|------------|-----------|------------------|
+| 3.0 | Emergence | 10 | Cotyledons emerged |
+| 4.0 | FloralInitiation | 31 | Floral initiation |
+| 5.0 | GreenBud | 51 | Green bud visible |
+| 6.0 | StartFlowering | 60 | First flowers open |
+| 9.0 | EndFlowering | 69 | End of flowering |
+| 10.0 | EndPodDevelopment | 79 | End of pod development |
+| 11.0 | EndGrainFill | 87 | Physiological maturity |
+| 12.0 | Maturity | 90 | Harvest maturity |
+
+
+```{r fig-bbch-canola-mapping, fig.height = 5, fig.cap="APSIM to BBCH Growth Stage Mapping for Canola"}
+stage_data <- data.frame(
+    APSIM_Stage = c(3.0, 4.0, 5.0, 6.0, 9.0, 10.0, 11.0, 12.0),
+    BBCH_Stage = c(10, 31, 51, 60, 69, 79, 87, 90),
+    Description = c("Emergence", "Floral initiation", "Green bud", 
+                   "Start flowering", "End flowering", "End pod development",
+                   "End grain fill", "Maturity")
+)
+
+# Create the plot
+library(ggplot2)
+
+ggplot(stage_data, aes(x = APSIM_Stage, y = BBCH_Stage)) +
+    geom_line(color = "blue", size = 1.2) +
+    geom_point(color = "red", size = 3) +
+    geom_text(aes(label = paste0("BBCH ", BBCH_Stage)), 
+              hjust = -0.1, vjust = -0.5, size = 3) +
+    labs(title = "APSIM to BBCH Growth Stage Mapping for Canola",
+         x = "APSIM Growth Stage",
+         y = "BBCH Growth Stage",
+         subtitle = "Linear interpolation between defined reproductive growth stages") +
+    theme_minimal() +
+    theme(plot.title = element_text(hjust = 0.5),
+          plot.subtitle = element_text(hjust = 0.5)) +
+    scale_x_continuous(breaks = stage_data$APSIM_Stage) +
+    scale_y_continuous(breaks = stage_data$BBCH_Stage)
+```
+
+
+## User Interface
+
+BBCHCanola can be added as a child of a Phenology node in the model tree. Right-click the Phenology node, select "Add Model...", and search for BBCHCanola in the Filter Box.
+
+
+## See Also
+
+* **Source code:** [BBCHCanola.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/PMF/Phenology/Scales/BBCHCanola.cs)
