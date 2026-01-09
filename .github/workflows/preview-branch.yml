@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - main
+  delete:
 
 permissions:
   contents: write
@@ -32,6 +33,14 @@ jobs:
       - name: Compile APSIMX
         uses: byzheng/apsimx-actions@main
 
+      - name: Cache Quarto freeze state
+        uses: actions/cache@v3
+        with:
+          path: _freeze
+          key: freeze-${{ github.ref }}-${{ hashFiles('**/*.qmd') }}
+          restore-keys: |
+            freeze-${{ github.ref }}-
+
       - name: Render docs
         run: quarto render
 
@@ -42,3 +51,15 @@ jobs:
           publish_dir: _site
           destination_dir: branch/${{ github.ref_name }}
           keep_files: true
+
+  cleanup:
+    if: github.event_name == 'delete'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove branch preview from gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          destination_dir: branch/${{ github.ref_name }}
+          keep_files: false
