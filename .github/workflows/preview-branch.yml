@@ -11,6 +11,7 @@ permissions:
 
 jobs:
   preview:
+    if: github.event_name != 'delete'
     runs-on: ubuntu-latest
 
     steps:
