@@ -1489,7 +1489,7 @@ These connections allow the model to exchange information—such as environmenta
 <tr class="even">
 <td>4</td>
 <td>FloralInitiation</td>
-<td>31</td>
+<td>30</td>
 <td>Linear interpolation</td>
 <td>Floral initiation</td>
 </tr>
@@ -1501,25 +1501,39 @@ These connections allow the model to exchange information—such as environmenta
 <td>Green bud visible</td>
 </tr>
 <tr class="even">
-<td>6</td>
+<td>6.0</td>
 <td>StartFlowering</td>
 <td>60</td>
 <td>Linear interpolation</td>
 <td>Start of flowering</td>
 </tr>
 <tr class="odd">
-<td>9</td>
-<td>EndFlowering</td>
-<td>69</td>
+<td>6.99</td>
+<td>-</td>
+<td>65</td>
 <td>Linear interpolation</td>
-<td>End of flowering</td>
+<td>50% of flowers on main raceme open</td>
 </tr>
 <tr class="even">
-<td>10</td>
-<td>EndPodDevelopment</td>
-<td>79</td>
+<td>7</td>
+<td>StartPodDevelopment</td>
+<td>70</td>
 <td>Linear interpolation</td>
-<td>End of pod development</td>
+<td>Pods begin to form after flowering</td>
+</tr>
+<tr class="odd">
+<td>7.99</td>
+<td>-</td>
+<td>75</td>
+<td>Linear interpolation</td>
+<td>50% of pods formed after flowering</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>StartGrainFilling</td>
+<td>80</td>
+<td>Linear interpolation</td>
+<td>Seeds begin to accumulate dry matter</td>
 </tr>
 <tr class="odd">
 <td>11</td>
@@ -1560,6 +1574,12 @@ These connections allow the model to exchange information—such as environmenta
 <p>For stages from Emergence (Stage 3) through Maturity (Stage 12), the model uses linear interpolation between key phenological milestones specific to canola development:</p>
 <p>The mapping between APSIM-NG stages and BBCH codes for canola is:</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 22%">
+<col style="width: 20%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>APSIM Stage</th>
@@ -1578,7 +1598,7 @@ These connections allow the model to exchange information—such as environmenta
 <tr class="even">
 <td>4.0</td>
 <td>FloralInitiation</td>
-<td>31</td>
+<td>30</td>
 <td>Floral initiation</td>
 </tr>
 <tr class="odd">
@@ -1594,16 +1614,28 @@ These connections allow the model to exchange information—such as environmenta
 <td>First flowers open</td>
 </tr>
 <tr class="odd">
-<td>9.0</td>
-<td>EndFlowering</td>
-<td>69</td>
-<td>End of flowering</td>
+<td>6.99</td>
+<td>-</td>
+<td>65</td>
+<td>50% of flowers on main raceme open, older petals falling</td>
 </tr>
 <tr class="even">
-<td>10.0</td>
-<td>EndPodDevelopment</td>
-<td>79</td>
-<td>End of pod development</td>
+<td>7.0</td>
+<td>StartPodDevelopment</td>
+<td>70</td>
+<td>Pods begin to form after flowering</td>
+</tr>
+<tr class="odd">
+<td>7.99</td>
+<td>-</td>
+<td>75</td>
+<td>50% of pods formed after flowering</td>
+</tr>
+<tr class="even">
+<td>8.0</td>
+<td>StartGrainFilling</td>
+<td>80</td>
+<td>Seeds begin to accumulate dry matter (grain filling starts)</td>
 </tr>
 <tr class="odd">
 <td>11.0</td>
@@ -1619,6 +1651,7 @@ These connections allow the model to exchange information—such as environmenta
 </tr>
 </tbody>
 </table>
+<p>Due to the overlapping nature of the BBCH scale during canola development after Stage 6 (<code>StartFlowering</code>), certain growth stages coincide (e.g., GS67 overlaps with GS71, and GS76 overlaps with GS80) (See details from <a href="https://www.canolacouncil.org/canola-encyclopedia/growth-stages/" class="external-link">Canola Encyclopedia</a>). The BBCH mapping designates GS65 immediately before the <code>StartPodDevelopment</code> stage and GS75 immediately before the <code>StartGrainFilling</code> stage.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-bbch-canola-mapping" class="quarto-float quarto-figure quarto-figure-center anchored">
