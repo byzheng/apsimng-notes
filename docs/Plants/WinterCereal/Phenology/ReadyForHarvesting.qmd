@@ -1,0 +1,23 @@
+---
+title: "ReadyForHarvesting"
+format: html
+---
+
+
+The **ReadyForHarvesting** phase in [Wheat](/docs/Plants/Wheat) represents the last phase after **HarvestRipe**. 
+
+## Overview
+
+The [EndPhase](/docs/Models/PMF/Phenology/Phases/EndPhase.qmd) model simulates last phase after **HarvestRipe**.
+
+- This phase starts at **EndGrainFill** and ends at **HarvestRipe**, when the grain is considered to be fully ripe.
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function. But it does not use here.
+
+
+## Cultivar-Specific Parameters
+
+> No cultivar-specific parameters are defined for this phase.
+
+## Practical Example
+
+> no practical example available

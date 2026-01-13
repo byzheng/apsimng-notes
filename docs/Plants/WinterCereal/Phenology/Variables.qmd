@@ -1,0 +1,24 @@
+---
+title: "Variables"
+format: html
+---
+
+In addition to reportable variables defined in all sub-models of [phenology](index.qmd), the phenology model reports several other variables that provide insights into the development of the wheat crop.
+
+
+## Overview
+
+The extra reported variables from the phenology model include:
+
+| Name                        | Description                                         | Units        |
+|-----------------------------|-----------------------------------------------------|--------------|
+| [Wheat].Phenology.Zadok.Stage                 | Current [Zadoks growth stage](/docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.qmd) | Zadoks Score        |
+| [Wheat].Phenology.Zadok.StageDAS                 | Current [Zadoks growth stage](/docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.qmd) | Days After Sowing        |
+| [Wheat].Phenology.EmergenceDAS                | Days after sowing when emergence occurs             | days after sowing         |
+| [Wheat].Phenology.DoubleRidgeDAS            | Days after sowing when double ridge is formed       | days after sowing         |
+| [Wheat].Phenology.TerminalSpikeletDAS         | Days after sowing when terminal spikelet is formed   | days after sowing         |
+| [Wheat].Phenology.FlagLeafDAS                | Days after sowing when flag leaf appears            | days after sowing         |
+| [Wheat].Phenology.HeadingDAS                 | Days after sowing when heading occurs               | days after sowing         |
+| [Wheat].Phenology.FloweringDAS               | Days after sowing when flowering occurs             | days after sowing         |
+| [Wheat].Phenology.MaturityDAS                | Days after sowing when maturity is reached          | days after sowing         |
+| [Wheat].Phenology.DoubleRidgePhotoperiod    | Photoperiod at double ridge formation               | hours        |

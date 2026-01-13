@@ -1,0 +1,27 @@
+---
+title: "StemElongating"
+format: html
+---
+
+
+The **StemElongating** phase in [Wheat](/docs/Plants/Wheat) represents the developmental period from **MaximumSpikeletPrimordia** to **FlagLeafAppearance**. The Final leaf number is fixed at Terminal Spikelet and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+
+## Overview
+
+The [LeafAppearancePhase](/docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.qmd) model simulates the time between the `MaximumSpikeletPrimordia` and `FlagLeafAppearance` stages.
+
+- This phase starts at **MaximumSpikeletPrimordia** and ends at **FlagLeafAppearance**.
+- The Final leaf number is fixed at Terminal Spikelet (i.e. stage **MaximumSpikeletPrimordia**) and leaves continue to appear at a rate set by thermal time and phyllochron until flag leaf ligule appears and this phase is completed.
+
+
+## Cultivar-Specific Parameters
+
+> no cultivar-specific parameters available
+
+## Practical Example
+
+> no practical example available
+
+## Simulation Example
+
+> no simulation example available

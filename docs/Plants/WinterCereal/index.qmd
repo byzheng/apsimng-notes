@@ -1,0 +1,20 @@
+---
+title: "WinterCereal"
+doc_progress: 10
+---
+
+The APSIM WinterCereal model is designed for general winter cereal crops and constructed using the Plant Modelling Framework (PMF) [@brown_plant_2014].
+
+
+## Phenology
+
+The winter cereal [phenology](Phenology/index.qmd) is simulated from sowing to harvest.
+
+## Traits
+
+Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
+
+
+## See Also
+
+* [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json)
