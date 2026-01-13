@@ -59,11 +59,13 @@ The complete mapping of APSIM-NG phases to BBCH calculations for canola:
 | 1-2 | Germinating | 0-5 | $5 \times F_{\text{phase}}$ | Germination progress |
 | 2-3 | Emerging | 5-10 | $5 + 5 \times F_{\text{phase}}$ | Emergence from soil surface |
 | 3 | Emergence | 10 | - | Emergence complete |
-| 4 | FloralInitiation | 31 | Linear interpolation | Floral initiation |
+| 4 | FloralInitiation | 30 | Linear interpolation | Floral initiation |
 | 5 | GreenBud | 51 | Linear interpolation | Green bud visible |
-| 6 | StartFlowering | 60 | Linear interpolation | Start of flowering |
-| 9 | EndFlowering | 69 | Linear interpolation | End of flowering |
-| 10 | EndPodDevelopment | 79 | Linear interpolation | End of pod development |
+| 6.0 | StartFlowering | 60 | Linear interpolation | Start of flowering |
+| 6.99 | - | 65 | Linear interpolation | 50% of flowers on main raceme open |
+| 7 | StartPodDevelopment | 70 | Linear interpolation | Pods begin to form after flowering |
+| 7.99 | - | 75 | Linear interpolation | 50% of pods formed after flowering |
+| 8 | StartGrainFilling | 80 | Linear interpolation | Seeds begin to accumulate dry matter |
 | 11 | EndGrainFill | 87 | Linear interpolation | End of grain filling |
 | 12 | Maturity | 90 | Linear interpolation | Maturity |
 
@@ -104,21 +106,27 @@ The mapping between APSIM-NG stages and BBCH codes for canola is:
 | APSIM Stage | APSIM Name | BBCH Code | BBCH Description |
 |-------------|------------|-----------|------------------|
 | 3.0 | Emergence | 10 | Cotyledons emerged |
-| 4.0 | FloralInitiation | 31 | Floral initiation |
+| 4.0 | FloralInitiation | 30 | Floral initiation |
 | 5.0 | GreenBud | 51 | Green bud visible |
 | 6.0 | StartFlowering | 60 | First flowers open |
-| 9.0 | EndFlowering | 69 | End of flowering |
-| 10.0 | EndPodDevelopment | 79 | End of pod development |
+| 6.99 | - | 65 | 50% of flowers on main raceme open, older petals falling |
+| 7.0 | StartPodDevelopment | 70 | Pods begin to form after flowering |
+| 7.99 | - | 75 | 50% of pods formed after flowering |
+| 8.0 | StartGrainFilling | 80 | Seeds begin to accumulate dry matter (grain filling starts) |
 | 11.0 | EndGrainFill | 87 | Physiological maturity |
 | 12.0 | Maturity | 90 | Harvest maturity |
 
 
+Due to the overlapping nature of the BBCH scale during canola development after Stage 6 (`StartFlowering`), certain growth stages coincide (e.g., GS67 overlaps with GS71, and GS76 overlaps with GS80) (See details from [Canola Encyclopedia](https://www.canolacouncil.org/canola-encyclopedia/growth-stages/)). The BBCH mapping designates GS65 immediately before the `StartPodDevelopment` stage and GS75 immediately before the `StartGrainFilling` stage.
+
+
 ```{r fig-bbch-canola-mapping, fig.height = 5, fig.cap="APSIM to BBCH Growth Stage Mapping for Canola"}
 stage_data <- data.frame(
-    APSIM_Stage = c(3.0, 4.0, 5.0, 6.0, 9.0, 10.0, 11.0, 12.0),
-    BBCH_Stage = c(10, 31, 51, 60, 69, 79, 87, 90),
+    APSIM_Stage = c(3.0, 4.0, 5.0, 6.0, 6.99, 7.0, 7.99, 8.0, 11.0, 12.0),
+    BBCH_Stage = c(10, 30, 51, 60, 65, 70, 75, 80, 87, 90),
     Description = c("Emergence", "Floral initiation", "Green bud", 
-                   "Start flowering", "End flowering", "End pod development",
+                   "Start flowering", "50% flowers open", "Pods begin",
+                   "50% pods formed", "Grain filling starts",
                    "End grain fill", "Maturity")
 )
 
