@@ -31,16 +31,19 @@ jobs:
         uses: byzheng/apsimx-actions@main
       
       - name: Cache Quarto freeze state
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: _freeze
           key: freeze-${{ github.ref }}-${{ hashFiles('**/*.qmd') }}
           restore-keys: |
             freeze-${{ github.ref }}-
 
-      - name: Render and Publish
-        uses: quarto-dev/quarto-actions/publish@v2
+      - name: Render docs
+        run: quarto render
+
+      - name: Publish to gh-pages without deleting previews
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          target: gh-pages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _site
+          keep_files: true

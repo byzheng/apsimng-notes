@@ -23,6 +23,11 @@ Feel free to explore, suggest improvements, or fork this repository for your own
 You can also browse these notes as a website:  
 👉 [https://apsimng-notes.bangyou.me](https://apsimng-notes.bangyou.me)
 
+Preview builds are published under subfolders and are preserved across main publishes:
+
+- PR previews: https://apsimng-notes.bangyou.me/preview/pr-<number>/
+- Branch previews: https://apsimng-notes.bangyou.me/branch/<branch-name>/
+
 ## 🤝 Contributing
 
 If you find any errors, have suggestions, or want to contribute improvements, you're welcome to create a pull request or open an issue on [GitHub](https://github.com/byzheng/apsimng-notes).

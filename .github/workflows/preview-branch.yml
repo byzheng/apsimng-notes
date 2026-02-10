@@ -35,7 +35,7 @@ jobs:
         uses: byzheng/apsimx-actions@main
 
       - name: Cache Quarto freeze state
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: _freeze
           key: freeze-${{ github.ref }}-${{ hashFiles('**/*.qmd') }}
@@ -46,7 +46,7 @@ jobs:
         run: quarto render
 
       - name: Deploy branch preview
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _site
@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Remove branch preview from gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
