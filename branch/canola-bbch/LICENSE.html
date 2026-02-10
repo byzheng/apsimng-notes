@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>license – APSIM NG Notes</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./images/icons/icon_192.png" rel="icon" type="image/png">
+<script src="site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-320e1ef9edb861ce49b497581fe021d4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": true,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-5K7WTC1T5R"></script>
+
+<script type="text/plain" cookie-consent="tracking">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-5K7WTC1T5R', { 'anonymize_ip': true});
+</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  ,
+"language":"en"
+  });
+});
+</script> 
+  
+<script src="./_scripts/js/fuzzy-search.js"></script>
+<style>
+div.callout-needs-improvement.callout {
+  border-left-color: #FFCC00;
+}
+div.callout-needs-improvement.callout-style-default > .callout-header {
+  background-color: rgba(255, 204, 0, 0.13);
+}
+div.callout-needs-improvement .callout-toggle::before {  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(33, 37, 41)" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');}
+div.callout-needs-improvement.callout-style-default .callout-icon::before, div.callout-needs-improvement.callout-titled .callout-icon::before {
+  content: '⚠️';
+  background-image: none;
+}
+</style>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo light-content">
+    <img src="./images/icons/icon.png" alt="APSIM Next Generation Icon" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">APSIM NG Notes</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./docs/index.html" aria-current="page"> 
+<span class="menu-text">Docs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./tips/index.html"> 
+<span class="menu-text">Tips</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./disclaimer.html"> 
+<span class="menu-text">Disclaimer</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/byzheng/apsimng-notes"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Docs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/abbreviations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossary of Abbreviations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/symbols.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Symbol Glossary</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">APSIM.Core</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/APSIM.Core/IFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IFunction Interface</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/APSIM.Core/IStructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IStructure</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/APSIM.Core/IStructureDependency.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IStructureDependency</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/APSIM.Core/Data/ILayerStructure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ILayerStructure</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Models</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Clock.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clock</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Connections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Connections Between Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Events.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Events</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Climate</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth3 ">  
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Core</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Core/IModel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IModel</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Core/Model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Base Class</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Core/Zone.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Zone</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/Functions/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Functions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/AccumulateFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AccumulateFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/AddFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">AddFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/Constant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Constant</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/DivideFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DivideFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/FrostHeatDamageFunctions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FrostHeatDamageFunctions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/HourlySinPpAdjusted.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HourlySinPpAdjusted</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/MaximumFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MaximumFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/MinimumFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MinimumFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/MultiplyFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MultiplyFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/PhaseLookup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PhaseLookup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/PhaseLookupValue.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PhaseLookupValue</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/PhotoperiodFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PhotoperiodFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/SubDailyInterpolation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SubDailyInterpolation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/SubtractFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SubtractFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/ThreeHourAirTemperature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ThreeHourAirTemperature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/XYPairs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">XYPairs</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">DemandFunctions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/DemandFunctions/StorageNDemandFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StorageNDemandFunction</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text">Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Functions/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BiomassRemovalEvents</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/Graph/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Graph/EventNamesOnGraph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EventNamesOnGraph</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/Management/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Management</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Management/BiomassRemovalEvents.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BiomassRemovalEvents</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Management/FertiliserType.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FertiliserType</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/PMF/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PMF</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Plant.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plant Model</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/PMF/Arbitrator/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Arbitrator</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-13" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Arbitrator/NutrientConstrainedAllocationMethod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NutrientConstrainedAllocationMethod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Arbitrator/RelativeAllocation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">RelativeAllocation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/PMF/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-14" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/PMF/Phenology/CAMP/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAMP</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-15" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-15" class="collapse list-unstyled sidebar-section depth5 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/CalcCAMPVrnRates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CalcCAMPVrnRates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/CAMP.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CAMP</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/ColdVrnResponse.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ColdVrnResponse</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/CultivarRateParams.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CultivarRateParams</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/FinalLeafNumberSet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FinalLeafNumberSet</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/FLNParameterEnvironment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FLNParameterEnvironment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/CAMP/IVrn1Expression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IVrnExpression</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/PMF/Phenology/Phases/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phases</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-16" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-16" class="collapse list-unstyled sidebar-section depth5 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/EmergingPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EmergingPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/EndPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EndPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/GenericPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GenericPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/GerminatingPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GerminatingPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/IPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/IPhaseWithSetableCompletionDate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithSetableCompletionDate</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/IPhaseWithTarget.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhaseWithTarget</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/LeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LeafAppearancePhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/SimpleLeafAppearancePhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SimpleLeafAppearancePhase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Phases/VernalisationPhase.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">VernalisationPhase</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false">
+ <span class="menu-text">Scales</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-17" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-17" class="collapse list-unstyled sidebar-section depth5 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Scales/BBCH.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BBCH</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Scales/BBCHCanola.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BBCHCanola</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ZadokPMFWheat</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interfaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-18" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-18" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Interfaces/IIndexedFunction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IIndexedFunction</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/PMF/Interfaces/IPhenology.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhenology</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false">
+ <span class="menu-text">Organs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-19" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-19" class="collapse list-unstyled sidebar-section depth4 ">  
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false">
+ <span class="menu-text">Structure</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-20" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-20" class="collapse list-unstyled sidebar-section depth4 ">  
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Models/Traits/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traits</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-21" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-21" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Traits/CO2/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CO2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false">
+ <span class="menu-text">Interfaces</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-22" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-22" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/DailyMetDataFromFile.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DailyMetDataFromFile</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/IInterpolationMethod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IInterpolationMethod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/ILeaf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ILeaf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/ISoilTemperature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ISoilTemperature</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/ISoilWater.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ISoilWater</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Interfaces/IWeather.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IWeather</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false">
+ <span class="menu-text">Soils</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-23" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-23" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Models/Soils/IPhysical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">IPhysical</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plants</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-24" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-24" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Barley/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Barley</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-25" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-25" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Barley/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-26" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-26" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Barley/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thermal Time</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Canola/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Canola</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-27" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-27" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" role="navigation" aria-expanded="false">
+ <span class="menu-text">Examples</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-28" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-28" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Examples/canola_example1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Canola Example Simulation 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false">
+ <span class="menu-text">Leaf</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-29" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-29" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Leaf/FinalLeafNumber.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FinalLeafNumber</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Leaf/NodeNumber.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NodeNumber</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Canola/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-30" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-30" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/BudDevelopment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">BudDevelopment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/EarlyFlowering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyFlowering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/EarlyGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/EarlyPodDevelopment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">EarlyPodDevelopment</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emerging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Germinating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/LateGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LateGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Maturing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Maturing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/MidGrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MidGrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Photoperiod.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Photoperiod</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ReadyForHarvesting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Ripening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ripening</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/StemElongation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StemElongation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thermal Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Canola/Phenology/Vegetative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vegetative</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Chickpea/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Chickpea</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-31" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-31" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Chickpea/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Oats/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Oats</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-32" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-32" class="collapse list-unstyled sidebar-section depth3 ">  
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Wheat/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wheat</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-34" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-34" class="collapse list-unstyled sidebar-section depth3 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Leaf/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Leaf</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Root/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Root</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Spike/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spike</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Stem/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Stem</span></a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-35" role="navigation" aria-expanded="false">
+ <span class="menu-text">Examples</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-35" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-35" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Examples/wheat_example1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Wheat Example Simulation 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Wheat/Grain/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grain</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-36" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-36" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Grain/NitrogenDemand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Grain Nitrogen Filling Rate or Nitrogen Demand (Wheat)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Wheat/Phenology/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phenology</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-37" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-37" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Emerging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Emerging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Flowering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Flowering</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Germinating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Germinating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/GrainExpanding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GrainExpanding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/GrainFilling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GrainFilling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/GrainRipening.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">GrainRipening</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/HaunStage.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Haun Stage</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Heading.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Heading</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/LeavesInitiating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LeavesInitiating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Phyllochron.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Phyllochron</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/ReadyForHarvesting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ReadyForHarvesting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/SpikeletsDifferentiating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">SpikeletsDifferentiating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/StemElongating.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">StemElongating</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/ThermalTime.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Thermal Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Phenology/Variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Variables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./docs/Plants/Wheat/Traits/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Traits</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-38" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-38" class="collapse list-unstyled sidebar-section depth4 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Traits/co2-wheat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CO2 for Wheat</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./docs/Plants/Wheat/Traits/FrostHeat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Frost and Heat Combined Stress</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#general-use-licence-agreement-for-agricultural-production-systems-simulator-apsim" id="toc-general-use-licence-agreement-for-agricultural-production-systems-simulator-apsim" class="nav-link active" data-scroll-target="#general-use-licence-agreement-for-agricultural-production-systems-simulator-apsim">GENERAL USE LICENCE AGREEMENT FOR AGRICULTURAL PRODUCTION SYSTEMS SIMULATOR (APSIM)</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/LICENSE.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="general-use-licence-agreement-for-agricultural-production-systems-simulator-apsim" class="level1">
+<h1>GENERAL USE LICENCE AGREEMENT FOR AGRICULTURAL PRODUCTION SYSTEMS SIMULATOR (APSIM)</h1>
+<p>The Licensee must carefully read all the terms and conditions of this Agreement before downloading the APSIM Software. The terms and conditions of this Agreement are legally binding. Download of the APSIM Software indicates the Licensee’s acceptance of these terms and conditions. The licence granted under this Agreement is only given on the Licensee’s acceptance of these terms and conditions and will be subject to the Licensee’s continual compliance with them. If the Licensee does not agree to these terms and conditions they must not download, install or use the APSIM Software.</p>
+<p>This Agreement is effective and commences on and from the date of download of the APSIM Software.</p>
+<p><strong>BETWEEN</strong></p>
+<p>The <strong>State of Queensland acting through its Department of Agriculture and Fisheries</strong> (ABN 66 934 348 189) which has its head office at 41 George Street, Brisbane, QLD 4000, Australia (<strong>DAF</strong>)</p>
+<p><strong>The University of Queensland</strong> (ABN 63 942 912 684) a body corporate established under the University of Queensland Act 1998 (Qld) which has its head office at St Lucia, QLD 4072, Australia (<strong>UQ</strong>)</p>
+<p><strong>Commonwealth Scientific and Industrial Research Organisation</strong> (ABN 41 687 119 230), a body corporate established by the Commonwealth Science and Industry Research Act 1949 and having its principal office at CSIRO Black Mountain Science and Innovation Park, Clunies Ross Street, Acton, ACT 2601, Australia (<strong>CSIRO</strong>)</p>
+<p><strong>AgResearch Limited</strong> (Company Number 552736), a Crown Research Institute established under the Crown Research Institutes Act 1992 having its registered office at Lincoln Research Centre, 1365 Springs Road, Lincoln, 7674, New Zealand (<strong>AgResearch</strong>)</p>
+<p><strong>University of Southern Queensland</strong> (ABN 40 234 732 081) a body corporate established pursuant to the provisions of the University of Southern Queensland Act 1998 (Qld) of West Street, Toowoomba, QLD 4350, Australia (<strong>USQ</strong>)</p>
+<p><strong>IOWA State University of Science and Technology</strong> with offices at 1138 Pearson Hall, 505 Morrill Road, Ames, Iowa, 50011-2103, USA (ISU)</p>
+<p><strong>The New Zealand Institute for Plant and Food Research Limited</strong>, (Company Number 547965) (NZBN 9429038983559) a Crown Research Institute established under the Crown Research Institutes Act (1992) whose registered office is at 120 Mt Albert Road, Auckland, New Zealand (<strong>PFR</strong>) (DAF, UQ, CSIRO, AgResearch, USQ, ISU and PFR are collectively referred to as the <strong>“Licensor”</strong>)</p>
+<p><strong>AND</strong></p>
+<p>The entity accepting the terms and conditions of this Agreement by downloading the APSIM Software (the <strong>“Licensee”</strong>)</p>
+<p><strong>BACKGROUND</strong></p>
+<ol type="1">
+<li>The Licensor is the owner of or is entitled to licence the APSIM Software.</li>
+<li>The Licensee wishes to obtain a General Use license to the APSIM Software from the Licensor.</li>
+<li>The Licensor has agreed to grant such a licence to the Licensee on the terms and conditions of this Agreement.</li>
+</ol>
+<p><strong>THE PARTIES AGREE</strong></p>
+<section id="definitions" class="level3">
+<h3 class="anchored" data-anchor-id="definitions">1. DEFINITIONS</h3>
+<section id="in-this-agreement" class="level4">
+<h4 class="anchored" data-anchor-id="in-this-agreement">1.1 In this Agreement:</h4>
+<p><strong>Agreement</strong> means this licence agreement.</p>
+<p><strong>APSIM Software</strong> means the APSIM Executable, including any Updates, and the Source Code.</p>
+<p><strong>APSIM Executable</strong> means the computer software system known as ‘Agricultural Production System Simulator’ (APSIM) for developing, testing and using models of production related processes, consisting of:</p>
+<pre><code>(a) collection of biological and physical sub-models (referred to as modules) made available from time to time;
+
+(b) operation, management and system control modules made available from time to time; and
+
+(c) a communication system that allows all modules to interact for the simulation of agricultural systems, and containing:
+
+(d) a range of interfaces that facilitate data input and output processing for the simulator; and
+
+(e) templates that enable new modules to be developed for other crop and soil components via re-parameterisation of the templates.</code></pre>
+<p><strong>General Use means</strong>, in relation to the APSIM Software:</p>
+<pre><code>(a) to use or develop the APSIM Software and publish and make publicly available data and/or results generated from using the APSIM Software;
+
+(b) if it is a product or process that incorporates or is derived from the APSIM Software, to use the product or process and publish and make publicly available data and/or results generated from using the APSIM Software as part of that product or process; or
+
+(c) if it is a service that uses the APSIM Software, to provide that service and publish and make publicly available data and/or results generated from using the APSIM Software for the provision of the service.</code></pre>
+<p><strong>Improvements</strong> means any developments, modifications, additions or alterations made to the APSIM Software or any component of the APSIM Software.</p>
+<p><strong>Insolvency Event</strong> means when the Licensee:</p>
+<pre><code>(a) has a receiver, receiver and manager, trustee, administrator, other controller (as defined in the Corporations Act 2001 (Cth)) or similar analogous official appointed over any of its assets or undertakings;
+
+(b) suspends payment of its debts generally;
+
+(c) is or becomes unable to pay its debts as and when they are due;
+
+(d) is presumed to be insolvent within the meaning of section 459C(2) of the Corporations Act 2001 (Cth);
+
+(e) enters into or resolves to, or any steps are taken to enter into, any arrangement, composition or compromise with, or assignment for the benefit of, its creditors or any class of them;
+
+(f) ceases to carry on business or threatens to cease to carry on business;
+
+(g) has a resolution passed or steps are taken to appoint, or to pass a resolution to appoint, an administrator, receiver, receiver and manager, trustee in bankruptcy, liquidator, provisional liquidator, controller, or other like person to the whole or any part of its business or assets;
+
+(h) has an application or order made for its winding up or dissolution or a resolution is passed or any steps are taken to pass a resolution for its winding up or dissolution, otherwise than for the purpose of an amalgamation or reconstruction that has the prior written consent of the other party; or
+
+(i) does anything that has a substantially similar effect to the events set out in (a) through
+
+(h) above.</code></pre>
+<p><strong>Intellectual Property Rights</strong> or <strong>IP</strong> means all intellectual property rights, including:</p>
+<pre><code>(a) patents, plant breeders rights, copyright, rights in circuit layouts, registered designs, trade marks, know how, trade secrets and any right to have confidential information kept confidential; and
+  
+(b) any application or right to apply for registration of any of the rights referred to in (a).</code></pre>
+<p><strong>Licensor’s Representative</strong> means the APSIM Initiative Project Officer.</p>
+<p><strong>Party</strong> or <strong>Parties</strong> means a party to this Agreement including its officers and employees.</p>
+<p><strong>Source Code</strong> means the human-readable source code which resides on https://github.com/APSIMInitiative, which may include Improvements.</p>
+<p><strong>Term</strong> means the period from the date of download of the APSIM Software until this Agreement is terminated in accordance with clause 11.</p>
+<p><strong>Third Party Claims</strong> means any claim (threatened or actual) by, or judgment or award in favour of, a third party against any Party or any other person arising directly or indirectly out of the use by the Licensee or its users of the APSIM Software or Improvements.</p>
+<p><strong>Update</strong> means any revised or new version of the APSIM Executable which may include Improvements or error corrections but does not necessarily provide additional functionality or performance.</p>
+</section>
+<section id="interpretation" class="level4">
+<h4 class="anchored" data-anchor-id="interpretation">1.2. Interpretation</h4>
+<ol type="a">
+<li><p>The following rules apply unless the context requires otherwise:</p>
+<ol type="i">
+<li><p>Headings are for convenience only and do not affect interpretation.</p></li>
+<li><p>The meaning of general words is not limited by specific examples introduced by ‘including, ’for example’ or similar expressions.</p></li>
+<li><p>No provisions of this Agreement will be construed adversely against a party on the grounds that such party was responsible for the preparation of this Agreement or that provision.</p></li>
+</ol></li>
+<li><p>Unless the contrary intention appears, a reference in this Agreement to:</p>
+<ol start="4" type="i">
+<li><p>the rights, duties, obligations and liabilities of the members of the Licensor are several, not joint or joint and several;</p></li>
+<li><p>an agreement, representation or warranty in favour of the Licensor is for the benefit of each member of the Licensor individually; and</p></li>
+<li><p>an agreement, representation or warranty by the Licensor binds each member of the Licensor individually only.</p></li>
+</ol></li>
+</ol>
+<p>Notwithstanding the foregoing, the Licensee shall only be singly liable or responsible for any payment, liability, obligation, representation or warranty of the Licensee hereunder, and it is the responsibility of the Licensor to allocate any rights among its respective constituents.</p>
+</section>
+</section>
+<section id="grant-of-licence" class="level3">
+<h3 class="anchored" data-anchor-id="grant-of-licence">2. GRANT OF LICENCE</h3>
+<ol type="a">
+<li><p>Subject to the terms and conditions of this Agreement, the Licensor hereby grants the Licensee a limited non-exclusive, fee-free, revocable, worldwide, non-sublicensable and non-transferable, General Use licence for the Term.</p></li>
+<li><p>The Licensee acknowledges and agrees that this Agreement does not restrict the Licensor’s capacity to use, and license third parties to use, the APSIM Software or Improvements for any application or to modify, develop, license, sell and/or otherwise exploit the APSIM Software and Improvements as the Licensor sees fit.</p></li>
+</ol>
+</section>
+<section id="licensees-obligations" class="level3">
+<h3 class="anchored" data-anchor-id="licensees-obligations">3. LICENSEE’S OBLIGATIONS</h3>
+<ol type="a">
+<li><p>The Licensee covenants and agrees that the Licensee will at all times:</p>
+<ol type="i">
+<li><p>ensure that the APSIM Software is used in a proper and skillful manner by competent and trained persons only in accordance with best computing practice;</p></li>
+<li><p>comply with the Licensor’s instructions and advice in relation to the use of the APSIM Software; and</p></li>
+<li><p>notify the Licensor in writing of any changes to the Licensee’s details provided at the time the Licensee accepted the terms and conditions of this Agreement as part of the download of the APSIM Software.</p></li>
+</ol></li>
+<li><p>The Licensee shall not:</p>
+<ol type="i">
+<li><p>permit unauthorised access to the APSIM Software; or</p></li>
+<li><p>rent, loan, market, distribute network or transfer all or any part of the APSIM Software or any copy thereof to any person, either on its own or with or as part of any other product or equipment, without the prior written consent of the Licensor.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="intellectual-property-rights" class="level3">
+<h3 class="anchored" data-anchor-id="intellectual-property-rights">4. INTELLECTUAL PROPERTY RIGHTS</h3>
+<ol type="a">
+<li><p>The Licensor retains full ownership of the APSIM Software and the Licensee acknowledges and agrees that this Agreement does not transfer to the Licensee any ownership in the APSIM Software made available by the Licensor.</p></li>
+<li><p>The Licensee:</p>
+<ol type="i">
+<li><p>must keep the Licensor informed of any Improvements the Licensee makes to the APSIM Software and provide the Improvements and associated details as reasonably requested by the Licensor;</p></li>
+<li><p>agrees that all IP in Improvements vests in the Licensor on and from creation, and hereby irrevocably assign to the Licensor on creation all IP in any Improvements made by the Licensee;</p></li>
+<li><p>warrants that:</p></li>
+</ol>
+<pre><code>A.  the Licensee has all necessary rights to grant the assignment in clause 4(b)(ii); and
+
+B.  the Improvements do not and will not infringe any IP or other rights of any third party; and</code></pre>
+<ol start="4" type="i">
+<li>without charging the Licensor a fee will do all things necessary and execute all documents that may be necessary to complete the vesting of ownership of the IP in Improvements in the Licensor.</li>
+</ol></li>
+<li><p>The Licensee must not take any action to challenge the validity of any IP licensed to the Licensee under this Agreement.</p></li>
+<li><p>The Licensee must advise the Licensor immediately on becoming aware of:</p>
+<ol type="i">
+<li><p>any suspected or actual infringement by any person of the IP in the APSIM Software or Improvements; and</p></li>
+<li><p>any person claiming that the APSIM Software or Improvements infringe the rights of any person.</p></li>
+</ol></li>
+<li><p>Notwithstanding anything to the contrary in this Agreement, the Licensee acknowledges the right of the Licensor to adopt, use and otherwise exploit the Improvements in any way, including a right to not adopt and/or not use or otherwise exploit the Improvements whilst retaining ownership of IP in the Improvements.</p></li>
+<li><p>In the event of a claim being made in relation to any infringement or alleged infringement (including but not limited to the defence of such alleged infringement) of any IP of a third party in connection with the APSIM Software (‘Claim’), the Licensor shall have the right in its absolute discretion and at its own expense to:</p>
+<ol type="i">
+<li>procure the right for the Licensee to continue to use the APSIM Software in accordance with this Agreement;</li>
+<li>make any alterations, modifications or adjustments to the APSIM Software and documentation so that it becomes non-infringing but maintains an equivalent functional level; and/or</li>
+<li>replace the APSIM Software with non-infringing software with an equivalent functional level and provide new documentation as required.</li>
+</ol></li>
+<li><p>If the Licensor cannot resolve a Claim, or determines it is not likely to resolve it on terms acceptable to the Licensor (whether or not it has taken or pursued any of the actions set out in subclause 4(f) and whether or not the Claim is known to be valid or is settled or defended), the Licensor may terminate this Agreement.</p></li>
+<li><p>Where a Claim is made, or threatened to be made, against the Licensee, the Licensee shall:</p>
+<ol type="i">
+<li><p>give written notice to the Licensor of the Claim as soon as reasonably practicable;</p></li>
+<li><p>not make any admission as to liability, compromise or agree to any settlement, or otherwise prejudice the Licensor�s defence of any Claim without the prior written consent of the Licensor (which consent shall not be unreasonably withheld); and</p></li>
+<li><p>at the request and expense of the Licensor, give the Licensor all reasonable assistance in respect of the conduct or settlement of any negotiations and litigation resulting from a Claim.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="updates" class="level3">
+<h3 class="anchored" data-anchor-id="updates">5. UPDATES</h3>
+<p>If the Licensor develops an Update to the APSIM Software then, at its discretion, the Licensor may make such Update available to the Licensee on the same terms as this Agreement. The Licensor is not obliged to develop or distribute any Update to the APSIM Software.</p>
+</section>
+<section id="limitation-of-liability-and-warranties" class="level3">
+<h3 class="anchored" data-anchor-id="limitation-of-liability-and-warranties">6.LIMITATION OF LIABILITY AND WARRANTIES</h3>
+<ol type="a">
+<li><p>To the full extent permitted by applicable law (and subject to clause 6(d)), the Licensor excludes any and all liability under or in relation to this Agreement and/or the APSIM Software whether under contract, tort, equity, legislation or otherwise. In no circumstances will the Licensor be liable in respect of consequential or special loss or damage (including but not limited to consequential financial loss, loss or corruption of data, loss of information, loss of profit, loss of revenue, loss of business opportunity, loss due to business interruption, loss arising from defects, wasted overheads or for any damage to goodwill or reputation) of the Licensee, or any third party however caused, which may be suffered or incurred or which may arise directly or indirectly out of the use, or inability of the Licensee or any third party to use, the APSIM Software or Improvements.</p></li>
+<li><p>The Licensor and the Licensee represent and warrant that each, respectively, has the right to enter into this Agreement. The Licensor represents and warrants that it has the right to provide APSIM Software to the Licensee as required herein and to grant the licenses described. The Licensor further represents and warrants it has not granted to any third party an exclusive license to APSIM Software.</p></li>
+<li><p>Subject to clause 6(d), except as otherwise expressly provided herein, the Licensor makes no warranties, express or implied, and excludes all warranties, representations, terms or conditions, whether express or implied, oral or written, statutory or otherwise, relating in any way to the APSIM Software or this Agreement, including any implied warranty or guarantee of merchantability or of fitness for a particular purpose to the full extent permitted by the laws in force in Australia or the laws in force in any State or Territory of Australia.</p></li>
+<li><p>This Agreement does not exclude or limit any guarantee, condition, warranty, right or liability implied into it by law (including the Competition and Consumer Act 2010), the exclusion of which would contravene the law or cause this Agreement to be void (Non-Excludable Consumer Guarantees). This Agreement is at all times to be read subject to such Non-Excludable Consumer Guarantees. The Licensor’s liability to the Licensee for breach of any term of this Agreement or of any Non-Excludable Consumer Guarantees is limited, at the Licensor’s option, to (where applicable) re-performing the goods or services, re-supplying the goods or services, or payment of the cost of re-performing or re-supplying the affected part of the goods or services. To the extent that liability can be limited, the liability of the Licensor to the Licensee in relation to this Agreement and/or the APSIM software is limited in aggregate to a maximum of AUD$100.</p></li>
+</ol>
+</section>
+<section id="assumption-of-risk" class="level3">
+<h3 class="anchored" data-anchor-id="assumption-of-risk">7. ASSUMPTION OF RISK</h3>
+<ol type="a">
+<li><p>Without limiting the generality of clause 6 of this Agreement, the Licensee acknowledges and agrees that:</p>
+<ol type="i">
+<li><p>the APSIM Software was developed for research purposes and may have inherent defects, errors or deficiencies;</p></li>
+<li><p>the Licensee’s use of the APSIM Software and any advice, opinions or information supplied by the Licensor, its officers, employees or agents concerning the APSIM Software is at the Licensee’s own risk;</p></li>
+<li><p>it is the Licensee’s responsibility to make the Licensee’s own assessment regarding the suitability of the APSIM Software and any information or management advice generated from it;</p></li>
+<li><p>the APSIM Software is supplied on the understanding that the Licensee will not hold the Licensor, their officers, employees or agents liable for any loss or damage resulting from the Licensee’s use of the APSIM Software; and</p></li>
+<li><p>the Licensee accepts this Agreement on the condition that the Licensor gives no warranty, whether express or implied:</p>
+<ol type="A">
+<li>as to the merchantable quality of the APSIM Software;</li>
+<li>that the APSIM Software or any part of it does not infringe the IP of any third party;</li>
+<li>that the APSIM Software will be suitable for a particular purpose;</li>
+<li>that use of the APSIM Software will provide any financial or monetary advantage;</li>
+<li>that the APSIM Software is or will be error free; or</li>
+<li>that the APSIM Software will not fail to operate or operate without error or other defects.</li>
+</ol></li>
+</ol></li>
+</ol>
+</section>
+<section id="licensees-indemnity" class="level3">
+<h3 class="anchored" data-anchor-id="licensees-indemnity">8. LICENSEE’S INDEMNITY</h3>
+<ol type="a">
+<li><p>Subject to clause 8(c), the Licensee agrees to indemnify the Licensor, their officers, employees and agents and keep the Licensor, their officers, employees and agents indemnified in respect of any (1) Third Party Claims; and (2) breach by the Licensee of the Licensee’s obligations under this Agreement, except to the extent that such breach was caused or contributed to by the negligence, or wilful misconduct, of the Licensor. The Licensee shall have no liability to the Licensor in relation to a Claim that is directly related to the infringement of the IP of a third party to which clause 4(f) applies and the Licensor fails to take the actions described in clauses 4(f) or fails to resolve the matter and providing that the Licensee provides the Licensor with reasonable co-operation in relation to a Claim as set out in 4(h) above.</p></li>
+<li><p>The Licensee’s obligation to indemnify the Licensor and their officers, employees and agents set out in clause 8(a) is a continuing obligation separate and independent of the Licensee’s other obligations and shall survive expiration or, where relevant, earlier termination of this Agreement.</p></li>
+<li><p>Clause 8(a) does not apply to the extent it would have the effect of limiting or excluding Non-Excludable Consumer Guarantees.</p></li>
+</ol>
+</section>
+<section id="insurance" class="level3">
+<h3 class="anchored" data-anchor-id="insurance">9. INSURANCE</h3>
+<ol type="a">
+<li><p>The Licensee:</p>
+<ol type="i">
+<li><p>must take out and maintain insurances adequate to cover its obligations under this Agreement; and</p></li>
+<li><p>must comply with the terms of its insurance policies.</p></li>
+</ol></li>
+</ol>
+</section>
+<section id="dispute-resolution" class="level3">
+<h3 class="anchored" data-anchor-id="dispute-resolution">10. DISPUTE RESOLUTION</h3>
+<ol type="a">
+<li><p>A Party must not start court proceedings (except proceedings seeking interlocutory relief) about a dispute arising out of this Agreement (‘Dispute’) unless it has complied with this clause 10.</p></li>
+<li><p>A Party claiming that a Dispute has arisen must notify the other Party to the Dispute giving details of the Dispute (‘Notification’).</p></li>
+<li><p>On receipt of a Notification each Party must with appropriate senior management negotiate in good faith to resolve the Dispute.</p></li>
+<li><p>If the Dispute is not resolved under clause 10(c) within 60 days after referral (or longer period agreed between the Parties) either Party may initiate proceedings in a court.</p></li>
+</ol>
+</section>
+<section id="termination" class="level3">
+<h3 class="anchored" data-anchor-id="termination">11. TERMINATION</h3>
+<ol type="a">
+<li><p>The Licensor may immediately terminate this Agreement by notice in writing if the Licensee commits an Insolvency Event.</p></li>
+<li><p>Either the Licensor or the Licensee may immediately terminate this Agreement by written notice to the other Party if that other Party:</p>
+<ol type="i">
+<li><p>commits a breach of this Agreement which is capable of remedy and is not remedied within thirty (30) days of notice to do so by the first Party; or</p></li>
+<li><p>commits a material breach of this Agreement (without limiting any other breach, any breach by the Licensee of clauses 3(b), 4 or 13 is a material breach).</p></li>
+</ol></li>
+<li><p>Either Party may end this Agreement by giving 30 days written notice to the other Party.</p></li>
+</ol>
+</section>
+<section id="post-terminationexpiration" class="level3">
+<h3 class="anchored" data-anchor-id="post-terminationexpiration">12. POST TERMINATION/EXPIRATION</h3>
+<p>On expiration or termination of this Agreement:</p>
+<ol type="a">
+<li><p>all licences granted to the Licensee under this Agreement immediately cease;</p></li>
+<li><p>the Licensee must immediately:</p>
+<ol type="i">
+<li><p>uninstall and stop using the APSIM Software and Improvements; and</p></li>
+<li><p>if requested by the Licensor, confirm by letter signed by an authorised person that the Licensee has complied with all of the Licensee’s obligations under this clause 12.</p></li>
+</ol></li>
+<li><p>the following clauses continue:</p>
+<p>4 (Intellectual Property Rights), 6 (Limitation of Liability and Warranties), 7 (Assumption of Risk), 8 (Licensee’s Indemnity), 9 (Insurance), 10 (Dispute Resolution), this clause 12 (Post Termination/Expiration) and 13 (Use of Names); and</p></li>
+<li><p>accrued rights and remedies of either Party are not affected.</p></li>
+</ol>
+</section>
+<section id="use-of-names" class="level3">
+<h3 class="anchored" data-anchor-id="use-of-names">13. USE OF NAMES</h3>
+<ol type="a">
+<li><p>The Licensee must not use the names, trademarks or logos of DAF, UQ, CSIRO, AgResearch, USQ, ISU or PRF without first obtaining written consent from that party.</p></li>
+<li><p>The Licensee must not use the APSIM logo or trade marks without first obtaining written consent from the Licensor.</p></li>
+<li><p>The Licensee must not use the APSIM name in any way whatsoever to represent a connection with or a sponsorship or endorsement of the Licensor without first obtaining written consent from the Licensor.</p></li>
+</ol>
+</section>
+<section id="notices" class="level3">
+<h3 class="anchored" data-anchor-id="notices">14. NOTICES</h3>
+<p>A Party notifying or giving notice under this Agreement must:</p>
+<ol type="a">
+<li><p>where notice is being given to the Licensor, provide it in writing to the person specified as being the Licensor’s Representative (from time to time) and transmit such notice by email to apsim@csiro.au; and</p></li>
+<li><p>where notice is being given to the Licensee, provide it in writing to the person specified in the Licensee’s registration details as being the Licensee’s representative, and transmit such notice by email to the email address provided by the Licensee in their registration details.</p></li>
+</ol>
+</section>
+<section id="general" class="level3">
+<h3 class="anchored" data-anchor-id="general">15. GENERAL</h3>
+<ol type="a">
+<li><p>Relationships: This Agreement does not create a relationship of employment, agency or partnership between:</p>
+<ol type="i">
+<li><p>any one or more of the persons comprising the Licensor from time to time; or</p></li>
+<li><p>the Licensee and any one or more of the persons referred to in paragraph (i) above.</p></li>
+</ol></li>
+<li><p>the Licensor or the Licensee or each party comprising the Licensor and each other or the Licensee.</p></li>
+<li><p>Several Rights: The rights and obligations of each Party and each party comprising the Licensor under this Agreement are several, not joint or joint and several.</p></li>
+<li><p>Further Action: Each Party must do or cause to be done all things necessary or desirable to give effect to, and refrain from doing things that would hinder performance of, this Agreement.</p></li>
+<li><p>Assignment: The Licensee must not assign or attempt to assign or otherwise transfer any right arising out of this Agreement.</p></li>
+<li><p>Waiver: The failure of a Party (being the Licensor or the Licensee) at any time to insist on performance by the other Party of any obligation under this Agreement is not a waiver of its right:</p>
+<ol type="i">
+<li><p>to insist on performance of, or to claim damages for breach of, that obligation unless that Party acknowledges in writing that the failure is a waiver; and</p></li>
+<li><p>at any other time to insist on performance of that or any other obligation of the other Party under this Agreement.</p></li>
+</ol></li>
+<li><p>Severability: If part or all of any clause of this Agreement is illegal or unenforceable it will be severed from this Agreement and will not affect the continued operation of the remaining provisions.</p></li>
+<li><p>Entire Agreement: This Agreement records the entire Agreement between the Licensor and the Licensee and supersedes all earlier agreements, arrangements and understandings between the Licensor and the Licensee (if any) in relation to the APSIM Software</p></li>
+<li><p>Amendment: The Licensor reserves the right to change or modify this Agreement at any time and at its sole discretion by posting revisions on www.apsim.info. Continued use of the APSIM Software following the posting of these changes or modifications will constitute acceptance of such changes or modifications.</p></li>
+<li><p>Acknowledgement: Installing the APSIM Software indicates that the Licensee has read and understood this Agreement, and agrees to be bound by its terms and conditions.</p></li>
+<li><p>Governing Law: This Agreement is governed by the laws of the State of Queensland. The Parties submit to the non-exclusive jurisdiction of the courts of the State of Queensland.</p></li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/apsimng-notes\.bangyou\.me");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./about.html">
+<p>About</p>
+</a>
+  </li>  
+    <li class="nav-item">
+    <a class="nav-link" href="./disclaimer.html">
+<p>Disclaimer</p>
+</a>
+  </li>  
+</ul>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/byzheng/apsimng-notes/edit/main/LICENSE.md" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/byzheng/apsimng-notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
