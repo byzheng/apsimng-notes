@@ -1,0 +1,31 @@
+---
+title: "Vegetative"
+format: html
+---
+
+The **Vegetative** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **Emergence** to **EndJuvenille**. This phase covers the early vegetative growth period before the plant becomes responsive to photoperiod for floral initiation.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between the **Emergence** and **EndJuvenille** stages.
+
+- This phase starts at **Emergence** and ends at **EndJuvenille**, when the juvenile phase is complete
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific and represents the duration of the juvenile period
+
+## Juvenile Phase
+
+The juvenile phase in chickpea is the period during which the plant is insensitive to photoperiod for the induction of flowering. During this phase:
+
+- The plant focuses on vegetative growth
+- Leaf area development is rapid
+- Root system establishment occurs
+- The plant is not yet responsive to day length cues
+
+Only after completing the juvenile phase does the plant become sensitive to photoperiod, which then influences the transition to reproductive development.
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Vegetative.Target   | Thermal time to complete vegetative phase (°Cd) | 400 |

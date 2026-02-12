@@ -1,0 +1,47 @@
+---
+title: "Photoperiod"
+format: html
+---
+
+The photoperiod in chickpea is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with -6 degrees twilight.
+
+## Overview
+
+Photoperiod, or day length, plays an important role in chickpea development, particularly in the transition from vegetative to reproductive phases. The photoperiod calculation determines the length of daylight hours, which influences the timing of floral initiation and subsequent developmental stages.
+
+## Calculation Method
+
+The chickpea model uses:
+
+- **Twilight angle**: -6 degrees (civil twilight)
+- **Calculation**: Based on latitude, day of year, and solar angles
+- **Function**: [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd)
+
+Civil twilight (-6 degrees) is used because it represents the period when there is enough natural light to distinguish objects clearly, which is biologically relevant for plant light perception.
+
+## Role in Phenology
+
+Photoperiod affects chickpea development in several ways:
+
+1. **Floral Initiation**: Day length influences the transition from vegetative to reproductive growth
+2. **Flowering Time**: Photoperiod sensitivity can delay or accelerate flowering depending on cultivar characteristics
+3. **Genotype Response**: Different chickpea cultivars have varying degrees of photoperiod sensitivity
+
+## Photoperiod Sensitivity
+
+Chickpea cultivars can be classified based on their photoperiod response:
+
+- **Photoperiod-sensitive cultivars**: Flowering is delayed under short days
+- **Photoperiod-insensitive cultivars**: Flowering time is relatively independent of day length
+- **Intermediate types**: Show moderate response to photoperiod
+
+The model can simulate these different responses through cultivar-specific parameters that modify the phenological development based on photoperiod values.
+
+## Practical Implications
+
+Understanding photoperiod effects is crucial for:
+
+- Predicting flowering time across different latitudes and sowing dates
+- Selecting appropriate cultivars for specific regions
+- Optimizing sowing windows to achieve desired flowering times
+- Managing risks associated with frost or heat stress during critical stages

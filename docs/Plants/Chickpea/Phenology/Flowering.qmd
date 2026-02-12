@@ -1,0 +1,32 @@
+---
+title: "Flowering"
+format: html
+---
+
+The **Flowering** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **StartFlowering** to **EndFlowering**. This phase covers the active flowering period when flowers open, pollination occurs, and pod initiation begins.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **StartFlowering** and **EndFlowering** stages.
+
+- This phase starts at **StartFlowering** and ends at **EndFlowering**
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific
+
+## Flowering Characteristics
+
+Chickpea has an indeterminate flowering habit:
+
+- Flowers appear sequentially at nodes on the main stem and branches
+- Flowering typically extends over several weeks
+- Lower nodes flower first, followed by upper nodes
+- Pod development begins while flowering continues at upper nodes
+- The flowering period varies with cultivar and environmental conditions
+
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Flowering.Target   | Thermal time for flowering duration (°Cd) | 100 |
+

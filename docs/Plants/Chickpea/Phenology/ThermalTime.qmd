@@ -1,0 +1,20 @@
+---
+title: "Thermal Time"
+format: html
+params:
+    plant: Chickpea
+    response:
+        value:
+            Pre-Emergence:
+                name: "Pre-Emergence"
+                x: [0, 30, 40]
+                y: [0, 30, 0]
+            Post-Emergence:
+                name: "Post-Emergence"
+                x: [0, 30, 40]
+                y: [0, 30, 30]
+    three_cardinal: true
+    reference: "[@singh_modeling_1996; @robertson_simulation_2002]"
+---
+
+{{< include /_includes/Plants/Phenology/ThermalTime/CardinalTemperatureThreeHourly.qmd >}}

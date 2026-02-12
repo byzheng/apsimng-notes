@@ -1,0 +1,51 @@
+---
+title: "PodInitiation"
+format: html
+---
+
+The **PodInitiation** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **EndFlowering** to **EndPodInitiation**. This phase covers the period after flowering ceases when initiated pods continue to develop and reach their final number.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **EndFlowering** and **EndPodInitiation** stages.
+
+- This phase starts at **EndFlowering** and ends at **EndPodInitiation**
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific
+
+## Pod Development
+
+During the pod initiation phase:
+
+- Pods that were initiated during flowering continue to enlarge
+- Some pod abortion may occur under stress conditions
+- Final pod number is established
+- Early-formed pods begin grain filling while later pods are still developing
+- The plant's assimilate demand increases as pods develop
+
+## Pod Set and Abortion
+
+Pod set in chickpea is influenced by:
+
+- **Assimilate availability**: Competition between vegetative growth, pod development, and grain filling
+- **Environmental stress**: Water deficit or heat stress can cause pod abortion
+- **Position on plant**: Lower pods typically have higher retention than upper pods
+- **Nutrient status**: Nitrogen availability affects pod retention
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].PodInitiation.Target   | Thermal time for pod initiation (°Cd) | Cultivar-specific |
+
+## Practical Considerations
+
+The pod initiation phase affects:
+
+1. **Final pod number**: Determines maximum pods that will contribute to yield
+2. **Yield potential**: Pod number is a key yield component
+3. **Management importance**: Critical period for maintaining water and nutrient supply
+4. **Stress sensitivity**: Pod abortion under stress reduces yield
+5. **Resource allocation**: Competition for assimilates between organs
+
+Maintaining optimal growing conditions during pod initiation helps maximize pod retention and yield potential in chickpea.

@@ -1,0 +1,45 @@
+---
+title: "Emerging"
+format: html
+---
+
+The **Emerging** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **Germination** to **Emergence**. This phase simulates seedling growth from the germinated seed to the point where the cotyledons break through the soil surface.
+
+## Overview
+
+The [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) model simulates the time between [Germination](/docs/Models/Events.html#PlantGermination) and [Emergence](/docs/Models/Events.html#PlantEmergence) stages.
+
+- This phase starts at **Germination** and ends at **Emergence**, when the seedling emerges from the soil
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** to complete this phase is defined as:
+
+$$
+\text{Target} = \text{ShootLag} + (\text{SowingDepth} \times \text{ShootRate})
+$$
+
+Where:
+
+- **ShootLag** is the lag period before shoot elongation begins (°Cd)
+- **ShootRate** is the rate of shoot elongation (°Cd/mm)
+- **SowingDepth** is the depth at which the seed is sown (mm), taken from `[Plant].SowingData.Depth`
+
+Deeper sowing results in longer emergence delays due to greater thermal time requirements.
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Emerging.ShootLag   | Lag before shoot starts to elongate (°Cd)      | 120 |
+| [Phenology].Emerging.ShootRate  | Rate of shoot elongation (°Cd/mm)              | 0.7 |
+
+## Practical Example
+
+This table illustrates how deeper sowing delays emergence due to higher thermal time requirements:
+
+| Sowing Depth (mm) | ShootLag (°Cd) | ShootRate (°Cd/mm) | Target Thermal Time (°Cd) |
+|-------------------|----------------|--------------------|---------------------------|
+| 30                | 120            | 0.7                | 141.0                     |
+| 50                | 120            | 0.7                | 155.0                     |
+| 70                | 120            | 0.7                | 169.0                     |
+
+

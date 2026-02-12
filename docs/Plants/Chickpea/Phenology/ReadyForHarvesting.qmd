@@ -1,0 +1,52 @@
+---
+title: "ReadyForHarvesting"
+format: html
+---
+
+The **ReadyForHarvesting** phase in [Chickpea](/docs/Plants/Chickpea) represents the final phase after **HarvestRipe**. This is the end phase when the crop is fully mature and ready for harvest.
+
+## Overview
+
+The [EndPhase](/docs/Models/PMF/Phenology/Phases/EndPhase.qmd) model simulates the final phase after **HarvestRipe**.
+
+- This phase starts at **HarvestRipe** and represents the terminal stage of phenological development
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function, but it does not accumulate further thermal time
+- This is an end phase that persists until the crop is harvested or removed
+
+## Crop Status
+
+Once the crop reaches ReadyForHarvesting:
+
+- All phenological development is complete
+- Seeds are at optimal moisture for harvest and storage
+- The crop remains in this phase until harvest occurs
+- Delayed harvest beyond this point provides no agronomic benefit
+
+## Harvest Considerations
+
+At this stage:
+
+- **Immediate harvest**: Crop can be harvested any time conditions permit
+- **Delay risks**: Prolonged delays increase risks of:
+  - Pod shattering and seed loss
+  - Weather damage (rain, wind, hail)
+  - Quality degradation
+  - Field accessibility issues
+- **Quality maintenance**: Proper harvest and handling preserve seed quality
+
+## Cultivar-Specific Parameters
+
+> No cultivar-specific parameters are defined for this phase.
+
+## Practical Considerations
+
+When the crop reaches ReadyForHarvesting:
+
+- Harvest as soon as field conditions and weather permit
+- Ensure harvest equipment is properly adjusted for chickpea
+- Minimize mechanical damage during harvest and handling
+- Monitor seed moisture at harvest
+- Avoid harvest during high humidity to prevent seed damage
+- Plan for proper storage or immediate marketing
+
+Prompt harvest at this stage helps maximize recoverable yield and seed quality while minimizing losses from shattering, weather damage, or quality deterioration.

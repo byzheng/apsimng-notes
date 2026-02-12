@@ -1,0 +1,30 @@
+---
+title: "FloralInitiation"
+format: html
+---
+
+The **FloralInitiation** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **EndJuvenille** to **StartBudding**. This phase covers the period when the plant has completed its juvenile phase and is now responsive to photoperiod as it transitions toward reproductive development.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **EndJuvenille** and **StartBudding** stages.
+
+- This phase starts at **EndJuvenille** and ends at **StartBudding**
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is influenced by cultivar-specific parameters
+
+## Photoperiod Sensitivity
+
+Following the juvenile phase, chickpea becomes sensitive to [Photoperiod](Photoperiod.qmd) during floral initiation. The response varies by cultivar:
+
+- **Long-day response**: Many chickpea cultivars flower earlier under longer days
+- **Day-neutral cultivars**: Some cultivars show minimal photoperiod sensitivity
+- **Quantitative response**: The effect is typically quantitative rather than absolute
+
+The photoperiod influence during this phase determines the timing of visible bud formation.
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].FloralInitiation.Target   | Base thermal time for floral initiation (°Cd) | 250 |

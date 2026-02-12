@@ -1,0 +1,52 @@
+---
+title: "Budding"
+format: html
+---
+
+The **Budding** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **StartBudding** to **StartFlowering**. This phase covers the period when floral buds are visible and developing until the first flowers open.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **StartBudding** and **StartFlowering** stages.
+
+- This phase starts at **StartBudding** and ends at **StartFlowering**
+- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific and influenced by photoperiod at end of the juvenile phase.
+
+## Bud Development
+
+During the budding phase:
+
+- Floral buds become visible at nodes
+- Buds continue to develop and enlarge
+- The plant continues some vegetative growth
+- Branching may continue depending on environmental conditions and cultivar
+
+
+The transition from bud development to flowering is primarily driven by thermal time accumulation and photoperiod at the end of the juvenile phase [@robertson_simulation_2002].
+
+```{r tbl-target}
+pd <- tibble::tibble(
+    `Photoperiod` = c(10, 12.43, 17),
+    `Target thermal time` = c(501.6, 50, 50)
+)
+pd |> 
+    knitr::kable(col.names = c("Photoperiod (h)", "Target thermal time (°Cd)"), digits = c(1, 1),
+                caption = "Photoperiod influence on target thermal time for budding phase in chickpea [@robertson_simulation_2002].")
+```
+
+```{r fig-target, fig.cap = "Photoperiod influence on target thermal time for budding phase in chickpea [@robertson_simulation_2002]."}
+pd |> 
+    ggplot2::ggplot(ggplot2::aes(x = Photoperiod, y = `Target thermal time`)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point() +
+    ggplot2::labs(x = "Photoperiod (h)", y = "Target thermal time (°Cd)") +
+    ggplot2::theme_minimal()
+```
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Budding.Target.XYPairs.X   | Photoperiod at the end of the juvenile phase (h) | 10,12.43,17 |
+| [Phenology].Budding.Target.XYPairs.Y   | Target thermal time for bud development (°Cd) | 501.6, 50, 50 |

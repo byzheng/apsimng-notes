@@ -1,0 +1,32 @@
+---
+title: "Germinating"
+format: html
+---
+
+The **Germinating** is a phenological phase in [Chickpea](/docs/Plants/Chickpea) used to represent the development period from **Sowing** to **Germination**. It determines whether the seed has germinated based on soil temperature and soil water.
+
+## Overview
+
+The [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) model is used to simulate the germination of chickpea seeds. This phase begins when Plant [Sowing](/docs/Models/Events.html#PlantSowing) occurs and ends when the plant has germinated under suitable conditions of soil temperature and soil water. See [GerminatingPhase](/docs/Models/PMF/Phenology/Phases/GerminatingPhase.qmd) for more details.
+
+### Requirements for Germination
+
+* The soil temperature must exceed a minimum threshold for germination to occur
+* The soil water content should be more than the lower limit for germination to proceed
+
+## Cultivar-Specific Parameters
+
+The germinating phase uses cultivar-specific parameters that define the environmental thresholds required for successful germination.
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Germinating.MinSoilTemperature   | Minimum soil temperature for germination (°C)      | 0 |
+
+## Practical Considerations
+
+Successful chickpea germination depends on:
+
+1. **Soil moisture**: Adequate moisture is essential for seed imbibition and activation of metabolic processes
+2. **Soil temperature**: Temperature affects the rate of enzymatic reactions during germination
+
+The model accurately simulates these environmental controls to predict germination timing under field conditions.
