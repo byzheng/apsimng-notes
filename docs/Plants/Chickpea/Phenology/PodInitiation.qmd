@@ -10,67 +10,61 @@ The **PodInitiation** phase in [Chickpea](/docs/Plants/Chickpea) represents the 
 The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **EndFlowering** and **EndPodInitiation** stages.
 
 - This phase starts at **EndFlowering** and ends at **EndPodInitiation**
-- The model uses a unique progression mechanism requiring 5 days of temp above 16 degrees (or ten days at 15 degrees) before 1cm pods are visible, due to sensitivity of pod initiation to mean daily temperature [@srinivasan_cold_1998; @clarke_response_2004]
+- The model uses a unique progression mechanism requiring 5 days of temp above 16 degrees (or ten days at 15 degrees) before 1cm pods are visible, due to sensitivity of pod initiation to mean daily temperature[@srinivasan_cold_1998; @clarke_response_2004]. These days may accumulate anytime after [start flowering](Flowering.qmd) (i.e. during previous growth phase as well as during the current phase).
 
 
-## Temperature-Day Counting Mechanism
+## Temperature-Day Counting
 
-Chickpea pod development shows strong sensitivity to mean daily temperature [@srinivasan_response_1998; @clarke_growth_2004]. Visible pods (1 cm) require specific temperature conditions before they become apparent:
+Chickpea pod development shows strong sensitivity to mean daily temperature [@srinivasan_response_1998; @clarke_growth_2004]. Visible pods (1 cm) require specific temperature conditions before they become apparent at five days above 16°C or ten days above 15°C. These temperature days may accumulate during the flowering phase. 
 
-### Temperature Thresholds
+Since the start flowering stage, the temperature-days are accumulated based on daily mean temperature ($T_{\text{mean}}$):
 
-The `PodStartTT` function counts days when mean daily temperature exceeds:
-- **5 days** with mean temperature above **16°C**, OR
-- **10 days** with mean temperature above **15°C**
+$$
+TD = \begin{cases}
+0 & \text{if } T_{\text{mean}} < 14°C \\
+\frac{T_{\text{mean}} - 14}{2} & \text{if } 14°C \leq T_{\text{mean}} < 16°C \\
+1 & \text{if } T_{\text{mean}} \geq 16°C
+\end{cases}
+$$
 
-### Cross-Phase Accumulation
+Where $TD$ represents the temperature-days accumulated for each day. For example:
 
-A unique feature of this phase is that temperature-day counting begins at the start of flowering:
+- No accumulation when mean temperature is less than 14 °C
+- 0.5 days when mean temperature is 15 °C
+- 1 day when mean temperature is 16 °C or above
 
-- Accumulation starts at **StartFlowering** (not at EndFlowering)
-- Days meeting temperature criteria accumulate throughout the **Flowering** phase
-- At **EndFlowering**, the accumulated count (`EndFloweringPodStartTT`) is recorded
-- The **PodInitiation** phase target adjusts by subtracting already-accumulated days
+
+```{r fig-temperatur-day, fig.height=4, fig.cap="Temperature-day for pod initiation depending on daily mean temperature since start of flowering", echo=FALSE}
+df <- data.frame(
+    meant = c(13, 14, 16, 17),
+    temperature_days = c(0, 0, 1, 1)
+)
+
+df |> 
+    ggplot2::ggplot(ggplot2::aes(x = meant, y = temperature_days)) +
+    ggplot2::geom_line() +
+    ggplot2::geom_point() +
+    ggplot2::labs(x = "Mean daily temperature (°C)", y = "Temperature days accumulated") +
+    ggplot2::theme_minimal()
+```
+
 
 ### Target Calculation
 
+The target for pod initiation phase is calculated at the end flowering stage by subtracting the temperature-days accumulated during [flowering phase](Flowering.qmd) from the total required temperature-days for visible pods (i.e. 5 days):
 $$
-\text{Target} = 5.0 - \text{EndFloweringPodStartTT}
+\text{Target} = 5.0 - TD_{\text{flowering}}
 $$
 
 Where:
 - **5.0** = Total temperature-days required for 1 cm pods to be visible
-- **EndFloweringPodStartTT** = Temperature-days accumulated from StartFlowering to EndFlowering
+- **TD_{\text{flowering}}** = Temperature-days accumulated from StartFlowering to EndFlowering (i.e. during the [flowering phase](Flowering.qmd))
 
 This means if 2 temperature-days were accumulated during flowering, only 3 more are needed during the PodInitiation phase.
 
-## Biological Significance
+## Pod Initiation Process
 
-This temperature-dependent mechanism reflects the physiological reality that:
-
-1. **Pod initiation is not instantaneous**: Small pods begin forming during flowering but require time to become visible
-2. **Temperature drives development**: Mean daily temperature above 15-16°C is necessary for rapid pod development
-3. **Cumulative exposure matters**: The model tracks cumulative exposure to favorable temperatures
-4. **Cooler temperatures delay visibility**: Under cooler conditions, more days are needed to reach the 1 cm threshold
-
-## Pod Development Process
-
-Once this phase is complete (1 cm pods visible):
-
-- Pod number is largely established
-- Pods continue to enlarge during subsequent grain filling phases
-- Some pod abortion may still occur under stress conditions
-- Assimilate demand increases as pods develop
-- Early-formed pods may begin grain filling while later pods are still developing
-
-## Environmental Sensitivity
-
-Pod initiation timing is sensitive to:
-
-- **Mean temperature**: Primary driver of progression through this phase
-- **Temperature variability**: Cool periods slow progression of the temperature-day count
-- **Water stress**: Can cause pod abortion even after pods become visible
-- **Nutrient availability**: Affects pod retention and development rate
+The temperature days are continuously accumulated from the end flowering stage until the remaining target is reached. 
 
 ## Cultivar-Specific Parameters
 
@@ -78,16 +72,4 @@ Pod initiation timing is sensitive to:
 |------------|-----------------------------------------------------|---------------|
 | [Phenology].PodInitiation.Target.Total | Total temperature-days required for visible pods | 5.0 |
 
-Note: The actual target is dynamically calculated by subtracting `EndFloweringPodStartTT` from this total.
-
-## Practical Considerations
-
-Understanding this temperature-dependent mechanism is important for:
-
-1. **Predicting pod set timing**: Cooler temperatures delay visible pod formation
-2. **Regional differences**: Areas with warmer spring temperatures see faster pod development
-3. **Sowing date effects**: Early sowing into cooler conditions extends the flowering-to-podding period
-4. **Stress management**: Critical to maintain favorable conditions during this temperature accumulation
-5. **Yield potential**: Timely pod formation under optimal temperatures supports higher pod numbers
-
-The temperature-day counting approach provides a mechanistic basis for predicting when visible pods will appear across varying temperature environments, more accurately than simple thermal time would allow.
+Note: The actual target is dynamically calculated by subtracting `TD_{\text{flowering}}` from this total.
