@@ -1,26 +1,34 @@
 # Function related with phenology calculations in APSIM Next Generation
 
 
-plot_cardinal_temperature <- function(x, y) {
-    x_out <- seq(-5, 40)
-    df <- data.frame(Temperature = x_out, 
-                        Response = weaana::interpolationFunction(x, y, values = x_out))
+plot_cardinal_temperature <- function(response_df) {
+    
+    interplorate <- function(df) {
+        x_out <- seq(-5, 45)
+        df <- data.frame(Temperature = x_out, 
+                        Response = weaana::interpolationFunction(df$x, df$y, values = x_out))
+        return(df)
+    }
+    pd <- response_df |> 
+        dplyr::group_by(Phase) |> 
+        dplyr::do(interplorate(.))
+    
 
-
-    ggplot2::ggplot(df, ggplot2::aes(x = Temperature, y = Response)) +
-        ggplot2::geom_line(color = "darkorange", size = 1.2) +
-        ggplot2::geom_vline(xintercept = x, linetype = "dashed", color = "grey50") +
-        ggplot2::annotate("text", x = x[1], y = max(df$Response), 
-                label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
-        ggplot2::annotate("text", x = x[2] - 3, y = max(df$Response), 
-                label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
-        ggplot2::annotate("text", x = x[3], y = max(df$Response), 
-                label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
+    ggplot2::ggplot(pd, ggplot2::aes(x = Temperature, y = Response, color = Phase)) +
+        ggplot2::geom_line(size = 1.2) +
+        # ggplot2::geom_vline(xintercept = x, linetype = "dashed", color = "grey50") +
+        # ggplot2::annotate("text", x = x[1], y = max(df$Response), 
+        #         label = "Base", vjust = -0.5, hjust = -0.1, size = 3) +
+        # ggplot2::annotate("text", x = x[2] - 3, y = max(df$Response), 
+        #         label = "Optimum", vjust = -0.5, hjust = 0.5, size = 3) +
+        # ggplot2::annotate("text", x = x[3], y = max(df$Response), 
+        #         label = "Maximum", vjust = -0.5, hjust = 1.1, size = 3) +
         ggplot2::labs(
             x = "Temperature (°C)",
             y = "Thermal Response"
         ) +
-        ggplot2::theme_minimal()
+        ggplot2::theme_bw() +
+        ggplot2::theme(legend.position = "bottom")
 }
 
 three_hourly_t <- function(tmin, tmax) {

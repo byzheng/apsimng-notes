@@ -9,7 +9,7 @@ Inputs (passed from parent QMD via params):
 - plant: The plant model using this thermal time calculation (e.g., Oats, Wheat)
 - response.x : air temperatures (°C)
 - response.y : corresponding thermal time values (°Cd)
-
+- response: optional list of named response curves for different phases (e.g., Pre-Emergence, Post-Emergence)
 Usage in parent QMD:
 
 1. Add parameters in YAML front matter:
@@ -17,6 +17,13 @@ Usage in parent QMD:
         plant: Oats
         response.x: [0, 30, 40]
         response.y: [0, 30, 0]
+        response:
+        - name: Pre-Emergence
+          x: [0, 30, 40]
+          y: [0, 30, 0]
+        - name: Post-Emergence
+          x: [0, 30, 40]
+          y: [0, 30, 30]
         three_cardinal: false
         reference: ""
 
@@ -25,12 +32,34 @@ Usage in parent QMD:
 -->
 
 ```{r setup, echo = FALSE}
-setup_qmd()
 
-response_x <- params$response.x
-response_y <- params$response.y
-stopifnot(length(response_x) == length(response_y))
-is_three_cardinal <- length(response_x) == 3
+if (!exists("params")) {
+    params <- list(
+        plant = "Oats",
+        response = list(
+            list(name = "Pre-Emergence", x = c(0, 30, 40), y = c(0, 30, 0)),
+            list(name = "Post-Emergence", x = c(0, 30, 40), y = c(0, 30, 30))
+        ),
+        three_cardinal = FALSE,
+        reference = ""
+    )
+    # test 2
+    params <- list(
+        plant = "Barley",
+        response.x = c(0, 26, 37),
+        response.y = c(0, 26, 0),
+        three_cardinal = TRUE
+    )
+}
+
+setup_qmd()
+if (is.null(params$response)) {
+    stopifnot(length(params$response.x) == length(params$response.y))
+    response <- list("Life Cycle" = list(name = "Life Cycle", x = params$response.x, y = params$response.y))
+} else {
+    response <- params$response
+}
+
 reference <- if (is.null(params$reference)) {
     params$reference
 } else {
@@ -86,11 +115,27 @@ plot_3_hour_interpolation()
 
 ::: {.content-visible  when-meta="params.three_cardinal"}
 
-- Plant development rate increases linearly with temperature between base (`r response_x[1]`°C) and optimum (`r response_x[2]`°C) temperatures
-- Development ceases below the base temperature (`r response_x[1]`°C) and above a maximum temperature (`r response_x[3]`°C)
+- Plant development rate increases linearly with temperature between base and optimum temperatures
+- Development ceases below the base temperature and above a maximum temperature
 - Development rate declines linearly between optimum and maximum temperatures
 - Diurnal temperature variation affects development - captured through [sub-daily interpolation](/docs/Models/Functions/SubDailyInterpolation.qmd) rather than simple daily mean temperature
 - The same thermal time response applies across all developmental phases (no phase-specific temperature responses)
+
+```{r tbl-cardinal-temperatures, echo = FALSE, results = "asis"}
+# Convert response list to table format
+response_df <- response |> 
+    map_df( ~ data.frame(
+        Phase = .x$name,
+        x = .x$x,
+        y = .x$y
+    ))
+
+knitr::kable(
+    response_df,
+    col.names = c("Phase", "Temperature (°C)", "Thermal Time (°Cd)"),
+    align = c("l", "c", "c")
+)
+```
 
 :::
 
@@ -107,28 +152,12 @@ TODO: Thermal time response must be defined by exactly three cardinal temperatur
 At **each** three-hour interval, the air temperature is converted to thermal time using the prescribed temperature response curve `r params$reference` through linear interpolation between points:
 
 
-```{r plot-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
+```{r fig-thermal-time, fig.height = 3, fig.cap="Thermal Time Function with Three Cardinal Temperatures"}
 
-plot_cardinal_temperature(response_x, response_y)
+plot_cardinal_temperature(response_df)
 ```
 
 
-::: {.content-visible  when-meta="params.three_cardinal"}
-
-The thermal time response to air temperature ($T$) follows a three-cardinal-temperature model (`r response_x[1]`°C (base), `r response_x[2]`°C (optimum), and `r response_x[3]`°C (maximum)):
-
-$$
-TT_{i} = \begin{cases}
-0 & \text{if } T \leq `r response_x[1]`°C \\
-T & \text{if } `r response_x[1]`°C < T \leq `r response_x[2]`°C \\
-`r response_y[2]` - \frac{`r response_y[2]`}{`r response_x[3]` - `r response_x[2]`}(T - `r response_x[2]`) & \text{if } `r response_x[2]`°C < T \leq `r response_x[3]`°C \\
-0 & \text{if } T > `r response_x[3]`°C
-\end{cases}
-$$
-
-Where $TT_{i}$ is the thermal time (°Cd) at temperature $T$ (°C).
-
-:::
 
 ### Daily Thermal Time 
 
@@ -153,6 +182,13 @@ For a day with:
 - Minimum temperature: 10°C
 
 Three hourly air temperatures are interpolated using [three-hourly interpolation](/docs/Models/Functions/ThreeHourAirTemperature.qmd). Then three hourly thermal time values are calculated using the defined temperature response curve. 
+
+```{r data-example-response}
+response_example <- response[[length(response)]] # Use the last response curve for example
+response_x <- response_example$x
+response_y <- response_example$y
+```
+For example, at the phase `r response_example$name`, the three hourly thermal time values would be calculated as follows:
 
 ```{r thermal-time-example}
 df <- three_hourly_t(10, 35) |> 

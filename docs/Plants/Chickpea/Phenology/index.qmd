@@ -6,4 +6,49 @@ title: "Phenology"
 The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of chickpea plants.
 
 
+## Thermal Time
+
+[Daily Thermal Time](ThermalTime.qmd) is calculated using a three cardinal temperature response curve with different parameters for pre-emergence and post-emergence phases.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with -6 degrees twilight. See [Photoperiod](Photoperiod.qmd) for more details.
+
+## Stages and Phases
+
+The numerical system is used to represent the development of chickpea plants starting from 1. The stages are:
+
+| Stage | Name                   | Description                                                      |
+|-------|------------------------|------------------------------------------------------------------|
+| 1     | Sowing                 | Seeds are planted in the soil                                    |
+| 2     | Germination            | Seeds absorb water and begin to sprout                           |
+| 3     | Emergence              | Seedlings break through the soil surface                         |
+| 4     | EndJuvenille           | End of juvenile phase, plant ready for floral initiation         |
+| 5     | StartBudding           | Floral buds begin to form                                        |
+| 6     | StartFlowering         | First flowers open                                               |
+| 7     | EndFlowering           | Flowering is complete                                            |
+| 8     | EndPodInitiation       | Pod initiation is complete                                       |
+| 9     | MidGrainFilling        | Midpoint of grain filling                                        |
+| 10    | LateGrainFilling       | Late stage of grain filling                                      |
+| 11    | EndGrainFill           | Grain filling is complete; seeds reach final size                |
+| 12    | Maturity               | Seeds reach physiological maturity                               |
+| 13    | HarvestRipe            | Seeds are fully ripened and ready for harvest                    |
+
+Phases are used to represent the development between two stages. The phases are:
+
+| Order | Name                        | From                 | To                   |
+|-------|-----------------------------|----------------------|----------------------|
+| 1     | [Germinating](Germinating.qmd)              | Sowing               | Germination          |
+| 2     | [Emerging](Emerging.qmd)                    | Germination          | Emergence            |
+| 3     | [Vegetative](Vegetative.qmd)                | Emergence            | EndJuvenille         |
+| 4     | [FloralInitiation](FloralInitiation.qmd)    | EndJuvenille         | StartBudding         |
+| 5     | [Budding](Budding.qmd)                      | StartBudding         | StartFlowering       |
+| 6     | [Flowering](Flowering.qmd)                  | StartFlowering       | EndFlowering         |
+| 7     | [PodInitiation](PodInitiation.qmd)          | EndFlowering         | EndPodInitiation     |
+| 8     | [EarlyGrainFilling](EarlyGrainFilling.qmd)  | EndPodInitiation     | MidGrainFilling      |
+| 9     | [MidGrainFilling](MidGrainFilling.qmd)      | MidGrainFilling      | LateGrainFilling     |
+| 10    | [LateGrainFilling](LateGrainFilling.qmd)    | LateGrainFilling     | EndGrainFill         |
+| 11    | [Maturing](Maturing.qmd)                    | EndGrainFill         | Maturity             |
+| 12    | [Ripening](Ripening.qmd)                    | Maturity             | HarvestRipe          |
+| 13    | [ReadyForHarvesting](ReadyForHarvesting.qmd)| HarvestRipe          |                      |
 
