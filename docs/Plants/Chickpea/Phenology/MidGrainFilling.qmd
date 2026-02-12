@@ -23,37 +23,8 @@ During mid grain filling:
 - Assimilate partitioning strongly favors grain growth
 - Vegetative growth has largely ceased
 
-## Source-Sink Dynamics
-
-At this stage:
-
-- **Sink strength**: Grains are the dominant sink for assimilates
-- **Current photosynthesis**: Continues to provide assimilates, though leaf area may be declining
-- **Reserve mobilization**: Stems continue to remobilize stored carbohydrates
-- **Nitrogen remobilization**: Continues from leaves and stems to grains
-
 ## Cultivar-Specific Parameters
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].MidGrainFilling.Target   | Thermal time for mid grain filling (°Cd) | Cultivar-specific |
-
-## Environmental Factors
-
-Mid grain filling is affected by:
-
-1. **Water availability**: Continued moisture is needed for grain filling
-2. **Temperature**: Moderate temperatures support optimal grain filling
-3. **Leaf senescence**: Premature senescence reduces photosynthetic supply
-4. **Disease pressure**: Foliar diseases reduce assimilate production
-
-## Practical Considerations
-
-During mid grain filling:
-
-- Maintain irrigation if needed to prevent terminal drought stress
-- Monitor for late-season diseases that could reduce photosynthesis
-- Avoid unnecessary field traffic that might damage senescing plants
-- Begin planning harvest timing based on crop maturity progression
-
-The mid grain filling phase contributes significantly to final seed weight, making maintenance of plant health during this period important for maximizing yield.
+| [Phenology].MidGrainFilling.Target   | Thermal time for mid grain filling (°Cd) | 250 |

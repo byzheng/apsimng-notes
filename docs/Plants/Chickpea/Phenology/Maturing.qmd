@@ -11,7 +11,7 @@ The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model sim
 
 - This phase starts at **EndGrainFill** and ends at **Maturity**
 - The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
-- The **Target thermal time** is cultivar-specific
+- The **Target thermal time** is cultivar-specific [@robertson_simulation_2002].
 
 ## Physiological Maturity
 
@@ -37,25 +37,4 @@ At physiological maturity:
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].Maturing.Target   | Thermal time for seed maturation (°Cd) | Cultivar-specific |
-
-## Environmental Influences
-
-The maturing phase is affected by:
-
-1. **Temperature**: Higher temperatures accelerate maturation and drying
-2. **Humidity**: Affects rate of seed moisture loss
-3. **Rainfall**: Can slow drying or reduce seed quality if excessive
-4. **Wind**: Influences rate of plant drying
-
-## Practical Considerations
-
-During the maturing phase:
-
-- Determine optimal harvest timing based on seed moisture
-- Avoid excessive delays that might lead to pod shattering
-- Monitor weather for conditions favorable for harvest
-- Consider pre-harvest desiccation if environmental conditions are unfavorable for drying
-- Plan harvest operations to minimize seed quality loss
-
-Proper timing of harvest relative to physiological maturity helps maximize grain yield and quality in chickpea.
+| [Phenology].Maturing.Target   | Thermal time for seed maturation (°Cd) | 60 |

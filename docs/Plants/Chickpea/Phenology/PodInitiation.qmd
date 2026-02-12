@@ -3,49 +3,91 @@ title: "PodInitiation"
 format: html
 ---
 
-The **PodInitiation** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **EndFlowering** to **EndPodInitiation**. This phase covers the period after flowering ceases when initiated pods continue to develop and reach their final number.
+The **PodInitiation** phase in [Chickpea](/docs/Plants/Chickpea) represents the developmental period from **EndFlowering** to **EndPodInitiation**. This phase marks when pods become visible (≥1 cm) and is uniquely determined by a temperature-day counting mechanism rather than traditional thermal time accumulation [@srinivasan_cold_1998; @clarke_response_2004].
 
 ## Overview
 
 The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the time between **EndFlowering** and **EndPodInitiation** stages.
 
 - This phase starts at **EndFlowering** and ends at **EndPodInitiation**
-- The model uses daily [Thermal Time](ThermalTime.qmd), retrieved from the `[Phenology].ThermalTime` function
-- The **Target thermal time** is cultivar-specific
+- The model uses a unique progression mechanism requiring 5 days of temp above 16 degrees (or ten days at 15 degrees) before 1cm pods are visible, due to sensitivity of pod initiation to mean daily temperature [@srinivasan_cold_1998; @clarke_response_2004]
 
-## Pod Development
 
-During the pod initiation phase:
+## Temperature-Day Counting Mechanism
 
-- Pods that were initiated during flowering continue to enlarge
-- Some pod abortion may occur under stress conditions
-- Final pod number is established
-- Early-formed pods begin grain filling while later pods are still developing
-- The plant's assimilate demand increases as pods develop
+Chickpea pod development shows strong sensitivity to mean daily temperature [@srinivasan_response_1998; @clarke_growth_2004]. Visible pods (1 cm) require specific temperature conditions before they become apparent:
 
-## Pod Set and Abortion
+### Temperature Thresholds
 
-Pod set in chickpea is influenced by:
+The `PodStartTT` function counts days when mean daily temperature exceeds:
+- **5 days** with mean temperature above **16°C**, OR
+- **10 days** with mean temperature above **15°C**
 
-- **Assimilate availability**: Competition between vegetative growth, pod development, and grain filling
-- **Environmental stress**: Water deficit or heat stress can cause pod abortion
-- **Position on plant**: Lower pods typically have higher retention than upper pods
-- **Nutrient status**: Nitrogen availability affects pod retention
+### Cross-Phase Accumulation
+
+A unique feature of this phase is that temperature-day counting begins at the start of flowering:
+
+- Accumulation starts at **StartFlowering** (not at EndFlowering)
+- Days meeting temperature criteria accumulate throughout the **Flowering** phase
+- At **EndFlowering**, the accumulated count (`EndFloweringPodStartTT`) is recorded
+- The **PodInitiation** phase target adjusts by subtracting already-accumulated days
+
+### Target Calculation
+
+$$
+\text{Target} = 5.0 - \text{EndFloweringPodStartTT}
+$$
+
+Where:
+- **5.0** = Total temperature-days required for 1 cm pods to be visible
+- **EndFloweringPodStartTT** = Temperature-days accumulated from StartFlowering to EndFlowering
+
+This means if 2 temperature-days were accumulated during flowering, only 3 more are needed during the PodInitiation phase.
+
+## Biological Significance
+
+This temperature-dependent mechanism reflects the physiological reality that:
+
+1. **Pod initiation is not instantaneous**: Small pods begin forming during flowering but require time to become visible
+2. **Temperature drives development**: Mean daily temperature above 15-16°C is necessary for rapid pod development
+3. **Cumulative exposure matters**: The model tracks cumulative exposure to favorable temperatures
+4. **Cooler temperatures delay visibility**: Under cooler conditions, more days are needed to reach the 1 cm threshold
+
+## Pod Development Process
+
+Once this phase is complete (1 cm pods visible):
+
+- Pod number is largely established
+- Pods continue to enlarge during subsequent grain filling phases
+- Some pod abortion may still occur under stress conditions
+- Assimilate demand increases as pods develop
+- Early-formed pods may begin grain filling while later pods are still developing
+
+## Environmental Sensitivity
+
+Pod initiation timing is sensitive to:
+
+- **Mean temperature**: Primary driver of progression through this phase
+- **Temperature variability**: Cool periods slow progression of the temperature-day count
+- **Water stress**: Can cause pod abortion even after pods become visible
+- **Nutrient availability**: Affects pod retention and development rate
 
 ## Cultivar-Specific Parameters
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].PodInitiation.Target   | Thermal time for pod initiation (°Cd) | Cultivar-specific |
+| [Phenology].PodInitiation.Target.Total | Total temperature-days required for visible pods | 5.0 |
+
+Note: The actual target is dynamically calculated by subtracting `EndFloweringPodStartTT` from this total.
 
 ## Practical Considerations
 
-The pod initiation phase affects:
+Understanding this temperature-dependent mechanism is important for:
 
-1. **Final pod number**: Determines maximum pods that will contribute to yield
-2. **Yield potential**: Pod number is a key yield component
-3. **Management importance**: Critical period for maintaining water and nutrient supply
-4. **Stress sensitivity**: Pod abortion under stress reduces yield
-5. **Resource allocation**: Competition for assimilates between organs
+1. **Predicting pod set timing**: Cooler temperatures delay visible pod formation
+2. **Regional differences**: Areas with warmer spring temperatures see faster pod development
+3. **Sowing date effects**: Early sowing into cooler conditions extends the flowering-to-podding period
+4. **Stress management**: Critical to maintain favorable conditions during this temperature accumulation
+5. **Yield potential**: Timely pod formation under optimal temperatures supports higher pod numbers
 
-Maintaining optimal growing conditions during pod initiation helps maximize pod retention and yield potential in chickpea.
+The temperature-day counting approach provides a mechanistic basis for predicting when visible pods will appear across varying temperature environments, more accurately than simple thermal time would allow.

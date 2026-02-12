@@ -23,38 +23,8 @@ During late grain filling:
 - Most leaves have senesced
 - The crop is approaching physiological maturity
 
-## Physiological Changes
-
-At this final filling stage:
-
-- **Declining filling rate**: Rate of dry matter accumulation decreases
-- **Limited photosynthesis**: Reduced leaf area limits current assimilate production
-- **Reserve depletion**: Stem reserves are largely exhausted
-- **Seed desiccation begins**: Seeds start to lose moisture
-
 ## Cultivar-Specific Parameters
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].LateGrainFilling.Target   | Thermal time for late grain filling (°Cd) | Cultivar-specific |
-
-## Environmental Factors
-
-Late grain filling is affected by:
-
-1. **Terminal drought**: Common in many chickpea growing regions
-2. **High temperatures**: Can accelerate senescence and shorten filling duration
-3. **Frost risk**: Late frosts can damage filling seeds in some regions
-4. **Disease**: Late-season diseases have less impact as filling concludes
-
-## Practical Considerations
-
-During late grain filling:
-
-- Avoid premature harvest before grain fill is complete
-- Monitor crops for signs of approaching maturity (yellowing, pod color)
-- Consider desiccation timing if planning pre-harvest desiccation
-- Plan harvest equipment and logistics
-- Monitor weather forecasts for harvest timing
-
-The completion of late grain filling marks physiological maturity when seeds have reached their maximum dry weight. Further time on the plant is mainly for seed drying to facilitate harvest.
+| [Phenology].LateGrainFilling.Target   | Thermal time for late grain filling (°Cd) | 250 |

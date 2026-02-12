@@ -23,39 +23,8 @@ During the ripening phase:
 - Pods are brown and brittle
 - Seeds have hardened seed coats
 
-## Harvest Readiness
-
-Seeds are considered harvest ripe when:
-
-- **Moisture content**: Typically 12-15% for safe storage
-- **Physical handling**: Seeds resistant to mechanical damage during harvest
-- **Pod shattering**: Pods dry but not yet prone to excessive shattering
-- **Seed color**: Characteristic color for the cultivar is fully developed
-
 ## Cultivar-Specific Parameters
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].Ripening.Target   | Thermal time for ripening (°Cd) | Cultivar-specific |
-
-## Environmental Factors
-
-Ripening is influenced by:
-
-1. **Temperature**: Higher temperatures accelerate drying
-2. **Relative humidity**: Low humidity promotes faster moisture loss
-3. **Rainfall**: Delays ripening and can reduce seed quality
-4. **Wind**: Affects drying rate and pod shattering risk
-
-## Practical Considerations
-
-During the ripening phase:
-
-- Monitor seed moisture content regularly
-- Assess pod shattering risk if harvest is delayed
-- Consider weather windows for harvest
-- Prepare harvest equipment and storage facilities
-- Assess crop uniformity and potential lodging issues
-- Plan harvest sequence if managing multiple fields
-
-Timely harvest at the appropriate ripening stage helps maximize grain yield, minimize shattering losses, and ensure good seed quality for storage or marketing.
+| [Phenology].Ripening.Target   | Thermal time for ripening (°Cd) | 60 |

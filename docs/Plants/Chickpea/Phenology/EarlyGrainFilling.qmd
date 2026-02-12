@@ -23,36 +23,23 @@ During early grain filling:
 - Assimilate demand by grains is very high
 - Source-sink relationships strongly influence grain growth
 
-## Assimilate Sources
+## Target Thermal Time
 
-Grain growth during this phase is supported by:
+The target thermal time for this phase is dynamically adjusted based on the duration of the [Pod Initiation](PodInitiation.qmd) phase:
 
-- **Current photosynthesis**: From leaves and green pods
-- **Stem reserves**: Mobilization of stored carbohydrates
-- **Nitrogen remobilization**: From vegetative organs to grains
+$$
+\text{Target} = T_{\text{max}} - \frac{TT_{\text{PodInit}}}{2}
+$$
+
+Where:
+- $T_{\text{max}}$ = Maximum early grain filling duration (300 °Cd by default)
+- $TT_{\text{PodInit}}$ = Total thermal time accumulated during the Pod Initiation phase
+
+$\text{Target}$ is capped at zero to prevent negative durations. 
+
 
 ## Cultivar-Specific Parameters
 
 | Name       | Description                                         | Default Value |
 |------------|-----------------------------------------------------|---------------|
-| [Phenology].EarlyGrainFilling.Target   | Thermal time for early grain filling (°Cd) | Cultivar-specific |
-
-## Environmental Sensitivity
-
-Early grain filling is sensitive to:
-
-1. **Water stress**: Deficit reduces grain filling rate and final seed size
-2. **Heat stress**: High temperatures (>35°C) can reduce grain filling duration and rate
-3. **Radiation**: Cloud cover or low light reduces photosynthetic supply
-4. **Nitrogen availability**: Affects protein accumulation in seeds
-
-## Practical Considerations
-
-Management during early grain filling should focus on:
-
-- Maintaining adequate soil moisture to support high grain filling rates
-- Avoiding heat stress during this critical period
-- Ensuring sufficient nitrogen for protein accumulation
-- Protecting leaf area from diseases or pests to maintain photosynthetic capacity
-
-Optimal conditions during early grain filling are crucial for achieving maximum seed size and yield in chickpea.
+| [Phenology].EarlyGrainFilling.Target.Reducer.Max   | Maximum thermal time for early grain filling (°Cd) | 300 |
