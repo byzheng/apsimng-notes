@@ -1,0 +1,47 @@
+---
+title: "ReadyForHarvesting"
+format: html
+---
+
+The **ReadyForHarvesting** phase in [Lentil](/docs/Plants/Lentil) represents the final developmental period from **HarvestRipe** to **Unused**. This phase indicates when the crop is ready and suitable for harvest.
+
+## Overview
+
+The [EndPhase](/docs/Models/PMF/Phenology/Phases/EndPhase.qmd) model simulates the end of the crop growing season.
+
+- This phase starts at **HarvestRipe** and ends at the plant's lifecycle completion
+- The crop has reached full maturity
+- Grains have achieved physiological maturity with low moisture content
+- All growth and development processes have concluded
+- The crop is ready for harvest
+
+## Harvest-Ready Characteristics
+
+At the start of this phase:
+
+- Grains are at physiological maturity
+- Grain moisture content is typically 12-18% depending on cultivar and final conditions
+- Pods are dry and brittle
+- Stems have hardened
+- Leaves have largely senesced
+- The plant cannot recover from stress
+- Yield potential is fixed
+
+## Practical Considerations
+
+Harvest management considerations:
+
+1. **Grain moisture**: Optimal harvest moisture is 12-18% for combining
+2. **Pod and plant condition**: Should be dry enough for mechanical harvest
+3. **Field conditions**: Weather and soil conditions affect harvesting feasibility
+4. **Timing**: Earlier harvest may result in higher grain moisture; later harvest risks grain loss or weathering
+5. **Cultivar variation**: Different cultivars may vary slightly in ideal harvest moisture and timing
+
+Factors affecting suitability for harvest:
+
+- **Weather**: Rain delays harvest and can affect grain quality
+- **Temperature**: Continued warm, dry conditions optimize grain drying and harvest quality
+- **Stand condition**: Even maturity across the field allows synchronized harvesting
+- **Equipment availability**: Timely access to harvest equipment
+
+The model marks the transition to the harvest phase when the crop has completed its growing cycle and is ready for mechanical or manual harvesting.

@@ -1,0 +1,36 @@
+---
+title: "Emerging"
+format: html
+---
+
+The **Emerging** is a phenological phase in [Lentil](/docs/Plants/Lentil) used to represent the development period from **Germination** to **Emergence**. This phase represents the period when the seedling grows through the soil and emerges from the surface.
+
+## Overview
+
+The [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) model simulates the emergence of lentil seedlings. This phase begins after germination is complete and ends when the seedling has broken through the soil surface. See [EmergingPhase](/docs/Models/PMF/Phenology/Phases/EmergingPhase.qmd) for more details.
+
+### Characteristics
+
+* Duration depends on soil temperature and soil water conditions
+* The seedling uses stored seed reserves to fuel growth
+* Coleoptile elongation occurs to push the shoot through the soil
+* Once the first leaves break through the soil surface, the plant transitions to the emergence stage
+
+## Cultivar-Specific Parameters
+
+The emerging phase uses thermal time accumulation to determine completion.
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].Emerging.TargetThermalTime | Accumulated thermal time required for emergence (°Cd)  | Variable by cultivar |
+
+## Practical Considerations
+
+Key factors affecting emergence:
+
+1. **Soil temperature**: Higher temperatures increase the rate of thermal time accumulation
+2. **Soil moisture**: Adequate moisture supports seedling growth and emergence
+3. **Soil depth**: Sowing depth influences emergence time and success
+4. **Soil crust**: Hard-setting soils can prevent seedling emergence
+
+The model simulates the thermal time-dependent emergence process to predict when seedlings will break through the soil.

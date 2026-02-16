@@ -1,0 +1,43 @@
+---
+title: "FirstFlowersDeveloping"
+format: html
+---
+
+The **FirstFlowersDeveloping** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **FirstBudsVisiable** to **FirstFlowersSet**. This phase covers the development of visible floral buds until flowers open and set.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the flower development using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **FirstBudsVisiable** and ends at **FirstFlowersSet**
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific and determined by `[Phenology].TtFlowerDevelopment`
+- Floral structures develop and flowers prepare to open
+- Environmental stress can affect flower development
+
+## Flower Development Characteristics
+
+During this phase:
+
+- Visible buds develop into flowers
+- Floral organs (sepals, petals, stamens, pistils) complete development
+- Flower quality and viability are established
+- Lower nodes flower first, followed by upper nodes in acropetal succession
+- The duration is primarily temperature-dependent
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].TtFlowerDevelopment | Accumulated thermal time from budding to flowering (°Cd)  | 200 |
+
+## Practical Considerations
+
+Factors affecting flower development:
+
+1. **Temperature**: Higher temperatures accelerate flower development
+2. **Water stress**: Can reduce flower quality and increase flower abortion
+3. **Photoperiod**: Can influence the rate of flower development
+4. **Cultivar differences**: Different cultivars have varying flower development rates
+
+The model simulates this critical phase to predict when flowers will set, which is essential for understanding pod and grain production potential.

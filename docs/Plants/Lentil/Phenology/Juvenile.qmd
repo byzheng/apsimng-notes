@@ -1,0 +1,42 @@
+---
+title: "Juvenile"
+format: html
+---
+
+The **Juvenile** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **Emergence** to **FloralInitiation**. During this phase, the plant is unable to transition to reproductive development, regardless of environmental conditions.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the juvenile phase using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **Emergence** and ends at **FloralInitiation**
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific and determined by `[Phenology].JuvenileBase`
+- Node appearance and leaf development continue during this phase
+- The plant is not responsive to photoperiod during the juvenile phase
+
+## Juvenile Stage Characteristics
+
+During the juvenile stage:
+
+- Vegetative growth dominates, with continuous leaf and node development
+- Root system expands to explore a greater volume of soil
+- Plant is insensitive to photoperiod signals
+- Once juvenile phase ends, the plant becomes competent for reproductive transitions
+- Duration varies by cultivar
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].JuvenileBase | Accumulated thermal time to complete juvenile phase (°Cd)  | 400 |
+
+## Practical Considerations
+
+The juvenile phase duration affects:
+
+1. **Time to flowering**: Longer juvenile phases delay flowering or reproductive development
+2. **Seasonal adaptation**: Longer juvenile phases ensure plants don't flower prematurely
+3. **Cultivar differences**: Different lentil cultivars have varying juvenile phase lengths for adaptation to different regions
+
+Understanding the juvenile phase is important for predicting flowering time under different seasonal conditions.

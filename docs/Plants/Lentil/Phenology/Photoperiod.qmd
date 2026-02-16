@@ -1,0 +1,74 @@
+---
+title: "Photoperiod"
+format: html
+---
+
+Photoperiod (day length) is an important environmental signal that influences the rate and duration of phenological development in the [Lentil](/docs/Plants/Lentil) model. Some lentil cultivars are photoperiod-sensitive, responding to changes in day length.
+
+## Overview
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) based on latitude and the day of year.
+
+- Photoperiod is the duration of daylight hours on a given day
+- It increases from winter solstice (minimum) to summer solstice (maximum)
+- The calculation uses sunrise and sunset times based on latitude and solar declination
+- Twilight angle of -6 degrees is used (civil twilight)
+
+## Calculation Method
+
+The photoperiod is calculated from astronomical principles:
+
+1. Solar declination is calculated from the day of year
+2. Sunset hour angle is calculated using the solar declination and latitude
+3. Photoperiod in hours is derived from the hour angle
+4. Twilight adjustment of -6 degrees expands the photoperiod period slightly
+
+## Photoperiod Sensitivity in Lentils
+
+Some lentil cultivars are photoperiod-sensitive, meaning their phenological development is influenced by day length:
+
+### Photoperiod-Sensitive Cultivars
+
+- Flowering and pod initiation timing may be delayed under long-day conditions
+- Reproductive development progresses more rapidly under short-day conditions
+- The sensitivity varies by cultivar (higher or lower photoperiod sensitivity values)
+- Parameter: `[Phenology].InductivePpSensitivity` controls this sensitivity
+
+### Photoperiod-Insensitive Cultivars
+
+- Development proceeds relatively normally regardless of day length
+- These cultivars are adapted to a wider range of latitudes
+- Parameter: `[Phenology].InductivePpSensitivity` will be low or zero for these cultivars
+
+## Cultivar-Specific Parameters
+
+| Parameter | Description | Value Range |
+|-----------|-------------|-------------|
+| `[Phenology].InductivePpSensitivity` | Photoperiod sensitivity during inductive phase | 0.0 - 1.0 |
+| `[Phenology].FlowerAbortionPpSensitivity` | Photoperiod sensitivity for flower abortion | 0.0 - 1.0 |
+
+## Geographic and Seasonal Effects
+
+Photoperiod effects are particularly important for:
+
+1. **Latitude adaptation**: Cultivars are adapted to specific latitude ranges based on photoperiod sensitivity
+2. **Sowing date effects**: Early vs. late sowing can change experienced photoperiods during critical phases
+3. **Flowering timing**: Photoperiod can delay or advance flowering relative to thermal time alone
+4. **Latitude consideration**: Long-day regions (high latitude) vs. short-day regions (low latitude) favor different cultivars
+
+## Examples
+
+- **High-latitude (cool season region)**: Days are long in summer. Photoperiod-sensitive cultivars delay flowering until day length shortens, potentially pushing flowering into unfavorable conditions
+- **Low-latitude (tropical region)**: Days stay relatively short year-round. Day length changes are minimal, so photoperiod sensitivity is less important
+- **Sowing date effect**: Early-sown crops experience longer photoperiods during flowering; late-sown crops experience declining photoperiods
+
+## Practical Implications
+
+Understanding photoperiod effects is important for:
+
+1. **Cultivar selection**: Choosing cultivars matched to local photoperiod conditions
+2. **Sowing date determination**: Optimizing sowing date to match cultivar photoperiod sensitivity
+3. **Predicting flowering**: Combining thermal time and photoperiod effects for accurate predictions
+4. **Yield forecasting**: Photoperiod-induced changes in phasis can affect grain yield
+
+The APSIM Lentil model incorporates photoperiod effects to accurately predict flowering and reproductive development across different latitudes and sowing dates.

@@ -1,0 +1,38 @@
+---
+title: "FirstGrainsDeveloping"
+format: html
+---
+
+The **FirstGrainsDeveloping** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **FirstPodsVisiable** to **FirstGrainsVisiable**. This phase covers seed/grain initiation and early development within the developing pods.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the grain development using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **FirstPodsVisiable** and ends at **FirstGrainsVisiable**
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- Seeds develop within pods and become visible
+- Grain/seed number per pod is established
+- The start of the grain-filling period begins
+
+## Grain Development Characteristics
+
+During this phase:
+
+- Seeds (grains) initiate within visible pods
+- Seed coat and internal structures develop
+- Seed number per pod is determined
+- Continued flowering and pod development at upper nodes
+- Grains become visible as cream-colored structures within pods
+
+## Practical Considerations
+
+Factors affecting grain development:
+
+1. **Temperature**: Controls the rate of grain development
+2. **Water availability**: Critical for maintaining seed set
+3. **Photoperiod**: Influences the duration of the grain-filling period
+4. **Plant nutrition**: Adequate nitrogen supports seed development
+5. **Environmental stress**: Water or temperature stress reduces grain set
+
+The model simulates grain development as a thermal time-dependent process, which is important for predicting final grain number and yield potential.

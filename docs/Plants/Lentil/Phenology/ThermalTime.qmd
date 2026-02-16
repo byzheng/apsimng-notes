@@ -1,0 +1,77 @@
+---
+title: "Thermal Time"
+format: html
+---
+
+Daily thermal time (also known as growing degree days or heat units) is the primary driver for phenological development in the [Lentil](/docs/Plants/Lentil) model. It accounts for the cumulative effect of temperature on plant development rates.
+
+## Overview
+
+Thermal time is calculated daily using a three cardinal temperature response function with different parameters for different developmental phases. The function uses minimum, optimal, and maximum temperatures to define the temperature response.
+
+- Pre-emergence thermal time is accumulated from sowing until emergence
+- Post-emergence thermal time is accumulated from emergence onward
+- Different phases may have different thermal time requirements
+- The thermal time accumulation is the primary mechanism driving phenological transitions
+
+## Calculation Method
+
+Thermal time (in °Cd per day) is calculated as:
+
+$$TT = \max(0, \min(T_{opt} - T_{min}, T - T_{min}, T_{max} - T))$$
+
+Where:
+- $T$ is the daily mean temperature (°C)
+- $T_{min}$ is the minimum temperature (base temperature) (°C)
+- $T_{opt}$ is the optimal temperature (°C)
+- $T_{max}$ is the maximum temperature (°C)
+
+## Temperature Thresholds
+
+Different growth phases have different temperature thresholds:
+
+### Pre-emergence Phase
+- **Base temperature ($T_{min}$)**: Varies by cultivar (typically 0-5°C)
+- **Optimal temperature ($T_{opt}$)**: ~25°C
+- **Maximum temperature ($T_{max}$)**: ~45°C
+
+### Post-emergence Phases
+- **Base temperature ($T_{min}$)**: Typically 2-5°C
+- **Optimal temperature ($T_{opt}$)**: ~24°C
+- **Maximum temperature ($T_{max}$)**: ~40°C
+
+## Cultivar-Specific Thermal Time Requirements
+
+Each phenological phase has specific thermal time requirements that are cultivar-specific:
+
+| Phase | Thermal Time Duration (°Cd) | Notes |
+|-------|-----|-------|
+| Germinating | Variable | Pre-emergence, soil-dependent |
+| Emerging | ~200-300 | Variable by cultivar |
+| Juvenile | 400 | Base value, may vary |
+| Inductive | Variable | Cultivar-specific |
+| FirstFlowersDeveloping | 200 | Time from budding to flowering |
+| FirstPodsDeveloping | Variable | Pod development phase |
+| FirstGrainsDeveloping | Variable | Grain initiation phase |
+| FirstGrainsFilling | Variable | Critical grain-filling phase |
+| FinalPodsDeveloping | Variable | Late pod development |
+| FinalGrainsFilling | Variable | Final grain maturation |
+| Ripening | Variable | Ripening to harvest maturity |
+
+## Practical Applications
+
+Thermal time is used for:
+
+1. **Predicting phenological stages**: Accumulating thermal time predicts when major growth stages will occur
+2. **Comparing cultivars**: Different cultivars have different thermal time requirements for similar developmental stages
+3. **Assessing seasonal effects**: Warm seasons accumulate thermal time faster than cool seasons
+4. **Yield forecasting**: Early prediction of flowering and grain-filling timing helps forecast grain yield
+5. **Management decisions**: Knowing thermal time requirements guides irrigation, nutrient, and pest management timing
+
+## Examples
+
+- **Warm season**: A season with higher average temperatures will accumulate thermal time faster and reach flowering earlier
+- **Cool season**: A cool growing season will accumulate thermal time more slowly, potentially extending the growing season
+- **Cultivar comparison**: A cultivar requiring 400°Cd to reach a stage will reach it earlier in warm regions than a cultivar requiring 600°Cd
+
+The thermal time model in APSIM accurately represents the temperature-dependent development of lentil under field conditions.

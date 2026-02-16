@@ -1,0 +1,45 @@
+---
+title: "FirstGrainsFilling"
+format: html
+---
+
+The **FirstGrainsFilling** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **FirstGrainsVisiable** to **TerminalNode**. This is the critical grain-filling period when grains accumulate dry matter and nutrients.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the grain-filling process using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **FirstGrainsVisiable** and ends at **TerminalNode**
+- The main stem reaches determinate growth, forming a terminal node
+- Grains accumulate starch and protein
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- This is the most critical phase for biomass and yield accumulation
+
+## Grain-Filling Characteristics
+
+During this phase:
+
+- Grains rapidly increase in size and mass
+- Starch accumulation is highest during this period
+- Protein content increases
+- Concurrent flowering and pod development continues at upper nodes
+- Later grains fill at same time as earlier grains
+- The duration and rate of grain filling directly affect final grain weight
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].TtFlowerDevelopment | Thermal time from budding to flowering (°Cd)  | 200 |
+
+## Practical Considerations
+
+Critical factors affecting grain filling:
+
+1. **Temperature**: Optimal temperatures enhance grain filling rates
+2. **Water availability**: Most critical phase for water requirement; stress reduces grain weight
+3. **Radiation**: High photosynthetically active radiation ensures adequate carbohydrate supply
+4. **Nitrogen availability**: Supports protein accumulation in grains
+5. **Crop maturity stage**: Late-sown crops may have shorter grain-filling periods with lower yields
+
+The model simulates this critical phase as the period when grain dry matter accumulates most rapidly. Water stress during this phase has the most severe impact on grain yield.

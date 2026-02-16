@@ -1,0 +1,46 @@
+---
+title: "FirstPodsDeveloping"
+format: html
+---
+
+The **FirstPodsDeveloping** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **FirstFlowersSet** to **FirstPodsVisiable**. This phase covers early pod development following successful flower set.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the pod development using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **FirstFlowersSet** and ends at **FirstPodsVisiable**
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- Pod size increases and becomes visible
+- Pollination and fertilization have occurred
+- Pod wall development proceeds to make structures visible
+
+## Pod Development Characteristics
+
+During this phase:
+
+- Successful flowers transition to developing pods
+- Pod wall expands and becomes visible
+- Seed number in developing pods is established
+- Continued flowering occurs at upper nodes
+- Lower pods are larger and more advanced than upper pods
+
+## Cultivar-Specific Parameters
+
+Cultivar-specific parameters that influence pod development:
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].MinFloralNodes | Minimum number of nodes bearing flowers  | 8 |
+| [Phenology].MaxFloralNodes | Maximum number of nodes bearing flowers  | 15 |
+
+## Practical Considerations
+
+Factors affecting pod development:
+
+1. **Temperature**: Controls rate of pod expansion and development
+2. **Water availability**: Insufficient water leads to pod abortion and reduced set
+3. **Radiation**: Photosynthetically active radiation supports pod development
+4. **Nutrient status**: Nitrogen availability affects pod setting and development
+
+The model simulates pod development as a temperature-dependent process, with environmental stress mechanisms affecting pod retention and viability.

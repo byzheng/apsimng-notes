@@ -1,0 +1,47 @@
+---
+title: "Ripening"
+format: html
+---
+
+The **Ripening** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **LastGrainsFilled** to **HarvestRipe**. This final reproductive phase covers physiological maturity through harvest ripeness.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the ripening process using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **LastGrainsFilled** and ends at **HarvestRipe**
+- All grains have completed their filling
+- Grains are maturing, becoming harder and less sensitive to environmental conditions
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- Pod and plant material begin to senesce
+
+## Ripening Characteristics
+
+During this phase:
+
+- Grains lose moisture and become harder (physiological hardening)
+- Pod color changes from green to brown/tan
+- Grain water content decreases below 20% (approaching harvest moisture)
+- Leaf senescence accelerates
+- Plant response to water and nutrient stress decreases
+- Crop is approaching harvest readiness
+
+## Cultivar-Specific Parameters
+
+Cultivar-specific parameters that influence ripening duration:
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].RipeningThermalTime | Accumulated thermal time to reach harvest ripeness (°Cd) | Variable by cultivar |
+
+## Practical Considerations
+
+Factors affecting ripening:
+
+1. **Temperature**: Warmer conditions speed up ripening
+2. **Radiation**: Adequate light supports final grain maturation processes
+3. **Environmental conditions**: Ripening is less sensitive to water stress once grains are mature
+4. **Cultivar differences**: Different cultivars have varying ripening times
+5. **Harvest timing**: Harvest should occur near crop maturity to minimize grain moisture
+
+The model simulates ripening as the final maturation stage. Some cultivars ripen synchronously making harvest simpler, while others may ripen asynchronously requiring staged harvesting.

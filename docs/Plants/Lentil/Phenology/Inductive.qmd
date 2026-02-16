@@ -1,0 +1,43 @@
+---
+title: "Inductive"
+format: html
+---
+
+The **Inductive** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **FloralInitiation** to **FirstBudsVisiable**. During this phase, the plant has transitioned to reproductive development and is responsive to environmental signals.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the inductive phase using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **FloralInitiation** and ends at **FirstBudsVisiable**
+- The plant is now responsive to photoperiod signals
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- The **Target thermal time** is cultivar-specific and determined by `[Phenology].InductiveBase`
+- Floral buds are initiated at the shoot apex but not yet visible
+
+## Inductive Stage Characteristics
+
+During the inductive stage:
+
+- Floral meristem development begins at the shoot apex
+- The plant is sensitive to photoperiod and temperature conditions
+- Visual buds are not yet apparent but differentiation is occurring
+- Duration can be modified by cultivar-specific photoperiod sensitivity
+- Node development may continue while reproductive changes occur
+
+## Cultivar-Specific Parameters
+
+| Name       | Description                                         | Default Value |
+|------------|-----------------------------------------------------|---------------|
+| [Phenology].InductiveBase | Accumulated thermal time to reach budding (°Cd)  | 0 |
+| [Phenology].InductivePpSensitivity | Photoperiod sensitivity factor for inductive phase  | Variable by cultivar |
+
+## Practical Considerations
+
+The inductive phase duration affects:
+
+1. **Photoperiod response**: Cultivars with higher photoperiod sensitivity may extend this phase
+2. **Flowering synchrony**: Allows the plant to synchronize flowering with favorable environmental conditions
+3. **Cultivar variation**: Different cultivars have varying photoperiod sensitivities and thermal requirements
+
+Understanding this phase is important for predicting bud initiation and subsequent flowering under different seasonal conditions.

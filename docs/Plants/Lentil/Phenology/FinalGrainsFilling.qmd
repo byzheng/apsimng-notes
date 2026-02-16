@@ -1,0 +1,39 @@
+---
+title: "FinalGrainsFilling"
+format: html
+---
+
+The **FinalGrainsFilling** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **LastPodsDeveloped** to **LastGrainsFilled**. This phase covers the grain filling in the latest pods formed on the plant.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the final grain-filling process using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **LastPodsDeveloped** and ends at **LastGrainsFilled**
+- Grains in late-formed pods undergo grain filling
+- Early and middle grains are near physiological maturity
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- Later-developing grains may have shorter filling periods
+
+## Final Grain-Filling Characteristics
+
+During this phase:
+
+- Final grains accumulate dry matter and nutrients
+- Starch and protein accumulate in these grains
+- Earlier grains may already be mature or nearly mature
+- Resource competition may exist between final grains and earlier maturing grains
+- The duration of final grain filling affects final grain weight of late pods
+
+## Practical Considerations
+
+Critical factors affecting final grain filling:
+
+1. **Temperature**: Cooler temperatures near end of season may slow final grain filling
+2. **Water availability**: Must be sustained until final grains mature
+3. **Radiation**: Adequate light supports carbohydrate supply for grain filling
+4. **Photoperiod**: Declining day length toward harvest signals reproductive maturity
+5. **Cultivar maturity**: Some cultivars have shorter final grain-filling periods
+6. **Seasonal timing**: Late-season crops may face accelerated maturation under photoperiod cues
+
+The model simulates final grain filling as a continuation of the grain-filling process. While important, these grains typically contribute less to total yield than grains filling earlier in the season.

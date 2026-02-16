@@ -1,0 +1,51 @@
+---
+title: "Phenology"
+---
+
+
+The [Phenology](/docs/Models/PMF/Phenology/Phenology.qmd) model in APSIM NG simulates the development of lentil plants.
+
+
+## Thermal Time
+
+[Daily Thermal Time](ThermalTime.qmd) is calculated using a three cardinal temperature response curve with different parameters for pre-emergence and post-emergence phases.
+
+## Photoperiod
+
+The daily photoperiod is calculated using the [PhotoperiodFunction](/docs/Models/Functions/PhotoperiodFunction.qmd) with -6 degrees twilight. See [Photoperiod](Photoperiod.qmd) for more details.
+
+## Stages and Phases
+
+The numerical system is used to represent the development of lentil plants starting from 1. The stages are:
+
+| Stage | Name                   | Description                                                      |
+|-------|------------------------|------------------------------------------------------------------|
+| 1     | Sowing                 | Seeds are planted in the soil                                    |
+| 2     | Germination            | Seeds absorb water and begin to sprout                           |
+| 3     | Emergence              | Seedlings break through the soil surface                         |
+| 4     | FloralInitiation       | Plant initiates floral meristems                                 |
+| 5     | FirstBudsVisiable      | First buds become visible                                        |
+| 6     | FirstFlowersSet        | First flowers set and bloom                                      |
+| 7     | FirstPodsVisiable      | First pods become visible                                        |
+| 8     | FirstGrainsVisiable    | First grains become visible in pods                              |
+| 9     | TerminalNode           | Main stem reaches terminal node                                  |
+| 10    | LastPodsDeveloped      | Final pods have developed                                        |
+| 11    | LastGrainsFilled       | Final grain filling is complete                                  |
+| 12    | HarvestRipe            | Grains are fully ripened and ready for harvest                   |
+
+Phases are used to represent the development between two stages. The phases are:
+
+| Order | Name                        | From                 | To                   |
+|-------|-----------------------------|----------------------|----------------------|
+| 1     | [Germinating](Germinating.qmd)              | Sowing               | Germination          |
+| 2     | [Emerging](Emerging.qmd)                    | Germination          | Emergence            |
+| 3     | [Juvenile](Juvenile.qmd)                    | Emergence            | FloralInitiation     |
+| 4     | [Inductive](Inductive.qmd)                  | FloralInitiation     | FirstBudsVisiable    |
+| 5     | [FirstFlowersDeveloping](FirstFlowersDeveloping.qmd) | FirstBudsVisiable | FirstFlowersSet |
+| 6     | [FirstPodsDeveloping](FirstPodsDeveloping.qmd)       | FirstFlowersSet   | FirstPodsVisiable    |
+| 7     | [FirstGrainsDeveloping](FirstGrainsDeveloping.qmd)   | FirstPodsVisiable | FirstGrainsVisiable  |
+| 8     | [FirstGrainsFilling](FirstGrainsFilling.qmd)         | FirstGrainsVisiable | TerminalNode        |
+| 9     | [FinalPodsDeveloping](FinalPodsDeveloping.qmd)       | TerminalNode      | LastPodsDeveloped    |
+| 10    | [FinalGrainsFilling](FinalGrainsFilling.qmd)         | LastPodsDeveloped | LastGrainsFilled     |
+| 11    | [Ripening](Ripening.qmd)                             | LastGrainsFilled  | HarvestRipe          |
+| 12    | [ReadyForHarvesting](ReadyForHarvesting.qmd)         | HarvestRipe       | Unused               |

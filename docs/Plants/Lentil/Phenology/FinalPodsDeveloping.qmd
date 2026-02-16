@@ -1,0 +1,38 @@
+---
+title: "FinalPodsDeveloping"
+format: html
+---
+
+The **FinalPodsDeveloping** phase in [Lentil](/docs/Plants/Lentil) represents the developmental period from **TerminalNode** to **LastPodsDeveloped**. This phase covers the development of the latest pods formed on the plant.
+
+## Overview
+
+The [GenericPhase](/docs/Models/PMF/Phenology/Phases/GenericPhase.qmd) model simulates the final pod development using daily [Thermal Time](ThermalTime.qmd).
+
+- This phase starts at **TerminalNode** (when the main stem stops growing) and ends at **LastPodsDeveloped**
+- Late-forming pods complete their development
+- Earlier pods are already in grain-filling stage
+- The model uses daily thermal time, retrieved from the `[Phenology].ThermalTime` function
+- By this stage, main stem has ceased vegetative growth
+
+## Final Pod Development Characteristics
+
+During this phase:
+
+- Latest pods on the plant reach full size
+- These pods were initiated late in the flowering period
+- They develop concurrently with grain filling in earlier pods
+- Pod development is largely non-competing for resources with earlier pods due to main limitations in resource uptake
+- The timing of pod completion affects grain number of late pods
+
+## Practical Considerations
+
+Factors affecting final pod development:
+
+1. **Temperature**: Warmer conditions accelerate final pod development
+2. **Photoperiod**: Late-developing pods may be affected by declining day length
+3. **Plant resources**: If resources are limiting, final pods may abort or develop incompletely
+4. **Cultivar differences**: Determinate vs. indeterminate growth habits affect final pod formation
+5. **Timing of stress**: Late-season water or temperature stress impacts final pod viability
+
+The model simulates the development of the final suite of pods, which contribute to overall grain yield but typically produce fewer and lighter grains than earlier-formed pods.
