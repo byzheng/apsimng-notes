@@ -23,7 +23,7 @@ website:
   google-analytics: 
     tracking-id: "G-5K7WTC1T5R"
     storage: "cookies"
-  site-url: https://apsimng-notes.bangyou.me
+  site-url: https://notes.apsimng.bangyou.me
   repo-url: "https://github.com/byzheng/apsimng-notes"
   repo-actions: [edit, issue]
   search:
