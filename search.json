@@ -120,7 +120,7 @@
     "href": "docs/Plants/index.html",
     "title": "Plants",
     "section": "",
-    "text": "Docs Plants Plants\n\nThis section contains the documentation for Plants models in APSIM Next Generation. The Plants models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each plant, the documentation is organised as the original model structure defined in the JSON file.\n\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Chickpea →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Oats →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete\n\n\n\n  \nExplore WinterCereal →\n\n\n\n\n\n\n10% complete",
+    "text": "Docs Plants Plants\n\nThis section contains the documentation for Plants models in APSIM Next Generation. The Plants models are released as part of the APSIM Next Generation. The model is defined under Resources folder in the APSIM Next Generation repository.\nFor each plant, the documentation is organised as the original model structure defined in the JSON file.\n\n\n\n  \nExplore Barley →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Canola →\n\n\n\n\n\n\n5% complete\n\n\n\n  \nExplore Chickpea →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Lentil →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Oats →\n\n\n\n\n\n\n0% complete\n\n\n\n  \nExplore Wheat →\n\n\n\n\n\n\n10% complete\n\n\n\n  \nExplore WinterCereal →\n\n\n\n\n\n\n10% complete",
     "crumbs": [
       "Home",
       "Docs",
@@ -1488,6 +1488,587 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Lentil/Phenology/index.html",
+    "href": "docs/Plants/Lentil/Phenology/index.html",
+    "title": "Phenology",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Phenology\nThe Phenology model in APSIM NG simulates the development of lentil plants.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/index.html#thermal-time",
+    "href": "docs/Plants/Lentil/Phenology/index.html#thermal-time",
+    "title": "Phenology",
+    "section": "Thermal Time",
+    "text": "Thermal Time\nDaily Thermal Time is calculated using a three cardinal temperature response curve with different parameters for pre-emergence and post-emergence phases.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/index.html#photoperiod",
+    "href": "docs/Plants/Lentil/Phenology/index.html#photoperiod",
+    "title": "Phenology",
+    "section": "Photoperiod",
+    "text": "Photoperiod\nThe daily photoperiod is calculated using the PhotoperiodFunction with -6 degrees twilight. See Photoperiod for more details.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/index.html#stages-and-phases",
+    "href": "docs/Plants/Lentil/Phenology/index.html#stages-and-phases",
+    "title": "Phenology",
+    "section": "Stages and Phases",
+    "text": "Stages and Phases\nThe numerical system is used to represent the development of lentil plants starting from 1. The stages are:\n\n\n\n\n\n\n\n\nStage\nName\nDescription\n\n\n\n\n1\nSowing\nSeeds are planted in the soil\n\n\n2\nGermination\nSeeds absorb water and begin to sprout\n\n\n3\nEmergence\nSeedlings break through the soil surface\n\n\n4\nFloralInitiation\nPlant initiates floral meristems\n\n\n5\nFirstBudsVisiable\nFirst buds become visible\n\n\n6\nFirstFlowersSet\nFirst flowers set and bloom\n\n\n7\nFirstPodsVisiable\nFirst pods become visible\n\n\n8\nFirstGrainsVisiable\nFirst grains become visible in pods\n\n\n9\nTerminalNode\nMain stem reaches terminal node\n\n\n10\nLastPodsDeveloped\nFinal pods have developed\n\n\n11\nLastGrainsFilled\nFinal grain filling is complete\n\n\n12\nHarvestRipe\nGrains are fully ripened and ready for harvest\n\n\n\nPhases are used to represent the development between two stages. The phases are:\n\n\n\nOrder\nName\nFrom\nTo\n\n\n\n\n1\nGerminating\nSowing\nGermination\n\n\n2\nEmerging\nGermination\nEmergence\n\n\n3\nJuvenile\nEmergence\nFloralInitiation\n\n\n4\nInductive\nFloralInitiation\nFirstBudsVisiable\n\n\n5\nFirstFlowersDeveloping\nFirstBudsVisiable\nFirstFlowersSet\n\n\n6\nFirstPodsDeveloping\nFirstFlowersSet\nFirstPodsVisiable\n\n\n7\nFirstGrainsDeveloping\nFirstPodsVisiable\nFirstGrainsVisiable\n\n\n8\nFirstGrainsFilling\nFirstGrainsVisiable\nTerminalNode\n\n\n9\nFinalPodsDeveloping\nTerminalNode\nLastPodsDeveloped\n\n\n10\nFinalGrainsFilling\nLastPodsDeveloped\nLastGrainsFilled\n\n\n11\nRipening\nLastGrainsFilled\nHarvestRipe\n\n\n12\nReadyForHarvesting\nHarvestRipe\nUnused",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Ripening.html",
+    "href": "docs/Plants/Lentil/Phenology/Ripening.html",
+    "title": "Ripening",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Ripening\nThe Ripening phase in Lentil represents the developmental period from LastGrainsFilled to HarvestRipe. This final reproductive phase covers physiological maturity through harvest ripeness.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Ripening"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Ripening.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Ripening.html#overview",
+    "title": "Ripening",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the ripening process using daily Thermal Time.\n\nThis phase starts at LastGrainsFilled and ends at HarvestRipe\nAll grains have completed their filling\nGrains are maturing, becoming harder and less sensitive to environmental conditions\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nPod and plant material begin to senesce",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Ripening"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Ripening.html#ripening-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/Ripening.html#ripening-characteristics",
+    "title": "Ripening",
+    "section": "Ripening Characteristics",
+    "text": "Ripening Characteristics\nDuring this phase:\n\nGrains lose moisture and become harder (physiological hardening)\nPod color changes from green to brown/tan\nGrain water content decreases below 20% (approaching harvest moisture)\nLeaf senescence accelerates\nPlant response to water and nutrient stress decreases\nCrop is approaching harvest readiness",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Ripening"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Ripening.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Ripening.html#cultivar-specific-parameters",
+    "title": "Ripening",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nCultivar-specific parameters that influence ripening duration:\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].RipeningThermalTime\nAccumulated thermal time to reach harvest ripeness (°Cd)\nVariable by cultivar",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Ripening"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Ripening.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/Ripening.html#practical-considerations",
+    "title": "Ripening",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nFactors affecting ripening:\n\nTemperature: Warmer conditions speed up ripening\nRadiation: Adequate light supports final grain maturation processes\nEnvironmental conditions: Ripening is less sensitive to water stress once grains are mature\nCultivar differences: Different cultivars have varying ripening times\nHarvest timing: Harvest should occur near crop maturity to minimize grain moisture\n\nThe model simulates ripening as the final maturation stage. Some cultivars ripen synchronously making harvest simpler, while others may ripen asynchronously requiring staged harvesting.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Ripening"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html",
+    "title": "Photoperiod",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Photoperiod\nPhotoperiod (day length) is an important environmental signal that influences the rate and duration of phenological development in the Lentil model. Some lentil cultivars are photoperiod-sensitive, responding to changes in day length.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#overview",
+    "title": "Photoperiod",
+    "section": "Overview",
+    "text": "Overview\nThe daily photoperiod is calculated using the PhotoperiodFunction based on latitude and the day of year.\n\nPhotoperiod is the duration of daylight hours on a given day\nIt increases from winter solstice (minimum) to summer solstice (maximum)\nThe calculation uses sunrise and sunset times based on latitude and solar declination\nTwilight angle of -6 degrees is used (civil twilight)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#calculation-method",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#calculation-method",
+    "title": "Photoperiod",
+    "section": "Calculation Method",
+    "text": "Calculation Method\nThe photoperiod is calculated from astronomical principles:\n\nSolar declination is calculated from the day of year\nSunset hour angle is calculated using the solar declination and latitude\nPhotoperiod in hours is derived from the hour angle\nTwilight adjustment of -6 degrees expands the photoperiod period slightly",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#photoperiod-sensitivity-in-lentils",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#photoperiod-sensitivity-in-lentils",
+    "title": "Photoperiod",
+    "section": "Photoperiod Sensitivity in Lentils",
+    "text": "Photoperiod Sensitivity in Lentils\nSome lentil cultivars are photoperiod-sensitive, meaning their phenological development is influenced by day length:\n\nPhotoperiod-Sensitive Cultivars\n\nFlowering and pod initiation timing may be delayed under long-day conditions\nReproductive development progresses more rapidly under short-day conditions\nThe sensitivity varies by cultivar (higher or lower photoperiod sensitivity values)\nParameter: [Phenology].InductivePpSensitivity controls this sensitivity\n\n\n\nPhotoperiod-Insensitive Cultivars\n\nDevelopment proceeds relatively normally regardless of day length\nThese cultivars are adapted to a wider range of latitudes\nParameter: [Phenology].InductivePpSensitivity will be low or zero for these cultivars",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#cultivar-specific-parameters",
+    "title": "Photoperiod",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nParameter\nDescription\nValue Range\n\n\n\n\n[Phenology].InductivePpSensitivity\nPhotoperiod sensitivity during inductive phase\n0.0 - 1.0\n\n\n[Phenology].FlowerAbortionPpSensitivity\nPhotoperiod sensitivity for flower abortion\n0.0 - 1.0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#geographic-and-seasonal-effects",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#geographic-and-seasonal-effects",
+    "title": "Photoperiod",
+    "section": "Geographic and Seasonal Effects",
+    "text": "Geographic and Seasonal Effects\nPhotoperiod effects are particularly important for:\n\nLatitude adaptation: Cultivars are adapted to specific latitude ranges based on photoperiod sensitivity\nSowing date effects: Early vs. late sowing can change experienced photoperiods during critical phases\nFlowering timing: Photoperiod can delay or advance flowering relative to thermal time alone\nLatitude consideration: Long-day regions (high latitude) vs. short-day regions (low latitude) favor different cultivars",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#examples",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#examples",
+    "title": "Photoperiod",
+    "section": "Examples",
+    "text": "Examples\n\nHigh-latitude (cool season region): Days are long in summer. Photoperiod-sensitive cultivars delay flowering until day length shortens, potentially pushing flowering into unfavorable conditions\nLow-latitude (tropical region): Days stay relatively short year-round. Day length changes are minimal, so photoperiod sensitivity is less important\nSowing date effect: Early-sown crops experience longer photoperiods during flowering; late-sown crops experience declining photoperiods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Photoperiod.html#practical-implications",
+    "href": "docs/Plants/Lentil/Phenology/Photoperiod.html#practical-implications",
+    "title": "Photoperiod",
+    "section": "Practical Implications",
+    "text": "Practical Implications\nUnderstanding photoperiod effects is important for:\n\nCultivar selection: Choosing cultivars matched to local photoperiod conditions\nSowing date determination: Optimizing sowing date to match cultivar photoperiod sensitivity\nPredicting flowering: Combining thermal time and photoperiod effects for accurate predictions\nYield forecasting: Photoperiod-induced changes in phasis can affect grain yield\n\nThe APSIM Lentil model incorporates photoperiod effects to accurately predict flowering and reproductive development across different latitudes and sowing dates.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Photoperiod"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Inductive.html",
+    "href": "docs/Plants/Lentil/Phenology/Inductive.html",
+    "title": "Inductive",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Inductive\nThe Inductive phase in Lentil represents the developmental period from FloralInitiation to FirstBudsVisiable. During this phase, the plant has transitioned to reproductive development and is responsive to environmental signals.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Inductive"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Inductive.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Inductive.html#overview",
+    "title": "Inductive",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the inductive phase using daily Thermal Time.\n\nThis phase starts at FloralInitiation and ends at FirstBudsVisiable\nThe plant is now responsive to photoperiod signals\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nThe Target thermal time is cultivar-specific and determined by [Phenology].InductiveBase\nFloral buds are initiated at the shoot apex but not yet visible",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Inductive"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Inductive.html#inductive-stage-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/Inductive.html#inductive-stage-characteristics",
+    "title": "Inductive",
+    "section": "Inductive Stage Characteristics",
+    "text": "Inductive Stage Characteristics\nDuring the inductive stage:\n\nFloral meristem development begins at the shoot apex\nThe plant is sensitive to photoperiod and temperature conditions\nVisual buds are not yet apparent but differentiation is occurring\nDuration can be modified by cultivar-specific photoperiod sensitivity\nNode development may continue while reproductive changes occur",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Inductive"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Inductive.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Inductive.html#cultivar-specific-parameters",
+    "title": "Inductive",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].InductiveBase\nAccumulated thermal time to reach budding (°Cd)\n0\n\n\n[Phenology].InductivePpSensitivity\nPhotoperiod sensitivity factor for inductive phase\nVariable by cultivar",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Inductive"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Inductive.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/Inductive.html#practical-considerations",
+    "title": "Inductive",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nThe inductive phase duration affects:\n\nPhotoperiod response: Cultivars with higher photoperiod sensitivity may extend this phase\nFlowering synchrony: Allows the plant to synchronize flowering with favorable environmental conditions\nCultivar variation: Different cultivars have varying photoperiod sensitivities and thermal requirements\n\nUnderstanding this phase is important for predicting bud initiation and subsequent flowering under different seasonal conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Inductive"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html",
+    "href": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html",
+    "title": "FirstPodsDeveloping",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FirstPodsDeveloping\nThe FirstPodsDeveloping phase in Lentil represents the developmental period from FirstFlowersSet to FirstPodsVisiable. This phase covers early pod development following successful flower set.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#overview",
+    "title": "FirstPodsDeveloping",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the pod development using daily Thermal Time.\n\nThis phase starts at FirstFlowersSet and ends at FirstPodsVisiable\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nPod size increases and becomes visible\nPollination and fertilization have occurred\nPod wall development proceeds to make structures visible",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#pod-development-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#pod-development-characteristics",
+    "title": "FirstPodsDeveloping",
+    "section": "Pod Development Characteristics",
+    "text": "Pod Development Characteristics\nDuring this phase:\n\nSuccessful flowers transition to developing pods\nPod wall expands and becomes visible\nSeed number in developing pods is established\nContinued flowering occurs at upper nodes\nLower pods are larger and more advanced than upper pods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#cultivar-specific-parameters",
+    "title": "FirstPodsDeveloping",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nCultivar-specific parameters that influence pod development:\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].MinFloralNodes\nMinimum number of nodes bearing flowers\n8\n\n\n[Phenology].MaxFloralNodes\nMaximum number of nodes bearing flowers\n15",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FirstPodsDeveloping.html#practical-considerations",
+    "title": "FirstPodsDeveloping",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nFactors affecting pod development:\n\nTemperature: Controls rate of pod expansion and development\nWater availability: Insufficient water leads to pod abortion and reduced set\nRadiation: Photosynthetically active radiation supports pod development\nNutrient status: Nitrogen availability affects pod setting and development\n\nThe model simulates pod development as a temperature-dependent process, with environmental stress mechanisms affecting pod retention and viability.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html",
+    "title": "FirstGrainsDeveloping",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FirstGrainsDeveloping\nThe FirstGrainsDeveloping phase in Lentil represents the developmental period from FirstPodsVisiable to FirstGrainsVisiable. This phase covers seed/grain initiation and early development within the developing pods.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#overview",
+    "title": "FirstGrainsDeveloping",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the grain development using daily Thermal Time.\n\nThis phase starts at FirstPodsVisiable and ends at FirstGrainsVisiable\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nSeeds develop within pods and become visible\nGrain/seed number per pod is established\nThe start of the grain-filling period begins",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#grain-development-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#grain-development-characteristics",
+    "title": "FirstGrainsDeveloping",
+    "section": "Grain Development Characteristics",
+    "text": "Grain Development Characteristics\nDuring this phase:\n\nSeeds (grains) initiate within visible pods\nSeed coat and internal structures develop\nSeed number per pod is determined\nContinued flowering and pod development at upper nodes\nGrains become visible as cream-colored structures within pods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsDeveloping.html#practical-considerations",
+    "title": "FirstGrainsDeveloping",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nFactors affecting grain development:\n\nTemperature: Controls the rate of grain development\nWater availability: Critical for maintaining seed set\nPhotoperiod: Influences the duration of the grain-filling period\nPlant nutrition: Adequate nitrogen supports seed development\nEnvironmental stress: Water or temperature stress reduces grain set\n\nThe model simulates grain development as a thermal time-dependent process, which is important for predicting final grain number and yield potential.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html",
+    "href": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html",
+    "title": "FinalPodsDeveloping",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FinalPodsDeveloping\nThe FinalPodsDeveloping phase in Lentil represents the developmental period from TerminalNode to LastPodsDeveloped. This phase covers the development of the latest pods formed on the plant.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#overview",
+    "title": "FinalPodsDeveloping",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the final pod development using daily Thermal Time.\n\nThis phase starts at TerminalNode (when the main stem stops growing) and ends at LastPodsDeveloped\nLate-forming pods complete their development\nEarlier pods are already in grain-filling stage\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nBy this stage, main stem has ceased vegetative growth",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#final-pod-development-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#final-pod-development-characteristics",
+    "title": "FinalPodsDeveloping",
+    "section": "Final Pod Development Characteristics",
+    "text": "Final Pod Development Characteristics\nDuring this phase:\n\nLatest pods on the plant reach full size\nThese pods were initiated late in the flowering period\nThey develop concurrently with grain filling in earlier pods\nPod development is largely non-competing for resources with earlier pods due to main limitations in resource uptake\nThe timing of pod completion affects grain number of late pods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FinalPodsDeveloping.html#practical-considerations",
+    "title": "FinalPodsDeveloping",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nFactors affecting final pod development:\n\nTemperature: Warmer conditions accelerate final pod development\nPhotoperiod: Late-developing pods may be affected by declining day length\nPlant resources: If resources are limiting, final pods may abort or develop incompletely\nCultivar differences: Determinate vs. indeterminate growth habits affect final pod formation\nTiming of stress: Late-season water or temperature stress impacts final pod viability\n\nThe model simulates the development of the final suite of pods, which contribute to overall grain yield but typically produce fewer and lighter grains than earlier-formed pods.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalPodsDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Emerging.html",
+    "href": "docs/Plants/Lentil/Phenology/Emerging.html",
+    "title": "Emerging",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Emerging\nThe Emerging is a phenological phase in Lentil used to represent the development period from Germination to Emergence. This phase represents the period when the seedling grows through the soil and emerges from the surface.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Emerging.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Emerging.html#overview",
+    "title": "Emerging",
+    "section": "Overview",
+    "text": "Overview\nThe EmergingPhase model simulates the emergence of lentil seedlings. This phase begins after germination is complete and ends when the seedling has broken through the soil surface. See EmergingPhase for more details.\n\nCharacteristics\n\nDuration depends on soil temperature and soil water conditions\nThe seedling uses stored seed reserves to fuel growth\nColeoptile elongation occurs to push the shoot through the soil\nOnce the first leaves break through the soil surface, the plant transitions to the emergence stage",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Emerging.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Emerging.html#cultivar-specific-parameters",
+    "title": "Emerging",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nThe emerging phase uses thermal time accumulation to determine completion.\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Emerging.TargetThermalTime\nAccumulated thermal time required for emergence (°Cd)\nVariable by cultivar",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Emerging.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/Emerging.html#practical-considerations",
+    "title": "Emerging",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nKey factors affecting emergence:\n\nSoil temperature: Higher temperatures increase the rate of thermal time accumulation\nSoil moisture: Adequate moisture supports seedling growth and emergence\nSoil depth: Sowing depth influences emergence time and success\nSoil crust: Hard-setting soils can prevent seedling emergence\n\nThe model simulates the thermal time-dependent emergence process to predict when seedlings will break through the soil.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Emerging"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Chickpea/Phenology/index.html",
     "href": "docs/Plants/Chickpea/Phenology/index.html",
     "title": "Phenology",
@@ -2836,7 +3417,7 @@
     "href": "docs/Models/PMF/index.html",
     "title": "PMF",
     "section": "",
-    "text": "Docs Models PMF PMF\n\nPlant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014).\n\nArbitrator\nArbitrator is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\nPhenology\nPhenology is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, Edmar I. Teixeira, Rob F. Zyskowski, John N. G. Hargreaves, and Derrick J. Moot. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
+    "text": "Docs Models PMF PMF\n\nPlant Modeling Framework (PMF) offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, by integrating components like photosynthesis and leaf development without additional coding (Brown et al. 2014).\n\nArbitrator\nArbitrator is responsible for allocating resources (mainly biomass and nitrogen) among different organs of a plant (e.g., leaves, stem, roots, grain). Its role is central to simulating plant growth and development realistically.\n\n\nPhenology\nPhenology is responsible for simulating developmental stages of a plant—from emergence to flowering, grain filling, and maturity.\n\n\n\n\n\nReferences\n\nBrown, Hamish E., Neil I. Huth, Dean P. Holzworth, et al. 2014. “Plant Modelling Framework: Software for Building and Running Crop Models on the APSIM Platform.” Environmental Modelling & Software 62: 385–98. https://doi.org/10.1016/j.envsoft.2014.09.005.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2975,7 +3556,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html",
     "title": "ZadokPMFWheat",
     "section": "",
-    "text": "Docs Models PMF Phenology Scales ZadokPMFWheat\nThe ZadokPMFWheat model calculates Zadoks growth stage values (Zadoks, Chang, and Konzak 1974) for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.",
+    "text": "Docs Models PMF Phenology Scales ZadokPMFWheat\nThe ZadokPMFWheat model calculates Zadoks growth stage values (Zadoks et al. 1974) for wheat based on the current phenological growth stage within the simulation. This model provides a standardized way to express wheat development stages using the internationally recognized Zadok scale.",
     "crumbs": [
       "Home",
       "Docs",
@@ -2991,7 +3572,7 @@
     "href": "docs/Models/PMF/Phenology/Scales/ZadokPMFWheat.html#overview",
     "title": "ZadokPMFWheat",
     "section": "Overview",
-    "text": "Overview\nThe Zadoks scale (Zadoks, Chang, and Konzak 1974) is a numerical system (0-99) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM-NG’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology and facilitating integration between modeling and field observations.",
+    "text": "Overview\nThe Zadoks scale (Zadoks et al. 1974) is a numerical system (0-99) used to describe the growth stages of cereal crops, particularly wheat. The ZadokPMFWheat model translates APSIM-NG’s internal phenological stages into equivalent Zadok values, enabling researchers to communicate development stages using familiar agricultural terminology and facilitating integration between modeling and field observations.",
     "crumbs": [
       "Home",
       "Docs",
@@ -11009,7 +11590,7 @@
     "href": "docs/Plants/Chickpea/Phenology/PodInitiation.html",
     "title": "PodInitiation",
     "section": "",
-    "text": "Docs Plants Chickpea Phenology PodInitiation\nThe PodInitiation phase in Chickpea represents the developmental period from EndFlowering to EndPodInitiation. This phase marks when pods become visible (≥1 cm) and is uniquely determined by a temperature-day counting mechanism rather than traditional thermal time accumulation (Srinivasan, Johansen, and Saxena 1998; Clarke and Siddique 2004).",
+    "text": "Docs Plants Chickpea Phenology PodInitiation\nThe PodInitiation phase in Chickpea represents the developmental period from EndFlowering to EndPodInitiation. This phase marks when pods become visible (≥1 cm) and is uniquely determined by a temperature-day counting mechanism rather than traditional thermal time accumulation (Srinivasan et al. 1998; Clarke and Siddique 2004).",
     "crumbs": [
       "Home",
       "Docs",
@@ -11024,7 +11605,7 @@
     "href": "docs/Plants/Chickpea/Phenology/PodInitiation.html#overview",
     "title": "PodInitiation",
     "section": "Overview",
-    "text": "Overview\nThe GenericPhase model simulates the time between EndFlowering and EndPodInitiation stages.\n\nThis phase starts at EndFlowering and ends at EndPodInitiation\nThe model uses a unique progression mechanism requiring 5 days of temp above 16 degrees (or ten days at 15 degrees) before 1cm pods are visible, due to sensitivity of pod initiation to mean daily temperature(Srinivasan, Johansen, and Saxena 1998; Clarke and Siddique 2004). These days may accumulate anytime after start flowering (i.e. during previous growth phase as well as during the current phase).",
+    "text": "Overview\nThe GenericPhase model simulates the time between EndFlowering and EndPodInitiation stages.\n\nThis phase starts at EndFlowering and ends at EndPodInitiation\nThe model uses a unique progression mechanism requiring 5 days of temp above 16 degrees (or ten days at 15 degrees) before 1cm pods are visible, due to sensitivity of pod initiation to mean daily temperature(Srinivasan et al. 1998; Clarke and Siddique 2004). These days may accumulate anytime after start flowering (i.e. during previous growth phase as well as during the current phase).",
     "crumbs": [
       "Home",
       "Docs",
@@ -11236,6 +11817,555 @@
       "Docs",
       "Plants",
       "Chickpea"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html",
+    "href": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html",
+    "title": "FinalGrainsFilling",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FinalGrainsFilling\nThe FinalGrainsFilling phase in Lentil represents the developmental period from LastPodsDeveloped to LastGrainsFilled. This phase covers the grain filling in the latest pods formed on the plant.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#overview",
+    "title": "FinalGrainsFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the final grain-filling process using daily Thermal Time.\n\nThis phase starts at LastPodsDeveloped and ends at LastGrainsFilled\nGrains in late-formed pods undergo grain filling\nEarly and middle grains are near physiological maturity\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nLater-developing grains may have shorter filling periods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#final-grain-filling-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#final-grain-filling-characteristics",
+    "title": "FinalGrainsFilling",
+    "section": "Final Grain-Filling Characteristics",
+    "text": "Final Grain-Filling Characteristics\nDuring this phase:\n\nFinal grains accumulate dry matter and nutrients\nStarch and protein accumulate in these grains\nEarlier grains may already be mature or nearly mature\nResource competition may exist between final grains and earlier maturing grains\nThe duration of final grain filling affects final grain weight of late pods",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FinalGrainsFilling.html#practical-considerations",
+    "title": "FinalGrainsFilling",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nCritical factors affecting final grain filling:\n\nTemperature: Cooler temperatures near end of season may slow final grain filling\nWater availability: Must be sustained until final grains mature\nRadiation: Adequate light supports carbohydrate supply for grain filling\nPhotoperiod: Declining day length toward harvest signals reproductive maturity\nCultivar maturity: Some cultivars have shorter final grain-filling periods\nSeasonal timing: Late-season crops may face accelerated maturation under photoperiod cues\n\nThe model simulates final grain filling as a continuation of the grain-filling process. While important, these grains typically contribute less to total yield than grains filling earlier in the season.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FinalGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html",
+    "href": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html",
+    "title": "FirstFlowersDeveloping",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FirstFlowersDeveloping\nThe FirstFlowersDeveloping phase in Lentil represents the developmental period from FirstBudsVisiable to FirstFlowersSet. This phase covers the development of visible floral buds until flowers open and set.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstFlowersDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#overview",
+    "title": "FirstFlowersDeveloping",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the flower development using daily Thermal Time.\n\nThis phase starts at FirstBudsVisiable and ends at FirstFlowersSet\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nThe Target thermal time is cultivar-specific and determined by [Phenology].TtFlowerDevelopment\nFloral structures develop and flowers prepare to open\nEnvironmental stress can affect flower development",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstFlowersDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#flower-development-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#flower-development-characteristics",
+    "title": "FirstFlowersDeveloping",
+    "section": "Flower Development Characteristics",
+    "text": "Flower Development Characteristics\nDuring this phase:\n\nVisible buds develop into flowers\nFloral organs (sepals, petals, stamens, pistils) complete development\nFlower quality and viability are established\nLower nodes flower first, followed by upper nodes in acropetal succession\nThe duration is primarily temperature-dependent",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstFlowersDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#cultivar-specific-parameters",
+    "title": "FirstFlowersDeveloping",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].TtFlowerDevelopment\nAccumulated thermal time from budding to flowering (°Cd)\n200",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstFlowersDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FirstFlowersDeveloping.html#practical-considerations",
+    "title": "FirstFlowersDeveloping",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nFactors affecting flower development:\n\nTemperature: Higher temperatures accelerate flower development\nWater stress: Can reduce flower quality and increase flower abortion\nPhotoperiod: Can influence the rate of flower development\nCultivar differences: Different cultivars have varying flower development rates\n\nThe model simulates this critical phase to predict when flowers will set, which is essential for understanding pod and grain production potential.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstFlowersDeveloping"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html",
+    "title": "FirstGrainsFilling",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology FirstGrainsFilling\nThe FirstGrainsFilling phase in Lentil represents the developmental period from FirstGrainsVisiable to TerminalNode. This is the critical grain-filling period when grains accumulate dry matter and nutrients.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#overview",
+    "title": "FirstGrainsFilling",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the grain-filling process using daily Thermal Time.\n\nThis phase starts at FirstGrainsVisiable and ends at TerminalNode\nThe main stem reaches determinate growth, forming a terminal node\nGrains accumulate starch and protein\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nThis is the most critical phase for biomass and yield accumulation",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#grain-filling-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#grain-filling-characteristics",
+    "title": "FirstGrainsFilling",
+    "section": "Grain-Filling Characteristics",
+    "text": "Grain-Filling Characteristics\nDuring this phase:\n\nGrains rapidly increase in size and mass\nStarch accumulation is highest during this period\nProtein content increases\nConcurrent flowering and pod development continues at upper nodes\nLater grains fill at same time as earlier grains\nThe duration and rate of grain filling directly affect final grain weight",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#cultivar-specific-parameters",
+    "title": "FirstGrainsFilling",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].TtFlowerDevelopment\nThermal time from budding to flowering (°Cd)\n200",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/FirstGrainsFilling.html#practical-considerations",
+    "title": "FirstGrainsFilling",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nCritical factors affecting grain filling:\n\nTemperature: Optimal temperatures enhance grain filling rates\nWater availability: Most critical phase for water requirement; stress reduces grain weight\nRadiation: High photosynthetically active radiation ensures adequate carbohydrate supply\nNitrogen availability: Supports protein accumulation in grains\nCrop maturity stage: Late-sown crops may have shorter grain-filling periods with lower yields\n\nThe model simulates this critical phase as the period when grain dry matter accumulates most rapidly. Water stress during this phase has the most severe impact on grain yield.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "FirstGrainsFilling"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Germinating.html",
+    "href": "docs/Plants/Lentil/Phenology/Germinating.html",
+    "title": "Germinating",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Germinating\nThe Germinating is a phenological phase in Lentil used to represent the development period from Sowing to Germination. It determines whether the seed has germinated based on soil temperature and soil water.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Germinating.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Germinating.html#overview",
+    "title": "Germinating",
+    "section": "Overview",
+    "text": "Overview\nThe GerminatingPhase model is used to simulate the germination of lentil seeds. This phase begins when Plant Sowing occurs and ends when the plant has germinated under suitable conditions of soil temperature and soil water. See GerminatingPhase for more details.\n\nRequirements for Germination\n\nThe soil temperature must exceed a minimum threshold for germination to occur\nThe soil water content should be more than the lower limit for germination to proceed",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Germinating.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Germinating.html#cultivar-specific-parameters",
+    "title": "Germinating",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\nThe germinating phase uses cultivar-specific parameters that define the environmental thresholds required for successful germination.\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].Germinating.MinSoilTemperature\nMinimum soil temperature for germination (°C)\n0",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Germinating.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/Germinating.html#practical-considerations",
+    "title": "Germinating",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nSuccessful lentil germination depends on:\n\nSoil moisture: Adequate moisture is essential for seed imbibition and activation of metabolic processes\nSoil temperature: Temperature affects the rate of enzymatic reactions during germination\n\nThe model accurately simulates these environmental controls to predict germination timing under field conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Germinating"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Juvenile.html",
+    "href": "docs/Plants/Lentil/Phenology/Juvenile.html",
+    "title": "Juvenile",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Juvenile\nThe Juvenile phase in Lentil represents the developmental period from Emergence to FloralInitiation. During this phase, the plant is unable to transition to reproductive development, regardless of environmental conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Juvenile"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Juvenile.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/Juvenile.html#overview",
+    "title": "Juvenile",
+    "section": "Overview",
+    "text": "Overview\nThe GenericPhase model simulates the juvenile phase using daily Thermal Time.\n\nThis phase starts at Emergence and ends at FloralInitiation\nThe model uses daily thermal time, retrieved from the [Phenology].ThermalTime function\nThe Target thermal time is cultivar-specific and determined by [Phenology].JuvenileBase\nNode appearance and leaf development continue during this phase\nThe plant is not responsive to photoperiod during the juvenile phase",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Juvenile"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Juvenile.html#juvenile-stage-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/Juvenile.html#juvenile-stage-characteristics",
+    "title": "Juvenile",
+    "section": "Juvenile Stage Characteristics",
+    "text": "Juvenile Stage Characteristics\nDuring the juvenile stage:\n\nVegetative growth dominates, with continuous leaf and node development\nRoot system expands to explore a greater volume of soil\nPlant is insensitive to photoperiod signals\nOnce juvenile phase ends, the plant becomes competent for reproductive transitions\nDuration varies by cultivar",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Juvenile"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Juvenile.html#cultivar-specific-parameters",
+    "href": "docs/Plants/Lentil/Phenology/Juvenile.html#cultivar-specific-parameters",
+    "title": "Juvenile",
+    "section": "Cultivar-Specific Parameters",
+    "text": "Cultivar-Specific Parameters\n\n\n\n\n\n\n\n\nName\nDescription\nDefault Value\n\n\n\n\n[Phenology].JuvenileBase\nAccumulated thermal time to complete juvenile phase (°Cd)\n400",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Juvenile"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/Juvenile.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/Juvenile.html#practical-considerations",
+    "title": "Juvenile",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nThe juvenile phase duration affects:\n\nTime to flowering: Longer juvenile phases delay flowering or reproductive development\nSeasonal adaptation: Longer juvenile phases ensure plants don’t flower prematurely\nCultivar differences: Different lentil cultivars have varying juvenile phase lengths for adaptation to different regions\n\nUnderstanding the juvenile phase is important for predicting flowering time under different seasonal conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Juvenile"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html",
+    "href": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html",
+    "title": "ReadyForHarvesting",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology ReadyForHarvesting\nThe ReadyForHarvesting phase in Lentil represents the final developmental period from HarvestRipe to Unused. This phase indicates when the crop is ready and suitable for harvest.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#overview",
+    "title": "ReadyForHarvesting",
+    "section": "Overview",
+    "text": "Overview\nThe EndPhase model simulates the end of the crop growing season.\n\nThis phase starts at HarvestRipe and ends at the plant’s lifecycle completion\nThe crop has reached full maturity\nGrains have achieved physiological maturity with low moisture content\nAll growth and development processes have concluded\nThe crop is ready for harvest",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#harvest-ready-characteristics",
+    "href": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#harvest-ready-characteristics",
+    "title": "ReadyForHarvesting",
+    "section": "Harvest-Ready Characteristics",
+    "text": "Harvest-Ready Characteristics\nAt the start of this phase:\n\nGrains are at physiological maturity\nGrain moisture content is typically 12-18% depending on cultivar and final conditions\nPods are dry and brittle\nStems have hardened\nLeaves have largely senesced\nThe plant cannot recover from stress\nYield potential is fixed",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#practical-considerations",
+    "href": "docs/Plants/Lentil/Phenology/ReadyForHarvesting.html#practical-considerations",
+    "title": "ReadyForHarvesting",
+    "section": "Practical Considerations",
+    "text": "Practical Considerations\nHarvest management considerations:\n\nGrain moisture: Optimal harvest moisture is 12-18% for combining\nPod and plant condition: Should be dry enough for mechanical harvest\nField conditions: Weather and soil conditions affect harvesting feasibility\nTiming: Earlier harvest may result in higher grain moisture; later harvest risks grain loss or weathering\nCultivar variation: Different cultivars may vary slightly in ideal harvest moisture and timing\n\nFactors affecting suitability for harvest:\n\nWeather: Rain delays harvest and can affect grain quality\nTemperature: Continued warm, dry conditions optimize grain drying and harvest quality\nStand condition: Even maturity across the field allows synchronized harvesting\nEquipment availability: Timely access to harvest equipment\n\nThe model marks the transition to the harvest phase when the crop has completed its growing cycle and is ready for mechanical or manual harvesting.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "ReadyForHarvesting"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html",
+    "title": "Thermal Time",
+    "section": "",
+    "text": "Docs Plants Lentil Phenology Thermal Time\nDaily thermal time (also known as growing degree days or heat units) is the primary driver for phenological development in the Lentil model. It accounts for the cumulative effect of temperature on plant development rates.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#overview",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#overview",
+    "title": "Thermal Time",
+    "section": "Overview",
+    "text": "Overview\nThermal time is calculated daily using a three cardinal temperature response function with different parameters for different developmental phases. The function uses minimum, optimal, and maximum temperatures to define the temperature response.\n\nPre-emergence thermal time is accumulated from sowing until emergence\nPost-emergence thermal time is accumulated from emergence onward\nDifferent phases may have different thermal time requirements\nThe thermal time accumulation is the primary mechanism driving phenological transitions",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#calculation-method",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#calculation-method",
+    "title": "Thermal Time",
+    "section": "Calculation Method",
+    "text": "Calculation Method\nThermal time (in °Cd per day) is calculated as:\n\\[TT = \\max(0, \\min(T_{opt} - T_{min}, T - T_{min}, T_{max} - T))\\]\nWhere: - \\(T\\) is the daily mean temperature (°C) - \\(T_{min}\\) is the minimum temperature (base temperature) (°C) - \\(T_{opt}\\) is the optimal temperature (°C) - \\(T_{max}\\) is the maximum temperature (°C)",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#temperature-thresholds",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#temperature-thresholds",
+    "title": "Thermal Time",
+    "section": "Temperature Thresholds",
+    "text": "Temperature Thresholds\nDifferent growth phases have different temperature thresholds:\n\nPre-emergence Phase\n\nBase temperature (\\(T_{min}\\)): Varies by cultivar (typically 0-5°C)\nOptimal temperature (\\(T_{opt}\\)): ~25°C\nMaximum temperature (\\(T_{max}\\)): ~45°C\n\n\n\nPost-emergence Phases\n\nBase temperature (\\(T_{min}\\)): Typically 2-5°C\nOptimal temperature (\\(T_{opt}\\)): ~24°C\nMaximum temperature (\\(T_{max}\\)): ~40°C",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#cultivar-specific-thermal-time-requirements",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#cultivar-specific-thermal-time-requirements",
+    "title": "Thermal Time",
+    "section": "Cultivar-Specific Thermal Time Requirements",
+    "text": "Cultivar-Specific Thermal Time Requirements\nEach phenological phase has specific thermal time requirements that are cultivar-specific:\n\n\n\nPhase\nThermal Time Duration (°Cd)\nNotes\n\n\n\n\nGerminating\nVariable\nPre-emergence, soil-dependent\n\n\nEmerging\n~200-300\nVariable by cultivar\n\n\nJuvenile\n400\nBase value, may vary\n\n\nInductive\nVariable\nCultivar-specific\n\n\nFirstFlowersDeveloping\n200\nTime from budding to flowering\n\n\nFirstPodsDeveloping\nVariable\nPod development phase\n\n\nFirstGrainsDeveloping\nVariable\nGrain initiation phase\n\n\nFirstGrainsFilling\nVariable\nCritical grain-filling phase\n\n\nFinalPodsDeveloping\nVariable\nLate pod development\n\n\nFinalGrainsFilling\nVariable\nFinal grain maturation\n\n\nRipening\nVariable\nRipening to harvest maturity",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#practical-applications",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#practical-applications",
+    "title": "Thermal Time",
+    "section": "Practical Applications",
+    "text": "Practical Applications\nThermal time is used for:\n\nPredicting phenological stages: Accumulating thermal time predicts when major growth stages will occur\nComparing cultivars: Different cultivars have different thermal time requirements for similar developmental stages\nAssessing seasonal effects: Warm seasons accumulate thermal time faster than cool seasons\nYield forecasting: Early prediction of flowering and grain-filling timing helps forecast grain yield\nManagement decisions: Knowing thermal time requirements guides irrigation, nutrient, and pest management timing",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/Phenology/ThermalTime.html#examples",
+    "href": "docs/Plants/Lentil/Phenology/ThermalTime.html#examples",
+    "title": "Thermal Time",
+    "section": "Examples",
+    "text": "Examples\n\nWarm season: A season with higher average temperatures will accumulate thermal time faster and reach flowering earlier\nCool season: A cool growing season will accumulate thermal time more slowly, potentially extending the growing season\nCultivar comparison: A cultivar requiring 400°Cd to reach a stage will reach it earlier in warm regions than a cultivar requiring 600°Cd\n\nThe thermal time model in APSIM accurately represents the temperature-dependent development of lentil under field conditions.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil",
+      "Phenology",
+      "Thermal Time"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/index.html",
+    "href": "docs/Plants/Lentil/index.html",
+    "title": "Lentil",
+    "section": "",
+    "text": "Docs Plants Lentil Lentil\nThe APSIM Lentil model is constructed using the Plant Modelling Framework (PMF) (Brown et al. 2014), which offers a modular library of plant organ and process submodels. This design allows for dynamic assembly of complex crop models, such as lentil, by integrating components like photosynthesis and leaf development without additional coding.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/index.html#phenology",
+    "href": "docs/Plants/Lentil/index.html#phenology",
+    "title": "Lentil",
+    "section": "Phenology",
+    "text": "Phenology\nThe lentil phenology is simulated from sowing to harvest.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Lentil/index.html#see-also",
+    "href": "docs/Plants/Lentil/index.html#see-also",
+    "title": "Lentil",
+    "section": "See Also",
+    "text": "See Also\n\nOnline Resource File",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Lentil"
     ]
   },
   {
