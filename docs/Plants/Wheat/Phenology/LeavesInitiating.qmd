@@ -90,6 +90,7 @@ The upregulation of *Vrn1* from cold at hourly temperature $T$ is shown in the f
 library(ggplot2)
 x <- seq(-10, 40, by = 0.1)
 y <- ifelse(x < 20, exp(-0.17 * x) / 24, 0)
+y <- ifelse(x < 0, 0, y)
 df <- data.frame(temperature = x, cold_vrn_response = y)
 ggplot(df, aes(x = temperature)) +
     geom_line(aes(y = cold_vrn_response)) +
