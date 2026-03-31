@@ -1,0 +1,182 @@
+---
+title: "RUECO2Function"
+format: html
+---
+
+RUECO2Function calculates a daily carbon dioxide adjustment factor for radiation use efficiency (RUE) . The factor is designed to scale baseline RUE around a reference concentration of 350 ppm CO2 and is based on the @reyenga_modelling_1999 approach implemented in APSIM NG.
+
+```{r setup}
+setup_qmd()
+```
+## Overview
+
+This function returns a dimensionless multiplier, $f_{CO2}$, that can be used by parent RUE or stomatal conductance models to account for elevated atmospheric CO2 effects on biomass production.
+
+The implementation supports two photosynthetic pathways:
+
+- C3 pathway: temperature-dependent compensation point formulation.
+- C4 pathway: linear CO2 response.
+
+The function depends on weather inputs for daily maximum temperature, daily minimum temperature, and atmospheric CO2 concentration.
+
+:::{.callout-note}
+The daily mean temperature cannot be more than 46.5°C for C3 plants, as this is outside the valid range for C3 photosynthesis.
+
+RUECO2Function will not throw an error if the CO2 level is less than 350 ppm [@reyenga_modelling_1999].
+:::
+
+## Model Structure
+
+{{< include /_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/APSIM.Core/IFunction.qmd)
+
+## Connections to Other Components
+
+{{< include /_includes/Models/connections-intro.md >}}
+
+| Component | Model | Connection Type | Description |
+|-----------|-------|-----------------|-------------|
+| MetData | [IWeather](/docs/Models/Interfaces/IWeather.qmd) | Link | Supplies daily weather inputs used by the algorithm: $T_{max}$, $T_{min}$, and $CO_2$. |
+
+## Model Variables
+
+{{< include /_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property | Type | Description |
+|----------|------|-------------|
+| PhotosyntheticPathway | string | Selects the calculation branch. Valid values are "C3" or "C4". |
+
+**Read-Only Reportable Properties**
+
+> No read-only properties are available for this function.
+
+## Events
+
+{{< include /_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /_includes/Models/processes-intro.md >}}
+
+### Daily Mean Temperature
+
+The daily mean temperature ($T$) is calculated as the average of the daily maximum and minimum temperatures:
+
+$$
+T = \frac{T_{max} + T_{min}}{2}
+$$
+
+where $T_{max}$ and $T_{min}$ come from the linked weather component.
+
+### C3 Compensation Point
+
+For C3 plants (like wheat), the $CO_{\text{2}}$ factor is calculated by a function of environmental $CO_{\text{2}}$ concentration
+($C$, ppm) and daily mean temperature ($T$) as published
+by [@reyenga_modelling_1999].
+
+
+
+$$
+f_{CO2} = \frac{(C - C_i)(350 + 2C_i)}{(C + 2C_i)(350 - C_i)}
+$$
+
+where $C$ is the atmospheric CO2 concentration from the weather component. 
+$C_i$ is the temperature dependent compensation point (ppm) and is derived from the following function.
+
+
+$$
+C_i = \frac{163.0 - T}{5.0 - 0.1T}
+$$
+
+When daily mean temperature $T$ is above 46.5°C, the function throws an error as this is outside the valid range for C3 photosynthesis.
+
+When $C$ is at or below $C_i$, the function returns an error as this indicates CO2 levels are too low for net photosynthesis.
+
+
+### C4 Linear Response
+
+For C4 crops (e.g. Rice), CO_2 factor is increasing with CO~2~ concentration ($C$, ppm) with a factor ($f_{c}$) according personal communications with Mark Howden.
+
+
+$$
+f_{CO2} = 0.000143 \times C + 0.95
+$$
+
+
+## Cultivar-Specific Parameters
+
+RUECO2Function has one direct configuration parameter that can vary by cultivar setup:
+
+| Parameter | Typical cultivar use |
+|-----------|----------------------|
+| PhotosyntheticPathway | Set to "C3" for cultivars/species with C3 photosynthesis (for example wheat) and "C4" for C4 types (for example maize). |
+
+No cultivar-specific numeric coefficients are defined directly in this class. Cultivar effects are represented primarily through pathway choice and through other cultivar parameters in linked growth components.
+
+## User Interface
+
+RUECO2Function can be added as a child of an IFunction parent in the model tree. Right-click the parent node, select Add Model..., and search for RUECO2Function in the filter box.
+
+## Practical Example
+
+### C3 plants
+
+The CO2 factor for RUE in C3 plants increases with CO2 concentration and is also influenced by temperature through the compensation point. At 350 ppm CO2, the factor is around 1.0, but it can increase to around 1.2 at 700 ppm CO2 depending on temperature.
+
+```{r fig-c3}
+#| fig.height: 4
+#| fig.caption: "CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures for C3 plants."
+t_mean <- seq(-5, 30, by = 5)
+co2_levels <- seq(300, 700, by = 1)
+
+pd <- expand.grid(co2_levels = co2_levels, t_mean = t_mean) |>
+    tibble() |>
+    mutate(ci = (163 - t_mean) / (5 - 0.1 * t_mean),
+            f_co2 = (co2_levels - ci) * (350 + 2 * ci) / ((co2_levels + 2 * ci) * (350 - ci)),
+            f_co2 = ifelse(co2_levels <= ci, NA, f_co2))
+assertthat::assert_that(all(!is.na(pd$f_co2)))
+pd |>
+    ggplot(aes(x = co2_levels, y = f_co2, color = factor(t_mean))) +
+    geom_line() +
+    labs(x = "CO2 (ppm)", y = "CO2 factor (f_CO2)", color = "Daily Mean Temp (°C)") +
+    theme_bw() +
+    theme(legend.position = "bottom") +
+    geom_hline(yintercept = 1.0, linetype = "dashed", color = "red") +
+    geom_vline(xintercept = 350, linetype = "dashed", color = "blue")
+
+
+```
+
+### C4 plants
+
+For C4 plants, the CO2 factor increases linearly with CO2 concentration. At 350 ppm, the factor is around 1.0, and it can reach around 1.1 at 700 ppm.
+
+```{r fig-c4}
+#| fig.height: 4
+#| fig.caption: "CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for C4 plants."
+
+co2_levels <- seq(300, 700, by = 1)
+tibble(co2_levels = co2_levels) |>
+    mutate(f_co2 = 0.000143 * co2_levels + 0.95) |>
+    ggplot(aes(x = co2_levels, y = f_co2)) +
+    geom_line() +
+    labs(x = "CO2 (ppm)", y = "CO2 factor (f_CO2)") +
+    theme_bw() +
+    geom_hline(yintercept = 1.0, linetype = "dashed", color = "red") +
+    geom_vline(xintercept = 350, linetype = "dashed", color = "blue")
+```
+## See Also
+
+* **Source code:** [RUECO2Function.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/Functions/SupplyFunctions/RUECO2Function.cs)
