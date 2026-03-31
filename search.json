@@ -8678,7 +8678,7 @@
     "href": "docs/Models/Functions/SupplyFunctions/RUECO2Function.html#practical-example",
     "title": "RUECO2Function",
     "section": "Practical Example",
-    "text": "Practical Example\n\nC3 plants\nThe CO2 factor for RUE in C3 plants increases with CO2 concentration and is also influenced by temperature through the compensation point. At 350 ppm CO2, the factor is around 1.0, but it can increase to around 1.2 at 700 ppm CO2 depending on temperature.\n\n\n[1] TRUE\n\n\n\n\n\n\n\n\nFigure 1: CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures for C3 plants.\n\n\n\n\n\n\n\nC4 plants\nFor C4 plants, the CO2 factor increases linearly with CO2 concentration. At 350 ppm, the factor is around 1.0, and it can reach around 1.1 at 700 ppm.\n\n\n\n\n\n\n\n\nFigure 2: CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for C4 plants.",
+    "text": "Practical Example\n\nC3 plants\nThe CO2 factor for RUE in C3 plants increases with CO2 concentration and is also influenced by temperature through the compensation point. At 350 ppm CO2, the factor is around 1.0, but it can increase to around 1.2 at 700 ppm CO2 depending on temperature.\n\n\n\n\n\n\n\n\nFigure 1: CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures for C3 plants.\n\n\n\n\n\n\n\nC4 plants\nFor C4 plants, the CO2 factor increases linearly with CO2 concentration. At 350 ppm, the factor is around 1.0, and it can reach around 1.1 at 700 ppm.\n\n\n\n\n\n\n\n\nFigure 2: CO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for C4 plants.",
     "crumbs": [
       "Home",
       "Docs",
