@@ -146,7 +146,7 @@ pd <- expand.grid(co2_levels = co2_levels, t_mean = t_mean) |>
     mutate(ci = (163 - t_mean) / (5 - 0.1 * t_mean),
             f_co2 = (co2_levels - ci) * (350 + 2 * ci) / ((co2_levels + 2 * ci) * (350 - ci)),
             f_co2 = ifelse(co2_levels <= ci, NA, f_co2))
-assertthat::assert_that(all(!is.na(pd$f_co2)))
+invisible(assertthat::assert_that(all(!is.na(pd$f_co2))))
 pd |>
     ggplot(aes(x = co2_levels, y = f_co2, color = factor(t_mean))) +
     geom_line() +
