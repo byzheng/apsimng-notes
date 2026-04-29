@@ -1,0 +1,15 @@
+---
+title: "CO2 for Canola"
+format: html
+---
+
+
+## Radiation Use Efficiency
+
+
+{{< include /docs/Models/Traits/CO2/_co2-rue-c3.qmd >}}
+
+
+## Stomatal Conductance
+
+{{< include /docs/Models/Traits/CO2/_co2-stomatal-conductance-c3.qmd >}}

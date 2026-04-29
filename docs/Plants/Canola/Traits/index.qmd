@@ -1,0 +1,8 @@
+---
+title: "Traits"
+---
+
+Here is a summary of the traits described in multiple components.
+
+
+- [CO2](co2-canola.qmd): Response of canola to elevated atmospheric CO2 concentration.

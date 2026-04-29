@@ -39,4 +39,5 @@ run_apsimx <- function() {
 
 
 # Run all apsimx files under docs directory
-run_apsimx()
+# run_apsimx()
+

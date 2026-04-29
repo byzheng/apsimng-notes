@@ -16,6 +16,13 @@ The APSIM Canola model is constructed using the Plant Modelling Framework (PMF) 
 
 - [Leaf](Leaf/index.qmd): The leaf organ model simulates leaf area development, senescence, and photosynthesis.
 
+
+## Traits
+
+Some [Traits](Traits) are described in multiple components, which are summaried in the [Traits](Traits) section.
+
+
+
 ## See Also
 
 * [Online Resource File](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Canola.json)

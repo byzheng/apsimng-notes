@@ -1,7 +1,7 @@
 
 
-ModelName: XYPairs
-TargetFile: Models/Functions/XYPairs
+ModelName: RUECO2Function
+TargetFile: Models/Functions/SupplyFunctions/RUECO2Function
 
 
 Task:
