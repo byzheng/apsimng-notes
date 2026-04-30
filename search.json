@@ -2719,6 +2719,19 @@
     ]
   },
   {
+    "objectID": "docs/Plants/Canola/index.html#traits",
+    "href": "docs/Plants/Canola/index.html#traits",
+    "title": "Canola",
+    "section": "Traits",
+    "text": "Traits\nSome Traits are described in multiple components, which are summaried in the Traits section.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola"
+    ]
+  },
+  {
     "objectID": "docs/Plants/Canola/index.html#see-also",
     "href": "docs/Plants/Canola/index.html#see-also",
     "title": "Canola",
@@ -2729,6 +2742,51 @@
       "Docs",
       "Plants",
       "Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Traits/co2-canola.html",
+    "href": "docs/Plants/Canola/Traits/co2-canola.html",
+    "title": "CO2 for Canola",
+    "section": "",
+    "text": "Docs Plants Canola Traits CO2 for Canola",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Traits",
+      "CO2 for Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Traits/co2-canola.html#radiation-use-efficiency",
+    "href": "docs/Plants/Canola/Traits/co2-canola.html#radiation-use-efficiency",
+    "title": "CO2 for Canola",
+    "section": "Radiation Use Efficiency",
+    "text": "Radiation Use Efficiency\nFor C3 plants (like wheat), Radiation Use Efficiency is scaled by the \\(CO_{\\text{2}}\\) factor which is calculated by a function of environmental \\(CO_{\\text{2}}\\) concentration (\\(C\\), ppm) and daily mean temperature (\\(T_{mean}\\)) as published by (Reyenga et al. 1999).\n\\[\nf_{c}=\\frac{(C-C_{i})(350+2C_{i})}{(C+2C_{i})(350-C_{i})}\n\\]\nwhere \\(C_{i}\\) is the temperature dependent \\(CO_{\\text{2}}\\) compensation point (ppm) and is derived from the following function.\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]\n\n\n\nCO2 factor of Radiation Use Efficiency in response to the CO2 level (C) for different daily mean air temperatures.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Traits",
+      "CO2 for Canola"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Traits/co2-canola.html#stomatal-conductance",
+    "href": "docs/Plants/Canola/Traits/co2-canola.html#stomatal-conductance",
+    "title": "CO2 for Canola",
+    "section": "Stomatal Conductance",
+    "text": "Stomatal Conductance\nThe APSIM model considers a reduction in Stomatal Conductance with increasing CO2 levels and its interaction with enhanced RUE|CO2 for RUE of C3. The Stomatal Conductance reduction is likely to reduce water loss but maintain photosynthesis due to higher water potential and internal CO2 levels, resulting in an increased transpiration efficiency (Reyenga et al. 1999). The response Stomatal Conductance of to increased CO2 concentration is calculated as follows (Elli et al. 2020).\n\\[\nSC = f_{c} / (\\frac {CO2 - C_{i}} {350 - C_{i}})\n\\]\nwhere \\[C_{i}\\] temperature-dependent CO2 compensation point, which is calculated by:\n\\[\nC_{i}=\\frac{163-T_{mean}}{5-0.1T_{mean}}\n\\]",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Traits",
+      "CO2 for Canola"
     ]
   },
   {
@@ -11448,6 +11506,20 @@
       "Plants",
       "Canola",
       "Phenology"
+    ]
+  },
+  {
+    "objectID": "docs/Plants/Canola/Traits/index.html",
+    "href": "docs/Plants/Canola/Traits/index.html",
+    "title": "Traits",
+    "section": "",
+    "text": "Docs Plants Canola Traits Traits\n\nHere is a summary of the traits described in multiple components.\n\nCO2: Response of canola to elevated atmospheric CO2 concentration.",
+    "crumbs": [
+      "Home",
+      "Docs",
+      "Plants",
+      "Canola",
+      "Traits"
     ]
   },
   {
