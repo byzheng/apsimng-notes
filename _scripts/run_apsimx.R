@@ -39,5 +39,8 @@ run_apsimx <- function() {
 
 
 # Run all apsimx files under docs directory
-# run_apsimx()
+
+if (Sys.getenv("GITHUB_ACTIONS") == "true") {
+    run_apsimx()
+}
 
