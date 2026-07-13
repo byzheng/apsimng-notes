@@ -1,0 +1,41 @@
+---
+title: "Temperature for Wheat"
+format: html
+---
+
+Temperature affects wheat growth and development throughout the APSIM wheat model. The main pathways represented in [Wheat.json](https://github.com/APSIMInitiative/ApsimX/blob/master/Models/Resources/Wheat.json) are listed below.
+
+## Temperature
+
+- Drives phenological development through `Phenology.ThermalTime`.
+- Controls phase progression rates and duration (thermal time accumulation).
+- Controls leaf appearance rate through the Haun stage relationship:
+	- `HaunStage Delta = ThermalTime / Phyllochron`.
+- Influences phyllochron-based leaf development via thermal-time driven processes.
+- Influences potential organ processes which reference thermal time (for example, leaf growth and structure dynamics).
+
+## High temperature
+
+- Reduces thermal-time response above the optimum range:
+	- `ThermalTime.Response`: 0 at 0 degrees C, peak at 26 degrees C, and back to 0 at 37 degrees C.
+- Reduces leaf photosynthesis (RUE model) at hot temperatures:
+	- `Leaf.Photosynthesis.FT`: 1.0 between 15 and 25 degrees C, declining to 0 by 35 degrees C.
+- Reduces leaf growth rate factor at hot temperatures:
+	- `Leaf.FRGRFunction.FT` uses the same temperature response shape as photosynthesis.
+- Can delay vernalisation progress in sensitive genotypes during warm conditions:
+	- In the vernalising phase memo, warm temperatures (>18 degrees C) are associated with slower apparent Vrn1 progression in vernalisation-sensitive types.
+
+## Low temperature
+
+- Slows or stops thermal-time accumulation near very low temperatures:
+	- `ThermalTime.Response` is 0 at 0 degrees C.
+- Reduces leaf photosynthesis and leaf growth at low temperatures:
+	- `Leaf.Photosynthesis.FT` and `Leaf.FRGRFunction.FT` are 0 at 0 degrees C.
+- Can accelerate vernalisation in vernalisation-sensitive wheat:
+	- During `LeavesInitiating` (vernalising phase), cooler temperatures increase Vrn1 expression relative to Haun stage, shortening vernalisation duration.
+
+## Note
+
+- In this base wheat resource, `Leaf.FrostFraction` is set to 0.0.
+- Explicit frost and heat damage to yield is described separately in [Frost and Heat Combined Stress](FrostHeat.qmd).
+

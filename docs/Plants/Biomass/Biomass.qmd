@@ -1,0 +1,193 @@
+---
+title: "Biomass"
+format: html
+draft: true
+---
+
+```{r setup, echo=FALSE}
+setup_qmd()
+```
+
+Represents the biomass and nitrogen content of plant organs in APSIM Next Generation. This model provides a structured container to store, manipulate, and report biomass and nitrogen pools used throughout the Plant Modelling Framework (PMF). [\[csiroau-my...epoint.com\]](https://csiroau-my.sharepoint.com/personal/zhe00a_csiro_au/Documents/Working/04-Software/032-ApsimX/ApsimX/Models/PMF/Biomass/Biomass.cs?web=1)
+
+## Overview
+
+The Biomass model is a core data structure within APSIM NG, designed to hold the state of plant dry matter and nitrogen in a consistent and biologically meaningful way. It divides biomass into three pools:
+
+* Structural biomass: long-lived tissue forming organ structure
+* Storage biomass: non-structural reserves available for remobilisation
+* Metabolic biomass: short-lived, actively metabolising tissue
+
+Each of these pools has a corresponding nitrogen component, ensuring that both dry matter and nitrogen are tracked consistently.
+
+The model itself does not simulate physiological processes such as growth or senescence. Instead, it serves as a container and mathematical utility to support other models that calculate biomass production, allocation, and redistribution. [\[csiroau-my...epoint.com\]](https://csiroau-my.sharepoint.com/personal/zhe00a_csiro_au/Documents/Working/04-Software/032-ApsimX/ApsimX/Models/PMF/Biomass/Biomass.cs?web=1)
+
+Biologically, this structure reflects plant function where:
+
+* Structural biomass contributes to physical integrity
+* Storage biomass acts as a buffer during stress or surplus supply
+* Metabolic biomass supports active growth processes
+
+This separation enables APSIM to simulate complex plant behaviour while maintaining mass balance.
+
+## Model Structure
+
+{{< include /\_includes/Models/model-structure-intro.md >}}
+
+* [Model](/docs/Models/Core/Model.qmd)
+* [IFunction](/docs/Models/Core/IFunction.qmd)
+* [IStructureDependency](/docs/Models/Core/IStructureDependency.qmd)
+
+## Connections to Other Components
+
+{{< include /\_includes/Models/connections-intro.md >}}
+
+| Component           | Model                                  | Connection Type   | Description                                                             |
+| ------------------- | -------------------------------------- | ----------------- | ----------------------------------------------------------------------- |
+| Plant               | [Plant](/docs/Models/PMF/Plant.qmd)    | Valid Parent      | Biomass can be attached to a plant or organ to represent biomass state. |
+| IOrgan              | /docs/Models/PMF/Interfaces/IOrgan.qmd | Valid Parent      | Biomass objects are typically owned by plant organs.                    |
+| OrganNutrientsState | Internal class                         | Constructor input | Used to initialise biomass pools from nutrient state data.              |
+
+## Model Variables
+
+{{< include /\_includes/Models/model-variables-intro.md >}}
+
+**Configurable and Reportable Properties**
+
+| Property     | Type   | Description                                  |
+| ------------ | ------ | -------------------------------------------- |
+| StructuralWt | double | Structural dry matter (g m⁻²).               |
+| StorageWt    | double | Storage (non-structural) dry matter (g m⁻²). |
+| MetabolicWt  | double | Metabolic dry matter (g m⁻²).                |
+| StructuralN  | double | Structural nitrogen (g m⁻²).                 |
+| StorageN     | double | Storage nitrogen (g m⁻²).                    |
+| MetabolicN   | double | Metabolic nitrogen (g m⁻²).                  |
+
+> No configurable properties are available for this function.
+
+**Read-Only Reportable Properties**
+
+| Property        | Type   | Description                                     |
+| --------------- | ------ | ----------------------------------------------- |
+| Wt              | double | Total biomass across all pools (g m⁻²).         |
+| N               | double | Total nitrogen across all pools (g m⁻²).        |
+| NConc           | double | Total nitrogen concentration ($g,g^{-1}$).      |
+| StructuralNConc | double | Structural nitrogen concentration ($g,g^{-1}$). |
+| StorageNConc    | double | Storage nitrogen concentration ($g,g^{-1}$).    |
+| MetabolicNConc  | double | Metabolic nitrogen concentration ($g,g^{-1}$).  |
+
+> No read-only properties are available for this function.
+
+## Events
+
+{{< include /\_includes/Models/events-intro.md >}}
+
+**Events Listened For**
+
+> No events are listened by this function.
+
+**Events Raised to**
+
+> No events are raised by this function.
+
+## Processes and Algorithms
+
+{{< include /\_includes/Models/processes-intro.md >}}
+
+### Biomass aggregation
+
+Total biomass is calculated as:
+
+$$
+Wt = StructuralWt + StorageWt + MetabolicWt
+$$
+
+Total nitrogen is calculated as:
+
+$$
+N = StructuralN + StorageN + MetabolicN
+$$
+
+These relationships ensure mass balance across all biomass pools.
+
+### Nitrogen concentration
+
+Overall nitrogen concentration:
+
+$$
+NConc =
+\begin{cases}
+\frac{N}{Wt}, & \text{if } Wt > 0 \\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+Pool-specific concentrations:
+
+$$
+StructuralNConc = \frac{StructuralN}{StructuralWt}
+$$
+
+$$
+StorageNConc = \frac{StorageN}{StorageWt}
+$$
+
+$$
+MetabolicNConc = \frac{MetabolicN}{MetabolicWt}
+$$
+
+These formulations prevent division by zero and ensure stable numerical behaviour. [\[csiroau-my...epoint.com\]](https://csiroau-my.sharepoint.com/personal/zhe00a_csiro_au/Documents/Working/04-Software/032-ApsimX/ApsimX/Models/PMF/Biomass/Biomass.cs?web=1)
+
+### Biomass arithmetic operations
+
+The class provides operations used throughout APSIM:
+
+* Addition (combine biomass):
+
+$$
+B_{new} = B_1 + B_2
+$$
+
+* Subtraction (remove biomass):
+
+$$
+B_{new} = B_1 - B_2
+$$
+
+* Scaling (proportional allocation):
+
+$$
+B_{new} = f \cdot B
+$$
+
+* Reset:
+  All pools are set to zero.
+
+These operations are applied element-wise across structural, storage, and metabolic pools for both dry matter and nitrogen. [\[csiroau-my...epoint.com\]](https://csiroau-my.sharepoint.com/personal/zhe00a_csiro_au/Documents/Working/04-Software/032-ApsimX/ApsimX/Models/PMF/Biomass/Biomass.cs?web=1)
+
+### Numerical stability
+
+All values assigned to biomass pools are passed through a rounding function that sets very small values to zero. This avoids accumulation of floating-point errors and ensures physically meaningful results. [\[csiroau-my...epoint.com\]](https://csiroau-my.sharepoint.com/personal/zhe00a_csiro_au/Documents/Working/04-Software/032-ApsimX/ApsimX/Models/PMF/Biomass/Biomass.cs?web=1)
+
+## User Interface
+
+Biomass can be added as a child of a Plant or organ node in the model tree. Right-click the parent node, select "Add Model...", and search for Biomass in the Filter Box.
+
+## Practical Example
+
+The Biomass model is typically used within plant organs to track growth and nitrogen dynamics.
+
+For example, in a leaf organ:
+
+* Photosynthesis produces assimilates that increase storage biomass
+* Structural growth transfers material from storage to structural pools
+* Nitrogen uptake increases corresponding nitrogen pools
+* Senescence removes biomass using subtraction operations
+
+This allows APSIM to maintain consistent accounting of biomass and nitrogen during plant growth and development.
+
+> No practical example is available for this function.
+
+## See Also
+
+* **Source code:** [Biomass.cs on GitHub](http://github.com/APSIMInitiative/ApsimX/blob/master/Models/<FunctionPath-in-apsimx-source-codes>.cs)

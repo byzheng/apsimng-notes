@@ -22,3 +22,4 @@ _apsimx
 **/*.quarto_ipynb
 *_files/
 index-listing.json
+render-md.bat
