@@ -43,13 +43,13 @@ for (plant in plant_dirs) {
     progress <- get_progress(plant)
     cat(glue::glue(
         '
-:::{{.g-col-4 .p-3 .border .rounded}}
+:::{{.g-col-3 .p-3 .border .rounded}}
 
 <a href="{plant}">
 <img src="/images/{tolower(plant)}.png" alt="{plant} icon" width="100%" height="100%" style="margin-bottom: 0.5rem;" />
 </a>
 
-[Explore {plant} →]({plant})
+[{plant}]({plant})
 
 <div style="margin-top: 0.5rem;">
 <div style="background-color: #e0e0e0; border-radius: 5px; overflow: hidden; height: 1rem;">
