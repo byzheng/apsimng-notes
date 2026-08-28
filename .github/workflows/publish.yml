@@ -48,7 +48,7 @@ jobs:
             build-${{ github.ref }}-
 
       - name: Render docs
-        run: Rscript -e 'targets::tar_make()'
+        run: Rscript _build.R
 
       - name: Publish to gh-pages without deleting previews
         uses: peaceiris/actions-gh-pages@v4
