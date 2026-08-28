@@ -1,0 +1,6 @@
+---
+title: "Thermal Time"
+format: html
+---
+
+Daily thermal time (also known as growing degree days or heat units) is the primary driver for phenological development in the [Lupin](/docs/Plants/Lupin) model. It accounts for the cumulative effect of temperature on plant development rates.

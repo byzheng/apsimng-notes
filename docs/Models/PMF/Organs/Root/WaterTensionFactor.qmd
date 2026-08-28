@@ -1,0 +1,105 @@
+---
+title: "Water Tension Factor"
+---
+
+## Overview
+
+`WaterTensionFactor` is a root-weighted indicator of plant water availability within the root zone. It quantifies the extent to which roots are exposed to readily available soil water by combining:
+
+* The distribution of live root biomass across soil layers.
+* The amount of plant available water (PAW) in each layer.
+* The plant available water capacity (PAWC) of each layer.
+
+The resulting factor ranges from **0 to 1** and represents the average water supply conditions experienced by the living root system.
+
+| Value | Interpretation                                                           |
+| ----- | ------------------------------------------------------------------------ |
+| 0     | No effective water available to roots, or no roots present.              |
+| 1     | All roots are in soil layers with plentiful available water.             |
+| 0–1   | Intermediate levels of water availability weighted by root distribution. |
+
+## Calculation
+
+For each soil layer containing live roots, a layer-specific water availability factor is calculated from the ratio of:
+
+$$
+\frac{PAW}{PAWC}
+$$
+
+where:
+
+* **PAW** = plant available water in the layer.
+* **PAWC** = plant available water capacity of the layer.
+
+This ratio is scaled by a factor of two and then constrained to the range 0–1:
+
+$$
+LayerFactor = \min\left(1,\; \max\left(0,\; \frac{2 \times PAW}{PAWC}\right)\right)
+$$
+
+The overall `WaterTensionFactor` is then calculated as the weighted mean of all layer factors, where the weighting is based on the proportion of total live root biomass in each layer:
+
+$$
+WaterTensionFactor = \sum
+\left(
+\frac{RootWeight_{layer}}{TotalRootWeight}
+\times LayerFactor
+\right)
+$$
+
+As a result, layers containing more root biomass have a greater influence on the final value.
+
+## Behaviour
+
+* Returns **0** when no plant zone exists.
+* Returns **0** when there is no live root biomass.
+* Only layers with **PAWC > 0** contribute to the calculation.
+* Supports multiple soil zones; all rooted zones contribute according to their share of total live root biomass.
+* The factor reaches **1** when the available water in a layer is at least half of its PAWC (`PAW ≥ 0.5 × PAWC`).
+
+## Interpretation
+
+`WaterTensionFactor` provides an integrated measure of soil water conditions experienced by the root system.
+
+* **High values (close to 1)** indicate that most roots occupy well-watered soil layers.
+* **Low values (close to 0)** indicate that roots are primarily located in dry soil layers.
+* Because the calculation is weighted by live root biomass, drying in heavily rooted layers has a greater effect than drying in sparsely rooted layers.
+
+## Example
+
+Consider a root system with:
+
+| Layer | Root biomass (%) | PAW/PAWC | Layer factor |
+| ----- | ---------------- | -------- | ------------ |
+| 1     | 60               | 0.50     | 1.0          |
+| 2     | 30               | 0.20     | 0.4          |
+| 3     | 10               | 0.00     | 0.0          |
+
+The weighted value is:
+
+$$
+(0.60 \times 1.0) + (0.30 \times 0.4) + (0.10 \times 0.0)
+= 0.72
+$$
+
+Therefore:
+
+$$
+WaterTensionFactor = 0.72
+$$
+
+This indicates that although some roots are in dry soil, most of the root system is located in layers with adequate available water.
+
+## Dependencies
+
+`WaterTensionFactor` requires:
+
+* Live root biomass distribution by soil layer.
+* Soil plant available water (`PAW`).
+* Soil plant available water capacity (`PAWC`).
+* Defined root zones and associated soil water and physical soil properties.
+
+## Notes
+
+* Despite its name, this variable is not a direct measure of soil water tension (matric potential). Instead, it is a **root-weighted index of available soil water**, derived from the fraction of PAWC currently occupied by PAW.
+* The scaling used in the calculation means that water availability is considered non-limiting once a layer contains at least 50% of its PAWC.
