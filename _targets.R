@@ -7,8 +7,7 @@ list(
         },
         format = "file",
         cue = targets::tar_cue(
-            mode = "always",
-            command = "always"
+            mode = "always"
         )
     ),
     targets::tar_target(
@@ -24,18 +23,5 @@ list(
             qt_cnt_hash
             myworkspace::render_modified_quarto(force = FALSE)
         }
-    ),
-    targets::tar_target(
-        merge_site,
-        {
-            qt_render
-            r_sty_lst_pubs
-            if (!requireNamespace("myworkspace", quietly = TRUE)) {
-                return(invisible(NULL))
-            }
-            target_dir <- myworkspace::copy_quarto_site()
-            target_dir
-        },
-        format = "file"
     )
 )
