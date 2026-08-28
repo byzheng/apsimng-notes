@@ -32,7 +32,7 @@ This separation enables APSIM to simulate complex plant behaviour while maintain
 
 ## Model Structure
 
-{{< include /\_includes/Models/model-structure-intro.md >}}
+{{< include /_includes/Models/model-structure-intro.md >}}
 
 * [Model](/docs/Models/Core/Model.qmd)
 * [IFunction](/docs/Models/Core/IFunction.qmd)
@@ -40,7 +40,7 @@ This separation enables APSIM to simulate complex plant behaviour while maintain
 
 ## Connections to Other Components
 
-{{< include /\_includes/Models/connections-intro.md >}}
+{{< include /_includes/Models/connections-intro.md >}}
 
 | Component           | Model                                  | Connection Type   | Description                                                             |
 | ------------------- | -------------------------------------- | ----------------- | ----------------------------------------------------------------------- |
@@ -50,7 +50,7 @@ This separation enables APSIM to simulate complex plant behaviour while maintain
 
 ## Model Variables
 
-{{< include /\_includes/Models/model-variables-intro.md >}}
+{{< include /_includes/Models/model-variables-intro.md >}}
 
 **Configurable and Reportable Properties**
 
@@ -80,7 +80,7 @@ This separation enables APSIM to simulate complex plant behaviour while maintain
 
 ## Events
 
-{{< include /\_includes/Models/events-intro.md >}}
+{{< include /_includes/Models/events-intro.md >}}
 
 **Events Listened For**
 
@@ -92,7 +92,7 @@ This separation enables APSIM to simulate complex plant behaviour while maintain
 
 ## Processes and Algorithms
 
-{{< include /\_includes/Models/processes-intro.md >}}
+{{< include /_includes/Models/processes-intro.md >}}
 
 ### Biomass aggregation
 
